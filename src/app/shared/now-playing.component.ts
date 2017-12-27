@@ -4,10 +4,10 @@ import { Show } from './../schedule/show';
 import { ScheduleService } from './../schedule/schedule.service';
 
 @Component({
-    selector: 'now-playing',
+    selector: 'bp-now-playing',
     templateUrl: './now-playing.component.html'
 })
-export class NowPlaying implements OnInit {
+export class NowPlayingComponent implements OnInit {
 
     constructor(
         private scheduleService: ScheduleService
