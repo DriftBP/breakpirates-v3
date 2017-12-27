@@ -11,6 +11,7 @@ import { MobileComponent } from './mobile/mobile.component';
 import { VideoComponent } from './video/video.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'radio', pathMatch: 'full' },
   { path: 'radio', component: HomeComponent },
   { path: 'news', component: NewsComponent },
   { path: 'music', component: MusicComponent },
