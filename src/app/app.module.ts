@@ -13,6 +13,7 @@ import { ProfileModule } from './profile/profile.module';
 import { MobileModule } from './mobile/mobile.module';
 import { VideoModule } from './video/video.module';
 import { ScheduleService } from './schedule/schedule.service';
+import { TuneInService } from './tune-in/tune-in.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { ScheduleService } from './schedule/schedule.service';
     VideoModule,
     HttpClientModule
   ],
-  providers: [ScheduleService],
+  providers: [ScheduleService, TuneInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

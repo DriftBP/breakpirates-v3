@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Show } from './../schedule/show';
-import { ScheduleService } from './../schedule/schedule.service';
+import { Show } from '../../schedule/show';
+import { ScheduleService } from '../../schedule/schedule.service';
 
 @Component({
     selector: 'bp-now-playing',
