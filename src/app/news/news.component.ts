@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
-import { NewsService } from './news.service';
 import { News } from './news';
 
 @Component({
@@ -12,14 +12,13 @@ import { News } from './news';
 export class NewsComponent implements OnInit {
 
   constructor(
-    private newsService: NewsService
+    private route: ActivatedRoute
   ) { }
 
   news: News[];
 
   ngOnInit() {
-    this.newsService.news()
-      .subscribe(news => this.news = news);
+    this.news = this.route.snapshot.data['news'];
   }
 
   unixTimeToStampToTime(timestamp): Date {
