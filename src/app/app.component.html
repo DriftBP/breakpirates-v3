@@ -1,13 +1,38 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <bp-navigation></bp-navigation>
-</nav>
+<div class="container-fluid">
+  <div class="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <bp-navigation></bp-navigation>
+    </nav>
+  </div>
 
-<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <main class="main">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+    <div class="col-md-3">
+      <bp-now-playing></bp-now-playing>
 
-  <router-outlet></router-outlet>
+      <bp-donate></bp-donate>
+    </div>
+  </div>
 
-  <bp-now-playing></bp-now-playing>
+  <hr/>
 
-  <bp-donate></bp-donate>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- BP MK3 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0817931421481428" data-ad-slot="8152629212" data-ad-format="auto"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
 
+  </script>
+
+  <hr/>
+
+  <footer>
+    <p>Break Pirates - Bringing you quality underground music since 2001</p>
+    <p>Site design, code, and content is ©
+      <a href="mailto:info-AT-breakpirates-DOT-com">Break Pirates</a> 2001- 2017 and may not be reproduced without prior permission.</p>
+  </footer>
 </div>
