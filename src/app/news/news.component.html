@@ -6,6 +6,6 @@
 <ul class="list-unstyled">
     <li *ngFor="let article of news">
         <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
-        <a ui-sref="news.article({id:article.id})">{{article.title}}</a>
+        <a [routerLink]="['/news',article.id]">{{article.title}}</a>
     </li>
 </ul>

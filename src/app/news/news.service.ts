@@ -17,7 +17,7 @@ export class NewsService {
   }
 
   newsArticle(id: number): Observable<News> {
-    return this.http.get<News>(AppSettings.API_BASE + 'news/:id');
+    return this.http.get<News>(AppSettings.API_BASE + `news/${id}`);
   }
 
   latestNews(): Observable<News[]> {

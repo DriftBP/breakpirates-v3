@@ -16,6 +16,7 @@ import { NewsService } from './news/news.service';
 import { ScheduleService } from './schedule/schedule.service';
 import { TuneInService } from './tune-in/tune-in.service';
 import { NewsResolve } from './news/news.resolve';
+import { NewsArticleResolve } from './news/news-article.resolve';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { NewsResolve } from './news/news.resolve';
     VideoModule,
     HttpClientModule
   ],
-  providers: [NewsService, NewsResolve, ScheduleService, TuneInService],
+  providers: [NewsService, NewsResolve, NewsArticleResolve, ScheduleService, TuneInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

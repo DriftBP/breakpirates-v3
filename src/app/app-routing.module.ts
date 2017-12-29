@@ -9,12 +9,16 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MobileComponent } from './mobile/mobile.component';
 import { VideoComponent } from './video/video.component';
+import { NewsArticleComponent } from './news/news-article/news-article.component';
+
 import { NewsResolve } from './news/news.resolve';
+import { NewsArticleResolve } from './news/news-article.resolve';
 
 const routes: Routes = [
   { path: '', redirectTo: 'radio', pathMatch: 'full' },
   { path: 'radio', component: HomeComponent },
-  { path: 'news', component: NewsComponent, resolve: { news: NewsResolve } },
+  { path: 'news', component: NewsComponent, resolve: { news: NewsResolve }, pathMatch: 'full' },
+  { path: 'news/:id', component: NewsArticleComponent, resolve: { article: NewsArticleResolve } },
   { path: 'music', component: MusicComponent },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'profile', component: ProfileComponent },
