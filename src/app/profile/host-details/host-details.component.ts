@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Host } from '../host';
+import { Show } from '../../schedule/show';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-host-details',
@@ -11,13 +13,18 @@ import { Host } from '../host';
 export class HostDetailsComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private profileService: ProfileService
   ) { }
 
   profile: Host;
+  shows: Show[];
 
   ngOnInit() {
     this.profile = this.route.snapshot.data['profile'];
+
+    this.profileService.profileShows(this.profile.id)
+      .subscribe(shows => this.shows = shows);
   }
 
   hasMixcloud(): boolean {

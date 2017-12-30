@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppSettings } from '../appSettings';
 import { Host } from './host';
+import { Show } from '../schedule/show';
 
 @Injectable()
 export class ProfileService {
@@ -18,5 +19,9 @@ export class ProfileService {
 
   profile(id: number): Observable<Host> {
     return this.http.get<Host>(AppSettings.API_BASE + `hosts/${id}`);
+  }
+
+  profileShows(id: number): Observable<Show[]> {
+    return this.http.get<Show[]>(AppSettings.API_BASE + `hosts/${id}/shows`);
   }
 }

@@ -11,11 +11,11 @@
 
 <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
 
-<!--<h2>Appears on Break Pirates</h2>
+<h2>Appears on Break Pirates</h2>
 
-<div ng-repeat="show in vm.shows">
-    <show-summary show="show"></show-summary>
-</div>-->
+<div *ngFor="let show of shows">
+    <bp-show-summary [show]="show"></bp-show-summary>
+</div>
 
 <div *ngIf="hasMixcloud()">
     <!--<h3>Listen to recorded shows from {{profile.name}} on Mixcloud</h3>
