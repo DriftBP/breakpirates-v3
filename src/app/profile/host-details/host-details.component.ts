@@ -21,6 +21,12 @@ export class HostDetailsComponent implements OnInit {
   shows: Show[];
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.initialiseState();
+    });
+  }
+
+  initialiseState(): void {
     this.profile = this.route.snapshot.data['profile'];
 
     this.profileService.profileShows(this.profile.id)
