@@ -6,7 +6,7 @@ import { Video } from '../video';
 @Component({
   selector: 'app-video-details',
   templateUrl: './video-details.component.html',
-  styleUrls: ['./video-details.component.css']
+  styleUrls: ['./video-details.component.scss']
 })
 export class VideoDetailsComponent implements OnInit {
 

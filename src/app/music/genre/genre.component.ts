@@ -7,7 +7,7 @@ import { Show } from '../../schedule/show';
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
-  styleUrls: ['./genre.component.css']
+  styleUrls: ['./genre.component.scss']
 })
 export class GenreComponent implements OnInit {
 

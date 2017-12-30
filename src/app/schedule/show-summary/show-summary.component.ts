@@ -7,7 +7,7 @@ import { ScheduleService } from '../schedule.service';
 @Component({
   selector: 'bp-show-summary',
   templateUrl: './show-summary.component.html',
-  styleUrls: ['./show-summary.component.css']
+  styleUrls: ['./show-summary.component.scss']
 })
 export class ShowSummaryComponent {
   @Input() show: Show;

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-mobile',
   templateUrl: './mobile.component.html',
-  styleUrls: ['./mobile.component.css']
+  styleUrls: ['./mobile.component.scss']
 })
 export class MobileComponent implements OnInit {
 
