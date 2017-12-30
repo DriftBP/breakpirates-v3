@@ -1,0 +1,11 @@
+@import './sass/variables';
+
+/* Template styles */
+
+body {
+    font-size: $font-base-size;
+    padding-top: 70px;
+    padding-bottom: 20px;
+    background-color: lighten($color-brand-primary, 50%);
+    font-family: 'Lato', serif;
+}
