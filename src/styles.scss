@@ -9,3 +9,16 @@ body {
     background-color: lighten($color-brand-primary, 50%);
     font-family: 'Lato', serif;
 }
+
+a {
+    color: $color-brand-primary;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.container-fluid {
+    max-width: 992px;
+    margin: 0 auto;
+}
