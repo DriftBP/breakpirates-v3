@@ -1,0 +1,23 @@
+<ul class="breadcrumb">
+    <li><a routerLink="/radio">Home</a></li>
+    <li><a routerLink="/profile">Profiles</a></li>
+    <li>{{profile.name}}</li>
+</ul>
+<h1>{{profile.name}}</h1>
+
+<div *ngIf="hasTwitter()">
+    <!--<twitter-follow profile="{{profile.twitter}}"></twitter-follow>-->
+</div>
+
+<div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
+
+<!--<h2>Appears on Break Pirates</h2>
+
+<div ng-repeat="show in vm.shows">
+    <show-summary show="show"></show-summary>
+</div>-->
+
+<div *ngIf="hasMixcloud()">
+    <h3>Listen to recorded shows from <span ng-bind="vm.profile.name"></span> on Mixcloud</h3>
+    <!--<mixcloud-widget name="{{vm.profile.name}}" profile="{{vm.profile.mixcloud}}"></mixcloud-widget>-->
+</div>

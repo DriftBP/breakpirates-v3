@@ -25,6 +25,9 @@ import { GenreResolve } from './music/genre.resolve';
 import { GenreShowsResolve } from './music/genre-shows.resolve';
 import { VideoResolve } from './video/video.resolve';
 import { VideoDetailResolve } from './video/video-detail.resolve';
+import { ProfilesResolve } from './profile/profiles.resolve';
+import { HostDetailsResolve } from './profile/host-details.resolve';
+import { ProfileService } from './profile/profile.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { VideoDetailResolve } from './video/video-detail.resolve';
     GenresResolve,
     GenreResolve,
     GenreShowsResolve,
+    ProfileService,
+    ProfilesResolve,
+    HostDetailsResolve,
     ScheduleService,
     TuneInService,
     VideoService,

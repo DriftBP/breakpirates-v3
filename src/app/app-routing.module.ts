@@ -6,7 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { MusicComponent } from './music/music.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfilesComponent } from './profile/profiles.component';
+import { HostDetailsComponent } from './profile/host-details/host-details.component';
 import { MobileComponent } from './mobile/mobile.component';
 import { VideoComponent } from './video/video.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
@@ -15,6 +16,8 @@ import { GenreComponent } from './music/genre/genre.component';
 
 import { NewsResolve } from './news/news.resolve';
 import { NewsArticleResolve } from './news/news-article.resolve';
+import { ProfilesResolve } from './profile/profiles.resolve';
+import { HostDetailsResolve } from './profile/host-details.resolve';
 import { GenresResolve } from './music/genres.resolve';
 import { GenreResolve } from './music/genre.resolve';
 import { GenreShowsResolve } from './music/genre-shows.resolve';
@@ -29,7 +32,8 @@ const routes: Routes = [
   { path: 'music', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
   { path: 'music/:id', component: GenreComponent, resolve: { genre: GenreResolve, shows: GenreShowsResolve } },
   { path: 'schedule', component: ScheduleComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfilesComponent, resolve: { profiles: ProfilesResolve }, pathMatch: 'full' },
+  { path: 'profile/:id', component: HostDetailsComponent, resolve: { profile: HostDetailsResolve } },
   { path: 'mobile', component: MobileComponent },
   { path: 'video', component: VideoComponent, resolve: { videos: VideoResolve }, pathMatch: 'full' },
   { path: 'video/:id', component: VideoDetailsComponent, resolve: { video: VideoDetailResolve } },
