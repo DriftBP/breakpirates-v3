@@ -1,0 +1,7 @@
+<h2>Latest news</h2>
+<div class="row">
+  <div class="col-sm-6 col-md-3" *ngFor="let article of latestNews">
+    <h3><a [routerLink]="['/news',article.id]">{{article.title}}</a></h3>
+    <p>{{article.summary}}</p>
+  </div>
+</div>

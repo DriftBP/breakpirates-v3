@@ -5,12 +5,18 @@ import { RouterModule } from '@angular/router';
 import { NewsComponent } from './news.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
 import { SafePipe } from '../shared/safe.pipe';
+import { LatestNewsComponent } from './latest-news/latest-news.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
-  declarations: [NewsComponent, NewsArticleComponent, SafePipe]
+  declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent],
+  exports: [
+    LatestNewsComponent
+  ]
 })
 export class NewsModule { }
