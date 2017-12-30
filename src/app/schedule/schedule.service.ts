@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppSettings } from '../appSettings';
 import { Show } from './show';
+import { Host } from '../profile/host';
 
 @Injectable()
 export class ScheduleService {
@@ -14,5 +15,9 @@ export class ScheduleService {
 
   nowPlaying(): Observable<Show> {
     return this.http.get<Show>(AppSettings.API_BASE + 'schedule/now-playing');
+  }
+
+  showHosts(showId: number): Observable<Host[]> {
+    return this.http.get<Host[]>(AppSettings.API_BASE + `shows/${showId}/hosts`);
   }
 }

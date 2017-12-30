@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
+import { ScheduleModule } from '../schedule/schedule.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ScheduleModule
   ],
   declarations: [MusicComponent, GenreComponent]
 })

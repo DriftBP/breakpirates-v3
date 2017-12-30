@@ -1,0 +1,14 @@
+<div class="show-summary">
+  <div class="time">{{show.startTime}} - {{show.endTime}}</div>
+  <dl>
+      <dt><a [routerLink]="['/shows',show.id]">{{show.title}}</a></dt>
+      <dd>
+          Hosted by:
+          <ul class="hosts list-inline">
+              <li *ngFor="let host of hosts">
+                  <a [routerLink]="['/profile',host.id]">{{host.name}}</a>
+              </li>
+          </ul>
+      </dd>
+  </dl>
+</div>
