@@ -1,3 +1,10 @@
-<p>
-  music works!
-</p>
+<ul class="breadcrumb">
+  <li><a routerLink="/radio">Home</a></li>
+  <li>Music</li>
+</ul>
+<h1>Music</h1>
+<ul>
+  <li *ngFor="let genre of genres">
+      <a [routerLink]="['/music',genre.id]">{{genre.name}}</a>
+  </li>
+</ul>

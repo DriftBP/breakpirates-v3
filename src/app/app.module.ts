@@ -13,12 +13,16 @@ import { ProfileModule } from './profile/profile.module';
 import { MobileModule } from './mobile/mobile.module';
 import { VideoModule } from './video/video.module';
 import { NewsService } from './news/news.service';
+import { MusicService } from './music/music.service';
 import { ScheduleService } from './schedule/schedule.service';
 import { TuneInService } from './tune-in/tune-in.service';
 import { VideoService } from './video/video.service';
 
 import { NewsResolve } from './news/news.resolve';
 import { NewsArticleResolve } from './news/news-article.resolve';
+import { GenresResolve } from './music/genres.resolve';
+import { GenreResolve } from './music/genre.resolve';
+import { GenreShowsResolve } from './music/genre-shows.resolve';
 import { VideoResolve } from './video/video.resolve';
 import { VideoDetailResolve } from './video/video-detail.resolve';
 
@@ -43,6 +47,10 @@ import { VideoDetailResolve } from './video/video-detail.resolve';
     NewsService,
     NewsResolve,
     NewsArticleResolve,
+    MusicService,
+    GenresResolve,
+    GenreResolve,
+    GenreShowsResolve,
     ScheduleService,
     TuneInService,
     VideoService,

@@ -11,9 +11,13 @@ import { MobileComponent } from './mobile/mobile.component';
 import { VideoComponent } from './video/video.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
 import { VideoDetailsComponent } from './video/video-details/video-details.component';
+import { GenreComponent } from './music/genre/genre.component';
 
 import { NewsResolve } from './news/news.resolve';
 import { NewsArticleResolve } from './news/news-article.resolve';
+import { GenresResolve } from './music/genres.resolve';
+import { GenreResolve } from './music/genre.resolve';
+import { GenreShowsResolve } from './music/genre-shows.resolve';
 import { VideoResolve } from './video/video.resolve';
 import { VideoDetailResolve } from './video/video-detail.resolve';
 
@@ -22,7 +26,8 @@ const routes: Routes = [
   { path: 'radio', component: HomeComponent },
   { path: 'news', component: NewsComponent, resolve: { news: NewsResolve }, pathMatch: 'full' },
   { path: 'news/:id', component: NewsArticleComponent, resolve: { article: NewsArticleResolve } },
-  { path: 'music', component: MusicComponent },
+  { path: 'music', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
+  { path: 'music/:id', component: GenreComponent, resolve: { genre: GenreResolve, shows: GenreShowsResolve } },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'mobile', component: MobileComponent },

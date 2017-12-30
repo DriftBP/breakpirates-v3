@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Genre } from './genre';
 
 @Component({
   selector: 'app-music',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
+
+  genres: Genre[];
 
   ngOnInit() {
+    this.genres = this.route.snapshot.data['genres'];
   }
 
 }
