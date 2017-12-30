@@ -7,6 +7,7 @@ import { NewsArticleComponent } from './news-article/news-article.component';
 import { SafePipe } from '../shared/safe.pipe';
 import { LatestNewsComponent } from './latest-news/latest-news.component';
 import { SharedModule } from '../shared/shared.module';
+import { FeaturedNewsComponent } from './featured-news/featured-news.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     SharedModule
   ],
-  declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent],
+  declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent, FeaturedNewsComponent],
   exports: [
     LatestNewsComponent
   ]
