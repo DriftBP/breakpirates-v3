@@ -1,0 +1,9 @@
+<ul class="breadcrumb">
+  <li><a routerLink="/radio">Home</a></li>
+  <li><a routerLink="/video">Video</a></li>
+  <li>{{video.name}}</li>
+</ul>
+
+<h1>{{video.name}}</h1>
+
+<div [innerHTML]="video.code | safe: 'html'"></div>

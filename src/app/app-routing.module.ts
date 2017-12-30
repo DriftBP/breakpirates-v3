@@ -10,9 +10,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { MobileComponent } from './mobile/mobile.component';
 import { VideoComponent } from './video/video.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
+import { VideoDetailsComponent } from './video/video-details/video-details.component';
 
 import { NewsResolve } from './news/news.resolve';
 import { NewsArticleResolve } from './news/news-article.resolve';
+import { VideoResolve } from './video/video.resolve';
+import { VideoDetailResolve } from './video/video-detail.resolve';
 
 const routes: Routes = [
   { path: '', redirectTo: 'radio', pathMatch: 'full' },
@@ -23,7 +26,8 @@ const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'mobile', component: MobileComponent },
-  { path: 'video', component: VideoComponent }
+  { path: 'video', component: VideoComponent, resolve: { videos: VideoResolve }, pathMatch: 'full' },
+  { path: 'video/:id', component: VideoDetailsComponent, resolve: { video: VideoDetailResolve } },
 ];
 
 @NgModule({
@@ -31,7 +35,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ],
+  exports: [RouterModule],
   declarations: []
 })
 export class AppRoutingModule { }

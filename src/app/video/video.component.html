@@ -1,3 +1,12 @@
-<p>
-  video works!
-</p>
+<ul class="breadcrumb">
+  <li><a routerLink="/radio">Home</a></li>
+  <li>Video</li>
+</ul>
+
+<h1>Video</h1>
+
+<ul class="list-unstyled">
+  <li *ngFor="let video of videos">
+    <a [routerLink]="['/video',video.id]">{{video.name}}</a>
+  </li>
+</ul>
