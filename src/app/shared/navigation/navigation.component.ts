@@ -12,9 +12,11 @@ export class NavigationComponent implements OnInit {
   ) { }
 
   archiveUrl: string;
+  isCollapsed: boolean;
 
   ngOnInit() {
     this.archiveUrl = this.tuneInService.archiveUrl;
+    this.isCollapsed = true;
   }
 
 }
