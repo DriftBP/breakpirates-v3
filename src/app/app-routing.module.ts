@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'schedule', loadChildren: './schedule/schedule.module#ScheduleModule' },
   { path: 'profile', component: ProfilesComponent, resolve: { profiles: ProfilesResolve }, pathMatch: 'full' },
   { path: 'profile/:id', component: HostDetailsComponent, resolve: { profile: HostDetailsResolve } },
-  { path: 'mobile', component: MobileComponent },
+  { path: 'mobile', loadChildren: './mobile/mobile.module#MobileModule' },
   { path: 'video', component: VideoComponent, resolve: { videos: VideoResolve }, pathMatch: 'full' },
   { path: 'video/:id', component: VideoDetailsComponent, resolve: { video: VideoDetailResolve } },
 ];
