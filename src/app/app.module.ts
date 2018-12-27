@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { HomeModule } from './home/home.module';
 import { NewsModule } from './news/news.module';
 import { MusicModule } from './music/music.module';
 import { ScheduleModule } from './schedule/schedule.module';
@@ -37,7 +36,6 @@ import { ProfileService } from './profile/profile.service';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HomeModule,
     NewsModule,
     MusicModule,
     ScheduleModule,

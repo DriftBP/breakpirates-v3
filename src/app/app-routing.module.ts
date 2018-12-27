@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { MusicComponent } from './music/music.component';
 import { ProfilesComponent } from './profile/profiles.component';
@@ -25,7 +24,7 @@ import { VideoDetailResolve } from './video/video-detail.resolve';
 
 const routes: Routes = [
   { path: '', redirectTo: 'radio', pathMatch: 'full' },
-  { path: 'radio', component: HomeComponent },
+  { path: 'radio', loadChildren: './home/home.module#HomeModule' },
   { path: 'news', component: NewsComponent, resolve: { news: NewsResolve }, pathMatch: 'full' },
   { path: 'news/:id', component: NewsArticleComponent, resolve: { article: NewsArticleResolve } },
   { path: 'music', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
