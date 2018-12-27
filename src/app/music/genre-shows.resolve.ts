@@ -10,6 +10,6 @@ export class GenreShowsResolve implements Resolve<Show[]> {
   constructor(private musicService: MusicService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.musicService.shows(parseInt(route.paramMap.get('id')));
+    return this.musicService.shows(parseInt(route.paramMap.get('id'), 10));
   }
 }

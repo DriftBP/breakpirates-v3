@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { NewsModule } from './news/news.module';
-import { MusicModule } from './music/music.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { ProfileModule } from './profile/profile.module';
 import { MobileModule } from './mobile/mobile.module';
@@ -37,7 +36,6 @@ import { ProfileService } from './profile/profile.service';
     AppRoutingModule,
     SharedModule,
     NewsModule,
-    MusicModule,
     ScheduleModule,
     ProfileModule,
     MobileModule,
