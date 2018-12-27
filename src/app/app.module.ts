@@ -7,7 +7,6 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { NewsModule } from './news/news.module';
 import { ScheduleModule } from './schedule/schedule.module';
-import { VideoModule } from './video/video.module';
 import { NewsService } from './news/news.service';
 import { MusicService } from './music/music.service';
 import { ScheduleService } from './schedule/schedule.service';
@@ -35,7 +34,6 @@ import { ProfileService } from './profile/profile.service';
     SharedModule,
     NewsModule,
     ScheduleModule,
-    VideoModule,
     HttpClientModule
   ],
   providers: [
