@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { MusicComponent } from './music/music.component';
-import { ScheduleComponent } from './schedule/schedule.component';
 import { ProfilesComponent } from './profile/profiles.component';
 import { HostDetailsComponent } from './profile/host-details/host-details.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -31,7 +30,7 @@ const routes: Routes = [
   { path: 'news/:id', component: NewsArticleComponent, resolve: { article: NewsArticleResolve } },
   { path: 'music', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
   { path: 'music/:id', component: GenreComponent, resolve: { genre: GenreResolve, shows: GenreShowsResolve } },
-  { path: 'schedule', component: ScheduleComponent },
+  { path: 'schedule', loadChildren: './schedule/schedule.module#ScheduleModule' },
   { path: 'profile', component: ProfilesComponent, resolve: { profiles: ProfilesResolve }, pathMatch: 'full' },
   { path: 'profile/:id', component: HostDetailsComponent, resolve: { profile: HostDetailsResolve } },
   { path: 'mobile', component: MobileComponent },

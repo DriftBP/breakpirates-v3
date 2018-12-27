@@ -61,7 +61,8 @@ import { ProfileService } from './profile/profile.service';
     TuneInService,
     VideoService,
     VideoResolve,
-    VideoDetailResolve],
+    VideoDetailResolve
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
