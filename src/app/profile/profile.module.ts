@@ -6,11 +6,13 @@ import { ProfilesComponent } from './profiles.component';
 import { HostDetailsComponent } from './host-details/host-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { ScheduleModule } from '../schedule/schedule.module';
+import { ProfileRoutingModule } from './profile-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    ProfileRoutingModule,
     SharedModule,
     ScheduleModule
   ],
