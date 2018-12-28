@@ -9,17 +9,19 @@ import { SharedModule } from '../shared/shared.module';
 import { FeaturedNewsComponent } from './featured-news/featured-news.component';
 import { NewsResolve } from './news.resolve';
 import { NewsArticleResolve } from './news-article.resolve';
+import { NewsRoutingModule } from './news-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    NewsRoutingModule,
     SharedModule
   ],
   declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent, FeaturedNewsComponent],
   providers: [
     NewsResolve,
-    NewsArticleResolve,
+    NewsArticleResolve
   ],
   exports: [
     LatestNewsComponent

@@ -9,7 +9,7 @@ import { GenreComponent } from './genre/genre.component';
 
 const routes: Routes = [
   { path: '', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
-  { path: ':id', component: GenreComponent, resolve: { genre: GenreResolve, shows: GenreShowsResolve } },
+  { path: ':id', component: GenreComponent, resolve: { genre: GenreResolve, shows: GenreShowsResolve } }
 ];
 
 @NgModule({

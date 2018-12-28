@@ -10,8 +10,8 @@ import { HomeRoutingModule } from './home-routing.module';
   imports: [
     CommonModule,
     RouterModule,
-    NewsModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    NewsModule
   ],
   declarations: [HomeComponent]
 })
