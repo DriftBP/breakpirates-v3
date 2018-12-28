@@ -10,6 +10,6 @@ export class GenreResolve implements Resolve<Genre> {
   constructor(private musicService: MusicService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.musicService.genre(parseInt(route.paramMap.get('id')));
+    return this.musicService.genre(parseInt(route.paramMap.get('id'), 10));
   }
 }

@@ -5,13 +5,25 @@ import { RouterModule } from '@angular/router';
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
 import { ScheduleModule } from '../schedule/schedule.module';
+import { MusicRoutingModule } from './music-routing.module';
+import { GenresResolve } from './genres.resolve';
+import { GenreResolve } from './genre.resolve';
+import { GenreShowsResolve } from './genre-shows.resolve';
+import { MusicService } from './music.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    MusicRoutingModule,
     ScheduleModule
   ],
-  declarations: [MusicComponent, GenreComponent]
+  declarations: [MusicComponent, GenreComponent],
+  providers: [
+    GenresResolve,
+    GenreResolve,
+    GenreShowsResolve,
+    MusicService
+  ]
 })
 export class MusicModule { }
