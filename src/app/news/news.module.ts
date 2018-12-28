@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { NewsComponent } from './news.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
-import { SafePipe } from '../shared/safe.pipe';
 import { LatestNewsComponent } from './latest-news/latest-news.component';
 import { SharedModule } from '../shared/shared.module';
 import { FeaturedNewsComponent } from './featured-news/featured-news.component';
+import { NewsResolve } from './news.resolve';
+import { NewsArticleResolve } from './news-article.resolve';
 
 @NgModule({
   imports: [
@@ -16,6 +17,10 @@ import { FeaturedNewsComponent } from './featured-news/featured-news.component';
     SharedModule
   ],
   declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent, FeaturedNewsComponent],
+  providers: [
+    NewsResolve,
+    NewsArticleResolve,
+  ],
   exports: [
     LatestNewsComponent
   ]
