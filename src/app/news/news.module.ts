@@ -10,6 +10,7 @@ import { FeaturedNewsComponent } from './featured-news/featured-news.component';
 import { NewsResolve } from './news.resolve';
 import { NewsArticleResolve } from './news-article.resolve';
 import { NewsRoutingModule } from './news-routing.module';
+import { NewsService } from './news.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { NewsRoutingModule } from './news-routing.module';
   declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent, FeaturedNewsComponent],
   providers: [
     NewsResolve,
-    NewsArticleResolve
+    NewsArticleResolve,
+    NewsService
   ],
   exports: [
     LatestNewsComponent

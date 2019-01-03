@@ -1,12 +1,12 @@
 <ul class="breadcrumb">
   <li><a routerLink="/radio">Home</a></li>
   <li><a routerLink="/music">Music</a></li>
-  <li>{{genre.name}}</li>
+  <li>{{genre?.name}}</li>
 </ul>
-<h1>{{genre.name}}</h1>
+<h1>{{genre?.name}}</h1>
 
 <h2>Shows featuring this genre</h2>
 
 <div *ngFor="let show of shows">
-  <bp-show-summary [show]="show"></bp-show-summary>
+  <app-show-summary [show]="show"></app-show-summary>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'bp-donate',
+  selector: 'app-donate',
   templateUrl: './donate.component.html'
 })
 export class DonateComponent implements OnInit {

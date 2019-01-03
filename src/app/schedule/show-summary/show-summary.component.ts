@@ -5,11 +5,11 @@ import { Host } from '../../profile/host';
 import { ScheduleService } from '../schedule.service';
 
 @Component({
-  selector: 'bp-show-summary',
+  selector: 'app-show-summary',
   templateUrl: './show-summary.component.html',
   styleUrls: ['./show-summary.component.scss']
 })
-export class ShowSummaryComponent {
+export class ShowSummaryComponent implements OnInit {
   @Input() show: Show;
 
   constructor(
@@ -19,7 +19,9 @@ export class ShowSummaryComponent {
   hosts: Host[];
 
   ngOnInit() {
-    this.scheduleService.showHosts(this.show.id)
-      .subscribe(hosts => this.hosts = hosts);
+    if (this.show !== undefined) {
+      this.scheduleService.showHosts(this.show.id)
+        .subscribe(hosts => this.hosts = hosts);
+    }
   }
 }
