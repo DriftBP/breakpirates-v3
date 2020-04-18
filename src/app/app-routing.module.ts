@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'radio', pathMatch: 'full' },
-  { path: 'radio', loadChildren: './home/home.module#HomeModule' },
-  { path: 'news', loadChildren: './news/news.module#NewsModule' },
-  { path: 'music', loadChildren: './music/music.module#MusicModule' },
-  { path: 'schedule', loadChildren: './schedule/schedule.module#ScheduleModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
-  { path: 'mobile', loadChildren: './mobile/mobile.module#MobileModule' },
-  { path: 'video', loadChildren: './video/video.module#VideoModule' },
+  { path: 'radio', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+  { path: 'news', loadChildren: () => import('./news/news.module').then(m => m.NewsModule) },
+  { path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule) },
+  { path: 'schedule', loadChildren: () => import('./schedule/schedule.module').then(m => m.ScheduleModule) },
+  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
+  { path: 'mobile', loadChildren: () => import('./mobile/mobile.module').then(m => m.MobileModule) },
+  { path: 'video', loadChildren: () => import('./video/video.module').then(m => m.VideoModule) },
 ];
 
 @NgModule({
