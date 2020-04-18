@@ -1,4 +1,4 @@
-<div class="featured-news">
+<div class="featured-news" *ngIf="article !== undefined">
     <img src="images/news/{{article.image}}" />
     <a [routerLink]="['/news',article.id]">{{article.title}}</a>
     <p>{{article.summary}}</p>

@@ -4,7 +4,7 @@ import { Show } from '../../schedule/show';
 import { ScheduleService } from '../../schedule/schedule.service';
 
 @Component({
-    selector: 'bp-now-playing',
+    selector: 'app-now-playing',
     templateUrl: './now-playing.component.html'
 })
 export class NowPlayingComponent implements OnInit {

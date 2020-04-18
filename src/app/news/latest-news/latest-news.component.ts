@@ -4,7 +4,7 @@ import { NewsService } from '../news.service';
 import { News } from '../news';
 
 @Component({
-  selector: 'bp-latest-news',
+  selector: 'app-latest-news',
   templateUrl: './latest-news.component.html',
   styleUrls: ['./latest-news.component.scss']
 })

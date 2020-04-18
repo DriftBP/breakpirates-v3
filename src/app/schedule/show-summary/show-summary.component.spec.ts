@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ShowSummaryComponent } from './show-summary.component';
+import { ScheduleService } from '../schedule.service';
 
 describe('ShowSummaryComponent', () => {
   let component: ShowSummaryComponent;
@@ -8,7 +11,16 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowSummaryComponent ]
+      declarations: [
+        ShowSummaryComponent,
+      ],
+      providers: [
+        ScheduleService
+      ],
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));

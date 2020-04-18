@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { NavigationComponent } from './navigation.component';
+import { TuneInService } from '../../tune-in/tune-in.service';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -8,7 +12,14 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ]
+      declarations: [ NavigationComponent ],
+      imports: [
+        RouterTestingModule,
+        CollapseModule
+      ],
+      providers: [
+        TuneInService
+      ]
     })
     .compileComponents();
   }));

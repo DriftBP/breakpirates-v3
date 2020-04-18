@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TuneInService } from '../../tune-in/tune-in.service';
 
 @Component({
-  selector: 'bp-navigation',
+  selector: 'app-navigation',
   templateUrl: './navigation.component.html'
 })
 export class NavigationComponent implements OnInit {
