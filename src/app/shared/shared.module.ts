@@ -12,6 +12,7 @@ import { SafePipe } from './safe.pipe';
 import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { RadioPlayerComponent } from './radio-player/radio-player.component';
     SocialLinksComponent,
     SafePipe,
     ContentBoxComponent,
-    RadioPlayerComponent
+    RadioPlayerComponent,
+    LoadingSpinnerComponent
   ],
   exports: [
     NavigationComponent,
@@ -36,7 +38,8 @@ import { RadioPlayerComponent } from './radio-player/radio-player.component';
     SocialLinksComponent,
     SafePipe,
     ContentBoxComponent,
-    RadioPlayerComponent
+    RadioPlayerComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }
