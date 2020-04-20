@@ -10,6 +10,6 @@ export class HostDetailsResolve implements Resolve<Host> {
   constructor(private profileService: ProfileService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.profileService.profile(parseInt(route.paramMap.get('id')));
+    return this.profileService.profile(parseInt(route.paramMap.get('id'), 10));
   }
 }
