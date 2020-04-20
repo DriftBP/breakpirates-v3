@@ -1,0 +1,15 @@
+.loading-spinner {
+  margin: 0 auto;
+
+  &__container {
+    display: grid;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
