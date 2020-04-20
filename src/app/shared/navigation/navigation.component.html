@@ -1,70 +1,69 @@
 <div class="container">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" (click)="isCollapsed = !isCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" routerLink="/radio">
-      <img src="" alt="Break Pirates" />
-    </a>
-  </div>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/radio">
+        <img src="" alt="Break Pirates" />
+      </a>
+    </div>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="navbar-collapse" [collapse]="isCollapsed">
-    <ul class="nav navbar-nav">
-      <li dropdown>
-        <a dropdownToggle class="dropdown-toggle" role="button">Tune in
-          <span class="caret"></span>
-        </a>
-        <ul *dropdownMenu class="dropdown-menu" role="menu">
-          <li role="menuitem">
-            <a href="/stream.php">Winamp</a>
-          </li>
-          <li role="menuitem">
-            <a href="/stream.asx">Windows Media Player</a>
-          </li>
-          <li role="menuitem">
-            <a href="/stream.m3u">iTunes</a>
-          </li>
-          <li role="menuitem">
-            <a href="/stream.ram">RealPlayer</a>
-          </li>
-          <li role="menuitem">
-            <a href="https://tunein.com/radio/Break-Pirates-Radio-s97007/" target="_blank">TuneIn Radio</a>
-          </li>
-          <li role="separator" class="divider"></li>
-          <li role="menuitem">
-            <a ui-sref="tune-in.faq">FAQ</a>
-          </li>
-          <li role="separator" class="divider"></li>
-          <li role="menuitem">
-            <a href="{{archiveUrl}}" target="_blank">Show archive</a>
-          </li>
-        </ul>
-      </li>
-      <li [routerLinkActive]="['active']">
-        <a routerLink="/news">News</a>
-      </li>
-      <li [routerLinkActive]="['active']">
-        <a routerLink="/schedule">Schedule</a>
-      </li>
-      <li [routerLinkActive]="['active']">
-        <a routerLink="/music">Music</a>
-      </li>
-      <li [routerLinkActive]="['active']">
-        <a routerLink="/profile">Profile</a>
-      </li>
-      <li [routerLinkActive]="['active']">
-        <a routerLink="/mobile">Mobile</a>
-      </li>
-      <li [routerLinkActive]="['active']">
-        <a routerLink="/video">Video</a>
-      </li>
-    </ul>
-  </div>
-  <!-- /.navbar-collapse -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div id="navbar-main" class="navbar-collapse" [collapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item dropdown" dropdown>
+          <button class="nav-link dropdown-toggle" dropdownToggle href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            Tune in <span class="caret"></span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
+            <li role="menuitem">
+              <a class="dropdown-item" href="/stream.php">Winamp</a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="/stream.asx">Windows Media Player</a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="/stream.m3u">iTunes</a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="/stream.ram">RealPlayer</a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="https://tunein.com/radio/Break-Pirates-Radio-s97007/" target="_blank">TuneIn Radio</a>
+            </li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+              <a class="dropdown-item" ui-sref="tune-in.faq">FAQ</a>
+            </li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="{{archiveUrl}}" target="_blank">Show archive</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/news">News</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/schedule">Schedule</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/music">Music</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/profile">Profile</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/mobile">Mobile</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/video">Video</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </nav>
 </div>
 <!-- /.container-fluid -->

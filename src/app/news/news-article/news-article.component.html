@@ -1,8 +1,11 @@
-<ul class="breadcrumb">
-  <li><a routerLink="/radio">Home</a></li>
-  <li><a routerLink="/news">News</a></li>
-  <li>{{article?.title}}</li>
-</ul>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/news">News</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{article?.title}}</li>
+  </ol>
+</nav>
+
 <div class="news-article">
   <h1>{{article?.title}}</h1>
   <div style="white-space: pre-wrap;" [innerHTML]="article?.text | safe: 'html'"></div>
