@@ -41,6 +41,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jest": "^25.4.0",
+    "shallow-render": "^9.0.4",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~3.8.3"
