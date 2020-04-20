@@ -1,0 +1,12 @@
+<h4 class="title ng-scope">Follow us</h4>
+<ul id="list-unstyled">
+    <li *ngFor="let site of socialSites">
+        <a
+          target="_blank"
+          rel="noopener"
+          [title]="'Break Pirates on ' + site.Name"
+          class="ng-binding"
+          [href]="site.Url"
+          >{{ site.Name }}</a>
+    </li>
+</ul>

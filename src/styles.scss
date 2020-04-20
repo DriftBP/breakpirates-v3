@@ -1,5 +1,4 @@
 @import './sass/variables';
-@import './sass/mixins';
 
 /* Template styles */
 
@@ -22,12 +21,4 @@ a {
 .container-fluid {
     max-width: 992px;
     margin: 0 auto;
-}
-
-.content-box {
-  @include box-shadow();
-  @include box-padding();
-  margin: 1em 0;
-  border: 1px solid #545691;
-  background-color: #fff;
 }
