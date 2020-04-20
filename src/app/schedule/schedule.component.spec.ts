@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleService } from './schedule.service';
 import { MapToArrayPipe } from '../shared/pipes/map-to-array.pipe';
+import { ShowSummaryComponent } from './show-summary/show-summary.component';
 
 describe('ScheduleComponent', () => {
   let component: ScheduleComponent;
@@ -14,10 +16,12 @@ describe('ScheduleComponent', () => {
       providers: [ScheduleService],
       declarations: [
         ScheduleComponent,
-        MapToArrayPipe
+        MapToArrayPipe,
+        ShowSummaryComponent
       ],
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();
