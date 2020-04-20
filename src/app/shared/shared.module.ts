@@ -12,6 +12,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -31,6 +32,7 @@ import { MapToArrayPipe } from './pipes/map-to-array.pipe';
     SocialLinksComponent,
     ContentBoxComponent,
     RadioPlayerComponent,
+    LoadingSpinnerComponent,
     SafePipe,
     MapToArrayPipe
   ],
@@ -41,6 +43,7 @@ import { MapToArrayPipe } from './pipes/map-to-array.pipe';
     SocialLinksComponent,
     ContentBoxComponent,
     RadioPlayerComponent,
+    LoadingSpinnerComponent,
     SafePipe,
     MapToArrayPipe
   ]
