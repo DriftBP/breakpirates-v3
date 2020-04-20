@@ -22,7 +22,7 @@
   </div>
 
   <div *ngIf="hasMixcloud()">
-      <!--<h3>Listen to recorded shows from {{profile.name}} on Mixcloud</h3>
-      <mixcloud-widget name="{{vm.profile.name}}" profile="{{vm.profile.mixcloud}}"></mixcloud-widget>-->
+      <h3>Listen to recorded shows from {{profile.name}} on Mixcloud</h3>
+      <iframe width="200" height="250" [src]="mixcloudWidgetUrl | safe: 'resourceUrl'" frameborder="0" ></iframe>
   </div>
 </div>
