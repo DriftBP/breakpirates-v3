@@ -1,12 +1,9 @@
 <div class="container">
-  <nav class="navbar fixed-top navbar-light bg-light">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" (click)="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" routerLink="/radio">
         <img src="" alt="Break Pirates" />
@@ -14,11 +11,11 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="navbar-collapse" [collapse]="isCollapsed">
+    <div id="navbar-main" class="navbar-collapse" [collapse]="isCollapsed">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item" dropdown>
-          <button id="nav-tune-in" dropdownToggle class="dropdown-toggle" type="button" aria-controls="dropdown-basic">Tune in
-            <span class="caret"></span>
+        <li class="nav-item dropdown" dropdown>
+          <button class="nav-link dropdown-toggle" dropdownToggle href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            Tune in <span class="caret"></span>
           </button>
           <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
             <li role="menuitem">
