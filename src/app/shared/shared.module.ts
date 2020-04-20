@@ -9,6 +9,7 @@ import { NowPlayingComponent } from './now-playing/now-playing.component';
 import { DonateComponent } from './donate/donate.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SafePipe } from './safe.pipe';
+import { SocialLinksComponent } from './social-links/social-links.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { SafePipe } from './safe.pipe';
     CommonModule,
     RouterModule
   ],
-  declarations: [NavigationComponent, NowPlayingComponent, DonateComponent, SafePipe],
-  exports: [NavigationComponent, NowPlayingComponent, DonateComponent, SafePipe]
+  declarations: [NavigationComponent, NowPlayingComponent, DonateComponent, SocialLinksComponent, SafePipe],
+  exports: [NavigationComponent, NowPlayingComponent, DonateComponent, SocialLinksComponent, SafePipe]
 })
 export class SharedModule { }
