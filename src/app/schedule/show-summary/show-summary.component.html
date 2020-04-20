@@ -4,8 +4,8 @@
       <dt><a [routerLink]="['/shows',show.id]">{{show.title}}</a></dt>
       <dd>
           Hosted by:
-          <ul class="hosts list-inline">
-              <li *ngFor="let host of hosts">
+          <ul class="list-group list-group-horizontal-sm">
+              <li *ngFor="let host of hosts" class="list-group-item">
                   <a [routerLink]="['/profile',host.id]">{{host.name}}</a>
               </li>
           </ul>

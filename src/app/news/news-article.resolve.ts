@@ -10,6 +10,6 @@ export class NewsArticleResolve implements Resolve<News> {
   constructor(private newsService: NewsService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.newsService.newsArticle(parseInt(route.paramMap.get('id')));
+    return this.newsService.newsArticle(parseInt(route.paramMap.get('id'), 10));
   }
 }

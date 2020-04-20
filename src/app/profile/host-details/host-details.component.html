@@ -15,14 +15,16 @@
 
   <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
 
-  <h2>Appears on Break Pirates</h2>
+  <div *ngIf="shows.length > 0">
+    <h2>Appears on Break Pirates</h2>
 
-  <div *ngFor="let show of shows">
-      <app-show-summary [show]="show"></app-show-summary>
+    <div *ngFor="let show of shows">
+        <app-show-summary [show]="show"></app-show-summary>
+    </div>
   </div>
 
   <div *ngIf="hasMixcloud()">
-      <!--<h3>Listen to recorded shows from {{profile.name}} on Mixcloud</h3>
-      <mixcloud-widget name="{{vm.profile.name}}" profile="{{vm.profile.mixcloud}}"></mixcloud-widget>-->
+      <h3>Listen to recorded shows from {{profile.name}} on Mixcloud</h3>
+      <iframe width="200" height="250" [src]="mixcloudWidgetUrl | safe: 'resourceUrl'" frameborder="0" ></iframe>
   </div>
 </div>
