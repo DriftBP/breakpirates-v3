@@ -11,6 +11,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SafePipe } from './safe.pipe';
 import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
+import { RadioPlayerComponent } from './radio-player/radio-player.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,23 @@ import { ContentBoxComponent } from './content-box/content-box.component';
     CommonModule,
     RouterModule
   ],
-  declarations: [NavigationComponent, NowPlayingComponent, DonateComponent, SocialLinksComponent, SafePipe, ContentBoxComponent],
-  exports: [NavigationComponent, NowPlayingComponent, DonateComponent, SocialLinksComponent, SafePipe, ContentBoxComponent]
+  declarations: [
+    NavigationComponent,
+    NowPlayingComponent,
+    DonateComponent,
+    SocialLinksComponent,
+    SafePipe,
+    ContentBoxComponent,
+    RadioPlayerComponent
+  ],
+  exports: [
+    NavigationComponent,
+    NowPlayingComponent,
+    DonateComponent,
+    SocialLinksComponent,
+    SafePipe,
+    ContentBoxComponent,
+    RadioPlayerComponent
+  ]
 })
 export class SharedModule { }
