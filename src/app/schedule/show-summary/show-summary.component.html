@@ -1,5 +1,5 @@
 <div class="show-summary" *ngIf="show !== undefined">
-  <!--<div class="time">{{show.startTime}} - {{show.endTime}}</div>-->
+  <div>{{show.start_time}} - {{show.end_time}}</div>
   <dl>
       <dt><a [routerLink]="['/shows',show.id]">{{show.title}}</a></dt>
       <dd>

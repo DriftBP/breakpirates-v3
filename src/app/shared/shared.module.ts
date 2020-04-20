@@ -5,13 +5,17 @@ import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
+// Components
 import { NowPlayingComponent } from './now-playing/now-playing.component';
 import { DonateComponent } from './donate/donate.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SafePipe } from './safe.pipe';
 import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
+
+// Pipes
+import { SafePipe } from './pipes/safe.pipe';
+import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 
 @NgModule({
   imports: [
@@ -25,18 +29,20 @@ import { RadioPlayerComponent } from './radio-player/radio-player.component';
     NowPlayingComponent,
     DonateComponent,
     SocialLinksComponent,
-    SafePipe,
     ContentBoxComponent,
-    RadioPlayerComponent
+    RadioPlayerComponent,
+    SafePipe,
+    MapToArrayPipe
   ],
   exports: [
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
     SocialLinksComponent,
-    SafePipe,
     ContentBoxComponent,
-    RadioPlayerComponent
+    RadioPlayerComponent,
+    SafePipe,
+    MapToArrayPipe
   ]
 })
 export class SharedModule { }

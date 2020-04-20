@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HostDetailsComponent } from './host-details.component';
-import { SafePipe } from '../../shared/safe.pipe';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
 import { ProfileService } from '../profile.service';
 

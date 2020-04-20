@@ -5,11 +5,13 @@ import { ScheduleComponent } from './schedule.component';
 import { ShowSummaryComponent } from './show-summary/show-summary.component';
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { ScheduleService } from './schedule.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ScheduleRoutingModule
+    ScheduleRoutingModule,
+    SharedModule
   ],
   declarations: [ScheduleComponent, ShowSummaryComponent],
   exports: [
