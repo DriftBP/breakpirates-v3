@@ -10,7 +10,7 @@ export class MapToArrayPipe implements PipeTransform {
 
   public transform(value, args: string[]): any {
     const arr = [];
-    for (let key in value) {
+    for (const key of Object.keys(value)) {
       arr.push({key: key, value: value[key]});
     }
     return arr;
