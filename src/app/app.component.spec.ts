@@ -6,7 +6,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { TuneInModule } from './tune-in/tune-in.module';
 import { ScheduleModule } from './schedule/schedule.module';
 
 describe('AppComponent', () => {
@@ -19,7 +18,6 @@ describe('AppComponent', () => {
         RouterTestingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        TuneInModule,
         ScheduleModule,
         SharedModule
       ],

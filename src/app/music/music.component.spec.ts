@@ -22,5 +22,3 @@ describe('MusicComponent', () => {
     expect(element.nativeElement).toBeTruthy();
   });
 });
-
-

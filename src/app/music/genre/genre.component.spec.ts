@@ -1,31 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { GenreComponent } from './genre.component';
-import { ScheduleModule } from '../../schedule/schedule.module';
+import { MusicModule } from './../music.module';
+import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+const routes: Routes = [];
 
 describe('GenreComponent', () => {
-  let component: GenreComponent;
-  let fixture: ComponentFixture<GenreComponent>;
+  let shallow: Shallow<GenreComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GenreComponent ],
-      imports: [
-        RouterTestingModule,
-        ScheduleModule
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(GenreComponent, MusicModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GenreComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
