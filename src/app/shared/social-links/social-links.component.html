@@ -1,11 +1,11 @@
-<ul id="list-unstyled">
-    <li *ngFor="let site of socialSites">
+<ul class="social-links list-group list-group-horizontal">
+    <li class="social-links__social-link list-group-item flex-fill" *ngFor="let site of socialSites">
         <a
           target="_blank"
           rel="noopener"
           [title]="'Break Pirates on ' + site.Name"
           class="ng-binding"
           [href]="site.Url"
-          >{{ site.Name }}</a>
+          ><i class="fab" [ngClass]="'fa-' + site.Icon"></i></a>
     </li>
 </ul>
