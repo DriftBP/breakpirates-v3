@@ -1,10 +1,10 @@
 import { async } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
+import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NewsArticleComponent } from './news-article.component';
 import { NewsModule } from '../news.module';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
 const routes: Routes = [];
 

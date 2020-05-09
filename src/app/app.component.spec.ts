@@ -1,34 +1,26 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
+import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { ScheduleModule } from './schedule/schedule.module';
+import { AppModule } from './app.module';
+
+const routes: Routes = [];
 
 describe('AppComponent', () => {
+  let shallow: Shallow<AppComponent>;
+
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-      imports: [
-        RouterTestingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        ScheduleModule,
-        SharedModule
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ]
-    }).compileComponents();
+    shallow = new Shallow(AppComponent, AppModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
+      .replaceModule(BrowserAnimationsModule, NoopAnimationsModule);
   }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+
+  it('should create', async () => {
+    const { element } = await shallow.render();
+
+    expect(element.nativeElement).toBeTruthy();
+  });
 });

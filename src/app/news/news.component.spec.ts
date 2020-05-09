@@ -1,29 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
+import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { NewsModule } from './news.module';
 import { NewsComponent } from './news.component';
 
+const routes: Routes = [];
+
 describe('NewsComponent', () => {
-  let component: NewsComponent;
-  let fixture: ComponentFixture<NewsComponent>;
+  let shallow: Shallow<NewsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NewsComponent ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(NewsComponent, NewsModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NewsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
