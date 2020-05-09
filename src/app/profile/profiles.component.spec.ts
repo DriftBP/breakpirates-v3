@@ -21,4 +21,20 @@ describe('ProfilesComponent', () => {
 
     expect(element.nativeElement).toBeTruthy();
   });
+
+  it('should default to ascending order', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.order).toEqual('asc');
+  });
+
+  it('should toggle ordering', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.order).toEqual('asc');
+    instance.toggleOrderBy();
+    expect(instance.order).toEqual('desc');
+    instance.toggleOrderBy();
+    expect(instance.order).toEqual('asc');
+  });
 });
