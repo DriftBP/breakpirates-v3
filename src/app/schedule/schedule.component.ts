@@ -13,7 +13,7 @@ import { Day } from './day';
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-  activeDayId = moment().day();
+  activeDayId = moment().isoWeekday();
   title: string;
   days: Day[];
   todaysSchedule: Show[];
