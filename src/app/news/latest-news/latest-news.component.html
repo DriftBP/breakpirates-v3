@@ -1,6 +1,5 @@
-<h2>Latest news</h2>
-<div class="row">
-  <div class="col-sm-6 col-md-3" *ngFor="let article of latestNews">
+<div class="latest-news">
+  <div class="latest-news__news-item" *ngFor="let article of latestNews">
     <app-featured-news [article]="article"></app-featured-news>
   </div>
 </div>
