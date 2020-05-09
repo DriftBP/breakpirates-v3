@@ -12,15 +12,18 @@ export class SocialService {
     return [
       {
         Name: 'Facebook',
-        Url: AppSettings.FACEBOOK_URL
+        Url: AppSettings.FACEBOOK_URL,
+        Icon: 'facebook'
       },
       {
         Name: 'Twitter',
-        Url: AppSettings.TWITTER_URL
+        Url: AppSettings.TWITTER_URL,
+        Icon: 'twitter'
       },
       {
         Name: 'Mixcloud',
-        Url: AppSettings.MIXCLOUD_URL
+        Url: AppSettings.MIXCLOUD_URL,
+        Icon: 'mixcloud'
       }
     ];
   }
