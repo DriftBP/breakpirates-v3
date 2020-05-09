@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: 'mobile', loadChildren: () => import('./mobile/mobile.module').then(m => m.MobileModule) },
   { path: 'video', loadChildren: () => import('./video/video.module').then(m => m.VideoModule) },
+  { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
 ];
 
 @NgModule({
