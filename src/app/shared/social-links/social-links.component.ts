@@ -6,7 +6,7 @@ import { Site } from '../services/site';
 @Component({
   selector: 'app-social-links',
   templateUrl: './social-links.component.html',
-  styleUrls: ['./social-links.component.css']
+  styleUrls: ['./social-links.component.scss']
 })
 export class SocialLinksComponent {
   socialSites: Site[];
