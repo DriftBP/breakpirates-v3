@@ -1,33 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
+import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { VideoDetailsComponent } from './video-details.component';
-import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { VideoModule } from '../video.module';
+
+const routes: Routes = [];
 
 describe('VideoDetailsComponent', () => {
-  let component: VideoDetailsComponent;
-  let fixture: ComponentFixture<VideoDetailsComponent>;
+  let shallow: Shallow<VideoDetailsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        VideoDetailsComponent,
-        SafePipe
-      ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(VideoDetailsComponent, VideoModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(VideoDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { TuneInComponent } from './tune-in.component';
+import { SharedModule } from '../shared/shared.module';
 
 describe('TuneInComponent', () => {
-  let component: TuneInComponent;
-  let fixture: ComponentFixture<TuneInComponent>;
+  let shallow: Shallow<TuneInComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TuneInComponent ]
-    })
-    .compileComponents();
+    shallow = new Shallow(TuneInComponent, SharedModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TuneInComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

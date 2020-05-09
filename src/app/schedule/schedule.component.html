@@ -7,8 +7,8 @@
 
 <h1>Schedule</h1>
 
-<ul class="list-group list-group-horizontal-sm">
-  <li *ngFor="let day of days" class="list-group-item"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
+<ul class="days list-group list-group-horizontal-sm">
+  <li *ngFor="let day of days" class="day list-group-item"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
 </ul>
 
 <ng-container *ngFor="let day of schedule | mapToArray">

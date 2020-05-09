@@ -1,27 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { RadioPlayerComponent } from './radio-player.component';
+import { SharedModule } from '../shared.module';
 
 describe('RadioPlayerComponent', () => {
-  let component: RadioPlayerComponent;
-  let fixture: ComponentFixture<RadioPlayerComponent>;
+  let shallow: Shallow<RadioPlayerComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RadioPlayerComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-    })
-    .compileComponents();
+    shallow = new Shallow(RadioPlayerComponent, SharedModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RadioPlayerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

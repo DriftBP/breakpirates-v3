@@ -1,41 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
+import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
 
 import { HostDetailsComponent } from './host-details.component';
-import { SafePipe } from '../../shared/pipes/safe.pipe';
-import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
-import { ProfileService } from '../profile.service';
+import { ProfileModule } from '../profile.module';
+
+const routes: Routes = [];
 
 describe('HostDetailsComponent', () => {
-  let component: HostDetailsComponent;
-  let fixture: ComponentFixture<HostDetailsComponent>;
+  let shallow: Shallow<HostDetailsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        HostDetailsComponent,
-        ShowSummaryComponent,
-        SafePipe
-      ],
-      imports: [
-        RouterTestingModule,
-        HttpClientModule
-      ],
-      providers: [
-        ProfileService
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(HostDetailsComponent, ProfileModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HostDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

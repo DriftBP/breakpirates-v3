@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { SocialComponent } from './social.component';
+import { SocialModule } from './social.module';
 
 describe('SocialComponent', () => {
-  let component: SocialComponent;
-  let fixture: ComponentFixture<SocialComponent>;
+  let shallow: Shallow<SocialComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SocialComponent ]
-    })
-    .compileComponents();
+    shallow = new Shallow(SocialComponent, SocialModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SocialComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
