@@ -1,29 +1,47 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { FeaturedNewsComponent } from './featured-news.component';
+import { NewsModule } from '../news.module';
+import { News } from '../news';
 
 describe('FeaturedNewsComponent', () => {
-  let component: FeaturedNewsComponent;
-  let fixture: ComponentFixture<FeaturedNewsComponent>;
+  let shallow: Shallow<FeaturedNewsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FeaturedNewsComponent ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(FeaturedNewsComponent, NewsModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FeaturedNewsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should create', async () => {
+    const { element } = await shallow.render();
+
+    expect(element.nativeElement).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should populate the template', async () => {
+    const { fixture, instance, find } = await shallow.render();
+    const mockArticle: News = {
+      id: 1,
+      title: 'Article title',
+      text: 'Article text',
+      summary: 'Article summary',
+      image: 'article.jpg'
+    };
+
+    instance.article = mockArticle;
+
+    fixture.detectChanges();
+
+    const anchor = find('a');
+    const paragraph = find('p');
+    const image = find('img');
+
+    expect(anchor.length).toEqual(1);
+    expect(anchor.nativeElement.innerHTML).toEqual(mockArticle.title);
+    expect(paragraph.length).toEqual(1);
+    expect(paragraph.nativeElement.innerHTML).toEqual(mockArticle.summary);
+    expect(image.length).toEqual(1);
+    expect(image.nativeElement.src).toContain(mockArticle.image);
   });
 });
+

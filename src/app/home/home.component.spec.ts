@@ -1,31 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { HomeComponent } from './home.component';
-import { NewsModule } from '../news/news.module';
+import { HomeModule } from './home.module';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let shallow: Shallow<HomeComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      imports: [
-        HttpClientModule,
-        NewsModule
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(HomeComponent, HomeModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
+
