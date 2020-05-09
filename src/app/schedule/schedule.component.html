@@ -1,13 +1,18 @@
-<p>
-  schedule works!
-</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Schedule</li>
+  </ol>
+</nav>
 
-<ul class="days">
-  <li class="day">Monday</li>
-  <li class="day">Tuesday</li>
-  <li class="day">Wednesday</li>
-  <li class="day">Thursday</li>
-  <li class="day">Friday</li>
-  <li class="day">Saturday</li>
-  <li class="day">Sunday</li>
+<h1>Schedule</h1>
+
+<ul class="days list-group list-group-horizontal-sm">
+  <li *ngFor="let day of days" class="day list-group-item" [ngClass]="{ 'active': day.id == activeDayId }"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
 </ul>
+
+<h2>{{ title }}</h2>
+
+<ng-container *ngFor="let show of todaysSchedule">
+  <app-show-summary [show]="show"></app-show-summary>
+</ng-container>
