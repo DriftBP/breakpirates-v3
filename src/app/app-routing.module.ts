@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule) },
   { path: 'schedule', loadChildren: () => import('./schedule/schedule.module').then(m => m.ScheduleModule) },
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
-  { path: 'mobile', loadChildren: () => import('./mobile/mobile.module').then(m => m.MobileModule) },
   { path: 'video', loadChildren: () => import('./video/video.module').then(m => m.VideoModule) },
+  { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
 ];
 
 @NgModule({

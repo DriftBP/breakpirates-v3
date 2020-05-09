@@ -13,16 +13,19 @@ export class SocialService {
       {
         Name: 'Facebook',
         Url: AppSettings.FACEBOOK_URL,
+        Description: 'Find us on Facebook',
         Icon: 'facebook'
       },
       {
         Name: 'Twitter',
         Url: AppSettings.TWITTER_URL,
+        Description: 'Follow us on Twitter',
         Icon: 'twitter'
       },
       {
         Name: 'Mixcloud',
         Url: AppSettings.MIXCLOUD_URL,
+        Description: 'Listen again on Mixcloud',
         Icon: 'mixcloud'
       }
     ];

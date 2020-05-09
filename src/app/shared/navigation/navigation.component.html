@@ -53,9 +53,6 @@
           <a class="nav-link" routerLink="/profile">Profile</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/mobile">Mobile</a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/video">Video</a>
         </li>
         <li class="nav-item dropdown" dropdown>
@@ -70,6 +67,10 @@
                 class="dropdown-item"
                 [href]="site.Url"
                 ><i class="fab" [ngClass]="'fa-' + site.Icon"></i>&nbsp;{{ site.Name }}</a>
+            </li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+              <a class="dropdown-item" routerLink="/social/chat">Chat room</a>
             </li>
           </ul>
         </li>
