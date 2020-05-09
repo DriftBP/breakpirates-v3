@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Site } from '../services/site';
 import { SocialService } from '../services/social.service';
 import { AppSettings } from '../../appSettings';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,6 +15,7 @@ export class NavigationComponent implements OnInit {
   socialSites: Site[];
 
   constructor(
+    private readonly navigationService: NavigationService,
     private readonly socialService: SocialService
   ) {
     this.socialSites = this.socialService.getSocialSites();
@@ -21,7 +23,12 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.archiveUrl = AppSettings.ARCHIVE_URL;
-    this.isCollapsed = true;
+    this.navigationService.isCollapsed.subscribe(isCollapsed => {
+      this.isCollapsed = isCollapsed;
+    });
   }
 
+ toggleIsCollapsed() {
+  this.navigationService.setCollapsed(!this.isCollapsed);
+ }
 }
