@@ -5,8 +5,7 @@ import { SocialService } from '../shared/services/social.service';
 
 @Component({
   selector: 'app-social',
-  templateUrl: './social.component.html',
-  styleUrls: ['./social.component.css']
+  templateUrl: './social.component.html'
 })
 export class SocialComponent {
   socialSites: Site[];
