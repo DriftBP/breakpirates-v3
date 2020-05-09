@@ -11,6 +11,12 @@
   <li *ngFor="let day of days" class="day list-group-item" [ngClass]="{ 'active': day.id == activeDayId }"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
 </ul>
 
+<p>Check back regularly for schedule updates and details of guest shows!</p>
+
+<p>You can find out more about the DJs featured by entering the Profiles section.</p>
+
+<p>Times displayed are for London, UK.</p>
+
 <h2>{{ title }}</h2>
 
 <ng-container *ngFor="let show of todaysSchedule">
