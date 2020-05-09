@@ -11,15 +11,11 @@
 
   <h2>Show time</h2>
 
-  <p>{{ show.start_time }} - {{ show.end_time }} on {{ dayName }}</p>
+  <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
 
   <h2>Hosted by</h2>
 
-  <ul class="list-group list-group-horizontal-sm">
-    <li *ngFor="let host of hosts" class="list-group-item">
-        <a [routerLink]="['/profile',host.id]">{{host.name}}</a>
-    </li>
-  </ul>
+  <app-host-list [hosts]="hosts"></app-host-list>
 
   <ng-container *ngIf="show && show.description">
     <h2>Show description</h2>
