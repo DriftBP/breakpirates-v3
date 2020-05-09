@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { DonateComponent } from './donate.component';
+import { SharedModule } from '../shared.module';
 
 describe('DonateComponent', () => {
-  let component: DonateComponent;
-  let fixture: ComponentFixture<DonateComponent>;
+  let shallow: Shallow<DonateComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DonateComponent ]
-    })
-    .compileComponents();
+    shallow = new Shallow(DonateComponent, SharedModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DonateComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

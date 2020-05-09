@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { MobileComponent } from './mobile.component';
+import { MobileModule } from './mobile.module';
 
 describe('MobileComponent', () => {
-  let component: MobileComponent;
-  let fixture: ComponentFixture<MobileComponent>;
+  let shallow: Shallow<MobileComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MobileComponent ]
-    })
-    .compileComponents();
+    shallow = new Shallow(MobileComponent, MobileModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MobileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
