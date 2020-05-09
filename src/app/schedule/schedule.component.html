@@ -8,12 +8,11 @@
 <h1>Schedule</h1>
 
 <ul class="days list-group list-group-horizontal-sm">
-  <li *ngFor="let day of days" class="day list-group-item"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
+  <li *ngFor="let day of days" class="day list-group-item" [ngClass]="{ 'active': day.id == activeDayId }"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
 </ul>
 
-<ng-container *ngFor="let day of schedule | mapToArray">
-  {{ day.key }}
-  <ng-container *ngFor="let show of day.value">
-    <app-show-summary [show]="show"></app-show-summary>
-  </ng-container>
+<h2>{{ activeDayName }}</h2>
+
+<ng-container *ngFor="let show of todaysSchedule">
+  <app-show-summary [show]="show"></app-show-summary>
 </ng-container>
