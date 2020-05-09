@@ -1,14 +1,14 @@
 import { async } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
-import { MobileComponent } from './mobile.component';
-import { MobileModule } from './mobile.module';
+import { ChatComponent } from './chat.component';
+import { SocialModule } from './../social.module';
 
-describe('MobileComponent', () => {
-  let shallow: Shallow<MobileComponent>;
+describe('ChatComponent', () => {
+  let shallow: Shallow<ChatComponent>;
 
   beforeEach(async(() => {
-    shallow = new Shallow(MobileComponent, MobileModule);
+    shallow = new Shallow(ChatComponent, SocialModule);
   }));
 
   it('should create', async () => {

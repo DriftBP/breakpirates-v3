@@ -1,3 +1,16 @@
-<p>
-  social works!
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Social</li>
+  </ol>
+</nav>
+
+<h1>Social</h1>
+
+<p *ngFor="let site of socialSites">
+  <a
+    target="_blank"
+    rel="noopener"
+    [href]="site.Url"
+    >{{ site.Description }}</a>
 </p>
