@@ -8,7 +8,6 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { NewsService } from './news/news.service';
-import { TuneInModule } from './tune-in/tune-in.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { TuneInModule } from './tune-in/tune-in.module';
     AppRoutingModule,
     SharedModule,
     ScheduleModule,
-    TuneInModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],
