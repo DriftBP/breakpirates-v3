@@ -4,8 +4,8 @@
   padding: 0;
 
   &__host-item {
-    display: inline;
-    margin: 0.25em;
+    display: inline-block;
+    margin: 0.25em 0.5em 0.25em 0;
 
     &:first-of-type {
       margin-left: 0;
@@ -21,6 +21,7 @@
       background-color: #fff;
       border: 1px solid #333;
       border-radius: 0.5em;
+      white-space: nowrap;
     }
   }
 }
