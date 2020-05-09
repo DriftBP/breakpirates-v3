@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { AppSettings } from '../appSettings';
+import { AppSettings } from '../app-settings';
 import { Video } from './video';
 
 @Injectable()

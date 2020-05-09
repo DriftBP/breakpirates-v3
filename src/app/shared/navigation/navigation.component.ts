@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Site } from '../services/site';
 import { SocialService } from '../services/social.service';
-import { AppSettings } from '../../appSettings';
+import { AppSettings } from '../../app-settings';
 import { NavigationService } from '../services/navigation.service';
 
 @Component({
