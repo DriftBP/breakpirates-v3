@@ -1,10 +1,10 @@
 <div class="show-summary" *ngIf="show !== undefined">
-  <div>{{show.start_time}} - {{show.end_time}}</div>
-  <dl>
-      <dt><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></dt>
-      <dd>
+  <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
+  <div>
+      <div><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></div>
+      <div>
           Hosted by:
           <app-host-list [hosts]="hosts"></app-host-list>
-      </dd>
-  </dl>
+      </div>
+  </div>
 </div>

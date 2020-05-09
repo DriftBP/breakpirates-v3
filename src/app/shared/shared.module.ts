@@ -19,6 +19,7 @@ import { SafePipe } from './pipes/safe.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { HostListComponent } from './host-list/host-list.component';
+import { TimePipe } from './pipes/time.pipe';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { HostListComponent } from './host-list/host-list.component';
     SafePipe,
     SortByPipe,
     MapToArrayPipe,
+    TimePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
@@ -48,6 +50,7 @@ import { HostListComponent } from './host-list/host-list.component';
     SafePipe,
     SortByPipe,
     MapToArrayPipe,
+    TimePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,

@@ -11,7 +11,7 @@
 
   <h2>Show time</h2>
 
-  <p>{{ show.start_time }} - {{ show.end_time }} on {{ dayName }}</p>
+  <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
 
   <h2>Hosted by</h2>
 
