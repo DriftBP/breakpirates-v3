@@ -14,7 +14,7 @@ import { Day } from './day';
 })
 export class ScheduleComponent implements OnInit {
   activeDayId = moment().day();
-  activeDayName: string;
+  title: string;
   days: Day[];
   todaysSchedule: Show[];
 
@@ -29,7 +29,7 @@ export class ScheduleComponent implements OnInit {
 
       if (!this.route.snapshot.paramMap.get('id')) {
         // Default title
-        this.activeDayName = 'Todays schedule';
+        this.title = 'Todays schedule';
       } else {
         this.setTitle();
       }
@@ -53,7 +53,7 @@ export class ScheduleComponent implements OnInit {
     const activeDay = find(this.days, day => day.id === this.activeDayId);
 
     if (activeDay) {
-      this.activeDayName = activeDay.name;
+      this.title = activeDay.name;
     }
   }
 

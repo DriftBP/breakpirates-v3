@@ -1,12 +1,16 @@
 import { async } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { of } from 'rxjs';
+import { Routes, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleModule } from './schedule.module';
 import { ScheduleService } from './schedule.service';
 import { Day } from './day';
 import { Show } from './show';
+
+const routes: Routes = [];
 
 const mockDay: Day = {
   id: 1,
@@ -16,7 +20,9 @@ const mockShow: Show = {
   id: 1,
   title: 'title',
   start_time: '00:00',
-  end_time: '01:00'
+  end_time: '01:00',
+  day_id: 1,
+  description: 'descripion'
 };
 
 describe('ScheduleComponent', () => {
@@ -24,6 +30,7 @@ describe('ScheduleComponent', () => {
 
   beforeEach(async(() => {
     shallow = new Shallow(ScheduleComponent, ScheduleModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
       .mock(ScheduleService, {
         days: () => of([ mockDay ]),
         shows: () => of([ mockShow ]),

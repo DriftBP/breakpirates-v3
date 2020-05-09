@@ -29,4 +29,8 @@ export class ScheduleService {
   shows(dayId: number): Observable<Show[]> {
     return this.http.get<Show[]>(AppSettings.API_BASE + `schedule/${dayId}`);
   }
+
+  show(showId: number): Observable<Show> {
+    return this.http.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
+  }
 }
