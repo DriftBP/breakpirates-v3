@@ -1,38 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { NavigationComponent } from './navigation.component';
-import { TuneInService } from '../../tune-in/tune-in.service';
+import { SharedModule } from '../shared.module';
 
 describe('NavigationComponent', () => {
-  let component: NavigationComponent;
-  let fixture: ComponentFixture<NavigationComponent>;
+  let shallow: Shallow<NavigationComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ],
-      imports: [
-        RouterTestingModule,
-        BrowserAnimationsModule,
-        CollapseModule
-      ],
-      providers: [
-        TuneInService
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(NavigationComponent, SharedModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NavigationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

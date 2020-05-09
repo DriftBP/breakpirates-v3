@@ -1,37 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { ShowSummaryComponent } from './show-summary.component';
-import { ScheduleService } from '../schedule.service';
+import { ScheduleModule } from '../schedule.module';
+import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+const routes: Routes = [];
 
 describe('ShowSummaryComponent', () => {
-  let component: ShowSummaryComponent;
-  let fixture: ComponentFixture<ShowSummaryComponent>;
+  let shallow: Shallow<ShowSummaryComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        ShowSummaryComponent,
-      ],
-      providers: [
-        ScheduleService
-      ],
-      imports: [
-        RouterTestingModule,
-        HttpClientModule
-      ]
-    })
-    .compileComponents();
+    shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ShowSummaryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });

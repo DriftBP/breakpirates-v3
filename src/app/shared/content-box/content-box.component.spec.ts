@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { ContentBoxComponent } from './content-box.component';
+import { SharedModule } from '../shared.module';
 
 describe('ContentBoxComponent', () => {
-  let component: ContentBoxComponent;
-  let fixture: ComponentFixture<ContentBoxComponent>;
+  let shallow: Shallow<ContentBoxComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ContentBoxComponent ]
-    })
-    .compileComponents();
+    shallow = new Shallow(ContentBoxComponent, SharedModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ContentBoxComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
