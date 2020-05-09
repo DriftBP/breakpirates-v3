@@ -5,18 +5,23 @@ import { ScheduleComponent } from './schedule.component';
 import { ShowSummaryComponent } from './show-summary/show-summary.component';
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { ScheduleService } from './schedule.service';
+import { SharedModule } from '../shared/shared.module';
+import { ShowComponent } from './show/show.component';
+import { ShowDetailsResolve } from './show-details.resolve';
 
 @NgModule({
   imports: [
     CommonModule,
-    ScheduleRoutingModule
+    ScheduleRoutingModule,
+    SharedModule
   ],
-  declarations: [ScheduleComponent, ShowSummaryComponent],
+  declarations: [ScheduleComponent, ShowSummaryComponent, ShowComponent],
   exports: [
     ShowSummaryComponent
   ],
   providers: [
-    ScheduleService
+    ScheduleService,
+    ShowDetailsResolve
   ]
 })
 export class ScheduleModule { }
