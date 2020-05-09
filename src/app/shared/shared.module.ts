@@ -16,6 +16,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 
 @NgModule({
@@ -30,22 +31,24 @@ import { MapToArrayPipe } from './pipes/map-to-array.pipe';
     NowPlayingComponent,
     DonateComponent,
     SocialLinksComponent,
+    SafePipe,
+    SortByPipe,
+    MapToArrayPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
-    LoadingSpinnerComponent,
-    SafePipe,
-    MapToArrayPipe
+    LoadingSpinnerComponent
   ],
   exports: [
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
     SocialLinksComponent,
+    SafePipe,
+    SortByPipe,
+    MapToArrayPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
-    LoadingSpinnerComponent,
-    SafePipe,
-    MapToArrayPipe
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

@@ -10,14 +10,19 @@ import { Host } from './host';
 })
 export class ProfilesComponent implements OnInit {
 
+  profiles: Host[];
+  order = 'asc';
+
   constructor(
     private route: ActivatedRoute
   ) { }
 
-  profiles: Host[];
-
   ngOnInit() {
     this.profiles = this.route.snapshot.data['profiles'];
+  }
+
+  toggleOrderBy(): void {
+    this.order = this.order === 'asc' ? 'desc' : 'asc';
   }
 
 }
