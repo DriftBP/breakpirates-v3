@@ -1,5 +1,5 @@
 import { Component, } from '@angular/core';
-import { AppSettings } from '../../appSettings';
+import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'app-chat',
