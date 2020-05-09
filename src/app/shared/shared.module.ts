@@ -18,6 +18,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { SafePipe } from './pipes/safe.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
+import { HostListComponent } from './host-list/host-list.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { MapToArrayPipe } from './pipes/map-to-array.pipe';
     MapToArrayPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HostListComponent
   ],
   exports: [
     NavigationComponent,
@@ -48,7 +50,8 @@ import { MapToArrayPipe } from './pipes/map-to-array.pipe';
     MapToArrayPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HostListComponent
   ]
 })
 export class SharedModule { }

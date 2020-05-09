@@ -15,11 +15,7 @@
 
   <h2>Hosted by</h2>
 
-  <ul class="list-group list-group-horizontal-sm">
-    <li *ngFor="let host of hosts" class="list-group-item">
-        <a [routerLink]="['/profile',host.id]">{{host.name}}</a>
-    </li>
-  </ul>
+  <app-host-list [hosts]="hosts"></app-host-list>
 
   <ng-container *ngIf="show && show.description">
     <h2>Show description</h2>
