@@ -22,26 +22,25 @@ describe('FeaturedNewsComponent', () => {
     const { fixture, instance, find } = await shallow.render();
     const mockArticle: News = {
       id: 1,
+      date: 1,
       title: 'Article title',
       text: 'Article text',
       summary: 'Article summary',
-      image: 'article.jpg'
+      image: 'article.jpg',
+      added_by: 'BP'
     };
 
     instance.article = mockArticle;
 
     fixture.detectChanges();
 
-    const anchor = find('a');
-    const paragraph = find('p');
-    const image = find('img');
+    const title = find('.featured-news__title');
+    const paragraph = find('.featured-news__summary');
 
-    expect(anchor.length).toEqual(1);
-    expect(anchor.nativeElement.innerHTML).toEqual(mockArticle.title);
+    expect(title.length).toEqual(1);
+    expect(title.nativeElement.innerHTML).toEqual(mockArticle.title);
     expect(paragraph.length).toEqual(1);
     expect(paragraph.nativeElement.innerHTML).toEqual(mockArticle.summary);
-    expect(image.length).toEqual(1);
-    expect(image.nativeElement.src).toContain(mockArticle.image);
   });
 });
 

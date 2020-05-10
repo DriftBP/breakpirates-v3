@@ -12,10 +12,12 @@ import { News } from '../news';
 const routes: Routes = [];
 const mockNews: News = {
   id: 1,
+  date: 0,
   title: 'title',
   text: 'text',
   summary: 'summary',
-  image: 'image.png'
+  image: 'image.png',
+  added_by: 'BP'
 };
 
 describe('LatestNewsComponent', () => {
