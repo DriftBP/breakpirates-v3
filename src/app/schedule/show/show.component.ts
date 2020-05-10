@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { Show } from '../show';
 import { ScheduleService } from '../schedule.service';
+import { Genre } from '../../music/genre';
 
 @Component({
   selector: 'app-show',
@@ -14,6 +15,7 @@ import { ScheduleService } from '../schedule.service';
 export class ShowComponent implements OnInit {
   show: Show;
   hosts: Host[];
+  genres: Genre[];
   dayName: string;
 
   constructor(
@@ -34,6 +36,9 @@ export class ShowComponent implements OnInit {
 
     this.scheduleService.showHosts(this.show.id)
       .subscribe(hosts => this.hosts = hosts);
+
+    this.scheduleService.showGenres(this.show.id)
+      .subscribe(genres => this.genres = genres);
   }
 
 }

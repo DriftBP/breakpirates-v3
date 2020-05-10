@@ -19,6 +19,12 @@ export class GenreComponent implements OnInit {
   shows: Show[];
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.initialiseState();
+    });
+  }
+
+  initialiseState(): void {
     this.genre = this.route.snapshot.data['genre'];
     this.shows = this.route.snapshot.data['shows'];
   }

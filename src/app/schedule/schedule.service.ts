@@ -6,6 +6,7 @@ import { AppSettings } from '../app-settings';
 import { Show } from './show';
 import { Host } from '../profile/host';
 import { Day } from './day';
+import { Genre } from '../music/genre';
 
 @Injectable()
 export class ScheduleService {
@@ -24,6 +25,10 @@ export class ScheduleService {
 
   showHosts(showId: number): Observable<Host[]> {
     return this.http.get<Host[]>(AppSettings.API_BASE + `shows/${showId}/hosts`);
+  }
+
+  showGenres(showId: number): Observable<Genre[]> {
+    return this.http.get<Genre[]>(AppSettings.API_BASE + `shows/${showId}/genres`);
   }
 
   shows(dayId: number): Observable<Show[]> {

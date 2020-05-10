@@ -1,0 +1,24 @@
+.genre-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &__host-item {
+    display: inline-block;
+    margin: 0.25em 0.5em 0.25em 0;
+
+    &::after {
+      content: ",";
+    }
+
+    &:last-of-type {
+      &::after {
+        content: "";
+      }
+    }
+
+    &-link {
+      white-space: nowrap;
+    }
+  }
+}
