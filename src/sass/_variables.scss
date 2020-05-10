@@ -4,6 +4,12 @@ $font-base-size: 16px;
 
 /* Colors */
 
-$color-brand-primary:#545691;
-$color-brand-secondary:#000;
-$color-brand-tertiary:#fff;
+$color-brand-primary: #545691;
+$color-brand-secondary: #000;
+$color-brand-tertiary: #fff;
+
+/* Breakpoints */
+$breakpoint-sm: 600px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

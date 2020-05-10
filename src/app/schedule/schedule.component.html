@@ -9,9 +9,7 @@
 
 <h1>Schedule</h1>
 
-<ul class="days list-group list-group-horizontal-sm">
-  <li *ngFor="let day of days" class="day list-group-item" [ngClass]="{ 'active': day.id == activeDayId }"><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
-</ul>
+<app-day-select [days]="days" [activeDayId]="activeDayId"></app-day-select>
 
 <p>Check back regularly for schedule updates and details of guest shows!</p>
 
