@@ -12,26 +12,9 @@
       </main>
     </div>
     <div class="col-md-3">
-      <app-content-box>
-        <content-box-title>Listen live</content-box-title>
-        <content-box-content>
-          <app-radio-player></app-radio-player>
-        </content-box-content>
-      </app-content-box>
-
-      <app-content-box>
-        <content-box-title>Please donate</content-box-title>
-        <content-box-content>
-          <app-donate></app-donate>
-        </content-box-content>
-      </app-content-box>
-
-      <app-content-box>
-        <content-box-title>Follow us</content-box-title>
-        <content-box-content>
-          <app-social-links></app-social-links>
-        </content-box-content>
-      </app-content-box>
+      <aside>
+        <router-outlet name="sidebar"></router-outlet>
+      </aside>
     </div>
   </div>
 

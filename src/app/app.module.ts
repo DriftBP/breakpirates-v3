@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,7 +24,6 @@ import { NewsService } from './news/news.service';
   providers: [
     NewsService
   ],
-  bootstrap: [AppComponent],
-  schemas: [ NO_ERRORS_SCHEMA ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
