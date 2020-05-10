@@ -24,30 +24,26 @@ export class ScheduleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.scheduleService.days().subscribe(days => {
-      this.days = days;
+    this.days = this.scheduleService.days();
 
-      if (!this.route.snapshot.paramMap.get('id')) {
-        // Default title
-        this.title = 'Todays schedule';
-      } else {
-        this.setTitle();
-      }
-    });
+    if (!this.route.snapshot.paramMap.get('id')) {
+      // Default title
+      this.title = 'Todays schedule';
+    }
 
     this.route.paramMap.subscribe(params => {
       if (params.get('id')) {
         this.activeDayId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
 
         this.daySelected = true;
+
+        this.setTitle();
       }
 
       this.scheduleService.shows(this.activeDayId).subscribe(shows => {
           this.todaysSchedule = shows;
         }
       );
-
-      this.setTitle();
     });
   }
 

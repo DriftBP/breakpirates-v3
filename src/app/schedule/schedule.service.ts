@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { find } from 'lodash';
+import moment from 'moment';
 
 import { AppSettings } from '../app-settings';
 import { Show } from './show';
@@ -10,13 +12,29 @@ import { Genre } from '../music/genre';
 
 @Injectable()
 export class ScheduleService {
+  private daysOfWeek: Day[];
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    this.daysOfWeek = [];
 
-  days(): Observable<Day[]> {
-    return this.http.get<Day[]>(AppSettings.API_BASE + `days`);
+    for (let i = 1; i <= 7; i++) {
+      this.daysOfWeek.push({
+        id: i,
+        name: moment.weekdays(i)
+      });
+    }
+  }
+
+  days(): Day[] {
+    return this.daysOfWeek;
+  }
+
+  dayName(dayId: number): string {
+    const day = find(this.daysOfWeek, (d: Day) => d.id === dayId);
+
+    return day?.name;
   }
 
   nowPlaying(): Observable<Show> {
