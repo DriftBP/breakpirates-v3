@@ -1,0 +1,27 @@
+.genre-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &__host-item {
+    display: inline-block;
+    margin: 0.25em 0.5em 0.25em 0;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &-link {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      background-color: #fff;
+      border: 1px solid #333;
+      border-radius: 0.5em;
+      white-space: nowrap;
+    }
+  }
+}

@@ -13,12 +13,13 @@ import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HostListComponent } from './host-list/host-list.component';
+import { GenreListComponent } from './genre-list/genre-list.component';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
-import { HostListComponent } from './host-list/host-list.component';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 
@@ -42,7 +43,8 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent
+    HostListComponent,
+    GenreListComponent
   ],
   exports: [
     NavigationComponent,
@@ -57,7 +59,8 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent
+    HostListComponent,
+    GenreListComponent
   ]
 })
 export class SharedModule { }

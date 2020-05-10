@@ -13,11 +13,19 @@
 
   <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
 
-  <h2>Hosted by</h2>
+  <ng-container *ngIf="hosts?.length > 0">
+    <h2>Hosted by</h2>
 
-  <app-host-list [hosts]="hosts"></app-host-list>
+    <app-host-list [hosts]="hosts"></app-host-list>
+  </ng-container>
 
-  <ng-container *ngIf="show && show.description">
+  <ng-container *ngIf="genres?.length > 0">
+    <h2>Music styles</h2>
+
+    <app-genre-list [genres]="genres"></app-genre-list>
+  </ng-container>
+
+  <ng-container *ngIf="show?.description">
     <h2>Show description</h2>
 
     <p>{{ show.description }}</p>
