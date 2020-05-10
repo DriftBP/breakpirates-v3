@@ -13,6 +13,7 @@ import { Day } from './day';
 })
 export class ScheduleComponent implements OnInit {
   activeDayId = moment().isoWeekday();
+  daySelected = false;
   title: string;
   days: Day[];
   todaysSchedule: Show[];
@@ -37,6 +38,8 @@ export class ScheduleComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if (params.get('id')) {
         this.activeDayId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+
+        this.daySelected = true;
       }
 
       this.scheduleService.shows(this.activeDayId).subscribe(shows => {
