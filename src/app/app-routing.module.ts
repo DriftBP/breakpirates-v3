@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 const routes: Routes = [
   { path: '', redirectTo: 'radio', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+    TranslateService
   ],
   exports: [RouterModule],
   declarations: []

@@ -7,6 +7,7 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,12 @@ export class AppComponent {
   currentYear: number;
   loading: boolean;
 
-  constructor (private router: Router) {
+  constructor (
+    private router: Router,
+    private translate: TranslateService
+  ) {
+    translate.setDefaultLang('en');
+
     this.currentYear = new Date().getFullYear();
 
     this.router.events.subscribe((event: Event) => {
