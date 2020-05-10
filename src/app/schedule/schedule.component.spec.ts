@@ -12,10 +12,6 @@ import { Show } from './show';
 
 const routes: Routes = [];
 
-const mockDay: Day = {
-  id: 1,
-  name: 'Monday'
-};
 const mockShow: Show = {
   id: 1,
   title: 'title',
@@ -32,7 +28,7 @@ describe('ScheduleComponent', () => {
     shallow = new Shallow(ScheduleComponent, ScheduleModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
       .mock(ScheduleService, {
-        days: () => of([ mockDay ]),
+        days: () => of([]),
         shows: () => of([ mockShow ]),
       });
   }));
@@ -41,12 +37,5 @@ describe('ScheduleComponent', () => {
     const { element } = await shallow.render();
 
     expect(element.nativeElement).toBeTruthy();
-  });
-
-  it('should list days of the week', async () => {
-    const { find } = await shallow.render();
-    const days = find('.days .day');
-
-    expect(days.length).toBeGreaterThan(0);
   });
 });
