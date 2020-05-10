@@ -1,9 +1,14 @@
+@import '~sass/variables';
+
 .show-summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 1em;
     margin: 0.5em 0;
     padding: 1em;
     background-color: #ddd;
-    dl,
-    ul {
-        margin: 0;
+
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: 150px 1fr;
     }
 }

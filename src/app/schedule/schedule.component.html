@@ -1,13 +1,24 @@
-<p>
-  schedule works!
-</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page" *ngIf="!daySelected">Schedule</li>
+    <li class="breadcrumb-item active" *ngIf="daySelected"><a routerLink="/schedule">Schedule</a></li>
+    <li class="breadcrumb-item active" aria-current="page" *ngIf="daySelected">{{ title }}</li>
+  </ol>
+</nav>
 
-<ul class="days">
-  <li class="day">Monday</li>
-  <li class="day">Tuesday</li>
-  <li class="day">Wednesday</li>
-  <li class="day">Thursday</li>
-  <li class="day">Friday</li>
-  <li class="day">Saturday</li>
-  <li class="day">Sunday</li>
-</ul>
+<h1>Schedule</h1>
+
+<app-day-select [days]="days" [activeDayId]="activeDayId"></app-day-select>
+
+<p>Check back regularly for schedule updates and details of guest shows!</p>
+
+<p>You can find out more about the DJs featured by entering the <a routerLink="/profiles">Profiles</a> section.</p>
+
+<p>Times displayed are for London, UK.</p>
+
+<h2>{{ title }}</h2>
+
+<ng-container *ngFor="let show of todaysSchedule">
+  <app-show-summary [show]="show"></app-show-summary>
+</ng-container>

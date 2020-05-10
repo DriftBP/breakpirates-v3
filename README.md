@@ -1,6 +1,10 @@
-# BreakpiratesV3
+# Breakpirates V3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5. It's since been updated to v9.1.1.
+
+Local software:
+* NPM 6.5.0
+* Node 10.15.0
 
 ## Development server
 
@@ -18,7 +22,7 @@ Test build for Prod: ng build --prod --base-href /bpv2/
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via Jest.
 
 ## Further help
 

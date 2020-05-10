@@ -1,14 +1,14 @@
 import { async } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
-import { MobileComponent } from './mobile.component';
-import { MobileModule } from './mobile.module';
+import { HostListComponent } from './host-list.component';
+import { SharedModule } from '../shared.module';
 
-describe('MobileComponent', () => {
-  let shallow: Shallow<MobileComponent>;
+describe('HostListComponent', () => {
+  let shallow: Shallow<HostListComponent>;
 
   beforeEach(async(() => {
-    shallow = new Shallow(MobileComponent, MobileModule);
+    shallow = new Shallow(HostListComponent, SharedModule);
   }));
 
   it('should create', async () => {

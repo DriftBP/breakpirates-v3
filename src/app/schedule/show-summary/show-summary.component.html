@@ -1,14 +1,10 @@
 <div class="show-summary" *ngIf="show !== undefined">
-  <!--<div class="time">{{show.startTime}} - {{show.endTime}}</div>-->
-  <dl>
-      <dt><a [routerLink]="['/shows',show.id]">{{show.title}}</a></dt>
-      <dd>
+  <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
+  <div>
+      <div><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></div>
+      <div>
           Hosted by:
-          <ul class="list-group list-group-horizontal-sm">
-              <li *ngFor="let host of hosts" class="list-group-item">
-                  <a [routerLink]="['/profile',host.id]">{{host.name}}</a>
-              </li>
-          </ul>
-      </dd>
-  </dl>
+          <app-host-list [hosts]="hosts"></app-host-list>
+      </div>
+  </div>
 </div>

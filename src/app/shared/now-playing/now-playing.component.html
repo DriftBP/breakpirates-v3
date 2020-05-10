@@ -1,5 +1,5 @@
 <div class="now-playing">
     Now playing:
-    <a *ngIf="isLiveShow()" ui-sref="schedule.show({id: $ctrl.nowPlaying.id})">{{nowPlaying.title}}</a>
-    <span *ngIf="!isLiveShow()">Break Pirates playlist - Check the schedule for todays live shows</span> - Tune in!
+    <a *ngIf="isLiveShow()" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
+    <span *ngIf="!isLiveShow()">Break Pirates playlist - <a routerLink="/schedule">Check the schedule</a> for todays live shows</span> - Tune in!
 </div>

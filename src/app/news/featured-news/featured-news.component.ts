@@ -4,8 +4,7 @@ import { News } from '../news';
 
 @Component({
   selector: 'app-featured-news',
-  templateUrl: './featured-news.component.html',
-  styleUrls: ['./featured-news.component.scss']
+  templateUrl: './featured-news.component.html'
 })
 export class FeaturedNewsComponent {
   @Input() article: News;

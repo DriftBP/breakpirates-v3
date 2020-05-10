@@ -1,14 +1,14 @@
 import { async } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
-import { TuneInComponent } from './tune-in.component';
-import { SharedModule } from '../shared/shared.module';
+import { ChatComponent } from './chat.component';
+import { SocialModule } from './../social.module';
 
-describe('TuneInComponent', () => {
-  let shallow: Shallow<TuneInComponent>;
+describe('ChatComponent', () => {
+  let shallow: Shallow<ChatComponent>;
 
   beforeEach(async(() => {
-    shallow = new Shallow(TuneInComponent, SharedModule);
+    shallow = new Shallow(ChatComponent, SocialModule);
   }));
 
   it('should create', async () => {

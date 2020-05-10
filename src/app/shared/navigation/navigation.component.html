@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" (click)="toggleIsCollapsed()" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" routerLink="/radio">
@@ -36,10 +36,6 @@
             </li>
             <li class="divider dropdown-divider"></li>
             <li role="menuitem">
-              <a class="dropdown-item" ui-sref="tune-in.faq">FAQ</a>
-            </li>
-            <li class="divider dropdown-divider"></li>
-            <li role="menuitem">
               <a class="dropdown-item" href="{{archiveUrl}}" target="_blank">Show archive</a>
             </li>
           </ul>
@@ -54,10 +50,7 @@
           <a class="nav-link" routerLink="/music">Music</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/profile">Profile</a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/mobile">Mobile</a>
+          <a class="nav-link" routerLink="/profiles">Profiles</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/video">Video</a>
@@ -73,7 +66,11 @@
                 rel="noopener"
                 class="dropdown-item"
                 [href]="site.Url"
-                ><i class="fab" [ngClass]="'fa-' + site.Icon"></i>&nbsp;{{ site.Name }}</a>
+                >{{ site.Name }}</a>
+            </li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+              <a class="dropdown-item" routerLink="/social/chat">Chat room</a>
             </li>
           </ul>
         </li>

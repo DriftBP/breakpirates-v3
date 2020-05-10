@@ -1,0 +1,6 @@
+<ul class="day-select">
+  <li *ngFor="let day of days"
+      class="day-select__day"
+      [ngClass]="{ 'day-select__day--active': day.id == activeDayId }"
+  ><a [routerLink]="['/schedule',day.id]">{{ day.name }}</a></li>
+</ul>

@@ -2,7 +2,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
-        <li class="breadcrumb-item"><a routerLink="/profile">Profiles</a></li>
+        <li class="breadcrumb-item"><a routerLink="/profiles">Profiles</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{profile.name}}</li>
     </ol>
   </nav>
@@ -10,21 +10,31 @@
   <h1>{{profile.name}}</h1>
 
   <div *ngIf="hasTwitter()">
-      <!--<twitter-follow profile="{{profile.twitter}}"></twitter-follow>-->
+    <!--<twitter-follow profile="{{profile.twitter}}"></twitter-follow>-->
   </div>
 
-  <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
+  <ng-container *ngIf="profile.location">
+    <h2>Location</h2>
 
-  <div *ngIf="shows.length > 0">
+    <p>{{ profile.location }}</p>
+  </ng-container>
+
+  <ng-container *ngIf="profile.biog">
+    <h2>About {{ profile.name }}</h2>
+
+    <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
+  </ng-container>
+
+  <ng-container *ngIf="shows && shows.length > 0">
     <h2>Appears on Break Pirates</h2>
 
     <div *ngFor="let show of shows">
         <app-show-summary [show]="show"></app-show-summary>
     </div>
-  </div>
+  </ng-container>
 
   <div *ngIf="hasMixcloud()">
-      <h3>Listen to recorded shows from {{profile.name}} on Mixcloud</h3>
+      <h2>Listen to recorded shows from {{profile.name}} on Mixcloud</h2>
       <iframe width="200" height="250" [src]="mixcloudWidgetUrl | safe: 'resourceUrl'" frameborder="0" ></iframe>
   </div>
 </div>

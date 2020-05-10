@@ -1,0 +1,25 @@
+<div *ngIf="show !== undefined">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
+        <li class="breadcrumb-item"><a routerLink="/schedule">Schedule</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{show.title}}</li>
+    </ol>
+  </nav>
+
+  <h1>{{ show.title }}</h1>
+
+  <h2>Show time</h2>
+
+  <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
+
+  <h2>Hosted by</h2>
+
+  <app-host-list [hosts]="hosts"></app-host-list>
+
+  <ng-container *ngIf="show && show.description">
+    <h2>Show description</h2>
+
+    <p>{{ show.description }}</p>
+  </ng-container>
+</div>
