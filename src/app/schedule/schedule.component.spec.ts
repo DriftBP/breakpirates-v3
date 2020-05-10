@@ -28,7 +28,7 @@ describe('ScheduleComponent', () => {
     shallow = new Shallow(ScheduleComponent, ScheduleModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
       .mock(ScheduleService, {
-        days: () => of([]),
+        days: () => [],
         shows: () => of([ mockShow ]),
       });
   }));
