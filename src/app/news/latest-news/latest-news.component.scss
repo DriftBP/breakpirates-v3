@@ -9,10 +9,4 @@
   @media (min-width: $breakpoint-md) {
     grid-template-columns: 1fr 1fr;
   }
-
-  &__news-item {
-    @include box-shadow;
-    @include box-padding;
-    padding: 0.5em;
-  }
 }
