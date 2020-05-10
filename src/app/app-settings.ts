@@ -14,4 +14,7 @@ export class AppSettings {
     public static IRC_SERVER = 'irc.hostco.de';
     public static IRC_PORT = 6667;
     public static IRC_CHANNEL = 'breakpirates';
+
+    // Asset locations
+    public static ASSET_NEWS_IMAGE = 'assets/news/';
 }

@@ -1,5 +1,14 @@
-<div *ngIf="article !== undefined">
-    <img src="images/news/{{article.image}}" />
-    <a [routerLink]="['/news',article.id]">{{article.title}}</a>
-    <p>{{article.summary}}</p>
-</div>
+<a [routerLink]="['/news',article?.id]"
+    (mouseover)="onMouseOver($event)"
+    (mouseout)="onMouseOut($event)"
+    >
+  <div class="featured-news"
+        [style]="'background-image: url(' + imagePath + ')' | safe: 'style'"
+        *ngIf="article !== undefined">
+    <div class="featured-news__overlay">
+      <h3 class="featured-news__title">{{article.title}}</h3>
+      <p class="featured-news__summary"
+          [ngClass]="{ 'featured-news__summary--hover': hover}">{{article.summary}}</p>
+    </div>
+  </div>
+</a>
