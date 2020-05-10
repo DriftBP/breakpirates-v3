@@ -11,7 +11,7 @@
 
 <ul class="profile-list list-unstyled row">
     <li class="profile-list-item col-xs-6 col-sm-4 col-md-3" *ngFor="let profile of profiles | sortBy:order:'name'">
-        <a [routerLink]="['/profile',profile.id]"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{profile.name}}</a>
+        <a [routerLink]="['/profiles',profile.id]"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{profile.name}}</a>
         <div>{{profile.location}}</div>
     </li>
 </ul>
