@@ -9,8 +9,7 @@ import { Day } from './day';
 
 @Component({
   selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss']
+  templateUrl: './schedule.component.html'
 })
 export class ScheduleComponent implements OnInit {
   activeDayId = moment().isoWeekday();

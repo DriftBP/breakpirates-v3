@@ -1,3 +1,4 @@
+@import '~sass/variables';
 @import '~sass/mixins';
 
 .latest-news {
@@ -5,7 +6,7 @@
   grid-template-columns: 1fr;
   grid-gap: 1em;
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-md) {
     grid-template-columns: 1fr 1fr;
   }
 

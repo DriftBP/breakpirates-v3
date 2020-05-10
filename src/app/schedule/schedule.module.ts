@@ -8,6 +8,7 @@ import { ScheduleService } from './schedule.service';
 import { SharedModule } from '../shared/shared.module';
 import { ShowComponent } from './show/show.component';
 import { ShowDetailsResolve } from './show-details.resolve';
+import { DaySelectComponent } from './day-select/day-select.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ShowDetailsResolve } from './show-details.resolve';
     ScheduleRoutingModule,
     SharedModule
   ],
-  declarations: [ScheduleComponent, ShowSummaryComponent, ShowComponent],
+  declarations: [ScheduleComponent, ShowSummaryComponent, ShowComponent, DaySelectComponent],
   exports: [
     ShowSummaryComponent
   ],
