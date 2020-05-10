@@ -1,17 +1,16 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Show } from '../show';
 import { Host } from '../../profile/host';
 import { ScheduleService } from '../schedule.service';
 import { Genre } from '../../music/genre';
-import { Day } from '../day';
 
 @Component({
   selector: 'app-show-summary',
   templateUrl: './show-summary.component.html',
   styleUrls: ['./show-summary.component.scss']
 })
-export class ShowSummaryComponent implements OnInit, OnChanges {
+export class ShowSummaryComponent implements OnChanges {
   @Input() show: Show;
   @Input() displayDay = false;
 
@@ -24,19 +23,17 @@ export class ShowSummaryComponent implements OnInit, OnChanges {
   hosts: Host[];
   genres: Genre[];
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.show !== undefined) {
       this.scheduleService.showHosts(this.show.id)
         .subscribe(hosts => this.hosts = hosts);
 
       this.scheduleService.showGenres(this.show.id)
         .subscribe(genres => this.genres = genres);
-    }
-  }
 
-  ngOnChanges() {
-    if (this.displayDay) {
-      this.dayName = this.scheduleService.dayName(this.show.day_id);
+        if (this.displayDay) {
+          this.dayName = this.scheduleService.dayName(this.show.day_id);
+        }
     }
   }
 }
