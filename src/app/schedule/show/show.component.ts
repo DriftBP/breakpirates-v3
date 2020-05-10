@@ -1,8 +1,6 @@
 import { Component, OnInit, Host } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import moment from 'moment';
-
 import { Show } from '../show';
 import { ScheduleService } from '../schedule.service';
 import { Genre } from '../../music/genre';
@@ -32,7 +30,7 @@ export class ShowComponent implements OnInit {
   initialiseState(): void {
     this.show = this.route.snapshot.data['show'];
 
-    this.dayName = moment().day(this.show.day_id).format('dddd');
+    this.dayName = this.scheduleService.dayName(this.show.day_id);
 
     this.scheduleService.showHosts(this.show.id)
       .subscribe(hosts => this.hosts = hosts);

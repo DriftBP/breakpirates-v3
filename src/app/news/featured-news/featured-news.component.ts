@@ -11,11 +11,11 @@ import { AppSettings } from '../../app-settings';
 export class FeaturedNewsComponent implements OnChanges {
   @Input() article: News;
 
-  imagePath: string;
+  imagePath = '';
   hover = false;
 
   ngOnChanges() {
-    let imageFilename = this.article.image;
+    let imageFilename = this.article?.image;
 
     if (!imageFilename) {
       imageFilename = 'bp.jpg';
