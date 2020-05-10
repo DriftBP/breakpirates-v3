@@ -11,7 +11,7 @@ import { AppSettings } from '../../app-settings';
 export class FeaturedNewsComponent implements OnChanges {
   @Input() article: News;
 
-  imagePath: string;
+  imagePath = '';
   hover = false;
 
   ngOnChanges() {
