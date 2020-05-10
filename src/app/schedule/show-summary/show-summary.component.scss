@@ -9,6 +9,14 @@
     background-color: #ddd;
 
     @media (min-width: $breakpoint-md) {
-      grid-template-columns: 150px 1fr;
+      grid-template-columns: 170px 1fr;
+    }
+
+    &__ {
+      &time,
+      &title {
+        font-size: 1.2rem;
+        font-weight: bold;;
+      }
     }
 }
