@@ -22,8 +22,15 @@
   <ng-container *ngIf="profile.biog">
     <h2>About {{ profile.name }}</h2>
 
+    <img *ngIf="profile.image"
+          class="host-details__image"
+          [src]="imagePath + profile.image"
+          [alt]="profile.name">
+
     <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
   </ng-container>
+
+  <div class="host-details__clear"></div>
 
   <ng-container *ngIf="shows && shows.length > 0">
     <h2>Appears on Break Pirates</h2>
@@ -37,4 +44,5 @@
       <h2>Listen to recorded shows from {{profile.name}} on Mixcloud</h2>
       <iframe width="200" height="250" [src]="mixcloudWidgetUrl | safe: 'resourceUrl'" frameborder="0" ></iframe>
   </div>
+
 </div>

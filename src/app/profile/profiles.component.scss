@@ -1,8 +1,65 @@
+@import '~sass/variables';
+
+$profile-image-width: 20%;
+
 .profile-list {
-    .profile-list-item {
-        height: 10em;
-        >a {
-            display: block;
-        }
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  &__profile {
+    position: relative;
+    border: 1px solid #000;
+
+    &-info-container {
+      display: block;
+      padding: 1em;
+
+      &--with-image {
+        margin-right: $profile-image-width;
+      }
     }
+
+    &-link {
+      display: block;
+    }
+
+    &-name {
+      font-size: 1.2em;
+    }
+
+    &-name,
+    &-location {
+      margin: 0;
+    }
+
+    &-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: $profile-image-width;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &-- {
+      &odd {
+      }
+
+      &even {
+      }
+    }
+  }
 }
