@@ -1,7 +1,15 @@
+@import '~sass/variables';
+
 .news-article {
-    img {
+    &__image {
         display: block;
         max-width: 100%;
         height: auto;
+
+        @media (min-width: $breakpoint-md) {
+          width: 30%;
+          float: right;
+          margin-left: 1em;
+        }
     }
 }

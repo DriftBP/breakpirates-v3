@@ -8,5 +8,14 @@
 
 <div class="news-article">
   <h1>{{article?.title}}</h1>
+
+  <ng-container *ngIf="article.image">
+    <a [href]="'/assets/news/' + article.image">
+      <img class="news-article__image"
+            [src]="'/assets/news/' + article.image"
+            [alt]="article.title">
+    </a>
+  </ng-container>
+
   <div style="white-space: pre-wrap;" [innerHTML]="article?.text | safe: 'html'"></div>
 </div>
