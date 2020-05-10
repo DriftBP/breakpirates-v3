@@ -1,4 +1,28 @@
+@import '~sass/variables';
+
 .dropdown-toggle {
   border: 0;
   background-color: transparent;
+}
+
+.navigation {
+  &__logo {
+    margin-left: 1em;
+    padding: 0;
+
+    @media (min-width: $breakpoint-lg) {
+      width: 100%;
+      margin-left: 0;
+      padding: 5px 0;
+    }
+
+    &-image {
+      width: 260px;
+      height: auto;
+
+      @media (min-width: $breakpoint-lg) {
+        width: 100%;
+      }
+    }
+  }
 }

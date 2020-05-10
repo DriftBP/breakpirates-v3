@@ -6,8 +6,8 @@
       <button class="navbar-toggler" type="button" (click)="toggleIsCollapsed()" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" routerLink="/radio">
-        <img src="assets/bp-head.gif" width="354" height="54" alt="Break Pirates" />
+      <a class="navigation__logo navbar-brand" routerLink="/radio">
+        <img class="navigation__logo-image" [src]="assetRoot + 'bp-head.gif'" width="354" height="54" alt="Break Pirates" />
       </a>
     </div>
 

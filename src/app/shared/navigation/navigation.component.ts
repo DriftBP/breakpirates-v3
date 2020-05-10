@@ -14,6 +14,7 @@ export class NavigationComponent implements OnInit {
   archiveUrl: string;
   isCollapsed: boolean;
   socialSites: Site[];
+  assetRoot = AppSettings.ASSET_ROOT;
 
   constructor(
     private readonly navigationService: NavigationService,
