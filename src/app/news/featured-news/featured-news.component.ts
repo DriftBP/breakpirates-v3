@@ -15,7 +15,7 @@ export class FeaturedNewsComponent implements OnChanges {
   hover = false;
 
   ngOnChanges() {
-    let imageFilename = this.article.image;
+    let imageFilename = this.article?.image;
 
     if (!imageFilename) {
       imageFilename = 'bp.jpg';
