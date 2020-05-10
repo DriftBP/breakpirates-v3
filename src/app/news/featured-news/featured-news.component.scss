@@ -1,0 +1,41 @@
+.featured-news {
+  position: relative;
+  height: 12em;
+  background-position: center;
+      background-size: cover;
+
+  &__ {
+    &overlay {
+      display: block;
+      position: absolute;
+      overflow: hidden;
+      padding: 0.5em;
+      background-color: rgba(0,0,0,0.8);
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    &title,
+    &summary {
+      margin: 0;
+      color: #fff;
+    }
+
+    &title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    &summary {
+      max-height: 0;
+      opacity: 0;
+      transition: all 0.25s ease;
+
+      &--hover {
+        max-height: 6em;
+        opacity: 1;
+      }
+    }
+  }
+}

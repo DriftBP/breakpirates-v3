@@ -20,6 +20,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { HostListComponent } from './host-list/host-list.component';
 import { TimePipe } from './pipes/time.pipe';
+import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { TimePipe } from './pipes/time.pipe';
     SortByPipe,
     MapToArrayPipe,
     TimePipe,
+    FormattedDatePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
@@ -51,6 +53,7 @@ import { TimePipe } from './pipes/time.pipe';
     SortByPipe,
     MapToArrayPipe,
     TimePipe,
+    FormattedDatePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,

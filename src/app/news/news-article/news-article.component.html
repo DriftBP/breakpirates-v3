@@ -9,10 +9,12 @@
 <div class="news-article">
   <h1>{{article?.title}}</h1>
 
-  <ng-container *ngIf="article.image">
+  <p><span class="news-article__date">{{ article?.date | formattedDate }}</span><span *ngIf="article?.added_by"> by <span class="news-article__date">{{ article?.added_by }}</span></span></p>
+
+  <ng-container *ngIf="article?.image">
     <a [href]="'/assets/news/' + article.image">
       <img class="news-article__image"
-            [src]="'/assets/news/' + article.image"
+            [src]="imagePath + article.image"
             [alt]="article.title">
     </a>
   </ng-container>

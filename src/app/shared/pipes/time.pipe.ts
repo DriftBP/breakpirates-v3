@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import moment from 'moment';
 
-// https://forum.ionicframework.com/t/inserting-html-via-angular-2-use-of-domsanitizationservice-bypasssecuritytrusthtml/62562/2
 @Pipe({
     name: 'time'
 })
