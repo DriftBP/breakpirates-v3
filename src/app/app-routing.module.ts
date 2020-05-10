@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'news', loadChildren: () => import('./news/news.module').then(m => m.NewsModule) },
   { path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule) },
   { path: 'schedule', loadChildren: () => import('./schedule/schedule.module').then(m => m.ScheduleModule) },
-  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
+  { path: 'profiles', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: 'video', loadChildren: () => import('./video/video.module').then(m => m.VideoModule) },
   { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
 ];
