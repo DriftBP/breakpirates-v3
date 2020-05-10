@@ -28,9 +28,9 @@
           [alt]="profile.name">
 
     <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
-  </ng-container>
 
-  <div class="host-details__clear"></div>
+    <div class="host-details__clear"></div>
+  </ng-container>
 
   <ng-container *ngIf="shows && shows.length > 0">
     <h2>Appears on Break Pirates</h2>
