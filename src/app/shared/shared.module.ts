@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -22,6 +22,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     RadioPlayerComponent,
     LoadingSpinnerComponent,
     HostListComponent,
-    GenreListComponent
+    GenreListComponent,
+    SidebarComponent
   ],
   exports: [
     NavigationComponent,
@@ -61,6 +63,7 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     LoadingSpinnerComponent,
     HostListComponent,
     GenreListComponent
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SharedModule { }
