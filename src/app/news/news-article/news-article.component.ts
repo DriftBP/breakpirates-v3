@@ -10,7 +10,7 @@ import { AppSettings } from '../../app-settings';
   styleUrls: ['./news-article.component.scss']
 })
 export class NewsArticleComponent implements OnInit {
-  imagePath = AppSettings.ASEET_NEWS_IMAGE;
+  imagePath = AppSettings.ASSET_NEWS_IMAGE;
 
   constructor(
     private route: ActivatedRoute

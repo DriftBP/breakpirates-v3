@@ -16,5 +16,5 @@ export class AppSettings {
     public static IRC_CHANNEL = 'breakpirates';
 
     // Asset locations
-    public static ASEET_NEWS_IMAGE = 'assets/news/';
+    public static ASSET_NEWS_IMAGE = 'assets/news/';
 }
