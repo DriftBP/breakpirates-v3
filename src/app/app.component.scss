@@ -5,14 +5,3 @@
     @include box-padding;
     background-color: $color-brand-tertiary;
 }
-
-.content-box {
-    @include box-shadow;
-    @include box-padding;
-    margin: 1em 0;
-    background-color: $color-brand-tertiary;
-    border: 1px solid $color-brand-primary;
-    .title {
-        margin-top: 0;
-    }
-}

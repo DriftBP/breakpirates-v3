@@ -22,6 +22,10 @@
       border: 1px solid #333;
       border-radius: 0.5em;
       white-space: nowrap;
+
+      > i {
+        margin-right: 0.5em;
+      }
     }
   }
 }
