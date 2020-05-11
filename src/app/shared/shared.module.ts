@@ -15,6 +15,8 @@ import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { HostListComponent } from './host-list/host-list.component';
 import { GenreListComponent } from './genre-list/genre-list.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -22,7 +24,6 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     LoadingSpinnerComponent,
     HostListComponent,
     GenreListComponent,
-    SidebarComponent
+    SidebarComponent,
+    FooterComponent
   ],
   exports: [
     NavigationComponent,
@@ -62,7 +64,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     RadioPlayerComponent,
     LoadingSpinnerComponent,
     HostListComponent,
-    GenreListComponent
+    GenreListComponent,
+    FooterComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

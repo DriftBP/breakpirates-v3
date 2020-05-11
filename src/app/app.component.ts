@@ -14,12 +14,9 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  currentYear: number;
   loading: boolean;
 
   constructor (private router: Router) {
-    this.currentYear = new Date().getFullYear();
-
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
