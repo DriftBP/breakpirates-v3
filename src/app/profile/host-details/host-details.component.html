@@ -42,7 +42,12 @@
 
   <div *ngIf="hasMixcloud()">
       <h2>Listen to recorded shows from {{profile.name}} on Mixcloud</h2>
-      <iframe width="200" height="250" [src]="mixcloudWidgetUrl | safe: 'resourceUrl'" frameborder="0" ></iframe>
+      <app-mixcloud-widget [user]="profile.mixcloud"></app-mixcloud-widget>
   </div>
+
+  <div *ngIf="hasTwitter()">
+    <h2>Follow {{profile.name}} on Twitter</h2>
+    <app-twitter-widget [user]="profile.twitter"></app-twitter-widget>
+</div>
 
 </div>
