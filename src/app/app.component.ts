@@ -44,7 +44,7 @@ export class AppComponent {
     // Google Adsense script
     const adwordsScript = this._renderer2.createElement('script');
     adwordsScript.async = 'async';
-    adwordsScript.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
 
     const adsByGoogleScript = this._renderer2.createElement('script');
     adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
