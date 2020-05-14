@@ -15,7 +15,6 @@ export class HostDetailsComponent implements OnInit {
 
   profile: Host;
   shows: Show[];
-  mixcloudWidgetUrl: string;
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
 
   constructor(
@@ -31,10 +30,6 @@ export class HostDetailsComponent implements OnInit {
 
   initialiseState(): void {
     this.profile = this.route.snapshot.data['profile'];
-
-    if (this.hasMixcloud) {
-      this.mixcloudWidgetUrl = 'https://www.mixcloud.com/widget/follow/?u=%2F' + this.profile?.mixcloud + '%2F';
-    }
 
     this.profileService.profileShows(this.profile.id)
       .subscribe(shows => this.shows = shows);
