@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, Inject } from '@angular/core';
 import {
   Event,
   Router,
@@ -7,6 +7,7 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,11 @@ import {
 export class AppComponent {
   loading: boolean;
 
-  constructor (private router: Router) {
+  constructor (
+    private router: Router,
+    private _renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document: Document
+  ) {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
@@ -35,5 +40,16 @@ export class AppComponent {
         }
       }
     });
+
+    // Google Adsense script
+    const adwordsScript = this._renderer2.createElement('script');
+    adwordsScript.async = 'async';
+    adwordsScript.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+
+    const adsByGoogleScript = this._renderer2.createElement('script');
+    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
+
+    this._renderer2.appendChild(this._document.body, adwordsScript);
+    this._renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 }
