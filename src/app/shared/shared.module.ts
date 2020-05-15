@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Components
 import { NowPlayingComponent } from './now-playing/now-playing.component';
@@ -71,7 +72,8 @@ import { ScheduleService } from './services/schedule.service';
     LoadingSpinnerComponent,
     HostListComponent,
     GenreListComponent,
-    FooterComponent
+    FooterComponent,
+    TranslateModule
   ],
   providers: [
     GoogleAnalyticsService,
