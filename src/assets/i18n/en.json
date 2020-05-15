@@ -1,0 +1,25 @@
+{
+  "NAVIGATION": {
+    "TUNE_IN": "Tune in",
+    "SHOW_ARCHIVE": "Show archive",
+    "NEWS": "News",
+    "SCHEDULE": "Schedule",
+    "MUSIC": "Music",
+    "PROFILES": "Profiles",
+    "VIDEO": "Video",
+    "SOCIAL": "Social",
+    "CHAT_ROOM": "Chat room"
+  },
+  "HOME": {
+    "TITLE": "Home",
+    "WELCOME": "Welcome to Break Pirates",
+    "CHECK_OUT_TODAYS": "Check out todays broadcast schedule",
+    "LATEST_NEWS": "Latest news"
+  },
+  "NEWS": {
+    "TITLE": "News"
+  },
+  "MUSIC": {
+    "TITLE": "News"
+  }
+}
