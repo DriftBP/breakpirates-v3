@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Components
 import { NowPlayingComponent } from './now-playing/now-playing.component';
@@ -31,12 +34,24 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { SocialService } from './services/social.service';
 import { ScheduleService } from './services/schedule.service';
 
+export function customHttpLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   imports: [
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: customHttpLoader,
+        deps: [HttpClient],
+      },
+      isolate: false
+    }),
   ],
   declarations: [
     NavigationComponent,
@@ -71,7 +86,8 @@ import { ScheduleService } from './services/schedule.service';
     LoadingSpinnerComponent,
     HostListComponent,
     GenreListComponent,
-    FooterComponent
+    FooterComponent,
+    TranslateModule
   ],
   providers: [
     GoogleAnalyticsService,

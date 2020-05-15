@@ -10,11 +10,13 @@ import { GenresResolve } from './genres.resolve';
 import { GenreResolve } from './genre.resolve';
 import { GenreShowsResolve } from './genre-shows.resolve';
 import { MusicService } from './music.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
     MusicRoutingModule,
     ScheduleModule
   ],
