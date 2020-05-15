@@ -2,23 +2,31 @@
 
 /* Template styles */
 
+html {
+  font-size: $font-base-size;
+}
+
 body {
-    font-size: $font-base-size;
+  font-size: 1rem;
+  padding-top: 56px;
+  padding-bottom: 20px;
+  background-color: lighten($color-brand-primary, 50%);
+  font-family: 'Lato', serif;
+
+  @media (min-width: $breakpoint-lg) {
     padding-top: 70px;
-    padding-bottom: 20px;
-    background-color: lighten($color-brand-primary, 50%);
-    font-family: 'Lato', serif;
+  }
 }
 
 a {
-    color: $color-brand-primary;
-    text-decoration: none;
-    &:hover {
-        text-decoration: underline;
-    }
+  color: $color-brand-primary;
+  text-decoration: none;
+  &:hover {
+      text-decoration: underline;
+  }
 }
 
 .container-fluid {
-    max-width: 1192px;
-    margin: 0 auto;
+  max-width: 1192px;
+  margin: 0 auto;
 }

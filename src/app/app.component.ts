@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, Inject } from '@angular/core';
 import {
   Event,
   Router,
@@ -8,6 +8,9 @@ import {
   NavigationError
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/common';
+
+import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +18,16 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  currentYear: number;
   loading: boolean;
 
   constructor (
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private _renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document: Document,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {
     translate.setDefaultLang('en');
-
-    this.currentYear = new Date().getFullYear();
 
     this.router.events.subscribe((event: Event) => {
       switch (true) {
@@ -33,7 +36,14 @@ export class AppComponent {
           break;
         }
 
-        case event instanceof NavigationEnd:
+        case event instanceof NavigationEnd: {
+          const e = event as NavigationEnd;
+          this.googleAnalyticsService.trackPageHit(e.urlAfterRedirects);
+
+          this.loading = false;
+          break;
+        }
+
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
           this.loading = false;
@@ -44,5 +54,16 @@ export class AppComponent {
         }
       }
     });
+
+    // Google Adsense script
+    const adwordsScript = this._renderer2.createElement('script');
+    adwordsScript.async = 'async';
+    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+
+    const adsByGoogleScript = this._renderer2.createElement('script');
+    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
+
+    this._renderer2.appendChild(this._document.body, adwordsScript);
+    this._renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 }

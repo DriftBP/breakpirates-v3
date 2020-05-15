@@ -1,7 +1,11 @@
 <div class="show-summary" *ngIf="show !== undefined">
-  <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
   <div>
-      <div><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></div>
+    <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
+    <div class="show-summary__day" *ngIf="displayDay">{{ dayName }}</div>
+  </div>
+  <div>
+      <div class="show-summary__title"><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></div>
+      <app-genre-list [genres]="genres"></app-genre-list>
       <div>
           Hosted by:
           <app-host-list [hosts]="hosts"></app-host-list>

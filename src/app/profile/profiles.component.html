@@ -7,11 +7,12 @@
 
 <h1>Profiles</h1>
 
+<p>Want to find out more about who you're listening to? Select a member of the team from the list below!</p>
+
 <button (click)="toggleOrderBy()">Ordering <i class="fas" [ngClass]="{'fa-chevron-up': order == 'asc', 'fa-chevron-down': order == 'desc'}"></i></button>
 
-<ul class="profile-list list-unstyled row">
-    <li class="profile-list-item col-xs-6 col-sm-4 col-md-3" *ngFor="let profile of profiles | sortBy:order:'name'">
-        <a [routerLink]="['/profiles',profile.id]"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{profile.name}}</a>
-        <div>{{profile.location}}</div>
+<ul class="profile-list">
+    <li class="profile-list__list-item" *ngFor="let profile of profiles | sortBy:order:'name'">
+        <app-profile-button [host]="profile"></app-profile-button>
     </li>
 </ul>

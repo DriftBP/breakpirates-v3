@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -13,14 +13,23 @@ import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HostListComponent } from './host-list/host-list.component';
+import { GenreListComponent } from './genre-list/genre-list.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
+
+// Services
+import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { NewsService } from '../news/news.service';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
-import { HostListComponent } from './host-list/host-list.component';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { SocialService } from './services/social.service';
+import { ScheduleService } from './services/schedule.service';
 
 @NgModule({
   imports: [
@@ -42,7 +51,10 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent
+    HostListComponent,
+    GenreListComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   exports: [
     NavigationComponent,
@@ -57,7 +69,16 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent
-  ]
+    HostListComponent,
+    GenreListComponent,
+    FooterComponent
+  ],
+  providers: [
+    GoogleAnalyticsService,
+    NewsService,
+    SocialService,
+    ScheduleService
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SharedModule { }

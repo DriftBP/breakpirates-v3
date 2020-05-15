@@ -1,0 +1,37 @@
+$profile-image-width: 20%;
+
+.profile-button {
+  &__ {
+    &info-container {
+      display: block;
+      padding: 1em;
+
+      &--with-image {
+        margin-right: $profile-image-width;
+      }
+    }
+
+    &link {
+      display: block;
+    }
+
+    &name {
+      font-size: 1.2em;
+    }
+
+    &name,
+    &location {
+      margin: 0;
+    }
+
+    &image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: $profile-image-width;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}

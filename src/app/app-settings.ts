@@ -18,4 +18,8 @@ export class AppSettings {
     // Asset locations
     public static ASSET_ROOT = 'assets/';
     public static ASSET_NEWS_IMAGE = 'assets/news/';
+    public static ASSET_PROFILE_IMAGE = 'assets/profiles/';
+
+    // Google Analytics
+    public static GA_PROPERTY_ID = 'UA-111122-1';
 }

@@ -3,12 +3,16 @@ import { Shallow } from 'shallow-render';
 
 import { SocialLinksComponent } from './social-links.component';
 import { SharedModule } from '../shared.module';
+import { SocialService } from '../services/social.service';
 
 describe('SocialLinksComponent', () => {
   let shallow: Shallow<SocialLinksComponent>;
 
   beforeEach(async(() => {
-    shallow = new Shallow(SocialLinksComponent, SharedModule);
+    shallow = new Shallow(SocialLinksComponent, SharedModule)
+      .mock(SocialService, {
+        getSocialSites: () => []
+      });
   }));
 
   it('should create', async () => {

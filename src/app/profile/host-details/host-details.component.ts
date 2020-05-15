@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Host } from '../host';
 import { Show } from '../../schedule/show';
 import { ProfileService } from '../profile.service';
+import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'app-host-details',
@@ -12,14 +13,14 @@ import { ProfileService } from '../profile.service';
 })
 export class HostDetailsComponent implements OnInit {
 
+  profile: Host;
+  shows: Show[];
+  imagePath = AppSettings.ASSET_PROFILE_IMAGE;
+
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService
   ) { }
-
-  profile: Host;
-  shows: Show[];
-  mixcloudWidgetUrl: string;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -29,10 +30,6 @@ export class HostDetailsComponent implements OnInit {
 
   initialiseState(): void {
     this.profile = this.route.snapshot.data['profile'];
-
-    if (this.hasMixcloud) {
-      this.mixcloudWidgetUrl = 'https://www.mixcloud.com/widget/follow/?u=%2F' + this.profile?.mixcloud + '%2F';
-    }
 
     this.profileService.profileShows(this.profile.id)
       .subscribe(shows => this.shows = shows);

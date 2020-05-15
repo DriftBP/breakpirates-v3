@@ -1,0 +1,9 @@
+@import '~sass/variables';
+
+.sidebar {
+  margin-top: 1em;
+
+  @media (min-width: $breakpoint-md) {
+    margin-top: 0;
+  }
+}

@@ -9,10 +9,6 @@
 
   <h1>{{profile.name}}</h1>
 
-  <div *ngIf="hasTwitter()">
-    <!--<twitter-follow profile="{{profile.twitter}}"></twitter-follow>-->
-  </div>
-
   <ng-container *ngIf="profile.location">
     <h2>Location</h2>
 
@@ -22,19 +18,32 @@
   <ng-container *ngIf="profile.biog">
     <h2>About {{ profile.name }}</h2>
 
+    <img *ngIf="profile.image"
+          class="host-details__image"
+          [src]="imagePath + profile.image"
+          [alt]="profile.name">
+
     <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
+
+    <div class="host-details__clear"></div>
   </ng-container>
 
   <ng-container *ngIf="shows && shows.length > 0">
     <h2>Appears on Break Pirates</h2>
 
-    <div *ngFor="let show of shows">
+    <ng-container *ngFor="let show of shows">
         <app-show-summary [show]="show"></app-show-summary>
-    </div>
+    </ng-container>
   </ng-container>
 
   <div *ngIf="hasMixcloud()">
       <h2>Listen to recorded shows from {{profile.name}} on Mixcloud</h2>
-      <iframe width="200" height="250" [src]="mixcloudWidgetUrl | safe: 'resourceUrl'" frameborder="0" ></iframe>
+      <app-mixcloud-widget [user]="profile.mixcloud"></app-mixcloud-widget>
   </div>
+
+  <div *ngIf="hasTwitter()">
+    <h2>Follow {{profile.name}} on Twitter</h2>
+    <app-twitter-widget [user]="profile.twitter"></app-twitter-widget>
+</div>
+
 </div>

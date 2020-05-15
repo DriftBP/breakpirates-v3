@@ -1,8 +1,23 @@
+@import '~sass/variables';
+
 .profile-list {
-    .profile-list-item {
-        height: 10em;
-        >a {
-            display: block;
-        }
-    }
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  &__list-item {
+    position: relative;
+    border: 1px solid #000;
+  }
 }

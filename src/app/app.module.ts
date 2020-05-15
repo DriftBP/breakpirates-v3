@@ -8,8 +8,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { ScheduleModule } from './schedule/schedule.module';
-import { NewsService } from './news/news.service';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient) {
@@ -24,7 +22,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ScheduleModule,
     HttpClientModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
@@ -36,9 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    NewsService
+    TranslateService
   ],
-  bootstrap: [AppComponent],
-  schemas: [ NO_ERRORS_SCHEMA ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

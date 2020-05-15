@@ -12,46 +12,23 @@
       </main>
     </div>
     <div class="col-md-3">
-      <app-content-box>
-        <content-box-title>Listen live</content-box-title>
-        <content-box-content>
-          <app-radio-player></app-radio-player>
-        </content-box-content>
-      </app-content-box>
-
-      <app-content-box>
-        <content-box-title>Please donate</content-box-title>
-        <content-box-content>
-          <app-donate></app-donate>
-        </content-box-content>
-      </app-content-box>
-
-      <app-content-box>
-        <content-box-title>Follow us</content-box-title>
-        <content-box-content>
-          <app-social-links></app-social-links>
-        </content-box-content>
-      </app-content-box>
+      <aside>
+        <router-outlet name="sidebar"></router-outlet>
+      </aside>
     </div>
   </div>
 
   <hr/>
 
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- BP MK3 -->
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0817931421481428" data-ad-slot="8152629212" data-ad-format="auto"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-
-  </script>
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-0817931421481428"
+     data-ad-slot="4643712095"></ins>
 
   <hr/>
 
-  <footer>
-    <p>Break Pirates - Bringing you quality underground music since 2001</p>
-    <p>Site design, code, and content is ©
-      <a href="mailto:info-AT-breakpirates-DOT-com">Break Pirates</a> 2001- {{ currentYear }} and may not be reproduced without prior permission.</p>
-  </footer>
+  <app-footer></app-footer>
 
   <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 </div>
