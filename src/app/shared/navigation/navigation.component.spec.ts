@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavigationComponent } from './navigation.component';
 import { SharedModule } from '../shared.module';
+import { SocialService } from '../services/social.service';
 
 const routes: Routes = [];
 
@@ -13,7 +14,10 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     shallow = new Shallow(NavigationComponent, SharedModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
+      .mock(SocialService, {
+        getSocialSites: () => []
+      });
   }));
 
   it('should create', async () => {

@@ -9,6 +9,8 @@ import {
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 
+declare let gtag: Function;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,7 +31,16 @@ export class AppComponent {
           break;
         }
 
-        case event instanceof NavigationEnd:
+        case event instanceof NavigationEnd: {
+          const e = event as NavigationEnd;
+          gtag('config', 'xx-xxxxx-xx', {
+            'page_path': e.urlAfterRedirects
+          });
+
+          this.loading = false;
+          break;
+        }
+
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
           this.loading = false;
