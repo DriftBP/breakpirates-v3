@@ -2,6 +2,6 @@
 @import '~sass/mixins';
 
 .main {
-    @include box-padding;
-    background-color: $color-brand-tertiary;
+  @include box-padding;
+  background-color: $color-brand-tertiary;
 }
