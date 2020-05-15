@@ -3,7 +3,7 @@
     (mouseout)="onMouseOut($event)"
     >
   <div class="featured-news"
-        [style]="'background-image: url(' + imagePath + ')'"
+        [style]="'background-image:' + imagePath | safe:'style'"
         *ngIf="article !== undefined">
     <div class="featured-news__overlay">
       <h3 class="featured-news__title">{{article.title}}</h3>

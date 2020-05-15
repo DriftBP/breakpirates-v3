@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Host } from '../host';
 import { AppSettings } from '../../app-settings';
@@ -8,8 +8,12 @@ import { AppSettings } from '../../app-settings';
   templateUrl: './profile-button.component.html',
   styleUrls: ['./profile-button.component.scss']
 })
-export class ProfileButtonComponent {
+export class ProfileButtonComponent implements OnChanges {
   @Input() host: Host;
 
-  imagePath = AppSettings.ASSET_PROFILE_IMAGE;
+  imagePath: string;
+
+  ngOnChanges() {
+    this.imagePath = 'url(' + AppSettings.ASSET_PROFILE_IMAGE + this.host.image + ')';
+  }
 }

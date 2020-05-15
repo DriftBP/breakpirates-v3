@@ -21,7 +21,7 @@ export class FeaturedNewsComponent implements OnChanges {
       imageFilename = 'bp.jpg';
     }
 
-    this.imagePath = AppSettings.ASSET_NEWS_IMAGE + imageFilename;
+    this.imagePath = 'url(' + AppSettings.ASSET_NEWS_IMAGE + imageFilename + ')';
   }
 
   onMouseOver(event: any) {
