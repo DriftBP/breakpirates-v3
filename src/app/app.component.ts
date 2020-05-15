@@ -8,8 +8,7 @@ import {
   NavigationError
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
-
-declare let gtag: Function;
+import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +21,8 @@ export class AppComponent {
   constructor (
     private router: Router,
     private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
@@ -33,9 +33,7 @@ export class AppComponent {
 
         case event instanceof NavigationEnd: {
           const e = event as NavigationEnd;
-          gtag('config', 'xx-xxxxx-xx', {
-            'page_path': e.urlAfterRedirects
-          });
+          this.googleAnalyticsService.trackPageHit(e.urlAfterRedirects);
 
           this.loading = false;
           break;
