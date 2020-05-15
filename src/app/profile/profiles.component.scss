@@ -1,7 +1,5 @@
 @import '~sass/variables';
 
-$profile-image-width: 20%;
-
 .profile-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -18,48 +16,8 @@ $profile-image-width: 20%;
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  &__profile {
+  &__list-item {
     position: relative;
     border: 1px solid #000;
-
-    &-info-container {
-      display: block;
-      padding: 1em;
-
-      &--with-image {
-        margin-right: $profile-image-width;
-      }
-    }
-
-    &-link {
-      display: block;
-    }
-
-    &-name {
-      font-size: 1.2em;
-    }
-
-    &-name,
-    &-location {
-      margin: 0;
-    }
-
-    &-image {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: $profile-image-width;
-      background-size: cover;
-      background-position: center;
-    }
-
-    &-- {
-      &odd {
-      }
-
-      &even {
-      }
-    }
   }
 }
