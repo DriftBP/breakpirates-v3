@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleModule } from './schedule.module';
-import { ScheduleService } from './schedule.service';
+import { ScheduleService } from '../shared/services/schedule.service';
 import { Day } from './day';
 import { Show } from './show';
 

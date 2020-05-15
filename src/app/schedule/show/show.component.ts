@@ -2,7 +2,7 @@ import { Component, OnInit, Host } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Show } from '../show';
-import { ScheduleService } from '../schedule.service';
+import { ScheduleService } from '../../shared/services/schedule.service';
 import { Genre } from '../../music/genre';
 
 @Component({

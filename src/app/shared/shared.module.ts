@@ -18,12 +18,18 @@ import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 
+// Services
+import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { NewsService } from '../news/news.service';
+
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { SocialService } from './services/social.service';
+import { ScheduleService } from './services/schedule.service';
 
 @NgModule({
   imports: [
@@ -66,6 +72,12 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     HostListComponent,
     GenreListComponent,
     FooterComponent
+  ],
+  providers: [
+    GoogleAnalyticsService,
+    NewsService,
+    SocialService,
+    ScheduleService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

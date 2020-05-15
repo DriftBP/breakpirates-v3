@@ -4,7 +4,7 @@ import moment from 'moment';
 import { find } from 'lodash';
 
 import { Show } from './show';
-import { ScheduleService } from './schedule.service';
+import { ScheduleService } from '../shared/services/schedule.service';
 import { Day } from './day';
 
 @Component({

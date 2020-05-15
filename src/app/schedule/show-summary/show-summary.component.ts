@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 
 import { Show } from '../show';
 import { Host } from '../../profile/host';
-import { ScheduleService } from '../schedule.service';
+import { ScheduleService } from '../../shared/services/schedule.service';
 import { Genre } from '../../music/genre';
 
 @Component({

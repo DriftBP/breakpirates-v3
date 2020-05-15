@@ -4,11 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import { find } from 'lodash';
 import moment from 'moment';
 
-import { AppSettings } from '../app-settings';
-import { Show } from './show';
-import { Host } from '../profile/host';
-import { Day } from './day';
-import { Genre } from '../music/genre';
+import { AppSettings } from '../../app-settings';
+import { Show } from '../../schedule/show';
+import { Host } from '../../profile/host';
+import { Day } from '../../schedule/day';
+import { Genre } from '../../music/genre';
 
 @Injectable()
 export class ScheduleService {
