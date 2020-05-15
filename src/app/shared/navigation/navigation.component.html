@@ -36,28 +36,28 @@
             </li>
             <li class="divider dropdown-divider"></li>
             <li role="menuitem">
-              <a class="dropdown-item" href="{{archiveUrl}}" target="_blank">Show archive</a>
+              <a class="dropdown-item" href="{{archiveUrl}}" target="_blank">{{'NAVIGATION.SHOW_ARCHIVE' | translate}}</a>
             </li>
           </ul>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/news">News</a>
+          <a class="nav-link" routerLink="/news">{{'NAVIGATION.NEWS' | translate}}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/schedule">Schedule</a>
+          <a class="nav-link" routerLink="/schedule">{{'NAVIGATION.SCHEDULE' | translate}}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/music">Music</a>
+          <a class="nav-link" routerLink="/music">{{'NAVIGATION.MUSIC' | translate}}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/profiles">Profiles</a>
+          <a class="nav-link" routerLink="/profiles">{{'NAVIGATION.PROFILES' | translate}}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/video">Video</a>
+          <a class="nav-link" routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
         </li>
         <li class="nav-item dropdown" dropdown>
           <button id="nav-social" class="nav-link dropdown-toggle" dropdownToggle href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            Social <span class="caret"></span>
+            {{'NAVIGATION.SOCIAL' | translate}} <span class="caret"></span>
           </button>
           <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-social">
             <li *ngFor="let site of socialSites" role="menuitem">
@@ -70,7 +70,7 @@
             </li>
             <li class="divider dropdown-divider"></li>
             <li role="menuitem">
-              <a class="dropdown-item" routerLink="/social/chat">Chat room</a>
+              <a class="dropdown-item" routerLink="/social/chat">{{'NAVIGATION.CHAT_ROOM' | translate}}</a>
             </li>
           </ul>
         </li>

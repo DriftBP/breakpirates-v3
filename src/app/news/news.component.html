@@ -1,11 +1,11 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">News</li>
+      <li class="breadcrumb-item"><a routerLink="/radio">{{'HOME.TITLE' | translate}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{'NEWS.TITLE' | translate}}</li>
   </ol>
 </nav>
 
-<h1>News</h1>
+<h1>{{'NEWS.TITLE' | translate}}</h1>
 <ul class="list-unstyled">
     <li *ngFor="let article of news">
         <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
