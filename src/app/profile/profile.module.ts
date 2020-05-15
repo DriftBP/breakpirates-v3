@@ -12,6 +12,7 @@ import { HostDetailsResolve } from './host-details.resolve';
 import { ProfileService } from './profile.service';
 import { MixcloudWidgetComponent } from './mixcloud-widget/mixcloud-widget.component';
 import { TwitterWidgetComponent } from './twitter-widget/twitter-widget.component';
+import { ProfileButtonComponent } from './profile-button/profile-button.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { TwitterWidgetComponent } from './twitter-widget/twitter-widget.componen
     SharedModule,
     ScheduleModule
   ],
-  declarations: [ProfilesComponent, HostDetailsComponent, MixcloudWidgetComponent, TwitterWidgetComponent],
+  declarations: [ProfilesComponent, HostDetailsComponent, MixcloudWidgetComponent, TwitterWidgetComponent, ProfileButtonComponent],
   providers: [
     ProfilesResolve,
     HostDetailsResolve,

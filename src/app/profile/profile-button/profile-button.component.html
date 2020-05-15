@@ -1,0 +1,11 @@
+<div class="profile-button">
+  <div class="profile-button__info-container" [ngClass]="{'profile-button__info-container--with-image': host.image}">
+    <h3 class="profile-button__name">
+      <a class="profile-button__link" [routerLink]="['/profiles',host.id]">
+        {{host.name}}
+      </a>
+    </h3>
+    <p class="profile-button__location">{{host.location}}</p>
+  </div>
+  <div *ngIf="host.image" class="profile-button__image" [style]="'background-image:url(' + imagePath + host.image + ')'"></div>
+</div>
