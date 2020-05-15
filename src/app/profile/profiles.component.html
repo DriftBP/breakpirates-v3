@@ -12,19 +12,7 @@
 <button (click)="toggleOrderBy()">Ordering <i class="fas" [ngClass]="{'fa-chevron-up': order == 'asc', 'fa-chevron-down': order == 'desc'}"></i></button>
 
 <ul class="profile-list">
-    <li class="profile-list__profile"
-        [ngClass]="{'profile-list__profile--odd': odd, 'profile-list__profile--even': !odd}"
-        *ngFor="let profile of profiles | sortBy:order:'name'; let odd = odd">
-        <div class="profile-list__profile-info-container"
-              [ngClass]="{'profile-list__profile-info-container--with-image': profile.image}">
-          <h3 class="profile-list__profile-name">
-            <a class="profile-list__profile-link" [routerLink]="['/profiles',profile.id]">
-              {{profile.name}}
-            </a>
-          </h3>
-          <p class="profile-list__profile-location">{{profile.location}}</p>
-        </div>
-        <div *ngIf="profile.image" class="profile-list__profile-image"
-              [style]="'background-image:url(' + imagePath + profile.image + ')'"></div>
+    <li class="profile-list__list-item" *ngFor="let profile of profiles | sortBy:order:'name'">
+        <app-profile-button [host]="profile"></app-profile-button>
     </li>
 </ul>
