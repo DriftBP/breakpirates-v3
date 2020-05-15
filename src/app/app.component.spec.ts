@@ -20,7 +20,7 @@ describe('AppComponent', () => {
       .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
       .mock(TranslateService, {
         setDefaultLang: jest.fn
-      });;
+      });
   }));
 
   it('should create', async () => {
