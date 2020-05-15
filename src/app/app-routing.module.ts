@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
