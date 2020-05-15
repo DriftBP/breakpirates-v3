@@ -7,7 +7,9 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
+
 import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
 
 @Component({
@@ -20,10 +22,13 @@ export class AppComponent {
 
   constructor (
     private router: Router,
+    private translate: TranslateService,
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
     private googleAnalyticsService: GoogleAnalyticsService
   ) {
+    translate.setDefaultLang('en');
+
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
