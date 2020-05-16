@@ -18,7 +18,7 @@
           [alt]="article.title">
   </a>
 
-  <div style="white-space: pre-wrap;" [innerHTML]="article?.text | safe: 'html'"></div>
+  <div class="news-article__text" [innerHTML]="article?.text | safe: 'html'"></div>
 
   <div class="news-article__clear"></div>
 </div>
