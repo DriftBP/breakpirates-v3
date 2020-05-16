@@ -3,7 +3,9 @@ export class AppSettings {
     public static ARCHIVE_URL = 'https://www.mediafire.com/folder/8nnco4v4bo5pt/archive';
     public static CDN_BASE = 'http://www.breakpirates.com/';
 
-    public static TUNE_IN_URL_PRIMARY = 'http://bpstream.hostco.de:3000/;';
+    // Stream server
+    public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/;';
+    public static STREAM_URL_STATS = 'http://bpstream.hostco.de:3000/7.html';
 
     // Social URLs
     public static FACEBOOK_URL = 'https://www.facebook.com/breakpirates';

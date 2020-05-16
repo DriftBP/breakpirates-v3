@@ -4,5 +4,18 @@
     </div>
 
     <a *ngIf="isLiveShow()" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
-    <span *ngIf="!isLiveShow()">Break Pirates playlist - <a routerLink="/schedule">Check the schedule</a> for todays live shows</span>.
+    <ng-container *ngIf="!isLiveShow()">
+      <div>Break Pirates playlist - {{ serverInfo.SongTitle }}</div>
+    </ng-container>
+
+    <app-radio-player></app-radio-player>
+
+    <ng-container *ngIf="!isLiveShow()">
+      <hr/>
+      <div><a routerLink="/schedule">Check the schedule</a> for todays live shows.</div>
+    </ng-container>
+
+    <hr/>
+
+    <app-server-stats></app-server-stats>
 </div>

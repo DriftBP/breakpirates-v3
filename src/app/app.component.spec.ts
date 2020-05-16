@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { noop } from 'rxjs';
 
 const routes: Routes = [];
 
