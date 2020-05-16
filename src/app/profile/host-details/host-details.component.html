@@ -16,7 +16,7 @@
   </ng-container>
 
   <ng-container *ngIf="profile.biog">
-    <h2>{{'PROFILES.ABOUT' | translate}} {{ profile.name }}</h2>
+    <h2>{{'PROFILES.ABOUT' | translate: {name: profile.name} }}</h2>
 
     <img *ngIf="profile.image"
           class="host-details__image"
@@ -29,7 +29,7 @@
   </ng-container>
 
   <ng-container *ngIf="shows && shows.length > 0">
-    <h2>Appears on Break Pirates</h2>
+    <h2>{{'PROFILES.APPEARS_ON_BP' | translate}}</h2>
 
     <ng-container *ngFor="let show of shows">
         <app-show-summary [show]="show"></app-show-summary>
@@ -37,12 +37,12 @@
   </ng-container>
 
   <div *ngIf="hasMixcloud()">
-      <h2>Listen to recorded shows from {{profile.name}} on Mixcloud</h2>
+      <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
       <app-mixcloud-widget [user]="profile.mixcloud"></app-mixcloud-widget>
   </div>
 
   <div *ngIf="hasTwitter()">
-    <h2>Follow {{profile.name}} on Twitter</h2>
+    <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
     <app-twitter-widget [user]="profile.twitter"></app-twitter-widget>
 </div>
 
