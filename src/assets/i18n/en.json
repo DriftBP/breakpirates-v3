@@ -10,6 +10,10 @@
     "SOCIAL": "Social",
     "CHAT_ROOM": "Chat room"
   },
+  "NOW_PLAYING": {
+    "TITLE": "Listen live",
+    "ON_AIR": "On air"
+  },
   "HOME": {
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
