@@ -28,7 +28,7 @@ export class ScheduleComponent implements OnInit {
 
     if (!this.route.snapshot.paramMap.get('id')) {
       // Default title
-      this.title = 'Todays schedule';
+      this.title = 'SCHEDULE.TODAYS_SCHEDULE';
     }
 
     this.route.paramMap.subscribe(params => {
