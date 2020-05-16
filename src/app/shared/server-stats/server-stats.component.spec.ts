@@ -23,7 +23,7 @@ describe('ServerStatsComponent', () => {
   beforeEach(async(() => {
     shallow = new Shallow(ServerStatsComponent, SharedModule)
       .mock(ScheduleService, {
-        serverInfo: () => of( mockServerInfo )
+        serverInfo: of( mockServerInfo )
     });
   }));
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Show } from '../../schedule/show';
 import { ScheduleService } from '../services/schedule.service';
-import { ServerInfo } from "../services/server-info";
+import { ServerInfo } from '../services/server-info';
 
 @Component({
   selector: 'app-now-playing',
@@ -30,7 +30,7 @@ export class NowPlayingComponent implements OnInit {
   ngOnInit() {
     this.getNowPlaying();
 
-    this.scheduleService.serverInfo().subscribe(serverInfo => this.serverInfo = serverInfo);
+    this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
 }

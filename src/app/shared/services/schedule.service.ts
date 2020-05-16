@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of, BehaviorSubject, interval } from 'rxjs';
 import { find } from 'lodash';
 import moment from 'moment';
 
@@ -17,6 +16,10 @@ import { ServerInfo } from './server-info';
 export class ScheduleService {
   private daysOfWeek: Day[];
 
+  private _serverInfo: BehaviorSubject<ServerInfo> = new BehaviorSubject(null);
+
+  public readonly serverInfo: Observable<ServerInfo> = this._serverInfo.asObservable();
+
   constructor(
     private http: HttpClient
   ) {
@@ -28,6 +31,10 @@ export class ScheduleService {
         name: moment.weekdays(i)
       });
     }
+
+    interval(AppSettings.SERVER_UPDATE_INTERVAL).subscribe(() => {
+      this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
+    });
   }
 
   days(): Day[] {
@@ -44,7 +51,7 @@ export class ScheduleService {
     return this.http.get<Show>(AppSettings.API_BASE + 'schedule/now-playing');
   }
 
-  serverInfo(): Observable<ServerInfo> {
+  private getServerInfo(): Observable<ServerInfo> {
     const mockData = '20,1,80,80,20,128,Breakz - Jungle Dubz n Breakz - 23.02.2020 (1)';
 
     const [
@@ -58,7 +65,7 @@ export class ScheduleService {
      ] = mockData.split(',');
 
     const serverInfo: ServerInfo = {
-      CurrentListeners: parseInt(currentListeners, 10),
+      CurrentListeners: Math.floor(Math.random() * Math.floor(80)),
       StreamStatus: parseInt(streamStatus, 10),
       PeakListeners: parseInt(peakListeners, 10),
       MaxListeners: parseInt(maxListeners, 10),

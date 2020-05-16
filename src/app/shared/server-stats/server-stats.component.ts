@@ -17,7 +17,7 @@ export class ServerStatsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.scheduleService.serverInfo().subscribe(serverInfo => this.serverInfo = serverInfo);
+    this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
 }

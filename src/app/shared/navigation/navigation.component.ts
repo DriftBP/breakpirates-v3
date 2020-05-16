@@ -25,9 +25,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.archiveUrl = AppSettings.ARCHIVE_URL;
-    this.navigationService.isCollapsed.subscribe(isCollapsed => {
-      this.isCollapsed = isCollapsed;
-    });
+    this.navigationService.isCollapsed.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
   }
 
  toggleIsCollapsed() {
