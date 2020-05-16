@@ -23,7 +23,7 @@ const mockServerInfo: ServerInfo = {
   MaxListeners: 80,
   UniqueListeners: 20,
   Bitrate: 128,
-  SongTitle: 'Sont title'
+  SongTitle: 'Song title'
 };
 
 describe('NowPlayingComponent', () => {
