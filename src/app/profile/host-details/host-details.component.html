@@ -1,8 +1,8 @@
 <div *ngIf="profile !== undefined">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
-        <li class="breadcrumb-item"><a routerLink="/profiles">Profiles</a></li>
+        <li class="breadcrumb-item"><a routerLink="/radio">{{'HOME.TITLE' | translate}}</a></li>
+        <li class="breadcrumb-item"><a routerLink="/profiles">{{'PROFILES.TITLE' | translate}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{profile.name}}</li>
     </ol>
   </nav>
@@ -10,13 +10,13 @@
   <h1>{{profile.name}}</h1>
 
   <ng-container *ngIf="profile.location">
-    <h2>Location</h2>
+    <h2>{{'PROFILES.LOCATION' | translate}}</h2>
 
     <p>{{ profile.location }}</p>
   </ng-container>
 
   <ng-container *ngIf="profile.biog">
-    <h2>About {{ profile.name }}</h2>
+    <h2>{{'PROFILES.ABOUT' | translate: {name: profile.name} }}</h2>
 
     <img *ngIf="profile.image"
           class="host-details__image"
@@ -29,7 +29,7 @@
   </ng-container>
 
   <ng-container *ngIf="shows && shows.length > 0">
-    <h2>Appears on Break Pirates</h2>
+    <h2>{{'PROFILES.APPEARS_ON_BP' | translate}}</h2>
 
     <ng-container *ngFor="let show of shows">
         <app-show-summary [show]="show"></app-show-summary>
@@ -37,12 +37,12 @@
   </ng-container>
 
   <div *ngIf="hasMixcloud()">
-      <h2>Listen to recorded shows from {{profile.name}} on Mixcloud</h2>
+      <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
       <app-mixcloud-widget [user]="profile.mixcloud"></app-mixcloud-widget>
   </div>
 
   <div *ngIf="hasTwitter()">
-    <h2>Follow {{profile.name}} on Twitter</h2>
+    <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
     <app-twitter-widget [user]="profile.twitter"></app-twitter-widget>
 </div>
 

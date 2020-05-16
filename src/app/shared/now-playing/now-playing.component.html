@@ -5,7 +5,7 @@
 
     <a *ngIf="isLiveShow" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
     <ng-container *ngIf="!isLiveShow">
-      <div>Break Pirates playlist {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }}</div>
+      <div>{{'NOW_PLAYING.BP_PLAYLIST' | translate}} {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }}</div>
     </ng-container>
 
     <app-radio-player></app-radio-player>

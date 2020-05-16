@@ -12,10 +12,19 @@
   },
   "NOW_PLAYING": {
     "TITLE": "Listen live",
-    "ON_AIR": "On air"
+    "ON_AIR": "On air",
+    "BP_PLAYLIST": "Break Pirates playlist"
+  },
+  "DONATE": {
+    "TITLE": "Please donate",
+    "YOUR_DONATIONS_HELP": "Your donations help to pay our site and server bills!"
+  },
+  "FOLLOW_US": {
+    "TITLE": "Follow us"
   },
   "SHOW_SUMMARY": {
-    "NOW_LIVE": "Now live"
+    "NOW_LIVE": "Now live",
+    "HOSTED_BY": "Hosted by"
   },
   "HOME": {
     "TITLE": "Home",
@@ -26,7 +35,31 @@
   "NEWS": {
     "TITLE": "News"
   },
+  "SCHEDULE": {
+    "TITLE": "Schedule",
+    "CHECK_BACK_REGULARLY": "Check back regularly for schedule updates and details of guest shows!",
+    "FIND_OUT_MORE": "You can find out more about the DJs featured by entering the Profiles section.",
+    "TIMES_DISPLAYED": "Times displayed are for London, UK.",
+    "TODAYS_SCHEDULE": "Todays schedule",
+    "SHOW_TIME": "Show time",
+    "HOSTED_BY": "Hosted by",
+    "MUSIC_STYLES": "Music styles",
+    "SHOW_DESCRIPTION": "Show description"
+  },
   "MUSIC": {
     "TITLE": "News"
+  },
+  "PROFILES": {
+    "TITLE": "Profiles",
+    "INTRO": "Want to find out more about who you're listening to? Select a member of the team from the list below!",
+    "ORDERING": "Ordering",
+    "LOCATION": "Location",
+    "ABOUT": "About {{ name }}",
+    "APPEARS_ON_BP": "Appears on Break Pirates",
+    "LISTEN_ON_MIXCLOUD": "Listen to recorded shows from {{ name }} on Mixcloud",
+    "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter"
+  },
+  "VIDEO": {
+    "TITLE": "Video"
   }
 }

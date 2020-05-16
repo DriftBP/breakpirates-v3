@@ -1,32 +1,32 @@
 <div *ngIf="show !== undefined">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
-        <li class="breadcrumb-item"><a routerLink="/schedule">Schedule</a></li>
+        <li class="breadcrumb-item"><a routerLink="/radio">{{'HOME.TITLE' | translate}}</a></li>
+        <li class="breadcrumb-item"><a routerLink="/schedule">{{'SCHEDULE.TITLE' | translate}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{show.title}}</li>
     </ol>
   </nav>
 
   <h1>{{ show.title }}</h1>
 
-  <h2>Show time</h2>
+  <h2>{{'SCHEDULE.SHOW_TIME' | translate}}</h2>
 
   <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
 
   <ng-container *ngIf="hosts?.length > 0">
-    <h2>Hosted by</h2>
+    <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
 
     <app-host-list [hosts]="hosts"></app-host-list>
   </ng-container>
 
   <ng-container *ngIf="genres?.length > 0">
-    <h2>Music styles</h2>
+    <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
 
     <app-genre-list [genres]="genres"></app-genre-list>
   </ng-container>
 
   <ng-container *ngIf="show?.description">
-    <h2>Show description</h2>
+    <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
     <p>{{ show.description }}</p>
   </ng-container>

@@ -9,7 +9,7 @@
       <div class="show-summary__title"><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></div>
       <app-genre-list [genres]="genres"></app-genre-list>
       <div>
-          Hosted by:
+          {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
           <app-host-list [hosts]="hosts"></app-host-list>
       </div>
   </div>
