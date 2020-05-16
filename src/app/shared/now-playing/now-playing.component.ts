@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Show } from '../../schedule/show';
 import { ScheduleService } from '../services/schedule.service';
+import { ServerInfo } from '../services/server-info';
 
 @Component({
   selector: 'app-now-playing',
@@ -15,18 +16,16 @@ export class NowPlayingComponent implements OnInit {
   ) { }
 
   nowPlaying: Show;
-
-  isLiveShow(): boolean {
-    return this.nowPlaying !== undefined && this.nowPlaying.id !== undefined;
-  }
-
-  getNowPlaying(): void {
-    this.scheduleService.nowPlaying()
-      .subscribe(nowPlaying => this.nowPlaying = nowPlaying);
-  }
+  isLiveShow = false;
+  serverInfo: ServerInfo;
 
   ngOnInit() {
-    this.getNowPlaying();
+    this.scheduleService.nowPlaying.subscribe(nowPlaying => {
+      this.nowPlaying = nowPlaying;
+
+      this.isLiveShow = nowPlaying?.id !== undefined;
+    });
+    this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
 }

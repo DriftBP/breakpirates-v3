@@ -8,10 +8,5 @@ import { AppSettings } from '../../app-settings';
   styleUrls: ['./radio-player.component.scss']
 })
 export class RadioPlayerComponent {
-  tuneInUrl: string;
-
-  constructor() {
-    this.tuneInUrl = AppSettings.TUNE_IN_URL_PRIMARY;
-  }
-
+  tuneInUrl = AppSettings.STREAM_URL_PRIMARY;
 }
