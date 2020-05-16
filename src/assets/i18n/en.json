@@ -14,6 +14,10 @@
     "TITLE": "Listen live",
     "ON_AIR": "On air"
   },
+  "SHOW_SUMMARY": {
+    "NOW_LIVE": "Now live",
+    "HOSTED_BY": "Hosted by"
+  },
   "HOME": {
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
@@ -23,7 +27,15 @@
   "NEWS": {
     "TITLE": "News"
   },
+  "SCHEDULE": {
+    "TITLE": "Schedule"
+  },
   "MUSIC": {
     "TITLE": "News"
+  },
+  "PROFILES": {
+    "TITLE": "Profiles",
+    "LOCATION": "Location",
+    "ABOUT": "About"
   }
 }
