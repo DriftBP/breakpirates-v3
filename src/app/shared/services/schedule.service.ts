@@ -16,6 +16,10 @@ import { ServerInfo } from './server-info';
 export class ScheduleService {
   private daysOfWeek: Day[];
 
+  private _nowPlaying: BehaviorSubject<Show> = new BehaviorSubject(null);
+
+  public readonly nowPlaying: Observable<Show> = this._nowPlaying.asObservable();
+
   private _serverInfo: BehaviorSubject<ServerInfo> = new BehaviorSubject(null);
 
   public readonly serverInfo: Observable<ServerInfo> = this._serverInfo.asObservable();
@@ -32,7 +36,13 @@ export class ScheduleService {
       });
     }
 
-    interval(AppSettings.SERVER_UPDATE_INTERVAL).subscribe(() => {
+    this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
+
+    interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
+      this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
+    });
+
+    interval(AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
       this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
     });
   }
@@ -47,7 +57,7 @@ export class ScheduleService {
     return day?.name;
   }
 
-  nowPlaying(): Observable<Show> {
+  private getNowPlaying(): Observable<Show> {
     return this.http.get<Show>(AppSettings.API_BASE + 'schedule/now-playing');
   }
 

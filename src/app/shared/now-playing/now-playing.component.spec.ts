@@ -32,7 +32,7 @@ describe('NowPlayingComponent', () => {
   beforeEach(async(() => {
     shallow = new Shallow(NowPlayingComponent, SharedModule)
       .mock(ScheduleService, {
-        nowPlaying: () => of( mockShow ),
+        nowPlaying: of( mockShow ),
         serverInfo: of( mockServerInfo )
     });
   }));

@@ -23,8 +23,7 @@ export class NowPlayingComponent implements OnInit {
   }
 
   getNowPlaying(): void {
-    this.scheduleService.nowPlaying()
-      .subscribe(nowPlaying => this.nowPlaying = nowPlaying);
+    this.scheduleService.nowPlaying.subscribe(nowPlaying => this.nowPlaying = nowPlaying);
   }
 
   ngOnInit() {
