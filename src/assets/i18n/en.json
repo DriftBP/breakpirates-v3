@@ -12,7 +12,15 @@
   },
   "NOW_PLAYING": {
     "TITLE": "Listen live",
-    "ON_AIR": "On air"
+    "ON_AIR": "On air",
+    "BP_PLAYLIST": "Break Pirates playlist"
+  },
+  "DONATE": {
+    "TITLE": "Please donate",
+    "YOUR_DONATIONS_HELP": "Your donations help to pay our site and server bills!"
+  },
+  "FOLLOW_US": {
+    "TITLE": "Follow us"
   },
   "SHOW_SUMMARY": {
     "NOW_LIVE": "Now live",

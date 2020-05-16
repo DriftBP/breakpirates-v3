@@ -4,5 +4,5 @@
     </div>
 
     <a *ngIf="isLiveShow()" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
-    <span *ngIf="!isLiveShow()">Break Pirates playlist - <a routerLink="/schedule">Check the schedule</a> for todays live shows</span>.
+    <span *ngIf="!isLiveShow()">{{'NOW_PLAYING.BP_PLAYLIST' | translate}} - <a routerLink="/schedule">Check the schedule</a> for todays live shows</span>.
 </div>
