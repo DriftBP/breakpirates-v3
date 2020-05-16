@@ -14,7 +14,7 @@ export class TimePipe implements PipeTransform {
       return moment()
         .hours(parseInt(timeParts[0], 10))
         .minutes(parseInt(timeParts[1], 10))
-        .format('h:mm a');
+        .format('HH:mm');
     } else {
       return '';
     }
