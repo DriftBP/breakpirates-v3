@@ -22,9 +22,12 @@ export class ShowSummaryComponent implements OnChanges {
 
   hosts: Host[];
   genres: Genre[];
+  onNow = false;
 
   ngOnChanges() {
     if (this.show !== undefined) {
+      this.scheduleService.nowPlaying.subscribe(nowPlaying => this.onNow = nowPlaying?.id === this.show.id);
+
       this.scheduleService.showHosts(this.show.id)
         .subscribe(hosts => this.hosts = hosts);
 

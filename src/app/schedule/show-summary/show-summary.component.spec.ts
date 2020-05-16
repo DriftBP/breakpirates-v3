@@ -22,6 +22,7 @@ describe('ShowSummaryComponent', () => {
   beforeEach(async(() => {
     shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
       .mock(ScheduleService, {
+        nowPlaying: of(mockShow),
         showHosts: () => of([]),
         showGenres: () => of([]),
         dayName: () => ''

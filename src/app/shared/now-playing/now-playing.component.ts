@@ -22,13 +22,8 @@ export class NowPlayingComponent implements OnInit {
     return this.nowPlaying !== undefined && this.nowPlaying.id !== undefined;
   }
 
-  getNowPlaying(): void {
-    this.scheduleService.nowPlaying.subscribe(nowPlaying => this.nowPlaying = nowPlaying);
-  }
-
   ngOnInit() {
-    this.getNowPlaying();
-
+    this.scheduleService.nowPlaying.subscribe(nowPlaying => this.nowPlaying = nowPlaying);
     this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
