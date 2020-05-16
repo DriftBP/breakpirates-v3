@@ -1,8 +1,21 @@
 <div class="now-playing">
     <div class="now-playing__on-air">
-      {{'NOW_PLAYING.ON_AIR' | translate}}: <span *ngIf="isLiveShow()">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
+      {{'NOW_PLAYING.ON_AIR' | translate}}: <span *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
     </div>
 
-    <a *ngIf="isLiveShow()" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
-    <span *ngIf="!isLiveShow()">Break Pirates playlist - <a routerLink="/schedule">Check the schedule</a> for todays live shows</span>.
+    <a *ngIf="isLiveShow" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
+    <ng-container *ngIf="!isLiveShow">
+      <div>Break Pirates playlist {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }}</div>
+    </ng-container>
+
+    <app-radio-player></app-radio-player>
+
+    <ng-container *ngIf="!isLiveShow">
+      <hr/>
+      <div><a routerLink="/schedule">Check the schedule</a> for todays live shows.</div>
+    </ng-container>
+
+    <hr/>
+
+    <app-server-stats></app-server-stats>
 </div>

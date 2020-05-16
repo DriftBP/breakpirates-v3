@@ -33,6 +33,7 @@ import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { SocialService } from './services/social.service';
 import { ScheduleService } from './services/schedule.service';
+import { ServerStatsComponent } from './server-stats/server-stats.component';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -69,7 +70,8 @@ export function customHttpLoader(http: HttpClient) {
     HostListComponent,
     GenreListComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    ServerStatsComponent
   ],
   exports: [
     NavigationComponent,
