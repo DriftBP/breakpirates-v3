@@ -16,14 +16,15 @@ export class NowPlayingComponent implements OnInit {
   ) { }
 
   nowPlaying: Show;
+  isLiveShow = false;
   serverInfo: ServerInfo;
 
-  isLiveShow(): boolean {
-    return this.nowPlaying !== undefined && this.nowPlaying.id !== undefined;
-  }
-
   ngOnInit() {
-    this.scheduleService.nowPlaying.subscribe(nowPlaying => this.nowPlaying = nowPlaying);
+    this.scheduleService.nowPlaying.subscribe(nowPlaying => {
+      this.nowPlaying = nowPlaying;
+
+      this.isLiveShow = nowPlaying?.id !== undefined;
+    });
     this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
