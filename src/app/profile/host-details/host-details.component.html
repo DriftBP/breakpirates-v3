@@ -23,7 +23,7 @@
           [src]="imagePath + profile.image"
           [alt]="profile.name">
 
-    <div style="white-space: pre-wrap;" [innerHTML]="profile.biog | safe: 'html'"></div>
+    <div class="host-details__biog" [innerHTML]="profile.biog | safe: 'html'"></div>
 
     <div class="host-details__clear"></div>
   </ng-container>
@@ -32,7 +32,7 @@
     <h2>{{'PROFILES.APPEARS_ON_BP' | translate}}</h2>
 
     <ng-container *ngFor="let show of shows">
-        <app-show-summary [show]="show"></app-show-summary>
+        <app-show-summary [show]="show" [displayDay]="true"></app-show-summary>
     </ng-container>
   </ng-container>
 
