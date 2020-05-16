@@ -7,7 +7,7 @@ export class AppSettings {
     public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/;';
     public static STREAM_URL_STATS = 'http://bpstream.hostco.de:3000/7.html';
     public static NOW_PLAYING_INTERVAL = 60000; // 60 seconds
-    public static SERVER_STATS_INTERVAL = 10000; // 10 seconds
+    public static SERVER_STATS_INTERVAL = 5000; // 10 seconds
 
     // Social URLs
     public static FACEBOOK_URL = 'https://www.facebook.com/breakpirates';
