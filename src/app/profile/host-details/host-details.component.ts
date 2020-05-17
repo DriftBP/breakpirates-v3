@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Host } from '../host';
 import { Show } from '../../schedule/show';
@@ -11,7 +12,10 @@ import { AppSettings } from '../../app-settings';
   templateUrl: './host-details.component.html',
   styleUrls: ['./host-details.component.scss']
 })
-export class HostDetailsComponent implements OnInit {
+export class HostDetailsComponent implements OnInit, OnDestroy {
+
+  private paramsSubscription: Subscription;
+  private showsSubscription: Subscription;
 
   profile: Host;
   shows: Show[];
@@ -23,15 +27,25 @@ export class HostDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.paramsSubscription = this.route.params.subscribe(params => {
       this.initialiseState();
     });
+  }
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
+
+    if (this.showsSubscription) {
+      this.showsSubscription.unsubscribe();
+    }
   }
 
   initialiseState(): void {
     this.profile = this.route.snapshot.data['profile'];
 
-    this.profileService.profileShows(this.profile.id)
+    this.showsSubscription = this.profileService.profileShows(this.profile.id)
       .subscribe(shows => this.shows = shows);
   }
 

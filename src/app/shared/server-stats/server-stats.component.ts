@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ServerInfo } from '../services/server-info';
 import { ScheduleService } from '../services/schedule.service';
@@ -8,7 +9,9 @@ import { ScheduleService } from '../services/schedule.service';
   templateUrl: './server-stats.component.html',
   styleUrls: ['./server-stats.component.scss']
 })
-export class ServerStatsComponent implements OnInit {
+export class ServerStatsComponent implements OnInit, OnDestroy {
+
+  private serverInfoSubscription: Subscription;
 
   serverInfo: ServerInfo;
 
@@ -17,7 +20,13 @@ export class ServerStatsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
+    this.serverInfoSubscription = this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
+  }
+
+  ngOnDestroy() {
+    if (this.serverInfoSubscription) {
+      this.serverInfoSubscription.unsubscribe();
+    }
   }
 
 }
