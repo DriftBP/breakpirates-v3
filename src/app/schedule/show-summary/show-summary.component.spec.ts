@@ -52,7 +52,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should not indicate show is now playing', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow1, displayDay: true}});
+    const { find } = await shallow.render({bind: {show: mockShow1}});
 
     const nowPlaying = find('.show-summary__now-playing');
 
@@ -60,7 +60,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should indicate show is now playing', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow2, displayDay: true}});
+    const { find } = await shallow.render({bind: {show: mockShow2}});
 
     const nowPlaying = find('.show-summary__now-playing');
 
