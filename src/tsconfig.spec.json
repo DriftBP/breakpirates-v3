@@ -2,8 +2,6 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
-    "baseUrl": "./",
-    "target": "es5",
     "types": [
       "jest",
       "node"
@@ -16,5 +14,8 @@
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
 }
