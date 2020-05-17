@@ -13,7 +13,7 @@ body {
   background-color: lighten($color-brand-primary, 50%);
   font-family: 'Lato', serif;
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $breakpoint-md) {
     padding-top: 70px;
   }
 }
