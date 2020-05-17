@@ -1,15 +1,15 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/radio">Home</a></li>
-    <li class="breadcrumb-item" ><a routerLink="/social">Social</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Chat</li>
+    <li class="breadcrumb-item"><a routerLink="/radio">{{'HOME.TITLE' | translate}}</a></li>
+    <li class="breadcrumb-item" ><a routerLink="/social">{{'SOCIAL.TITLE' | translate}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{'SOCIAL.CHAT' | translate}}</li>
   </ol>
 </nav>
 
-<h1>Chat</h1>
+<h1>{{'SOCIAL.CHAT' | translate}}</h1>
 
 <iframe width="100%" height="428" [src]="chatUrl | safe: 'resourceUrl'"></iframe>
 
-<h2>Want to use your own app?</h2>
+<h2>{{'SOCIAL.USE_OWN_APP' | translate}}</h2>
 
-<p>Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href="http://www.mirc.co.uk" target="_blank">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.</p>
+<p [innerHTML]="'SOCIAL.CHAT_SERVER_DETAILS' | translate: {ircChannel: ircChannel, ircServer: ircServer, ircPort: ircPort}"></p>

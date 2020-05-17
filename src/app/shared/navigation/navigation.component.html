@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button class="navbar-toggler" type="button" (click)="toggleIsCollapsed()" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" (click)="toggleIsCollapsed()" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" [attr.aria-label]="'NAVIGATION.TOGGLE_NAVIGATION' | translate">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navigation__logo navbar-brand" routerLink="/radio">
@@ -47,32 +47,13 @@
           <a class="nav-link" routerLink="/schedule">{{'NAVIGATION.SCHEDULE' | translate}}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/music">{{'NAVIGATION.MUSIC' | translate}}</a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/profiles">{{'NAVIGATION.PROFILES' | translate}}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
         </li>
-        <li class="nav-item dropdown" dropdown>
-          <button id="nav-social" class="nav-link dropdown-toggle" dropdownToggle href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            {{'NAVIGATION.SOCIAL' | translate}} <span class="caret"></span>
-          </button>
-          <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-social">
-            <li *ngFor="let site of socialSites" role="menuitem">
-              <a
-                target="_blank"
-                rel="noopener"
-                class="dropdown-item"
-                [href]="site.Url"
-                >{{ site.Name }}</a>
-            </li>
-            <li class="divider dropdown-divider"></li>
-            <li role="menuitem">
-              <a class="dropdown-item" routerLink="/social/chat">{{'NAVIGATION.CHAT_ROOM' | translate}}</a>
-            </li>
-          </ul>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/social/chat">{{'NAVIGATION.CHAT_ROOM' | translate}}</a>
         </li>
       </ul>
     </div>
