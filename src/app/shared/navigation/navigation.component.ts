@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Site } from '../services/site';
-import { SocialService } from '../services/social.service';
 import { AppSettings } from '../../app-settings';
 import { NavigationService } from '../services/navigation.service';
 
@@ -17,15 +15,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   archiveUrl: string;
   isCollapsed: boolean;
-  socialSites: Site[];
   assetRoot = AppSettings.ASSET_ROOT;
 
   constructor(
-    private readonly navigationService: NavigationService,
-    private readonly socialService: SocialService
-  ) {
-    this.socialSites = this.socialService.getSocialSites();
-  }
+    private readonly navigationService: NavigationService
+  ) { }
 
   ngOnInit() {
     this.archiveUrl = AppSettings.ARCHIVE_URL;

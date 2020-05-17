@@ -5,7 +5,8 @@
   </ol>
 </nav>
 
-<h1>Music</h1>
+<h1>{{'MUSIC.TITLE' | translate}}</h1>
+<P>{{'MUSIC.INTRO' | translate}}</P>
 <ul>
   <li *ngFor="let genre of genres">
       <a [routerLink]="['/music',genre.id]">{{genre.name}}</a>
