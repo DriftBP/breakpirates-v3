@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Site } from '../services/site';
 import { SocialService } from '../services/social.service';
@@ -10,7 +11,10 @@ import { NavigationService } from '../services/navigation.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
+
+  private collapsedSubscription: Subscription;
+
   archiveUrl: string;
   isCollapsed: boolean;
   socialSites: Site[];
@@ -25,10 +29,16 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.archiveUrl = AppSettings.ARCHIVE_URL;
-    this.navigationService.isCollapsed.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
+    this.collapsedSubscription = this.navigationService.isCollapsed.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
   }
 
- toggleIsCollapsed() {
-  this.navigationService.setCollapsed(!this.isCollapsed);
- }
+  ngOnDestroy() {
+    if (this.collapsedSubscription) {
+      this.collapsedSubscription.unsubscribe();
+    }
+  }
+
+  toggleIsCollapsed() {
+    this.navigationService.setCollapsed(!this.isCollapsed);
+  }
 }

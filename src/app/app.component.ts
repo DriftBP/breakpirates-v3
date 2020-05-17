@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy } from '@angular/core';
 import {
   Event,
   Router,
@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
 
@@ -17,7 +18,9 @@ import { GoogleAnalyticsService } from './shared/services/google-analytics.servi
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+  private eventsSubscription: Subscription;
+
   loading: boolean;
 
   constructor (
@@ -29,7 +32,7 @@ export class AppComponent {
   ) {
     translate.setDefaultLang('en');
 
-    this.router.events.subscribe((event: Event) => {
+    this.eventsSubscription = this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
           this.loading = true;
@@ -65,5 +68,11 @@ export class AppComponent {
 
     this._renderer2.appendChild(this._document.body, adwordsScript);
     this._renderer2.appendChild(this._document.body, adsByGoogleScript);
+  }
+
+  ngOnDestroy() {
+    if (this.eventsSubscription) {
+      this.eventsSubscription.unsubscribe();
+    }
   }
 }

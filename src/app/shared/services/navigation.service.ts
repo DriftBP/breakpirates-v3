@@ -1,21 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationService {
+export class NavigationService implements OnDestroy {
   private _isCollapsed: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   public readonly isCollapsed: Observable<boolean> = this._isCollapsed.asObservable();
 
+  private eventsSubscription: Subscription;
+
   constructor(private readonly router: Router) {
-    router.events.subscribe((val) => {
+    this.eventsSubscription = router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this._isCollapsed.next(true);
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.eventsSubscription) {
+      this.eventsSubscription.unsubscribe();
+    }
   }
 
   setCollapsed(isCollapsed: boolean): void {
