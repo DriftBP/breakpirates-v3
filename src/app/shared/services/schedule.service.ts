@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, OnDestroy } from '@angular/core';
+import { HttpClientJsonpModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { of, BehaviorSubject, interval } from 'rxjs';
+import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { find } from 'lodash';
 import moment from 'moment';
@@ -14,7 +14,7 @@ import { Genre } from '../../music/genre';
 import { ServerInfo } from './server-info';
 
 @Injectable()
-export class ScheduleService {
+export class ScheduleService implements OnDestroy {
   private daysOfWeek: Day[];
 
   private _nowPlaying: BehaviorSubject<Show> = new BehaviorSubject(null);
@@ -24,6 +24,9 @@ export class ScheduleService {
   private _serverInfo: BehaviorSubject<ServerInfo> = new BehaviorSubject(null);
 
   public readonly serverInfo: Observable<ServerInfo> = this._serverInfo.asObservable();
+
+  private nowPlayingSubscription: Subscription;
+  private serverInfoSubscription: Subscription;
 
   constructor(
     private http: HttpClient
@@ -37,15 +40,25 @@ export class ScheduleService {
       });
     }
 
-    this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
+    this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
 
     interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
-      this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
+      this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
     });
 
     interval(AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
-      this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
+      this.serverInfoSubscription = this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
     });
+  }
+
+  ngOnDestroy() {
+    if (this.nowPlayingSubscription) {
+      this.nowPlayingSubscription.unsubscribe();
+    }
+
+    if (this.serverInfoSubscription) {
+      this.serverInfoSubscription.unsubscribe();
+    }
   }
 
   days(): Day[] {
@@ -63,8 +76,8 @@ export class ScheduleService {
   }
 
   private getServerInfo(): Observable<ServerInfo> {
-    return this.http.get<string>(AppSettings.STREAM_URL_STATS).pipe(
-      map(data => this.toServerInfo(data))
+    return this.http.jsonp(AppSettings.STREAM_URL_STATS, 'callback').pipe(
+      map(data => this.toServerInfo(data.toString()))
     );
   }
 

@@ -10,16 +10,16 @@
     margin-left: 1em;
     padding: 0;
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $breakpoint-md) {
       margin-left: 0;
-      padding: 5px 1em 5px 0;
+      padding: 5px 0;
     }
 
     &-image {
       width: 260px;
       height: auto;
 
-      @media (min-width: $breakpoint-lg) {
+      @media (min-width: $breakpoint-md) {
         width: 280px;
       }
     }

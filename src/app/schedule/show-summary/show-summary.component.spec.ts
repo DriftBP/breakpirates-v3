@@ -7,14 +7,14 @@ import { ScheduleModule } from '../schedule.module';
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
 
-const mockShow: Show = {
+const mockShow1: Show = {
   id: 1,
   title: 'title',
   start_time: '00:00:00',
   end_time: '00:00:00',
-  day_id: 1,
-  description: ''
+  day_id: 1
 };
+const mockShow2: Show = { ...mockShow1, id: 2 };
 
 describe('ShowSummaryComponent', () => {
   let shallow: Shallow<ShowSummaryComponent>;
@@ -22,7 +22,7 @@ describe('ShowSummaryComponent', () => {
   beforeEach(async(() => {
     shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
       .mock(ScheduleService, {
-        nowPlaying: of(mockShow),
+        nowPlaying: of(mockShow2),
         showHosts: () => of([]),
         showGenres: () => of([]),
         dayName: () => ''
@@ -36,7 +36,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should not display day of week by default', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow}});
+    const { find } = await shallow.render({bind: {show: mockShow1}});
 
     const day = find('.show-summary__day');
 
@@ -44,10 +44,26 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should display day of week', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow, displayDay: true}});
+    const { find } = await shallow.render({bind: {show: mockShow1, displayDay: true}});
 
     const day = find('.show-summary__day');
 
     expect(day.length).toEqual(1);
+  });
+
+  it('should not indicate show is now playing', async () => {
+    const { find } = await shallow.render({bind: {show: mockShow1}});
+
+    const nowPlaying = find('.show-summary__now-playing');
+
+    expect(nowPlaying.length).toEqual(0);
+  });
+
+  it('should indicate show is now playing', async () => {
+    const { find } = await shallow.render({bind: {show: mockShow2}});
+
+    const nowPlaying = find('.show-summary__now-playing');
+
+    expect(nowPlaying.length).toEqual(1);
   });
 });
