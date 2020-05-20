@@ -4,6 +4,12 @@ import { Shallow } from 'shallow-render';
 import { RadioPlayerComponent } from './radio-player.component';
 import { SharedModule } from '../shared.module';
 
+declare global { interface Window { MediaElementPlayer: any; } }
+
+class MockMediaElementPlayer {}
+
+window.MediaElementPlayer = MockMediaElementPlayer;
+
 describe('RadioPlayerComponent', () => {
   let shallow: Shallow<RadioPlayerComponent>;
 
