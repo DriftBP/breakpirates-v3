@@ -22,6 +22,7 @@ export class RadioPlayerComponent implements AfterViewInit {
   loadMediaPlayer() {
     this.mediaPlayer = new MediaElementPlayer(this.mediaPlayerElement.nativeElement, {
       alwaysShowControls: true,
+      autoplay: true,
       stretching: 'responsive',
       features: [
         'playpause',
@@ -29,5 +30,7 @@ export class RadioPlayerComponent implements AfterViewInit {
         'volume'
       ]
     });
+
+    this.mediaPlayer.play();
   }
 }
