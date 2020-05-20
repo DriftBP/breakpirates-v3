@@ -6,7 +6,9 @@ import { SharedModule } from '../shared.module';
 
 declare global { interface Window { MediaElementPlayer: any; } }
 
-class MockMediaElementPlayer {}
+class MockMediaElementPlayer {
+  play() {}
+}
 
 window.MediaElementPlayer = MockMediaElementPlayer;
 
