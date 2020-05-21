@@ -21,6 +21,11 @@
     "ON_AIR": "On air",
     "BP_PLAYLIST": "Break Pirates playlist"
   },
+  "CHAT_ROOM": {
+    "TITLE": "Chat room",
+    "DESCRIPTION": "Your place to meet other listeners, get shouts and tune IDs!",
+    "CTA": "Join the chat"
+  },
   "DONATE": {
     "TITLE": "Please donate",
     "YOUR_DONATIONS_HELP": "Your donations help to pay our site and server bills!"
