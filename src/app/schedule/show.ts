@@ -5,4 +5,5 @@ export class Show {
     end_time: string;
     day_id: number;
     description?: string;
+    image?: string;
 }
