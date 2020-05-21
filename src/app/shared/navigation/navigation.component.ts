@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.archiveUrl = AppSettings.ARCHIVE_URL;
+    this.archiveUrl = AppSettings.MIXCLOUD_URL;
     this.collapsedSubscription = this.navigationService.isCollapsed.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
   }
 
