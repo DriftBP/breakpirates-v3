@@ -34,6 +34,7 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { SocialService } from './services/social.service';
 import { ScheduleService } from './services/schedule.service';
 import { ServerStatsComponent } from './server-stats/server-stats.component';
+import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -71,7 +72,8 @@ export function customHttpLoader(http: HttpClient) {
     GenreListComponent,
     SidebarComponent,
     FooterComponent,
-    ServerStatsComponent
+    ServerStatsComponent,
+    ChatRoomPromoComponent
   ],
   exports: [
     NavigationComponent,
