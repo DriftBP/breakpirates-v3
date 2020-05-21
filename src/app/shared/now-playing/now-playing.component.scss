@@ -1,8 +1,43 @@
 .now-playing {
+  margin-bottom: 1em;
+  border: 1px solid #000;
+  background-color: #fff;
+
   &__ {
     &on-air {
       text-transform: uppercase;
       font-size:  0.8rem;
+    }
+
+    &show-info {
+      display: flex;
+      margin: 1em auto;
+      padding: 0 1em;
+      max-width: 600px;
+      align-items: center;
+
+      &- {
+        &image {
+          height: 4rem;
+          width: 4rem;
+          min-width: 4rem;
+          margin-right: 1em;
+          border-radius: 50%;
+          border: 1px solid #000;
+          background-size: cover;
+          background-position: center;
+        }
+
+        &text {
+          font-size: 1.75rem;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &show-link {
+      text-decoration: none;
+      color: inherit;
     }
   }
 }
