@@ -9,15 +9,13 @@
 
 <h1>{{'SCHEDULE.TITLE' | translate}}</h1>
 
-<app-day-select [days]="days" [activeDayId]="activeDayId"></app-day-select>
-
 <p>{{'SCHEDULE.CHECK_BACK_REGULARLY' | translate}}</p>
 
 <p>{{'SCHEDULE.FIND_OUT_MORE' | translate}}</p>
 
 <p>{{'SCHEDULE.TIMES_DISPLAYED' | translate}}</p>
 
-<h2>{{title | translate}}</h2>
+<app-day-select [days]="days" [activeDayId]="activeDayId"></app-day-select>
 
 <ng-container *ngFor="let show of todaysSchedule">
   <app-show-summary [show]="show"></app-show-summary>

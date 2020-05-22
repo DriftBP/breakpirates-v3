@@ -4,8 +4,7 @@ import { Day } from '../day';
 
 @Component({
   selector: 'app-day-select',
-  templateUrl: './day-select.component.html',
-  styleUrls: ['./day-select.component.scss']
+  templateUrl: './day-select.component.html'
 })
 export class DaySelectComponent {
   @Input() days: Day[];
