@@ -44,7 +44,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         imageFilename = 'bp-profile.jpg';
       }
 
-      this.nowPlayingImage = 'url(' + AppSettings.ASSET_PROFILE_IMAGE + imageFilename + ')';
+      this.nowPlayingImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + imageFilename + ')';
     });
 
     this.serverInfoSubscription = this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
