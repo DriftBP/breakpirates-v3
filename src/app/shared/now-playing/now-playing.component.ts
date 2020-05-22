@@ -33,7 +33,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         this.isLiveShow = true;
 
         if (nowPlaying.image) {
-          this.nowPlayingImage = 'url(' + AppSettings.ASSET_PROFILE_IMAGE + nowPlaying.image + ')';
+          this.nowPlayingImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + nowPlaying.image + ')';
         }
       }
     });
