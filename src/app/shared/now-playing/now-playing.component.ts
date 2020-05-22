@@ -29,13 +29,22 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     this.nowPlayingSubscription = this.scheduleService.nowPlaying.subscribe(nowPlaying => {
       this.nowPlaying = nowPlaying;
 
+      let imageFilename: string;
+
       if (nowPlaying?.id !== undefined) {
         this.isLiveShow = true;
 
         if (nowPlaying.image) {
-          this.nowPlayingImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + nowPlaying.image + ')';
+          imageFilename = nowPlaying.image;
         }
       }
+
+      if (!imageFilename) {
+        // Use default
+        imageFilename = 'bp-profile.jpg';
+      }
+
+      this.nowPlayingImage = 'url(' + AppSettings.ASSET_PROFILE_IMAGE + imageFilename + ')';
     });
 
     this.serverInfoSubscription = this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
