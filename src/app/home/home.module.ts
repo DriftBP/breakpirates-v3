@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { NewsModule } from '../news/news.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { ScheduleModule } from '../schedule/schedule.module';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     SharedModule,
     HomeRoutingModule,
-    NewsModule
+    ScheduleModule
   ],
   declarations: [HomeComponent]
 })
