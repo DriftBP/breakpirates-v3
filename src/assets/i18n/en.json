@@ -40,7 +40,7 @@
   "HOME": {
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
-    "CHECK_OUT_TODAYS": "Check out todays broadcast schedule",
+    "TODAYS_SCHEDULE": "Todays schedule",
     "LATEST_NEWS": "Latest news"
   },
   "NEWS": {
