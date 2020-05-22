@@ -25,7 +25,7 @@ describe('DaySelectComponent', () => {
 
   it('should list days of the week', async () => {
     const { find } = await shallow.render({bind: {days: [ mockDay ]}});
-    const days = find('.day-select__day');
+    const days = find('.nav-link');
 
     expect(days.length).toBeGreaterThan(0);
   });
