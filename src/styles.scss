@@ -1,5 +1,11 @@
 @import './sass/variables';
 
+/* Bootstrap overrides*/
+
+$body-color: #fff;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
 /* Template styles */
 
 html {
