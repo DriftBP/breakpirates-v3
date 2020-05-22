@@ -29,15 +29,37 @@
         }
 
         &text {
-          font-size: 1.75rem;
-          font-weight: bold;
           overflow: hidden;
+          line-height: 1.2em;
         }
 
         &name {
+          font-size: 1.75rem;
+          line-height: 1.2em;
+          font-weight: bold;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+        }
+
+        &hosts {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &host {
+          margin-right: 0.5em;
+
+          &::after {
+            content: ",";
+          }
+
+          &:last-of-type {
+            &::after {
+              content: "";
+            }
+          }
         }
       }
     }

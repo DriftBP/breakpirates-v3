@@ -15,6 +15,8 @@
         <div class="now-playing__show-info-name" *ngIf="!isLiveShow">
           {{'NOW_PLAYING.BP_PLAYLIST' | translate}} <!-- {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }} -->
         </div>
+
+        <div class="now-playing__show-info-hosts" *ngIf="isLiveShow">{{'NOW_PLAYING.HOSTED_BY' | translate}}: <a class="now-playing__show-info-host" [routerLink]="['/profiles',host.id]" *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a></div>
       </div>
     </div>
 
