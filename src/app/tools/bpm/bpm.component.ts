@@ -91,8 +91,6 @@ export class BpmComponent {
 
     // Update status
     this.updateValues();
-
-    console.log(this.beatBuffer);
   }
 
   onClick() {
