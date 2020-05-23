@@ -6,12 +6,12 @@
   </ol>
 </nav>
 
-<h1>BPM counter</h1>
+<h1>{{'BPM_COUNTER.TITLE' | translate}}</h1>
 <ng-container [ngSwitch]="message">
-  <p *ngSwitchCase="statuses.Empty">Tap the button below in time with the music</p>
-  <p *ngSwitchCase="statuses.Insufficient">Keep going!</p>
-  <p *ngSwitchCase="statuses.Full">Your BPM is displayed below</p>
+  <p *ngSwitchCase="statuses.Empty">{{'BPM_COUNTER.TAP_THE_BUTTON' | translate}}</p>
+  <p *ngSwitchCase="statuses.Insufficient">{{'BPM_COUNTER.KEEP_GOING' | translate}}</p>
+  <p *ngSwitchCase="statuses.Full">{{'BPM_COUNTER.YOUR_BPM_IS' | translate}}</p>
 </ng-container>
-<div><button class="btn btn-primary btn-lg" (click)="onClick()">Tap me or Enter key</button></div>
-<p><span *ngIf="message == statuses.Full">BPM: {{ bpm }}</span></p>
-<div><button class="btn btn-secondary" (click)="onReset()">Start again</button></div>
+<p><button class="btn btn-primary btn-lg" (click)="onClick()">{{'BPM_COUNTER.TAP_ME' | translate}}</button></p>
+<p><span *ngIf="message == statuses.Full">{{'BPM_COUNTER.BPM' | translate}}: {{ bpm }}</span></p>
+<div><button class="btn btn-secondary" (click)="onReset()">{{'BPM_COUNTER.START_AGAIN' | translate}}</button></div>
