@@ -8,6 +8,10 @@ const scheduleConfig: BreadcrumbConfigItem = { name: 'SCHEDULE.TITLE' };
 export const scheduleConfigInactive = { ...scheduleConfig, routerLink: '/schedule' };
 export const scheduleConfigActive = { ...scheduleConfig, isActive: true };
 
+const profilesConfig: BreadcrumbConfigItem = { name: 'PROFILES.TITLE' };
+export const profilesConfigInactive = { ...profilesConfig, routerLink: '/profiles' };
+export const profilesConfigActive = { ...profilesConfig, isActive: true };
+
 const socialConfig: BreadcrumbConfigItem = { name: 'SOCIAL.TITLE' };
 export const socialConfigInactive = { ...socialConfig, routerLink: '/social' };
 export const socialConfigActive = { ...socialConfig, isActive: true };
