@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { News } from '../news';
 
