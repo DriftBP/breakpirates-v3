@@ -98,7 +98,7 @@ export class BpmComponent {
       time: moment()
     };
 
-    this.addToBuffer(dataPoint)
+    this.addToBuffer(dataPoint);
   }
 
   onReset() {
