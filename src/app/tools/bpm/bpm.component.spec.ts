@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { BpmComponent } from './bpm.component';
+import { ToolsModule } from '../tools.module';
 
 describe('BpmComponent', () => {
-  let component: BpmComponent;
-  let fixture: ComponentFixture<BpmComponent>;
+  let shallow: Shallow<BpmComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BpmComponent ]
-    })
-    .compileComponents();
+    shallow = new Shallow(BpmComponent, ToolsModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BpmComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create', async () => {
+    const { element } = await shallow.render();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(element.nativeElement).toBeTruthy();
   });
 });
