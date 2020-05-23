@@ -5,7 +5,15 @@
   background-color: transparent;
 }
 
+.navbar-dark {
+  .navbar-nav .nav-link {
+    color: $color-brand-tertiary;
+  }
+}
+
 .navigation {
+  background-color: $color-brand-primary;
+
   &__logo {
     margin-left: 1em;
     padding: 0;
