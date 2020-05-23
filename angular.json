@@ -19,12 +19,20 @@
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/.htaccess",
+              "src/api",
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/google9626a1e073cd04b6.html",
+              "src/stream.asx",
+              "src/stream.m3u",
+              "src/stream.php",
+              "src/stream.pls",
+              "src/stream.ram"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/mediaelement/build/mediaelementplayer.min.css",
               "src/styles.scss"
             ],
             "scripts": []

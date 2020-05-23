@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { Genre } from '../genre';
 import { Show } from '../../schedule/show';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
+import { musicConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-genre',
@@ -11,6 +13,12 @@ import { Show } from '../../schedule/show';
   styleUrls: ['./genre.component.scss']
 })
 export class GenreComponent implements OnInit, OnDestroy {
+
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+    musicConfigInactive
+  ];
+
+  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private route: ActivatedRoute
@@ -36,6 +44,11 @@ export class GenreComponent implements OnInit, OnDestroy {
   initialiseState(): void {
     this.genre = this.route.snapshot.data['genre'];
     this.shows = this.route.snapshot.data['shows'];
+
+    this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
+      name: this.genre.name,
+      isActive: true
+    });
   }
 
 }

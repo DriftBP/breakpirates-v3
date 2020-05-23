@@ -1,15 +1,11 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">{{'HOME.TITLE' | translate}}</li>
-  </ol>
-</nav>
+<app-breadcrumb [isHome]="true" [config]="breadcrumbConfig"></app-breadcrumb>
 
 <h1>{{'HOME.WELCOME' | translate}}</h1>
 
-<p>Established back in 2001, Break Pirates broadcast the very best in underground <strong>breakbeat oriented</strong> <a routerLink="/music">music</a> live over the Internet every day of the week. From the latest <strong>Hardcore</strong>, <strong>Drum &amp; Bass</strong> and <strong>Dubstep</strong> tunes to the <strong>Oldskool House</strong>, <strong>Hardcore</strong>, and <strong>Jungle</strong> classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.</p>
+<p>{{'HOME.DESCRIPTION' | translate}}</p>
 
-<p><a routerLink="/schedule">{{'HOME.CHECK_OUT_TODAYS' | translate}}</a></p>
+<h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
-<h2>{{'HOME.LATEST_NEWS' | translate}}</h2>
-
-<app-latest-news></app-latest-news>
+<ng-container *ngFor="let show of todaysSchedule">
+  <app-show-summary [show]="show"></app-show-summary>
+</ng-container>

@@ -1,10 +1,11 @@
-import { Component, OnInit, Host, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
-import { Genre } from '../../music/genre';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
+import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-show',
@@ -14,13 +15,13 @@ import { Genre } from '../../music/genre';
 export class ShowComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private hostsSubscription: Subscription;
-  private genresSubscription: Subscription;
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+    scheduleConfigInactive
+  ];
 
   show: Show;
-  hosts: Host[];
-  genres: Genre[];
   dayName: string;
+  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -37,14 +38,6 @@ export class ShowComponent implements OnInit, OnDestroy {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
     }
-
-    if (this.hostsSubscription) {
-      this.hostsSubscription.unsubscribe();
-    }
-
-    if (this.genresSubscription) {
-      this.genresSubscription.unsubscribe();
-    }
   }
 
   initialiseState(): void {
@@ -52,11 +45,10 @@ export class ShowComponent implements OnInit, OnDestroy {
 
     this.dayName = this.scheduleService.dayName(this.show.day_id);
 
-    this.hostsSubscription = this.scheduleService.showHosts(this.show.id)
-      .subscribe(hosts => this.hosts = hosts);
-
-    this.genresSubscription = this.scheduleService.showGenres(this.show.id)
-      .subscribe(genres => this.genres = genres);
+    this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
+      name: this.show.title,
+      isActive: true
+    });
   }
 
 }

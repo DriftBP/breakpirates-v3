@@ -17,10 +17,20 @@
   "LOADING_SPINNER": {
     "LOADING": "Loading"
   },
+  "NOT_FOUND": {
+    "TITLE": "Oops!",
+    "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
+  },
   "NOW_PLAYING": {
-    "TITLE": "Listen live",
     "ON_AIR": "On air",
-    "BP_PLAYLIST": "Break Pirates playlist"
+    "HOSTED_BY": "Hosted by",
+    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
+  },
+  "CHAT_ROOM": {
+    "TITLE": "Chat room",
+    "DESCRIPTION": "Your place to meet other listeners, get shouts and tune IDs!",
+    "CTA": "Join the chat"
   },
   "DONATE": {
     "TITLE": "Please donate",
@@ -36,11 +46,14 @@
   "HOME": {
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
-    "CHECK_OUT_TODAYS": "Check out todays broadcast schedule",
-    "LATEST_NEWS": "Latest news"
+    "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in underground breakbeat oriented music live over the Internet every day of the week. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool House, Hardcore and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
+    "TODAYS_SCHEDULE": "Todays schedule"
   },
   "NEWS": {
-    "TITLE": "News"
+    "TITLE": "News",
+    "LATEST_NEWS": "Latest news",
+    "SHOW_MORE": "Show more news",
+    "OTHER_NEWS": "Other news"
   },
   "SCHEDULE": {
     "TITLE": "Schedule",
@@ -76,5 +89,18 @@
   },
   "VIDEO": {
     "TITLE": "Video"
+  },
+  "TOOLS": {
+    "TITLE": "Tools",
+    "BPM_COUNTER": "BPM counter"
+  },
+  "BPM_COUNTER": {
+    "TITLE": "BPM counter",
+    "TAP_THE_BUTTON": "Tap the button below in time with the music",
+    "KEEP_GOING": "Keep going!",
+    "YOUR_BPM_IS": "Your BPM is displayed below",
+    "TAP_ME": "Tap me or Enter key",
+    "BPM": "BPM",
+    "START_AGAIN": "Start again"
   }
 }

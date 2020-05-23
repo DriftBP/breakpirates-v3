@@ -1,14 +1,18 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/radio">{{'HOME.TITLE' | translate}}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{'NEWS.TITLE' | translate}}</li>
-  </ol>
-</nav>
+<app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
 
-<h1>{{'NEWS.TITLE' | translate}}</h1>
-<ul class="list-unstyled">
-    <li *ngFor="let article of news">
-        <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
-        <a [routerLink]="['/news',article.id]">{{article.title}}</a>
-    </li>
-</ul>
+<h1>{{'NEWS.LATEST_NEWS' | translate}}</h1>
+
+<app-latest-news [news]="latestNews"></app-latest-news>
+
+<button *ngIf="!showMore" class="news__show-more btn btn-primary" (click)="onShowMore()">{{'NEWS.SHOW_MORE' | translate}}</button>
+
+<ng-container *ngIf="showMore">
+  <h2 class="news__other-news-header">{{'NEWS.OTHER_NEWS' | translate}}</h2>
+
+  <ul class="list-unstyled">
+      <li *ngFor="let article of otherNews">
+          <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
+          <a [routerLink]="['/news',article.id]">{{article.title}}</a>
+      </li>
+  </ul>
+</ng-container>
