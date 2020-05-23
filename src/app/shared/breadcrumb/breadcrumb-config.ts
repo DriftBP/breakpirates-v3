@@ -16,6 +16,18 @@ const socialConfig: BreadcrumbConfigItem = { name: 'SOCIAL.TITLE' };
 export const socialConfigInactive = { ...socialConfig, routerLink: '/social' };
 export const socialConfigActive = { ...socialConfig, isActive: true };
 
+const newsConfig: BreadcrumbConfigItem = { name: 'NEWS.TITLE' };
+export const newsConfigInactive = { ...newsConfig, routerLink: '/news' };
+export const newsConfigActive = { ...newsConfig, isActive: true };
+
+const videoConfig: BreadcrumbConfigItem = { name: 'VIDEO.TITLE' };
+export const videoConfigInactive = { ...videoConfig, routerLink: '/video' };
+export const videoConfigActive = { ...videoConfig, isActive: true };
+
+const musicConfig: BreadcrumbConfigItem = { name: 'MUSIC.TITLE' };
+export const musicConfigInactive = { ...musicConfig, routerLink: '/music' };
+export const musicConfigActive = { ...musicConfig, isActive: true };
+
 const toolsConfig: BreadcrumbConfigItem = { name: 'TOOLS.TITLE' };
 export const toolsConfigInactive = { ...toolsConfig, routerLink: '/tools' };
 export const toolsConfigActive = { ...toolsConfig, isActive: true };
