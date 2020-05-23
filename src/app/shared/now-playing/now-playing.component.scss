@@ -13,14 +13,14 @@
       display: flex;
       margin: 1em auto;
       padding: 0 1em;
-      max-width: 600px;
+      max-width: 700px;
       align-items: center;
 
       &- {
         &image {
-          height: 4rem;
-          width: 4rem;
-          min-width: 4rem;
+          height: 5rem;
+          width: 5rem;
+          min-width: 5rem;
           margin-right: 1em;
           border-radius: 50%;
           border: 1px solid #000;
@@ -29,8 +29,37 @@
         }
 
         &text {
+          overflow: hidden;
+          line-height: 1.2em;
+        }
+
+        &name {
           font-size: 1.75rem;
+          line-height: 1.2em;
           font-weight: bold;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &description {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &host {
+          margin-right: 0.5em;
+
+          &::after {
+            content: ",";
+          }
+
+          &:last-of-type {
+            &::after {
+              content: "";
+            }
+          }
         }
       }
     }

@@ -13,16 +13,16 @@
 
   <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
 
-  <ng-container *ngIf="hosts?.length > 0">
+  <ng-container *ngIf="show.hosts?.length > 0">
     <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
 
-    <app-host-list [hosts]="hosts"></app-host-list>
+    <app-host-list [hosts]="show.hosts"></app-host-list>
   </ng-container>
 
-  <ng-container *ngIf="genres?.length > 0">
+  <ng-container *ngIf="show.genres?.length > 0">
     <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
 
-    <app-genre-list [genres]="genres"></app-genre-list>
+    <app-genre-list [genres]="show.genres"></app-genre-list>
   </ng-container>
 
   <ng-container *ngIf="show?.description">

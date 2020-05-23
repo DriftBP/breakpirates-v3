@@ -8,11 +8,21 @@
           {{'NOW_PLAYING.ON_AIR' | translate}}: <span *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
         </div>
 
-        <a class="now-playing__show-link" *ngIf="isLiveShow" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
+        <ng-container *ngIf="isLiveShow">
+          <div class="now-playing__show-info-name" [title]="nowPlaying.title">
+            <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
+          </div>
 
-        <div *ngIf="!isLiveShow">
-          {{'NOW_PLAYING.BP_PLAYLIST' | translate}} <!-- {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }} -->
-        </div>
+          <div class="now-playing__show-info-description">{{'NOW_PLAYING.HOSTED_BY' | translate}}: <a class="now-playing__show-info-host" [routerLink]="['/profiles',host.id]" *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a></div>
+        </ng-container>
+
+        <ng-container *ngIf="!isLiveShow">
+          <div class="now-playing__show-info-name">
+            {{'NOW_PLAYING.PLAYLIST' | translate}} <!-- {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }} -->
+          </div>
+
+          <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
+        </ng-container>
       </div>
     </div>
 

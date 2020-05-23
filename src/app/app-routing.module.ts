@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'radio', pathMatch: 'full' },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'video', loadChildren: () => import('./video/video.module').then(m => m.VideoModule) },
   { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
   { path: '', component: SidebarComponent, outlet: 'sidebar' },
+  { path: '**', component: NotFoundComponent
+  }
 ];
 
 @NgModule({

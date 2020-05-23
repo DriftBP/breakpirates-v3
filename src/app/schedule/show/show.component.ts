@@ -1,10 +1,9 @@
-import { Component, OnInit, Host, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
-import { Genre } from '../../music/genre';
 
 @Component({
   selector: 'app-show',
@@ -14,12 +13,8 @@ import { Genre } from '../../music/genre';
 export class ShowComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private hostsSubscription: Subscription;
-  private genresSubscription: Subscription;
 
   show: Show;
-  hosts: Host[];
-  genres: Genre[];
   dayName: string;
 
   constructor(
@@ -37,26 +32,12 @@ export class ShowComponent implements OnInit, OnDestroy {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
     }
-
-    if (this.hostsSubscription) {
-      this.hostsSubscription.unsubscribe();
-    }
-
-    if (this.genresSubscription) {
-      this.genresSubscription.unsubscribe();
-    }
   }
 
   initialiseState(): void {
     this.show = this.route.snapshot.data['show'];
 
     this.dayName = this.scheduleService.dayName(this.show.day_id);
-
-    this.hostsSubscription = this.scheduleService.showHosts(this.show.id)
-      .subscribe(hosts => this.hosts = hosts);
-
-    this.genresSubscription = this.scheduleService.showGenres(this.show.id)
-      .subscribe(genres => this.genres = genres);
   }
 
 }

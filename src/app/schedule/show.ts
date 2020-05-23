@@ -1,3 +1,6 @@
+import { Genre } from '../music/genre';
+import { Host } from '../profile/host';
+
 export class Show {
     id: number;
     title: string;
@@ -6,4 +9,6 @@ export class Show {
     day_id: number;
     description?: string;
     image?: string;
+    genres: Genre[];
+    hosts: Host[];
 }
