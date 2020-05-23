@@ -47,11 +47,13 @@
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
     "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in underground breakbeat oriented music live over the Internet every day of the week. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool House, Hardcore and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
-    "TODAYS_SCHEDULE": "Todays schedule",
-    "LATEST_NEWS": "Latest news"
+    "TODAYS_SCHEDULE": "Todays schedule"
   },
   "NEWS": {
-    "TITLE": "News"
+    "TITLE": "News",
+    "LATEST_NEWS": "Latest news",
+    "SHOW_MORE": "Show more news",
+    "OTHER_NEWS": "Other news"
   },
   "SCHEDULE": {
     "TITLE": "Schedule",
