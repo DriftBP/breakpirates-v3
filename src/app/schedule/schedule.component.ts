@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Show } from './show';
 import { ScheduleService } from '../shared/services/schedule.service';
 import { Day } from './day';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-schedule',
@@ -16,12 +17,19 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
   private showsSubscription: Subscription;
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+    {
+      name: 'HOME.TITLE',
+      routerLink: '/radio'
+    }
+  ];
 
   activeDayId = moment().isoWeekday();
   daySelected = false;
   title: string;
   days: Day[];
   todaysSchedule: Show[];
+  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -43,6 +51,24 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         this.daySelected = true;
 
         this.setTitle();
+
+        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+          {
+            name: 'SCHEDULE.TITLE',
+            routerLink: '/schedule'
+          },
+          {
+            name: this.title,
+            isActive: true
+          }
+        ]);
+      } else {
+        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+          {
+            name: 'SCHEDULE.TITLE',
+            isActive: true
+          }
+        ]);
       }
 
       this.showsSubscription = this.scheduleService.shows(this.activeDayId).subscribe(shows => {

@@ -23,6 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ServerStatsComponent } from './server-stats/server-stats.component';
 import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BreadcrumbComponent, BreadcrumbConfigItem } from './breadcrumb/breadcrumb.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics.service';
@@ -75,7 +76,8 @@ export function customHttpLoader(http: HttpClient) {
     FooterComponent,
     ServerStatsComponent,
     ChatRoomPromoComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BreadcrumbComponent
   ],
   exports: [
     NavigationComponent,
@@ -93,7 +95,8 @@ export function customHttpLoader(http: HttpClient) {
     HostListComponent,
     GenreListComponent,
     FooterComponent,
-    TranslateModule
+    TranslateModule,
+    BreadcrumbComponent
   ],
   providers: [
     GoogleAnalyticsService,

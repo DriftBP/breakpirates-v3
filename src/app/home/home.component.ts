@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Show } from '../schedule/show';
 import { ScheduleService } from '../shared/services/schedule.service';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   private activeDayId = moment().isoWeekday();
 
   todaysSchedule: Show[];
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    {
+      name: 'HOME.TITLE',
+      isActive: true
+    }
+  ];
 
   constructor(
     private readonly scheduleService: ScheduleService
