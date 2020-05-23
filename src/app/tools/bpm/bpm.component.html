@@ -1,0 +1,17 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/radio">{{'HOME.TITLE' | translate}}</a></li>
+    <li class="breadcrumb-item active"><a routerLink="/tools">{{'TOOLS.TITLE' | translate}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{'BPM_COUNTER.TITLE' | translate}}</li>
+  </ol>
+</nav>
+
+<h1>BPM counter</h1>
+<ng-container [ngSwitch]="message">
+  <p *ngSwitchCase="statuses.Empty">Tap the button below in time with the music</p>
+  <p *ngSwitchCase="statuses.Insufficient">Keep going!</p>
+  <p *ngSwitchCase="statuses.Full">Your BPM is displayed below</p>
+</ng-container>
+<div><button class="btn btn-primary btn-lg" (click)="onClick()">Tap me or Enter key</button></div>
+<p><span *ngIf="message == statuses.Full">BPM: {{ bpm }}</span></p>
+<div><button class="btn btn-secondary" (click)="onReset()">Start again</button></div>
