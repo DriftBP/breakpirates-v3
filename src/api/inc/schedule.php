@@ -239,9 +239,9 @@ function getGenre($genre_id) {
 function getGenres() {
 	$genres = array();
 
-	$sql = "SELECT genreid
-			FROM genres
-			ORDER BY name";
+	$sql = "SELECT DISTINCT(g.genreid)
+          FROM genres g
+          INNER JOIN shows_genres sg ON sg.genreid = g.genreid";
 
 	$result = mysql_query($sql);
 
