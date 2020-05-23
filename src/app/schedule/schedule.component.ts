@@ -7,7 +7,8 @@ import { Subscription } from 'rxjs';
 import { Show } from './show';
 import { ScheduleService } from '../shared/services/schedule.service';
 import { Day } from './day';
-import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb.component';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
+import { homeConfigInactive, scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-schedule',
@@ -18,10 +19,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
   private showsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
-    {
-      name: 'HOME.TITLE',
-      routerLink: '/radio'
-    }
+    homeConfigInactive
   ];
 
   activeDayId = moment().isoWeekday();
@@ -53,10 +51,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         this.setTitle();
 
         this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-          {
-            name: 'SCHEDULE.TITLE',
-            routerLink: '/schedule'
-          },
+          scheduleConfigInactive,
           {
             name: this.title,
             isActive: true
@@ -64,10 +59,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         ]);
       } else {
         this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-          {
-            name: 'SCHEDULE.TITLE',
-            isActive: true
-          }
+          scheduleConfigActive
         ]);
       }
 

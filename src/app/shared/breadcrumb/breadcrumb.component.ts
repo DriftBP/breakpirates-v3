@@ -1,10 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-export class BreadcrumbConfigItem {
-  name: string;
-  routerLink?: string;
-  isActive? = false;
-}
+import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 
 @Component({
   selector: 'app-breadcrumb',
