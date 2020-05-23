@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import moment from 'moment';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
+import { homeConfigInactive, toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 enum DataCollectionStatus {
   Empty,
@@ -24,6 +26,14 @@ export class BpmComponent {
   statuses = DataCollectionStatus;
   bpm: number;
   beatBuffer: DataPoint[];
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    homeConfigInactive,
+    toolsConfigInactive,
+    {
+      name: 'BPM_COUNTER.TITLE',
+      isActive: true
+    }
+  ];
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
