@@ -87,5 +87,18 @@
   },
   "VIDEO": {
     "TITLE": "Video"
+  },
+  "TOOLS": {
+    "TITLE": "Tools",
+    "BPM_COUNTER": "BPM counter"
+  },
+  "BPM_COUNTER": {
+    "TITLE": "BPM counter",
+    "TAP_THE_BUTTON": "Tap the button below in time with the music",
+    "KEEP_GOING": "Keep going!",
+    "YOUR_BPM_IS": "Your BPM is displayed below",
+    "TAP_ME": "Tap me or Enter key",
+    "BPM": "BPM",
+    "START_AGAIN": "Start again"
   }
 }
