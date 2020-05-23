@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
-import { BreadcrumbConfigItem } from 'src/app/shared/breadcrumb/breadcrumb.component';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-show',
@@ -14,7 +14,7 @@ import { BreadcrumbConfigItem } from 'src/app/shared/breadcrumb/breadcrumb.compo
 export class ShowComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     {
       name: 'HOME.TITLE',
       routerLink: '/radio'
