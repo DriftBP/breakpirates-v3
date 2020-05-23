@@ -17,9 +17,15 @@
   "LOADING_SPINNER": {
     "LOADING": "Loading"
   },
+  "NOT_FOUND": {
+    "TITLE": "Oops!",
+    "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
+  },
   "NOW_PLAYING": {
     "ON_AIR": "On air",
-    "BP_PLAYLIST": "Break Pirates playlist"
+    "HOSTED_BY": "Hosted by",
+    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
   },
   "CHAT_ROOM": {
     "TITLE": "Chat room",
@@ -40,6 +46,7 @@
   "HOME": {
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
+    "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in underground breakbeat oriented music live over the Internet every day of the week. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool House, Hardcore and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
     "TODAYS_SCHEDULE": "Todays schedule",
     "LATEST_NEWS": "Latest news"
   },
