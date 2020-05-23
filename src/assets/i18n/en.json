@@ -24,7 +24,8 @@
   "NOW_PLAYING": {
     "ON_AIR": "On air",
     "HOSTED_BY": "Hosted by",
-    "BP_PLAYLIST": "Break Pirates playlist"
+    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
   },
   "CHAT_ROOM": {
     "TITLE": "Chat room",
