@@ -17,6 +17,10 @@
   "LOADING_SPINNER": {
     "LOADING": "Loading"
   },
+  "NOT_FOUND": {
+    "TITLE": "Oops!",
+    "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
+  },
   "NOW_PLAYING": {
     "ON_AIR": "On air",
     "HOSTED_BY": "Hosted by",

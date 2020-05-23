@@ -20,10 +20,15 @@ import { HostListComponent } from './host-list/host-list.component';
 import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ServerStatsComponent } from './server-stats/server-stats.component';
+import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 import { NewsService } from '../news/news.service';
+import { SocialService } from './services/social.service';
+import { ScheduleService } from './services/schedule.service';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -31,10 +36,6 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { SocialService } from './services/social.service';
-import { ScheduleService } from './services/schedule.service';
-import { ServerStatsComponent } from './server-stats/server-stats.component';
-import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -73,7 +74,8 @@ export function customHttpLoader(http: HttpClient) {
     SidebarComponent,
     FooterComponent,
     ServerStatsComponent,
-    ChatRoomPromoComponent
+    ChatRoomPromoComponent,
+    NotFoundComponent
   ],
   exports: [
     NavigationComponent,
