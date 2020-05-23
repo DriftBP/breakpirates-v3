@@ -6,6 +6,8 @@ import { Host } from '../host';
 import { Show } from '../../schedule/show';
 import { ProfileService } from '../profile.service';
 import { AppSettings } from '../../app-settings';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
+import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-host-details',
@@ -16,10 +18,14 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
   private showsSubscription: Subscription;
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+    profilesConfigInactive
+  ];
 
   profile: Host;
   shows: Show[];
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
+  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +50,11 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
 
   initialiseState(): void {
     this.profile = this.route.snapshot.data['profile'];
+
+    this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
+      name: this.profile.name,
+      isActive: true
+    });
 
     this.showsSubscription = this.profileService.profileShows(this.profile.id)
       .subscribe(shows => this.shows = shows);

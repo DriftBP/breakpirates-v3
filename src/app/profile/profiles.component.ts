@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Host } from './host';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
+import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +14,9 @@ export class ProfilesComponent implements OnInit {
 
   profiles: Host[];
   order = 'asc';
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    profilesConfigActive
+  ];
 
   constructor(
     private route: ActivatedRoute

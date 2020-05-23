@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
 
 import { News } from './news';
-import { isArray } from 'util';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
+import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-news',
@@ -17,6 +18,9 @@ export class NewsComponent implements OnInit {
   latestNews: News[];
   otherNews: News[];
   showMore = false;
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    newsConfigActive
+  ];
 
   constructor(
     private route: ActivatedRoute

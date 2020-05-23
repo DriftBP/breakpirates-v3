@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Genre } from './genre';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
+import { musicConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-music',
@@ -9,6 +11,10 @@ import { Genre } from './genre';
   styleUrls: ['./music.component.scss']
 })
 export class MusicComponent implements OnInit {
+
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    musicConfigActive
+  ];
 
   constructor(
     private route: ActivatedRoute

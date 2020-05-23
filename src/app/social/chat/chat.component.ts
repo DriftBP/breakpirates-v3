@@ -1,5 +1,7 @@
 import { Component, } from '@angular/core';
 import { AppSettings } from '../../app-settings';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
+import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-chat',
@@ -10,6 +12,13 @@ export class ChatComponent {
   ircServer = AppSettings.IRC_SERVER;
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    socialConfigInactive,
+    {
+      name: 'SOCIAL.CHAT',
+      isActive: true
+    }
+  ];
 
   chatUrl = 'http://chat.mk2k.net:6670?channels=' + AppSettings.IRC_CHANNEL;
 }

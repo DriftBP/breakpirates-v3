@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
+import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
+import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-show',
@@ -13,9 +15,13 @@ import { ScheduleService } from '../../shared/services/schedule.service';
 export class ShowComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+    scheduleConfigInactive
+  ];
 
   show: Show;
   dayName: string;
+  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -38,6 +44,11 @@ export class ShowComponent implements OnInit, OnDestroy {
     this.show = this.route.snapshot.data['show'];
 
     this.dayName = this.scheduleService.dayName(this.show.day_id);
+
+    this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
+      name: this.show.title,
+      isActive: true
+    });
   }
 
 }
