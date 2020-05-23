@@ -1,7 +1,7 @@
 import { Component, } from '@angular/core';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
-import { homeConfigInactive, socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
+import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-chat',
@@ -13,7 +13,6 @@ export class ChatComponent {
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
   breadcrumbConfig: BreadcrumbConfigItem[] = [
-    homeConfigInactive,
     socialConfigInactive,
     {
       name: 'SOCIAL.CHAT',

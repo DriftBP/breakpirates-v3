@@ -1,8 +1,8 @@
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 
 const homeConfig: BreadcrumbConfigItem = { name: 'HOME.TITLE' };
-export const homeConfigInactive = { ...homeConfig, routerLink: '/radio' };
-export const homeConfigActive = { ...homeConfig, isActive: true };
+export const homeConfigInactive: BreadcrumbConfigItem = { ...homeConfig, routerLink: '/radio' };
+export const homeConfigActive: BreadcrumbConfigItem = { ...homeConfig, isActive: true };
 
 const scheduleConfig: BreadcrumbConfigItem = { name: 'SCHEDULE.TITLE' };
 export const scheduleConfigInactive = { ...scheduleConfig, routerLink: '/schedule' };

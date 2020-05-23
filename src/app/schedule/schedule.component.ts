@@ -8,7 +8,7 @@ import { Show } from './show';
 import { ScheduleService } from '../shared/services/schedule.service';
 import { Day } from './day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
-import { homeConfigInactive, scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-schedule',
@@ -18,9 +18,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
   private showsSubscription: Subscription;
-  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
-    homeConfigInactive
-  ];
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = moment().isoWeekday();
   daySelected = false;

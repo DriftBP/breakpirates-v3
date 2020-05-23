@@ -1,11 +1,11 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li *ngFor="let configItem of config"
+    <li *ngFor="let item of configItems"
         class="breadcrumb-item"
-        [ngClass]="{'active': configItem.isActive}"
-        [attr.aria-current]="configItem.isActive">
-        <a *ngIf="configItem.routerLink" [routerLink]="configItem.routerLink">{{configItem.name | translate}}</a>
-        <ng-container *ngIf="!configItem.routerLink">{{configItem.name | translate}}</ng-container>
+        [ngClass]="{'active': item.isActive}"
+        [attr.aria-current]="item.isActive">
+        <a *ngIf="item.routerLink" [routerLink]="item.routerLink">{{item.name | translate}}</a>
+        <ng-container *ngIf="!item.routerLink">{{item.name | translate}}</ng-container>
     </li>
   </ol>
 </nav>

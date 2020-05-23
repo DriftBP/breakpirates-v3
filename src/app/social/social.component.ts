@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Site } from '../shared/services/site';
 import { SocialService } from '../shared/services/social.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
-import { homeConfigInactive, socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-social',
@@ -12,7 +12,6 @@ import { homeConfigInactive, socialConfigActive } from '../shared/breadcrumb/bre
 export class SocialComponent {
   socialSites: Site[];
   breadcrumbConfig: BreadcrumbConfigItem[] = [
-    homeConfigInactive,
     socialConfigActive
   ];
 

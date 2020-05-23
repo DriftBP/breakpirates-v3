@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
-import { homeConfigInactive, toolsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { toolsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-tools',
@@ -8,7 +8,6 @@ import { homeConfigInactive, toolsConfigActive } from '../shared/breadcrumb/brea
 })
 export class ToolsComponent {
   breadcrumbConfig: BreadcrumbConfigItem[] = [
-    homeConfigInactive,
     toolsConfigActive
   ];
 }
