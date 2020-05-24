@@ -3,8 +3,6 @@
 
   <h1>{{ show.title }}</h1>
 
-  <h2>{{'SCHEDULE.SHOW_TIME' | translate}}</h2>
-
   <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
 
   <ng-container *ngIf="show.hosts?.length > 0">
