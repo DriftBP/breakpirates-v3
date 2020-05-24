@@ -35,3 +35,12 @@ a {
   max-width: 1192px;
   margin: 0 auto;
 }
+
+.btn-primary {
+  background-color: $color-brand-primary;
+  border-color: $color-brand-primary;
+
+  &:hover {
+    background-color: lighten($color-brand-primary, 10%);
+  }
+}
