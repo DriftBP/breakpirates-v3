@@ -5,8 +5,9 @@
     grid-template-columns: 1fr;
     grid-column-gap: 1em;
     margin: 0.5em 0;
-    padding: 1em;
-    background-color: #ddd;
+    padding: 0.5em;
+    border: 1px solid #000;
+    background-color: lighten($color-brand-primary, 50%);
 
     @media (min-width: $breakpoint-md) {
       grid-template-columns: 130px 1fr;
