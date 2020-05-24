@@ -1,0 +1,46 @@
+@import '~sass/variables';
+
+.footer-bar {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1em;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.25em 0.5em;
+  background-color: $color-brand-primary;
+  color: $color-brand-tertiary;
+  font-size: 1.2rem;
+
+  &__ {
+    &logo-image {
+      width: 120px;
+      height: auto;
+    }
+
+    &social-sites {
+      text-align: right;
+    }
+
+    &social-site-list {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &social-site {
+      display: inline;
+      margin-left: 1em;
+
+      &:first-of-type {
+        margin-left: 0.5em;
+      }
+
+      &-link {
+        color: $color-brand-tertiary;
+      }
+    }
+  }
+}

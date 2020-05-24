@@ -37,6 +37,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { FooterBarComponent } from './footer-bar/footer-bar.component';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -77,7 +78,8 @@ export function customHttpLoader(http: HttpClient) {
     ServerStatsComponent,
     ChatRoomPromoComponent,
     NotFoundComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    FooterBarComponent
   ],
   exports: [
     NavigationComponent,
@@ -96,7 +98,8 @@ export function customHttpLoader(http: HttpClient) {
     GenreListComponent,
     FooterComponent,
     TranslateModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    FooterBarComponent
   ],
   providers: [
     GoogleAnalyticsService,
