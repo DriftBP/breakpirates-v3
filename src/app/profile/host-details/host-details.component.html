@@ -3,15 +3,9 @@
 
   <h1>{{profile.name}}</h1>
 
-  <ng-container *ngIf="profile.location">
-    <h2>{{'PROFILES.LOCATION' | translate}}</h2>
-
-    <p>{{ profile.location }}</p>
-  </ng-container>
+  <p *ngIf="profile.location">{{ profile.location }}</p>
 
   <ng-container *ngIf="profile.biog">
-    <h2>{{'PROFILES.ABOUT' | translate: {name: profile.name} }}</h2>
-
     <img *ngIf="profile.image"
           class="host-details__image"
           [src]="imagePath + profile.image"
@@ -23,7 +17,7 @@
   </ng-container>
 
   <ng-container *ngIf="shows && shows.length > 0">
-    <h2>{{'PROFILES.APPEARS_ON_BP' | translate}}</h2>
+    <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
     <ng-container *ngFor="let show of shows">
         <app-show-summary [show]="show" [displayDay]="true"></app-show-summary>
