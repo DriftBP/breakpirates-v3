@@ -1,9 +1,11 @@
 @import '~sass/variables';
 
+$logo-width: 120px;
+
 .footer-bar {
   position: fixed;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: $logo-width 1fr;
   grid-column-gap: 1em;
   right: 0;
   bottom: 0;
@@ -15,7 +17,7 @@
 
   &__ {
     &logo-image {
-      width: 120px;
+      width: $logo-width;
       height: auto;
     }
 
