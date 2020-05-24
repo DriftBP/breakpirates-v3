@@ -27,4 +27,7 @@ export class AppSettings {
 
     // Google Analytics
     public static GA_PROPERTY_ID = 'UA-111122-1';
+
+    // UI settings
+    public static ENABLE_BREADCRUMB = false;
 }

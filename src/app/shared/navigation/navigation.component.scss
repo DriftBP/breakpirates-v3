@@ -24,8 +24,12 @@
     }
 
     &-image {
-      width: 260px;
+      width: 200px;
       height: auto;
+
+      @media (min-width: $breakpoint-sm) {
+        width: 240px;
+      }
 
       @media (min-width: $breakpoint-md) {
         width: 280px;
