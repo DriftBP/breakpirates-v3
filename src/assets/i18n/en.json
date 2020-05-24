@@ -11,8 +11,10 @@
     "CHAT_ROOM": "Chat room"
   },
   "FOOTER": {
-    "TAGLINE": "Break Pirates - Bringing you quality underground music since 2001",
-    "COPYRIGHT": "Site design, code, and content is © Break Pirates 2001- {{ year }} and may not be reproduced without prior permission."
+    "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001"
+  },
+  "FOOTER_BAR": {
+    "FOLLOW_US": "Follow us"
   },
   "LOADING_SPINNER": {
     "LOADING": "Loading"
