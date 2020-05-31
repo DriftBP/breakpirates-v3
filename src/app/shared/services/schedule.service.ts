@@ -24,7 +24,10 @@ export class ScheduleService implements OnDestroy {
 
   public readonly serverInfo: Observable<ServerInfo> = this._serverInfo.asObservable();
 
+  private nowPlayingIntervalSubscription: Subscription;
   private nowPlayingSubscription: Subscription;
+
+  private serverInfoIntervalSubscription: Subscription;
   private serverInfoSubscription: Subscription;
 
   constructor(
@@ -41,18 +44,26 @@ export class ScheduleService implements OnDestroy {
 
     this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
 
-    interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
+    this.nowPlayingIntervalSubscription = interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
       this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
     });
 
-    interval(AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
+    this.serverInfoIntervalSubscription = interval(AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
       this.serverInfoSubscription = this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
     });
   }
 
   ngOnDestroy() {
+    if (this.nowPlayingIntervalSubscription) {
+      this.nowPlayingSubscription.unsubscribe();
+    }
+
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
+    }
+
+    if (this.serverInfoIntervalSubscription) {
+      this.serverInfoSubscription.unsubscribe();
     }
 
     if (this.serverInfoSubscription) {
