@@ -1,3 +1,5 @@
+@import '~sass/variables';
+
 $profile-image-width: 20%;
 
 .profile-button {
@@ -17,6 +19,7 @@ $profile-image-width: 20%;
 
     &name {
       font-size: 1.2em;
+      font-weight: $font-weight-bold;
     }
 
     &name,
