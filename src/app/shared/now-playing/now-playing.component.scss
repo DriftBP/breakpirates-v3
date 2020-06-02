@@ -1,3 +1,5 @@
+@import '~sass/variables';
+
 .now-playing {
   margin-bottom: 1em;
   border: 1px solid #000;
@@ -37,7 +39,7 @@
         &name {
           font-size: 1.75rem;
           line-height: 1.2em;
-          font-weight: bold;
+          font-weight: $font-weight-bold;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
