@@ -35,7 +35,7 @@ export class BreadcrumbComponent implements OnChanges {
 
     if (activeItem) {
       this.translateService.get(activeItem.name)
-        .subscribe(t => this.titleService.setTitle(`Break Pirates : ${t} - Live Pirate Style Radio`));
+        .subscribe(t => this.titleService.setTitle(`${t} : Break Pirates - Live Pirate Style Radio`));
     }
   }
 
