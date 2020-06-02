@@ -1,3 +1,5 @@
+@import '~sass/variables';
+
 .now-playing {
   margin-bottom: 1em;
   border: 1px solid #000;
@@ -6,21 +8,22 @@
   &__ {
     &on-air {
       text-transform: uppercase;
-      font-size:  0.8rem;
+      font-size: 0.8rem;
+      line-height: 1em;
     }
 
     &show-info {
       display: flex;
-      margin: 1em auto;
+      margin: 0.5em auto;
       padding: 0 1em;
       max-width: 700px;
       align-items: center;
 
       &- {
         &image {
-          height: 5rem;
-          width: 5rem;
-          min-width: 5rem;
+          height: 4rem;
+          width: 4rem;
+          min-width: 4rem;
           margin-right: 1em;
           border-radius: 50%;
           border: 1px solid #000;
@@ -36,7 +39,7 @@
         &name {
           font-size: 1.75rem;
           line-height: 1.2em;
-          font-weight: bold;
+          font-weight: $font-weight-bold;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -46,6 +49,7 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          line-height: 1.2em;
         }
 
         &host {

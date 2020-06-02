@@ -11,8 +11,10 @@
     "CHAT_ROOM": "Chat room"
   },
   "FOOTER": {
-    "TAGLINE": "Break Pirates - Bringing you quality underground music since 2001",
-    "COPYRIGHT": "Site design, code, and content is © Break Pirates 2001- {{ year }} and may not be reproduced without prior permission."
+    "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001"
+  },
+  "FOOTER_BAR": {
+    "FOLLOW_US": "Follow us"
   },
   "LOADING_SPINNER": {
     "LOADING": "Loading"
@@ -29,7 +31,7 @@
   },
   "CHAT_ROOM": {
     "TITLE": "Chat room",
-    "DESCRIPTION": "Your place to meet other listeners, get shouts and tune IDs!",
+    "DESCRIPTION": "Get involved! Your place to meet other listeners, get shouts and tune IDs.",
     "CTA": "Join the chat"
   },
   "DONATE": {
@@ -61,7 +63,6 @@
     "FIND_OUT_MORE": "You can find out more about the DJs featured by entering the Profiles section.",
     "TIMES_DISPLAYED": "Times displayed are for London, UK.",
     "TODAYS_SCHEDULE": "Todays schedule",
-    "SHOW_TIME": "Show time",
     "HOSTED_BY": "Hosted by",
     "MUSIC_STYLES": "Music styles",
     "SHOW_DESCRIPTION": "Show description"
@@ -75,17 +76,16 @@
     "TITLE": "Profiles",
     "INTRO": "Want to find out more about who you're listening to? Select a member of the team from the list below!",
     "ORDERING": "Ordering",
-    "LOCATION": "Location",
-    "ABOUT": "About {{ name }}",
-    "APPEARS_ON_BP": "Appears on Break Pirates",
-    "LISTEN_ON_MIXCLOUD": "Listen to recorded shows from {{ name }} on Mixcloud",
+    "SHOWS": "Shows",
+    "LISTEN_ON_MIXCLOUD": "{{ name }} on Mixcloud",
     "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter"
   },
   "SOCIAL": {
     "TITLE": "Social",
     "CHAT": "Chat",
     "USE_OWN_APP": "Want to use your own app?",
-    "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client."
+    "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.",
+    "CONFIRM_LEAVE_CHAT": "Are you sure you want to leave the chat room?"
   },
   "VIDEO": {
     "TITLE": "Video"

@@ -1,8 +1,18 @@
+@import '~sass/variables';
+
 .featured-news {
   position: relative;
-  height: 15em;
+  height: 10em;
   background-position: center;
-      background-size: cover;
+  background-size: cover;
+
+  @media (min-width: $breakpoint-sm) {
+    height: 12em;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    height: 15em;
+  }
 
   &__ {
     &overlay {
@@ -24,7 +34,7 @@
 
     &title {
       font-size: 1.2rem;
-      font-weight: bold;
+      font-weight: $font-weight-bold;
     }
 
     &summary {

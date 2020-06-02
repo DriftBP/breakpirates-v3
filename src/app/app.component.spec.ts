@@ -3,7 +3,6 @@ import { Shallow } from 'shallow-render';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
@@ -16,10 +15,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     shallow = new Shallow(AppComponent, AppModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
-      .mock(TranslateService, {
-        setDefaultLang: jest.fn
-      });
+      .replaceModule(BrowserAnimationsModule, NoopAnimationsModule);
   }));
 
   it('should create', async () => {
