@@ -11,19 +11,27 @@
     "CHAT_ROOM": "Chat room"
   },
   "FOOTER": {
-    "TAGLINE": "Break Pirates - Bringing you quality underground music since 2001",
-    "COPYRIGHT": "Site design, code, and content is © Break Pirates 2001- {{ year }} and may not be reproduced without prior permission."
+    "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001"
+  },
+  "FOOTER_BAR": {
+    "FOLLOW_US": "Follow us"
   },
   "LOADING_SPINNER": {
     "LOADING": "Loading"
   },
+  "NOT_FOUND": {
+    "TITLE": "Oops!",
+    "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
+  },
   "NOW_PLAYING": {
     "ON_AIR": "On air",
-    "BP_PLAYLIST": "Break Pirates playlist"
+    "HOSTED_BY": "Hosted by",
+    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
   },
   "CHAT_ROOM": {
     "TITLE": "Chat room",
-    "DESCRIPTION": "Your place to meet other listeners, get shouts and tune IDs!",
+    "DESCRIPTION": "Get involved! Your place to meet other listeners, get shouts and tune IDs.",
     "CTA": "Join the chat"
   },
   "DONATE": {
@@ -40,11 +48,14 @@
   "HOME": {
     "TITLE": "Home",
     "WELCOME": "Welcome to Break Pirates",
-    "TODAYS_SCHEDULE": "Todays schedule",
-    "LATEST_NEWS": "Latest news"
+    "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in underground breakbeat oriented music live over the Internet every day of the week. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool House, Hardcore and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
+    "TODAYS_SCHEDULE": "Todays schedule"
   },
   "NEWS": {
-    "TITLE": "News"
+    "TITLE": "News",
+    "LATEST_NEWS": "Latest news",
+    "SHOW_MORE": "Show more news",
+    "OTHER_NEWS": "Other news"
   },
   "SCHEDULE": {
     "TITLE": "Schedule",
@@ -52,7 +63,6 @@
     "FIND_OUT_MORE": "You can find out more about the DJs featured by entering the Profiles section.",
     "TIMES_DISPLAYED": "Times displayed are for London, UK.",
     "TODAYS_SCHEDULE": "Todays schedule",
-    "SHOW_TIME": "Show time",
     "HOSTED_BY": "Hosted by",
     "MUSIC_STYLES": "Music styles",
     "SHOW_DESCRIPTION": "Show description"
@@ -66,19 +76,31 @@
     "TITLE": "Profiles",
     "INTRO": "Want to find out more about who you're listening to? Select a member of the team from the list below!",
     "ORDERING": "Ordering",
-    "LOCATION": "Location",
-    "ABOUT": "About {{ name }}",
-    "APPEARS_ON_BP": "Appears on Break Pirates",
-    "LISTEN_ON_MIXCLOUD": "Listen to recorded shows from {{ name }} on Mixcloud",
+    "SHOWS": "Shows",
+    "LISTEN_ON_MIXCLOUD": "{{ name }} on Mixcloud",
     "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter"
   },
   "SOCIAL": {
     "TITLE": "Social",
     "CHAT": "Chat",
     "USE_OWN_APP": "Want to use your own app?",
-    "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client."
+    "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.",
+    "CONFIRM_LEAVE_CHAT": "Are you sure you want to leave the chat room?"
   },
   "VIDEO": {
     "TITLE": "Video"
+  },
+  "TOOLS": {
+    "TITLE": "Tools",
+    "BPM_COUNTER": "BPM counter"
+  },
+  "BPM_COUNTER": {
+    "TITLE": "BPM counter",
+    "TAP_THE_BUTTON": "Tap the button below in time with the music",
+    "KEEP_GOING": "Keep going!",
+    "YOUR_BPM_IS": "Your BPM is displayed below",
+    "TAP_ME": "Tap me or Enter key",
+    "BPM": "BPM",
+    "START_AGAIN": "Start again"
   }
 }

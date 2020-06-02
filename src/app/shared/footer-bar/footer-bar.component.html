@@ -1,0 +1,18 @@
+<div class="footer-bar">
+  <div><img class="footer-bar__logo-image" [src]="assetRoot + 'bp-head.gif'" width="354" height="54" alt="Break Pirates" /></div>
+  <div class="footer-bar__social-sites">
+    {{'FOOTER_BAR.FOLLOW_US' | translate}}:
+    <ul class="footer-bar__social-site-list">
+      <li *ngFor="let site of socialSites" class="footer-bar__social-site">
+        <a
+            target="_blank"
+            rel="noopener"
+            class="footer-bar__social-site-link"
+            [title]="site.Description"
+            [href]="site.Url"
+            ><i class="fab" [ngClass]="'fa-' + site.Icon"></i></a>
+      </li>
+    </ul>
+  </div>
+
+</div>

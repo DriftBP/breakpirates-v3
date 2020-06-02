@@ -12,7 +12,9 @@ const mockShow1: Show = {
   title: 'title',
   start_time: '00:00:00',
   end_time: '00:00:00',
-  day_id: 1
+  day_id: 1,
+  genres: [],
+  hosts: []
 };
 const mockShow2: Show = { ...mockShow1, id: 2 };
 

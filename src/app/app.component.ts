@@ -7,7 +7,6 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -25,13 +24,10 @@ export class AppComponent implements OnDestroy {
 
   constructor (
     private router: Router,
-    private translate: TranslateService,
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
     private googleAnalyticsService: GoogleAnalyticsService
   ) {
-    translate.setDefaultLang('en');
-
     this.eventsSubscription = this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {

@@ -13,7 +13,9 @@ const mockShow: Show = {
   title: 'title',
   start_time: '01:00:00',
   end_time: '02:00:00',
-  day_id: 1
+  day_id: 1,
+  genres: [],
+  hosts: []
 };
 
 const mockServerInfo: ServerInfo = {

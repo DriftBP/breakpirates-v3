@@ -19,5 +19,6 @@
   &__list-item {
     position: relative;
     border: 1px solid #000;
+    background-color: lighten($color-brand-primary, 50%);
   }
 }

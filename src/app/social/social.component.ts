@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { Site } from '../shared/services/site';
 import { SocialService } from '../shared/services/social.service';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
+import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
   selector: 'app-social',
@@ -9,6 +11,9 @@ import { SocialService } from '../shared/services/social.service';
 })
 export class SocialComponent {
   socialSites: Site[];
+  breadcrumbConfig: BreadcrumbConfigItem[] = [
+    socialConfigActive
+  ];
 
   constructor(private readonly socialService: SocialService) {
     this.socialSites = this.socialService.getSocialSites();

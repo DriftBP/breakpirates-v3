@@ -1,0 +1,9 @@
+Content-Type: audio/mpegurl;
+	name="NAME.m3u"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="NAME.m3u"
+
+#EXTM3U
+#EXTINF:-1,NAME
+http://bpstream.hostco.de:3000/

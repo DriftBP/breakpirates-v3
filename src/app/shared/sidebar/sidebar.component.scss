@@ -1,9 +1,17 @@
 @import '~sass/variables';
+@import '../../../sass/mixins';
 
 .sidebar {
   margin-top: 1em;
 
   @media (min-width: $breakpoint-md) {
     margin-top: 0;
+  }
+
+  &__ {
+    &mixcloud-promo {
+      @include box-shadow();
+      border: 1px solid #545691;
+    }
   }
 }

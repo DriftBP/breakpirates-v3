@@ -4,6 +4,7 @@ import { SocialComponent } from './social.component';
 import { ChatComponent } from './chat/chat.component';
 import { SocialRoutingModule } from './social-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { CanDeactivateChat } from './chat/can-deactivate-chat';
 
 @NgModule({
   imports: [
@@ -14,6 +15,9 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     SocialComponent,
     ChatComponent
+  ],
+  providers: [
+    CanDeactivateChat
   ]
 })
 export class SocialModule { }

@@ -6,7 +6,7 @@
   grid-template-columns: 1fr;
   grid-gap: 1em;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $breakpoint-sm) {
     grid-template-columns: 1fr 1fr;
   }
 }

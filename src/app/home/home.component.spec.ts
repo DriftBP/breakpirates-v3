@@ -13,7 +13,9 @@ const mockShow: Show = {
   start_time: '00:00',
   end_time: '01:00',
   day_id: 1,
-  description: 'descripion'
+  description: 'descripion',
+  genres: [],
+  hosts: []
 };
 
 describe('HomeComponent', () => {
