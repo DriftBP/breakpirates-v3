@@ -30,6 +30,9 @@ export class ScheduleService implements OnDestroy {
   private serverInfoIntervalSubscription: Subscription;
   private serverInfoSubscription: Subscription;
 
+  public dateFormat = 'YYYY-MM-DD';
+  public timeFormat = 'HH:mm';
+
   constructor(
     private http: HttpClient
   ) {
@@ -109,32 +112,6 @@ export class ScheduleService implements OnDestroy {
     };
 
     return of(serverInfo);
-
-    /*return this.http.get<string>(AppSettings.STREAM_URL_STATS).pipe(
-      map(data => {
-        const [
-          currentListeners,
-          streamStatus,
-          peakListeners,
-          maxListeners,
-          uniqueListeners,
-          bitrate,
-          songTitle
-         ] = data.split(',');
-
-        const serverInfo: ServerInfo = {
-          CurrentListeners: parseInt(currentListeners, 10),
-          StreamStatus: parseInt(streamStatus, 10),
-          PeakListeners: parseInt(peakListeners, 10),
-          MaxListeners: parseInt(maxListeners, 10),
-          UniqueListeners: parseInt(uniqueListeners, 10),
-          Bitrate: parseInt(bitrate, 10),
-          SongTitle: songTitle
-        };
-
-        return serverInfo;
-      })
-    );*/
   }
 
   showHosts(showId: number): Observable<Host[]> {
@@ -151,5 +128,35 @@ export class ScheduleService implements OnDestroy {
 
   show(showId: number): Observable<Show> {
     return this.http.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
+  }
+
+  getDates(show: Show): { startDate: moment.Moment, endDate: moment.Moment } {
+    const today = moment().isoWeekday();
+    const startTime = moment(show.start_time, this.timeFormat);
+    const endTime = moment(show.end_time, this.timeFormat);
+
+    let nextDate: moment.Moment;
+    let endDate: moment.Moment;
+
+    // if we haven't yet passed the day of the week that I need:
+    if (today <= show.day_id) {
+      // then just give me this week's instance of that day
+      nextDate = moment().isoWeekday(show.day_id);
+    } else {
+      // otherwise, give me *next week's* instance of that same day
+      nextDate = moment().add(1, 'weeks').isoWeekday(show.day_id);
+    }
+
+    // Set show time
+    const startDate = moment(nextDate.format(this.dateFormat) + ' ' + startTime.format(this.timeFormat));
+
+    if (endTime.hours() < startTime.hours()) {
+      // Ends the following day
+      endDate = moment(startDate).add(1, 'days').set({hour: endTime.hours(), minute: endTime.minutes()});
+    } else {
+      endDate = moment(startDate).set({hour: endTime.hours(), minute: endTime.minutes()});
+    }
+
+    return { startDate: startDate, endDate: endDate };
   }
 }
