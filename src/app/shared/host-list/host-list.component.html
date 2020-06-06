@@ -1,5 +1,5 @@
 <ul class="host-list">
-  <li class="host-list__host-item" *ngFor="let host of hosts">
-      <a class="host-list__host-item-link" [routerLink]="['/profiles',host.id]"><i class="fas fa-headphones-alt"></i>{{host.name}}</a>
+  <li class="host-list__host-item" *ngFor="let host of hosts" itemprop="performer" itemscope itemtype="http://schema.org/Person">
+      <a class="host-list__host-item-link" [routerLink]="['/profiles',host.id]" itemprop="url"><i class="fas fa-headphones-alt"></i><span itemprop="name">{{host.name}}</span></a>
   </li>
 </ul>
