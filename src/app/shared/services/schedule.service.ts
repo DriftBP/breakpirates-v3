@@ -130,9 +130,13 @@ export class ScheduleService implements OnDestroy {
     return this.http.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
   }
 
-  getNextDate(show: Show): moment.Moment {
+  getDates(show: Show): { startDate: moment.Moment, endDate: moment.Moment } {
     const today = moment().isoWeekday();
+    const startTime = moment(show.start_time, this.timeFormat);
+    const endTime = moment(show.end_time, this.timeFormat);
+
     let nextDate: moment.Moment;
+    let endDate: moment.Moment;
 
     // if we haven't yet passed the day of the week that I need:
     if (today <= show.day_id) {
@@ -144,21 +148,15 @@ export class ScheduleService implements OnDestroy {
     }
 
     // Set show time
-    const nextTime = moment(show.start_time, this.timeFormat);
-
-    return moment(nextDate.format(this.dateFormat) + ' ' + nextTime.format(this.timeFormat));
-  }
-
-  getEndDate(show: Show): moment.Moment {
-    const nextDate = this.getNextDate(show);
-    const startTime = moment(show.start_time, this.timeFormat);
-    const endTime = moment(show.end_time, this.timeFormat);
+    const startDate = moment(nextDate.format(this.dateFormat) + ' ' + startTime.format(this.timeFormat));
 
     if (endTime.hours() < startTime.hours()) {
       // Ends the following day
-      return nextDate.add(1, 'days').set({hour: endTime.hours(), minute: endTime.minutes()});
+      endDate = moment(startDate).add(1, 'days').set({hour: endTime.hours(), minute: endTime.minutes()});
     } else {
-      return nextDate.set({hour: endTime.hours(), minute: endTime.minutes()});
+      endDate = moment(startDate).set({hour: endTime.hours(), minute: endTime.minutes()});
     }
+
+    return { startDate: startDate, endDate: endDate };
   }
 }

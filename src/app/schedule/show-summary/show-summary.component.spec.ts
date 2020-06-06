@@ -29,8 +29,7 @@ describe('ShowSummaryComponent', () => {
         showHosts: () => of([]),
         showGenres: () => of([]),
         dayName: () => '',
-        getNextDate: () => moment(),
-        getEndDate: () => moment(),
+        getDates: () => ({ startDate: moment(), endDate: moment() }),
       });
   }));
 
