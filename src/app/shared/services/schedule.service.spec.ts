@@ -19,7 +19,7 @@ const mockShow1: Show = {
   hosts: []
 };
 
-const mockShow2: Show = { ...mockShow1, end_time: '24:00' };
+const mockShow2: Show = { ...mockShow1, end_time: '01:00' };
 
 describe('ScheduleService', () => {
   beforeEach(() => {
@@ -46,14 +46,14 @@ describe('ScheduleService', () => {
   it('should generate start and end dates today', inject([ScheduleService], (service: ScheduleService) => {
     const {startDate, endDate} = service.getDates(mockShow1);
 
-    expect(startDate.format()).toEqual(testDate.format(dateFormat) + 'T18:00:00+01:00');
-    expect(endDate.format()).toEqual(testDate.format(dateFormat) + 'T20:00:00+01:00');
+    expect(startDate.toISOString()).toEqual(testDate.format(dateFormat) + 'T17:00:00.000Z');
+    expect(endDate.toISOString()).toEqual(testDate.format(dateFormat) + 'T19:00:00.000Z');
   }));
 
   it('should generate start date today and end date tomorrow', inject([ScheduleService], (service: ScheduleService) => {
     const {startDate, endDate} = service.getDates(mockShow2);
 
-    expect(startDate.format()).toEqual(testDate.format(dateFormat) + 'T18:00:00+01:00');
-    expect(endDate.format()).toEqual(testDate.add(1, 'days').format(dateFormat) + 'T00:00:00+01:00');
+    expect(startDate.toISOString()).toEqual(testDate.format(dateFormat) + 'T17:00:00.000Z');
+    expect(endDate.toISOString()).toEqual(testDate.add(1, 'days').format(dateFormat) + 'T00:00:00.000Z');
   }));
 });
