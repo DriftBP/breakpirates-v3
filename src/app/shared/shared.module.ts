@@ -38,6 +38,7 @@ import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
+import { IsoDatePipe } from './pipes/iso-date.pipe';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -68,6 +69,7 @@ export function customHttpLoader(http: HttpClient) {
     MapToArrayPipe,
     TimePipe,
     FormattedDatePipe,
+    IsoDatePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
@@ -91,6 +93,7 @@ export function customHttpLoader(http: HttpClient) {
     MapToArrayPipe,
     TimePipe,
     FormattedDatePipe,
+    IsoDatePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,

@@ -1,9 +1,18 @@
-<div *ngIf="show !== undefined">
+<div *ngIf="show !== undefined" itemscope itemtype="http://schema.org/MusicEvent">
   <app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
 
-  <h1>{{ show.title }}</h1>
+  <h1 itemprop="name">{{ show.title }}</h1>
 
   <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
+
+  <meta itemprop="startDate" content="{{nextDate}}">
+  <meta itemprop="endDate" content="{{endDate}}">
+
+  <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
+    <meta itemprop="name" content="Break Pirates">
+    <link itemprop="sameAs" href="http://www.breakpirates.com">
+    <meta itemprop="address" content="UK">
+  </div>
 
   <ng-container *ngIf="show.hosts?.length > 0">
     <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
@@ -20,6 +29,14 @@
   <ng-container *ngIf="show?.description">
     <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
-    <p>{{ show.description }}</p>
+    <img *ngIf="show.image"
+          class="show__image"
+          [src]="imagePath + show.image"
+          [alt]="show.title"
+          itemprop="image">
+
+    <p itemprop="description">{{ show.description }}</p>
+
+    <div class="show__clear"></div>
   </ng-container>
 </div>

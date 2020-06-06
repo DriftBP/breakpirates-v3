@@ -1,16 +1,28 @@
-<div class="show-summary" *ngIf="show !== undefined">
+<div class="show-summary" *ngIf="show !== undefined" itemscope itemtype="http://schema.org/MusicEvent">
   <div>
     <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
     <div class="show-summary__day" *ngIf="displayDay">{{ dayName }}</div>
 
+    <meta itemprop="startDate" content="{{nextDate}}">
+    <meta itemprop="endDate" content="{{endDate}}">
+
     <div *ngIf="onNow" class="show-summary__now-playing">{{'SHOW_SUMMARY.NOW_LIVE' | translate}}</div>
   </div>
   <div>
-      <div class="show-summary__title"><a [routerLink]="['/schedule/shows',show.id]">{{show.title}}</a></div>
-      <app-genre-list [genres]="show.genres"></app-genre-list>
-      <div>
-          {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
-          <app-host-list [hosts]="show.hosts"></app-host-list>
-      </div>
+    <div class="show-summary__title" itemprop="name"><a [routerLink]="['/schedule/shows',show.id]" itemprop="url">{{show.title}}</a></div>
+
+    <meta itemprop="description" content="{{show.description}}">
+
+    <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
+      <meta itemprop="name" content="Break Pirates">
+      <link itemprop="sameAs" href="http://www.breakpirates.com">
+      <meta itemprop="address" content="UK">
+    </div>
+
+    <app-genre-list [genres]="show.genres"></app-genre-list>
+    <div>
+        {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
+        <app-host-list [hosts]="show.hosts"></app-host-list>
+    </div>
   </div>
 </div>
