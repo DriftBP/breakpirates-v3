@@ -2,3 +2,4 @@
 
 <h1>{{'NOT_FOUND.TITLE' | translate}}</h1>
 <p>{{'NOT_FOUND.DESCRIPTION' | translate}}</p>
+<p *ngIf="path">Did you mean the <a [routerLink]="path">"{{ path }}" page</a>? Or use the menu at the top of the page.</p>
