@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AlertModule } from 'ngx-bootstrap/alert';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -39,6 +40,7 @@ import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { IsoDatePipe } from './pipes/iso-date.pipe';
+import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -48,6 +50,7 @@ export function customHttpLoader(http: HttpClient) {
   imports: [
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
+    AlertModule.forRoot(),
     CommonModule,
     RouterModule,
     TranslateModule.forChild({
@@ -81,7 +84,8 @@ export function customHttpLoader(http: HttpClient) {
     ChatRoomPromoComponent,
     NotFoundComponent,
     BreadcrumbComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    SupportedBrowsersNoticeComponent
   ],
   exports: [
     NavigationComponent,
@@ -102,7 +106,8 @@ export function customHttpLoader(http: HttpClient) {
     FooterComponent,
     TranslateModule,
     BreadcrumbComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    SupportedBrowsersNoticeComponent
   ],
   providers: [
     GoogleAnalyticsService,
