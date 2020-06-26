@@ -6,7 +6,7 @@ import { SupportedBrowsersService } from '../services/supported-browsers.service
   selector: 'app-supported-browsers-notice',
   templateUrl: './supported-browsers-notice.component.html'
 })
-export class SupportedBrowsersNoticeComponent{
+export class SupportedBrowsersNoticeComponent {
   isBrowserSupported: boolean;
   alertType = 'danger';
 
