@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of, BehaviorSubject, interval, Subscription } from 'rxjs';
-import { find } from 'lodash';
+import { find } from 'lodash-es';
 import moment from 'moment';
 
 import { AppSettings } from '../../app-settings';
