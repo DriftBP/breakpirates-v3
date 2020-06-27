@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
-import { find } from 'lodash';
+import find from 'lodash/find';
 import { Subscription } from 'rxjs';
 
 import { Show } from './show';
