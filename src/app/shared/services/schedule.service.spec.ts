@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import moment from 'moment';
 
 import { ScheduleService } from './schedule.service';
-import { Show } from 'src/app/schedule/show';
+import { Show } from '../../schedule/show';
 
 const dateFormat = 'YYYY-MM-DD';
 const testDate = moment();

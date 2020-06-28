@@ -3,7 +3,7 @@
  *ngFor="let c of arrayOfObjects | sortBy:'asc':'propertyName'"
 */
 import { Pipe, PipeTransform } from '@angular/core';
-import orderBy from 'lodash-es/orderBy';
+import { orderBy } from 'lodash-es';
 
 @Pipe({
   name: 'sortBy'
