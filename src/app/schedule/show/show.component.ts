@@ -6,6 +6,7 @@ import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
+import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'app-show',
@@ -22,6 +23,9 @@ export class ShowComponent implements OnInit, OnDestroy {
   show: Show;
   dayName: string;
   breadcrumbConfig: BreadcrumbConfigItem[] = [];
+  imagePath = AppSettings.ASSET_SHOW_IMAGE;
+  nextDate: string;
+  endDate: string;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -44,6 +48,11 @@ export class ShowComponent implements OnInit, OnDestroy {
     this.show = this.route.snapshot.data['show'];
 
     this.dayName = this.scheduleService.dayName(this.show.day_id);
+
+    const { startDate, endDate } = this.scheduleService.getDates(this.show);
+
+    this.nextDate = startDate.format();
+    this.endDate = endDate.format();
 
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
       name: this.show.title,

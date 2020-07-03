@@ -5,3 +5,9 @@
 @mixin box-padding {
     padding: 1em;
 }
+
+@mixin responsive-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

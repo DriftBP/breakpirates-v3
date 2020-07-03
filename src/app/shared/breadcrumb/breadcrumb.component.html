@@ -1,11 +1,14 @@
 <nav aria-label="breadcrumb" *ngIf="enabled">
-  <ol class="breadcrumb">
-    <li *ngFor="let item of configItems"
+  <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+    <li *ngFor="let item of configItems; index as i"
         class="breadcrumb-item"
         [ngClass]="{'active': item.isActive}"
-        [attr.aria-current]="item.isActive">
-        <a *ngIf="item.routerLink" [routerLink]="item.routerLink">{{item.name | translate}}</a>
-        <ng-container *ngIf="!item.routerLink">{{item.name | translate}}</ng-container>
+        [attr.aria-current]="item.isActive"
+        itemprop="itemListElement" itemscope
+        itemtype="http://schema.org/ListItem">
+        <a *ngIf="item.routerLink" [routerLink]="item.routerLink" itemprop="item"><span itemprop="name">{{item.name | translate}}</span></a>
+        <span *ngIf="!item.routerLink" itemprop="name">{{item.name | translate}}</span>
+        <meta itemprop="position" content="{{ i + 1}}" />
     </li>
   </ol>
 </nav>

@@ -1,11 +1,10 @@
 @import '~sass/variables';
+@import '~sass/mixins';
 
 .host-details {
   &__ {
     &image {
-      display: block;
-      max-width: 100%;
-      height: auto;
+      @include responsive-image;
       margin-bottom: 1em;
 
       @media (min-width: $breakpoint-md) {

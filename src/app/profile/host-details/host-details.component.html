@@ -1,7 +1,7 @@
-<div *ngIf="profile !== undefined">
+<div *ngIf="profile !== undefined" itemscope itemtype="http://schema.org/Person">
   <app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
 
-  <h1>{{profile.name}}</h1>
+  <h1 itemprop="name">{{profile.name}}</h1>
 
   <p *ngIf="profile.location">{{ profile.location }}</p>
 
@@ -9,9 +9,10 @@
     <img *ngIf="profile.image"
           class="host-details__image"
           [src]="imagePath + profile.image"
-          [alt]="profile.name">
+          [alt]="profile.name"
+          itemprop="image">
 
-    <div class="host-details__biog" [innerHTML]="profile.biog | safe: 'html'"></div>
+    <div class="host-details__biog" [innerHTML]="profile.biog | safe: 'html'" itemprop="description"></div>
 
     <div class="host-details__clear"></div>
   </ng-container>

@@ -1,6 +1,7 @@
 import { async } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { of } from 'rxjs';
+import moment from 'moment';
 
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
@@ -27,7 +28,8 @@ describe('ShowSummaryComponent', () => {
         nowPlaying: of(mockShow2),
         showHosts: () => of([]),
         showGenres: () => of([]),
-        dayName: () => ''
+        dayName: () => '',
+        getDates: () => ({ startDate: moment(), endDate: moment() }),
       });
   }));
 
