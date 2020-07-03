@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClientJsonpModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject, interval, Subscription } from 'rxjs';
+import { of, BehaviorSubject, interval, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { find } from 'lodash';
+import find from 'lodash/find';
 import moment from 'moment';
 
 import { AppSettings } from '../../app-settings';
@@ -30,6 +30,9 @@ export class ScheduleService implements OnDestroy {
 
   private serverInfoIntervalSubscription: Subscription;
   private serverInfoSubscription: Subscription;
+
+  public dateFormat = 'YYYY-MM-DD';
+  public timeFormat = 'HH:mm';
 
   constructor(
     private http: HttpClient
@@ -133,5 +136,35 @@ export class ScheduleService implements OnDestroy {
 
   show(showId: number): Observable<Show> {
     return this.http.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
+  }
+
+  getDates(show: Show): { startDate: moment.Moment, endDate: moment.Moment } {
+    const today = moment().isoWeekday();
+    const startTime = moment(show.start_time, this.timeFormat);
+    const endTime = moment(show.end_time, this.timeFormat);
+
+    let nextDate: moment.Moment;
+    let endDate: moment.Moment;
+
+    // if we haven't yet passed the day of the week that I need:
+    if (today <= show.day_id) {
+      // then just give me this week's instance of that day
+      nextDate = moment().isoWeekday(show.day_id);
+    } else {
+      // otherwise, give me *next week's* instance of that same day
+      nextDate = moment().add(1, 'weeks').isoWeekday(show.day_id);
+    }
+
+    // Set show time
+    const startDate = moment(nextDate.format(this.dateFormat) + ' ' + startTime.format(this.timeFormat));
+
+    if (endTime.hours() < startTime.hours()) {
+      // Ends the following day
+      endDate = moment(startDate).add(1, 'days').set({hour: endTime.hours(), minute: endTime.minutes()});
+    } else {
+      endDate = moment(startDate).set({hour: endTime.hours(), minute: endTime.minutes()});
+    }
+
+    return { startDate: startDate, endDate: endDate };
   }
 }
