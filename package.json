@@ -47,7 +47,7 @@
     "codelyzer": "^5.1.2",
     "jest": "^26.1.0",
     "jest-preset-angular": "^8.2.1",
-    "shallow-render": "^9.0.5",
+    "shallow-render": "^10.0.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "^3.9.6"
