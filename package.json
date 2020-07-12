@@ -42,7 +42,7 @@
     "@angular/compiler-cli": "^10.0.3",
     "@angular/language-service": "^10.0.3",
     "@types/jest": "^26.0.4",
-    "@types/node": "^12.12.48",
+    "@types/node": "^12.12.50",
     "browserslist-useragent-regexp": "^2.1.0",
     "codelyzer": "^5.1.2",
     "jest": "^26.1.0",
