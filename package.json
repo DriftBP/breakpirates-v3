@@ -41,7 +41,7 @@
     "@angular/cli": "^10.0.3",
     "@angular/compiler-cli": "^10.0.4",
     "@angular/language-service": "^10.0.4",
-    "@types/jest": "^26.0.4",
+    "@types/jest": "^26.0.5",
     "@types/node": "^12.12.50",
     "browserslist-useragent-regexp": "^2.1.0",
     "codelyzer": "^5.1.2",
@@ -50,7 +50,7 @@
     "shallow-render": "^10.0.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   },
   "jest": {
     "preset": "jest-preset-angular",
