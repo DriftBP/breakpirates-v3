@@ -23,7 +23,7 @@ export class ChatComponent {
     }
   ];
 
-  chatUrl = 'http://chat.mk2k.net:6670?channels=' + AppSettings.IRC_CHANNEL;
+  chatUrl = 'https://bplounge.hostco.de';
 
   constructor(
     private translateService: TranslateService
