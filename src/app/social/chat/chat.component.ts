@@ -23,7 +23,7 @@ export class ChatComponent {
     }
   ];
 
-  chatUrl = 'http://qwebirc.hostco.de/?channels=' + AppSettings.IRC_CHANNEL;
+  chatUrl = 'https://bplounge.hostco.de';
 
   constructor(
     private translateService: TranslateService
