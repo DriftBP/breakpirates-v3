@@ -8,12 +8,7 @@ export class FullscreenService {
 
   constructor() {
     const docElement = document.documentElement;
-
-    if (docElement.requestFullscreen) {
-      this._canRequestFullscreen = true;
-    } else {
-      this._canRequestFullscreen = false;
-    }
+    this._canRequestFullscreen = !!docElement.requestFullscreen;
   }
 
   canRequestFullscreen(): boolean {
