@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit {
     }
   ];
 
-  chatUrl = 'https://bplounge.hostco.de';
+  chatUrl = 'https://thelounge.hostco.de/?join=' + this.ircChannel;
   enableFullscreen = false;
 
   constructor(
