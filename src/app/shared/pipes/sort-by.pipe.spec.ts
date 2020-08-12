@@ -28,37 +28,21 @@ describe('SortByPipe', () => {
 
   it('should sort alphabetically by id ascending', () => {
     const transformedProfiles = pipe.transform(hosts, 'asc', 'id');
-    expect(transformedProfiles[0]).toEqual(host2);
-    expect(transformedProfiles[1]).toEqual(host5);
-    expect(transformedProfiles[2]).toEqual(host3);
-    expect(transformedProfiles[3]).toEqual(host1);
-    expect(transformedProfiles[4]).toEqual(host4);
+    expect(transformedProfiles).toEqual([host2, host5, host3, host1, host4]);
   });
 
   it('should sort alphabetically by name ascending', () => {
     const transformedProfiles = pipe.transform(hosts, 'asc', 'name');
-    expect(transformedProfiles[0]).toEqual(host5);
-    expect(transformedProfiles[1]).toEqual(host4);
-    expect(transformedProfiles[2]).toEqual(host2);
-    expect(transformedProfiles[3]).toEqual(host3);
-    expect(transformedProfiles[4]).toEqual(host1);
+    expect(transformedProfiles).toEqual([host5, host4, host2, host3, host1]);
   });
 
   it('should sort alphabetically by id descending', () => {
     const transformedProfiles = pipe.transform(hosts, 'desc', 'id');
-    expect(transformedProfiles[0]).toEqual(host4);
-    expect(transformedProfiles[1]).toEqual(host1);
-    expect(transformedProfiles[2]).toEqual(host3);
-    expect(transformedProfiles[3]).toEqual(host5);
-    expect(transformedProfiles[4]).toEqual(host2);
+    expect(transformedProfiles).toEqual([host4, host1, host3, host5, host2]);
   });
 
   it('should sort alphabetically by name descending', () => {
     const transformedProfiles = pipe.transform(hosts, 'desc', 'name');
-    expect(transformedProfiles[0]).toEqual(host1);
-    expect(transformedProfiles[1]).toEqual(host3);
-    expect(transformedProfiles[2]).toEqual(host2);
-    expect(transformedProfiles[3]).toEqual(host4);
-    expect(transformedProfiles[4]).toEqual(host5);
+    expect(transformedProfiles).toEqual([host1, host3, host2, host4, host5]);
   });
 });
