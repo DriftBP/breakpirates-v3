@@ -2,7 +2,9 @@
 
 <h1>{{'SOCIAL.CHAT' | translate}}</h1>
 
-<iframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl | safe: 'resourceUrl'"></iframe>
+<iframe #chatIframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl | safe: 'resourceUrl'"></iframe>
+
+<button *ngIf="enableFullscreen" (click)="fullscreen()" class="btn btn-primary">{{'SOCIAL.FULL_SCREEN' | translate}}</button>
 
 <h2>{{'SOCIAL.USE_OWN_APP' | translate}}</h2>
 
