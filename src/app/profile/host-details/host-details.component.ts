@@ -33,7 +33,7 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.params.subscribe(params => {
+    this.paramsSubscription = this.route.paramMap.subscribe(params => {
       this.initialiseState();
     });
   }
