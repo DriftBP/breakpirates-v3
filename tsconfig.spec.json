@@ -1,3 +1,6 @@
 {
   "extends": "./src/tsconfig.spec.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  },
 }
