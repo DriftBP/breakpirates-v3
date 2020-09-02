@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { ProfilesComponent } from './profiles.component';
@@ -11,7 +11,7 @@ const routes: Routes = [];
 describe('ProfilesComponent', () => {
   let shallow: Shallow<ProfilesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(ProfilesComponent, ProfileModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));

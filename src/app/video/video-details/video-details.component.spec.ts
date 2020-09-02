@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,7 +11,7 @@ const routes: Routes = [];
 describe('VideoDetailsComponent', () => {
   let shallow: Shallow<VideoDetailsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(VideoDetailsComponent, VideoModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
