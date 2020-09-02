@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { of } from 'rxjs';
 
@@ -20,7 +20,7 @@ const mockServerInfo: ServerInfo = {
 describe('ServerStatsComponent', () => {
   let shallow: Shallow<ServerStatsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(ServerStatsComponent, SharedModule)
       .mock(ScheduleService, {
         serverInfo: of( mockServerInfo )

@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { LatestNewsComponent } from './latest-news.component';
@@ -18,7 +18,7 @@ const mockNews: News = {
 describe('LatestNewsComponent', () => {
   let shallow: Shallow<LatestNewsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(LatestNewsComponent, NewsModule);
   }));
 

@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -11,14 +14,13 @@
     "importHelpers": true,
     "target": "es2016",
     "module": "es2020",
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
       "es2018",
       "dom"
+    ],
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types"
     ],
     "paths": {
       "moment": [
@@ -28,6 +30,7 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
+    "strictTemplates": true,
     "strictInjectionParameters": true
   }
 }

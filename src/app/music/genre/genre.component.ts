@@ -30,7 +30,7 @@ export class GenreComponent implements OnInit, OnDestroy {
   shows: Show[];
 
   ngOnInit() {
-    this.paramsSubscription = this.route.params.subscribe(() => {
+    this.paramsSubscription = this.route.paramMap.subscribe(() => {
       this.initialiseState();
     });
   }
