@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { BpmComponent } from './bpm.component';
@@ -7,7 +7,7 @@ import { ToolsModule } from '../tools.module';
 describe('BpmComponent', () => {
   let shallow: Shallow<BpmComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(BpmComponent, ToolsModule);
   }));
 

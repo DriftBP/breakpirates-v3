@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { MixcloudWidgetComponent } from './mixcloud-widget.component';
@@ -7,7 +7,7 @@ import { ProfileModule } from '../profile.module';
 describe('MixcloudWidgetComponent', () => {
   let shallow: Shallow<MixcloudWidgetComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(MixcloudWidgetComponent, ProfileModule);
   }));
 

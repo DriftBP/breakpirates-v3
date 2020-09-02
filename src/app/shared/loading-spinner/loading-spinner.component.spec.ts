@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { LoadingSpinnerComponent } from './loading-spinner.component';
@@ -7,7 +7,7 @@ import { SharedModule } from '../shared.module';
 describe('LoadingSpinnerComponent', () => {
   let shallow: Shallow<LoadingSpinnerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(LoadingSpinnerComponent, SharedModule);
   }));
 

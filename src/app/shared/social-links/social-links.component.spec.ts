@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { SocialLinksComponent } from './social-links.component';
@@ -8,7 +8,7 @@ import { SocialService } from '../services/social.service';
 describe('SocialLinksComponent', () => {
   let shallow: Shallow<SocialLinksComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(SocialLinksComponent, SharedModule)
       .mock(SocialService, {
         getSocialSites: () => []

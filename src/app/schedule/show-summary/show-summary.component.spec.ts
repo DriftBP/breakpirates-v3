@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { of } from 'rxjs';
 import moment from 'moment';
@@ -22,7 +22,7 @@ const mockShow2: Show = { ...mockShow1, id: 2 };
 describe('ShowSummaryComponent', () => {
   let shallow: Shallow<ShowSummaryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
       .mock(ScheduleService, {
         nowPlaying: of(mockShow2),

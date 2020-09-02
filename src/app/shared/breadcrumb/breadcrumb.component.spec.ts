@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
@@ -14,7 +14,7 @@ const mockConfig: BreadcrumbConfigItem[] = [
 describe('BreadcrumbComponent', () => {
   let shallow: Shallow<BreadcrumbComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(BreadcrumbComponent, SharedModule);
   }));
 
