@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Routes, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Shallow } from 'shallow-render';
@@ -11,7 +11,7 @@ const routes: Routes = [];
 describe('NotFoundComponent', () => {
   let shallow: Shallow<NotFoundComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(NotFoundComponent, SharedModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));

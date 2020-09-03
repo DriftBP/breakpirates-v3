@@ -28,31 +28,7 @@ export class AppComponent implements OnDestroy {
     @Inject(DOCUMENT) private _document: Document,
     private googleAnalyticsService: GoogleAnalyticsService
   ) {
-    this.eventsSubscription = this.router.events.subscribe((event: Event) => {
-      switch (true) {
-        case event instanceof NavigationStart: {
-          this.loading = true;
-          break;
-        }
-
-        case event instanceof NavigationEnd: {
-          const e = event as NavigationEnd;
-          this.googleAnalyticsService.trackPageHit(e.urlAfterRedirects);
-
-          this.loading = false;
-          break;
-        }
-
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-          this.loading = false;
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-    });
+    this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
 
     // Google Adsense script
     const adwordsScript = this._renderer2.createElement('script');
@@ -64,6 +40,32 @@ export class AppComponent implements OnDestroy {
 
     this._renderer2.appendChild(this._document.body, adwordsScript);
     this._renderer2.appendChild(this._document.body, adsByGoogleScript);
+  }
+
+  private processEvent(event: Event) {
+    switch (true) {
+      case event instanceof NavigationStart: {
+        this.loading = true;
+        break;
+      }
+
+      case event instanceof NavigationEnd: {
+        const e = event as NavigationEnd;
+        this.googleAnalyticsService.trackPageHit(e.urlAfterRedirects);
+
+        this.loading = false;
+        break;
+      }
+
+      case event instanceof NavigationCancel:
+      case event instanceof NavigationError: {
+        this.loading = false;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   }
 
   ngOnDestroy() {

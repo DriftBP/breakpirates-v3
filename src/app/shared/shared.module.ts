@@ -25,6 +25,7 @@ import { ServerStatsComponent } from './server-stats/server-stats.component';
 import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics.service';
@@ -40,7 +41,9 @@ import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { IsoDatePipe } from './pipes/iso-date.pipe';
-import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
+
+// Directives
+import { ActiveDirective } from './directives/active.directive';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -85,7 +88,8 @@ export function customHttpLoader(http: HttpClient) {
     NotFoundComponent,
     BreadcrumbComponent,
     FooterBarComponent,
-    SupportedBrowsersNoticeComponent
+    SupportedBrowsersNoticeComponent,
+    ActiveDirective
   ],
   exports: [
     NavigationComponent,
@@ -107,7 +111,8 @@ export function customHttpLoader(http: HttpClient) {
     TranslateModule,
     BreadcrumbComponent,
     FooterBarComponent,
-    SupportedBrowsersNoticeComponent
+    SupportedBrowsersNoticeComponent,
+    ActiveDirective
   ],
   providers: [
     GoogleAnalyticsService,

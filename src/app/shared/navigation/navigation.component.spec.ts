@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -12,7 +12,7 @@ const routes: Routes = [];
 describe('NavigationComponent', () => {
   let shallow: Shallow<NavigationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(NavigationComponent, SharedModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
       .mock(SocialService, {
