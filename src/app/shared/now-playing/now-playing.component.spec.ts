@@ -44,4 +44,10 @@ describe('NowPlayingComponent', () => {
 
     expect(element.nativeElement).toBeTruthy();
   });
+
+  it('should always have an image filename', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.nowPlayingImage).toBeTruthy();
+  });
 });
