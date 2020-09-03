@@ -44,7 +44,7 @@
     "@types/jest": "^26.0.13",
     "@types/node": "^12.12.55",
     "browserslist-useragent-regexp": "^2.1.0",
-    "codelyzer": "^5.1.2",
+    "codelyzer": "^5.2.2",
     "jest": "^26.4.2",
     "jest-preset-angular": "^8.3.1",
     "shallow-render": "^10.0.1",
