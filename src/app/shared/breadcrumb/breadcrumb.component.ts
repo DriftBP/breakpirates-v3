@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import find from 'lodash/find';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 import { homeConfigActive, homeConfigInactive } from './breadcrumb-config';
@@ -40,6 +39,6 @@ export class BreadcrumbComponent implements OnChanges {
   }
 
   private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem {
-    return find(configItems, (i: BreadcrumbConfigItem) => i.isActive);
+    return configItems.find((i: BreadcrumbConfigItem) => i.isActive);
   }
 }

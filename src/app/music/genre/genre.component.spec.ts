@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { GenreComponent } from './genre.component';
@@ -11,7 +11,7 @@ const routes: Routes = [];
 describe('GenreComponent', () => {
   let shallow: Shallow<GenreComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(GenreComponent, MusicModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));

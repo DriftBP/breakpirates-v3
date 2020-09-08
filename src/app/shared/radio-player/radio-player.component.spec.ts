@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { RadioPlayerComponent } from './radio-player.component';
@@ -13,7 +13,7 @@ window.MediaElementPlayer = MockMediaElementPlayer;
 describe('RadioPlayerComponent', () => {
   let shallow: Shallow<RadioPlayerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(RadioPlayerComponent, SharedModule);
   }));
 

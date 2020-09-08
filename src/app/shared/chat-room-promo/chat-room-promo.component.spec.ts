@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { ChatRoomPromoComponent } from './chat-room-promo.component';
@@ -7,7 +7,7 @@ import { SharedModule } from '../shared.module';
 describe('ChatRoomPromoComponent', () => {
   let shallow: Shallow<ChatRoomPromoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(ChatRoomPromoComponent, SharedModule);
   }));
 

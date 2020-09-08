@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { DaySelectComponent } from './day-select.component';
@@ -13,7 +13,7 @@ const mockDay: Day = {
 describe('DaySelectComponent', () => {
   let shallow: Shallow<DaySelectComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(DaySelectComponent, ScheduleModule);
   }));
 

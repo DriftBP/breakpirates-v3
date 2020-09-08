@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { ContentBoxComponent } from './content-box.component';
@@ -7,7 +7,7 @@ import { SharedModule } from '../shared.module';
 describe('ContentBoxComponent', () => {
   let shallow: Shallow<ContentBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(ContentBoxComponent, SharedModule);
   }));
 

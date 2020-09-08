@@ -1,9 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClientJsonpModule, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { of, BehaviorSubject, interval, Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import find from 'lodash/find';
 import moment from 'moment';
 
 import { AppSettings } from '../../app-settings';
@@ -80,7 +79,7 @@ export class ScheduleService implements OnDestroy {
   }
 
   dayName(dayId: number): string {
-    const day = find(this.daysOfWeek, (d: Day) => d.id === dayId);
+    const day = this.daysOfWeek.find((d: Day) => d.id === dayId);
 
     return day?.name;
   }

@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { GenreListComponent } from './genre-list.component';
@@ -7,7 +7,7 @@ import { SharedModule } from '../shared.module';
 describe('GenreListComponent', () => {
   let shallow: Shallow<GenreListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(GenreListComponent, SharedModule);
   }));
 
