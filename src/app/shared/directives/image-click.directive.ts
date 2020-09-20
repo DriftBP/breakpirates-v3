@@ -16,12 +16,12 @@ export class ImageClickDirective {
       const height = this.element.nativeElement['height'];
       const alt = this.element.nativeElement['alt'];
 
-      const config: IDialogConfig = {
+      const dialogConfig: IDialogConfig = {
         title: alt,
         content: `<img src="${src}" width="${width}" height="${height}" alt="${alt}">`
       };
 
-      this.dialogService.showDialog(config);
+      this.dialogService.showDialog(dialogConfig);
     }
   }
 
