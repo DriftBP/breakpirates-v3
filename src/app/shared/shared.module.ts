@@ -44,6 +44,8 @@ import { IsoDatePipe } from './pipes/iso-date.pipe';
 
 // Directives
 import { ActiveDirective } from './directives/active.directive';
+import { DialogComponent } from './dialog/dialog.component';
+import { ImageClickDirective } from './directives/image-click.directive';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -89,7 +91,9 @@ export function customHttpLoader(http: HttpClient) {
     BreadcrumbComponent,
     FooterBarComponent,
     SupportedBrowsersNoticeComponent,
-    ActiveDirective
+    ActiveDirective,
+    DialogComponent,
+    ImageClickDirective
   ],
   exports: [
     NavigationComponent,
@@ -112,7 +116,9 @@ export function customHttpLoader(http: HttpClient) {
     BreadcrumbComponent,
     FooterBarComponent,
     SupportedBrowsersNoticeComponent,
-    ActiveDirective
+    ActiveDirective,
+    DialogComponent,
+    ImageClickDirective
   ],
   providers: [
     GoogleAnalyticsService,

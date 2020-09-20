@@ -1,0 +1,56 @@
+@import '~sass/variables';
+
+.dialog {
+  position: fixed;
+  padding: 0;
+  border: none;
+  box-shadow: 0 0 40px rgba(0,0,0,0.1), 0 0 10px rgba(0,0,0,0.25);
+  max-width: 90vw;
+
+  &[open] {
+    animation: fadeIn 0.25s linear;
+  }
+
+  &::backdrop {
+    background: linear-gradient(90deg, rgba(0,0,0,0.25), $color-brand-primary);
+  }
+
+  &__ {
+    &content-wrapper {
+      border: 5px solid #fff;
+    }
+
+    &close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: .25em;
+      border: 2px solid #fff;
+      border-radius: 0.25em;
+      outline: 0;
+      background-color: $color-brand-primary;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    &content,
+    &title {
+      text-align: center;
+    }
+
+    &title {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
