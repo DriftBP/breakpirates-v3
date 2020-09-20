@@ -7,7 +7,7 @@ import { DialogService } from '../services/dialog.service';
   selector: '[appImageClick]'
 })
 export class ImageClickDirective {
-  @HostListener('click', ['$event']) onClick(e: any) {
+  @HostListener('click', ['$event']) onClick(e: MouseEvent) {
     if (this.dialogService.isDialogSupported()) {
       e.preventDefault();
       e.stopPropagation();
