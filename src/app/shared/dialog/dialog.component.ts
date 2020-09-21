@@ -30,11 +30,15 @@ export class DialogComponent implements OnInit, OnDestroy {
   ) { }
 
   private setContent(content: string) {
-    this.renderer.setProperty(this.dialogContentElement.nativeElement, 'innerHTML', content);
+    this.setInnerHtml(this.dialogContentElement, content);
+  }
+
+  private setInnerHtml(element: ElementRef, content: string) {
+    this.renderer.setProperty(element.nativeElement, 'innerHTML', content);
   }
 
   private setTitle(title: string) {
-    this.renderer.setProperty(this.dialogTitleElement.nativeElement, 'innerHTML', title);
+    this.setInnerHtml(this.dialogTitleElement, title);
   }
 
   private showModal(config: IDialogConfig) {
