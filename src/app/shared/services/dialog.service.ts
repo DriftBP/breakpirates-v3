@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { IDialogConfig } from './dialog-config';
 
@@ -7,7 +7,7 @@ import { IDialogConfig } from './dialog-config';
   providedIn: 'root'
 })
 export class DialogService {
-  private _show: BehaviorSubject<IDialogConfig> = new BehaviorSubject(null);
+  private _show: Subject<IDialogConfig> = new Subject();
 
   public readonly show: Observable<IDialogConfig> = this._show.asObservable();
 
