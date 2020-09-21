@@ -16,4 +16,36 @@ describe('DialogComponent', () => {
 
     expect(element.nativeElement).toBeTruthy();
   });
+
+  it('should be closed by default dialog', async () => {
+    const { find } = await shallow.render();
+
+    const dialog = find('dialog');
+
+    expect(dialog.attributes.open).toBeFalsy();
+  });
+
+  it('should set the dialog content', async () => {
+    const content = 'My content';
+
+    const { instance, find } = await shallow.render();
+
+    const contentElement = find('.dialog__content');
+
+    instance['setContent'](content);
+
+    expect(contentElement.nativeElement.innerHTML).toEqual(content);
+  });
+
+  it('should set the dialog title', async () => {
+    const title = 'My title';
+
+    const { instance, find } = await shallow.render();
+
+    const titleElement = find('.dialog__title');
+
+    instance['setTitle'](title);
+
+    expect(titleElement.nativeElement.innerHTML).toEqual(title);
+  });
 });

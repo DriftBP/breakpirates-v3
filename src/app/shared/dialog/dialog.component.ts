@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { IDialogConfig } from '../services/dialog-config';
 
 import { DialogService } from '../services/dialog.service';
 
@@ -28,28 +29,32 @@ export class DialogComponent implements OnInit, OnDestroy {
     private readonly renderer: Renderer2
   ) { }
 
+  private setContent(content: string) {
+    this.renderer.setProperty(this.dialogContentElement.nativeElement, 'innerHTML', content);
+  }
+
+  private setTitle(title: string) {
+    this.renderer.setProperty(this.dialogTitleElement.nativeElement, 'innerHTML', title);
+  }
+
+  private showModal(config: IDialogConfig) {
+    if (this.dialogElement) {
+      this.setContent(config.content);
+      if (config.title) {
+        this.setTitle(config.title);
+      }
+      this.dialogElement.nativeElement.showModal();
+    }
+  }
+
   ngOnInit(): void {
     this.showSubscription = this.dialogService.show.subscribe(config => {
-      if (this.dialogElement) {
-        this.setContent(config.content);
-        if (config.title) {
-          this.setTitle(config.title);
-        }
-        this.dialogElement.nativeElement.showModal();
-      }
+      this.showModal(config);
     });
   }
 
   close() {
     this.dialogElement.nativeElement.close();
-  }
-
-  setContent(content: string) {
-    this.renderer.setProperty(this.dialogContentElement.nativeElement, 'innerHTML', content);
-  }
-
-  setTitle(title: string) {
-    this.renderer.setProperty(this.dialogTitleElement.nativeElement, 'innerHTML', title);
   }
 
   ngOnDestroy() {
