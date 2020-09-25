@@ -17,7 +17,7 @@ describe('DialogComponent', () => {
     expect(element.nativeElement).toBeTruthy();
   });
 
-  it('should be closed by default dialog', async () => {
+  it('should be closed by default', async () => {
     const { find } = await shallow.render();
 
     const dialog = find('dialog');
