@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy, HostBinding } from '@angular/core';
 import {
   Event,
   Router,
@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
+import { ThemeService } from './shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,8 @@ import { GoogleAnalyticsService } from './shared/services/google-analytics.servi
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy {
+  @HostBinding('attr.data-theme') get theme() { return this.themeService.getTheme(); }
+
   private eventsSubscription: Subscription;
 
   loading: boolean;
@@ -26,7 +29,8 @@ export class AppComponent implements OnDestroy {
     private router: Router,
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private themeService: ThemeService
   ) {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
 
