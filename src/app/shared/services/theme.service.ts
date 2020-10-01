@@ -9,7 +9,7 @@ import { ThemeSetting } from './theme-setting';
 export class ThemeService {
   private defaultTheme = Theme.Light;
   private defaultThemeSetting = ThemeSetting.Auto;
-  private localStorageKey = 'themeSetting';
+  private localStorageKey = 'bp_theme_setting';
   private currentTheme: Theme;
 
   constructor() {
