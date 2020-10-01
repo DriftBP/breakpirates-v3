@@ -2,8 +2,8 @@
 
 .now-playing {
   margin-bottom: 1em;
-  border: 1px solid #000;
-  background-color: #fff;
+  border: 1px solid var(--border);
+  background-color: var(--panel-bg);
 
   &__ {
     &on-air {
@@ -26,7 +26,7 @@
           min-width: 4rem;
           margin-right: 1em;
           border-radius: 50%;
-          border: 1px solid #000;
+          border: 1px solid var(--border);
           background-size: cover;
           background-position: center;
         }

@@ -2,20 +2,35 @@
 
 /* Template styles */
 
+:root {
+  --bg: #{lighten($color-brand-primary, 50%)};
+  --panel-bg: #{$color-brand-tertiary};
+  --color: #212529;
+  --color-link: #{lighten(#000, 5%)};
+  --border: #000;
+}
+
+[data-theme='dark'] {
+  --bg: #{darken($color-brand-primary, 30%)};
+  --panel-bg: #333;
+  --color: #{$color-brand-tertiary};
+  --color-link: #{darken(#fff, 10%)};
+  --border: #{$color-brand-tertiary};
+}
+
 html {
   font-size: $font-base-size;
 }
 
 body {
   font-size: 1rem;
-  padding-top: 56px;
+  padding-top: 53px;
   padding-bottom: 20px;
-  background-color: lighten($color-brand-primary, 50%);
   font-family: 'Lato', sans-serif;
   font-weight: $font-weight-regular;
 
   @media (min-width: $breakpoint-md) {
-    padding-top: 70px;
+    padding-top: 68px;
   }
 }
 
@@ -29,12 +44,16 @@ h2 {
 }
 
 a {
-  color: lighten(#000, 10%);
+  color: var(--color-link);
   text-decoration: none;
   &:hover {
       text-decoration: underline;
-      color: #000;
+      color: var(--color);
   }
+}
+
+.mejs__container {
+  width: auto !important;
 }
 
 /* Fixed player height in some browsers */
