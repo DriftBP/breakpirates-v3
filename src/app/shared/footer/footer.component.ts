@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ThemeService } from '../services/theme.service';
-import { Theme } from '../services/theme';
+import { ThemeSetting } from '../services/theme-setting';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +9,7 @@ import { Theme } from '../services/theme';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  themes = Theme;
+  themeSettings = ThemeSetting;
   currentYear: number;
 
   constructor(
@@ -18,8 +18,8 @@ export class FooterComponent {
     this.currentYear = new Date().getFullYear();
   }
 
-  setTheme(theme: Theme) {
-    this.themeService.setTheme(theme);
+  setThemeSetting(themeSetting: ThemeSetting) {
+    this.themeService.setAndSaveThemeSetting(themeSetting);
   }
 
 }

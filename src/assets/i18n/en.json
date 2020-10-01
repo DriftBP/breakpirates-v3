@@ -12,7 +12,10 @@
   },
   "FOOTER": {
     "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
-    "SWITCH_THEME": "Switch theme"
+    "SWITCH_THEME": "Switch theme",
+    "AUTO": "Auto",
+    "LIGHT": "Light",
+    "DARK": "Dark"
   },
   "FOOTER_BAR": {
     "FOLLOW_US": "Follow us"
