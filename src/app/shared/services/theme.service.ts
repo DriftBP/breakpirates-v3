@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 
 import { Theme } from './theme';
+import { ThemeSetting } from './theme-setting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private localStorageKey = 'theme';
-  private theme: Theme;
+  private defaultTheme = Theme.Light;
+  private defaultThemeSetting = ThemeSetting.Auto;
+  private localStorageKey = 'bp_theme_setting';
+  private currentTheme: Theme;
 
   constructor() {
-    const themeName = localStorage.getItem(this.localStorageKey);
+    const themeSettingName = localStorage.getItem(this.localStorageKey);
+    let themeSetting = this.defaultThemeSetting;
 
-    if (themeName) {
-      const theme = Theme[this.getEnumKeyByEnumValue(Theme, themeName)];
-      this.setTheme(theme ?? Theme.Default);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.setTheme(Theme.Dark);
-    } else {
-      this.setTheme(Theme.Default);
+    // Use saved option if available
+    if (themeSettingName) {
+      const savedThemeSetting = ThemeSetting[this.getEnumKeyByEnumValue(Theme, themeSettingName)];
+
+      if (savedThemeSetting) {
+        themeSetting = savedThemeSetting;
+      }
     }
+
+    this.setTheme(this.getThemeForSetting(themeSetting));
+
+    // Remove old setting
+    localStorage.removeItem('theme');
   }
 
   private getEnumKeyByEnumValue(myEnum, enumValue) {
@@ -27,12 +36,39 @@ export class ThemeService {
     return keys.length > 0 ? keys[0] : null;
   }
 
-  setTheme(theme: Theme): void {
-    this.theme = theme;
-    localStorage.setItem(this.localStorageKey, theme);
+  private saveThemeSetting(themeSetting: ThemeSetting) {
+    localStorage.setItem(this.localStorageKey, themeSetting);
+  }
+
+  private setTheme(theme: Theme): void {
+    this.currentTheme = theme;
+  }
+
+  private getThemeForSetting(themeSetting: ThemeSetting): Theme {
+    if (themeSetting === ThemeSetting.Light) {
+      return Theme.Light;
+    } else if (themeSetting === ThemeSetting.Dark) {
+      return Theme.Dark;
+    } else if (themeSetting === ThemeSetting.Auto) {
+      // Auto option gets setting from OS
+      if (window.matchMedia) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return Theme.Dark;
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+          return Theme.Light;
+        }
+      }
+    }
+
+    return this.defaultTheme;
   }
 
   getTheme(): Theme {
-    return this.theme;
+    return this.currentTheme;
+  }
+
+  setAndSaveThemeSetting(themeSetting: ThemeSetting): void {
+    this.setTheme(this.getThemeForSetting(themeSetting));
+    this.saveThemeSetting(themeSetting);
   }
 }
