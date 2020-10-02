@@ -19,7 +19,7 @@ export class FooterComponent {
   }
 
   setThemeSetting(themeSetting: ThemeSetting) {
-    this.themeService.setAndSaveThemeSetting(themeSetting);
+    this.themeService.setThemeSetting(themeSetting);
   }
 
 }

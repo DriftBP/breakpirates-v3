@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Theme } from './theme';
 import { ThemeSetting } from './theme-setting';
@@ -10,7 +11,9 @@ export class ThemeService {
   private defaultTheme = Theme.Light;
   private defaultThemeSetting = ThemeSetting.Auto;
   private localStorageKey = 'bp_theme_setting';
-  private currentTheme: Theme;
+  private _currentTheme: BehaviorSubject<Theme> = new BehaviorSubject(this.defaultTheme);
+
+  public readonly currentTheme: Observable<Theme> = this._currentTheme.asObservable();
 
   constructor() {
     const themeSettingName = localStorage.getItem(this.localStorageKey);
@@ -36,12 +39,12 @@ export class ThemeService {
     return keys.length > 0 ? keys[0] : null;
   }
 
-  private saveThemeSetting(themeSetting: ThemeSetting) {
+  private saveThemeSetting(themeSetting: ThemeSetting): void {
     localStorage.setItem(this.localStorageKey, themeSetting);
   }
 
   private setTheme(theme: Theme): void {
-    this.currentTheme = theme;
+    this._currentTheme.next(theme);
   }
 
   private getThemeForSetting(themeSetting: ThemeSetting): Theme {
@@ -63,11 +66,7 @@ export class ThemeService {
     return this.defaultTheme;
   }
 
-  getTheme(): Theme {
-    return this.currentTheme;
-  }
-
-  setAndSaveThemeSetting(themeSetting: ThemeSetting): void {
+  setThemeSetting(themeSetting: ThemeSetting): void {
     this.setTheme(this.getThemeForSetting(themeSetting));
     this.saveThemeSetting(themeSetting);
   }
