@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
 import { ThemeService } from './shared/services/theme.service';
+import { Theme } from './shared/services/theme';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,11 @@ import { ThemeService } from './shared/services/theme.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy {
-  @HostBinding('attr.data-theme') get theme() { return this.themeService.getTheme(); }
+  @HostBinding('attr.data-theme') get theme() { return this.currentTheme; }
 
   private eventsSubscription: Subscription;
+  private themeSubscription: Subscription;
+  private currentTheme: Theme;
 
   loading: boolean;
 
@@ -33,6 +36,7 @@ export class AppComponent implements OnDestroy {
     private themeService: ThemeService
   ) {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
+    this.themeSubscription = this.themeService.currentTheme.subscribe(theme => this.currentTheme = theme);
 
     // Google Adsense script
     const adwordsScript = this._renderer2.createElement('script');
@@ -75,6 +79,10 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy() {
     if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();
+    }
+
+    if (this.themeSubscription) {
+      this.themeSubscription.unsubscribe();
     }
   }
 }
