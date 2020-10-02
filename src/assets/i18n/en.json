@@ -11,7 +11,11 @@
     "CHAT_ROOM": "Chat room"
   },
   "FOOTER": {
-    "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001"
+    "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
+    "SWITCH_THEME": "Switch theme",
+    "AUTO": "Auto",
+    "LIGHT": "Light",
+    "DARK": "Dark"
   },
   "FOOTER_BAR": {
     "FOLLOW_US": "Follow us"

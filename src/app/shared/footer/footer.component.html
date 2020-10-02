@@ -1,3 +1,8 @@
 <footer class="footer">
+  <p>{{'FOOTER.SWITCH_THEME' | translate}}:
+    <span (click)="setThemeSetting(themeSettings.Auto)" role="button">{{'FOOTER.AUTO' | translate}}</span> |
+    <span (click)="setThemeSetting(themeSettings.Light)" role="button">{{'FOOTER.LIGHT' | translate}}</span> |
+    <span (click)="setThemeSetting(themeSettings.Dark)" role="button">{{'FOOTER.DARK' | translate}}</span>
+  </p>
   <p>{{'FOOTER.TAGLINE' | translate: {year: currentYear} }}</p>
 </footer>
