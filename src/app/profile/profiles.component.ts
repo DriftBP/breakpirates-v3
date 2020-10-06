@@ -32,4 +32,8 @@ export class ProfilesComponent implements OnInit {
     this.order = this.order === SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
   }
 
+  trackByFn(index, item: Host): number {
+    return item.id;
+  }
+
 }
