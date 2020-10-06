@@ -1,5 +1,6 @@
 import { SortByPipe } from './sort-by.pipe';
 import { Host } from '../../profile/host';
+import { SortOrder } from './sort-order';
 
 const host1: Host = { id: 4, name: 'Phil' };
 const host2: Host = { id: 1, name: 'Nick' };
@@ -27,22 +28,22 @@ describe('SortByPipe', () => {
   });
 
   it('should sort alphabetically by id ascending', () => {
-    const transformedProfiles = pipe.transform(hosts, 'asc', 'id');
+    const transformedProfiles = pipe.transform(hosts, SortOrder.Ascending, 'id');
     expect(transformedProfiles).toEqual([host2, host5, host3, host1, host4]);
   });
 
   it('should sort alphabetically by name ascending', () => {
-    const transformedProfiles = pipe.transform(hosts, 'asc', 'name');
+    const transformedProfiles = pipe.transform(hosts, SortOrder.Ascending, 'name');
     expect(transformedProfiles).toEqual([host5, host4, host2, host3, host1]);
   });
 
   it('should sort alphabetically by id descending', () => {
-    const transformedProfiles = pipe.transform(hosts, 'desc', 'id');
+    const transformedProfiles = pipe.transform(hosts, SortOrder.Descending, 'id');
     expect(transformedProfiles).toEqual([host4, host1, host3, host5, host2]);
   });
 
   it('should sort alphabetically by name descending', () => {
-    const transformedProfiles = pipe.transform(hosts, 'desc', 'name');
+    const transformedProfiles = pipe.transform(hosts, SortOrder.Descending, 'name');
     expect(transformedProfiles).toEqual([host1, host3, host2, host4, host5]);
   });
 });
