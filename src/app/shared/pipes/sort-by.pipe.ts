@@ -1,6 +1,6 @@
 /*
- *ngFor="let c of oneDimArray | sortBy:'asc'"
- *ngFor="let c of arrayOfObjects | sortBy:'asc':'propertyName'"
+ *ngFor="let c of oneDimArray | sortBy:SortOrder.Ascending"
+ *ngFor="let c of arrayOfObjects | sortBy:SortOrder.Ascending:'propertyName'"
 */
 import { Pipe, PipeTransform } from '@angular/core';
 
