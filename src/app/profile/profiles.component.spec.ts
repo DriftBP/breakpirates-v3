@@ -1,10 +1,11 @@
 import { waitForAsync } from '@angular/core/testing';
+import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Shallow } from 'shallow-render';
 
 import { ProfilesComponent } from './profiles.component';
 import { ProfileModule } from './profile.module';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { SortOrder } from './sort-order';
 
 const routes: Routes = [];
 
@@ -25,16 +26,16 @@ describe('ProfilesComponent', () => {
   it('should default to ascending order', async () => {
     const { instance } = await shallow.render();
 
-    expect(instance.order).toEqual('asc');
+    expect(instance.order).toEqual(SortOrder.Ascending);
   });
 
   it('should toggle ordering', async () => {
     const { instance } = await shallow.render();
 
-    expect(instance.order).toEqual('asc');
+    expect(instance.order).toEqual(SortOrder.Ascending);
     instance.toggleOrderBy();
-    expect(instance.order).toEqual('desc');
+    expect(instance.order).toEqual(SortOrder.Descending);
     instance.toggleOrderBy();
-    expect(instance.order).toEqual('asc');
+    expect(instance.order).toEqual(SortOrder.Ascending);
   });
 });

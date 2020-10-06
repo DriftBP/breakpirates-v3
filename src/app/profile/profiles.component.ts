@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Host } from './host';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { SortOrder } from './sort-order';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 export class ProfilesComponent implements OnInit {
 
   profiles: Host[];
-  order = 'asc';
+  orders = SortOrder;
+  order = SortOrder.Ascending;
   breadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigActive
   ];
@@ -27,7 +29,7 @@ export class ProfilesComponent implements OnInit {
   }
 
   toggleOrderBy(): void {
-    this.order = this.order === 'asc' ? 'desc' : 'asc';
+    this.order = this.order === SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
   }
 
 }
