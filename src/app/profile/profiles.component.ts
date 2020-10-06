@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Host } from './host';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
-import { SortOrder } from './sort-order';
+import { SortOrder } from '../shared/pipes/sort-order';
 
 @Component({
   selector: 'app-profile',
