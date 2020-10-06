@@ -38,12 +38,12 @@ describe('SortByPipe', () => {
   });
 
   it('should sort alphabetically by id descending', () => {
-    const transformedProfiles = pipe.transform(hosts, 'desc', 'id');
+    const transformedProfiles = pipe.transform(hosts, SortOrder.Descending, 'id');
     expect(transformedProfiles).toEqual([host4, host1, host3, host5, host2]);
   });
 
   it('should sort alphabetically by name descending', () => {
-    const transformedProfiles = pipe.transform(hosts, 'desc', 'name');
+    const transformedProfiles = pipe.transform(hosts, SortOrder.Descending, 'name');
     expect(transformedProfiles).toEqual([host1, host3, host2, host4, host5]);
   });
 });
