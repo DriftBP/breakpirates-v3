@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private activeDayId = moment().isoWeekday();
 
   todaysSchedule: Show[];
+  scheduleLoaded = false;
   breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.showsSubscription = this.scheduleService.shows(this.activeDayId).subscribe(shows => {
         this.todaysSchedule = shows;
+        this.scheduleLoaded = true;
       }
     );
   }

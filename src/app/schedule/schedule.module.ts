@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ShowComponent } from './show/show.component';
 import { ShowDetailsResolve } from './show-details.resolve';
 import { DaySelectComponent } from './day-select/day-select.component';
+import { ScheduleResolve } from './schedule.resolve';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { DaySelectComponent } from './day-select/day-select.component';
     ShowSummaryComponent
   ],
   providers: [
+    ScheduleResolve,
     ShowDetailsResolve
   ]
 })
