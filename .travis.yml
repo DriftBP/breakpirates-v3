@@ -20,6 +20,6 @@ deploy:
   api_key: $GITHUB_API_KEY
   file_glob: true
   file:
-    - "dist/*"
+    - "dist/**/*"
   on:
     tags: false
