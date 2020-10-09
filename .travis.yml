@@ -12,14 +12,4 @@ before_script:
 script:
   - ng lint
   - npm run test
-  - ng build --prod && tar -zcvf breakpirates-v3.tar.gz dist/breakpirates-v3/*
-
-deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key: $GITHUB_API_KEY
-  file_glob: true
-  file:
-    - "dist/breakpirates-v3.tar.gz"
-  on:
-    tags: false
+  - ng build --prod
