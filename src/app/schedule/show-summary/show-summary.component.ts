@@ -39,6 +39,10 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
     }
   }
 
+  scrollToPlayer() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
   ngOnDestroy() {
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
