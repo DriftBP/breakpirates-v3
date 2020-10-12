@@ -13,6 +13,10 @@
     grid-template-columns: 130px 1fr;
   }
 
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 130px 1fr 130px;
+  }
+
   &__ {
     &time,
     &day,
@@ -24,6 +28,16 @@
       &-icon {
         margin-left: 0.25em;
         cursor: pointer;
+      }
+    }
+
+    &image {
+      display: none;
+      background-position: center;
+      background-size: cover;
+
+      @media (min-width: $breakpoint-lg) {
+        display: block;
       }
     }
   }
