@@ -25,4 +25,5 @@
         <app-host-list [hosts]="show.hosts"></app-host-list>
     </div>
   </div>
+  <div *ngIf="showImage" class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
 </div>
