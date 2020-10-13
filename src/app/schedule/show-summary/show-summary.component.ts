@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import moment from 'moment';
 
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule.service';
+import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'app-show-summary',
@@ -19,6 +19,7 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
   dayName: string;
   nextDate: string;
   endDate: string;
+  showImage: string;
 
   constructor(
     private scheduleService: ScheduleService
@@ -36,7 +37,15 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
 
       this.nextDate = startDate.format();
       this.endDate = endDate.format();
+
+      if (this.show.image) {
+        this.showImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + this.show.image + ')';
+      }
     }
+  }
+
+  scrollToPlayer() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   ngOnDestroy() {
