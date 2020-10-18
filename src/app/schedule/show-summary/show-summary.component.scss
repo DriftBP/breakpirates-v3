@@ -1,25 +1,44 @@
 @import '~sass/variables';
 
 .show-summary {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column-gap: 1em;
-    margin: 0.5em 0;
-    padding: 0.5em;
-    border: 1px solid var(--border);
-    background-color: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 1em;
+  margin: 0.5em 0;
+  padding: 0.5em;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
 
-    @media (min-width: $breakpoint-md) {
-      grid-template-columns: 130px 1fr;
-    }
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 130px 1fr;
+  }
 
-    &__ {
-      &time,
-      &day,
-      &title,
-      &now-playing {
-        font-size: 1.2rem;
-        font-weight: $font-weight-bold;
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 130px 1fr 130px;
+  }
+
+  &__ {
+    &time,
+    &day,
+    &title,
+    &now-live {
+      font-size: 1.2rem;
+      font-weight: $font-weight-bold;
+
+      &-icon {
+        margin-left: 0.25em;
+        cursor: pointer;
       }
     }
+
+    &image {
+      display: none;
+      background-position: center;
+      background-size: cover;
+
+      @media (min-width: $breakpoint-lg) {
+        display: block;
+      }
+    }
+  }
 }
