@@ -1,16 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { ThemeService } from './theme.service';
+import { SharedModule } from '../shared.module';
 
 describe('ThemeService', () => {
-  let service: ThemeService;
+  let shallow: Shallow<ThemeService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+    shallow = new Shallow(ThemeService, SharedModule);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    const {instance} = shallow.createService();
+    expect(instance).toBeTruthy();
   });
 });
