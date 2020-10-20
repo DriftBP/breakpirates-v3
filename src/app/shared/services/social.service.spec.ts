@@ -14,4 +14,9 @@ describe('SocialService', () => {
     const {instance} = shallow.createService();
     expect(instance).toBeTruthy();
   });
+
+  it('should return three social sites', () => {
+    const {instance} = shallow.createService();
+    expect(instance.getSocialSites().length).toBe(3);
+  });
 });
