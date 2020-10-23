@@ -60,12 +60,16 @@ describe('ThemeService', () => {
 
     const localStorageKey = instance['localStorageKey'];
 
+    instance['saveThemeSetting'](ThemeSetting.Auto);
+
+    expect(localStorage.getItem(localStorageKey)).toBe(ThemeSetting.Auto);
+
     instance['saveThemeSetting'](ThemeSetting.Light);
 
-    expect(localStorage.getItem(localStorageKey)).toBe(Theme.Light);
+    expect(localStorage.getItem(localStorageKey)).toBe(ThemeSetting.Light);
 
     instance['saveThemeSetting'](ThemeSetting.Dark);
 
-    expect(localStorage.getItem(localStorageKey)).toBe(Theme.Dark);
+    expect(localStorage.getItem(localStorageKey)).toBe(ThemeSetting.Dark);
   });
 });
