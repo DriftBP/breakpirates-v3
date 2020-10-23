@@ -1,16 +1,22 @@
-import { TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { SocialService } from './social.service';
+import { SharedModule } from '../shared.module';
 
 describe('SocialService', () => {
-  let service: SocialService;
+  let shallow: Shallow<SocialService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(SocialService);
+    shallow = new Shallow(SocialService, SharedModule);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    const {instance} = shallow.createService();
+    expect(instance).toBeTruthy();
+  });
+
+  it('should return three social sites', () => {
+    const {instance} = shallow.createService();
+    expect(instance.getSocialSites().length).toBe(3);
   });
 });

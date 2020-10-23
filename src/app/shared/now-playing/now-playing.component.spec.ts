@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { of } from 'rxjs';
 
@@ -31,7 +31,7 @@ const mockServerInfo: ServerInfo = {
 describe('NowPlayingComponent', () => {
   let shallow: Shallow<NowPlayingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(NowPlayingComponent, SharedModule)
       .mock(ScheduleService, {
         nowPlaying: of( mockShow ),
@@ -43,5 +43,11 @@ describe('NowPlayingComponent', () => {
     const { element } = await shallow.render();
 
     expect(element.nativeElement).toBeTruthy();
+  });
+
+  it('should always have an image filename', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.nowPlayingImage).toBeTruthy();
   });
 });

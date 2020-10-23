@@ -4,8 +4,10 @@
 
 <p>{{'HOME.DESCRIPTION' | translate}}</p>
 
-<h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
+<ng-container *ngIf="scheduleLoaded">
+  <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
-<ng-container *ngFor="let show of todaysSchedule">
-  <app-show-summary [show]="show"></app-show-summary>
+  <ng-container *ngFor="let show of todaysSchedule">
+    <app-show-summary [show]="show"></app-show-summary>
+  </ng-container>
 </ng-container>

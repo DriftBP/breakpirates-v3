@@ -3,7 +3,7 @@ import moment from 'moment';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
-enum DataCollectionStatus {
+export enum DataCollectionStatus {
   Empty,
   Insufficient,
   Full
@@ -20,7 +20,6 @@ class DataPoint {
 })
 export class BpmComponent {
   private maxDataPoints = 20;
-  private millisecondsInMinute = 60000;
 
   message: DataCollectionStatus;
   statuses = DataCollectionStatus;
@@ -48,51 +47,55 @@ export class BpmComponent {
     this.reset();
   }
 
-  private reset() {
+  private reset(): void {
     this.beatBuffer = [];
-    this.setMessage();
+    this.message = this.getStatus(this.beatBuffer);
   }
 
-  private isBufferEmpty(): boolean {
-    return this.beatBuffer.length === 0;
+  private isEmpty(dataPoints: DataPoint[]): boolean {
+    return dataPoints.length === 0;
   }
 
-  private isBufferFull(): boolean {
-    return this.beatBuffer.length === this.maxDataPoints;
+  private isFull(dataPoints: DataPoint[]): boolean {
+    return dataPoints.length >= this.maxDataPoints;
   }
 
-  private setMessage(): void {
-    if (this.isBufferEmpty()) {
-      this.message = DataCollectionStatus.Empty;
-    } else if (this.isBufferFull()) {
-      this.message = DataCollectionStatus.Full;
+  private getStatus(dataPoints: DataPoint[]): DataCollectionStatus {
+    if (this.isEmpty(dataPoints)) {
+      return DataCollectionStatus.Empty;
+    } else if (this.isFull(dataPoints)) {
+      return DataCollectionStatus.Full;
     } else {
-      this.message = DataCollectionStatus.Insufficient;
+      return DataCollectionStatus.Insufficient;
     }
   }
 
-  private calcBpm(): void {
+  private calcBpm(dataPoints: DataPoint[]): number {
+    const millisecondsInMinute = 60000;
+
     // Check we have enough data points
-    if (this.isBufferFull()) {
-      const first = this.beatBuffer.slice(0, 1).shift();
-      const last = this.beatBuffer.slice(this.beatBuffer.length - 1, this.beatBuffer.length).shift();
+    if (this.isFull(dataPoints)) {
+      const first = dataPoints.slice(0, 1).shift();
+      const last = dataPoints.slice(dataPoints.length - 1, dataPoints.length).shift();
 
       // Difference in milliseconds
       const time = last.time.diff(first.time);
 
-      const bpmUnrounded = (this.millisecondsInMinute / time) * (this.maxDataPoints - 1);
+      const bpmUnrounded = (millisecondsInMinute / time) * (this.maxDataPoints - 1);
 
-      this.bpm = Math.round(bpmUnrounded * 10) / 10;
+      return Math.round(bpmUnrounded * 10) / 10;
     }
+
+    return 0;
   }
 
   private updateValues(): void {
-    this.setMessage();
-    this.calcBpm();
+    this.message = this.getStatus(this.beatBuffer);
+    this.bpm = this.calcBpm(this.beatBuffer);
   }
 
-  private addToBuffer(dataPoint: DataPoint) {
-    if (this.beatBuffer.length >= this.maxDataPoints) {
+  private addToBuffer(dataPoint: DataPoint): void {
+    if (this.isFull(this.beatBuffer)) {
       this.beatBuffer.shift();
     }
 
@@ -102,7 +105,7 @@ export class BpmComponent {
     this.updateValues();
   }
 
-  onClick() {
+  onClick(): void {
     const dataPoint: DataPoint = {
       time: moment()
     };
@@ -110,7 +113,7 @@ export class BpmComponent {
     this.addToBuffer(dataPoint);
   }
 
-  onReset() {
+  onReset(): void {
     this.reset();
   }
 

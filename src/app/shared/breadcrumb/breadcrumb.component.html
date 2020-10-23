@@ -2,7 +2,7 @@
   <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
     <li *ngFor="let item of configItems; index as i"
         class="breadcrumb-item"
-        [ngClass]="{'active': item.isActive}"
+        [appActive]="item.isActive"
         [attr.aria-current]="item.isActive"
         itemprop="itemListElement" itemscope
         itemtype="http://schema.org/ListItem">

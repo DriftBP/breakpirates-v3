@@ -1,9 +1,8 @@
 @import '../../../sass/mixins';
 
 .content-box {
-  @include box-shadow();
   @include box-padding();
   margin: 0 0 1em 0;
-  border: 1px solid #545691;
-  background-color: #fff;
+  border: 1px solid var(--border);
+  background-color: var(--panel-bg);
 }

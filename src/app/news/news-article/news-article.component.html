@@ -11,6 +11,7 @@
   <a  *ngIf="article?.image"
       [href]="'/assets/news/' + article.image">
     <img class="news-article__image"
+          appImageClick
           [src]="imagePath + article.image"
           [alt]="article.title"
           itemprop="image">

@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { SidebarComponent } from './sidebar.component';
@@ -7,7 +7,7 @@ import { SharedModule } from '../shared.module';
 describe('SidebarComponent', () => {
   let shallow: Shallow<SidebarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shallow = new Shallow(SidebarComponent, SharedModule);
   }));
 

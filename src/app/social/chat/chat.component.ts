@@ -1,17 +1,20 @@
-import { Component, } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, Observer } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
-import { Observable, Observer } from 'rxjs';
+import { FullscreenService } from '../services/fullscreen.service';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit {
+  @ViewChild('chatIframe') chatElement: ElementRef;
+
   ircServer = AppSettings.IRC_SERVER;
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
@@ -23,11 +26,17 @@ export class ChatComponent {
     }
   ];
 
-  chatUrl = 'http://chat.mk2k.net:6670?channels=' + AppSettings.IRC_CHANNEL;
+  chatUrl = 'https://thelounge.hostco.de/?join=' + this.ircChannel;
+  enableFullscreen = false;
 
   constructor(
-    private translateService: TranslateService
+    private readonly translateService: TranslateService,
+    private readonly fullscreenService: FullscreenService
   ) {}
+
+  ngOnInit() {
+    this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
+  }
 
   canExit(): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
@@ -42,5 +51,9 @@ export class ChatComponent {
 
       observer.complete();
     });
+  }
+
+  fullscreen(): void {
+    this.fullscreenService.requestFullscreen(this.chatElement.nativeElement);
   }
 }

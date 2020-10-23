@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
-import find from 'lodash/find';
 import { Subscription } from 'rxjs';
 
 import { Show } from './show';
@@ -17,7 +16,6 @@ import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcru
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private showsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = moment().isoWeekday();
@@ -61,10 +59,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         ]);
       }
 
-      this.showsSubscription = this.scheduleService.shows(this.activeDayId).subscribe(shows => {
-          this.todaysSchedule = shows;
-        }
-      );
+      this.todaysSchedule = this.route.snapshot.data['show'];
     });
   }
 
@@ -72,14 +67,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
     }
-
-    if (this.showsSubscription) {
-      this.showsSubscription.unsubscribe();
-    }
   }
 
   private setTitle(): void {
-    const activeDay = find(this.days, day => day.id === this.activeDayId);
+    const activeDay = this.days.find(day => day.id === this.activeDayId);
 
     if (activeDay) {
       this.title = activeDay.name;
