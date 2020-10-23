@@ -33,13 +33,33 @@
       height: 100%;
     }
 
-    .loader {
+    .loader-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-animation: fadeIn 1s linear;
+              animation: fadeIn 1s linear;
+    }
+
+    .site-name {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    .spinner {
       margin: 0 auto;
       height: 100px;
       width: 100px;
     }
 
-    .loader > svg {
+    .spinner > svg {
       -webkit-animation: rotate 2s linear infinite;
               animation: rotate 2s linear infinite;
       -webkit-transform-origin: center center;
@@ -47,7 +67,7 @@
               transform-origin: center center;
     }
 
-    .loader-path {
+    .spinner-path {
       stroke-dasharray: 150,200;
       stroke-dashoffset: -10;
       -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
@@ -68,6 +88,24 @@
                 transform: rotate(360deg);
       }
     }
+
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
     @-webkit-keyframes dash {
       0% {
         stroke-dasharray: 1,200;
@@ -140,10 +178,15 @@
 </head>
 <body>
   <app-root>
-    <div class="loader">
-      <svg viewBox="25 25 50 50" >
-        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#545691" stroke-width="2" />
-      </svg>
+    <div class="loader-container">
+      <div>
+        <p class="site-name">Break Pirates</p>
+        <div class="spinner">
+          <svg viewBox="25 25 50 50" >
+            <circle class="spinner-path" cx="50" cy="50" r="20" fill="none" stroke="#545691" stroke-width="2" />
+          </svg>
+        </div>
+      </div>
     </div>
   </app-root>
 </body>
