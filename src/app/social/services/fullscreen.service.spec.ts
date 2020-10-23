@@ -1,16 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { FullscreenService } from './fullscreen.service';
+import { SocialModule } from '../social.module';
 
 describe('FullscreenService', () => {
-  let service: FullscreenService;
+  let shallow: Shallow<FullscreenService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FullscreenService);
+    shallow = new Shallow(FullscreenService, SocialModule);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    const {instance} = shallow.createService();
+    expect(instance).toBeTruthy();
   });
 });
