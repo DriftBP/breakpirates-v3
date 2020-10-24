@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IDialogConfig } from '../services/dialog-config';
 
+import { IDialogConfig } from '../services/dialog-config';
 import { DialogService } from '../services/dialog.service';
 
 @Component({
