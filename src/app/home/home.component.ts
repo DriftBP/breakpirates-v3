@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../schedule/show';
-import { ScheduleService } from '../shared/services/schedule.service';
+import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 
 @Component({

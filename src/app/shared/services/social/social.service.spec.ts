@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 
 import { SocialService } from './social.service';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 
 describe('SocialService', () => {
   let shallow: Shallow<SocialService>;

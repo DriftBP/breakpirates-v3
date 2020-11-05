@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { SocialService } from '../services/social.service';
-import { Site } from '../services/site';
+import { SocialService } from '../services/social/social.service';
+import { Site } from '../services/social/site';
 
 @Component({
   selector: 'app-social-links',

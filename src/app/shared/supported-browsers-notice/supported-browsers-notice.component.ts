@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SupportedBrowsersService } from '../services/supported-browsers.service';
+import { SupportedBrowsersService } from '../services/supported-browsers/supported-browsers.service';
 
 @Component({
   selector: 'app-supported-browsers-notice',

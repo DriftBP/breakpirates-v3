@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleModule } from './schedule.module';
-import { ScheduleService } from '../shared/services/schedule.service';
+import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Show } from './show';
 
 const routes: Routes = [];

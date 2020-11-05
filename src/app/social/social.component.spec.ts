@@ -3,7 +3,7 @@ import { Shallow } from 'shallow-render';
 
 import { SocialComponent } from './social.component';
 import { SocialModule } from './social.module';
-import { SocialService } from '../shared/services/social.service';
+import { SocialService } from '../shared/services/social/social.service';
 
 describe('SocialComponent', () => {
   let shallow: Shallow<SocialComponent>;

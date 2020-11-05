@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ServerInfo } from '../services/server-info';
-import { ScheduleService } from '../services/schedule.service';
+import { ServerInfo } from '../services/schedule/server-info';
+import { ScheduleService } from '../services/schedule/schedule.service';
 
 @Component({
   selector: 'app-server-stats',

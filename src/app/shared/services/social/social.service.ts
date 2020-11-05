@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AppSettings } from '../../app-settings';
+import { AppSettings } from '../../../app-settings';
 import { Site } from './site';
 
 @Injectable({

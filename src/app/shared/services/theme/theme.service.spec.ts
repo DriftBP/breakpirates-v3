@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 
 import { ThemeService } from './theme.service';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 import { ThemeSetting } from './theme-setting';
 import { Theme } from './theme';
 

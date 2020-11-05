@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import supportedBrowsers from '../../../../supportedBrowsers';
+import supportedBrowsers from '../../../../../supportedBrowsers';
 
 @Injectable({
   providedIn: 'root'
