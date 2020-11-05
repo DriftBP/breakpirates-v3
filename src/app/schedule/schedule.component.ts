@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 import { Show } from './show';
-import { ScheduleService } from '../shared/services/schedule.service';
+import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Day } from './day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';

@@ -28,10 +28,10 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 
 // Services
-import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { NewsService } from '../news/news.service';
-import { SocialService } from './services/social.service';
-import { ScheduleService } from './services/schedule.service';
+import { SocialService } from './services/social/social.service';
+import { ScheduleService } from './services/schedule/schedule.service';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';

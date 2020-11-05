@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 
 import { DialogService } from './dialog.service';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 
 describe('DialogService', () => {
   let shallow: Shallow<DialogService>;

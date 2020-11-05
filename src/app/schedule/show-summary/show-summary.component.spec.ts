@@ -6,7 +6,7 @@ import moment from 'moment';
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
 import { Show } from '../show';
-import { ScheduleService } from '../../shared/services/schedule.service';
+import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 
 const mockShow1: Show = {
   id: 1,

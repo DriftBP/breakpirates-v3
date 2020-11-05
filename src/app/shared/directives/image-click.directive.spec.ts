@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { DialogService } from '../services/dialog.service';
+import { DialogService } from '../services/dialog/dialog.service';
 import { ImageClickDirective } from './image-click.directive';
 
 class MockDialogService extends DialogService {}

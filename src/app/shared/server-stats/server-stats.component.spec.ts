@@ -4,8 +4,8 @@ import { of } from 'rxjs';
 
 import { ServerStatsComponent } from './server-stats.component';
 import { SharedModule } from '../shared.module';
-import { ScheduleService } from '../services/schedule.service';
-import { ServerInfo } from '../services/server-info';
+import { ScheduleService } from '../services/schedule/schedule.service';
+import { ServerInfo } from '../services/schedule/server-info';
 
 const mockServerInfo: ServerInfo = {
   CurrentListeners: 20,

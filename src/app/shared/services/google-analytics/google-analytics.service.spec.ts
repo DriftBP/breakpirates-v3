@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 
 import { GoogleAnalyticsService } from './google-analytics.service';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 
 describe('GoogleAnalyticsService', () => {
   let shallow: Shallow<GoogleAnalyticsService>;

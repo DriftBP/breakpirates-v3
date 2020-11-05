@@ -5,8 +5,8 @@ import { of } from 'rxjs';
 import { NowPlayingComponent } from './now-playing.component';
 import { SharedModule } from '../shared.module';
 import { Show } from '../../schedule/show';
-import { ScheduleService } from '../services/schedule.service';
-import { ServerInfo } from '../services/server-info';
+import { ScheduleService } from '../services/schedule/schedule.service';
+import { ServerInfo } from '../services/schedule/server-info';
 
 const mockShow: Show = {
   id: 1,

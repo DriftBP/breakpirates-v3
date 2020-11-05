@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 
 import { SupportedBrowsersService } from './supported-browsers.service';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 
 describe('SupportedBrowsersService', () => {
   let shallow: Shallow<SupportedBrowsersService>;

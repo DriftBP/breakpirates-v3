@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import moment from 'moment';
 
-import { ScheduleService } from '../shared/services/schedule.service';
+import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Show } from './show';
 
 @Injectable()

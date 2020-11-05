@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
-import { IDialogConfig } from '../services/dialog-config';
-import { DialogService } from '../services/dialog.service';
+import { IDialogConfig } from '../services/dialog/dialog-config';
+import { DialogService } from '../services/dialog/dialog.service';
 
 @Directive({
   selector: '[appImageClick]'
