@@ -6,7 +6,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
+import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 
 const routes: Routes = [];
 

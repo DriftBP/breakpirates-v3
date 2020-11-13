@@ -10,9 +10,9 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { GoogleAnalyticsService } from './shared/services/google-analytics.service';
-import { ThemeService } from './shared/services/theme.service';
-import { Theme } from './shared/services/theme';
+import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
+import { ThemeService } from './shared/services/theme/theme.service';
+import { Theme } from './shared/services/theme/theme';
 
 @Component({
   selector: 'app-root',

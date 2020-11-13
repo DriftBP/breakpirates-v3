@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Site } from '../shared/services/site';
-import { SocialService } from '../shared/services/social.service';
+import { Site } from '../shared/services/social/site';
+import { SocialService } from '../shared/services/social/social.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 

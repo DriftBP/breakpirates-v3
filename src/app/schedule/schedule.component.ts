@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 import { Show } from './show';
-import { ScheduleService } from '../shared/services/schedule.service';
+import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Day } from './day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
@@ -16,7 +16,6 @@ import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcru
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private showsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = moment().isoWeekday();
@@ -60,20 +59,13 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         ]);
       }
 
-      this.showsSubscription = this.scheduleService.shows(this.activeDayId).subscribe(shows => {
-          this.todaysSchedule = shows;
-        }
-      );
+      this.todaysSchedule = this.route.snapshot.data['show'];
     });
   }
 
   ngOnDestroy() {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
-    }
-
-    if (this.showsSubscription) {
-      this.showsSubscription.unsubscribe();
     }
   }
 

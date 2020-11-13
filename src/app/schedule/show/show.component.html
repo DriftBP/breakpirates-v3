@@ -30,6 +30,7 @@
     <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
     <img *ngIf="show.image"
+          appImageClick
           class="show__image"
           [src]="imagePath + show.image"
           [alt]="show.title"

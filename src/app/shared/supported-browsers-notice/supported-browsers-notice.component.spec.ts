@@ -3,7 +3,7 @@ import { Shallow } from 'shallow-render';
 
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice.component';
 import { SharedModule } from '../shared.module';
-import { SupportedBrowsersService } from '../services/supported-browsers.service';
+import { SupportedBrowsersService } from '../services/supported-browsers/supported-browsers.service';
 
 describe('SupportedBrowsersNoticeComponent', () => {
   let shallow: Shallow<SupportedBrowsersNoticeComponent>;

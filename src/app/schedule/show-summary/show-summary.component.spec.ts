@@ -6,7 +6,7 @@ import moment from 'moment';
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
 import { Show } from '../show';
-import { ScheduleService } from '../../shared/services/schedule.service';
+import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 
 const mockShow1: Show = {
   id: 1,
@@ -58,7 +58,7 @@ describe('ShowSummaryComponent', () => {
   it('should not indicate show is now playing', async () => {
     const { find } = await shallow.render({bind: {show: mockShow1}});
 
-    const nowPlaying = find('.show-summary__now-playing');
+    const nowPlaying = find('.show-summary__now-live');
 
     expect(nowPlaying.length).toEqual(0);
   });
@@ -66,7 +66,7 @@ describe('ShowSummaryComponent', () => {
   it('should indicate show is now playing', async () => {
     const { find } = await shallow.render({bind: {show: mockShow2}});
 
-    const nowPlaying = find('.show-summary__now-playing');
+    const nowPlaying = find('.show-summary__now-live');
 
     expect(nowPlaying.length).toEqual(1);
   });

@@ -1,19 +1,21 @@
 /*
- *ngFor="let c of oneDimArray | sortBy:'asc'"
- *ngFor="let c of arrayOfObjects | sortBy:'asc':'propertyName'"
+ *ngFor="let c of oneDimArray | sortBy:SortOrder.Ascending"
+ *ngFor="let c of arrayOfObjects | sortBy:SortOrder.Ascending:'propertyName'"
 */
 import { Pipe, PipeTransform } from '@angular/core';
+
+import { SortOrder } from './sort-order';
 
 @Pipe({
   name: 'sortBy'
 })
 export class SortByPipe implements PipeTransform {
 
-  public transform(value: any[], order = '', column: string = ''): any[] {
+  public transform(value: any[], order = SortOrder.Ascending, column: string = ''): any[] {
     return value.sort(this.compareValues(column, order));
   }
 
-  private compareValues(key: string, order = 'asc') {
+  private compareValues(key: string, order = SortOrder.Ascending) {
     return function innerSort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
         // property doesn't exist on either object
@@ -32,7 +34,7 @@ export class SortByPipe implements PipeTransform {
         comparison = -1;
       }
       return (
-        (order === 'desc') ? (comparison * -1) : comparison
+        (order === SortOrder.Descending) ? (comparison * -1) : comparison
       );
     };
   }

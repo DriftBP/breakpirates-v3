@@ -5,11 +5,11 @@ import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import moment from 'moment';
 
-import { AppSettings } from '../../app-settings';
-import { Show } from '../../schedule/show';
-import { Host } from '../../profile/host';
-import { Day } from '../../schedule/day';
-import { Genre } from '../../music/genre';
+import { AppSettings } from '../../../app-settings';
+import { Show } from '../../../schedule/show';
+import { Host } from '../../../profile/host';
+import { Day } from '../../../schedule/day';
+import { Genre } from '../../../music/genre';
 import { ServerInfo } from './server-info';
 
 @Injectable()
