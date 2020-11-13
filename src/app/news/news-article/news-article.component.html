@@ -3,7 +3,14 @@
 <div class="news-article" itemscope itemtype="http://schema.org/NewsArticle">
   <h1 itemprop="headline">{{article?.title}}</h1>
 
-  <p><span class="news-article__date">{{ article?.date | formattedDate }}</span><span *ngIf="article?.added_by"> by <span class="news-article__date" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ article?.added_by }}</span></span></span></p>
+  <p>
+    <span class="news-article__date">{{ article?.date | formattedDate }}</span>
+    <span *ngIf="article?.added_by"> by
+      <span class="news-article__date" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">{{ article?.added_by }}</span>
+      </span>
+    </span>
+  </p>
 
   <meta itemprop="dateCreated" content="{{ article?.date | isoDate }}">
   <meta itemprop="datePublished" content="{{ article?.date | isoDate }}">
