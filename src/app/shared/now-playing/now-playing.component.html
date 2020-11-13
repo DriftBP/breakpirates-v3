@@ -5,7 +5,8 @@
             [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
-          {{'NOW_PLAYING.ON_AIR' | translate}}: <span *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
+          {{'NOW_PLAYING.ON_AIR' | translate}}:
+          <span *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
         </div>
 
         <ng-container *ngIf="isLiveShow">
@@ -13,7 +14,15 @@
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
           </div>
 
-          <div class="now-playing__show-info-description">{{'NOW_PLAYING.HOSTED_BY' | translate}}: <a class="now-playing__show-info-host" [routerLink]="['/profiles',host.id]" *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a></div>
+          <div class="now-playing__show-info-description">
+            {{'NOW_PLAYING.HOSTED_BY' | translate}}:
+            <a
+              class="now-playing__show-info-host"
+              [routerLink]="['/profiles',host.id]"
+              *ngFor="let host of nowPlaying.hosts">
+                {{ host.name }}
+            </a>
+          </div>
         </ng-container>
 
         <ng-container *ngIf="!isLiveShow">

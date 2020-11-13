@@ -6,7 +6,12 @@
     <meta itemprop="startDate" content="{{nextDate}}">
     <meta itemprop="endDate" content="{{endDate}}">
 
-    <div *ngIf="onNow" class="show-summary__now-live">{{'SHOW_SUMMARY.NOW_LIVE' | translate}}<i class="show-summary__now-live-icon fa fa-volume-up" aria-hidden="true" (click)="scrollToPlayer()"></i></div>
+    <div
+      *ngIf="onNow"
+      class="show-summary__now-live">
+        {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
+        <i class="show-summary__now-live-icon fa fa-volume-up" aria-hidden="true" (click)="scrollToPlayer()"></i>
+    </div>
   </div>
   <div>
     <div class="show-summary__title" itemprop="name"><a [routerLink]="['/schedule/shows',show.id]" itemprop="url">{{show.title}}</a></div>

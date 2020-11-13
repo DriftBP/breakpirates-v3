@@ -3,7 +3,13 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button class="navbar-toggler" type="button" (click)="toggleIsCollapsed()" aria-controls="navbar-main" [attr.aria-expanded]="!isCollapsed" [attr.aria-label]="'NAVIGATION.TOGGLE_NAVIGATION' | translate">
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="toggleIsCollapsed()"
+        aria-controls="navbar-main"
+        [attr.aria-expanded]="!isCollapsed"
+        [attr.aria-label]="'NAVIGATION.TOGGLE_NAVIGATION' | translate">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navigation__logo navbar-brand" routerLink="/radio">
@@ -15,8 +21,15 @@
     <div id="navbar-main" class="navbar-collapse" [collapse]="isCollapsed">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item dropdown" dropdown>
-          <button id="nav-tune-in" class="nav-link dropdown-toggle" dropdownToggle href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            {{'NAVIGATION.TUNE_IN' | translate}} <span class="caret"></span>
+          <button
+            id="nav-tune-in"
+            class="nav-link dropdown-toggle"
+            dropdownToggle
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+              {{'NAVIGATION.TUNE_IN' | translate}} <span class="caret"></span>
           </button>
           <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
             <li role="menuitem">

@@ -10,7 +10,7 @@ declare let gtag: Function;
 export class GoogleAnalyticsService {
   public trackPageHit(path: string) {
     gtag('config', AppSettings.GA_PROPERTY_ID, {
-      'page_path': path
+      page_path: path
     });
   }
 

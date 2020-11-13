@@ -4,7 +4,10 @@
 
 <p>{{'PROFILES.INTRO' | translate}}</p>
 
-<button class="btn btn-primary" (click)="toggleOrderBy()">{{'PROFILES.ORDERING' | translate}} <i class="fas" [ngClass]="{'fa-chevron-up': order == orders.Ascending, 'fa-chevron-down': order == orders.Descending}"></i></button>
+<button class="btn btn-primary" (click)="toggleOrderBy()">
+  {{'PROFILES.ORDERING' | translate}}
+  <i class="fas" [ngClass]="{'fa-chevron-up': order == orders.Ascending, 'fa-chevron-down': order == orders.Descending}"></i>
+</button>
 
 <ul class="profile-list">
     <li class="profile-list__list-item" *ngFor="let profile of profiles | sortBy:order:'name'; trackBy: trackByFn">
