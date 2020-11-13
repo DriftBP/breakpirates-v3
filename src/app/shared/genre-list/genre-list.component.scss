@@ -7,14 +7,8 @@
     display: inline-block;
     margin: 0.25em 0.5em 0.25em 0;
 
-    &::after {
+    &:not(:last-of-type)::after {
       content: ",";
-    }
-
-    &:last-of-type {
-      &::after {
-        content: "";
-      }
     }
 
     &-link {
