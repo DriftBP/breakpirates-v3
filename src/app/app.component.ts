@@ -15,7 +15,7 @@ import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 
 @Component({
-  selector: 'app-root',
+  selector: 'bp-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

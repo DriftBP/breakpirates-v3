@@ -6,7 +6,7 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { videoConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-video-details',
+  selector: 'bp-video-details',
   templateUrl: './video-details.component.html',
   styleUrls: ['./video-details.component.scss']
 })

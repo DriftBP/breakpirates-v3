@@ -7,7 +7,7 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-news',
+  selector: 'bp-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss']
 })

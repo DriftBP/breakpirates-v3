@@ -7,7 +7,7 @@ import { homeConfigActive, homeConfigInactive } from './breadcrumb-config';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'app-breadcrumb',
+  selector: 'bp-breadcrumb',
   templateUrl: './breadcrumb.component.html'
 })
 export class BreadcrumbComponent implements OnChanges {

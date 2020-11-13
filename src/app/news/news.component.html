@@ -1,8 +1,8 @@
-<app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+<bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
 <h1>{{'NEWS.LATEST_NEWS' | translate}}</h1>
 
-<app-latest-news [news]="latestNews"></app-latest-news>
+<bp-latest-news [news]="latestNews"></bp-latest-news>
 
 <button *ngIf="!showMore" class="news__show-more btn btn-primary" (click)="onShowMore()">{{'NEWS.SHOW_MORE' | translate}}</button>
 

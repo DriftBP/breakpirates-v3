@@ -7,7 +7,7 @@ import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 
 @Component({
-  selector: 'app-home',
+  selector: 'bp-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

@@ -8,7 +8,7 @@ import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config'
 import { FullscreenService } from '../services/fullscreen.service';
 
 @Component({
-  selector: 'app-chat',
+  selector: 'bp-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })

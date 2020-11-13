@@ -5,7 +5,7 @@ import { AppSettings } from '../../app-settings';
 declare var MediaElementPlayer;
 
 @Component({
-  selector: 'app-radio-player',
+  selector: 'bp-radio-player',
   templateUrl: './radio-player.component.html',
   styleUrls: ['./radio-player.component.scss']
 })

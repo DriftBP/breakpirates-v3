@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Genre } from '../../music/genre';
 
 @Component({
-  selector: 'app-genre-list',
+  selector: 'bp-genre-list',
   templateUrl: './genre-list.component.html',
   styleUrls: ['./genre-list.component.scss']
 })

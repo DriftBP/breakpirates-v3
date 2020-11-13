@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-donate',
+  selector: 'bp-donate',
   templateUrl: './donate.component.html'
 })
 export class DonateComponent {}

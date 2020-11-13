@@ -1,4 +1,4 @@
-<app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+<bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
 <div class="news-article" itemscope itemtype="http://schema.org/NewsArticle">
   <h1 itemprop="headline">{{article?.title}}</h1>
@@ -18,7 +18,7 @@
   <a  *ngIf="article?.image"
       [href]="'/assets/news/' + article.image">
     <img class="news-article__image"
-          appImageClick
+          bpImageClick
           [src]="imagePath + article.image"
           [alt]="article.title"
           itemprop="image">

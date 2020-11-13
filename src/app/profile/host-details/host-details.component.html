@@ -1,5 +1,5 @@
 <div *ngIf="profile !== undefined" itemscope itemtype="http://schema.org/Person">
-  <app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+  <bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
   <h1 itemprop="name">{{profile.name}}</h1>
 
@@ -7,7 +7,7 @@
 
   <ng-container *ngIf="profile.biog">
     <img *ngIf="profile.image"
-          appImageClick
+          bpImageClick
           class="host-details__image"
           [src]="imagePath + profile.image"
           [alt]="profile.name"
@@ -22,18 +22,18 @@
     <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
     <ng-container *ngFor="let show of shows">
-        <app-show-summary [show]="show" [displayDay]="true"></app-show-summary>
+        <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
     </ng-container>
   </ng-container>
 
   <div *ngIf="hasMixcloud()">
       <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
-      <app-mixcloud-widget [user]="profile.mixcloud"></app-mixcloud-widget>
+      <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
   </div>
 
   <div *ngIf="hasTwitter()">
     <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
-    <app-twitter-widget [user]="profile.twitter"></app-twitter-widget>
+    <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
 </div>
 
 </div>

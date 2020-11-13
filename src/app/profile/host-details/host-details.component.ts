@@ -10,7 +10,7 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-host-details',
+  selector: 'bp-host-details',
   templateUrl: './host-details.component.html',
   styleUrls: ['./host-details.component.scss']
 })

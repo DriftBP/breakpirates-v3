@@ -1,9 +1,9 @@
-<app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+<bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
 <h1>{{genre?.name}}</h1>
 
 <h2>{{'MUSIC.SHOWS_FEATURING_GENRE' | translate}}</h2>
 
 <ng-container *ngFor="let show of shows">
-  <app-show-summary [show]="show" [displayDay]="true"></app-show-summary>
+  <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
 </ng-container>

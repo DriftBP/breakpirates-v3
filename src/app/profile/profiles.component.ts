@@ -7,7 +7,7 @@ import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { SortOrder } from '../shared/pipes/sort-order';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'bp-profile',
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.scss']
 })

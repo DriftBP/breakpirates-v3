@@ -5,7 +5,7 @@ import { IDialogConfig } from '../services/dialog/dialog-config';
 import { DialogService } from '../services/dialog/dialog.service';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'bp-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })

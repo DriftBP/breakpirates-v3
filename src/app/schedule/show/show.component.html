@@ -1,5 +1,5 @@
 <div *ngIf="show !== undefined" itemscope itemtype="http://schema.org/MusicEvent">
-  <app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+  <bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
   <h1 itemprop="name">{{ show.title }}</h1>
 
@@ -17,20 +17,20 @@
   <ng-container *ngIf="show.hosts?.length > 0">
     <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
 
-    <app-host-list [hosts]="show.hosts"></app-host-list>
+    <bp-host-list [hosts]="show.hosts"></bp-host-list>
   </ng-container>
 
   <ng-container *ngIf="show.genres?.length > 0">
     <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
 
-    <app-genre-list [genres]="show.genres"></app-genre-list>
+    <bp-genre-list [genres]="show.genres"></bp-genre-list>
   </ng-container>
 
   <ng-container *ngIf="show?.description">
     <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
     <img *ngIf="show.image"
-          appImageClick
+          bpImageClick
           class="show__image"
           [src]="imagePath + show.image"
           [alt]="show.title"

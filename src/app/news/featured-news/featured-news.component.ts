@@ -4,7 +4,7 @@ import { News } from '../news';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'app-featured-news',
+  selector: 'bp-featured-news',
   templateUrl: './featured-news.component.html',
   styleUrls: ['./featured-news.component.scss']
 })

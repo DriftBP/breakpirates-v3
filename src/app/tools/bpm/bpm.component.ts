@@ -14,7 +14,7 @@ class DataPoint {
 }
 
 @Component({
-  selector: 'app-bpm',
+  selector: 'bp-bpm',
   templateUrl: './bpm.component.html',
   styleUrls: ['./bpm.component.scss']
 })

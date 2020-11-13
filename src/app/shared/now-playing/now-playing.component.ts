@@ -7,7 +7,7 @@ import { ServerInfo } from '../services/schedule/server-info';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'app-now-playing',
+  selector: 'bp-now-playing',
   templateUrl: './now-playing.component.html',
   styleUrls: ['./now-playing.component.scss']
 })
