@@ -1,5 +1,5 @@
 <ul class="genre-list">
-  <li class="genre-list__host-item" *ngFor="let genre of genres">
-      <a class="genre-list__host-item-link" [routerLink]="['/music',genre.id]">{{genre.name}}</a>
+  <li class="genre-list__genre-item" *ngFor="let genre of genres">
+      <a class="genre-list__genre-item-link" [routerLink]="['/music',genre.id]">{{genre.name}}</a>
   </li>
 </ul>

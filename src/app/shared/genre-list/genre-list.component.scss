@@ -3,18 +3,12 @@
   margin: 0;
   padding: 0;
 
-  &__host-item {
+  &__genre-item {
     display: inline-block;
     margin: 0.25em 0.5em 0.25em 0;
 
-    &::after {
+    &:not(:last-of-type)::after {
       content: ",";
-    }
-
-    &:last-of-type {
-      &::after {
-        content: "";
-      }
     }
 
     &-link {

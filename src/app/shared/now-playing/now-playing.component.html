@@ -19,9 +19,7 @@
             <a
               class="now-playing__show-info-host"
               [routerLink]="['/profiles',host.id]"
-              *ngFor="let host of nowPlaying.hosts">
-                {{ host.name }}
-            </a>
+              *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a>
           </div>
         </ng-container>
 

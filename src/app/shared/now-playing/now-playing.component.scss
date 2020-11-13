@@ -55,14 +55,8 @@
         &host {
           margin-right: 0.5em;
 
-          &::after {
+          &:not(:last-of-type)::after {
             content: ",";
-          }
-
-          &:last-of-type {
-            &::after {
-              content: "";
-            }
           }
         }
       }
