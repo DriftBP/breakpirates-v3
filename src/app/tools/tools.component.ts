@@ -3,7 +3,7 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { toolsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-tools',
+  selector: 'bp-tools',
   templateUrl: './tools.component.html'
 })
 export class ToolsComponent {

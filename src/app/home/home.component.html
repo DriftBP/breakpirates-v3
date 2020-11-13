@@ -1,4 +1,4 @@
-<app-breadcrumb [isHome]="true" [config]="breadcrumbConfig"></app-breadcrumb>
+<bp-breadcrumb [isHome]="true" [config]="breadcrumbConfig"></bp-breadcrumb>
 
 <h1>{{'HOME.WELCOME' | translate}}</h1>
 
@@ -8,6 +8,6 @@
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
   <ng-container *ngFor="let show of todaysSchedule">
-    <app-show-summary [show]="show"></app-show-summary>
+    <bp-show-summary [show]="show"></bp-show-summary>
   </ng-container>
 </ng-container>

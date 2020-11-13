@@ -1,4 +1,4 @@
-<app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+<bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
 <h1>{{'SCHEDULE.TITLE' | translate}}</h1>
 
@@ -8,8 +8,8 @@
 
 <p>{{'SCHEDULE.TIMES_DISPLAYED' | translate}}</p>
 
-<app-day-select [days]="days" [activeDayId]="activeDayId"></app-day-select>
+<bp-day-select [days]="days" [activeDayId]="activeDayId"></bp-day-select>
 
 <ng-container *ngFor="let show of todaysSchedule">
-  <app-show-summary [show]="show"></app-show-summary>
+  <bp-show-summary [show]="show"></bp-show-summary>
 </ng-container>

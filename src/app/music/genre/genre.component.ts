@@ -8,7 +8,7 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { musicConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-genre',
+  selector: 'bp-genre',
   templateUrl: './genre.component.html',
   styleUrls: ['./genre.component.scss']
 })

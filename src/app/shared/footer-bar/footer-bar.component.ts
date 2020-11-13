@@ -5,7 +5,7 @@ import { SocialService } from '../services/social/social.service';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'app-footer-bar',
+  selector: 'bp-footer-bar',
   templateUrl: './footer-bar.component.html',
   styleUrls: ['./footer-bar.component.scss']
 })

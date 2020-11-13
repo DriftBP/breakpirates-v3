@@ -24,10 +24,10 @@
       <meta itemprop="address" content="UK">
     </div>
 
-    <app-genre-list [genres]="show.genres"></app-genre-list>
+    <bp-genre-list [genres]="show.genres"></bp-genre-list>
     <div>
         {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
-        <app-host-list [hosts]="show.hosts"></app-host-list>
+        <bp-host-list [hosts]="show.hosts"></bp-host-list>
     </div>
   </div>
   <div *ngIf="showImage" class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>

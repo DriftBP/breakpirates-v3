@@ -5,7 +5,7 @@ import { ServerInfo } from '../services/schedule/server-info';
 import { ScheduleService } from '../services/schedule/schedule.service';
 
 @Component({
-  selector: 'app-server-stats',
+  selector: 'bp-server-stats',
   templateUrl: './server-stats.component.html',
   styleUrls: ['./server-stats.component.scss']
 })

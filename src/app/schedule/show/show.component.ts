@@ -9,7 +9,7 @@ import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-confi
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'app-show',
+  selector: 'bp-show',
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.scss']
 })

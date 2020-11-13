@@ -5,7 +5,7 @@ import { AppSettings } from '../../app-settings';
 import { NavigationService } from '../services/navigation/navigation.service';
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'bp-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { SupportedBrowsersService } from '../services/supported-browsers/supported-browsers.service';
 
 @Component({
-  selector: 'app-supported-browsers-notice',
+  selector: 'bp-supported-browsers-notice',
   templateUrl: './supported-browsers-notice.component.html'
 })
 export class SupportedBrowsersNoticeComponent {

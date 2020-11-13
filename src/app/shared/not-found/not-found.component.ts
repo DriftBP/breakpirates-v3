@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { BreadcrumbConfigItem } from '../breadcrumb/breadcrumb-config-item';
 
 @Component({
-  selector: 'app-not-found',
+  selector: 'bp-not-found',
   templateUrl: './not-found.component.html'
 })
 export class NotFoundComponent {

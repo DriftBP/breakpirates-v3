@@ -6,7 +6,7 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-social',
+  selector: 'bp-social',
   templateUrl: './social.component.html'
 })
 export class SocialComponent {

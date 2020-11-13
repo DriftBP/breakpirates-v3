@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-mixcloud-widget',
+  selector: 'bp-mixcloud-widget',
   templateUrl: './mixcloud-widget.component.html'
 })
 export class MixcloudWidgetComponent implements OnChanges {

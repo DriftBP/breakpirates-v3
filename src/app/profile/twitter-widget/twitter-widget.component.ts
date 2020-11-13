@@ -2,7 +2,7 @@ import { Component, OnChanges, Input, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-twitter-widget',
+  selector: 'bp-twitter-widget',
   templateUrl: './twitter-widget.component.html'
 })
 export class TwitterWidgetComponent implements OnChanges {

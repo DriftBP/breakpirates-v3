@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { News } from '../news';
 
 @Component({
-  selector: 'app-latest-news',
+  selector: 'bp-latest-news',
   templateUrl: './latest-news.component.html',
   styleUrls: ['./latest-news.component.scss']
 })

@@ -6,7 +6,7 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { musicConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 
 @Component({
-  selector: 'app-music',
+  selector: 'bp-music',
   templateUrl: './music.component.html',
   styleUrls: ['./music.component.scss']
 })

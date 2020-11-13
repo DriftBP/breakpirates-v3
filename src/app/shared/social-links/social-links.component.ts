@@ -4,7 +4,7 @@ import { SocialService } from '../services/social/social.service';
 import { Site } from '../services/social/site';
 
 @Component({
-  selector: 'app-social-links',
+  selector: 'bp-social-links',
   templateUrl: './social-links.component.html',
   styleUrls: ['./social-links.component.scss']
 })

@@ -6,7 +6,7 @@ import { ScheduleService } from '../../shared/services/schedule/schedule.service
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'app-show-summary',
+  selector: 'bp-show-summary',
   templateUrl: './show-summary.component.html',
   styleUrls: ['./show-summary.component.scss']
 })

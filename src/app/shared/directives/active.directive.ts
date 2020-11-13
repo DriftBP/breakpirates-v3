@@ -1,9 +1,9 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appActive]'
+  selector: '[bpActive]'
 })
 export class ActiveDirective {
-  @Input('appActive') condition: boolean;
+  @Input('bpActive') condition: boolean;
   @HostBinding('class.active') get active() { return this.condition; }
 }

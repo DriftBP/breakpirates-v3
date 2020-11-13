@@ -1,4 +1,4 @@
-<app-breadcrumb [config]="breadcrumbConfig"></app-breadcrumb>
+<bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
 
 <h1>{{'PROFILES.TITLE' | translate}}</h1>
 
@@ -11,6 +11,6 @@
 
 <ul class="profile-list">
     <li class="profile-list__list-item" *ngFor="let profile of profiles | sortBy:order:'name'; trackBy: trackByFn">
-        <app-profile-button [host]="profile"></app-profile-button>
+        <bp-profile-button [host]="profile"></bp-profile-button>
     </li>
 </ul>
