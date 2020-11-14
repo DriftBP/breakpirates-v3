@@ -1,5 +1,6 @@
 {
   "NAVIGATION": {
+    "DEFAULT_PLAYER": "Default player",
     "TOGGLE_NAVIGATION": "Toggle navigation",
     "TUNE_IN": "Tune in",
     "SHOW_ARCHIVE": "Show archive",
