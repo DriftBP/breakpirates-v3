@@ -3,7 +3,7 @@
 
   <h1 itemprop="name">{{ show.title }}</h1>
 
-  <p>{{ show.start_time | time }} - {{ show.end_time | time }} on {{ dayName }}</p>
+  <p>{{ show.start_time | time }} - {{ show.end_time | time }} on <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a></p>
 
   <meta itemprop="startDate" content="{{nextDate}}">
   <meta itemprop="endDate" content="{{endDate}}">
@@ -13,18 +13,6 @@
     <link itemprop="sameAs" href="http://www.breakpirates.com">
     <meta itemprop="address" content="UK">
   </div>
-
-  <ng-container *ngIf="show.hosts?.length > 0">
-    <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
-
-    <bp-host-list [hosts]="show.hosts"></bp-host-list>
-  </ng-container>
-
-  <ng-container *ngIf="show.genres?.length > 0">
-    <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
-
-    <bp-genre-list [genres]="show.genres"></bp-genre-list>
-  </ng-container>
 
   <ng-container *ngIf="show?.description">
     <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
@@ -40,4 +28,17 @@
 
     <div class="show__clear"></div>
   </ng-container>
+
+  <ng-container *ngIf="show.genres?.length > 0">
+    <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
+
+    <bp-genre-list [genres]="show.genres"></bp-genre-list>
+  </ng-container>
+
+  <ng-container *ngIf="show.hosts?.length > 0">
+    <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
+
+    <bp-host-list [hosts]="show.hosts"></bp-host-list>
+  </ng-container>
+
 </div>
