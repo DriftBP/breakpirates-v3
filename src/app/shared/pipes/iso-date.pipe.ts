@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 @Pipe({
     name: 'isoDate'
@@ -8,6 +7,6 @@ import moment from 'moment';
 export class IsoDatePipe implements PipeTransform {
 
   public transform(value: number): string {
-    return moment.unix(value).format();
+    return DateTime.utc(value).toISO();
   }
 }

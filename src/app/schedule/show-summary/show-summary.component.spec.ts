@@ -1,7 +1,7 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { of } from 'rxjs';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
@@ -29,7 +29,7 @@ describe('ShowSummaryComponent', () => {
         showHosts: () => of([]),
         showGenres: () => of([]),
         dayName: () => '',
-        getDates: () => ({ startDate: moment(), endDate: moment() }),
+        getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),
       });
   }));
 

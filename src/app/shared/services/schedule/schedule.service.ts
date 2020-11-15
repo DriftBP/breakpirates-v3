@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of, BehaviorSubject, interval, Subscription } from 'rxjs';
-import moment from 'moment';
+import { DateTime, Info } from 'luxon';
 
 import { AppSettings } from '../../../app-settings';
 import { Show } from '../../../schedule/show';
@@ -40,7 +40,7 @@ export class ScheduleService implements OnDestroy {
     for (let i = 1; i <= 7; i++) {
       this.daysOfWeek.push({
         id: i,
-        name: moment.weekdays(i)
+        name: Info.weekdays()[i - 1]
       });
     }
 
@@ -129,31 +129,31 @@ export class ScheduleService implements OnDestroy {
     return this.http.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
   }
 
-  getDates(show: Show): { startDate: moment.Moment, endDate: moment.Moment } {
-    const today = moment().isoWeekday();
-    const startTime = moment(show.start_time, this.timeFormat);
-    const endTime = moment(show.end_time, this.timeFormat);
+  getDates(show: Show): { startDate: DateTime, endDate: DateTime } {
+    const today = DateTime.local().weekday;
+    const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
+    const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
 
-    let nextDate: moment.Moment;
-    let endDate: moment.Moment;
+    let nextDate: DateTime;
+    let endDate: DateTime;
 
     // if we haven't yet passed the day of the week that I need:
     if (today <= show.day_id) {
       // then just give me this week's instance of that day
-      nextDate = moment().isoWeekday(show.day_id);
+      nextDate = DateTime.local().set({day: show.day_id});
     } else {
       // otherwise, give me *next week's* instance of that same day
-      nextDate = moment().add(1, 'weeks').isoWeekday(show.day_id);
+      nextDate = DateTime.local().plus({weeks: 1}).set({day: show.day_id});
     }
 
     // Set show time
-    const startDate = moment(nextDate.format(this.dateFormat) + ' ' + startTime.format(this.timeFormat));
+    const startDate = DateTime.local(nextDate.year, nextDate.month, nextDate.day, startTime.hour, startTime.minute, startTime.second);
 
-    if (endTime.hours() < startTime.hours()) {
+    if (endTime.hour < startTime.hour) {
       // Ends the following day
-      endDate = moment(startDate).add(1, 'days').set({hour: endTime.hours(), minute: endTime.minutes()});
+      endDate = DateTime.local().plus({day: 1}).set({hour: endTime.hour, minute: endTime.minute});
     } else {
-      endDate = moment(startDate).set({hour: endTime.hours(), minute: endTime.minutes()});
+      endDate = DateTime.local().set({hour: endTime.hour, minute: endTime.minute});
     }
 
     return { startDate: startDate, endDate: endDate };

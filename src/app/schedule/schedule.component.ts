@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 
 import { Show } from './show';
@@ -18,7 +18,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  activeDayId = moment().isoWeekday();
+  activeDayId = DateTime.local().weekday;
   daySelected = false;
   title: string;
   days: Day[];

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Show } from './show';
@@ -15,7 +15,7 @@ export class ScheduleResolve implements Resolve<Show[]> {
 
     // Default to today if not specified
     if (!dayId) {
-      dayId = moment().isoWeekday();
+      dayId = DateTime.local().weekday;
     }
 
     return this.scheduleService.shows(dayId);
