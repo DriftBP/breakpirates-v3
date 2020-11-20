@@ -22,7 +22,7 @@ export class FooterComponent {
 
   setThemeSetting(themeSetting: ThemeSetting) {
     this.themeService.setThemeSetting(themeSetting);
-    this.googleAnalyticsService.trackEvent('click', 'Theme selection', themeSetting.toString())
+    this.googleAnalyticsService.trackEvent('click', 'Theme selection', themeSetting.toString());
   }
 
 }
