@@ -10,6 +10,7 @@
             class="footer-bar__social-site-link"
             [title]="site.Description"
             [href]="site.Url"
+            (click)="onSocialClick(site)"
             ><i class="fab" [ngClass]="'fa-' + site.Icon"></i></a>
       </li>
     </ul>
