@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { appInitializerFactory } from './app-initializer.factory';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { AppSettings } from './app-settings';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,7 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-    })
+    }),
+    RecaptchaV3Module
   ],
   providers: [
     {
@@ -39,6 +42,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       useFactory: appInitializerFactory,
       deps: [TranslateService, Injector],
       multi: true
+    },
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: AppSettings.RECAPTCHA_V3_SITE_KEY
     }
   ],
   bootstrap: [AppComponent]

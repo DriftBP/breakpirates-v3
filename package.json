@@ -30,6 +30,7 @@
     "core-js": "^2.6.11",
     "mediaelement": "^4.2.16",
     "moment": "^2.29.1",
+    "ng-recaptcha": "^6.0.2",
     "ngx-bootstrap": "^6.2.0",
     "rxjs": "^6.6.3",
     "rxjs-compat": "^6.6.3",

@@ -30,4 +30,7 @@ export class AppSettings {
 
     // UI settings
     public static ENABLE_BREADCRUMB = false;
+
+    // Recaptcha
+    public static RECAPTCHA_V3_SITE_KEY = '6Ld3QOkZAAAAAKKEYLVQq4KQAKjkNeOytJGj4Wug';
 }

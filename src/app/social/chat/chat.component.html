@@ -2,10 +2,16 @@
 
 <h1>{{'SOCIAL.CHAT' | translate}}</h1>
 
-<iframe #chatIframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl | safe: 'resourceUrl'"></iframe>
+<ng-container *ngIf="!enableChatClient">
+  <p>{{recaptchaError}}</p>
+</ng-container>
 
-<button *ngIf="enableFullscreen" (click)="fullscreen()" class="btn btn-primary">{{'SOCIAL.FULL_SCREEN' | translate}}</button>
+<ng-container *ngIf="enableChatClient">
+  <iframe #chatIframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl | safe: 'resourceUrl'"></iframe>
 
-<h2>{{'SOCIAL.USE_OWN_APP' | translate}}</h2>
+  <button *ngIf="enableFullscreen" (click)="fullscreen()" class="btn btn-primary">{{'SOCIAL.FULL_SCREEN' | translate}}</button>
 
-<p [innerHTML]="'SOCIAL.CHAT_SERVER_DETAILS' | translate: {ircChannel: ircChannel, ircServer: ircServer, ircPort: ircPort}"></p>
+  <h2>{{'SOCIAL.USE_OWN_APP' | translate}}</h2>
+
+  <p [innerHTML]="'SOCIAL.CHAT_SERVER_DETAILS' | translate: {ircChannel: ircChannel, ircServer: ircServer, ircPort: ircPort}"></p>
+</ng-container>
