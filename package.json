@@ -47,7 +47,7 @@
     "@angular/compiler-cli": "^11.0.2",
     "@angular/language-service": "^11.0.2",
     "@types/jest": "^26.0.15",
-    "@types/node": "^12.19.6",
+    "@types/node": "^12.19.7",
     "@typescript-eslint/eslint-plugin": "4.3.0",
     "@typescript-eslint/parser": "4.3.0",
     "browserslist-useragent-regexp": "^2.1.1",
