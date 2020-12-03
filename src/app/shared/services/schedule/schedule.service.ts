@@ -1,7 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { of, BehaviorSubject, interval, Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import moment from 'moment';
 
 import { AppSettings } from '../../../app-settings';
@@ -88,7 +89,14 @@ export class ScheduleService implements OnDestroy {
   }
 
   private getServerInfo(): Observable<ServerInfo> {
-    const mockData = '20,1,80,80,20,128,Breakz - Jungle Dubz n Breakz - 23.02.2020 (1)';
+    return this.http.jsonp(AppSettings.STREAM_URL_STATS, 'callback').pipe(
+      map(data => this.toServerInfo(data.toString()))
+    );
+  }
+
+  private toServerInfo(pageContent: string): ServerInfo {
+    const contentRegex = /<body>(.*)<\/body>/;
+    const data = pageContent.match(contentRegex)[1];
 
     const [
       currentListeners,
@@ -98,10 +106,10 @@ export class ScheduleService implements OnDestroy {
       uniqueListeners,
       bitrate,
       songTitle
-     ] = mockData.split(',');
+     ] = data.split(',');
 
     const serverInfo: ServerInfo = {
-      CurrentListeners: Math.floor(Math.random() * Math.floor(80)),
+      CurrentListeners: parseInt(currentListeners, 10),
       StreamStatus: parseInt(streamStatus, 10),
       PeakListeners: parseInt(peakListeners, 10),
       MaxListeners: parseInt(maxListeners, 10),
@@ -110,7 +118,7 @@ export class ScheduleService implements OnDestroy {
       SongTitle: songTitle
     };
 
-    return of(serverInfo);
+    return serverInfo;
   }
 
   showHosts(showId: number): Observable<Host[]> {
