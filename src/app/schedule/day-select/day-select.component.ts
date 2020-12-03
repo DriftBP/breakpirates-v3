@@ -10,4 +10,7 @@ export class DaySelectComponent {
   @Input() days: Day[];
   @Input() activeDayId: number;
 
+  setActiveDayId(dayId: number) {
+    this.activeDayId = dayId;
+  }
 }

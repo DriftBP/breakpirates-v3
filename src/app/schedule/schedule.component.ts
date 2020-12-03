@@ -22,7 +22,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   daySelected = false;
   title: string;
   days: Day[];
-  todaysSchedule: Show[];
   breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
@@ -58,8 +57,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           scheduleConfigActive
         ]);
       }
-
-      this.todaysSchedule = this.route.snapshot.data['show'];
     });
   }
 
