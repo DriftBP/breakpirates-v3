@@ -19,7 +19,7 @@ export class DayScheduleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.todaysSchedule = this.route.snapshot.data['show'];
+      this.todaysSchedule = this.route.snapshot.data['schedule'];
     });
   }
 
