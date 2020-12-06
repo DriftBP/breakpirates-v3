@@ -62,6 +62,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         scheduleConfigActive
       ]);
 
+      this.activeDayId = moment().isoWeekday();
+
       // Default title
       this.title = 'SCHEDULE.TODAYS_SCHEDULE';
     }
