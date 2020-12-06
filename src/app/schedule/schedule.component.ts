@@ -35,7 +35,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(e => this.route.firstChild!.paramMap)).subscribe(params => {
+      switchMap(e => this.route.firstChild?.paramMap)).subscribe(params => {
         this.onParamChange(params);
     });
   }
