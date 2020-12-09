@@ -19,8 +19,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = moment().isoWeekday();
-  daySelected = false;
-  title: string;
   days: Day[];
   breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
@@ -46,14 +44,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     if (dayId) {
       this.activeDayId = parseInt(dayId);
 
-      this.daySelected = true;
-
-      this.setTitle();
+      const dayName = this.getDayName(this.activeDayId);
 
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         scheduleConfigInactive,
         {
-          name: this.title,
+          name: dayName,
           isActive: true
         }
       ]);
@@ -63,9 +59,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       ]);
 
       this.activeDayId = moment().isoWeekday();
-
-      // Default title
-      this.title = 'SCHEDULE.TODAYS_SCHEDULE';
     }
   }
 
@@ -75,12 +68,14 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setTitle(): void {
-    const activeDay = this.days.find(day => day.id === this.activeDayId);
+  private getDayName(activeDayId: number): string {
+    const activeDay = this.days.find(day => day.id === activeDayId);
 
     if (activeDay) {
-      this.title = activeDay.name;
+      return activeDay.name;
     }
+
+    return '';
   }
 
 }
