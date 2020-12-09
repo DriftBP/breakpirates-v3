@@ -9,5 +9,4 @@ import { Day } from '../day';
 export class DaySelectComponent {
   @Input() days: Day[];
   @Input() activeDayId: number;
-
 }
