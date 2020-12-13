@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Resolve } from '@angular/router';
+import moment from 'moment';
 
 import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Show } from './show';
 
 @Injectable()
-export class ScheduleResolve implements Resolve<Show[]> {
+export class TodaysScheduleResolve implements Resolve<Show[]> {
 
   constructor(private scheduleService: ScheduleService) {}
 
-  resolve(route: ActivatedRouteSnapshot) {
-    const dayId = parseInt(route.paramMap.get('id'), 10);
+  resolve() {
+    const dayId = moment().isoWeekday();
 
     return this.scheduleService.shows(dayId);
   }

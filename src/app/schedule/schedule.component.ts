@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import moment from 'moment';
 import { Subscription } from 'rxjs';
+import { filter, startWith, switchMap } from 'rxjs/operators';
 
-import { Show } from './show';
 import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Day } from './day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -15,66 +15,67 @@ import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcru
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
 
-  private paramsSubscription: Subscription;
+  private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = moment().isoWeekday();
-  daySelected = false;
-  title: string;
   days: Day[];
-  todaysSchedule: Show[];
   breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly scheduleService: ScheduleService
+    private readonly scheduleService: ScheduleService,
+    private readonly router: Router
   ) { }
 
   ngOnInit() {
     this.days = this.scheduleService.days();
 
-    if (!this.route.snapshot.paramMap.get('id')) {
-      // Default title
-      this.title = 'SCHEDULE.TODAYS_SCHEDULE';
-    }
-
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      if (params.get('id')) {
-        this.activeDayId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-
-        this.daySelected = true;
-
-        this.setTitle();
-
-        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-          scheduleConfigInactive,
-          {
-            name: this.title,
-            isActive: true
-          }
-        ]);
-      } else {
-        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-          scheduleConfigActive
-        ]);
-      }
-
-      this.todaysSchedule = this.route.snapshot.data['show'];
+    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
+      startWith(undefined),
+      switchMap(e => this.route.firstChild?.paramMap)).subscribe(params => {
+        this.onParamChange(params);
     });
   }
 
-  ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+  onParamChange(params: ParamMap) {
+    const dayId = params.get('id');
+
+    if (dayId) {
+      this.activeDayId = parseInt(dayId);
+
+      const dayName = this.getDayName(this.activeDayId);
+
+      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+        scheduleConfigInactive,
+        {
+          name: dayName,
+          isActive: true
+        }
+      ]);
+    } else {
+      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+        scheduleConfigActive
+      ]);
+
+      this.activeDayId = moment().isoWeekday();
     }
   }
 
-  private setTitle(): void {
-    const activeDay = this.days.find(day => day.id === this.activeDayId);
+  ngOnDestroy() {
+    if (this.childParamsSubscription) {
+      this.childParamsSubscription.unsubscribe();
+    }
+  }
+
+  private getDayName(activeDayId: number): string {
+    const activeDay = this.days.find(day => day.id === activeDayId);
 
     if (activeDay) {
-      this.title = activeDay.name;
+      return activeDay.name;
     }
+
+    return '';
   }
 
 }
