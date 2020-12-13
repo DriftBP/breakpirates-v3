@@ -21,11 +21,13 @@ import { HostListComponent } from './host-list/host-list.component';
 import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ThemeSelectComponent } from './theme-select/theme-select.component';
 import { ServerStatsComponent } from './server-stats/server-stats.component';
 import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
+import { FooterBarComponent } from './footer-bar/footer-bar.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
@@ -39,7 +41,6 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { IsoDatePipe } from './pipes/iso-date.pipe';
 
 // Directives
@@ -85,6 +86,7 @@ export function customHttpLoader(http: HttpClient) {
     GenreListComponent,
     SidebarComponent,
     FooterComponent,
+    ThemeSelectComponent,
     ServerStatsComponent,
     ChatRoomPromoComponent,
     NotFoundComponent,
