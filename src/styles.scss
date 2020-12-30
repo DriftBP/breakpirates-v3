@@ -74,3 +74,13 @@ a {
     background-color: lighten($color-brand-primary, 10%);
   }
 }
+
+/* NGX Bootstrap fix for itemsPerSlide */
+.carousel-item {
+  margin-right: 0;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  z-index: 10;
+}
