@@ -4,6 +4,18 @@
 
 <p>{{'HOME.DESCRIPTION' | translate}}</p>
 
+<carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="false"
+          [indicatorsByChunk]="true"
+          [isAnimated]="true">
+  <slide *ngFor="let slide of slides; let index=index">
+    <img [src]="imagePath + slide.image" alt="image slide" style="display: block; width: 100%;">
+    <div class="carousel-caption">
+      <h4>Slide {{index}}</h4>
+    </div>
+  </slide>
+</carousel>
+
 <ng-container *ngIf="scheduleLoaded">
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 

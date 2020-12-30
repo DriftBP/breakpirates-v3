@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
@@ -9,6 +10,7 @@ import { ScheduleModule } from '../schedule/schedule.module';
 
 @NgModule({
   imports: [
+    CarouselModule.forRoot(),
     CommonModule,
     RouterModule,
     SharedModule,
