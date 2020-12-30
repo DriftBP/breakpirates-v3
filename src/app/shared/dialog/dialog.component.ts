@@ -58,7 +58,9 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.dialogElement.nativeElement.close();
+    if (this.dialogElement.nativeElement.close) {
+      this.dialogElement.nativeElement.close();
+    }
   }
 
   ngOnDestroy() {
