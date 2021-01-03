@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
+import { AppSettings } from './app-settings';
 
 @Component({
   selector: 'bp-root',
@@ -27,6 +28,7 @@ export class AppComponent implements OnDestroy {
   private currentTheme: Theme;
 
   loading: boolean;
+  adRefreshSecs = AppSettings.AD_REFRESH_SECS;
 
   constructor (
     private router: Router,

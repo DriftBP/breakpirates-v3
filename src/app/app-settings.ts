@@ -28,6 +28,10 @@ export class AppSettings {
     // Google Analytics
     public static GA_PROPERTY_ID = 'UA-111122-1';
 
+    // Google Adsense
+    public static ADSENSE_CLIENT = 'ca-pub-0817931421481428';
+    public static AD_REFRESH_SECS = 60;
+
     // UI settings
     public static ENABLE_BREADCRUMB = false;
 }
