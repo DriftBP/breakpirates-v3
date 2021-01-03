@@ -25,6 +25,9 @@ describe('DonateComponent', () => {
 
   it('should track form submission', async () => {
     const { instance } = await shallow.render();
+
+    expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(0);
+
     instance.donateFormElement.nativeElement.submit();
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(1);
