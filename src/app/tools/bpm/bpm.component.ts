@@ -1,13 +1,9 @@
 import { Component, HostListener } from '@angular/core';
 import moment from 'moment';
+
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
-
-export enum DataCollectionStatus {
-  Empty,
-  Insufficient,
-  Full
-}
+import { DataCollectionStatus } from './data-collection-status';
 
 class DataPoint {
   time: moment.Moment;
@@ -15,8 +11,7 @@ class DataPoint {
 
 @Component({
   selector: 'bp-bpm',
-  templateUrl: './bpm.component.html',
-  styleUrls: ['./bpm.component.scss']
+  templateUrl: './bpm.component.html'
 })
 export class BpmComponent {
   private maxDataPoints = 20;
