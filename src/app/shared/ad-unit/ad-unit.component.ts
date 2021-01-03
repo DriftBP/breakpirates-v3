@@ -8,7 +8,7 @@ import { AppSettings } from '../../app-settings';
   styleUrls: ['./ad-unit.component.scss']
 })
 export class AdUnitComponent implements OnChanges, OnDestroy {
-  @Input() adUnit: number;
+  @Input() adSlot: number;
   @Input() width: number;
   @Input() height: number;
   @Input() refreshSecs: number;
