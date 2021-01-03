@@ -1,3 +1,5 @@
-.ad-wrapper {
-  margin: 1em auto;
+.ad-unit {
+  &__wrapper {
+    margin: 1em auto;
+  }
 }
