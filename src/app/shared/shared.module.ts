@@ -28,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
+import { AdUnitComponent } from './ad-unit/ad-unit.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
@@ -95,7 +96,8 @@ export function customHttpLoader(http: HttpClient) {
     SupportedBrowsersNoticeComponent,
     ActiveDirective,
     DialogComponent,
-    ImageClickDirective
+    ImageClickDirective,
+    AdUnitComponent
   ],
   exports: [
     NavigationComponent,
@@ -120,7 +122,8 @@ export function customHttpLoader(http: HttpClient) {
     SupportedBrowsersNoticeComponent,
     ActiveDirective,
     DialogComponent,
-    ImageClickDirective
+    ImageClickDirective,
+    AdUnitComponent
   ],
   providers: [
     GoogleAnalyticsService,
