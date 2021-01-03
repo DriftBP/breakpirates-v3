@@ -1,4 +1,6 @@
-<ins class="ad-wrapper adsbygoogle"
-      attr.style="display:{{displayValue()}};width:{{width}}px;height:{{height}}px"
+<ng-container *ngIf="displayAd">
+  <ins class="ad-wrapper adsbygoogle"
+      attr.style="display:block;width:{{width}}px;height:{{height}}px"
       attr.data-ad-client="{{adsenseClient}}"
       attr.data-ad-slot="{{adUnit}}"></ins>
+</ng-container>

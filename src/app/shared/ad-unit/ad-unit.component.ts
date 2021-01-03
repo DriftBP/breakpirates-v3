@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 
@@ -7,7 +7,7 @@ import { AppSettings } from '../../app-settings';
   templateUrl: './ad-unit.component.html',
   styleUrls: ['./ad-unit.component.scss']
 })
-export class AdUnitComponent implements OnChanges {
+export class AdUnitComponent implements OnChanges, OnDestroy {
   @Input() adUnit: number;
   @Input() width: number;
   @Input() height: number;
@@ -15,7 +15,7 @@ export class AdUnitComponent implements OnChanges {
 
   private interval: number;
   private refreshMs = 0;
-  private refreshAfterMs = 1000;
+  private refreshDelayMs = 10;
 
   adsenseClient = AppSettings.ADSENSE_CLIENT;
   displayAd: boolean;
@@ -32,27 +32,29 @@ export class AdUnitComponent implements OnChanges {
         window.clearInterval(this.interval);
       }
 
-      this.interval = window.setInterval(this.onRefresh, this.refreshMs);
+      this.interval = window.setInterval(this.onRefresh.bind(this), this.refreshMs);
     }
   }
 
-  displayValue(): string {
-    return this.displayAd ? 'block' : 'none';
+  ngOnDestroy() {
+    if (this.interval) {
+      window.clearInterval(this.interval);
+    }
   }
 
-  hideAd(): void {
+  private hideAd(): void {
     this.displayAd = false;
   }
 
-  showAd(): void {
+  private showAd(): void {
     this.displayAd = true;
   }
 
-  onRefresh(): void {
+  private onRefresh(): void {
     this.hideAd();
 
     window.setTimeout(() => {
       this.showAd();
-    }, this.refreshAfterMs);
+    }, this.refreshDelayMs);
   }
 }
