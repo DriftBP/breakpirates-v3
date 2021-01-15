@@ -6,7 +6,7 @@ import { DateTime } from 'luxon';
 })
 export class IsoDatePipe implements PipeTransform {
 
-  public transform(value: number): string {
-    return DateTime.utc(value).toISO();
+  public transform(value: string): string {
+    return DateTime.fromSeconds(parseInt(value)).toISO();
   }
 }

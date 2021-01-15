@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 })
 export class FormattedDatePipe implements PipeTransform {
 
-  public transform(value: number): string {
-    return DateTime.utc(value).toFormat('dddd, MMMM Do YYYY');
+  public transform(value: string): string {
+    return DateTime.fromSeconds(parseInt(value)).toFormat('dddd, MMMM Do YYYY');
   }
 }
