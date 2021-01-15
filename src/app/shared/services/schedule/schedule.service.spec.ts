@@ -6,7 +6,7 @@ import { ScheduleService } from './schedule.service';
 import { Show } from '../../../schedule/show';
 
 const dateFormat = 'YYYY-MM-DD';
-const testDate = DateTime.utc();
+const testDate = DateTime.local();
 
 const mockShow1: Show = {
   id: 1,
