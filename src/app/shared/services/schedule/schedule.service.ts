@@ -30,7 +30,7 @@ export class ScheduleService implements OnDestroy {
   private serverInfoSubscription: Subscription;
 
   public dateFormat = 'YYYY-MM-DD';
-  public timeFormat = 'HH:mm';
+  public timeFormat = 'HH:mm:ss';
 
   constructor(
     private http: HttpClient
