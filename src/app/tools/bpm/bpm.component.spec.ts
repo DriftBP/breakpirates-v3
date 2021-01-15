@@ -1,6 +1,6 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { BpmComponent } from './bpm.component';
 import { ToolsModule } from '../tools.module';
@@ -9,10 +9,10 @@ import { DataCollectionStatus } from './data-collection-status';
 const maxDataPoints = 20;
 const emptyDataPoints = [];
 const insufficientDataPoints = new Array(maxDataPoints - 1).fill({
-  time: moment()
+  time: DateTime.local()
 }, 0, maxDataPoints);
 const fullDataPoints = new Array(maxDataPoints).fill({
-  time: moment()
+  time: DateTime.local()
 }, 0, maxDataPoints);
 
 describe('BpmComponent', () => {

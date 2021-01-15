@@ -21,12 +21,7 @@
     "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "paths": {
-      "moment": [
-        "../node_modules/moment/min/moment.min.js"
-      ]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

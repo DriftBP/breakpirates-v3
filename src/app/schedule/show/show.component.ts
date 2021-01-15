@@ -51,8 +51,8 @@ export class ShowComponent implements OnInit, OnDestroy {
 
     const { startDate, endDate } = this.scheduleService.getDates(this.show);
 
-    this.nextDate = startDate.format();
-    this.endDate = endDate.format();
+    this.nextDate = startDate.toISO();
+    this.endDate = endDate.toISO();
 
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
       name: this.show.title,

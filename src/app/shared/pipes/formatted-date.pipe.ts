@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 @Pipe({
     name: 'formattedDate'
 })
 export class FormattedDatePipe implements PipeTransform {
 
-  public transform(value: number): string {
-    return moment.unix(value).format('dddd, MMMM Do YYYY');
+  public transform(value: string): string {
+    return DateTime.fromSeconds(parseInt(value)).toLocaleString(DateTime.DATE_HUGE);
   }
 }
