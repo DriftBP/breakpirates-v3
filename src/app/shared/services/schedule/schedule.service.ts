@@ -151,9 +151,9 @@ export class ScheduleService implements OnDestroy {
 
     if (endTime.hour < startTime.hour) {
       // Ends the following day
-      endDate = DateTime.local().plus({day: 1}).set({hour: endTime.hour, minute: endTime.minute});
+      endDate = startDate.plus({day: 1}).set({hour: endTime.hour, minute: endTime.minute});
     } else {
-      endDate = DateTime.local().set({hour: endTime.hour, minute: endTime.minute});
+      endDate = startDate.set({hour: endTime.hour, minute: endTime.minute});
     }
 
     return { startDate: startDate, endDate: endDate };
