@@ -143,7 +143,7 @@ export class ScheduleService implements OnDestroy {
       nextDate = DateTime.local().set({weekday: show.day_id});
     } else {
       // otherwise, give me *next week's* instance of that same day
-      nextDate = DateTime.local().plus({weeks: 1}).set({day: show.day_id});
+      nextDate = DateTime.local().plus({weeks: 1}).set({weekday: show.day_id});
     }
 
     // Set show time
