@@ -39,7 +39,7 @@ export class NewsComponent implements OnInit {
     this.showMore = true;
   }
 
-  unixTimestampToTime(timestamp): Date {
+  unixTimeToStampToTime(timestamp: number): Date {
     return DateTime.utc(timestamp * 1000).toJSDate();
   }
 }

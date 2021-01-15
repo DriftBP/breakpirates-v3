@@ -2,8 +2,9 @@ import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 import { DateTime } from 'luxon';
 
-import { BpmComponent, DataCollectionStatus } from './bpm.component';
+import { BpmComponent } from './bpm.component';
 import { ToolsModule } from '../tools.module';
+import { DataCollectionStatus } from './data-collection-status';
 
 const maxDataPoints = 20;
 const emptyDataPoints = [];

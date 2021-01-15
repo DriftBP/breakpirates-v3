@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
+import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 import { NavigationService } from '../services/navigation/navigation.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   assetRoot = AppSettings.ASSET_ROOT;
 
   constructor(
-    private readonly navigationService: NavigationService
+    private readonly navigationService: NavigationService,
+    private readonly googleAnalyticsService: GoogleAnalyticsService
   ) { }
 
   ngOnInit() {
@@ -34,5 +36,9 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   toggleIsCollapsed() {
     this.navigationService.setCollapsed(!this.isCollapsed);
+  }
+
+  onTuneInClick(option: string) {
+    this.googleAnalyticsService.trackEvent('click', 'Tune in link', option);
   }
 }

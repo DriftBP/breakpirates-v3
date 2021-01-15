@@ -33,23 +33,50 @@
           </button>
           <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
             <li role="menuitem">
-              <a class="dropdown-item" href="/stream.php">{{'NAVIGATION.DEFAULT_PLAYER' | translate}}</a>
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Default')"
+                href="/stream.php"
+              >{{'NAVIGATION.DEFAULT_PLAYER' | translate}}</a>
             </li>
             <li role="menuitem">
-              <a class="dropdown-item" href="/stream.m3u">iTunes / Apple Music</a>
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Apple Music')"
+                href="/stream.m3u"
+              >iTunes / Apple Music</a>
             </li>
             <li role="menuitem">
-              <a class="dropdown-item" href="/stream.asx">Windows Media Player</a>
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Windows Media Player')"
+                href="/stream.asx"
+              >Windows Media Player</a>
             </li>
             <li role="menuitem">
-              <a class="dropdown-item" href="https://tunein.com/radio/Break-Pirates-Radio-s97007/" target="_blank">TuneIn Radio</a>
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('TuneIn Radio')"
+                href="https://tunein.com/radio/Break-Pirates-Radio-s97007/"
+                target="_blank"
+              >TuneIn Radio</a>
             </li>
             <li role="menuitem">
-              <a class="dropdown-item" href="/stream.ram">RealPlayer</a>
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('RealPlayer')"
+                href="/stream.ram"
+              >RealPlayer</a>
             </li>
             <li class="divider dropdown-divider"></li>
             <li role="menuitem">
-              <a class="dropdown-item" href="{{archiveUrl}}" rel="noopener" target="_blank">{{'NAVIGATION.SHOW_ARCHIVE' | translate}}</a>
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Mixcloud archive')"
+                href="{{archiveUrl}}"
+                rel="noopener"
+                target="_blank"
+              >{{'NAVIGATION.SHOW_ARCHIVE' | translate}}</a>
             </li>
           </ul>
         </li>
