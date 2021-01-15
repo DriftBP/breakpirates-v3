@@ -19,8 +19,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = DateTime.local().weekday;
-  daySelected = false;
-  title: string;
   days: Day[];
   breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
