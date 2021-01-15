@@ -140,7 +140,7 @@ export class ScheduleService implements OnDestroy {
     // if we haven't yet passed the day of the week that I need:
     if (today <= show.day_id) {
       // then just give me this week's instance of that day
-      nextDate = DateTime.local().set({day: show.day_id});
+      nextDate = DateTime.local().set({weekday: show.day_id});
     } else {
       // otherwise, give me *next week's* instance of that same day
       nextDate = DateTime.local().plus({weeks: 1}).set({day: show.day_id});
