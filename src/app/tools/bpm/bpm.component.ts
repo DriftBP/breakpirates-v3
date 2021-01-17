@@ -1,22 +1,17 @@
 import { Component, HostListener } from '@angular/core';
-import moment from 'moment';
+import { DateTime } from 'luxon';
+
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
-
-export enum DataCollectionStatus {
-  Empty,
-  Insufficient,
-  Full
-}
+import { DataCollectionStatus } from './data-collection-status';
 
 class DataPoint {
-  time: moment.Moment;
+  time: DateTime;
 }
 
 @Component({
   selector: 'bp-bpm',
-  templateUrl: './bpm.component.html',
-  styleUrls: ['./bpm.component.scss']
+  templateUrl: './bpm.component.html'
 })
 export class BpmComponent {
   private maxDataPoints = 20;
@@ -79,9 +74,9 @@ export class BpmComponent {
       const last = dataPoints.slice(dataPoints.length - 1, dataPoints.length).shift();
 
       // Difference in milliseconds
-      const time = last.time.diff(first.time);
+      const diff = last.time.diff(first.time);
 
-      const bpmUnrounded = (millisecondsInMinute / time) * (this.maxDataPoints - 1);
+      const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
 
       return Math.round(bpmUnrounded * 10) / 10;
     }
@@ -107,7 +102,7 @@ export class BpmComponent {
 
   onClick(): void {
     const dataPoint: DataPoint = {
-      time: moment()
+      time: DateTime.local()
     };
 
     this.addToBuffer(dataPoint);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { News } from './news';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -39,7 +39,7 @@ export class NewsComponent implements OnInit {
     this.showMore = true;
   }
 
-  unixTimeToStampToTime(timestamp: number): Date {
-    return moment(timestamp * 1000).toDate();
+  unixTimeToStampToTime(timestamp: string): Date {
+    return DateTime.fromSeconds(parseInt(timestamp)).toJSDate();
   }
 }

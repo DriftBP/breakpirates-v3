@@ -1,19 +1,19 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { ScheduleService } from './schedule.service';
-import { Show } from 'src/app/schedule/show';
+import { Show } from '../../../schedule/show';
 
 const dateFormat = 'YYYY-MM-DD';
-const testDate = moment();
+const testDate = DateTime.local();
 
 const mockShow1: Show = {
   id: 1,
   title: 'title',
   start_time: '18:00',
   end_time: '20:00',
-  day_id: testDate.isoWeekday(),
+  day_id: testDate.weekday,
   description: 'descripion',
   genres: [],
   hosts: []

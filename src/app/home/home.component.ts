@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../schedule/show';
@@ -18,7 +18,7 @@ interface ISlide {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private showsSubscription: Subscription;
-  private activeDayId = moment().isoWeekday();
+  private activeDayId = DateTime.local().weekday;
 
   imagePath = AppSettings.ASSET_HOME_IMAGE;
   slides: ISlide[] = [];

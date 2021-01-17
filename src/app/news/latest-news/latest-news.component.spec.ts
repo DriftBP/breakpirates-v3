@@ -7,7 +7,7 @@ import { News } from '../news';
 
 const mockNews: News = {
   id: 1,
-  date: 0,
+  date: '0',
   title: 'title',
   text: 'text',
   summary: 'summary',

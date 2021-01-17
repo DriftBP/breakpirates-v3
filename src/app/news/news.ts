@@ -1,6 +1,6 @@
 export class News {
     id: number;
-    date: number;
+    date: string;
     title: string;
     text: string;
     summary: string;

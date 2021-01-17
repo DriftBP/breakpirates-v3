@@ -35,8 +35,8 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
 
       const { startDate, endDate } = this.scheduleService.getDates(this.show);
 
-      this.nextDate = startDate.format();
-      this.endDate = endDate.format();
+      this.nextDate = startDate.toISO();
+      this.endDate = endDate.toISO();
 
       if (this.show.image) {
         this.showImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + this.show.image + ')';
