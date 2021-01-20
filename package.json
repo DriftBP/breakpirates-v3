@@ -26,7 +26,7 @@
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.0",
     "core-js": "^2.6.12",
     "luxon": "^1.25.0",
     "mediaelement": "^4.2.16",
