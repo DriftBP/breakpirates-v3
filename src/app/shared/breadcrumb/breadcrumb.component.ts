@@ -26,6 +26,10 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.breadcrumbSubscription = this.breadcrumbService.breadcrumb.subscribe(config => {
+      if (!config) {
+        config = [];
+      }
+
       if (this.isHome(config)) {
         this.configItems = [homeConfigActive].concat(config);
       } else {
@@ -53,6 +57,6 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   }
 
   private isHome(config: BreadcrumbConfigItem[]): boolean {
-    return config.length === 0;
+    return config && config.length === 0;
   }
 }
