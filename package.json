@@ -27,12 +27,10 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "bootstrap": "^4.6.0",
-    "core-js": "^2.6.12",
     "luxon": "^1.25.0",
     "mediaelement": "^4.2.16",
     "ngx-bootstrap": "^6.2.0",
     "rxjs": "^6.6.3",
-    "rxjs-compat": "^6.6.3",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.3"
   },

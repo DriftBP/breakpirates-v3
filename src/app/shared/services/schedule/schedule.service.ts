@@ -1,7 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of, BehaviorSubject, interval, Subscription } from 'rxjs';
+import { of, BehaviorSubject, interval, Subscription, Observable } from 'rxjs';
 import { DateTime, Info } from 'luxon';
 
 import { AppSettings } from '../../../app-settings';
