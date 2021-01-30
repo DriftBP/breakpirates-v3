@@ -7,6 +7,7 @@ import { ScheduleService } from '../../shared/services/schedule/schedule.service
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { AppSettings } from '../../app-settings';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-show',
@@ -19,17 +20,18 @@ export class ShowComponent implements OnInit, OnDestroy {
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     scheduleConfigInactive
   ];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   show: Show;
   dayName: string;
-  breadcrumbConfig: BreadcrumbConfigItem[] = [];
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
   nextDate: string;
   endDate: string;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly scheduleService: ScheduleService
+    private readonly scheduleService: ScheduleService,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
@@ -58,6 +60,8 @@ export class ShowComponent implements OnInit, OnDestroy {
       name: this.show.title,
       isActive: true
     });
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
 }

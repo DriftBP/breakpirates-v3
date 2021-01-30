@@ -1,9 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DateTime } from 'luxon';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { DataCollectionStatus } from './data-collection-status';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 class DataPoint {
   time: DateTime;
@@ -13,20 +14,20 @@ class DataPoint {
   selector: 'bp-bpm',
   templateUrl: './bpm.component.html'
 })
-export class BpmComponent {
+export class BpmComponent implements OnInit {
   private maxDataPoints = 20;
-
-  message: DataCollectionStatus;
-  statuses = DataCollectionStatus;
-  bpm: number;
-  beatBuffer: DataPoint[];
-  breadcrumbConfig: BreadcrumbConfigItem[] = [
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
       name: 'BPM_COUNTER.TITLE',
       isActive: true
     }
   ];
+
+  message: DataCollectionStatus;
+  statuses = DataCollectionStatus;
+  bpm: number;
+  beatBuffer: DataPoint[];
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -38,8 +39,14 @@ export class BpmComponent {
     }
   }
 
-  constructor() {
+  constructor(
+    private readonly breadcrumbService: BreadcrumbService
+  ) {
     this.reset();
+  }
+
+  ngOnInit() {
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
   private reset(): void {
