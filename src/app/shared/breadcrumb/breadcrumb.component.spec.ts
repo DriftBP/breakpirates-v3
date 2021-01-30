@@ -9,9 +9,7 @@ import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 import { homeConfigInactive, scheduleConfigActive } from './breadcrumb-config';
 import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
 
-const mockHomeConfig: BreadcrumbConfigItem[] = [
-  homeConfigInactive
-];
+const mockHomeConfig: BreadcrumbConfigItem[] = [];
 
 const mockScheduleConfig: BreadcrumbConfigItem[] = [
   homeConfigInactive,
@@ -23,7 +21,7 @@ const mockBreadcrumbService = {
 };
 
 const mockTranslateService = {
-  get: jest.fn()
+  get: jest.fn(key => of(key))
 };
 
 describe('BreadcrumbComponent', () => {
