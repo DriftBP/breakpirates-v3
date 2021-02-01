@@ -6,6 +6,7 @@ import { Genre } from '../genre';
 import { Show } from '../../schedule/show';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { musicConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-genre',
@@ -17,11 +18,11 @@ export class GenreComponent implements OnInit, OnDestroy {
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigInactive
   ];
-
-  breadcrumbConfig: BreadcrumbConfigItem[] = [];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
-    private route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   private paramsSubscription: Subscription;
@@ -49,6 +50,8 @@ export class GenreComponent implements OnInit, OnDestroy {
       name: this.genre.name,
       isActive: true
     });
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
 }

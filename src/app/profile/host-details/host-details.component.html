@@ -1,6 +1,4 @@
 <div *ngIf="profile !== undefined" itemscope itemtype="http://schema.org/Person">
-  <bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
-
   <h1 itemprop="name">{{profile.name}}</h1>
 
   <p *ngIf="profile.location">{{ profile.location }}</p>

@@ -8,6 +8,7 @@ import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Day } from './day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-schedule',
@@ -17,15 +18,16 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = DateTime.local().weekday;
   days: Day[];
-  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly scheduleService: ScheduleService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
@@ -60,6 +62,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
       this.activeDayId = DateTime.local().weekday;
     }
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
   ngOnDestroy() {

@@ -1,6 +1,4 @@
 <div *ngIf="show !== undefined" itemscope itemtype="http://schema.org/MusicEvent">
-  <bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
-
   <h1 itemprop="name">{{ show.title }}</h1>
 
   <p>{{ show.start_time | time }} - {{ show.end_time | time }} on <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a></p>

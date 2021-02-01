@@ -5,6 +5,7 @@ import { Host } from './host';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { SortOrder } from '../shared/pipes/sort-order';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-profile',
@@ -12,19 +13,22 @@ import { SortOrder } from '../shared/pipes/sort-order';
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent implements OnInit {
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [
+    profilesConfigActive
+  ];
 
   profiles: Host[];
   orders = SortOrder;
   order = SortOrder.Ascending;
-  breadcrumbConfig: BreadcrumbConfigItem[] = [
-    profilesConfigActive
-  ];
 
   constructor(
-    private route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+
     this.profiles = this.route.snapshot.data['profiles'];
   }
 
