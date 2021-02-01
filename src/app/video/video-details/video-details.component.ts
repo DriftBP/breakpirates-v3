@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Video } from '../video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { videoConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-video-details',
@@ -15,14 +16,14 @@ export class VideoDetailsComponent implements OnInit {
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigInactive
   ];
-
-  breadcrumbConfig: BreadcrumbConfigItem[] = [];
-
-  constructor(
-    private route: ActivatedRoute
-  ) { }
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   video: Video;
+
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly breadcrumbService: BreadcrumbService
+  ) { }
 
   ngOnInit() {
     this.video = this.route.snapshot.data['video'];
@@ -31,6 +32,8 @@ export class VideoDetailsComponent implements OnInit {
       name: this.video?.name,
       isActive: true
     });
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
 }

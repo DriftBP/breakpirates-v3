@@ -6,6 +6,7 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { FullscreenService } from '../services/fullscreen.service';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-chat',
@@ -15,10 +16,7 @@ import { FullscreenService } from '../services/fullscreen.service';
 export class ChatComponent implements OnInit {
   @ViewChild('chatIframe') chatElement: ElementRef;
 
-  ircServer = AppSettings.IRC_SERVER;
-  ircPort = AppSettings.IRC_PORT;
-  ircChannel = AppSettings.IRC_CHANNEL;
-  breadcrumbConfig: BreadcrumbConfigItem[] = [
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigInactive,
     {
       name: 'SOCIAL.CHAT',
@@ -26,15 +24,22 @@ export class ChatComponent implements OnInit {
     }
   ];
 
+  ircServer = AppSettings.IRC_SERVER;
+  ircPort = AppSettings.IRC_PORT;
+  ircChannel = AppSettings.IRC_CHANNEL;
+
   chatUrl = 'https://thelounge.hostco.de/?join=' + this.ircChannel;
   enableFullscreen = false;
 
   constructor(
     private readonly translateService: TranslateService,
-    private readonly fullscreenService: FullscreenService
+    private readonly fullscreenService: FullscreenService,
+    private readonly breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
   }
 

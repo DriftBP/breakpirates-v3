@@ -8,6 +8,7 @@ import { ProfileService } from '../profile.service';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-host-details',
@@ -21,15 +22,16 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigInactive
   ];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   profile: Host;
   shows: Show[];
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
-  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private profileService: ProfileService
+    private readonly route: ActivatedRoute,
+    private readonly profileService: ProfileService,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
@@ -55,6 +57,8 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
       name: this.profile.name,
       isActive: true
     });
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.showsSubscription = this.profileService.profileShows(this.profile.id)
       .subscribe(shows => this.shows = shows);
