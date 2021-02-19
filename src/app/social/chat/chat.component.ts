@@ -7,6 +7,7 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { FullscreenService } from '../services/fullscreen.service';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'bp-chat',
@@ -28,16 +29,21 @@ export class ChatComponent implements OnInit {
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
 
-  chatUrl = 'https://thelounge.hostco.de/?join=' + this.ircChannel;
+  chatUrl: SafeResourceUrl;
   enableFullscreen = false;
 
   constructor(
     private readonly translateService: TranslateService,
     private readonly fullscreenService: FullscreenService,
-    private readonly breadcrumbService: BreadcrumbService
+    private readonly breadcrumbService: BreadcrumbService,
+    private readonly sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
+    const url = `https://thelounge.hostco.de/?join=${this.ircChannel}`;
+
+    this.chatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen();

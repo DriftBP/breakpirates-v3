@@ -12,7 +12,7 @@ describe('MixcloudWidgetComponent', () => {
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
+    const { element } = await shallow.render({bind: {user: 'test'}});
 
     expect(element.nativeElement).toBeTruthy();
   });
