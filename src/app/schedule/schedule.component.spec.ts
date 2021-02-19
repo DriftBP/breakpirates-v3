@@ -1,13 +1,12 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
-import { of } from 'rxjs';
 import { Routes, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleModule } from './schedule.module';
-import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { Show } from './show';
+import { DayService } from './day.service';
 
 const routes: Routes = [];
 
@@ -28,9 +27,8 @@ describe('ScheduleComponent', () => {
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(ScheduleComponent, ScheduleModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .mock(ScheduleService, {
-        days: () => [],
-        shows: () => of([ mockShow ]),
+      .mock(DayService, {
+        days: () => []
       });
   }));
 
