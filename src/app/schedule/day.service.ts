@@ -8,14 +8,12 @@ export class DayService {
   private daysOfWeek: Day[];
 
   constructor() {
-    this.daysOfWeek = [];
-
-    for (let i = 1; i <= 7; i++) {
-      this.daysOfWeek.push({
-        id: i,
-        name: Info.weekdays()[i - 1]
-      });
-    }
+    this.daysOfWeek = [1,2,3,4,5,6,7].map(d => {
+      return {
+        id: d,
+        name: Info.weekdays()[d - 1]
+      };
+    });
   }
 
   days(): Day[] {
