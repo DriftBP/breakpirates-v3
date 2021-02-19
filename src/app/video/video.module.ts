@@ -6,9 +6,6 @@ import { VideoComponent } from './video.component';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { VideoRoutingModule } from './video-routing.module';
-import { VideoResolve } from './video.resolve';
-import { VideoDetailResolve } from './video-detail.resolve';
-import { VideoService } from './video.service';
 
 @NgModule({
   imports: [
@@ -17,11 +14,6 @@ import { VideoService } from './video.service';
     VideoRoutingModule,
     SharedModule
   ],
-  declarations: [VideoComponent, VideoDetailsComponent],
-  providers: [
-    VideoResolve,
-    VideoDetailResolve,
-    VideoService
-  ]
+  declarations: [VideoComponent, VideoDetailsComponent]
 })
 export class VideoModule { }

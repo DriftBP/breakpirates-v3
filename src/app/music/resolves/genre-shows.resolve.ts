@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
-import { MusicService } from './music.service';
-import { Show } from '../schedule/show';
+import { Show } from '../../schedule/show';
+import { MusicService } from '../music.service';
+import { MusicResolvesModule } from '../music-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: MusicResolvesModule
+})
 export class GenreShowsResolve implements Resolve<Show[]> {
 
-  constructor(private musicService: MusicService) {}
+  constructor(private readonly musicService: MusicService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
     return this.musicService.shows(parseInt(route.paramMap.get('id'), 10));

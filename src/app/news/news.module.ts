@@ -7,10 +7,7 @@ import { NewsArticleComponent } from './news-article/news-article.component';
 import { LatestNewsComponent } from './latest-news/latest-news.component';
 import { SharedModule } from '../shared/shared.module';
 import { FeaturedNewsComponent } from './featured-news/featured-news.component';
-import { NewsResolve } from './news.resolve';
-import { NewsArticleResolve } from './news-article.resolve';
 import { NewsRoutingModule } from './news-routing.module';
-import { NewsService } from './news.service';
 
 @NgModule({
   imports: [
@@ -20,11 +17,6 @@ import { NewsService } from './news.service';
     SharedModule
   ],
   declarations: [NewsComponent, NewsArticleComponent, LatestNewsComponent, FeaturedNewsComponent],
-  providers: [
-    NewsResolve,
-    NewsArticleResolve,
-    NewsService
-  ],
   exports: [
     LatestNewsComponent
   ]

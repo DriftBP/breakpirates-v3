@@ -5,8 +5,11 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../app-settings';
 import { Host } from './host';
 import { Show } from '../schedule/show';
+import { ProfileResolvesModule } from './profile-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: ProfileResolvesModule
+})
 export class ProfileService {
 
   constructor(

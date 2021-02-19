@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { MusicService } from '../music.service';
 
-import { MusicService } from './music.service';
-import { Genre } from './genre';
+import { Genre } from '../genre';
+import { MusicResolvesModule } from '../music-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: MusicResolvesModule
+})
 export class GenreResolve implements Resolve<Genre> {
 
-  constructor(private musicService: MusicService) {}
+  constructor(private readonly musicService: MusicService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
     return this.musicService.genre(parseInt(route.paramMap.get('id'), 10));

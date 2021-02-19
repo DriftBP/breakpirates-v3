@@ -4,8 +4,11 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../app-settings';
 import { Video } from './video';
+import { VideoResolvesModule } from './video-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: VideoResolvesModule
+})
 export class VideoService {
 
   constructor(
