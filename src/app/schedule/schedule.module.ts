@@ -11,6 +11,7 @@ import { DaySelectComponent } from './day-select/day-select.component';
 import { ScheduleResolve } from './schedule.resolve';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
 import { TodaysScheduleResolve } from './todays-schedule.resolve';
+import { DayService } from './day.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { TodaysScheduleResolve } from './todays-schedule.resolve';
   providers: [
     ScheduleResolve,
     ShowDetailsResolve,
-    TodaysScheduleResolve
+    TodaysScheduleResolve,
+    DayService
   ]
 })
 export class ScheduleModule { }

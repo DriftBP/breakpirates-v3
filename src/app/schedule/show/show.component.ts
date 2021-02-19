@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
+import { DayService } from '../day.service';
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -30,6 +31,7 @@ export class ShowComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly dayService: DayService,
     private readonly scheduleService: ScheduleService,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
@@ -49,7 +51,7 @@ export class ShowComponent implements OnInit, OnDestroy {
   initialiseState(): void {
     this.show = this.route.snapshot.data['show'];
 
-    this.dayName = this.scheduleService.dayName(this.show.day_id);
+    this.dayName = this.dayService.dayName(this.show.day_id);
 
     const { startDate, endDate } = this.scheduleService.getDates(this.show);
 
