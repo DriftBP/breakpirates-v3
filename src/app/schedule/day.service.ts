@@ -2,14 +2,10 @@ import { Injectable } from '@angular/core';
 import { Info } from 'luxon';
 
 import { Day } from './day';
-import { ScheduleModule } from './schedule.module';
 
 @Injectable()
 export class DayService {
   private daysOfWeek: Day[];
-
-  public dateFormat = 'YYYY-MM-DD';
-  public timeFormat = 'HH:mm:ss';
 
   constructor() {
     this.daysOfWeek = [];
