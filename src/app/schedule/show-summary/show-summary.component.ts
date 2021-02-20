@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
+import { DayService } from '../day.service';
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { AppSettings } from '../../app-settings';
 
@@ -22,6 +23,7 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
   showImage: string;
 
   constructor(
+    private dayService: DayService,
     private scheduleService: ScheduleService
   ) { }
 
@@ -30,7 +32,7 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
       this.nowPlayingSubscription = this.scheduleService.nowPlaying.subscribe(nowPlaying => this.onNow = nowPlaying?.id === this.show.id);
 
       if (this.displayDay) {
-        this.dayName = this.scheduleService.dayName(this.show.day_id);
+        this.dayName = this.dayService.dayName(this.show.day_id);
       }
 
       const { startDate, endDate } = this.scheduleService.getDates(this.show);

@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ShowComponent } from './show/show.component';
 import { DaySelectComponent } from './day-select/day-select.component';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
+import { DayService } from './day.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { DayScheduleComponent } from './day-schedule/day-schedule.component';
   declarations: [ScheduleComponent, ShowSummaryComponent, ShowComponent, DaySelectComponent, DayScheduleComponent],
   exports: [
     ShowSummaryComponent
+  ],
+  providers: [
+    DayService
   ]
 })
 export class ScheduleModule { }
