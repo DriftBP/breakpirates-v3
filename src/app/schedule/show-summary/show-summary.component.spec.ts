@@ -25,15 +25,15 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
-    .mock(DayService, {
-      dayName: () => ''
-    })
-    .mock(ScheduleService, {
+      .mock(DayService, {
+        dayName: () => ''
+      })
+      .mock(ScheduleService, {
         nowPlaying: of(mockShow2),
         showHosts: () => of([]),
         showGenres: () => of([]),
         getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),
-    });
+      });
   }));
 
   it('should create', async () => {
