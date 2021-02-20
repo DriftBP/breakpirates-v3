@@ -1,19 +1,16 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, BehaviorSubject, interval, Subscription, Observable } from 'rxjs';
-import { DateTime, Info } from 'luxon';
+import { DateTime } from 'luxon';
 
 import { AppSettings } from '../../../app-settings';
 import { Show } from '../../../schedule/show';
 import { Host } from '../../../profile/host';
-import { Day } from '../../../schedule/day';
 import { Genre } from '../../../music/genre';
 import { ServerInfo } from './server-info';
 
 @Injectable()
 export class ScheduleService implements OnDestroy {
-  private daysOfWeek: Day[];
-
   private _nowPlaying: BehaviorSubject<Show> = new BehaviorSubject(null);
 
   public readonly nowPlaying: Observable<Show> = this._nowPlaying.asObservable();
@@ -28,21 +25,11 @@ export class ScheduleService implements OnDestroy {
   private serverInfoIntervalSubscription: Subscription;
   private serverInfoSubscription: Subscription;
 
-  public dateFormat = 'YYYY-MM-DD';
   public timeFormat = 'HH:mm:ss';
 
   constructor(
     private http: HttpClient
   ) {
-    this.daysOfWeek = [];
-
-    for (let i = 1; i <= 7; i++) {
-      this.daysOfWeek.push({
-        id: i,
-        name: Info.weekdays()[i - 1]
-      });
-    }
-
     this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
 
     this.nowPlayingIntervalSubscription = interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
@@ -70,16 +57,6 @@ export class ScheduleService implements OnDestroy {
     if (this.serverInfoSubscription) {
       this.serverInfoSubscription.unsubscribe();
     }
-  }
-
-  days(): Day[] {
-    return this.daysOfWeek;
-  }
-
-  dayName(dayId: number): string {
-    const day = this.daysOfWeek.find((d: Day) => d.id === dayId);
-
-    return day?.name;
   }
 
   private getNowPlaying(): Observable<Show> {

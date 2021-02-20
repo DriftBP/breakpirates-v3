@@ -7,6 +7,7 @@ import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
 import { Show } from '../show';
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { DayService } from '../day.service';
 
 const mockShow1: Show = {
   id: 1,
@@ -24,11 +25,13 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
+      .mock(DayService, {
+        dayName: () => ''
+      })
       .mock(ScheduleService, {
         nowPlaying: of(mockShow2),
         showHosts: () => of([]),
         showGenres: () => of([]),
-        dayName: () => '',
         getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),
       });
   }));
