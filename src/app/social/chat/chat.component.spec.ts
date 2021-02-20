@@ -12,7 +12,7 @@ describe('ChatComponent', () => {
     shallow = new Shallow(ChatComponent, SocialModule)
       .mock(FullscreenService, {
         canRequestFullscreen: () => true
-      });;
+      });
   }));
 
   it('should create', async () => {
