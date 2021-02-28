@@ -2,7 +2,7 @@ import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { GenreComponent } from './genre.component';
-import { MusicModule } from './../music.module';
+import { MusicModule } from '../music.module';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 

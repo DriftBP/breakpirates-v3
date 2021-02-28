@@ -2,7 +2,7 @@ import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { ChatComponent } from './chat.component';
-import { SocialModule } from './../social.module';
+import { SocialModule } from '../social.module';
 
 describe('ChatComponent', () => {
   let shallow: Shallow<ChatComponent>;
