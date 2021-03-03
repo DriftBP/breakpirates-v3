@@ -12,6 +12,7 @@ import { ScheduleResolve } from './schedule.resolve';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
 import { TodaysScheduleResolve } from './todays-schedule.resolve';
 import { DayService } from './day.service';
+import { DaysResolve } from './days.resolve';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { DayService } from './day.service';
     ScheduleResolve,
     ShowDetailsResolve,
     TodaysScheduleResolve,
-    DayService
+    DayService,
+    DaysResolve
   ]
 })
 export class ScheduleModule { }
