@@ -7,9 +7,10 @@ import { DayScheduleComponent } from './day-schedule/day-schedule.component';
 import { ScheduleResolve } from './schedule.resolve';
 import { ShowDetailsResolve } from './show-details.resolve';
 import { TodaysScheduleResolve } from './todays-schedule.resolve';
+import { DaysResolve } from './days.resolve';
 
 const routes: Routes = [
-  { path: '', component: ScheduleComponent, children: [
+  { path: '', component: ScheduleComponent, resolve: { days: DaysResolve }, children: [
     { path: '', component: DayScheduleComponent, resolve: { schedule: TodaysScheduleResolve } },
     { path: ':id', component: DayScheduleComponent, resolve: { schedule: ScheduleResolve } },
   ] },
