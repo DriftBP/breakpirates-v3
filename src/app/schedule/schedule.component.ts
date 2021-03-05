@@ -30,8 +30,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.days = this.route.snapshot.data['days'];
+    this.paramsSubscription = this.route.data.subscribe(data => {
+      this.days = data.days;
     });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
