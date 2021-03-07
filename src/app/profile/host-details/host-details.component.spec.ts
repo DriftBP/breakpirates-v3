@@ -5,7 +5,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { HostDetailsComponent } from './host-details.component';
 import { ProfileModule } from '../profile.module';
-import { ProfileService } from '../profile.service';
 
 const routes: Routes = [];
 
@@ -14,7 +13,6 @@ describe('HostDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(HostDetailsComponent, ProfileModule)
-      .mock(ProfileService, {})
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
