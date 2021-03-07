@@ -19,6 +19,9 @@ import { DayService } from './day.service';
   declarations: [ScheduleComponent, ShowSummaryComponent, ShowComponent, DaySelectComponent, DayScheduleComponent],
   exports: [
     ShowSummaryComponent
+  ],
+  providers: [
+    DayService
   ]
 })
 export class ScheduleModule { }

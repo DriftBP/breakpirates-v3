@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { DateTime } from 'luxon';
-import { ScheduleResolvesModule } from '../schedule-resolves.module';
 
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { ScheduleResolvesModule } from '../schedule-resolves.module';
 import { Show } from '../show';
 
 @Injectable({
