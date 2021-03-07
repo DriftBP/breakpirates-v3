@@ -10,6 +10,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { MixcloudWidgetComponent } from './mixcloud-widget/mixcloud-widget.component';
 import { TwitterWidgetComponent } from './twitter-widget/twitter-widget.component';
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
+import { ProfileService } from './profile.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,15 @@ import { ProfileButtonComponent } from './profile-button/profile-button.componen
     SharedModule,
     ScheduleModule
   ],
-  declarations: [ProfilesComponent, HostDetailsComponent, MixcloudWidgetComponent, TwitterWidgetComponent, ProfileButtonComponent]
+  declarations: [
+    ProfilesComponent,
+    HostDetailsComponent,
+    MixcloudWidgetComponent,
+    TwitterWidgetComponent,
+    ProfileButtonComponent
+  ],
+  providers: [
+    ProfileService
+  ]
 })
 export class ProfileModule { }
