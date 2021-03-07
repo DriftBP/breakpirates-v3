@@ -4,8 +4,11 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../app-settings';
 import { News } from './news';
+import { NewsResolvesModule } from './news-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: NewsResolvesModule
+})
 export class NewsService {
 
   constructor(

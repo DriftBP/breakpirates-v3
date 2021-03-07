@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
-import { ProfileService } from './profile.service';
-import { Host } from './host';
+import { ProfileService } from '../profile.service';
+import { Host } from '../host';
+import { ProfileResolvesModule } from '../profile-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: ProfileResolvesModule
+})
 export class HostDetailsResolve implements Resolve<Host> {
 
   constructor(private profileService: ProfileService) {}

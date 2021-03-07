@@ -6,7 +6,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleModule } from './schedule.module';
 import { Show } from './show';
-import { DayService } from './day.service';
 
 const routes: Routes = [];
 
@@ -26,10 +25,7 @@ describe('ScheduleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(ScheduleComponent, ScheduleModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .mock(DayService, {
-        days: () => []
-      });
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
   it('should create', async () => {

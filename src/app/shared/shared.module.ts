@@ -32,7 +32,6 @@ import { AdUnitComponent } from './ad-unit/ad-unit.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { NewsService } from '../news/news.service';
 import { SocialService } from './services/social/social.service';
 import { ScheduleService } from './services/schedule/schedule.service';
 
@@ -127,7 +126,6 @@ export function customHttpLoader(http: HttpClient) {
   ],
   providers: [
     GoogleAnalyticsService,
-    NewsService,
     SocialService,
     ScheduleService
   ],

@@ -6,13 +6,9 @@ import { ShowSummaryComponent } from './show-summary/show-summary.component';
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ShowComponent } from './show/show.component';
-import { ShowDetailsResolve } from './show-details.resolve';
 import { DaySelectComponent } from './day-select/day-select.component';
-import { ScheduleResolve } from './schedule.resolve';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
-import { TodaysScheduleResolve } from './todays-schedule.resolve';
 import { DayService } from './day.service';
-import { DaysResolve } from './days.resolve';
 
 @NgModule({
   imports: [
@@ -25,11 +21,7 @@ import { DaysResolve } from './days.resolve';
     ShowSummaryComponent
   ],
   providers: [
-    ScheduleResolve,
-    ShowDetailsResolve,
-    TodaysScheduleResolve,
-    DayService,
-    DaysResolve
+    DayService
   ]
 })
 export class ScheduleModule { }

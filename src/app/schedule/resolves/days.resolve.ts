@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 
-import { DayService } from './day.service';
-import { Day } from './day';
+import { DayService } from '../day.service';
+import { ScheduleResolvesModule } from '../schedule-resolves.module';
+import { Day } from '../day';
 
-@Injectable()
+@Injectable({
+  providedIn: ScheduleResolvesModule
+})
 export class DaysResolve implements Resolve<Day[]> {
 
   constructor(private dayService: DayService) {}

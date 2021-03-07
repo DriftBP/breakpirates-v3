@@ -5,8 +5,11 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../app-settings';
 import { Genre } from './genre';
 import { Show } from '../schedule/show';
+import { MusicResolvesModule } from './music-resolves.module';
 
-@Injectable()
+@Injectable({
+  providedIn: MusicResolvesModule
+})
 export class MusicService {
 
   constructor(
