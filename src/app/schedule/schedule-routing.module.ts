@@ -7,10 +7,11 @@ import { DayScheduleComponent } from './day-schedule/day-schedule.component';
 import { ScheduleResolve } from './resolves/schedule.resolve';
 import { ShowDetailsResolve } from './resolves/show-details.resolve';
 import { TodaysScheduleResolve } from './resolves/todays-schedule.resolve';
+import { DaysResolve } from './resolves/days.resolve';
 import { ScheduleResolvesModule } from './schedule-resolves.module';
 
 const routes: Routes = [
-  { path: '', component: ScheduleComponent, children: [
+  { path: '', component: ScheduleComponent, resolve: { days: DaysResolve }, children: [
     { path: '', component: DayScheduleComponent, resolve: { schedule: TodaysScheduleResolve } },
     { path: ':id', component: DayScheduleComponent, resolve: { schedule: ScheduleResolve } },
   ] },
