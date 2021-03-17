@@ -10,7 +10,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { MixcloudWidgetComponent } from './mixcloud-widget/mixcloud-widget.component';
 import { TwitterWidgetComponent } from './twitter-widget/twitter-widget.component';
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
-import { ProfileService } from './profile.service';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   imports: [

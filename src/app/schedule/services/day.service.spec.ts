@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 
 import { DayService } from './day.service';
-import { ScheduleModule } from './schedule.module';
+import { ScheduleModule } from '../schedule.module';
 
 describe('DayService', () => {
   let shallow: Shallow<DayService>;

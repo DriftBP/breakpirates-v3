@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 
-import { NewsService } from '../news.service';
+import { NewsService } from '../services/news.service';
 import { News } from '../news';
 import { NewsResolvesModule } from './news-resolves.module';
 

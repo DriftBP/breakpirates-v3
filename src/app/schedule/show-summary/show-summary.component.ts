@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../show';
-import { DayService } from '../day.service';
+import { DayService } from '../services/day.service';
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { AppSettings } from '../../app-settings';
 

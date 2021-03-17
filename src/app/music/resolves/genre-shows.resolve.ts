@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Show } from '../../schedule/show';
-import { MusicService } from '../music.service';
+import { MusicService } from '../services/music.service';
 import { MusicResolvesModule } from './music-resolves.module';
 
 @Injectable({

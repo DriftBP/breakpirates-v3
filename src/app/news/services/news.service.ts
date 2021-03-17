@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AppSettings } from '../app-settings';
-import { News } from './news';
-import { NewsResolvesModule } from './resolves/news-resolves.module';
+import { AppSettings } from '../../app-settings';
+import { News } from '../news';
+import { NewsResolvesModule } from '../resolves/news-resolves.module';
 
 @Injectable({
   providedIn: NewsResolvesModule

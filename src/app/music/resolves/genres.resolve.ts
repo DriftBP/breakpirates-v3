@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { MusicService } from '../music.service';
+import { MusicService } from '../services/music.service';
 
 import { Genre } from '../genre';
 import { MusicResolvesModule } from './music-resolves.module';

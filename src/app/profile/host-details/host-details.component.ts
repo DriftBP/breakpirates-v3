@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Host } from '../host';
 import { Show } from '../../schedule/show';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
