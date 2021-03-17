@@ -1,7 +1,7 @@
 import { Genre } from '../../music/models/genre';
 import { Host } from '../../profile/host';
 
-export class Show {
+export interface Show {
     id: number;
     title: string;
     start_time: string;

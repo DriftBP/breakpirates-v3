@@ -1,4 +1,4 @@
-export class ServerInfo {
+export interface ServerInfo {
   CurrentListeners: number;
   StreamStatus: number;
   PeakListeners: number;

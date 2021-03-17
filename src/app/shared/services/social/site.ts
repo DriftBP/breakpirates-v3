@@ -1,4 +1,4 @@
-export class Site {
+export interface Site {
   Name: string;
   Url: string;
   Description: string;
