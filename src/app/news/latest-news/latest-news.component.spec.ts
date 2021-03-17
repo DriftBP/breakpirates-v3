@@ -3,7 +3,7 @@ import { Shallow } from 'shallow-render';
 
 import { LatestNewsComponent } from './latest-news.component';
 import { NewsModule } from '../news.module';
-import { News } from '../news';
+import { News } from '../models/news';
 
 const mockNews: News = {
   id: 1,

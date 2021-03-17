@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 
 import { NowPlayingComponent } from './now-playing.component';
 import { SharedModule } from '../shared.module';
-import { Show } from '../../schedule/show';
+import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../services/schedule/schedule.service';
 import { ServerInfo } from '../services/schedule/server-info';
 

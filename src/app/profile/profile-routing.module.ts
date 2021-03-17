@@ -5,7 +5,7 @@ import { ProfilesResolve } from './resolves/profiles.resolve';
 import { HostDetailsComponent } from './host-details/host-details.component';
 import { HostDetailsResolve } from './resolves/host-details.resolve';
 import { ProfilesComponent } from './profiles.component';
-import { ProfileResolvesModule } from './profile-resolves.module';
+import { ProfileResolvesModule } from './resolves/profile-resolves.module';
 
 const routes: Routes = [
   { path: '', component: ProfilesComponent, resolve: { profiles: ProfilesResolve }, pathMatch: 'full' },

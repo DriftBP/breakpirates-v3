@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
-import { News } from '../news';
+import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
 
 @Component({

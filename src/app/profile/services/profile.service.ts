@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AppSettings } from '../app-settings';
-import { Host } from './host';
-import { Show } from '../schedule/show';
-import { ProfileResolvesModule } from './profile-resolves.module';
+import { AppSettings } from '../../app-settings';
+import { Host } from '../host';
+import { Show } from '../../schedule/models/show';
+import { ProfileResolvesModule } from '../resolves/profile-resolves.module';
 
 @Injectable({
   providedIn: ProfileResolvesModule

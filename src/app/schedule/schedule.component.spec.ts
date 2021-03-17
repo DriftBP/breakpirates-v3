@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ScheduleComponent } from './schedule.component';
 import { ScheduleModule } from './schedule.module';
-import { Show } from './show';
+import { Show } from './models/show';
 
 const routes: Routes = [];
 

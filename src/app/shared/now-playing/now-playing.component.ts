@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Show } from '../../schedule/show';
+import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../services/schedule/schedule.service';
 import { ServerInfo } from '../services/schedule/server-info';
 import { AppSettings } from '../../app-settings';

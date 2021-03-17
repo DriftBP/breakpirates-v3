@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AppSettings } from '../app-settings';
-import { Video } from './video';
-import { VideoResolvesModule } from './video-resolves.module';
+import { AppSettings } from '../../app-settings';
+import { Video } from '../models/video';
+import { VideoResolvesModule } from '../resolves/video-resolves.module';
 
 @Injectable({
   providedIn: VideoResolvesModule

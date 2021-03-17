@@ -5,9 +5,9 @@ import { DateTime } from 'luxon';
 
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
-import { Show } from '../show';
+import { Show } from '../models/show';
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
-import { DayService } from '../day.service';
+import { DayService } from '../services/day.service';
 
 const mockShow1: Show = {
   id: 1,

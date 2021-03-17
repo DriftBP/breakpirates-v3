@@ -5,7 +5,7 @@ import { VideoResolve } from './resolves/video.resolve';
 import { VideoDetailResolve } from './resolves/video-detail.resolve';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { VideoComponent } from './video.component';
-import { VideoResolvesModule } from './video-resolves.module';
+import { VideoResolvesModule } from './resolves/video-resolves.module';
 
 const routes: Routes = [
   { path: '', component: VideoComponent, resolve: { videos: VideoResolve }, pathMatch: 'full' },

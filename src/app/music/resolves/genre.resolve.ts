@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { MusicService } from '../music.service';
+import { MusicService } from '../services/music.service';
 
-import { Genre } from '../genre';
-import { MusicResolvesModule } from '../music-resolves.module';
+import { Genre } from '../models/genre';
+import { MusicResolvesModule } from './music-resolves.module';
 
 @Injectable({
   providedIn: MusicResolvesModule

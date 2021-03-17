@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AppSettings } from '../app-settings';
-import { Genre } from './genre';
-import { Show } from '../schedule/show';
-import { MusicResolvesModule } from './music-resolves.module';
+import { AppSettings } from '../../app-settings';
+import { Genre } from '../models/genre';
+import { Show } from '../../schedule/models/show';
+import { MusicResolvesModule } from '../resolves/music-resolves.module';
 
 @Injectable({
   providedIn: MusicResolvesModule

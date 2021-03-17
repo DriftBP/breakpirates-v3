@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { News } from '../news';
+import { News } from '../models/news';
 
 @Component({
   selector: 'bp-latest-news',

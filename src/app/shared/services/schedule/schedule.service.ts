@@ -4,9 +4,9 @@ import { of, BehaviorSubject, interval, Subscription, Observable } from 'rxjs';
 import { DateTime } from 'luxon';
 
 import { AppSettings } from '../../../app-settings';
-import { Show } from '../../../schedule/show';
+import { Show } from '../../../schedule/models/show';
 import { Host } from '../../../profile/host';
-import { Genre } from '../../../music/genre';
+import { Genre } from '../../../music/models/genre';
 import { ServerInfo } from './server-info';
 
 @Injectable()
