@@ -3,7 +3,7 @@ import { Resolve } from '@angular/router';
 
 import { NewsService } from '../news.service';
 import { News } from '../news';
-import { NewsResolvesModule } from '../news-resolves.module';
+import { NewsResolvesModule } from './news-resolves.module';
 
 @Injectable({
   providedIn: NewsResolvesModule

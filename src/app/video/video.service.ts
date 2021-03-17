@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../app-settings';
 import { Video } from './video';
-import { VideoResolvesModule } from './video-resolves.module';
+import { VideoResolvesModule } from './resolves/video-resolves.module';
 
 @Injectable({
   providedIn: VideoResolvesModule

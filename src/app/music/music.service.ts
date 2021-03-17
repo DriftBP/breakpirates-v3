@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../app-settings';
 import { Genre } from './genre';
 import { Show } from '../schedule/show';
-import { MusicResolvesModule } from './music-resolves.module';
+import { MusicResolvesModule } from './resolves/music-resolves.module';
 
 @Injectable({
   providedIn: MusicResolvesModule

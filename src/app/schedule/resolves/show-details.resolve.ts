@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
-import { ScheduleResolvesModule } from '../schedule-resolves.module';
+import { ScheduleResolvesModule } from './schedule-resolves.module';
 import { Show } from '../show';
 
 @Injectable({

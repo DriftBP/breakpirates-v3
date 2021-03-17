@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../app-settings';
 import { Host } from './host';
 import { Show } from '../schedule/show';
-import { ProfileResolvesModule } from './profile-resolves.module';
+import { ProfileResolvesModule } from './resolves/profile-resolves.module';
 
 @Injectable({
   providedIn: ProfileResolvesModule

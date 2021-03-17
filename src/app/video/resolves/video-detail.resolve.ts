@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { VideoService } from '../video.service';
 import { Video } from '../video';
-import { VideoResolvesModule } from '../video-resolves.module';
+import { VideoResolvesModule } from './video-resolves.module';
 
 @Injectable({
   providedIn: VideoResolvesModule

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../app-settings';
 import { News } from './news';
-import { NewsResolvesModule } from './news-resolves.module';
+import { NewsResolvesModule } from './resolves/news-resolves.module';
 
 @Injectable({
   providedIn: NewsResolvesModule

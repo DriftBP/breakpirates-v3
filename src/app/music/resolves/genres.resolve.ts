@@ -3,7 +3,7 @@ import { Resolve } from '@angular/router';
 import { MusicService } from '../music.service';
 
 import { Genre } from '../genre';
-import { MusicResolvesModule } from '../music-resolves.module';
+import { MusicResolvesModule } from './music-resolves.module';
 
 @Injectable({
   providedIn: MusicResolvesModule

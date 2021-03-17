@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Show } from '../../schedule/show';
 import { MusicService } from '../music.service';
-import { MusicResolvesModule } from '../music-resolves.module';
+import { MusicResolvesModule } from './music-resolves.module';
 
 @Injectable({
   providedIn: MusicResolvesModule
