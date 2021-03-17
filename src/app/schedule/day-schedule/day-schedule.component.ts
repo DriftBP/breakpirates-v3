@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Show } from '../show';
+import { Show } from '../models/show';
 
 @Component({
   selector: 'bp-day-schedule',

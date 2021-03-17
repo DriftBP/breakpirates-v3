@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 
 import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { ScheduleResolvesModule } from './schedule-resolves.module';
-import { Show } from '../show';
+import { Show } from '../models/show';
 
 @Injectable({
   providedIn: ScheduleResolvesModule

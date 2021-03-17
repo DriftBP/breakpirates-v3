@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Host } from '../host';
-import { Show } from '../../schedule/show';
+import { Show } from '../../schedule/models/show';
 import { ProfileService } from '../services/profile.service';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';

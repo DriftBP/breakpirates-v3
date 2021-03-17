@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Host } from '../host';
-import { Show } from '../../schedule/show';
+import { Show } from '../../schedule/models/show';
 import { ProfileResolvesModule } from '../resolves/profile-resolves.module';
 
 @Injectable({

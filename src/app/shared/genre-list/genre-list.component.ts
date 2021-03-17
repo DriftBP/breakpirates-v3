@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Genre } from '../../music/genre';
+import { Genre } from '../../music/models/genre';
 
 @Component({
   selector: 'bp-genre-list',

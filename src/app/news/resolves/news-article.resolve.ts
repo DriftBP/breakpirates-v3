@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { NewsService } from '../services/news.service';
-import { News } from '../news';
+import { News } from '../models/news';
 import { NewsResolvesModule } from './news-resolves.module';
 
 @Injectable({

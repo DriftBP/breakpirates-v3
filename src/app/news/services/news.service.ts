@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
-import { News } from '../news';
+import { News } from '../models/news';
 import { NewsResolvesModule } from '../resolves/news-resolves.module';
 
 @Injectable({

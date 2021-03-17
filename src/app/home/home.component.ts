@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 
-import { Show } from '../schedule/show';
+import { Show } from '../schedule/models/show';
 import { ScheduleService } from '../shared/services/schedule/schedule.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';

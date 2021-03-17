@@ -1,5 +1,5 @@
-import { Genre } from '../music/genre';
-import { Host } from '../profile/host';
+import { Genre } from '../../music/models/genre';
+import { Host } from '../../profile/host';
 
 export class Show {
     id: number;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 
 import { VideoService } from '../services/video.service';
-import { Video } from '../video';
+import { Video } from '../models/video';
 import { VideoResolvesModule } from './video-resolves.module';
 
 @Injectable({

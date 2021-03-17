@@ -3,7 +3,7 @@ import { Resolve } from '@angular/router';
 
 import { DayService } from '../services/day.service';
 import { ScheduleResolvesModule } from './schedule-resolves.module';
-import { Day } from '../day';
+import { Day } from '../models/day';
 
 @Injectable({
   providedIn: ScheduleResolvesModule

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Info } from 'luxon';
 
-import { Day } from '../day';
+import { Day } from '../models/day';
 
 @Injectable()
 export class DayService {
