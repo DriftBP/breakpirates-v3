@@ -1,4 +1,4 @@
-<ng-container *ngIf="products.length > 0; else noProducts">
+<ng-container *ngIf="products?.length > 0; else noProducts">
   <bp-product-listing [products]="products"></bp-product-listing>
 </ng-container>
 
