@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { Product } from '../models/product';
 import { ProductType } from '../models/product-type';
 import { ProductTypeModel } from '../models/product-type-model';
 import { productTypes } from './product-types';
@@ -14,7 +13,7 @@ export class ShopService {
     return productTypes;
   }
 
-  getProductsByType(type: ProductType): Product[] {
-    return this.allProducts.filter(product => product.type === type);
+  getProductsByType(type: ProductType): string[] {
+    return this.allProducts[type];
   }
 }

@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Product } from '../models/product';
-
 @Component({
   selector: 'bp-product-type',
   templateUrl: './product-type.component.html'
@@ -11,7 +9,7 @@ import { Product } from '../models/product';
 export class ProductTypeComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
 
-  products: Product[];
+  products: string[];
 
   constructor(
     private readonly route: ActivatedRoute
