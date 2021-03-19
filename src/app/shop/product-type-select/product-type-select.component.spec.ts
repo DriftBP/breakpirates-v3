@@ -1,14 +1,14 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
-import { AmazonProductLinkComponent } from './amazon-product-link.component';
+import { ProductTypeSelectComponent } from './product-type-select.component';
 import { ShopModule } from '../shop.module';
 
-describe('AmazonProductLinkComponent', () => {
-  let shallow: Shallow<AmazonProductLinkComponent>;
+describe('ProductTypeSelectComponent', () => {
+  let shallow: Shallow<ProductTypeSelectComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(AmazonProductLinkComponent, ShopModule);
+    shallow = new Shallow(ProductTypeSelectComponent, ShopModule);
   }));
 
   it('should create', async () => {

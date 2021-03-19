@@ -5,8 +5,7 @@ import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'bp-amazon-product-link',
-  templateUrl: './amazon-product-link.component.html',
-  styleUrls: ['./amazon-product-link.component.scss']
+  templateUrl: './amazon-product-link.component.html'
 })
 export class AmazonProductLinkComponent implements OnChanges{
   @Input() asins: string;

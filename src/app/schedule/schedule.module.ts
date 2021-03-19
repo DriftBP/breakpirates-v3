@@ -16,7 +16,13 @@ import { DayService } from './services/day.service';
     ScheduleRoutingModule,
     SharedModule
   ],
-  declarations: [ScheduleComponent, ShowSummaryComponent, ShowComponent, DaySelectComponent, DayScheduleComponent],
+  declarations: [
+    ScheduleComponent,
+    ShowSummaryComponent,
+    ShowComponent,
+    DaySelectComponent,
+    DayScheduleComponent
+  ],
   exports: [
     ShowSummaryComponent
   ],

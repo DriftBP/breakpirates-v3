@@ -2,51 +2,51 @@ import { ProductType } from "./product-type";
 
 export const products = [
   {
-    Asin: 'B01CRI3UOU', // Sennheiser HD25
-    Type: ProductType.Headphones
+    asin: 'B01CRI3UOU', // Sennheiser HD25
+    type: ProductType.Headphones
   },
   {
-    Asin: 'B0069JFBM8', // Sennheiser HD25 earpads
-    Type: ProductType.Headphones
+    asin: 'B0069JFBM8', // Sennheiser HD25 earpads
+    type: ProductType.Headphones
   },
   {
-    Asin: 'B076S9VFKV', // Reloop RP7000 MK2
-    Type: ProductType.Turntable
+    asin: 'B076S9VFKV', // Reloop RP7000 MK2
+    type: ProductType.Turntable
   },
   {
-    Asin: 'B00W3T3TOK', // Reloop RMX22i
-    Type: ProductType.Mixer
+    asin: 'B00W3T3TOK', // Reloop RMX22i
+    type: ProductType.Mixer
   },
   {
-    Asin: 'B074L92B6W', // Pioneer DJM750 MK2
-    Type: ProductType.Mixer
+    asin: 'B074L92B6W', // Pioneer DJM750 MK2
+    type: ProductType.Mixer
   },
   {
-    Asin: 'B000ML4KT4', // Ortofon Concorde Pro S
-    Type: ProductType.CartStylus
+    asin: 'B000ML4KT4', // Ortofon Concorde Pro S
+    type: ProductType.CartStylus
   },
   {
-    Asin: 'B00GPHDH6G', // Reloop Concorde Black
-    Type: ProductType.CartStylus
+    asin: 'B00GPHDH6G', // Reloop Concorde Black
+    type: ProductType.CartStylus
   },
   {
-    Asin: 'B00CIVSQJ6', // Serato timecode vinyl
-    Type: ProductType.Dvs
+    asin: 'B00CIVSQJ6', // Serato timecode vinyl
+    type: ProductType.Dvs
   },
   {
-    Asin: 'B01AKAHF52', // Velvet Vinyl Cleaning Brush by SPINCARE
-    Type: ProductType.VinylCare
+    asin: 'B01AKAHF52', // Velvet Vinyl Cleaning Brush by SPINCARE
+    type: ProductType.VinylCare
   },
   {
-    Asin: 'B000BFXIVW', // DISCO-ANTISTAT
-    Type: ProductType.VinylCare
+    asin: 'B000BFXIVW', // DISCO-ANTISTAT
+    type: ProductType.VinylCare
   },
   {
-    Asin: 'B002GHBYZ0', // Behringer UFO202
-    Type: ProductType.AudioInterface
+    asin: 'B002GHBYZ0', // Behringer UFO202
+    type: ProductType.AudioInterface
   },
   {
-    Asin: 'B0023BYDHK', // Behringer U-Control UCA222
-    Type: ProductType.AudioInterface
+    asin: 'B0023BYDHK', // Behringer U-Control UCA222
+    type: ProductType.AudioInterface
   }
 ];

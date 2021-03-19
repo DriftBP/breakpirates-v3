@@ -1,18 +1,18 @@
 import { waitForAsync } from '@angular/core/testing';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Shallow } from 'shallow-render';
 
-import { ShopComponent } from './shop.component';
-import { ShopModule } from './shop.module';
+import { ProductTypeComponent } from './product-type.component';
+import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ShopModule } from '../shop.module';
 
 const routes: Routes = [];
 
-describe('ShopComponent', () => {
-  let shallow: Shallow<ShopComponent>;
+describe('ProductTypeComponent', () => {
+  let shallow: Shallow<ProductTypeComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ShopComponent, ShopModule)
+    shallow = new Shallow(ProductTypeComponent, ShopModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
@@ -22,3 +22,4 @@ describe('ShopComponent', () => {
     expect(element.nativeElement).toBeTruthy();
   });
 });
+

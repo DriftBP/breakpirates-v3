@@ -1,36 +1,93 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from './services/product';
-import { ProductType } from './services/product-type';
+import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { filter, startWith, switchMap } from 'rxjs/operators';
 
-import { ShopService } from './services/shop.service';
+import { shopConfigActive, shopConfigInactive } from '../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { ProductType } from './services/product-type';
+import { ProductTypeModel } from './services/product-type-model';
 
 @Component({
   selector: 'bp-shop',
   templateUrl: './shop.component.html'
 })
-export class ShopComponent implements OnInit {
-  turntables: Product[];
-  mixers: Product[];
-  headphones: Product[];
-  cartStyli: Product[];
-  microphones: Product[];
-  dvs: Product[];
-  vinylCare: Product[];
-  audioInterfaces: Product[];
+export class ShopComponent {
+  private childParamsSubscription: Subscription;
+  private paramsSubscription: Subscription;
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
+  private defaultType = ProductType.Turntable;
+
+  types: ProductTypeModel[];
+  activetype: ProductType;
 
   constructor(
-    private readonly shopService: ShopService
-  ) { }
-
-  ngOnInit(): void {
-    this.turntables = this.shopService.getProductsByType(ProductType.Turntable);
-    this.mixers = this.shopService.getProductsByType(ProductType.Mixer);
-    this.headphones = this.shopService.getProductsByType(ProductType.Headphones);
-    this.cartStyli = this.shopService.getProductsByType(ProductType.CartStylus);
-    this.microphones = this.shopService.getProductsByType(ProductType.Microphone);
-    this.dvs = this.shopService.getProductsByType(ProductType.Dvs);
-    this.vinylCare = this.shopService.getProductsByType(ProductType.VinylCare);
-    this.audioInterfaces = this.shopService.getProductsByType(ProductType.AudioInterface);
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly breadcrumbService: BreadcrumbService,
+    private readonly translateService: TranslateService
+  ) {
+    this.activetype = this.defaultType;
   }
 
+  ngOnInit() {
+    this.paramsSubscription = this.route.data.subscribe(data => {
+      this.types = data.types;
+    });
+
+    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
+      startWith(undefined),
+      switchMap(e => this.route.firstChild?.paramMap)).subscribe(params => {
+        this.onParamChange(params);
+    });
+  }
+
+  onParamChange(params: ParamMap) {
+    const type = params.get('type');
+
+    if (type) {
+      this.activetype = parseInt(type);
+
+      const typeName = this.getTypeName(this.activetype);
+
+      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+        shopConfigInactive,
+        {
+          name: typeName,
+          isActive: true
+        }
+      ]);
+    } else {
+      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+        shopConfigActive
+      ]);
+
+      this.activetype = this.defaultType;
+    }
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+  }
+
+  ngOnDestroy() {
+    if (this.childParamsSubscription) {
+      this.childParamsSubscription.unsubscribe();
+    }
+
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
+  }
+
+  private getTypeName(type: ProductType): string {
+    const activeType = this.types.find(t => t.id === type);
+
+    if (activeType) {
+      return this.translateService.instant(activeType.name);
+    }
+
+    return '';
+  }
 }

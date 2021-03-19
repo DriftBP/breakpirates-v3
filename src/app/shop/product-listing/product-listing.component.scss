@@ -1,0 +1,6 @@
+.product-listing {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 120px);
+  grid-gap: 1em;
+  margin: 0.5em 0;
+}

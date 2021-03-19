@@ -1,50 +1,7 @@
 <h1>{{'SHOP.TITLE' | translate}}</h1>
+
 <p>{{'SHOP.AS_USED_BY' | translate}}</p>
 
-<h2>{{'SHOP.TURNTABLES' | translate}}</h2>
+<bp-product-type-select [types]="types" [activeType]="activetype"></bp-product-type-select>
 
-<ng-container *ngFor="let product of turntables">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.MIXERS' | translate}}</h2>
-
-<ng-container *ngFor="let product of mixers">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.HEADPHONES' | translate}}</h2>
-
-<ng-container *ngFor="let product of headphones">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.CART_STYLI' | translate}}</h2>
-
-<ng-container *ngFor="let product of cartStyli">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.MICROPHONES' | translate}}</h2>
-
-<ng-container *ngFor="let product of microphones">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.DVS' | translate}}</h2>
-
-<ng-container *ngFor="let product of dvs">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.VINYL_CARE' | translate}}</h2>
-
-<ng-container *ngFor="let product of vinylCare">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
-
-<h2>{{'SHOP.AUDIO_INTERFACES' | translate}}</h2>
-
-<ng-container *ngFor="let product of audioInterfaces">
-  <bp-amazon-product-link [asins]="product.Asin"></bp-amazon-product-link>
-</ng-container>
+<router-outlet></router-outlet>

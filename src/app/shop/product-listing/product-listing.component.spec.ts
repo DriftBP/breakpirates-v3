@@ -1,14 +1,14 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
-import { AmazonProductLinkComponent } from './amazon-product-link.component';
+import { ProductListingComponent } from './product-listing.component';
 import { ShopModule } from '../shop.module';
 
-describe('AmazonProductLinkComponent', () => {
-  let shallow: Shallow<AmazonProductLinkComponent>;
+describe('ProductListingComponent', () => {
+  let shallow: Shallow<ProductListingComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(AmazonProductLinkComponent, ShopModule);
+    shallow = new Shallow(ProductListingComponent, ShopModule);
   }));
 
   it('should create', async () => {
@@ -17,3 +17,4 @@ describe('AmazonProductLinkComponent', () => {
     expect(element.nativeElement).toBeTruthy();
   });
 });
+
