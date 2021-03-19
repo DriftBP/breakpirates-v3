@@ -49,6 +49,10 @@ export class ShopService {
     {
       Asin: 'B002GHBYZ0', // Behringer UFO202
       Type: ProductType.AudioInterface
+    },
+    {
+      Asin: 'B0023BYDHK', // Behringer U-Control UCA222
+      Type: ProductType.AudioInterface
     }
   ];
 
