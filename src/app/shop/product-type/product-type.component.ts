@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Product } from '../services/product';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'bp-product-type',

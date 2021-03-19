@@ -7,8 +7,8 @@ import { filter, startWith, switchMap } from 'rxjs/operators';
 import { shopConfigActive, shopConfigInactive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
-import { ProductType } from './services/product-type';
-import { ProductTypeModel } from './services/product-type-model';
+import { ProductType } from './models/product-type';
+import { ProductTypeModel } from './models/product-type-model';
 
 @Component({
   selector: 'bp-shop',

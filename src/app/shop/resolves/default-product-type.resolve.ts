@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 
 import { ShopResolvesModule } from './shop-resolves.module';
-import { Product } from '../services/product';
+import { Product } from '../models/product';
 import { ShopService } from '../services/shop.service';
-import { ProductType } from '../services/product-type';
+import { ProductType } from '../models/product-type';
 
 @Injectable({
   providedIn: ShopResolvesModule

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { Product } from '../services/product';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'bp-product-listing',

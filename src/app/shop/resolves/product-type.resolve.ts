@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { ShopResolvesModule } from './shop-resolves.module';
-import { Product } from '../services/product';
+import { Product } from '../models/product';
 import { ShopService } from '../services/shop.service';
 
 @Injectable({

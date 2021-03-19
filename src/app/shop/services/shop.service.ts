@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Product } from './product';
-import { ProductType } from './product-type';
-import { ProductTypeModel } from './product-type-model';
+import { Product } from '../models/product';
+import { ProductType } from '../models/product-type';
+import { ProductTypeModel } from '../models/product-type-model';
 import { products } from './products';
 
 @Injectable()
