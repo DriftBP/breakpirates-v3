@@ -1,9 +1,9 @@
 import { waitForAsync } from '@angular/core/testing';
+import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Shallow } from 'shallow-render';
 
 import { ProductTypeComponent } from './product-type.component';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ShopModule } from '../shop.module';
 
 const routes: Routes = [];

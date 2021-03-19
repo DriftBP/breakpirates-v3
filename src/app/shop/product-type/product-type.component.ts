@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -6,10 +6,9 @@ import { Product } from '../services/product';
 
 @Component({
   selector: 'bp-product-type',
-  templateUrl: './product-type.component.html',
-  styleUrls: ['./product-type.component.scss']
+  templateUrl: './product-type.component.html'
 })
-export class ProductTypeComponent implements OnInit {
+export class ProductTypeComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
 
   products: Product[];
