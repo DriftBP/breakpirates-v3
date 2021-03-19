@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { defaultProductType } from './services/product-types';
   selector: 'bp-shop',
   templateUrl: './shop.component.html'
 })
-export class ShopComponent {
+export class ShopComponent implements OnInit, OnDestroy {
   private childParamsSubscription: Subscription;
   private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];

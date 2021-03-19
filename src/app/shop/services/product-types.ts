@@ -5,34 +5,34 @@ export const defaultProductType = ProductType.Turntable;
 export const productTypes = [
   {
     id: ProductType.Turntable,
-    name: "SHOP.TURNTABLES"
+    name: 'SHOP.TURNTABLES'
   },
   {
     id: ProductType.Mixer,
-    name: "SHOP.MIXERS"
+    name: 'SHOP.MIXERS'
   },
   {
     id: ProductType.Headphones,
-    name: "SHOP.HEADPHONES"
+    name: 'SHOP.HEADPHONES'
   },
   {
     id: ProductType.CartStylus,
-    name: "SHOP.CART_STYLI"
+    name: 'SHOP.CART_STYLI'
   },
   {
     id: ProductType.Microphone,
-    name: "SHOP.MICROPHONES"
+    name: 'SHOP.MICROPHONES'
   },
   {
     id: ProductType.VinylCare,
-    name: "SHOP.VINYL_CARE"
+    name: 'SHOP.VINYL_CARE'
   },
   {
     id: ProductType.Dvs,
-    name: "SHOP.DVS"
+    name: 'SHOP.DVS'
   },
   {
     id: ProductType.AudioInterface,
-    name: "SHOP.AUDIO_INTERFACES"
+    name: 'SHOP.AUDIO_INTERFACES'
   }
 ];
