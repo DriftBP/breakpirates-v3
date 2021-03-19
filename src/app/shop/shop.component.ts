@@ -9,6 +9,7 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { ProductType } from './models/product-type';
 import { ProductTypeModel } from './models/product-type-model';
+import { defaultProductType } from './services/product-types';
 
 @Component({
   selector: 'bp-shop',
@@ -19,7 +20,7 @@ export class ShopComponent {
   private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
-  private defaultType = ProductType.Turntable;
+  private defaultType = defaultProductType;
 
   types: ProductTypeModel[];
   activetype: ProductType;

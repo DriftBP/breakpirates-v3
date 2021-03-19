@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { ProductType } from '../models/product-type';
 import { ProductTypeModel } from '../models/product-type-model';
+import { productTypes } from './product-types';
 import { products } from './products';
 
 @Injectable()
@@ -10,40 +11,7 @@ export class ShopService {
   private allProducts = products;
 
   getProductTypes(): ProductTypeModel[] {
-    return [
-      {
-        id: ProductType.Turntable,
-        name: "SHOP.TURNTABLES"
-      },
-      {
-        id: ProductType.Mixer,
-        name: "SHOP.MIXERS"
-      },
-      {
-        id: ProductType.Headphones,
-        name: "SHOP.HEADPHONES"
-      },
-      {
-        id: ProductType.CartStylus,
-        name: "SHOP.CART_STYLI"
-      },
-      {
-        id: ProductType.Microphone,
-        name: "SHOP.MICROPHONES"
-      },
-      {
-        id: ProductType.VinylCare,
-        name: "SHOP.VINYL_CARE"
-      },
-      {
-        id: ProductType.Dvs,
-        name: "SHOP.DVS"
-      },
-      {
-        id: ProductType.AudioInterface,
-        name: "SHOP.AUDIO_INTERFACES"
-      }
-    ];
+    return productTypes;
   }
 
   getProductsByType(type: ProductType): Product[] {
