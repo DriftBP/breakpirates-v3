@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Video } from '../models/video';
 import { VideoResolvesModule } from '../resolves/video-resolves.module';
+import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
   providedIn: VideoResolvesModule
@@ -12,14 +12,14 @@ import { VideoResolvesModule } from '../resolves/video-resolves.module';
 export class VideoService {
 
   constructor(
-    private http: HttpClient
+    private httpRequestService: HttpRequestService
   ) { }
 
   videos(): Observable<Video[]> {
-    return this.http.get<Video[]>(AppSettings.API_BASE + 'videos');
+    return this.httpRequestService.get<Video[]>(AppSettings.API_BASE + 'videos');
   }
 
   video(id: number): Observable<Video> {
-    return this.http.get<Video>(AppSettings.API_BASE + `videos/${id}`);
+    return this.httpRequestService.get<Video>(AppSettings.API_BASE + `videos/${id}`);
   }
 }
