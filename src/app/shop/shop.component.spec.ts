@@ -3,16 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Shallow } from 'shallow-render';
 
-import { DayScheduleComponent } from './day-schedule.component';
-import { ScheduleModule } from '../schedule.module';
+import { ShopComponent } from './shop.component';
+import { ShopModule } from './shop.module';
 
 const routes: Routes = [];
 
-describe('DayScheduleComponent', () => {
-  let shallow: Shallow<DayScheduleComponent>;
+describe('ShopComponent', () => {
+  let shallow: Shallow<ShopComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(DayScheduleComponent, ScheduleModule)
+    shallow = new Shallow(ShopComponent, ShopModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 

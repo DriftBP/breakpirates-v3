@@ -9,7 +9,8 @@
     "PROFILES": "Profiles",
     "VIDEO": "Video",
     "SOCIAL": "Social",
-    "CHAT_ROOM": "Chat room"
+    "CHAT_ROOM": "Chat",
+    "SHOP": "Shop"
   },
   "FOOTER": {
     "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
@@ -97,6 +98,18 @@
   },
   "VIDEO": {
     "TITLE": "Video"
+  },
+  "SHOP": {
+    "TITLE": "Shop",
+    "AS_USED_BY": "Here's a selection of products used by BP staff. By checking them out you'll be helping to support the station if you go ahead and make any purchases.",
+    "TURNTABLES": "Turntables",
+    "MIXERS": "Mixers",
+    "HEADPHONES": "Headphones",
+    "CARTS_STYLI": "Cartridges & styli",
+    "MICROPHONES": "Microphones",
+    "DVS_CONTROLLERS": "DVS & controllers",
+    "VINYL_CARE": "Vinyl care",
+    "AUDIO_INTERFACES": "Audio interfaces"
   },
   "TOOLS": {
     "TITLE": "Tools",
