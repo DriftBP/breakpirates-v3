@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
 import { HttpRequestConfig } from './http-request-config';
+import { HttpRequestCacheService } from '../http-request-cache/http-request-cache.service';
 
 const defaultConfig: HttpRequestConfig = {
   useCache: true
@@ -12,15 +13,15 @@ const defaultConfig: HttpRequestConfig = {
   providedIn: 'root'
 })
 export class HttpRequestService {
-  private responseCache = new Map();
 
   constructor(
-    private http: HttpClient
+    private readonly http: HttpClient,
+    private readonly cache: HttpRequestCacheService
   ) { }
 
   get<T>(url: string, config: HttpRequestConfig = defaultConfig) {
     if (config.useCache) {
-      const cachedResponse = this.responseCache.get(url);
+      const cachedResponse = this.cache.get(url);
 
       if (cachedResponse) {
         return of(cachedResponse);
@@ -28,7 +29,7 @@ export class HttpRequestService {
     }
 
     const response = this.http.get<T>(url);
-    response.subscribe(data => this.responseCache.set(url, data));
+    response.subscribe(data => this.cache.put(url, data));
     return response;
   }
 }
