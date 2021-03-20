@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
 import { MusicResolvesModule } from '../resolves/music-resolves.module';
+import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
   providedIn: MusicResolvesModule
@@ -13,7 +13,7 @@ import { MusicResolvesModule } from '../resolves/music-resolves.module';
 export class MusicService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpRequestService
   ) { }
 
   genres(): Observable<Genre[]> {

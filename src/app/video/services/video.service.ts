@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Video } from '../models/video';
 import { VideoResolvesModule } from '../resolves/video-resolves.module';
+import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
   providedIn: VideoResolvesModule
@@ -12,7 +12,7 @@ import { VideoResolvesModule } from '../resolves/video-resolves.module';
 export class VideoService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpRequestService
   ) { }
 
   videos(): Observable<Video[]> {

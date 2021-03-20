@@ -34,6 +34,7 @@ import { AdUnitComponent } from './ad-unit/ad-unit.component';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { SocialService } from './services/social/social.service';
 import { ScheduleService } from './services/schedule/schedule.service';
+import { HttpRequestService } from './services/http-request/http-request.service';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -125,6 +126,7 @@ export function customHttpLoader(http: HttpClient) {
     AdUnitComponent
   ],
   providers: [
+    HttpRequestService,
     GoogleAnalyticsService,
     SocialService,
     ScheduleService

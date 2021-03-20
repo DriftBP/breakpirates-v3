@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Host } from '../host';
 import { Show } from '../../schedule/models/show';
 import { ProfileResolvesModule } from '../resolves/profile-resolves.module';
+import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
   providedIn: ProfileResolvesModule
@@ -13,7 +13,7 @@ import { ProfileResolvesModule } from '../resolves/profile-resolves.module';
 export class ProfileService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpRequestService
   ) { }
 
   profiles(): Observable<Host[]> {

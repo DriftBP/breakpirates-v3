@@ -1,5 +1,4 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { of, BehaviorSubject, interval, Subscription, Observable } from 'rxjs';
 import { DateTime } from 'luxon';
 
@@ -8,6 +7,7 @@ import { Show } from '../../../schedule/models/show';
 import { Host } from '../../../profile/host';
 import { Genre } from '../../../music/models/genre';
 import { ServerInfo } from './server-info';
+import { HttpRequestService } from '../http-request/http-request.service';
 
 @Injectable()
 export class ScheduleService implements OnDestroy {
@@ -28,7 +28,7 @@ export class ScheduleService implements OnDestroy {
   public timeFormat = 'HH:mm:ss';
 
   constructor(
-    private http: HttpClient
+    private http: HttpRequestService
   ) {
     this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
 
