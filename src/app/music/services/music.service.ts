@@ -13,19 +13,19 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 export class MusicService {
 
   constructor(
-    private http: HttpRequestService
+    private httpRequestService: HttpRequestService
   ) { }
 
   genres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(AppSettings.API_BASE + 'music');
+    return this.httpRequestService.get<Genre[]>(AppSettings.API_BASE + 'music');
   }
 
   genre(id: number): Observable<Genre> {
-    return this.http.get<Genre>(AppSettings.API_BASE + `music/${id}`);
+    return this.httpRequestService.get<Genre>(AppSettings.API_BASE + `music/${id}`);
   }
 
   shows(genreId: number): Observable<Show[]> {
-    return this.http.get<Show[]>(AppSettings.API_BASE + `music/${genreId}/shows`);
+    return this.httpRequestService.get<Show[]>(AppSettings.API_BASE + `music/${genreId}/shows`);
   }
 
 }

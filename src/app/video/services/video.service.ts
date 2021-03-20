@@ -12,14 +12,14 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 export class VideoService {
 
   constructor(
-    private http: HttpRequestService
+    private httpRequestService: HttpRequestService
   ) { }
 
   videos(): Observable<Video[]> {
-    return this.http.get<Video[]>(AppSettings.API_BASE + 'videos');
+    return this.httpRequestService.get<Video[]>(AppSettings.API_BASE + 'videos');
   }
 
   video(id: number): Observable<Video> {
-    return this.http.get<Video>(AppSettings.API_BASE + `videos/${id}`);
+    return this.httpRequestService.get<Video>(AppSettings.API_BASE + `videos/${id}`);
   }
 }

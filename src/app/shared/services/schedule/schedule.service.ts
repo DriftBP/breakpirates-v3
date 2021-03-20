@@ -28,7 +28,7 @@ export class ScheduleService implements OnDestroy {
   public timeFormat = 'HH:mm:ss';
 
   constructor(
-    private http: HttpRequestService
+    private httpRequestService: HttpRequestService
   ) {
     this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
 
@@ -60,7 +60,7 @@ export class ScheduleService implements OnDestroy {
   }
 
   private getNowPlaying(): Observable<Show> {
-    return this.http.get<Show>(AppSettings.API_BASE + 'schedule/now-playing', { useCache: false });
+    return this.httpRequestService.get<Show>(AppSettings.API_BASE + 'schedule/now-playing', { useCache: false });
   }
 
   private getServerInfo(): Observable<ServerInfo> {
@@ -90,19 +90,19 @@ export class ScheduleService implements OnDestroy {
   }
 
   showHosts(showId: number): Observable<Host[]> {
-    return this.http.get<Host[]>(AppSettings.API_BASE + `shows/${showId}/hosts`);
+    return this.httpRequestService.get<Host[]>(AppSettings.API_BASE + `shows/${showId}/hosts`);
   }
 
   showGenres(showId: number): Observable<Genre[]> {
-    return this.http.get<Genre[]>(AppSettings.API_BASE + `shows/${showId}/genres`);
+    return this.httpRequestService.get<Genre[]>(AppSettings.API_BASE + `shows/${showId}/genres`);
   }
 
   shows(dayId: number): Observable<Show[]> {
-    return this.http.get<Show[]>(AppSettings.API_BASE + `schedule/${dayId}`);
+    return this.httpRequestService.get<Show[]>(AppSettings.API_BASE + `schedule/${dayId}`);
   }
 
   show(showId: number): Observable<Show> {
-    return this.http.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
+    return this.httpRequestService.get<Show>(AppSettings.API_BASE + `shows/${showId}`);
   }
 
   getDates(show: Show): { startDate: DateTime, endDate: DateTime } {

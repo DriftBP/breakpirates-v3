@@ -13,18 +13,18 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 export class ProfileService {
 
   constructor(
-    private http: HttpRequestService
+    private httpRequestService: HttpRequestService
   ) { }
 
   profiles(): Observable<Host[]> {
-    return this.http.get<Host[]>(AppSettings.API_BASE + 'hosts');
+    return this.httpRequestService.get<Host[]>(AppSettings.API_BASE + 'hosts');
   }
 
   profile(id: number): Observable<Host> {
-    return this.http.get<Host>(AppSettings.API_BASE + `hosts/${id}`);
+    return this.httpRequestService.get<Host>(AppSettings.API_BASE + `hosts/${id}`);
   }
 
   profileShows(id: number): Observable<Show[]> {
-    return this.http.get<Show[]>(AppSettings.API_BASE + `hosts/${id}/shows`);
+    return this.httpRequestService.get<Show[]>(AppSettings.API_BASE + `hosts/${id}/shows`);
   }
 }

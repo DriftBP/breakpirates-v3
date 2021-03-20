@@ -12,18 +12,18 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 export class NewsService {
 
   constructor(
-    private http: HttpRequestService
+    private httpRequestService: HttpRequestService
   ) { }
 
   news(): Observable<News[]> {
-    return this.http.get<News[]>(AppSettings.API_BASE + 'news');
+    return this.httpRequestService.get<News[]>(AppSettings.API_BASE + 'news');
   }
 
   newsArticle(id: number): Observable<News> {
-    return this.http.get<News>(AppSettings.API_BASE + `news/${id}`);
+    return this.httpRequestService.get<News>(AppSettings.API_BASE + `news/${id}`);
   }
 
   latestNews(): Observable<News[]> {
-    return this.http.get<News[]>(AppSettings.API_BASE + 'news/latest');
+    return this.httpRequestService.get<News[]>(AppSettings.API_BASE + 'news/latest');
   }
 }
