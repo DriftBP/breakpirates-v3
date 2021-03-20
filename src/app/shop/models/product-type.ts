@@ -1,7 +1,7 @@
 export enum ProductType {
   AudioInterface,
   CartStylus,
-  Dvs,
+  DvsController,
   Headphones,
   Microphone,
   Mixer,

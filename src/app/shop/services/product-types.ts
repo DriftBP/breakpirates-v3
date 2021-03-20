@@ -17,7 +17,7 @@ export const productTypes = [
   },
   {
     id: ProductType.CartStylus,
-    name: 'SHOP.CART_STYLI'
+    name: 'SHOP.CARTS_STYLI'
   },
   {
     id: ProductType.Microphone,
@@ -28,8 +28,8 @@ export const productTypes = [
     name: 'SHOP.VINYL_CARE'
   },
   {
-    id: ProductType.Dvs,
-    name: 'SHOP.DVS'
+    id: ProductType.DvsController,
+    name: 'SHOP.DVS_CONTROLLERS'
   },
   {
     id: ProductType.AudioInterface,

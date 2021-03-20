@@ -105,9 +105,9 @@
     "TURNTABLES": "Turntables",
     "MIXERS": "Mixers",
     "HEADPHONES": "Headphones",
-    "CART_STYLI": "Cartridges & styli",
+    "CARTS_STYLI": "Cartridges & styli",
     "MICROPHONES": "Microphones",
-    "DVS": "Digital vinyl systems",
+    "DVS_CONTROLLERS": "DVS & controllers",
     "VINYL_CARE": "Vinyl care",
     "AUDIO_INTERFACES": "Audio interfaces"
   },
