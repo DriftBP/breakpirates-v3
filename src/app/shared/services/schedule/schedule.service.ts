@@ -60,7 +60,7 @@ export class ScheduleService implements OnDestroy {
   }
 
   private getNowPlaying(): Observable<Show> {
-    return this.http.get<Show>(AppSettings.API_BASE + 'schedule/now-playing');
+    return this.http.get<Show>(AppSettings.API_BASE + 'schedule/now-playing', { useCache: false });
   }
 
   private getServerInfo(): Observable<ServerInfo> {
