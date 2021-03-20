@@ -1,12 +1,10 @@
 import { waitForAsync } from '@angular/core/testing';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 
 import { HostDetailsComponent } from './host-details.component';
 import { ProfileModule } from '../profile.module';
-import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 const routes: Routes = [];
 
@@ -15,8 +13,7 @@ describe('HostDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(HostDetailsComponent, ProfileModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .mock(HttpRequestService, { get: () => of()});
+      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
   it('should create', async () => {
