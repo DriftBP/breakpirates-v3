@@ -18,13 +18,16 @@ export const products: ProductList<ProductType, string[]> = {
     'B074L92B6W', // Pioneer DJM750 MK2
     'B00L2GMJU0', // Allen & Heath Xone 23C
     'B06XCY7Q5H', // Pioneer DJM-250MK2
-    'B009STRJOE'  // Traktor Kontrol Z2
+    'B009STRJOE', // Traktor Kontrol Z2
+    'B01BCCYQVS'  // Pioneer DJM-900NXS2
   ],
   [ProductType.CartStylus]: [
     'B000ML4KT4', // Ortofon Concorde Pro S
     'B00GPHDH6G'  // Reloop Concorde Black
   ],
-  [ProductType.Microphone]: [],
+  [ProductType.Microphone]: [
+    'B00TTQM94Q', // Shure PG
+  ],
   [ProductType.DvsController]: [
     'B00CIVSQJ6', // Serato timecode vinyl
     'B07954L8TD'  // Pioneer Pro DJ Controller
