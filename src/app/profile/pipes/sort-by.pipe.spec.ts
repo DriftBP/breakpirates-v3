@@ -1,5 +1,5 @@
 import { SortByPipe } from './sort-by.pipe';
-import { Host } from '../../profile/host';
+import { Host } from '../host';
 import { SortOrder } from './sort-order';
 
 const host1: Host = { id: 4, name: 'Phil' };
