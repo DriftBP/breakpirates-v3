@@ -25,9 +25,6 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     FeaturedNewsComponent,
     IsoDatePipe,
     FormattedDatePipe
-  ],
-  exports: [
-    LatestNewsComponent
   ]
 })
 export class NewsModule { }
