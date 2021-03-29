@@ -13,7 +13,7 @@ describe('TimePipe', () => {
 
   it('should display time in HH:mm format', () => {
     const time = pipe.transform('1:00');
-    expect(time).toEqual('02:00');
+    expect(time).toEqual('01:00');
   });
 
   it('should display midnight correctly', () => {
