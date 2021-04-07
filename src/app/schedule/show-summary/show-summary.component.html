@@ -1,9 +1,9 @@
 <div class="show-summary" *ngIf="show !== undefined" itemscope itemtype="http://schema.org/MusicEvent">
   <div>
-    <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
     <div class="show-summary__day" *ngIf="displayDay">
       <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
     </div>
+    <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
 
     <meta itemprop="startDate" content="{{nextDate}}">
     <meta itemprop="endDate" content="{{endDate}}">
