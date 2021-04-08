@@ -12,6 +12,7 @@ import { TwitterWidgetComponent } from './twitter-widget/twitter-widget.componen
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
 import { ProfileService } from './services/profile.service';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { ReadMoreComponent } from './read-more/read-more.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     MixcloudWidgetComponent,
     TwitterWidgetComponent,
     ProfileButtonComponent,
-    SortByPipe
+    SortByPipe,
+    ReadMoreComponent
   ],
   providers: [
     ProfileService
