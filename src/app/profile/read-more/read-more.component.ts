@@ -17,7 +17,7 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked {
     this.enableShowMore = this.isTextOverflow(this.contentContainerElement);
   }
 
-  ngAfterViewChecked(){
+  ngAfterViewChecked(): void {
     this.changeDetector.detectChanges();
   }
 
