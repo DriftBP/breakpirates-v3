@@ -1,11 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'bp-read-more',
   templateUrl: './read-more.component.html',
   styleUrls: ['./read-more.component.scss']
 })
-export class ReadMoreComponent implements AfterViewInit {
+export class ReadMoreComponent implements AfterViewInit, AfterViewChecked {
   @ViewChild('contentContainer') contentContainerElement: ElementRef;
 
   enableShowMore = true;
