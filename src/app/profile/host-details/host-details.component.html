@@ -11,7 +11,11 @@
           [alt]="profile.name"
           itemprop="image">
 
-    <div class="host-details__biog" [innerHTML]="profile.biog | safe: 'html'" itemprop="description"></div>
+    <div class="host-details__biog" itemprop="description">
+      <bp-read-more>
+        <div [innerHTML]="profile.biog | safe: 'html'"></div>
+      </bp-read-more>
+    </div>
 
     <div class="host-details__clear"></div>
   </ng-container>
@@ -32,6 +36,10 @@
   <div *ngIf="hasTwitter()">
     <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
     <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
-</div>
+  </div>
+
+  <hr>
+
+
 
 </div>
