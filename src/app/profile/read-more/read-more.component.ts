@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'bp-read-more',
@@ -11,8 +11,14 @@ export class ReadMoreComponent implements AfterViewInit {
   enableShowMore = true;
   showMore = false;
 
+  constructor(private changeDetector : ChangeDetectorRef) {}
+
   ngAfterViewInit(): void {
     this.enableShowMore = this.isTextOverflow(this.contentContainerElement);
+  }
+
+  ngAfterViewChecked(){
+    this.changeDetector.detectChanges();
   }
 
   toggleShowMore(): void {
