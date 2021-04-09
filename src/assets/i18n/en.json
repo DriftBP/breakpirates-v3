@@ -91,8 +91,8 @@
     "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter",
     "MORE": "More",
     "LESS": "Less",
-    "PREVIOUS": "Previous:",
-    "NEXT": "Next:"
+    "PREVIOUS": "Previous",
+    "NEXT": "Next"
   },
   "SOCIAL": {
     "TITLE": "Social",

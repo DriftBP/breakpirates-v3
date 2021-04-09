@@ -31,11 +31,11 @@ export class ProfileService {
   getProfileLinks(id: number): Observable<{ previous: Host, next: Host }> {
     const observable = new Observable<{ previous: Host, next: Host }>((observer) => {
       this.profiles().subscribe(profiles => {
-        const pos = profiles.sort(this.profileCompareFn).findIndex(profile => profile.id === id);
+        const pos = this.getProfilePosition(profiles, id);
 
         if (pos != -1) {
-          const previousPos = pos > 0 ? pos - 1 : profiles.length - 1;
-          const nextPos = pos < profiles.length - 1 ? pos + 1 : 0;
+          const previousPos = this.previousProfileIndex(pos, profiles.length);
+          const nextPos = this.nextProfileIndex(pos, profiles.length);
 
           const previousProfile = profiles[previousPos];
           const nextProfile = profiles[nextPos];
@@ -48,6 +48,18 @@ export class ProfileService {
     });
 
     return observable;
+  }
+
+  private getProfilePosition(profiles: Host[], id: number): number {
+    return profiles.sort(this.profileCompareFn).findIndex(profile => profile.id === id);
+  }
+
+  private previousProfileIndex(pos: number, totalItems: number): number {
+    return pos > 0 ? pos - 1 : totalItems - 1;
+  }
+
+  private nextProfileIndex(pos: number, totalItems: number): number {
+    return pos < totalItems - 1 ? pos + 1 : 0;
   }
 
   private profileCompareFn(a: Host, b: Host): number {
