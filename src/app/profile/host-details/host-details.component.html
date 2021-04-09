@@ -38,21 +38,10 @@
     <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
   </div>
 
-  <hr class="host-details__divider">
+  <ng-container *ngIf="profileLinksLoaded">
+    <hr class="host-details__divider">
 
-  <ul class="host-details__host-navigation" *ngIf="profileLinksLoaded">
-    <li class="host-details__host-navigation-host host-details__host-navigation-previous">
-      <span class="host-details__host-navigation-direction">{{'PROFILES.PREVIOUS' | translate}}</span>
-      <a class="host-details__host-navigation-link host-details__host-navigation-link--previous" [routerLink]="['/profiles',previousHost.id]">
-        {{previousHost.name}}
-      </a>
-    </li>
-    <li class="host-details__host-navigation-host host-details__host-navigation-next">
-      <span class="host-details__host-navigation-direction">{{'PROFILES.NEXT' | translate}}</span>
-      <a class="host-details__host-navigation-link host-details__host-navigation-link--next" [routerLink]="['/profiles',nextHost.id]">
-        {{nextHost.name}}
-      </a>
-    </li>
-  </ul>
+    <bp-host-navigation [hostLinks]="hostLinks"></bp-host-navigation>
+  </ng-container>
 
 </div>

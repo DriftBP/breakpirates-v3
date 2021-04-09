@@ -9,6 +9,7 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { HostNavigation, HostNavigationType } from '../host-navigation/host-navigation-type';
 
 @Component({
   selector: 'bp-host-details',
@@ -27,8 +28,7 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
   profile: Host;
   shows: Show[];
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
-  previousHost: Host;
-  nextHost: Host;
+  hostLinks: HostNavigation<HostNavigationType, Host>;
   profileLinksLoaded = false;
 
   constructor(
@@ -67,8 +67,10 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
       .subscribe(shows => this.shows = shows);
 
     this.profileService.getProfileLinks(this.profile.id).subscribe(links => {
-      this.previousHost = links.previous;
-      this.nextHost = links.next;
+      this.hostLinks = {
+        [HostNavigationType.Previous]: links.previous,
+        [HostNavigationType.Next]: links.next
+      };
 
       this.profileLinksLoaded = true;
     });
