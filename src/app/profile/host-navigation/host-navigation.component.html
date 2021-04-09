@@ -1,5 +1,10 @@
 <ul class="host-navigation">
-  <li class="host-navigation__host" [ngClass]="{'host-navigation__host-previous': parseInt(link.key) === types.Previous, 'host-navigation__host-next': parseInt(link.key) === types.Next}" *ngFor="let link of hostLinks | keyvalue">
+  <li class="host-navigation__host"
+      [ngClass]="{
+        'host-navigation__host-previous': parseInt(link.key) === types.Previous,
+        'host-navigation__host-next': parseInt(link.key) === types.Next
+      }"
+      *ngFor="let link of hostLinks | keyvalue">
     <span class="host-navigation__direction">
       <ng-container *ngIf="parseInt(link.key) === types.Previous; else nextBlock">
         {{'PROFILES.PREVIOUS' | translate}}

@@ -25,6 +25,6 @@ describe('HostNavigationComponent', () => {
   it('should convert string to number', async () => {
     const { instance } = await shallow.render();
 
-    expect(instance.parseInt("10")).toEqual(10);
+    expect(instance.parseInt('10')).toEqual(10);
   });
 });
