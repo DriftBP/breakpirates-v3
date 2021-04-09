@@ -38,4 +38,10 @@
     <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
   </div>
 
+  <ng-container *ngIf="profileLinksLoaded">
+    <hr class="host-details__divider">
+
+    <bp-host-navigation [hostLinks]="hostLinks"></bp-host-navigation>
+  </ng-container>
+
 </div>

@@ -13,6 +13,7 @@ import { ProfileButtonComponent } from './profile-button/profile-button.componen
 import { ProfileService } from './services/profile.service';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { ReadMoreComponent } from './read-more/read-more.component';
+import { HostNavigationComponent } from './host-navigation/host-navigation.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     TwitterWidgetComponent,
     ProfileButtonComponent,
     SortByPipe,
-    ReadMoreComponent
+    ReadMoreComponent,
+    HostNavigationComponent
   ],
   providers: [
     ProfileService

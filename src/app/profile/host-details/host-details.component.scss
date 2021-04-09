@@ -22,5 +22,9 @@
       clear: both;
       margin-bottom: 1em;
     }
+
+    &divider {
+      border-top-color: var(--color);
+    }
   }
 }

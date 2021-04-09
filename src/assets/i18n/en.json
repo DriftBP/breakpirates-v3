@@ -90,7 +90,9 @@
     "LISTEN_ON_MIXCLOUD": "{{ name }} on Mixcloud",
     "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter",
     "MORE": "More",
-    "LESS": "Less"
+    "LESS": "Less",
+    "PREVIOUS": "Previous",
+    "NEXT": "Next"
   },
   "SOCIAL": {
     "TITLE": "Social",
