@@ -31,7 +31,7 @@ export class ProfileService {
   getProfileLinks(id: number): Observable<{ previous: Host, next: Host }> {
     const observable = new Observable<{ previous: Host, next: Host }>((observer) => {
       this.profiles().subscribe(profiles => {
-        const pos = profiles.findIndex(profile => profile.id === id);
+        const pos = profiles.sort(this.profileCompareFn).findIndex(profile => profile.id === id);
 
         if (pos != -1) {
           const previousPos = pos > 0 ? pos - 1 : profiles.length - 1;
@@ -48,5 +48,9 @@ export class ProfileService {
     });
 
     return observable;
+  }
+
+  private profileCompareFn(a: Host, b: Host): number {
+    return a.id < b.id ? -1 : 1;
   }
 }
