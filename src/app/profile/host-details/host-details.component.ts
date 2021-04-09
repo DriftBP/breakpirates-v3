@@ -27,6 +27,9 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
   profile: Host;
   shows: Show[];
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
+  previousHost: Host;
+  nextHost: Host;
+  profileLinksLoaded = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -62,6 +65,13 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
 
     this.showsSubscription = this.profileService.profileShows(this.profile.id)
       .subscribe(shows => this.shows = shows);
+
+    this.profileService.getProfileLinks(this.profile.id).subscribe(links => {
+      this.previousHost = links.previous;
+      this.nextHost = links.next;
+
+      this.profileLinksLoaded = true;
+    });
   }
 
   hasMixcloud(): boolean {

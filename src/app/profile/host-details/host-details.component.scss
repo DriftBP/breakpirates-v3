@@ -22,5 +22,44 @@
       clear: both;
       margin-bottom: 1em;
     }
+
+    &divider {
+      border-top-color: var(--color);
+    }
+
+    &host-navigation {
+      display: block;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      &:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
+      &- {
+        &previous {
+          text-align: left;
+          float: left;
+        }
+
+        &next {
+          text-align: right;
+          float: right;
+        }
+
+        &direction {
+          display: block;
+        }
+
+        &link {
+          display: block;
+          font-weight: bold;
+          font-size: 1.25em;
+        }
+      }
+    }
   }
 }

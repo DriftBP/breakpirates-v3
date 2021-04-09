@@ -27,4 +27,26 @@ export class ProfileService {
   profileShows(id: number): Observable<Show[]> {
     return this.httpRequestService.get<Show[]>(AppSettings.API_BASE + `hosts/${id}/shows`);
   }
+
+  getProfileLinks(id: number): Observable<{ previous: Host, next: Host }> {
+    const observable = new Observable<{ previous: Host, next: Host }>((observer) => {
+      this.profiles().subscribe(profiles => {
+        const pos = profiles.findIndex(profile => profile.id === id);
+
+        if (pos != -1) {
+          const previousPos = pos > 0 ? pos - 1 : profiles.length - 1;
+          const nextPos = pos < profiles.length - 1 ? pos + 1 : 0;
+
+          const previousProfile = profiles[previousPos];
+          const nextProfile = profiles[nextPos];
+
+          observer.next({ previous: previousProfile, next: nextProfile });
+        }
+
+        observer.complete()
+      });
+    });
+
+    return observable;
+  }
 }
