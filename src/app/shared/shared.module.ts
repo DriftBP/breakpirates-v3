@@ -22,7 +22,6 @@ import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThemeSelectComponent } from './theme-select/theme-select.component';
-import { ServerStatsComponent } from './server-stats/server-stats.component';
 import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
@@ -80,7 +79,6 @@ export function customHttpLoader(http: HttpClient) {
     SidebarComponent,
     FooterComponent,
     ThemeSelectComponent,
-    ServerStatsComponent,
     ChatRoomPromoComponent,
     NotFoundComponent,
     BreadcrumbComponent,
