@@ -1,12 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { of, BehaviorSubject, interval, Subscription, Observable } from 'rxjs';
-import { DateTime } from 'luxon';
+import { BehaviorSubject, Subscription, Observable, timer } from 'rxjs';
+import { DateTime, Interval } from 'luxon';
 
 import { AppSettings } from '../../../app-settings';
 import { Show } from '../../../schedule/models/show';
 import { Host } from '../../../profile/host';
 import { Genre } from '../../../music/models/genre';
-import { ServerInfo } from './server-info';
 import { HttpRequestService } from '../http-request/http-request.service';
 
 @Injectable()
@@ -15,47 +14,26 @@ export class ScheduleService implements OnDestroy {
 
   public readonly nowPlaying: Observable<Show> = this._nowPlaying.asObservable();
 
-  private _serverInfo: BehaviorSubject<ServerInfo> = new BehaviorSubject(null);
-
-  public readonly serverInfo: Observable<ServerInfo> = this._serverInfo.asObservable();
-
-  private nowPlayingIntervalSubscription: Subscription;
+  private nowPlayingTimerSubscription: Subscription;
   private nowPlayingSubscription: Subscription;
-
-  private serverInfoIntervalSubscription: Subscription;
-  private serverInfoSubscription: Subscription;
 
   public timeFormat = 'HH:mm:ss';
 
   constructor(
     private httpRequestService: HttpRequestService
   ) {
-    this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
-
-    this.nowPlayingIntervalSubscription = interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
+    this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
       this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
-    });
-
-    this.serverInfoIntervalSubscription = interval(AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
-      this.serverInfoSubscription = this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
     });
   }
 
   ngOnDestroy() {
-    if (this.nowPlayingIntervalSubscription) {
-      this.nowPlayingSubscription.unsubscribe();
+    if (this.nowPlayingTimerSubscription) {
+      this.nowPlayingTimerSubscription.unsubscribe();
     }
 
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
-    }
-
-    if (this.serverInfoIntervalSubscription) {
-      this.serverInfoSubscription.unsubscribe();
-    }
-
-    if (this.serverInfoSubscription) {
-      this.serverInfoSubscription.unsubscribe();
     }
   }
 
@@ -63,30 +41,19 @@ export class ScheduleService implements OnDestroy {
     return this.httpRequestService.get<Show>(AppSettings.API_BASE + 'schedule/now-playing', { useCache: false });
   }
 
-  private getServerInfo(): Observable<ServerInfo> {
-    const mockData = '20,1,80,80,20,128,Breakz - Jungle Dubz n Breakz - 23.02.2020 (1)';
+  getShowProgress(show: Show): number {
+    var progress = 0;
 
-    const [
-      currentListeners,
-      streamStatus,
-      peakListeners,
-      maxListeners,
-      uniqueListeners,
-      bitrate,
-      songTitle
-     ] = mockData.split(',');
+    if (show) {
+      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
+      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
+      const showLengthMinutes = Interval.fromDateTimes(startTime, endTime).toDuration('minutes').minutes;
+      const minutesCompleted = Interval.fromDateTimes(startTime, DateTime.now()).toDuration('minutes').minutes;
 
-    const serverInfo: ServerInfo = {
-      CurrentListeners: Math.floor(Math.random() * Math.floor(80)),
-      StreamStatus: parseInt(streamStatus, 10),
-      PeakListeners: parseInt(peakListeners, 10),
-      MaxListeners: parseInt(maxListeners, 10),
-      UniqueListeners: parseInt(uniqueListeners, 10),
-      Bitrate: parseInt(bitrate, 10),
-      SongTitle: songTitle
-    };
+      progress = (100 / showLengthMinutes) * minutesCompleted;
+    }
 
-    return of(serverInfo);
+    return progress;
   }
 
   showHosts(showId: number): Observable<Host[]> {

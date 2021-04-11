@@ -6,7 +6,6 @@ import { NowPlayingComponent } from './now-playing.component';
 import { SharedModule } from '../shared.module';
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../services/schedule/schedule.service';
-import { ServerInfo } from '../services/schedule/server-info';
 
 const mockShow: Show = {
   id: 1,
@@ -18,24 +17,14 @@ const mockShow: Show = {
   hosts: []
 };
 
-const mockServerInfo: ServerInfo = {
-  CurrentListeners: 20,
-  StreamStatus: 1,
-  PeakListeners: 80,
-  MaxListeners: 80,
-  UniqueListeners: 20,
-  Bitrate: 128,
-  SongTitle: 'Song title'
-};
-
 describe('NowPlayingComponent', () => {
   let shallow: Shallow<NowPlayingComponent>;
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(NowPlayingComponent, SharedModule)
       .mock(ScheduleService, {
-        nowPlaying: of( mockShow ),
-        serverInfo: of( mockServerInfo )
+        getShowProgress: jest.fn(show => 50),
+        nowPlaying: of( mockShow )
     });
   }));
 
