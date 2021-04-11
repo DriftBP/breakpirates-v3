@@ -34,6 +34,7 @@ describe('NowPlayingComponent', () => {
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(NowPlayingComponent, SharedModule)
       .mock(ScheduleService, {
+        timeFormat: 'HH:mm:ss',
         nowPlaying: of( mockShow ),
         serverInfo: of( mockServerInfo )
     });

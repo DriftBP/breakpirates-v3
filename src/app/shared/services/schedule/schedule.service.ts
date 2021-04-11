@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { of, BehaviorSubject, interval, Subscription, Observable } from 'rxjs';
+import { of, BehaviorSubject, Subscription, Observable, timer } from 'rxjs';
 import { DateTime } from 'luxon';
 
 import { AppSettings } from '../../../app-settings';
@@ -19,10 +19,10 @@ export class ScheduleService implements OnDestroy {
 
   public readonly serverInfo: Observable<ServerInfo> = this._serverInfo.asObservable();
 
-  private nowPlayingIntervalSubscription: Subscription;
+  private nowPlayingTimerSubscription: Subscription;
   private nowPlayingSubscription: Subscription;
 
-  private serverInfoIntervalSubscription: Subscription;
+  private serverInfoTimerSubscription: Subscription;
   private serverInfoSubscription: Subscription;
 
   public timeFormat = 'HH:mm:ss';
@@ -30,28 +30,26 @@ export class ScheduleService implements OnDestroy {
   constructor(
     private httpRequestService: HttpRequestService
   ) {
-    this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
-
-    this.nowPlayingIntervalSubscription = interval(AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
+    this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
       this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
     });
 
-    this.serverInfoIntervalSubscription = interval(AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
+    this.serverInfoTimerSubscription = timer(0, AppSettings.SERVER_STATS_INTERVAL).subscribe(() => {
       this.serverInfoSubscription = this.getServerInfo().subscribe(serverInfo => this._serverInfo.next(serverInfo));
     });
   }
 
   ngOnDestroy() {
-    if (this.nowPlayingIntervalSubscription) {
-      this.nowPlayingSubscription.unsubscribe();
+    if (this.nowPlayingTimerSubscription) {
+      this.nowPlayingTimerSubscription.unsubscribe();
     }
 
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
     }
 
-    if (this.serverInfoIntervalSubscription) {
-      this.serverInfoSubscription.unsubscribe();
+    if (this.serverInfoTimerSubscription) {
+      this.serverInfoTimerSubscription.unsubscribe();
     }
 
     if (this.serverInfoSubscription) {
