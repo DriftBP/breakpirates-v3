@@ -43,7 +43,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         }
 
         this.progressTimerSubscription = timer(0, 60000).subscribe(() => {
-          this.progressStyle = this.getProgressStyle(this.nowPlaying);
+          this.progressStyle = this.getProgressStyle(this.nowPlaying, this.strokeLength);
         });
       }
 
@@ -58,7 +58,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     this.serverInfoSubscription = this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
-  private getProgressStyle(show: Show): string {
+  private getProgressStyle(show: Show, strokeLength: number): string {
     var progressStyle = '';
 
     if (show) {
@@ -69,7 +69,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
 
       const timeDone = (this.strokeLength / showLengthMinutes) * minutesCompleted;
 
-      progressStyle = `stroke-dasharray:${timeDone} ${this.strokeLength};`;
+      progressStyle = `stroke-dasharray:${timeDone} ${strokeLength};`;
     }
 
     return progressStyle;
