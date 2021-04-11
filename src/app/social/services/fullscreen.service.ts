@@ -9,7 +9,7 @@ export class FullscreenService {
     this._canRequestFullscreen = !!docElement.requestFullscreen;
   }
 
-  canRequestFullscreen(): boolean {
+  get canRequestFullscreen(): boolean {
     return this._canRequestFullscreen;
   }
 
