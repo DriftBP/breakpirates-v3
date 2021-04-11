@@ -100,7 +100,10 @@
     "USE_OWN_APP": "Want to use your own app?",
     "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.",
     "CONFIRM_LEAVE_CHAT": "Are you sure you want to leave the chat room?",
-    "FULL_SCREEN": "Chat full screen"
+    "FULL_SCREEN": "Chat full screen",
+    "PREVENT_SLEEP": "Prevent sleep",
+    "ON": "On",
+    "OFF": "Off"
   },
   "VIDEO": {
     "TITLE": "Video"

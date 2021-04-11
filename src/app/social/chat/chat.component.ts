@@ -32,6 +32,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   chatUrl: SafeResourceUrl;
   enableFullscreen = false;
+  enablePreventSleep = false;
+  preventSleep = false;
 
   constructor(
     private readonly translateService: TranslateService,
@@ -49,8 +51,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
-
-    this.screenService.startPreventSleep();
+    this.enablePreventSleep = this.screenService.canPreventSleep();
   }
 
   ngOnDestroy() {
@@ -74,5 +75,15 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   fullscreen(): void {
     this.fullscreenService.requestFullscreen(this.chatElement.nativeElement);
+  }
+
+  async togglePreventSleep(): Promise<void> {
+    this.preventSleep = !this.preventSleep;
+
+    if (this.preventSleep) {
+      await this.screenService.startPreventSleep();
+    } else {
+      this.screenService.endPreventSleep();
+    }
   }
 }

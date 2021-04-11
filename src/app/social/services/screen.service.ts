@@ -8,15 +8,19 @@ interface NavigatorWakeLock extends Navigator {
 
 @Injectable()
 export class ScreenService {
-  private canPreventSleep: boolean;
+  private _canPreventSleep: boolean;
   private wakeLock = null;
 
   constructor() {
-    this.canPreventSleep = 'wakeLock' in navigator;
+    this._canPreventSleep = 'wakeLock' in navigator;
+  }
+
+  canPreventSleep(): boolean {
+    return this._canPreventSleep;
   }
 
   async startPreventSleep() {
-    if (this.canPreventSleep) {
+    if (this._canPreventSleep) {
       try {
         this.wakeLock = await (navigator as NavigatorWakeLock).wakeLock.request();
       } catch (err) {
