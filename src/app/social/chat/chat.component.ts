@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy, } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Observer } from 'rxjs';
 
@@ -8,13 +8,14 @@ import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config'
 import { FullscreenService } from '../services/fullscreen.service';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ScreenService } from '../services/screen.service';
 
 @Component({
   selector: 'bp-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatIframe') chatElement: ElementRef;
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -36,7 +37,8 @@ export class ChatComponent implements OnInit {
     private readonly translateService: TranslateService,
     private readonly fullscreenService: FullscreenService,
     private readonly breadcrumbService: BreadcrumbService,
-    private readonly sanitizer: DomSanitizer
+    private readonly sanitizer: DomSanitizer,
+    private readonly screenService: ScreenService
   ) {}
 
   ngOnInit() {
@@ -47,6 +49,12 @@ export class ChatComponent implements OnInit {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
+
+    this.screenService.startPreventSleep();
+  }
+
+  ngOnDestroy() {
+    this.screenService.endPreventSleep();
   }
 
   canExit(): Observable<boolean> {
