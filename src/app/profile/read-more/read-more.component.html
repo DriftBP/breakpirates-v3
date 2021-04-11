@@ -1,0 +1,8 @@
+<div #contentContainer [ngClass]="{'read-more__content-wrapper--clamped': enableShowMore, 'read-more__content-wrapper--more': showMore}">
+  <ng-content></ng-content>
+</div>
+
+<button *ngIf="enableShowMore" class="read-more__toggle btn btn-primary" (click)="toggleShowMore()">
+  <ng-container *ngIf="!showMore; else lessBlock">{{'PROFILES.MORE' | translate}} <i class="fas fa-chevron-down"></i></ng-container>
+  <ng-template #lessBlock>{{'PROFILES.LESS' | translate}} <i class="fas fa-chevron-up"></i></ng-template>
+</button>

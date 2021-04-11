@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CanDeactivateChat } from './chat/can-deactivate-chat';
 import { SocialService } from '../shared/services/social/social.service';
 import { FullscreenService } from './services/fullscreen.service';
+import { ScreenService } from './services/screen.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { FullscreenService } from './services/fullscreen.service';
   providers: [
     CanDeactivateChat,
     SocialService,
-    FullscreenService
+    FullscreenService,
+    ScreenService
   ]
 })
 export class SocialModule { }

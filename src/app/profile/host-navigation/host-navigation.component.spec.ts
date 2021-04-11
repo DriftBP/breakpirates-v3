@@ -3,16 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Shallow } from 'shallow-render';
 
-import { MusicComponent } from './music.component';
-import { MusicModule } from './music.module';
+import { HostNavigationComponent } from './host-navigation.component';
+import { ProfileModule } from '../profile.module';
 
 const routes: Routes = [];
 
-describe('MusicComponent', () => {
-  let shallow: Shallow<MusicComponent>;
+describe('HostNavigationComponent', () => {
+  let shallow: Shallow<HostNavigationComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(MusicComponent, MusicModule)
+    shallow = new Shallow(HostNavigationComponent, ProfileModule)
       .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
   }));
 
@@ -20,5 +20,11 @@ describe('MusicComponent', () => {
     const { element } = await shallow.render();
 
     expect(element.nativeElement).toBeTruthy();
+  });
+
+  it('should convert string to number', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.parseInt('10')).toEqual(10);
   });
 });
