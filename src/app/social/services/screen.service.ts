@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 interface NavigatorWakeLock extends Navigator {
   wakeLock: {
-    request: () => any; // Or whatever is the type of the exitApp function
+    request: (type) => any; // Or whatever is the type of the exitApp function
   }
 }
 
@@ -12,6 +12,7 @@ export class ScreenService {
   private wakeLock = null;
 
   constructor() {
+    // Screen Wake Lock API is only available when served over HTTPS
     this._canPreventSleep = 'wakeLock' in navigator;
   }
 
@@ -22,16 +23,16 @@ export class ScreenService {
   async startPreventSleep() {
     if (this._canPreventSleep) {
       try {
-        this.wakeLock = await (navigator as NavigatorWakeLock).wakeLock.request();
+        this.wakeLock = await (navigator as NavigatorWakeLock).wakeLock.request('screen');
       } catch (err) {
         console.error(`${err.name}, ${err.message}`);
       }
     }
   }
 
-  endPreventSleep() {
+  async endPreventSleep() {
     if (this.wakeLock) {
-      this.wakeLock.release();
+      await this.wakeLock.release();
       this.wakeLock = null;
     }
   }

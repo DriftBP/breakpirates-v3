@@ -83,7 +83,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (this.preventSleep) {
       await this.screenService.startPreventSleep();
     } else {
-      this.screenService.endPreventSleep();
+      await this.screenService.endPreventSleep();
     }
   }
 }
