@@ -50,8 +50,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
-    this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
-    this.enablePreventSleep = this.screenService.canPreventSleep();
+    this.enableFullscreen = this.fullscreenService.canRequestFullscreen;
+    this.enablePreventSleep = this.screenService.canPreventSleep;
   }
 
   ngOnDestroy() {

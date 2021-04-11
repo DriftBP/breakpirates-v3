@@ -15,7 +15,7 @@ export class ScreenService {
     this._canPreventSleep = 'wakeLock' in navigator;
   }
 
-  canPreventSleep(): boolean {
+  get canPreventSleep(): boolean {
     return this._canPreventSleep;
   }
 

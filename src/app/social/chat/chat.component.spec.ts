@@ -4,6 +4,7 @@ import { Shallow } from 'shallow-render';
 import { ChatComponent } from './chat.component';
 import { SocialModule } from '../social.module';
 import { FullscreenService } from '../services/fullscreen.service';
+import { ScreenService } from '../services/screen.service';
 
 describe('ChatComponent', () => {
   let shallow: Shallow<ChatComponent>;
@@ -11,7 +12,10 @@ describe('ChatComponent', () => {
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(ChatComponent, SocialModule)
       .mock(FullscreenService, {
-        canRequestFullscreen: () => true
+        canRequestFullscreen: true
+      })
+      .mock(ScreenService, {
+        canPreventSleep: true
       });
   }));
 
