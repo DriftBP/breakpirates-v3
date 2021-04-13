@@ -29,7 +29,8 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.show !== undefined) {
-      this.nowPlayingSubscription = this.scheduleService.nowPlaying.subscribe(nowPlaying => this.onNow = nowPlaying?.id === this.show.id);
+      this.nowPlayingSubscription = this.scheduleService.nowPlaying$
+        .subscribe(nowPlaying => this.onNow = nowPlaying?.id === this.show.id);
 
       if (this.displayDay) {
         this.dayName = this.dayService.dayName(this.show.day_id);

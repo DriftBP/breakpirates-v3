@@ -25,7 +25,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.archiveUrl = AppSettings.MIXCLOUD_URL;
-    this.collapsedSubscription = this.navigationService.isCollapsed.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
+    this.collapsedSubscription = this.navigationService.isCollapsed$.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
   }
 
   ngOnDestroy() {

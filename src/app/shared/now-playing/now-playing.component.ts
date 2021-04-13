@@ -13,7 +13,7 @@ import { AppSettings } from '../../app-settings';
 export class NowPlayingComponent implements OnInit, OnDestroy {
 
   private nowPlayingSubscription: Subscription;
-  private serverInfoSubscription: Subscription;
+  private showProgressSubscription: Subscription;
   private strokeLength = 295.3;
 
   nowPlaying: Show;
@@ -26,7 +26,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.nowPlayingSubscription = this.scheduleService.nowPlaying.subscribe(nowPlaying => {
+    this.nowPlayingSubscription = this.scheduleService.nowPlaying$.subscribe(nowPlaying => {
       this.nowPlaying = nowPlaying;
 
       let imageFilename: string;
@@ -37,8 +37,6 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         if (nowPlaying.image) {
           imageFilename = nowPlaying.image;
         }
-
-        this.progressStyle = this.getProgressStyle(nowPlaying, this.strokeLength);
       }
 
       if (!imageFilename) {
@@ -48,11 +46,13 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
 
       this.nowPlayingImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + imageFilename + ')';
     });
+
+    this.showProgressSubscription = this.scheduleService.showProgress$.subscribe(progress => {
+      this.progressStyle = this.getProgressStyle(progress, this.strokeLength);
+    });
   }
 
-  private getProgressStyle(show: Show, strokeLength: number): string {
-    const progress = this.scheduleService.getShowProgress(show);
-
+  private getProgressStyle(progress: number, strokeLength: number): string {
     const timeDone = (strokeLength / 100) * progress;
 
     return `stroke-dasharray:${timeDone} ${strokeLength};`;
@@ -63,8 +63,8 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
       this.nowPlayingSubscription.unsubscribe();
     }
 
-    if (this.serverInfoSubscription) {
-      this.serverInfoSubscription.unsubscribe();
+    if (this.showProgressSubscription) {
+      this.showProgressSubscription.unsubscribe();
     }
   }
 

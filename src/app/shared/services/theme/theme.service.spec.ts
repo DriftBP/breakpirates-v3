@@ -21,7 +21,7 @@ describe('ThemeService', () => {
     const {instance} = shallow.createService();
     let theme: Theme;
 
-    instance.currentTheme.subscribe(currentTheme => {
+    instance.currentTheme$.subscribe(currentTheme => {
       theme = currentTheme;
     });
 
@@ -42,7 +42,7 @@ describe('ThemeService', () => {
     const {instance} = shallow.createService();
     let theme: Theme;
 
-    instance.currentTheme.subscribe(currentTheme => {
+    instance.currentTheme$.subscribe(currentTheme => {
       theme = currentTheme;
     });
 

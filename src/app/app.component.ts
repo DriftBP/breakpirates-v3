@@ -38,7 +38,9 @@ export class AppComponent implements OnDestroy {
     private themeService: ThemeService
   ) {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
-    this.themeSubscription = this.themeService.currentTheme.subscribe(theme => this.currentTheme = theme);
+    this.themeSubscription = this.themeService.currentTheme$.subscribe(theme => {
+      return this.currentTheme = theme
+    });
 
     // Google Adsense script
     const adwordsScript = this._renderer2.createElement('script');
