@@ -47,7 +47,7 @@ export class ScheduleService implements OnDestroy {
     return this.httpRequestService.get<Show>(AppSettings.API_BASE + 'schedule/now-playing', { useCache: false });
   }
 
-  getShowProgress(show: Show): number {
+  private getShowProgress(show: Show): number {
     var progress = 0;
 
     if (show) {
