@@ -1,6 +1,6 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
-import { of } from 'rxjs';
+import { from, of } from 'rxjs';
 
 import { NowPlayingComponent } from './now-playing.component';
 import { SharedModule } from '../shared.module';
@@ -23,8 +23,8 @@ describe('NowPlayingComponent', () => {
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(NowPlayingComponent, SharedModule)
       .mock(ScheduleService, {
-        getShowProgress: jest.fn(show => 50),
-        nowPlaying: of( mockShow )
+        nowPlaying$: from([mockShow]),
+        showProgress$: of( 50 ),
     });
   }));
 

@@ -1,6 +1,6 @@
 import { waitForAsync } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { from, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
@@ -17,7 +17,7 @@ const mockScheduleConfig: BreadcrumbConfigItem[] = [
 ];
 
 const mockBreadcrumbService = {
-  breadcrumb: of( mockScheduleConfig )
+  breadcrumb$: from([mockScheduleConfig])
 };
 
 const mockTranslateService = {

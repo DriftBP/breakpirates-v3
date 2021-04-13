@@ -1,6 +1,6 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
-import { of } from 'rxjs';
+import { from, of } from 'rxjs';
 import { DateTime } from 'luxon';
 
 import { ShowSummaryComponent } from './show-summary.component';
@@ -29,7 +29,7 @@ describe('ShowSummaryComponent', () => {
         dayName: () => ''
       })
       .mock(ScheduleService, {
-        nowPlaying: of(mockShow2),
+        nowPlaying$: from([mockShow1, mockShow2]),
         showHosts: () => of([]),
         showGenres: () => of([]),
         getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),

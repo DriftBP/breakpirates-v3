@@ -25,7 +25,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.breadcrumbSubscription = this.breadcrumbService.breadcrumb.subscribe(config => {
+    this.breadcrumbSubscription = this.breadcrumbService.breadcrumb$.subscribe(config => {
       if (!config) {
         config = [];
       }

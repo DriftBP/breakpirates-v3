@@ -7,12 +7,15 @@ import { Show } from '../../../schedule/models/show';
 import { Host } from '../../../profile/host';
 import { Genre } from '../../../music/models/genre';
 import { HttpRequestService } from '../http-request/http-request.service';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable()
 export class ScheduleService implements OnDestroy {
   private _nowPlaying: BehaviorSubject<Show> = new BehaviorSubject(null);
+  private _showProgress: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  public readonly nowPlaying: Observable<Show> = this._nowPlaying.asObservable();
+  public readonly nowPlaying$: Observable<Show> = this._nowPlaying.asObservable().pipe(distinctUntilChanged());
+  public readonly showProgress$: Observable<number> = this._showProgress.asObservable();
 
   private nowPlayingTimerSubscription: Subscription;
   private nowPlayingSubscription: Subscription;
@@ -23,7 +26,10 @@ export class ScheduleService implements OnDestroy {
     private httpRequestService: HttpRequestService
   ) {
     this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
-      this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => this._nowPlaying.next(nowPlaying));
+      this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => {
+        this._nowPlaying.next(nowPlaying);
+        this._showProgress.next(this.getShowProgress(nowPlaying));
+      });
     });
   }
 

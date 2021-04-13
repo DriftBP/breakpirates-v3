@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 export class NavigationService implements OnDestroy {
   private _isCollapsed: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-  public readonly isCollapsed: Observable<boolean> = this._isCollapsed.asObservable();
+  public readonly isCollapsed$: Observable<boolean> = this._isCollapsed.asObservable();
 
   private eventsSubscription: Subscription;
 
