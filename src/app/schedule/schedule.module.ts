@@ -12,6 +12,7 @@ import { DayService } from './services/day.service';
 import { ScheduleService } from './services/schedule.service';
 import { GenreListComponent } from './genre-list/genre-list.component';
 import { HostListComponent } from './host-list/host-list.component';
+import { ShowService } from './services/show.service';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { HostListComponent } from './host-list/host-list.component';
   ],
   providers: [
     DayService,
-    ScheduleService
+    ScheduleService,
+    ShowService
   ]
 })
 export class ScheduleModule { }

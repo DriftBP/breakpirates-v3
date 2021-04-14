@@ -5,6 +5,7 @@ import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
 import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
+import { ShowService } from '../services/show.service';
 
 @Component({
   selector: 'bp-show-summary',
@@ -24,7 +25,8 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
 
   constructor(
     private dayService: DayService,
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private showService: ShowService
   ) { }
 
   ngOnChanges() {
@@ -36,7 +38,7 @@ export class ShowSummaryComponent implements OnChanges, OnDestroy {
         this.dayName = this.dayService.dayName(this.show.day_id);
       }
 
-      const { startDate, endDate } = this.scheduleService.getDates(this.show);
+      const { startDate, endDate } = this.showService.getDates(this.show);
 
       this.nextDate = startDate.toISO();
       this.endDate = endDate.toISO();
