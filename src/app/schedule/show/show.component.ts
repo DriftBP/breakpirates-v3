@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
-import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { AppSettings } from '../../app-settings';

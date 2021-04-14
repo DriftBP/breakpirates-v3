@@ -1,13 +1,13 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable, timer } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { DateTime, Interval } from 'luxon';
 
-import { AppSettings } from '../../../app-settings';
-import { Show } from '../../../schedule/models/show';
-import { Host } from '../../../profile/host';
-import { Genre } from '../../../music/models/genre';
-import { HttpRequestService } from '../http-request/http-request.service';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { AppSettings } from '../../app-settings';
+import { Show } from '../models/show';
+import { Host } from '../../profile/host';
+import { Genre } from '../../music/models/genre';
+import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable()
 export class ScheduleService implements OnDestroy {

@@ -17,8 +17,6 @@ import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { HostListComponent } from './host-list/host-list.component';
-import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThemeSelectComponent } from './theme-select/theme-select.component';
@@ -33,8 +31,8 @@ import { ProgressIndicatorComponent } from './progress-indicator/progress-indica
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
+import { ScheduleService } from '../schedule/services/schedule.service';
 import { SocialService } from './services/social/social.service';
-import { ScheduleService } from './services/schedule/schedule.service';
 import { HttpRequestService } from './services/http-request/http-request.service';
 
 // Pipes
@@ -75,8 +73,6 @@ export function customHttpLoader(http: HttpClient) {
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent,
-    GenreListComponent,
     SidebarComponent,
     FooterComponent,
     ThemeSelectComponent,
@@ -101,8 +97,6 @@ export function customHttpLoader(http: HttpClient) {
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent,
-    GenreListComponent,
     FooterComponent,
     TranslateModule,
     BreadcrumbComponent,

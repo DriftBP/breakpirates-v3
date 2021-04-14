@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DateTime } from 'luxon';
 
 import { ScheduleService } from './schedule.service';
-import { Show } from '../../../schedule/models/show';
+import { Show } from '../models/show';
 
 const dateFormat = 'YYYY-MM-DD';
 const testDate = DateTime.local();

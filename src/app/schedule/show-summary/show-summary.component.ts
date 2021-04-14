@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
-import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
 
 @Component({
