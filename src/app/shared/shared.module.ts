@@ -28,6 +28,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { AdUnitComponent } from './ad-unit/ad-unit.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
@@ -41,7 +43,6 @@ import { TimePipe } from './pipes/time.pipe';
 
 // Directives
 import { ActiveDirective } from './directives/active.directive';
-import { DialogComponent } from './dialog/dialog.component';
 import { ImageClickDirective } from './directives/image-click.directive';
 
 export function customHttpLoader(http: HttpClient) {
@@ -87,7 +88,8 @@ export function customHttpLoader(http: HttpClient) {
     ActiveDirective,
     DialogComponent,
     ImageClickDirective,
-    AdUnitComponent
+    AdUnitComponent,
+    ProgressIndicatorComponent
   ],
   exports: [
     NavigationComponent,
