@@ -41,6 +41,7 @@ import { TimePipe } from './pipes/time.pipe';
 // Directives
 import { ActiveDirective } from './directives/active.directive';
 import { ImageClickDirective } from './directives/image-click.directive';
+import { ShowService } from '../schedule/services/show.service';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -108,7 +109,8 @@ export function customHttpLoader(http: HttpClient) {
     HttpRequestService,
     GoogleAnalyticsService,
     SocialService,
-    ScheduleService
+    ScheduleService,
+    ShowService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
