@@ -3,7 +3,7 @@ import { Shallow } from 'shallow-render';
 
 import { FooterBarComponent } from './footer-bar.component';
 import { SharedModule } from '../shared.module';
-import { SocialService } from '../services/social/social.service';
+import { SocialService } from '../../social/services/social.service';
 
 describe('FooterBarComponent', () => {
   let shallow: Shallow<FooterBarComponent>;

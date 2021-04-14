@@ -31,7 +31,7 @@ import { ProgressIndicatorComponent } from './progress-indicator/progress-indica
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { ScheduleService } from '../schedule/services/schedule.service';
-import { SocialService } from './services/social/social.service';
+import { SocialService } from '../social/services/social.service';
 import { HttpRequestService } from './services/http-request/http-request.service';
 
 // Pipes

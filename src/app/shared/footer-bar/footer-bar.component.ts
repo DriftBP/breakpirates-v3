@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Site } from '../services/social/site';
-import { SocialService } from '../services/social/social.service';
+import { Site } from '../../social/services/site';
+import { SocialService } from '../../social/services/social.service';
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 

@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavigationComponent } from './navigation.component';
 import { SharedModule } from '../shared.module';
-import { SocialService } from '../services/social/social.service';
+import { SocialService } from '../../social/services/social.service';
 
 const routes: Routes = [];
 
