@@ -1,11 +1,12 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'bp-amazon-product-link',
-  templateUrl: './amazon-product-link.component.html'
+  templateUrl: './amazon-product-link.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AmazonProductLinkComponent implements OnChanges{
   @Input() asin: string;
