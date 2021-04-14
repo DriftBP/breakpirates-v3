@@ -14,12 +14,11 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
 
   private nowPlayingSubscription: Subscription;
   private showProgressSubscription: Subscription;
-  private strokeLength = 295.3;
 
   nowPlaying: Show;
   nowPlayingImage: string;
   isLiveShow = false;
-  progressStyle = '';
+  progress: number;
 
   constructor(
     private scheduleService: ScheduleService
@@ -48,15 +47,11 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     });
 
     this.showProgressSubscription = this.scheduleService.showProgress$.subscribe(progress => {
-      this.progressStyle = this.getProgressStyle(progress, this.strokeLength);
+      this.progress = progress;
     });
   }
 
-  private getProgressStyle(progress: number, strokeLength: number): string {
-    const timeDone = (strokeLength / 100) * progress;
 
-    return `stroke-dasharray:${timeDone} ${strokeLength};`;
-  }
 
   ngOnDestroy() {
     if (this.nowPlayingSubscription) {
