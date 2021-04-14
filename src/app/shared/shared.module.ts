@@ -13,7 +13,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NowPlayingComponent } from './now-playing/now-playing.component';
 import { DonateComponent } from './donate/donate.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
@@ -67,7 +66,6 @@ export function customHttpLoader(http: HttpClient) {
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SocialLinksComponent,
     SafePipe,
     TimePipe,
     ContentBoxComponent,
@@ -91,7 +89,6 @@ export function customHttpLoader(http: HttpClient) {
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SocialLinksComponent,
     SafePipe,
     TimePipe,
     ContentBoxComponent,
