@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Host } from '../host';
-import { HostNavigation, HostNavigationType } from './host-navigation-type';
+import { HostNavigation } from './host-navigation';
 
 @Component({
   selector: 'bp-host-navigation',
@@ -10,11 +9,5 @@ import { HostNavigation, HostNavigationType } from './host-navigation-type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HostNavigationComponent {
-  @Input() hostLinks: HostNavigation<HostNavigationType, Host>;
-
-  types = HostNavigationType;
-
-  parseInt(value: string): number {
-    return parseInt(value);
-  }
+  @Input() hostLinks: HostNavigation;
 }

@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DateTime } from 'luxon';
-import { Subscription } from 'rxjs';
 
-import { Show } from '../schedule/models/show';
 import { ScheduleService } from '../schedule/services/schedule.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
@@ -12,32 +10,17 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  private showsSubscription: Subscription;
-  private activeDayId = DateTime.local().weekday;
+export class HomeComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  todaysSchedule: Show[];
-  scheduleLoaded = false;
+  activeDayId = DateTime.local().weekday;
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService,
-    private readonly scheduleService: ScheduleService
+    public readonly scheduleService: ScheduleService
   ) {}
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.showsSubscription = this.scheduleService.shows(this.activeDayId).subscribe(shows => {
-        this.todaysSchedule = shows;
-        this.scheduleLoaded = true;
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    if (this.showsSubscription) {
-      this.showsSubscription.unsubscribe();
-    }
   }
 }

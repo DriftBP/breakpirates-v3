@@ -3,13 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Host } from '../host';
-import { Show } from '../../schedule/models/show';
 import { ProfileService } from '../services/profile.service';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-import { HostNavigation, HostNavigationType } from '../host-navigation/host-navigation-type';
 
 @Component({
   selector: 'bp-host-details',
@@ -19,21 +17,17 @@ import { HostNavigation, HostNavigationType } from '../host-navigation/host-navi
 export class HostDetailsComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private showsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   profile: Host;
-  shows: Show[];
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
-  hostLinks: HostNavigation<HostNavigationType, Host>;
-  profileLinksLoaded = false;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly profileService: ProfileService,
+    public readonly profileService: ProfileService,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
@@ -47,10 +41,6 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
     }
-
-    if (this.showsSubscription) {
-      this.showsSubscription.unsubscribe();
-    }
   }
 
   initialiseState(): void {
@@ -62,18 +52,6 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
     });
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.showsSubscription = this.profileService.profileShows(this.profile.id)
-      .subscribe(shows => this.shows = shows);
-
-    this.profileService.getProfileLinks(this.profile.id).subscribe(links => {
-      this.hostLinks = {
-        [HostNavigationType.Previous]: links.previous,
-        [HostNavigationType.Next]: links.next
-      };
-
-      this.profileLinksLoaded = true;
-    });
   }
 
   hasMixcloud(): boolean {

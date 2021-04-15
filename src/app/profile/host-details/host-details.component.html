@@ -20,11 +20,13 @@
     <div class="host-details__clear"></div>
   </ng-container>
 
-  <ng-container *ngIf="shows && shows.length > 0">
-    <h2>{{'PROFILES.SHOWS' | translate}}</h2>
+  <ng-container *ngIf="profileService.profileShows(profile.id) | async as shows">
+    <ng-container *ngIf="shows.length > 0">
+      <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
-    <ng-container *ngFor="let show of shows">
-        <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
+      <ng-container *ngFor="let show of shows">
+          <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
+      </ng-container>
     </ng-container>
   </ng-container>
 
@@ -38,10 +40,10 @@
     <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
   </div>
 
-  <ng-container *ngIf="profileLinksLoaded">
+  <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
     <hr class="host-details__divider">
 
-    <bp-host-navigation [hostLinks]="hostLinks"></bp-host-navigation>
+    <bp-host-navigation [hostLinks]="links"></bp-host-navigation>
   </ng-container>
 
 </div>

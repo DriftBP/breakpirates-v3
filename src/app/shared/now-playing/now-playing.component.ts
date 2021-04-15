@@ -13,15 +13,13 @@ import { AppSettings } from '../../app-settings';
 export class NowPlayingComponent implements OnInit, OnDestroy {
 
   private nowPlayingSubscription: Subscription;
-  private showProgressSubscription: Subscription;
 
   nowPlaying: Show;
   nowPlayingImage: string;
   isLiveShow = false;
-  progress: number;
 
   constructor(
-    private scheduleService: ScheduleService
+    public readonly scheduleService: ScheduleService
   ) { }
 
   ngOnInit() {
@@ -36,6 +34,8 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         if (nowPlaying.image) {
           imageFilename = nowPlaying.image;
         }
+      } else {
+        this.isLiveShow = false;
       }
 
       if (!imageFilename) {
@@ -45,19 +45,11 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
 
       this.nowPlayingImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + imageFilename + ')';
     });
-
-    this.showProgressSubscription = this.scheduleService.showProgress$.subscribe(progress => {
-      this.progress = progress;
-    });
   }
 
   ngOnDestroy() {
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
-    }
-
-    if (this.showProgressSubscription) {
-      this.showProgressSubscription.unsubscribe();
     }
   }
 }

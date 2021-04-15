@@ -21,10 +21,4 @@ describe('HostNavigationComponent', () => {
 
     expect(element.nativeElement).toBeTruthy();
   });
-
-  it('should convert string to number', async () => {
-    const { instance } = await shallow.render();
-
-    expect(instance.parseInt('10')).toEqual(10);
-  });
 });
