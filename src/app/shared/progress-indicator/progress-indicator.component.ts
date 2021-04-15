@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'bp-progress-indicator',
   templateUrl: './progress-indicator.component.html',
-  styleUrls: ['./progress-indicator.component.scss']
+  styleUrls: ['./progress-indicator.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressIndicatorComponent implements OnChanges {
   @Input() progress: number;

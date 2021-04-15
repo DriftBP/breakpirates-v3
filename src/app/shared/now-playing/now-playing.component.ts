@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
-import { ScheduleService } from '../services/schedule/schedule.service';
+import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 
 @Component({
@@ -51,8 +51,6 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
   ngOnDestroy() {
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
@@ -62,5 +60,4 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
       this.showProgressSubscription.unsubscribe();
     }
   }
-
 }

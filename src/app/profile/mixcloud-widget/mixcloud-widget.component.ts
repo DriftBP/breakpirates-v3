@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'bp-mixcloud-widget',
-  templateUrl: './mixcloud-widget.component.html'
+  templateUrl: './mixcloud-widget.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MixcloudWidgetComponent implements OnChanges {
   @Input() user: string;

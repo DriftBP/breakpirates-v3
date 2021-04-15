@@ -4,11 +4,11 @@ import { Subscription } from 'rxjs';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
-import { ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { ShowService } from '../services/show.service';
 
 @Component({
   selector: 'bp-show',
@@ -32,7 +32,7 @@ export class ShowComponent implements OnInit, OnDestroy {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly dayService: DayService,
-    private readonly scheduleService: ScheduleService,
+    private readonly showService: ShowService,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
@@ -53,7 +53,7 @@ export class ShowComponent implements OnInit, OnDestroy {
 
     this.dayName = this.dayService.dayName(this.show.day_id);
 
-    const { startDate, endDate } = this.scheduleService.getDates(this.show);
+    const { startDate, endDate } = this.showService.getDates(this.show);
 
     this.nextDate = startDate.toISO();
     this.endDate = endDate.toISO();

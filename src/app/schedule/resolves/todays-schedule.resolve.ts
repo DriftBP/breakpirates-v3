@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { DateTime } from 'luxon';
 
-import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { ScheduleService } from '../../schedule/services/schedule.service';
 import { ScheduleResolvesModule } from './schedule-resolves.module';
 import { Show } from '../models/show';
 
