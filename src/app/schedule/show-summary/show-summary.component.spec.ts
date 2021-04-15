@@ -6,8 +6,9 @@ import { DateTime } from 'luxon';
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
 import { Show } from '../models/show';
-import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 import { DayService } from '../services/day.service';
+import { ShowService } from '../services/show.service';
 
 const mockShow1: Show = {
   id: 1,
@@ -31,7 +32,9 @@ describe('ShowSummaryComponent', () => {
       .mock(ScheduleService, {
         nowPlaying$: from([mockShow1, mockShow2]),
         showHosts: () => of([]),
-        showGenres: () => of([]),
+        showGenres: () => of([])
+      })
+      .mock(ShowService, {
         getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),
       });
   }));

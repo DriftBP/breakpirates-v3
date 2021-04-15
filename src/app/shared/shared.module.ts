@@ -13,12 +13,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NowPlayingComponent } from './now-playing/now-playing.component';
 import { DonateComponent } from './donate/donate.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { HostListComponent } from './host-list/host-list.component';
-import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThemeSelectComponent } from './theme-select/theme-select.component';
@@ -33,8 +30,8 @@ import { ProgressIndicatorComponent } from './progress-indicator/progress-indica
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { SocialService } from './services/social/social.service';
-import { ScheduleService } from './services/schedule/schedule.service';
+import { ScheduleService } from '../schedule/services/schedule.service';
+import { SocialService } from '../social/services/social.service';
 import { HttpRequestService } from './services/http-request/http-request.service';
 
 // Pipes
@@ -44,6 +41,7 @@ import { TimePipe } from './pipes/time.pipe';
 // Directives
 import { ActiveDirective } from './directives/active.directive';
 import { ImageClickDirective } from './directives/image-click.directive';
+import { ShowService } from '../schedule/services/show.service';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -69,14 +67,11 @@ export function customHttpLoader(http: HttpClient) {
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SocialLinksComponent,
     SafePipe,
     TimePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent,
-    GenreListComponent,
     SidebarComponent,
     FooterComponent,
     ThemeSelectComponent,
@@ -95,14 +90,11 @@ export function customHttpLoader(http: HttpClient) {
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SocialLinksComponent,
     SafePipe,
     TimePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent,
-    GenreListComponent,
     FooterComponent,
     TranslateModule,
     BreadcrumbComponent,
@@ -117,7 +109,8 @@ export function customHttpLoader(http: HttpClient) {
     HttpRequestService,
     GoogleAnalyticsService,
     SocialService,
-    ScheduleService
+    ScheduleService,
+    ShowService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

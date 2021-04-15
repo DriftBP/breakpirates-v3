@@ -2,13 +2,13 @@ import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { GenreListComponent } from './genre-list.component';
-import { SharedModule } from '../shared.module';
+import { ScheduleModule } from '../schedule.module';
 
 describe('GenreListComponent', () => {
   let shallow: Shallow<GenreListComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(GenreListComponent, SharedModule);
+    shallow = new Shallow(GenreListComponent, ScheduleModule);
   }));
 
   it('should create', async () => {

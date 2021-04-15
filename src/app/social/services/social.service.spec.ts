@@ -1,13 +1,13 @@
 import { Shallow } from 'shallow-render';
 
 import { SocialService } from './social.service';
-import { SharedModule } from '../../shared.module';
+import { SocialModule } from '../social.module';
 
 describe('SocialService', () => {
   let shallow: Shallow<SocialService>;
 
   beforeEach(() => {
-    shallow = new Shallow(SocialService, SharedModule);
+    shallow = new Shallow(SocialService, SocialModule);
   });
 
   it('should be created', () => {
