@@ -40,10 +40,10 @@
     <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
   </div>
 
-  <ng-container *ngIf="profileLinksLoaded">
+  <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
     <hr class="host-details__divider">
 
-    <bp-host-navigation [hostLinks]="hostLinks"></bp-host-navigation>
+    <bp-host-navigation [hostLinks]="{previous: links.previous, next: links.next}"></bp-host-navigation>
   </ng-container>
 
 </div>

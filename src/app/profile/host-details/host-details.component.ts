@@ -8,7 +8,6 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-import { HostNavigation, HostNavigationType } from '../host-navigation/host-navigation-type';
 
 @Component({
   selector: 'bp-host-details',
@@ -25,8 +24,6 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
 
   profile: Host;
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
-  hostLinks: HostNavigation<HostNavigationType, Host>;
-  profileLinksLoaded = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -55,15 +52,6 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
     });
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.profileService.getProfileLinks(this.profile.id).subscribe(links => {
-      this.hostLinks = {
-        [HostNavigationType.Previous]: links.previous,
-        [HostNavigationType.Next]: links.next
-      };
-
-      this.profileLinksLoaded = true;
-    });
   }
 
   hasMixcloud(): boolean {

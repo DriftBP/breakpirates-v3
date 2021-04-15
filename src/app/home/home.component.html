@@ -6,7 +6,7 @@
 
 <p><a routerLink="/profiles">{{'HOME.FIND_OUT_MORE' | translate}}</a></p>
 
-<ng-container *ngIf="scheduleService.shows(this.activeDayId) | async as todaysSchedule">
+<ng-container *ngIf="scheduleService.shows(activeDayId) | async as todaysSchedule">
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
   <ng-container *ngFor="let show of todaysSchedule">
