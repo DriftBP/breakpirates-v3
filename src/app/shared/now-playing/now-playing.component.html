@@ -5,7 +5,7 @@
             class="now-playing__show-info-image"
             [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
         <div class="now-playing__show-info-progress-container" *ngIf="isLiveShow">
-          <bp-progress-indicator [progress]="progress"></bp-progress-indicator>
+          <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
         </div>
       </div>
       <div class="now-playing__show-info-text">
@@ -14,7 +14,7 @@
           <span *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
         </div>
 
-        <ng-container *ngIf="isLiveShow">
+        <ng-container *ngIf="isLiveShow; else playlist">
           <div class="now-playing__show-info-name" [title]="nowPlaying.title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
           </div>
@@ -28,13 +28,13 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="!isLiveShow">
+        <ng-template #playlist>
           <div class="now-playing__show-info-name">
             {{'NOW_PLAYING.PLAYLIST' | translate}} <!-- {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }} -->
           </div>
 
           <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
-        </ng-container>
+        </ng-template>
       </div>
     </div>
 
