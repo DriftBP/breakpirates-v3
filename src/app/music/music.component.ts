@@ -17,17 +17,16 @@ export class MusicComponent implements OnInit {
     musicConfigActive
   ];
 
+  genres: Genre[];
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
-
-  genres: Genre[];
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.genres = this.route.snapshot.data['genres'];
   }
-
 }
