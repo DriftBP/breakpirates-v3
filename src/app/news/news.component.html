@@ -2,7 +2,11 @@
 
 <bp-latest-news [news]="latestNews"></bp-latest-news>
 
-<button *ngIf="!showMore; else moreBlock" class="news__show-more btn btn-primary" (click)="onShowMore()">{{'NEWS.SHOW_MORE' | translate}}</button>
+<button *ngIf="!showMore; else moreBlock"
+        class="news__show-more btn btn-primary"
+        (click)="onShowMore()">
+  {{'NEWS.SHOW_MORE' | translate}}
+</button>
 
 <ng-template #moreBlock>
   <h2 class="news__other-news-header">{{'NEWS.OTHER_NEWS' | translate}}</h2>
