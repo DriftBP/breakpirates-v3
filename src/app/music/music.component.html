@@ -1,5 +1,7 @@
 <h1>{{'MUSIC.TITLE' | translate}}</h1>
-<P>{{'MUSIC.INTRO' | translate}}</P>
+
+<p>{{'MUSIC.INTRO' | translate}}</p>
+
 <ul>
   <li *ngFor="let genre of genres">
       <a [routerLink]="['/music',genre.id]">{{genre.name}}</a>
