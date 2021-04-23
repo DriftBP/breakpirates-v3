@@ -1,19 +1,19 @@
-<div class="news-article" itemscope itemtype="http://schema.org/NewsArticle">
-  <h1 itemprop="headline">{{article?.title}}</h1>
+<article *ngIf="article; else notFound" class="news-article" itemscope itemtype="http://schema.org/NewsArticle">
+  <h1 itemprop="headline">{{article.title}}</h1>
 
   <p>
-    <span class="news-article__date">{{ article?.date | formattedDate }}</span>
-    <span *ngIf="article?.added_by"> by
+    <time [attr.datetime]="article.date | isoDate" class="news-article__date">{{ article.date | formattedDate }}</time>
+    <span *ngIf="article.added_by"> {{'NEWS.BY' | translate}}
       <span class="news-article__date" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">{{ article?.added_by }}</span>
+        <span itemprop="name">{{ article.added_by }}</span>
       </span>
     </span>
   </p>
 
-  <meta itemprop="dateCreated" content="{{ article?.date | isoDate }}">
-  <meta itemprop="datePublished" content="{{ article?.date | isoDate }}">
+  <meta itemprop="dateCreated" content="{{ article.date | isoDate }}">
+  <meta itemprop="datePublished" content="{{ article.date | isoDate }}">
 
-  <a  *ngIf="article?.image"
+  <a  *ngIf="article.image"
       [href]="'/assets/news/' + article.image">
     <img class="news-article__image"
           bpImageClick
@@ -22,7 +22,12 @@
           itemprop="image">
   </a>
 
-  <div class="news-article__text" [innerHTML]="article?.text | safe: 'html'" itemprop="articleBody"></div>
+  <div class="news-article__text" [innerHTML]="article.text | safe: 'html'" itemprop="articleBody"></div>
 
   <div class="news-article__clear"></div>
-</div>
+</article>
+
+<ng-template #notFound>
+  <h1>{{'NEWS.NOT_FOUND' | translate}}</h1>
+  <p>{{'NEWS.COULD_NOT_FIND' | translate}}</p>
+</ng-template>
