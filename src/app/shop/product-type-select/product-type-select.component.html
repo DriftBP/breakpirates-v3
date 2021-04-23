@@ -1,7 +1,9 @@
-<ul class="nav nav-tabs">
-  <li *ngFor="let type of types" class="nav-item">
-    <a class="nav-link"
-        [bpActive]="type.id == activeType"
-        [routerLink]="['/shop',type.id]">{{ type.name | translate }}</a>
-  </li>
-</ul>
+<nav>
+  <ul class="nav nav-tabs">
+    <li *ngFor="let type of types" class="nav-item">
+      <a class="nav-link"
+          [bpActive]="type.id == activeType"
+          [routerLink]="['/shop',type.id]">{{ type.name | translate }}</a>
+    </li>
+  </ul>
+</nav>
