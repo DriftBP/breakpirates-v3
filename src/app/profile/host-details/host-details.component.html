@@ -1,24 +1,26 @@
-<div *ngIf="profile !== undefined" itemscope itemtype="http://schema.org/Person">
-  <h1 itemprop="name">{{profile.name}}</h1>
+<div *ngIf="profile; else notFound" itemscope itemtype="http://schema.org/Person">
+  <article>
+    <h1 itemprop="name">{{profile.name}}</h1>
 
-  <p *ngIf="profile.location">{{ profile.location }}</p>
+    <p *ngIf="profile.location">{{ profile.location }}</p>
 
-  <ng-container *ngIf="profile.biog">
-    <img *ngIf="profile.image"
-          bpImageClick
-          class="host-details__image"
-          [src]="imagePath + profile.image"
-          [alt]="profile.name"
-          itemprop="image">
+    <ng-container *ngIf="profile.biog">
+      <img *ngIf="profile.image"
+            bpImageClick
+            class="host-details__image"
+            [src]="imagePath + profile.image"
+            [alt]="profile.name"
+            itemprop="image">
 
-    <div class="host-details__biog">
-      <bp-read-more>
-        <div [innerHTML]="profile.biog | safe: 'html'" itemprop="description"></div>
-      </bp-read-more>
-    </div>
+      <div class="host-details__biog">
+        <bp-read-more>
+          <div [innerHTML]="profile.biog | safe: 'html'" itemprop="description"></div>
+        </bp-read-more>
+      </div>
 
-    <div class="host-details__clear"></div>
-  </ng-container>
+      <div class="host-details__clear"></div>
+    </ng-container>
+  </article>
 
   <ng-container *ngIf="profileService.profileShows(profile.id) | async as shows">
     <ng-container *ngIf="shows.length > 0">
@@ -47,3 +49,8 @@
   </ng-container>
 
 </div>
+
+<ng-template #notFound>
+  <h1>{{'PROFILES.NOT_FOUND' | translate}}</h1>
+  <p>{{'PROFILES.COULD_NOT_FIND' | translate}}</p>
+</ng-template>

@@ -66,7 +66,10 @@
     "TITLE": "News",
     "LATEST_NEWS": "Latest news",
     "SHOW_MORE": "Show more news",
-    "OTHER_NEWS": "Other news"
+    "OTHER_NEWS": "Other news",
+    "BY": "by",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the article you were looking for."
   },
   "SCHEDULE": {
     "TITLE": "Schedule",
@@ -75,7 +78,10 @@
     "TIMES_DISPLAYED": "Times displayed are for London, UK.",
     "HOSTED_BY": "Hosted by",
     "MUSIC_STYLES": "Music styles",
-    "SHOW_DESCRIPTION": "Show description"
+    "SHOW_DESCRIPTION": "Show description",
+    "ON": "on",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the show you were looking for."
   },
   "MUSIC": {
     "TITLE": "Music",
@@ -92,7 +98,9 @@
     "MORE": "More",
     "LESS": "Less",
     "PREVIOUS": "Previous",
-    "NEXT": "Next"
+    "NEXT": "Next",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the profile you were looking for."
   },
   "SOCIAL": {
     "TITLE": "Social",
