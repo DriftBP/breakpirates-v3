@@ -19,7 +19,11 @@
 
   </div>
   <div>
-    <div class="show-summary__title" itemprop="name"><a [routerLink]="['/schedule/shows',show.id]" itemprop="url">{{show.title}}</a></div>
+    <h3 class="show-summary__title" itemprop="name">
+      <a [routerLink]="['/schedule/shows',show.id]" itemprop="url">
+        {{show.title}}
+      </a>
+    </h3>
 
     <meta itemprop="description" content="{{show.description}}">
 
@@ -30,10 +34,10 @@
     </div>
 
     <bp-genre-list [genres]="show.genres"></bp-genre-list>
-    <div>
+    <ng-container *ngIf="show.hosts.length > 0">
         {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
         <bp-host-list [hosts]="show.hosts"></bp-host-list>
-    </div>
+    </ng-container>
   </div>
   <div *ngIf="showImage" class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
 </div>
