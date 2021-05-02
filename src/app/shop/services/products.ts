@@ -28,9 +28,14 @@ export const products: ProductList<ProductType, string[]> = {
   [ProductType.Microphone]: [
     'B00TTQM94Q', // Shure PG
   ],
+  [ProductType.Speaker]: [
+    'B00CWFJBUG', // Yamaha HS7 Powered Studio Monitor
+    'B081TDVCYL'  // KRK Rokit Classic 5
+  ],
   [ProductType.DvsController]: [
     'B00CIVSQJ6', // Serato timecode vinyl
-    'B07954L8TD'  // Pioneer Pro DJ Controller
+    'B07954L8TD', // Pioneer Pro DJ Controller
+    'B00NSQZGW0'  // Numark NDX500
   ],
   [ProductType.VinylCare]: [
     'B01AKAHF52', // Velvet Vinyl Cleaning Brush by SPINCARE

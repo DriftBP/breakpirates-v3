@@ -24,6 +24,10 @@ export const productTypes = [
     name: 'SHOP.MICROPHONES'
   },
   {
+    id: ProductType.Speaker,
+    name: 'SHOP.SPEAKERS'
+  },
+  {
     id: ProductType.VinylCare,
     name: 'SHOP.VINYL_CARE'
   },
