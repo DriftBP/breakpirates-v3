@@ -5,6 +5,7 @@ export enum ProductType {
   Headphones,
   Microphone,
   Mixer,
+  Speaker,
   Turntable,
   VinylCare
 }
