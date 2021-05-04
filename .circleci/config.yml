@@ -38,3 +38,7 @@ jobs:
             - run:
                 name: Build
                 command: ng build --prod
+workflows:
+  test_my_app:
+    jobs:
+      - test
