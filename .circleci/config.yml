@@ -1,10 +1,14 @@
 version: 2.1
+machine:
+  node:
+    version: 10.24.1
+dependencies:
+  pre:
+    - npm install -g @angular/cli
 jobs:
     # The test job
     test:
         working_directory: ~/breakpirates-v3
-        docker:
-            - image: circleci/node:10-browsers
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
@@ -17,10 +21,6 @@ jobs:
                 keys:
                 - v1-dependencies-{{ checksum "package-lock.json" }}
                 - v1-dependencies-
-            # Install global dependencies
-            - run:
-                name: Install Angular CLI
-                command: npm install -g @angular/cli
             # Install project dependencies
             - run:
                 name: Install local dependencies
