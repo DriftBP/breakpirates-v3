@@ -17,6 +17,10 @@ jobs:
                 keys:
                 - v1-dependencies-{{ checksum "package-lock.json" }}
                 - v1-dependencies-
+            # Install global dependencies
+            - run:
+                name: Install Angular CLI
+                command: npm install -g @angular/cli
             # Install project dependencies
             - run:
                 name: Install local dependencies
