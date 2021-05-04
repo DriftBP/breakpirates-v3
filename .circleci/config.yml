@@ -1,7 +1,4 @@
 version: 2.1
-machine:
-  node:
-    version: 6.5.0
 dependencies:
   pre:
     - npm install -g @angular/cli
