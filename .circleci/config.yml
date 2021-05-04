@@ -1,7 +1,7 @@
 version: 2.1
 machine:
   node:
-    version: 10.24.1
+    version: 6.5.0
 dependencies:
   pre:
     - npm install -g @angular/cli
@@ -9,6 +9,9 @@ jobs:
     # The test job
     test:
         working_directory: ~/breakpirates-v3
+        machine:
+          node:
+            version: 10.24.1
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
