@@ -7,8 +7,7 @@ jobs:
     test:
         working_directory: ~/breakpirates-v3
         machine:
-          node:
-            version: 10.24.1
+          image: ubuntu-2004:202010-01 # recommended linux image
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
