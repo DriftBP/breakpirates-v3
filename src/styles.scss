@@ -30,7 +30,7 @@ body {
   font-weight: $font-weight-regular;
 
   @media (min-width: $breakpoint-md) {
-    padding-top: 68px;
+    padding-top: 58px;
   }
 }
 
@@ -49,6 +49,17 @@ a {
   &:hover {
       text-decoration: underline;
       color: var(--color);
+  }
+}
+
+/* Bootstrap overrides */
+
+.nav-link {
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: inherit;
   }
 }
 
