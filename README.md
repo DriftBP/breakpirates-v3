@@ -1,6 +1,6 @@
 # Breakpirates V3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5. It's since been updated to v12
+This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
 Local software:
 * NPM 6.14.11
