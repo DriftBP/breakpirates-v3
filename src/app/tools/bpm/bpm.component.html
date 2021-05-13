@@ -5,5 +5,5 @@
   <p *ngSwitchCase="statuses.Full">{{'BPM_COUNTER.YOUR_BPM_IS' | translate}}</p>
 </ng-container>
 <p><button class="btn btn-primary btn-lg" (click)="onClick()">{{'BPM_COUNTER.TAP_ME' | translate}}</button></p>
-<p><span *ngIf="message == statuses.Full">{{'BPM_COUNTER.BPM' | translate}}: {{ bpm }}</span></p>
+<p><span *ngIf="message === statuses.Full">{{'BPM_COUNTER.BPM' | translate}}: {{ bpm }}</span></p>
 <div><button class="btn btn-secondary" (click)="onReset()">{{'BPM_COUNTER.START_AGAIN' | translate}}</button></div>
