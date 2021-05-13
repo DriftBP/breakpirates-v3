@@ -1,6 +1,6 @@
 # Breakpirates V3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5. It's since been updated to v11
+This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
 Local software:
 * NPM 6.14.11
@@ -16,7 +16,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 Build for Prod: `npm run build:prod`
 
@@ -26,4 +26,4 @@ Run `npm run test` to execute the unit tests via Jest.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
