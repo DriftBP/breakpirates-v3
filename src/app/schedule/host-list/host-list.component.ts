@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Host } from '../../profile/host';
 
@@ -11,4 +12,5 @@ import { Host } from '../../profile/host';
 export class HostListComponent {
   @Input() hosts: Host[];
 
+  faHeadphonesAlt = faHeadphonesAlt;
 }
