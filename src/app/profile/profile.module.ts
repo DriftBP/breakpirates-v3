@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ProfilesComponent } from './profiles.component';
 import { HostDetailsComponent } from './host-details/host-details.component';
@@ -21,7 +22,8 @@ import { HostNavigationComponent } from './host-navigation/host-navigation.compo
     RouterModule,
     ProfileRoutingModule,
     SharedModule,
-    ScheduleModule
+    ScheduleModule,
+    FontAwesomeModule
   ],
   declarations: [
     ProfilesComponent,

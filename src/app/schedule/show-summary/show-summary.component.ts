@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -20,6 +21,8 @@ export class ShowSummaryComponent implements OnChanges {
   nextDate: string;
   endDate: string;
   showImage: string;
+
+  faVolumeUp = faVolumeUp;
 
   constructor(
     private readonly dayService: DayService,

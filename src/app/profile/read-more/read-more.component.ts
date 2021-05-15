@@ -1,6 +1,7 @@
 import { ContentObserver } from '@angular/cdk/observers';
 import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'bp-read-more',
@@ -14,6 +15,9 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
 
   enableShowMore: boolean;
   showMore: boolean;
+
+  faChevronUp = faChevronUp;
+  faChevronDown = faChevronDown;
 
   constructor(
     private changeDetector : ChangeDetectorRef,

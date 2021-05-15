@@ -3,6 +3,6 @@
 </div>
 
 <button *ngIf="enableShowMore" class="read-more__toggle btn btn-primary" (click)="toggleShowMore()">
-  <ng-container *ngIf="!showMore; else lessBlock">{{'PROFILES.MORE' | translate}} <i class="fas fa-chevron-down"></i></ng-container>
-  <ng-template #lessBlock>{{'PROFILES.LESS' | translate}} <i class="fas fa-chevron-up"></i></ng-template>
+  <ng-container *ngIf="!showMore; else lessBlock">{{'PROFILES.MORE' | translate}} <fa-icon [icon]="faChevronDown"></fa-icon></ng-container>
+  <ng-template #lessBlock>{{'PROFILES.LESS' | translate}} <fa-icon [icon]="faChevronUp"></fa-icon></ng-template>
 </button>

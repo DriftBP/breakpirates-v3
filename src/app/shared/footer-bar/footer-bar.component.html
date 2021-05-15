@@ -13,7 +13,7 @@
             [title]="site.Description"
             [href]="site.Url"
             (click)="onSocialClick(site)"
-            ><i class="fab" [ngClass]="'fa-' + site.Icon"></i></a>
+            ><fa-icon [icon]="site.Icon"></fa-icon></a>
       </li>
     </ul>
   </div>
