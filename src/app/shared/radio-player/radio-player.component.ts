@@ -54,6 +54,5 @@ export class RadioPlayerComponent implements OnInit {
   onVolumeSet() {
     this.lastVolume = this.volume;
     this.audioService.volume = this.volume;
-    this.muted = false;
   }
 }

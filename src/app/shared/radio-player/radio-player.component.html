@@ -7,5 +7,5 @@
     <fa-icon [icon]="faVolumeMute" *ngIf="muted"></fa-icon>
     <fa-icon [icon]="faVolumeUp" *ngIf="!muted"></fa-icon>
   </button>
-  <input name="volume" type="range" min="0" max="100" [(ngModel)]="volume" (ngModelChange)="onVolumeSet()">
+  <input [disabled]="muted" name="volume" type="range" min="0" max="100" [(ngModel)]="volume" (ngModelChange)="onVolumeSet()">
 </div>
