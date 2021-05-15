@@ -5,9 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ObserversModule } from '@angular/cdk/observers';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faFacebook, faMixcloud, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faChevronDown, faChevronUp, faHeadphonesAlt, faTimes, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,9 +47,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private library: FaIconLibrary) {
-    this.library.addIcons(faFacebook, faTwitter, faMixcloud);
-    this.library.addIcons(faChevronDown, faChevronUp, faHeadphonesAlt, faVolumeUp, faTimes);
-  }
-}
+export class AppModule { }
