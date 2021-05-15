@@ -1,33 +1,59 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { faPause, faPlay, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../../app-settings';
-
-declare var MediaElementPlayer;
+import { AudioService } from '../services/audio/audio.service';
 
 @Component({
   selector: 'bp-radio-player',
   templateUrl: './radio-player.component.html',
   styleUrls: ['./radio-player.component.scss']
 })
-export class RadioPlayerComponent implements AfterViewInit {
-  @ViewChild('mediaPlayer') mediaPlayerElement: ElementRef;
+export class RadioPlayerComponent implements OnInit {
+  private lastVolume: number;
 
-  tuneInUrl = AppSettings.STREAM_URL_PRIMARY;
-  public mediaPlayer;
+  playing = false;
+  muted = false;
+  volume = 100;
 
-  ngAfterViewInit() {
-    this.loadMediaPlayer();
+  faPlay = faPlay;
+  faPause = faPause;
+  faVolumeUp = faVolumeUp;
+  faVolumeMute = faVolumeMute;
+
+  constructor(private readonly audioService: AudioService) {
+    this.lastVolume = this.volume;
   }
 
-  loadMediaPlayer() {
-    this.mediaPlayer = new MediaElementPlayer(this.mediaPlayerElement.nativeElement, {
-      alwaysShowControls: true,
-      stretching: 'responsive',
-      features: [
-        'playpause',
-        'current',
-        'volume'
-      ]
-    });
+  ngOnInit() {
+    this.audioService.load(AppSettings.STREAM_URL_PRIMARY);
+  }
+
+  togglePlay() {
+    if (this.playing) {
+      this.audioService.pause();
+    } else {
+      this.audioService.play();
+    }
+
+    this.playing = !this.playing;
+  }
+
+  toggleMute() {
+    if (this.muted) {
+      this.volume = this.lastVolume;
+      this.audioService.volume = this.volume;
+    } else {
+      this.volume = 0;
+      this.audioService.volume = 0;
+    }
+
+    this.muted = !this.muted;
+  }
+
+  onVolumeSet() {
+    this.lastVolume = this.volume;
+    this.audioService.volume = this.volume;
+    this.muted = false;
   }
 }
