@@ -1,9 +1,11 @@
-<button (click)="togglePlay()">
-  <fa-icon [icon]="faPause" *ngIf="playing"></fa-icon>
-  <fa-icon [icon]="faPlay" *ngIf="!playing"></fa-icon>
-</button>
-<button (click)="toggleMute()">
-  <fa-icon [icon]="faVolumeMute" *ngIf="muted"></fa-icon>
-  <fa-icon [icon]="faVolumeUp" *ngIf="!muted"></fa-icon>
-</button>
-<input name="volume" type="range" min="0" max="100" [(ngModel)]="volume" (ngModelChange)="onVolumeSet()">
+<div class="radio-player">
+  <button (click)="togglePlay()">
+    <fa-icon [icon]="faPause" *ngIf="playing"></fa-icon>
+    <fa-icon [icon]="faPlay" *ngIf="!playing"></fa-icon>
+  </button>
+  <button (click)="toggleMute()">
+    <fa-icon [icon]="faVolumeMute" *ngIf="muted"></fa-icon>
+    <fa-icon [icon]="faVolumeUp" *ngIf="!muted"></fa-icon>
+  </button>
+  <input name="volume" type="range" min="0" max="100" [(ngModel)]="volume" (ngModelChange)="onVolumeSet()">
+</div>
