@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ScheduleComponent } from './schedule.component';
 import { ShowSummaryComponent } from './show-summary/show-summary.component';
@@ -18,7 +19,8 @@ import { ShowService } from './services/show.service';
   imports: [
     CommonModule,
     ScheduleRoutingModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   declarations: [
     ScheduleComponent,

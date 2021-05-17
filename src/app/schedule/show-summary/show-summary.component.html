@@ -13,7 +13,9 @@
         *ngIf="nowPlaying.id === show.id"
         class="show-summary__now-live">
           {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
-          <i class="show-summary__now-live-icon fa fa-volume-up" aria-hidden="true" (click)="scrollToPlayer()"></i>
+          <span class="show-summary__now-live-icon" (click)="scrollToPlayer()" role="button">
+            <fa-icon [icon]="faVolumeUp"></fa-icon>
+          </span>
       </div>
     </ng-container>
 
