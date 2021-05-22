@@ -1,0 +1,28 @@
+@import '~src/sass/variables';
+
+.host-popup {
+  width: 200px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  padding: 0.5em;
+
+  &__ {
+    &image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+
+    &name {
+      margin: 0;
+
+      &--with-image {
+        margin-top: 0.25em;
+      }
+
+      &--with-location {
+        margin-bottom: 0.25em;
+      }
+    }
+  }
+}

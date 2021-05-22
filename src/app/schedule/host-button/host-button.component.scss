@@ -1,17 +1,27 @@
 @import '~src/sass/variables';
 
 .host-button {
-  &__link {
-    display: inline-block;
-    padding: 0.25em 0.5em;
-    background-color: $color-brand-primary;
-    color: #fff;
-    border: 1px solid var(--border);
-    border-radius: 0.5em;
-    white-space: nowrap;
+  position: relative;
 
-    > fa-icon {
-      margin-right: 0.5em;
+  &__ {
+    &link {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      background-color: $color-brand-primary;
+      color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 0.5em;
+      white-space: nowrap;
+
+      > fa-icon {
+        margin-right: 0.5em;
+      }
+    }
+
+    &info {
+      position: absolute;
+      z-index: 100;
+      bottom: calc(100% + 1em);
     }
   }
 }

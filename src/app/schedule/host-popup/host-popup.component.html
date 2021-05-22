@@ -1,0 +1,10 @@
+<div class="host-popup">
+  <img *ngIf="host.image"
+        bpImageClick
+        class="host-popup__image"
+        [src]="imagePath + host.image"
+        [alt]="host.name"
+        itemprop="image">
+  <h4 class="host-popup__name" [ngClass]="{'host-popup__name--with-image' : host.image, 'host-popup__name--with-location' : host.location}">{{host.name}}</h4>
+  <div *ngIf="host.location">{{host.location}}</div>
+</div>

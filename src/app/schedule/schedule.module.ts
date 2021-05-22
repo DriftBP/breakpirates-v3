@@ -15,6 +15,7 @@ import { GenreListComponent } from './genre-list/genre-list.component';
 import { HostListComponent } from './host-list/host-list.component';
 import { ShowService } from './services/show.service';
 import { HostButtonComponent } from './host-button/host-button.component';
+import { HostPopupComponent } from './host-popup/host-popup.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { HostButtonComponent } from './host-button/host-button.component';
     DayScheduleComponent,
     GenreListComponent,
     HostListComponent,
-    HostButtonComponent
+    HostButtonComponent,
+    HostPopupComponent
   ],
   exports: [
     ShowSummaryComponent

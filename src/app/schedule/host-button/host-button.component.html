@@ -1,9 +1,18 @@
-<div itemprop="performer" itemscope itemtype="http://schema.org/Person">
+<div
+  class="host-button"
+  itemprop="performer"
+  itemscope
+  itemtype="http://schema.org/Person">
   <a
     class="host-button__link"
     [routerLink]="['/profiles',host.id]"
+    (mouseover)="onMouseOver($event)"
+    (mouseout)="onMouseOut($event)"
     itemprop="url">
       <fa-icon [icon]="faHeadphonesAlt"></fa-icon>
       <span itemprop="name">{{host.name}}</span>
   </a>
+  <div class="host-button__info" *ngIf="hover" [@inOutAnimation]>
+    <bp-host-popup [host]="host"></bp-host-popup>
+  </div>
 </div>
