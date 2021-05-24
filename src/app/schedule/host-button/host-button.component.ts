@@ -15,8 +15,8 @@ import { Host } from '../../profile/host';
         transition(
           ':enter',
           [
-            style({ opacity: 0 }),
-            animate('0.25s ease-out', style({ opacity: 1 }))
+            style({ opacity: 0, transform: 'translateY(1em)' }),
+            animate('0.25s ease-out', style({ opacity: 1, transform: 'translateY(0);' }))
           ]
         ),
         transition(
