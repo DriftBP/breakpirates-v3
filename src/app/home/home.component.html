@@ -14,7 +14,7 @@
           [indicatorsByChunk]="true">
   <slide *ngFor="let slide of slides; let index=index">
     <img [src]="imagePath + slide.image" alt="image slide" style="display: block; width: 100%;">
-    <div class="carousel-caption">
+    <div class="carousel-caption d-none d-md-block">
       <h4>Slide {{index}}</h4>
     </div>
   </slide>
