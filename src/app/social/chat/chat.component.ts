@@ -33,7 +33,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
 
-
   chatUrl: SafeResourceUrl;
   enableFullscreen = false;
   enableChatClient = false;
