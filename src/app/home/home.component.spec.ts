@@ -4,8 +4,8 @@ import { of } from 'rxjs';
 
 import { HomeComponent } from './home.component';
 import { HomeModule } from './home.module';
-import { ScheduleService } from '../shared/services/schedule/schedule.service';
-import { Show } from '../schedule/show';
+import { ScheduleService } from '../schedule/services/schedule.service';
+import { Show } from '../schedule/models/show';
 
 const mockShow: Show = {
   id: 1,

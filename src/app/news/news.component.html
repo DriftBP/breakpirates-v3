@@ -2,9 +2,13 @@
 
 <bp-latest-news [news]="latestNews"></bp-latest-news>
 
-<button *ngIf="!showMore" class="news__show-more btn btn-primary" (click)="onShowMore()">{{'NEWS.SHOW_MORE' | translate}}</button>
+<button *ngIf="!showMore; else moreBlock"
+        class="news__show-more btn btn-primary"
+        (click)="onShowMore()">
+  {{'NEWS.SHOW_MORE' | translate}}
+</button>
 
-<ng-container *ngIf="showMore">
+<ng-template #moreBlock>
   <h2 class="news__other-news-header">{{'NEWS.OTHER_NEWS' | translate}}</h2>
 
   <ul class="list-unstyled">
@@ -13,4 +17,4 @@
           <a [routerLink]="['/news',article.id]">{{article.title}}</a>
       </li>
   </ul>
-</ng-container>
+</ng-template>

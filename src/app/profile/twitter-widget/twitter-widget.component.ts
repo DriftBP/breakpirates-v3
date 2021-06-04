@@ -1,9 +1,10 @@
-import { Component, OnChanges, Input, Renderer2, Inject } from '@angular/core';
+import { Component, OnChanges, Input, Renderer2, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'bp-twitter-widget',
-  templateUrl: './twitter-widget.component.html'
+  templateUrl: './twitter-widget.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TwitterWidgetComponent implements OnChanges {
   @Input() user: string;

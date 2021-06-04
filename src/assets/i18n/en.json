@@ -9,7 +9,8 @@
     "PROFILES": "Profiles",
     "VIDEO": "Video",
     "SOCIAL": "Social",
-    "CHAT_ROOM": "Chat room"
+    "CHAT_ROOM": "Chat",
+    "SHOP": "Shop"
   },
   "FOOTER": {
     "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
@@ -55,15 +56,20 @@
   },
   "HOME": {
     "TITLE": "Home",
-    "WELCOME": "Welcome to Break Pirates",
-    "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in underground breakbeat oriented music live over the Internet every day of the week. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool House, Hardcore and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
+    "WELCOME": "Break Pirates - Live Pirate Style Radio",
+    "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in breakbeat music live over the Internet 24/7. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool Hardcore, Techno, House and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
+    "WE_PRIDE_OURSELVES": "We pride ourselves in bringing you an authentic mix of tunes from the classic era of Rave, along with the very latest upfront tunes from current day producers and labels. All of this delivered in a style familiar to those of you who locked into the pirate stations across the UK back in the day.",
+    "FIND_OUT_MORE": "Find out more about our DJs in the profiles area",
     "TODAYS_SCHEDULE": "Todays schedule"
   },
   "NEWS": {
     "TITLE": "News",
     "LATEST_NEWS": "Latest news",
     "SHOW_MORE": "Show more news",
-    "OTHER_NEWS": "Other news"
+    "OTHER_NEWS": "Other news",
+    "BY": "by",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the article you were looking for."
   },
   "SCHEDULE": {
     "TITLE": "Schedule",
@@ -72,7 +78,10 @@
     "TIMES_DISPLAYED": "Times displayed are for London, UK.",
     "HOSTED_BY": "Hosted by",
     "MUSIC_STYLES": "Music styles",
-    "SHOW_DESCRIPTION": "Show description"
+    "SHOW_DESCRIPTION": "Show description",
+    "ON": "on",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the show you were looking for."
   },
   "MUSIC": {
     "TITLE": "Music",
@@ -85,7 +94,13 @@
     "ORDERING": "Ordering",
     "SHOWS": "Shows",
     "LISTEN_ON_MIXCLOUD": "{{ name }} on Mixcloud",
-    "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter"
+    "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter",
+    "MORE": "More",
+    "LESS": "Less",
+    "PREVIOUS": "Previous",
+    "NEXT": "Next",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the profile you were looking for."
   },
   "SOCIAL": {
     "TITLE": "Social",
@@ -93,10 +108,26 @@
     "USE_OWN_APP": "Want to use your own app?",
     "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.",
     "CONFIRM_LEAVE_CHAT": "Are you sure you want to leave the chat room?",
-    "FULL_SCREEN": "Chat full screen"
+    "FULL_SCREEN": "Chat full screen",
+    "PREVENT_SLEEP": "Prevent sleep",
+    "ON": "On",
+    "OFF": "Off"
   },
   "VIDEO": {
     "TITLE": "Video"
+  },
+  "SHOP": {
+    "TITLE": "Shop",
+    "AS_USED_BY": "Here's a selection of products used by BP staff. By checking them out you'll be helping to support the station if you go ahead and make any purchases.",
+    "TURNTABLES": "Turntables",
+    "MIXERS": "Mixers",
+    "HEADPHONES": "Headphones",
+    "CARTS_STYLI": "Cartridges & styli",
+    "MICROPHONES": "Microphones",
+    "SPEAKERS": "Speakers",
+    "DVS_CONTROLLERS": "DVS & controllers",
+    "VINYL_CARE": "Vinyl care",
+    "AUDIO_INTERFACES": "Audio interfaces"
   },
   "TOOLS": {
     "TITLE": "Tools",

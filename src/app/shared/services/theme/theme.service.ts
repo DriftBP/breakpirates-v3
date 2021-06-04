@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { Theme } from './theme';
 import { ThemeSetting } from './theme-setting';
@@ -13,7 +14,7 @@ export class ThemeService {
   private localStorageKey = 'bp_theme_setting';
   private _currentTheme: BehaviorSubject<Theme> = new BehaviorSubject(this.defaultTheme);
 
-  public readonly currentTheme: Observable<Theme> = this._currentTheme.asObservable();
+  public readonly currentTheme$: Observable<Theme> = this._currentTheme.asObservable().pipe(distinctUntilChanged());;
 
   constructor() {
     const themeSettingName = localStorage.getItem(this.localStorageKey);

@@ -9,7 +9,7 @@ import { BreadcrumbConfigItem } from '../../breadcrumb/breadcrumb-config-item';
 export class BreadcrumbService {
   private _breadcrumb: BehaviorSubject<BreadcrumbConfigItem[]> = new BehaviorSubject(null);
 
-  public readonly breadcrumb: Observable<BreadcrumbConfigItem[]> = this._breadcrumb.asObservable();
+  public readonly breadcrumb$: Observable<BreadcrumbConfigItem[]> = this._breadcrumb.asObservable();
 
   setBreadcrumb(config: BreadcrumbConfigItem[]): void {
     this._breadcrumb.next(config);

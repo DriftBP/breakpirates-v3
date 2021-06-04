@@ -1,0 +1,7 @@
+<ng-container *ngIf="products?.length > 0; else noProducts">
+  <bp-product-listing [products]="products"></bp-product-listing>
+</ng-container>
+
+<ng-template #noProducts>
+  <p>No products found.</p>
+</ng-template>

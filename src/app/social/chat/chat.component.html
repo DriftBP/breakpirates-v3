@@ -1,8 +1,16 @@
 <h1>{{'SOCIAL.CHAT' | translate}}</h1>
 
-<iframe #chatIframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl | safe: 'resourceUrl'"></iframe>
+<iframe #chatIframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl"></iframe>
 
-<button *ngIf="enableFullscreen" (click)="fullscreen()" class="btn btn-primary">{{'SOCIAL.FULL_SCREEN' | translate}}</button>
+<button *ngIf="enableFullscreen" (click)="fullscreen()" class="chat__button btn btn-primary">
+  {{'SOCIAL.FULL_SCREEN' | translate}}
+</button>
+
+<button *ngIf="enablePreventSleep" (click)="togglePreventSleep()" class="chat__button btn btn-primary">
+  {{'SOCIAL.PREVENT_SLEEP' | translate}}:
+  <ng-container *ngIf="preventSleep; else elseBlock">{{'SOCIAL.ON' | translate}}</ng-container>
+  <ng-template #elseBlock>{{'SOCIAL.OFF' | translate}}</ng-template>
+</button>
 
 <h2>{{'SOCIAL.USE_OWN_APP' | translate}}</h2>
 

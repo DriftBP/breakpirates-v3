@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GenresResolve } from './genres.resolve';
-import { GenreResolve } from './genre.resolve';
-import { GenreShowsResolve } from './genre-shows.resolve';
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
+import { MusicResolvesModule } from './resolves/music-resolves.module';
+import { GenresResolve } from './resolves/genres.resolve';
+import { GenreResolve } from './resolves/genre.resolve';
+import { GenreShowsResolve } from './resolves/genre-shows.resolve';
 
 const routes: Routes = [
   { path: '', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
@@ -13,7 +14,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    MusicResolvesModule,
+    RouterModule.forChild(routes)]
+  ,
   exports: [RouterModule]
 })
 export class MusicRoutingModule { }

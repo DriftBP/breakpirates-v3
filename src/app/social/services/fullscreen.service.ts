@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FullscreenService {
   private _canRequestFullscreen: boolean;
 
@@ -11,7 +9,7 @@ export class FullscreenService {
     this._canRequestFullscreen = !!docElement.requestFullscreen;
   }
 
-  canRequestFullscreen(): boolean {
+  get canRequestFullscreen(): boolean {
     return this._canRequestFullscreen;
   }
 

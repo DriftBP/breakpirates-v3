@@ -52,6 +52,17 @@ a {
   }
 }
 
+/* Bootstrap overrides */
+
+.nav-link {
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+}
+
 .mejs__container {
   width: auto !important;
 }

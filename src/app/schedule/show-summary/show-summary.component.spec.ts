@@ -1,12 +1,14 @@
 import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
-import { of } from 'rxjs';
+import { from, of } from 'rxjs';
 import { DateTime } from 'luxon';
 
 import { ShowSummaryComponent } from './show-summary.component';
 import { ScheduleModule } from '../schedule.module';
-import { Show } from '../show';
-import { ScheduleService } from '../../shared/services/schedule/schedule.service';
+import { Show } from '../models/show';
+import { ScheduleService } from '../services/schedule.service';
+import { DayService } from '../services/day.service';
+import { ShowService } from '../services/show.service';
 
 const mockShow1: Show = {
   id: 1,
@@ -24,11 +26,15 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
+      .mock(DayService, {
+        dayName: () => ''
+      })
       .mock(ScheduleService, {
-        nowPlaying: of(mockShow2),
+        nowPlaying$: from([mockShow1, mockShow2]),
         showHosts: () => of([]),
-        showGenres: () => of([]),
-        dayName: () => '',
+        showGenres: () => of([])
+      })
+      .mock(ShowService, {
         getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),
       });
   }));

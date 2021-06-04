@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Host } from '../host';
-import { Show } from '../../schedule/show';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -18,19 +17,17 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 export class HostDetailsComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
-  private showsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   profile: Host;
-  shows: Show[];
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly profileService: ProfileService,
+    public readonly profileService: ProfileService,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
@@ -44,10 +41,6 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
     }
-
-    if (this.showsSubscription) {
-      this.showsSubscription.unsubscribe();
-    }
   }
 
   initialiseState(): void {
@@ -59,9 +52,6 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
     });
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.showsSubscription = this.profileService.profileShows(this.profile.id)
-      .subscribe(shows => this.shows = shows);
   }
 
   hasMixcloud(): boolean {

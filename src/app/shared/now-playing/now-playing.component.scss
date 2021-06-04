@@ -1,4 +1,4 @@
-@import '~sass/variables';
+@import '~src/sass/variables';
 
 .now-playing {
   margin-bottom: 1em;
@@ -20,18 +20,34 @@
       align-items: center;
 
       &- {
+        &progress {
+          &- {
+            &container {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+            }
+          }
+        }
+
         &image {
           height: 4rem;
           width: 4rem;
           min-width: 4rem;
-          margin-right: 1em;
           border-radius: 50%;
           border: 1px solid var(--border);
           background-size: cover;
           background-position: center;
+
+          &-container {
+            position: relative;
+          }
         }
 
         &text {
+          margin-left: 1em;
           overflow: hidden;
           line-height: 1.2em;
         }

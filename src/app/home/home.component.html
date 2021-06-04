@@ -1,6 +1,12 @@
-<h1>{{'HOME.WELCOME' | translate}}</h1>
+<article>
+  <h1>{{'HOME.WELCOME' | translate}}</h1>
 
-<p>{{'HOME.DESCRIPTION' | translate}}</p>
+  <p>{{'HOME.DESCRIPTION' | translate}}</p>
+
+  <p>{{'HOME.WE_PRIDE_OURSELVES' | translate}}</p>
+</article>
+
+<p><a routerLink="/profiles">{{'HOME.FIND_OUT_MORE' | translate}}</a></p>
 
 <carousel class="home__carousel"
           [itemsPerSlide]="itemsPerSlide"
@@ -14,7 +20,7 @@
   </slide>
 </carousel>
 
-<ng-container *ngIf="scheduleLoaded">
+<ng-container *ngIf="scheduleService.shows(activeDayId) | async as todaysSchedule">
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
   <ng-container *ngFor="let show of todaysSchedule">

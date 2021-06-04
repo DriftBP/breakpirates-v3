@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Observer } from 'rxjs';
 
@@ -7,13 +7,15 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { FullscreenService } from '../services/fullscreen.service';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ScreenService } from '../services/screen.service';
 
 @Component({
   selector: 'bp-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatIframe') chatElement: ElementRef;
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -28,19 +30,32 @@ export class ChatComponent implements OnInit {
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
 
-  chatUrl = 'https://thelounge.hostco.de/?join=' + this.ircChannel;
+  chatUrl: SafeResourceUrl;
   enableFullscreen = false;
+  enablePreventSleep = false;
+  preventSleep = false;
 
   constructor(
     private readonly translateService: TranslateService,
     private readonly fullscreenService: FullscreenService,
-    private readonly breadcrumbService: BreadcrumbService
+    private readonly breadcrumbService: BreadcrumbService,
+    private readonly sanitizer: DomSanitizer,
+    private readonly screenService: ScreenService
   ) {}
 
   ngOnInit() {
+    const url = `https://thelounge.hostco.de/?join=${this.ircChannel}`;
+
+    this.chatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
-    this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
+    this.enableFullscreen = this.fullscreenService.canRequestFullscreen;
+    this.enablePreventSleep = this.screenService.canPreventSleep;
+  }
+
+  ngOnDestroy() {
+    this.screenService.endPreventSleep();
   }
 
   canExit(): Observable<boolean> {
@@ -60,5 +75,15 @@ export class ChatComponent implements OnInit {
 
   fullscreen(): void {
     this.fullscreenService.requestFullscreen(this.chatElement.nativeElement);
+  }
+
+  async togglePreventSleep(): Promise<void> {
+    this.preventSleep = !this.preventSleep;
+
+    if (this.preventSleep) {
+      await this.screenService.startPreventSleep();
+    } else {
+      await this.screenService.endPreventSleep();
+    }
   }
 }

@@ -1,16 +1,10 @@
 <div class="sidebar">
-  <bp-content-box>
-    <content-box-title>{{'CHAT_ROOM.TITLE' | translate}}</content-box-title>
-    <content-box-content>
-      <bp-chat-room-promo></bp-chat-room-promo>
-    </content-box-content>
+  <bp-content-box [title]="'CHAT_ROOM.TITLE' | translate">
+    <bp-chat-room-promo></bp-chat-room-promo>
   </bp-content-box>
 
-  <bp-content-box>
-    <content-box-title>{{'DONATE.TITLE' | translate}}</content-box-title>
-    <content-box-content>
-      <bp-donate></bp-donate>
-    </content-box-content>
+  <bp-content-box [title]="'DONATE.TITLE' | translate">
+    <bp-donate></bp-donate>
   </bp-content-box>
 
   <div class="sidebar__mixcloud-promo">

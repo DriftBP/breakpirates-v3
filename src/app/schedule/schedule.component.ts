@@ -4,8 +4,7 @@ import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 
-import { ScheduleService } from '../shared/services/schedule/schedule.service';
-import { Day } from './day';
+import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
@@ -17,6 +16,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   private childParamsSubscription: Subscription;
+  private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
@@ -25,13 +25,14 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly scheduleService: ScheduleService,
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
-    this.days = this.scheduleService.days();
+    this.paramsSubscription = this.route.data.subscribe(data => {
+      this.days = data.days;
+    });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
@@ -69,6 +70,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.childParamsSubscription) {
       this.childParamsSubscription.unsubscribe();
+    }
+
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
     }
   }
 

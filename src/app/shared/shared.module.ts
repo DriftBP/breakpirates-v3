@@ -8,46 +8,41 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Components
 import { NowPlayingComponent } from './now-playing/now-playing.component';
 import { DonateComponent } from './donate/donate.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SocialLinksComponent } from './social-links/social-links.component';
 import { ContentBoxComponent } from './content-box/content-box.component';
 import { RadioPlayerComponent } from './radio-player/radio-player.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { HostListComponent } from './host-list/host-list.component';
-import { GenreListComponent } from './genre-list/genre-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThemeSelectComponent } from './theme-select/theme-select.component';
-import { ServerStatsComponent } from './server-stats/server-stats.component';
 import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { AdUnitComponent } from './ad-unit/ad-unit.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 
 // Services
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { NewsService } from '../news/news.service';
-import { SocialService } from './services/social/social.service';
-import { ScheduleService } from './services/schedule/schedule.service';
+import { ScheduleService } from '../schedule/services/schedule.service';
+import { SocialService } from '../social/services/social.service';
+import { HttpRequestService } from './services/http-request/http-request.service';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
-import { SortByPipe } from './pipes/sort-by.pipe';
-import { MapToArrayPipe } from './pipes/map-to-array.pipe';
 import { TimePipe } from './pipes/time.pipe';
-import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { IsoDatePipe } from './pipes/iso-date.pipe';
 
 // Directives
 import { ActiveDirective } from './directives/active.directive';
-import { DialogComponent } from './dialog/dialog.component';
 import { ImageClickDirective } from './directives/image-click.directive';
+import { ShowService } from '../schedule/services/show.service';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -68,27 +63,20 @@ export function customHttpLoader(http: HttpClient) {
       },
       isolate: false
     }),
+    FontAwesomeModule
   ],
   declarations: [
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SocialLinksComponent,
     SafePipe,
-    SortByPipe,
-    MapToArrayPipe,
     TimePipe,
-    FormattedDatePipe,
-    IsoDatePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent,
-    GenreListComponent,
     SidebarComponent,
     FooterComponent,
     ThemeSelectComponent,
-    ServerStatsComponent,
     ChatRoomPromoComponent,
     NotFoundComponent,
     BreadcrumbComponent,
@@ -97,24 +85,18 @@ export function customHttpLoader(http: HttpClient) {
     ActiveDirective,
     DialogComponent,
     ImageClickDirective,
-    AdUnitComponent
+    AdUnitComponent,
+    ProgressIndicatorComponent
   ],
   exports: [
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SocialLinksComponent,
     SafePipe,
-    SortByPipe,
-    MapToArrayPipe,
     TimePipe,
-    FormattedDatePipe,
-    IsoDatePipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
-    HostListComponent,
-    GenreListComponent,
     FooterComponent,
     TranslateModule,
     BreadcrumbComponent,
@@ -126,10 +108,11 @@ export function customHttpLoader(http: HttpClient) {
     AdUnitComponent
   ],
   providers: [
+    HttpRequestService,
     GoogleAnalyticsService,
-    NewsService,
     SocialService,
-    ScheduleService
+    ScheduleService,
+    ShowService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
