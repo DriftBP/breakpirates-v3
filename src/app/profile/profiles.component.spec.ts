@@ -5,7 +5,7 @@ import { Shallow } from 'shallow-render';
 
 import { ProfilesComponent } from './profiles.component';
 import { ProfileModule } from './profile.module';
-import { SortOrder } from '../shared/pipes/sort-order';
+import { SortOrder } from './pipes/sort-order';
 
 const routes: Routes = [];
 

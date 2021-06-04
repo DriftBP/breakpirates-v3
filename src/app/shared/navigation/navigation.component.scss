@@ -1,4 +1,4 @@
-@import '~sass/variables';
+@import '~src/sass/variables';
 
 .dropdown-toggle {
   border: 0;
@@ -15,21 +15,15 @@
   background-color: $color-brand-primary;
 
   &__logo {
-    margin-left: 1em;
     padding: 0;
 
     @media (min-width: $breakpoint-md) {
-      margin-left: 0;
       padding: 5px 0;
     }
 
     &-image {
       width: 200px;
       height: auto;
-
-      @media (min-width: $breakpoint-sm) {
-        width: 240px;
-      }
 
       @media (min-width: $breakpoint-md) {
         width: 280px;

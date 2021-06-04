@@ -1,10 +1,14 @@
-<bp-breadcrumb [isHome]="true" [config]="breadcrumbConfig"></bp-breadcrumb>
+<article>
+  <h1>{{'HOME.WELCOME' | translate}}</h1>
 
-<h1>{{'HOME.WELCOME' | translate}}</h1>
+  <p>{{'HOME.DESCRIPTION' | translate}}</p>
 
-<p>{{'HOME.DESCRIPTION' | translate}}</p>
+  <p>{{'HOME.WE_PRIDE_OURSELVES' | translate}}</p>
+</article>
 
-<ng-container *ngIf="scheduleLoaded">
+<p><a routerLink="/profiles">{{'HOME.FIND_OUT_MORE' | translate}}</a></p>
+
+<ng-container *ngIf="scheduleService.shows(activeDayId) | async as todaysSchedule">
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
   <ng-container *ngFor="let show of todaysSchedule">

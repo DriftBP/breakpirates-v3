@@ -2,17 +2,15 @@
   <bp-supported-browsers-notice></bp-supported-browsers-notice>
 
   <div class="container-fluid">
-    <div class="header">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <bp-navigation></bp-navigation>
-      </nav>
-    </div>
+    <bp-navigation></bp-navigation>
 
     <bp-now-playing></bp-now-playing>
 
     <div class="row">
       <div class="col-md-9">
         <main class="main">
+          <bp-breadcrumb></bp-breadcrumb>
+
           <router-outlet></router-outlet>
         </main>
       </div>
@@ -23,10 +21,10 @@
       </div>
     </div>
 
-    <ins class="ad-wrapper adsbygoogle"
-      style="display:block;width:728px;height:90px"
-      data-ad-client="ca-pub-0817931421481428"
-      data-ad-slot="4643712095"></ins>
+    <bp-ad-unit
+      [adSlot]="4643712095"
+      [width]="728"
+      [height]="90"></bp-ad-unit>
 
     <bp-footer></bp-footer>
 

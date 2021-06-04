@@ -4,12 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ScheduleComponent } from './schedule.component';
 import { ShowComponent } from './show/show.component';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
-import { ScheduleResolve } from './schedule.resolve';
-import { ShowDetailsResolve } from './show-details.resolve';
-import { TodaysScheduleResolve } from './todays-schedule.resolve';
+import { ScheduleResolve } from './resolves/schedule.resolve';
+import { ShowDetailsResolve } from './resolves/show-details.resolve';
+import { TodaysScheduleResolve } from './resolves/todays-schedule.resolve';
+import { DaysResolve } from './resolves/days.resolve';
+import { ScheduleResolvesModule } from './resolves/schedule-resolves.module';
 
 const routes: Routes = [
-  { path: '', component: ScheduleComponent, children: [
+  { path: '', component: ScheduleComponent, resolve: { days: DaysResolve }, children: [
     { path: '', component: DayScheduleComponent, resolve: { schedule: TodaysScheduleResolve } },
     { path: ':id', component: DayScheduleComponent, resolve: { schedule: ScheduleResolve } },
   ] },
@@ -17,7 +19,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    ScheduleResolvesModule,
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule]
 })
 export class ScheduleRoutingModule { }

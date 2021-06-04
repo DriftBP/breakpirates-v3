@@ -1,5 +1,5 @@
-@import '~sass/variables';
-@import '~sass/mixins';
+@import '~src/sass/variables';
+@import '~src/sass/mixins';
 
 .host-details {
   &__ {
@@ -20,6 +20,11 @@
 
     &clear {
       clear: both;
+      margin-bottom: 1em;
+    }
+
+    &divider {
+      border-top-color: var(--color);
     }
   }
 }

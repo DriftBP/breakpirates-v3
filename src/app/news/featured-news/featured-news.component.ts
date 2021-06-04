@@ -1,12 +1,13 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 
-import { News } from '../news';
+import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'bp-featured-news',
   templateUrl: './featured-news.component.html',
-  styleUrls: ['./featured-news.component.scss']
+  styleUrls: ['./featured-news.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeaturedNewsComponent implements OnChanges {
   @Input() article: News;

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, OnDestroy, } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Observer, Subscription } from 'rxjs';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
@@ -7,6 +7,9 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { FullscreenService } from '../services/fullscreen.service';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ScreenService } from '../services/screen.service';
 
 @Component({
   selector: 'bp-chat',
@@ -19,11 +22,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   private recaptchaSubscription: Subscription;
   private recaptchaAction: 'VerifyChat';
   recaptchaError: string;
+  chatUrl: SafeResourceUrl;
+  enableFullscreen = false;
+  enableChatClient = false;
+  enablePreventSleep = false;
+  preventSleep = false;
 
   ircServer = AppSettings.IRC_SERVER;
   ircPort = AppSettings.IRC_PORT;
   ircChannel = AppSettings.IRC_CHANNEL;
-  breadcrumbConfig: BreadcrumbConfigItem[] = [
+
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigInactive,
     {
       name: 'SOCIAL.CHAT',
@@ -31,17 +40,23 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   ];
 
-  chatUrl = 'https://thelounge.hostco.de/?join=' + this.ircChannel;
-  enableFullscreen = false;
-  enableChatClient = false;
-
   constructor(
     private readonly translateService: TranslateService,
     private readonly fullscreenService: FullscreenService,
-    private recaptchaV3Service: ReCaptchaV3Service
+    private readonly screenService: ScreenService,
+    private readonly recaptchaV3Service: ReCaptchaV3Service
   ) {}
 
   ngOnInit() {
+    const url = `https://thelounge.hostco.de/?join=${this.ircChannel}`;
+
+    this.chatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+
+    this.enableFullscreen = this.fullscreenService.canRequestFullscreen;
+    this.enablePreventSleep = this.screenService.canPreventSleep;
+
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
     this.recaptchaSubscription = this.recaptchaV3Service.execute(this.recaptchaAction)
       .subscribe(
@@ -55,6 +70,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.screenService.endPreventSleep();
+
     if (this.recaptchaSubscription) {
       this.recaptchaSubscription.unsubscribe();
     }
@@ -81,5 +98,15 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   handleRecaptchaExecute(token: string) {
     this.enableChatClient = true;
+  }
+
+  async togglePreventSleep(): Promise<void> {
+    this.preventSleep = !this.preventSleep;
+
+    if (this.preventSleep) {
+      await this.screenService.startPreventSleep();
+    } else {
+      await this.screenService.endPreventSleep();
+    }
   }
 }

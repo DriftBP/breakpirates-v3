@@ -1,0 +1,21 @@
+@import '~src/sass/variables';
+
+.progress-indicator {
+  &__ {
+    &vector {
+      transform: rotate(270deg);
+
+      &- {
+        &total {
+          background-color: $color-brand-tertiary;
+          stroke: $color-brand-tertiary;
+        }
+
+        &current {
+          background-color: $color-brand-primary;
+          stroke: $color-brand-primary;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,4 @@
-<div *ngIf="show !== undefined" itemscope itemtype="http://schema.org/MusicEvent">
-  <bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
-
-  <h1 itemprop="name">{{ show.title }}</h1>
-
-  <p>{{ show.start_time | time }} - {{ show.end_time | time }} on <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a></p>
-
+<div *ngIf="show; else notFound" itemscope itemtype="http://schema.org/MusicEvent">
   <meta itemprop="startDate" content="{{nextDate}}">
   <meta itemprop="endDate" content="{{endDate}}">
 
@@ -14,31 +8,45 @@
     <meta itemprop="address" content="UK">
   </div>
 
-  <ng-container *ngIf="show?.description">
-    <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
+  <article>
+    <h1 itemprop="name">{{ show.title }}</h1>
 
-    <img *ngIf="show.image"
-          bpImageClick
-          class="show__image"
-          [src]="imagePath + show.image"
-          [alt]="show.title"
-          itemprop="image">
+    <p>
+      <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
+      <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
+      {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
+    </p>
+    <ng-container *ngIf="show.description">
+      <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
-    <p itemprop="description">{{ show.description }}</p>
+      <img *ngIf="show.image"
+            bpImageClick
+            class="show__image"
+            [src]="imagePath + show.image"
+            [alt]="show.title"
+            itemprop="image">
 
-    <div class="show__clear"></div>
-  </ng-container>
+      <p itemprop="description">{{ show.description }}</p>
 
-  <ng-container *ngIf="show.genres?.length > 0">
+      <div class="show__clear"></div>
+    </ng-container>
+  </article>
+
+  <ng-container *ngIf="show.genres.length > 0">
     <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
 
     <bp-genre-list [genres]="show.genres"></bp-genre-list>
   </ng-container>
 
-  <ng-container *ngIf="show.hosts?.length > 0">
+  <ng-container *ngIf="show.hosts.length > 0">
     <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
 
     <bp-host-list [hosts]="show.hosts"></bp-host-list>
   </ng-container>
 
 </div>
+
+<ng-template #notFound>
+  <h1>{{'SCHEDULE.NOT_FOUND' | translate}}</h1>
+  <p>{{'SCHEDULE.COULD_NOT_FIND' | translate}}</p>
+</ng-template>

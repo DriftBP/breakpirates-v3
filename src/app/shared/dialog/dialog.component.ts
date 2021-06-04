@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { IDialogConfig } from '../services/dialog/dialog-config';
@@ -16,6 +17,8 @@ export class DialogComponent implements OnInit, OnDestroy {
   @ViewChild('dialogTitle') dialogTitleElement: ElementRef;
 
   private showSubscription: Subscription;
+
+  faTimes = faTimes
 
   @HostListener('document:click', ['$event'])
   clickOut(event: MouseEvent) {
@@ -58,7 +61,9 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.dialogElement.nativeElement.close();
+    if (this.dialogElement.nativeElement.close) {
+      this.dialogElement.nativeElement.close();
+    }
   }
 
   ngOnDestroy() {

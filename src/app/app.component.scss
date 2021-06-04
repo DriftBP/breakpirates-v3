@@ -1,18 +1,15 @@
-@import '~sass/variables';
-@import '~sass/mixins';
+@import '~src/sass/variables';
+@import '~src/sass/mixins';
 
 .app {
   background-color: var(--bg);
   color: var(--color);
   transition: all 0.1s ease-out;
+  padding-top: 1em;
 }
 
 .main {
   @include box-padding;
   background-color: var(--panel-bg);
   border: 1px solid var(--border);
-}
-
-.ad-wrapper {
-  margin: 1em auto;
 }

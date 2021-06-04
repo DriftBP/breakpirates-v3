@@ -6,8 +6,12 @@
         [attr.aria-current]="item.isActive"
         itemprop="itemListElement" itemscope
         itemtype="http://schema.org/ListItem">
-        <a *ngIf="item.routerLink" [routerLink]="item.routerLink" itemprop="item"><span itemprop="name">{{item.name | translate}}</span></a>
-        <span *ngIf="!item.routerLink" itemprop="name">{{item.name | translate}}</span>
+        <a *ngIf="item.routerLink; else elseBlock" [routerLink]="item.routerLink" itemprop="item">
+          <span itemprop="name">{{item.name | translate}}</span>
+        </a>
+        <ng-template #elseBlock>
+          <span itemprop="name">{{item.name | translate}}</span>
+        </ng-template>
         <meta itemprop="position" content="{{ i + 1}}" />
     </li>
   </ol>

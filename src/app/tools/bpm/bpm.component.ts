@@ -1,37 +1,33 @@
-import { Component, HostListener } from '@angular/core';
-import moment from 'moment';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { DateTime } from 'luxon';
+
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
-
-export enum DataCollectionStatus {
-  Empty,
-  Insufficient,
-  Full
-}
+import { DataCollectionStatus } from './data-collection-status';
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 class DataPoint {
-  time: moment.Moment;
+  time: DateTime;
 }
 
 @Component({
   selector: 'bp-bpm',
-  templateUrl: './bpm.component.html',
-  styleUrls: ['./bpm.component.scss']
+  templateUrl: './bpm.component.html'
 })
-export class BpmComponent {
+export class BpmComponent implements OnInit {
   private maxDataPoints = 20;
-
-  message: DataCollectionStatus;
-  statuses = DataCollectionStatus;
-  bpm: number;
-  beatBuffer: DataPoint[];
-  breadcrumbConfig: BreadcrumbConfigItem[] = [
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
       name: 'BPM_COUNTER.TITLE',
       isActive: true
     }
   ];
+
+  message: DataCollectionStatus;
+  statuses = DataCollectionStatus;
+  bpm: number;
+  beatBuffer: DataPoint[];
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -43,8 +39,14 @@ export class BpmComponent {
     }
   }
 
-  constructor() {
+  constructor(
+    private readonly breadcrumbService: BreadcrumbService
+  ) {
     this.reset();
+  }
+
+  ngOnInit() {
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
   private reset(): void {
@@ -79,9 +81,9 @@ export class BpmComponent {
       const last = dataPoints.slice(dataPoints.length - 1, dataPoints.length).shift();
 
       // Difference in milliseconds
-      const time = last.time.diff(first.time);
+      const diff = last.time.diff(first.time);
 
-      const bpmUnrounded = (millisecondsInMinute / time) * (this.maxDataPoints - 1);
+      const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
 
       return Math.round(bpmUnrounded * 10) / 10;
     }
@@ -107,7 +109,7 @@ export class BpmComponent {
 
   onClick(): void {
     const dataPoint: DataPoint = {
-      time: moment()
+      time: DateTime.local()
     };
 
     this.addToBuffer(dataPoint);

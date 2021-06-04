@@ -2,24 +2,22 @@
 <nav class="navigation navbar fixed-top navbar-expand-md navbar-dark">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button
-        class="navbar-toggler"
-        type="button"
-        (click)="toggleIsCollapsed()"
-        aria-controls="navbar-main"
-        [attr.aria-expanded]="!isCollapsed"
-        [attr.aria-label]="'NAVIGATION.TOGGLE_NAVIGATION' | translate">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navigation__logo navbar-brand" routerLink="/radio">
-        <img class="navigation__logo-image" [src]="assetRoot + 'bp-head.gif'" width="354" height="54" alt="Break Pirates" />
-      </a>
-    </div>
+    <a class="navigation__logo navbar-brand" routerLink="/radio">
+      <img class="navigation__logo-image" [src]="assetRoot + 'bp-head.jpg'" width="354" height="57" alt="Break Pirates" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleIsCollapsed()"
+      aria-controls="navbar-main"
+      [attr.aria-expanded]="!isCollapsed"
+      [attr.aria-label]="'NAVIGATION.TOGGLE_NAVIGATION' | translate">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div id="navbar-main" class="navbar-collapse" [collapse]="isCollapsed">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
         <li class="nav-item dropdown" dropdown>
           <button
             id="nav-tune-in"
@@ -68,7 +66,7 @@
                 href="/stream.ram"
               >RealPlayer</a>
             </li>
-            <li class="divider dropdown-divider"></li>
+            <li class="dropdown-divider"></li>
             <li role="menuitem">
               <a
                 class="dropdown-item"
@@ -95,7 +93,9 @@
         <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
         </li>
-
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/shop">{{'NAVIGATION.SHOP' | translate}}</a>
+        </li>
       </ul>
     </div>
   </div>

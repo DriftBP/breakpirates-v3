@@ -3,11 +3,11 @@ import { Shallow } from 'shallow-render';
 
 import { FeaturedNewsComponent } from './featured-news.component';
 import { NewsModule } from '../news.module';
-import { News } from '../news';
+import { News } from '../models/news';
 
 const mockArticle: News = {
   id: 1,
-  date: 1,
+  date: '1',
   title: 'Article title',
   text: 'Article text',
   summary: 'Article summary',

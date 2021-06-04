@@ -1,12 +1,11 @@
-<bp-breadcrumb [config]="breadcrumbConfig"></bp-breadcrumb>
-
 <h1>{{'PROFILES.TITLE' | translate}}</h1>
 
 <p>{{'PROFILES.INTRO' | translate}}</p>
 
 <button class="btn btn-primary" (click)="toggleOrderBy()">
   {{'PROFILES.ORDERING' | translate}}
-  <i class="fas" [ngClass]="{'fa-chevron-up': order == orders.Ascending, 'fa-chevron-down': order == orders.Descending}"></i>
+  <fa-icon [icon]="faChevronUp" *ngIf="order === orders.Ascending"></fa-icon>
+  <fa-icon [icon]="faChevronDown" *ngIf="order === orders.Descending"></fa-icon>
 </button>
 
 <ul class="profile-list">

@@ -1,0 +1,8 @@
+{{'FOOTER.SWITCH_THEME' | translate}}:
+<ul class="theme-select__theme-list">
+  <li class="theme-select__theme-list-item" *ngFor="let option of options">
+    <button class="theme-select__theme-list-button btn btn-link" (click)="setThemeSetting(option.setting)">
+      {{option.key | translate}}
+    </button>
+  </li>
+</ul>

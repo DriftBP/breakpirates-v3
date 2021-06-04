@@ -1,15 +1,20 @@
-<div class="now-playing">
+<aside class="now-playing">
     <div class="now-playing__show-info">
-      <div *ngIf="nowPlayingImage"
+      <div class="now-playing__show-info-image-container" *ngIf="nowPlayingImage">
+        <div
             class="now-playing__show-info-image"
             [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
+        <div class="now-playing__show-info-progress-container" *ngIf="isLiveShow">
+          <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
+        </div>
+      </div>
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
           {{'NOW_PLAYING.ON_AIR' | translate}}:
-          <span *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</span>
+          <ng-container *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</ng-container>
         </div>
 
-        <ng-container *ngIf="isLiveShow">
+        <ng-container *ngIf="isLiveShow; else playlist">
           <div class="now-playing__show-info-name" [title]="nowPlaying.title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
           </div>
@@ -23,15 +28,15 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="!isLiveShow">
+        <ng-template #playlist>
           <div class="now-playing__show-info-name">
-            {{'NOW_PLAYING.PLAYLIST' | translate}} <!-- {{ serverInfo ? ' - ' + serverInfo.SongTitle : '' }} -->
+            {{'NOW_PLAYING.PLAYLIST' | translate}}
           </div>
 
           <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
-        </ng-container>
+        </ng-template>
       </div>
     </div>
 
     <bp-radio-player></bp-radio-player>
-</div>
+</aside>

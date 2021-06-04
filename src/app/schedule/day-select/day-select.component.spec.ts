@@ -3,7 +3,7 @@ import { Shallow } from 'shallow-render';
 
 import { DaySelectComponent } from './day-select.component';
 import { ScheduleModule } from '../schedule.module';
-import { Day } from '../day';
+import { Day } from '../models/day';
 
 const mockDay: Day = {
   id: 1,

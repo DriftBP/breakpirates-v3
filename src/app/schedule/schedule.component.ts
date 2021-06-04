@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 
-import { ScheduleService } from '../shared/services/schedule/schedule.service';
-import { Day } from './day';
+import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-schedule',
@@ -16,20 +16,23 @@ import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcru
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   private childParamsSubscription: Subscription;
+  private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  activeDayId = moment().isoWeekday();
+  activeDayId = DateTime.local().weekday;
   days: Day[];
-  breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly scheduleService: ScheduleService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
-    this.days = this.scheduleService.days();
+    this.paramsSubscription = this.route.data.subscribe(data => {
+      this.days = data.days;
+    });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
@@ -58,13 +61,19 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         scheduleConfigActive
       ]);
 
-      this.activeDayId = moment().isoWeekday();
+      this.activeDayId = DateTime.local().weekday;
     }
+
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
   ngOnDestroy() {
     if (this.childParamsSubscription) {
       this.childParamsSubscription.unsubscribe();
+    }
+
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
     }
   }
 

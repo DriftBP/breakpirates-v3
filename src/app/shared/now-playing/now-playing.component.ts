@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Show } from '../../schedule/show';
-import { ScheduleService } from '../services/schedule/schedule.service';
-import { ServerInfo } from '../services/schedule/server-info';
+import { Show } from '../../schedule/models/show';
+import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 
 @Component({
@@ -14,19 +13,17 @@ import { AppSettings } from '../../app-settings';
 export class NowPlayingComponent implements OnInit, OnDestroy {
 
   private nowPlayingSubscription: Subscription;
-  private serverInfoSubscription: Subscription;
 
   nowPlaying: Show;
   nowPlayingImage: string;
   isLiveShow = false;
-  serverInfo: ServerInfo;
 
   constructor(
-    private scheduleService: ScheduleService
+    public readonly scheduleService: ScheduleService
   ) { }
 
   ngOnInit() {
-    this.nowPlayingSubscription = this.scheduleService.nowPlaying.subscribe(nowPlaying => {
+    this.nowPlayingSubscription = this.scheduleService.nowPlaying$.subscribe(nowPlaying => {
       this.nowPlaying = nowPlaying;
 
       let imageFilename: string;
@@ -37,6 +34,8 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         if (nowPlaying.image) {
           imageFilename = nowPlaying.image;
         }
+      } else {
+        this.isLiveShow = false;
       }
 
       if (!imageFilename) {
@@ -46,18 +45,11 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
 
       this.nowPlayingImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + imageFilename + ')';
     });
-
-    this.serverInfoSubscription = this.scheduleService.serverInfo.subscribe(serverInfo => this.serverInfo = serverInfo);
   }
 
   ngOnDestroy() {
     if (this.nowPlayingSubscription) {
       this.nowPlayingSubscription.unsubscribe();
     }
-
-    if (this.serverInfoSubscription) {
-      this.serverInfoSubscription.unsubscribe();
-    }
   }
-
 }

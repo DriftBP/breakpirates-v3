@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
-import { News } from './news';
+import { News } from './models/news';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'bp-news',
@@ -14,19 +15,22 @@ import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 export class NewsComponent implements OnInit {
   private news: News[];
   private latestNewsItems = 4;
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [
+    newsConfigActive
+  ];
 
   latestNews: News[];
   otherNews: News[];
   showMore = false;
-  breadcrumbConfig: BreadcrumbConfigItem[] = [
-    newsConfigActive
-  ];
 
   constructor(
-    private route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+
     this.news = this.route.snapshot.data['news'];
 
     if (this.news && Array.isArray(this.news)) {
@@ -39,7 +43,7 @@ export class NewsComponent implements OnInit {
     this.showMore = true;
   }
 
-  unixTimeToStampToTime(timestamp: number): Date {
-    return moment(timestamp * 1000).toDate();
+  unixTimeToStampToTime(timestamp: string): Date {
+    return DateTime.fromSeconds(parseInt(timestamp)).toJSDate();
   }
 }

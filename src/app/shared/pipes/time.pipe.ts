@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 @Pipe({
     name: 'time'
@@ -8,15 +7,19 @@ import moment from 'moment';
 export class TimePipe implements PipeTransform {
 
   public transform(value: string): string {
-    const timeParts = value.split(':');
+    if (value) {
+      const timeParts = value.split(':');
 
-    if (timeParts.length > 1) {
-      return moment()
-        .hours(parseInt(timeParts[0], 10))
-        .minutes(parseInt(timeParts[1], 10))
-        .format('HH:mm');
-    } else {
-      return '';
+      if (timeParts.length > 1) {
+        return DateTime.local()
+          .set({
+            hour: parseInt(timeParts[0], 10),
+            minute: parseInt(timeParts[1], 10)
+          })
+          .toFormat('HH:mm');
+      }
     }
+
+    return '';
   }
 }

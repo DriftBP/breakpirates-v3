@@ -1,4 +1,4 @@
-@import '~sass/variables';
+@import '~src/sass/variables';
 
 .show-summary {
   display: grid;
@@ -29,6 +29,11 @@
         margin-left: 0.25em;
         cursor: pointer;
       }
+    }
+
+    &title {
+      line-height: 1.5;
+      margin-bottom: 0;
     }
 
     &image {
