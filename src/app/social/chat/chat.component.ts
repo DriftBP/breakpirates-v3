@@ -19,19 +19,6 @@ import { ScreenService } from '../services/screen.service';
 export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatIframe') chatElement: ElementRef;
 
-  private recaptchaSubscription: Subscription;
-  private recaptchaAction: 'VerifyChat';
-  recaptchaError: string;
-  chatUrl: SafeResourceUrl;
-  enableFullscreen = false;
-  enableChatClient = false;
-  enablePreventSleep = false;
-  preventSleep = false;
-
-  ircServer = AppSettings.IRC_SERVER;
-  ircPort = AppSettings.IRC_PORT;
-  ircChannel = AppSettings.IRC_CHANNEL;
-
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigInactive,
     {
@@ -39,10 +26,26 @@ export class ChatComponent implements OnInit, OnDestroy {
       isActive: true
     }
   ];
+  private recaptchaSubscription: Subscription;
+  private recaptchaAction: 'VerifyChat';
+
+  ircServer = AppSettings.IRC_SERVER;
+  ircPort = AppSettings.IRC_PORT;
+  ircChannel = AppSettings.IRC_CHANNEL;
+
+
+  chatUrl: SafeResourceUrl;
+  enableFullscreen = false;
+  enableChatClient = false;
+  enablePreventSleep = false;
+  preventSleep = false;
+  recaptchaError: string;
 
   constructor(
     private readonly translateService: TranslateService,
     private readonly fullscreenService: FullscreenService,
+    private readonly breadcrumbService: BreadcrumbService,
+    private readonly sanitizer: DomSanitizer,
     private readonly screenService: ScreenService,
     private readonly recaptchaV3Service: ReCaptchaV3Service
   ) {}
@@ -57,7 +60,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen;
     this.enablePreventSleep = this.screenService.canPreventSleep;
 
-    this.enableFullscreen = this.fullscreenService.canRequestFullscreen();
     this.recaptchaSubscription = this.recaptchaV3Service.execute(this.recaptchaAction)
       .subscribe(
         (token) => {
