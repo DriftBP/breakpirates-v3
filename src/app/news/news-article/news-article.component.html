@@ -13,7 +13,7 @@
   <meta itemprop="dateCreated" content="{{ article.date | isoDate }}">
   <meta itemprop="datePublished" content="{{ article.date | isoDate }}">
 
-  <a  *ngIf="article?.image"
+  <a  *ngIf="article.image"
       [href]="imagePath + article.image">
     <img class="news-article__image"
           bpImageClick

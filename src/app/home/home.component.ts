@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DateTime } from 'luxon';
 
 import { ScheduleService } from '../schedule/services/schedule.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { AppSettings } from '../app-settings';
-import { DateTime } from 'luxon';
 
 interface ISlide {
   image: string;
