@@ -81,7 +81,8 @@
     "SHOW_DESCRIPTION": "Show description",
     "ON": "on",
     "NOT_FOUND": "Not found",
-    "COULD_NOT_FIND": "We couldn't find the show you were looking for."
+    "COULD_NOT_FIND": "We couldn't find the show you were looking for.",
+    "SIMILAR_SHOWS": "Similar shows"
   },
   "MUSIC": {
     "TITLE": "Music",

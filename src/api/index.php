@@ -39,6 +39,7 @@ getApi()->get('/days/(\d+)', 'day', EpiApi::external);
 getApi()->get('/shows/(\d+)', 'show', EpiApi::external);
 getApi()->get('/shows/(\d+)/genres', 'showGenres', EpiApi::external);
 getApi()->get('/shows/(\d+)/hosts', 'showHosts', EpiApi::external);
+getApi()->get('/shows/(\d+)/similar', 'showSimilar', EpiApi::external);
 
 getApi()->get('/videos', 'videos', EpiApi::external);
 getApi()->get('/videos/(\d+)', 'video', EpiApi::external);
@@ -119,6 +120,10 @@ function showGenres($id) {
 
 function showHosts($id) {
     return getShow($id)->getHosts();
+}
+
+function showSimilar($id) {
+  return getShow($id)->getSimilar();
 }
 
 function videos() {

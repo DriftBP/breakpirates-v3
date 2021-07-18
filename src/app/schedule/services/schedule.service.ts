@@ -54,6 +54,10 @@ export class ScheduleService implements OnDestroy {
     return this.httpRequestService.get<Genre[]>(AppSettings.API_BASE + `shows/${showId}/genres`);
   }
 
+  showSimilar(showId: number): Observable<Show[]> {
+    return this.httpRequestService.get<Genre[]>(AppSettings.API_BASE + `shows/${showId}/similar`);
+  }
+
   shows(dayId: number): Observable<Show[]> {
     return this.httpRequestService.get<Show[]>(AppSettings.API_BASE + `schedule/${dayId}`);
   }

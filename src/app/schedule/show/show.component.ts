@@ -9,6 +9,7 @@ import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-confi
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { ShowService } from '../services/show.service';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   selector: 'bp-show',
@@ -33,7 +34,8 @@ export class ShowComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly dayService: DayService,
     private readonly showService: ShowService,
-    private readonly breadcrumbService: BreadcrumbService
+    private readonly breadcrumbService: BreadcrumbService,
+    public readonly scheduleService: ScheduleService
   ) { }
 
   ngOnInit() {
