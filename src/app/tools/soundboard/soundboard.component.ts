@@ -12,7 +12,7 @@ export class SoundboardComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
-      name: 'BPM_COUNTER.TITLE',
+      name: 'SOUNDBOARD.TITLE',
       isActive: true
     }
   ];
