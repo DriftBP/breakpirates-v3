@@ -3,7 +3,7 @@ import { Shallow } from 'shallow-render';
 import { DateTime } from 'luxon';
 
 import { BpmComponent } from './bpm.component';
-import { ToolsModule } from '../tools.module';
+import { BpmModule } from './bpm.module';
 import { DataCollectionStatus } from './data-collection-status';
 
 const maxDataPoints = 20;
@@ -19,7 +19,7 @@ describe('BpmComponent', () => {
   let shallow: Shallow<BpmComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(BpmComponent, ToolsModule);
+    shallow = new Shallow(BpmComponent, BpmModule);
   }));
 
   it('should create', async () => {
