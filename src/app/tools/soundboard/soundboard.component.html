@@ -1,1 +1,5 @@
 <h1>{{'SOUNDBOARD.TITLE' | translate}}</h1>
+
+<ng-container *ngFor="let config of configs">
+  <bp-sample-button [config]="config" (clicked)="onButtonClick($event)"></bp-sample-button>
+</ng-container>
