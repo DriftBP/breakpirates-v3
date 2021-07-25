@@ -6,6 +6,7 @@ import { ToolsComponent } from './tools.component';
 const routes: Routes = [
   { path: '', component: ToolsComponent, pathMatch: 'full' },
   { path: 'bpm', loadChildren: () => import('./bpm/bpm.module').then(m => m.BpmModule) },
+  { path: 'soundboard', loadChildren: () => import('./soundboard/soundboard.module').then(m => m.SoundboardModule) },
 ];
 
 @NgModule({

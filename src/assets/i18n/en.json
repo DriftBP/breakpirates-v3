@@ -131,7 +131,8 @@
   },
   "TOOLS": {
     "TITLE": "Tools",
-    "BPM_COUNTER": "BPM counter"
+    "BPM_COUNTER": "BPM counter",
+    "SOUNDBOARD": "Soundboard"
   },
   "BPM_COUNTER": {
     "TITLE": "BPM counter",
@@ -141,5 +142,8 @@
     "TAP_ME": "Tap me or Enter key",
     "BPM": "BPM",
     "START_AGAIN": "Start again"
+  },
+  "SOUNDBOARD": {
+    "TITLE": "Soundboard"
   }
 }
