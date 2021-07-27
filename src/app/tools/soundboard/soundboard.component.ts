@@ -29,7 +29,7 @@ export class SoundboardComponent implements OnInit {
       this.configs.push({
         id: i,
         name: 'sample ' + i,
-        file: 'file' + i + '.mp3',
+        file: 'file' + i + '.ogg',
         loop: true
       });
     }
