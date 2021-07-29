@@ -102,12 +102,15 @@
           "options": {
             "lintFilePatterns": [
               "src/**/*.ts",
-              "src/**/*.component.html"
+              "src/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "breakpirates-v3"
+  "defaultProject": "breakpirates-v3",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
