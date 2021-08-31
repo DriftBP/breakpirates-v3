@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy, HostBinding, AfterViewInit } from '@angular/core';
 import {
   Event,
   Router,
@@ -14,13 +14,15 @@ import { GoogleAnalyticsService } from './shared/services/google-analytics/googl
 import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
+import { DialogService } from './shared/services/dialog/dialog.service';
+import { IDialogConfig } from './shared/services/dialog/dialog-config';
 
 @Component({
   selector: 'bp-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements AfterViewInit, OnDestroy {
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme; }
 
   private eventsSubscription: Subscription;
@@ -35,7 +37,8 @@ export class AppComponent implements OnDestroy {
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
     private googleAnalyticsService: GoogleAnalyticsService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private dialogService: DialogService
   ) {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
     this.themeSubscription = this.themeService.currentTheme$.subscribe(theme => {
@@ -77,6 +80,18 @@ export class AppComponent implements OnDestroy {
       default: {
         break;
       }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.dialogService.isDialogSupported()) {
+      const alt = 'Break Pirates 20th birthday';
+      const dialogConfig: IDialogConfig = {
+        title: alt,
+        content: `<img src="${AppSettings.ASSET_NEWS_IMAGE}20th-birthday-flyer.jpg" width="1024" height="768" alt="${alt}" style="max-width: 100%; height: auto">`
+      };
+
+      this.dialogService.showDialog(dialogConfig);
     }
   }
 
