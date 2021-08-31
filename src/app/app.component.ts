@@ -88,7 +88,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       const alt = 'Break Pirates 20th birthday';
       const dialogConfig: IDialogConfig = {
         title: alt,
-        content: `<img src="${AppSettings.ASSET_NEWS_IMAGE}/20th-birthday-flyer.jpg" width="1024" height="768" alt="${alt}" style="max-width: 100%; height: auto">`
+        content: `<img src="${AppSettings.ASSET_NEWS_IMAGE}20th-birthday-flyer.jpg" width="1024" height="768" alt="${alt}" style="max-width: 100%; height: auto">`
       };
 
       this.dialogService.showDialog(dialogConfig);
