@@ -289,6 +289,24 @@
       "name": "Looks good",
       "file": "looks-good.mp3",
       "loop": false
+    },
+    {
+      "id": 49,
+      "name": "Serious flavour",
+      "file": "serious-flavour.mp3",
+      "loop": false
+    },
+    {
+      "id": 50,
+      "name": "Absolutely spot on",
+      "file": "spot-on.mp3",
+      "loop": false
+    },
+    {
+      "id": 51,
+      "name": "The base",
+      "file": "the-base.mp3",
+      "loop": false
     }
   ]
 }
