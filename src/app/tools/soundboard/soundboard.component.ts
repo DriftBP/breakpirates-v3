@@ -24,6 +24,7 @@ export class SoundboardComponent implements OnInit {
 
   imagePath: string;
   configs: SampleConfig[] = [];
+  loaded = false;
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService,
@@ -36,6 +37,8 @@ export class SoundboardComponent implements OnInit {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
     this.imagePath = `url('${AppSettings.ASSET_SHOW_SOUND}${config.baseDir}/${config.image}')`;
     this.soundboardService.initialise(config.baseDir, this.configs);
+
+    this.soundboardService.isLoaded$.subscribe((loaded) => this.loaded = loaded);
   }
 
   onButtonClick(id: number) {
