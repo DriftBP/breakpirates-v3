@@ -1,0 +1,312 @@
+{
+  "baseDir": "rate-my-takeaway",
+  "image": "cover.jpg",
+  "samples": [
+    {
+      "id": 1,
+      "name": "Now then guys",
+      "file": "now-then-guys.mp3",
+      "loop": false
+    },
+    {
+      "id": 2,
+      "name": "Back on the road again",
+      "file": "back-on-the-road.mp3",
+      "loop": false
+    },
+    {
+      "id": 3,
+      "name": "Here we are guys",
+      "file": "here-we-are.mp3",
+      "loop": false
+    },
+    {
+      "id": 4,
+      "name": "Look at this",
+      "file": "look-at-this.mp3",
+      "loop": false
+    },
+    {
+      "id": 5,
+      "name": "Awww",
+      "file": "awww.mp3",
+      "loop": false
+    },
+    {
+      "id": 6,
+      "name": "Yep!",
+      "file": "yep.mp3",
+      "loop": false
+    },
+    {
+      "id": 7,
+      "name": "I've got my own table",
+      "file": "got-my-own-table.mp3",
+      "loop": false
+    },
+    {
+      "id": 8,
+      "name": "Come on, let's go",
+      "file": "come-on.mp3",
+      "loop": false
+    },
+    {
+      "id": 9,
+      "name": "Bread",
+      "file": "bread.mp3",
+      "loop": false
+    },
+    {
+      "id": 10,
+      "name": "Pizzas",
+      "file": "pizzas.mp3",
+      "loop": false
+    },
+    {
+      "id": 11,
+      "name": "Kebabs",
+      "file": "kebabs.mp3",
+      "loop": false
+    },
+    {
+      "id": 12,
+      "name": "Heh hay!",
+      "file": "heh-hay.mp3",
+      "loop": false
+    },
+    {
+      "id": 13,
+      "name": "Knacker cracker away",
+      "file": "knacker-cracker.mp3",
+      "loop": false
+    },
+    {
+      "id": 14,
+      "name": "Hiya mate",
+      "file": "hiya-mate.mp3",
+      "loop": false
+    },
+    {
+      "id": 15,
+      "name": "I'll have one of them",
+      "file": "one-of-them.mp3",
+      "loop": false
+    },
+    {
+      "id": 16,
+      "name": "Try one of them",
+      "file": "try-one-of-them.mp3",
+      "loop": false
+    },
+    {
+      "id": 17,
+      "name": "That's it thanks mate",
+      "file": "thats-it.mp3",
+      "loop": false
+    },
+    {
+      "id": 18,
+      "name": "There you go mate, thank you",
+      "file": "there-you-go.mp3",
+      "loop": false
+    },
+    {
+      "id": 19,
+      "name": "Cheers pal",
+      "file": "cheers-pal.mp3",
+      "loop": false
+    },
+    {
+      "id": 20,
+      "name": "Garlic breads",
+      "file": "garlic-breads.mp3",
+      "loop": false
+    },
+    {
+      "id": 21,
+      "name": "Right, chair test",
+      "file": "chair-test.mp3",
+      "loop": false
+    },
+    {
+      "id": 22,
+      "name": "Look at that",
+      "file": "look-at-that.mp3",
+      "loop": false
+    },
+    {
+      "id": 23,
+      "name": "Can o'pop",
+      "file": "can-o-pop.mp3",
+      "loop": false
+    },
+    {
+      "id": 24,
+      "name": "Couple o'dips",
+      "file": "couple-o-dips.mp3",
+      "loop": false
+    },
+    {
+      "id": 25,
+      "name": "Ooh yes",
+      "file": "oh-yes.mp3",
+      "loop": false
+    },
+    {
+      "id": 26,
+      "name": "That looks spicy, that",
+      "file": "that-looks-spicy.mp3",
+      "loop": false
+    },
+    {
+      "id": 27,
+      "name": "That's what I'm talking about",
+      "file": "thats-what-im.mp3",
+      "loop": false
+    },
+    {
+      "id": 28,
+      "name": "Wet the whistle",
+      "file": "wet-the-whistle.mp3",
+      "loop": false
+    },
+    {
+      "id": 29,
+      "name": "Ayup!",
+      "file": "ayup.mp3",
+      "loop": false
+    },
+    {
+      "id": 30,
+      "name": "Come on mate",
+      "file": "come-on-mate.mp3",
+      "loop": false
+    },
+    {
+      "id": 31,
+      "name": "That's quite nice, that",
+      "file": "quite-nice.mp3",
+      "loop": false
+    },
+    {
+      "id": 32,
+      "name": "Ooh yeah",
+      "file": "ooh-yeah.mp3",
+      "loop": false
+    },
+    {
+      "id": 33,
+      "name": "Alright",
+      "file": "alright.mp3",
+      "loop": false
+    },
+    {
+      "id": 34,
+      "name": "What's that",
+      "file": "whats-that.mp3",
+      "loop": false
+    },
+    {
+      "id": 35,
+      "name": "That's what I like",
+      "file": "what-i-like.mp3",
+      "loop": false
+    },
+    {
+      "id": 36,
+      "name": "Bosh",
+      "file": "bosh.mp3",
+      "loop": false
+    },
+    {
+      "id": 37,
+      "name": "Right",
+      "file": "right.mp3",
+      "loop": false
+    },
+    {
+      "id": 38,
+      "name": "Oh my god",
+      "file": "oh-my-god.mp3",
+      "loop": false
+    },
+    {
+      "id": 39,
+      "name": "That's good, that",
+      "file": "thats-good.mp3",
+      "loop": false
+    },
+    {
+      "id": 40,
+      "name": "Nice and thin",
+      "file": "nice-and-thin.mp3",
+      "loop": false
+    },
+    {
+      "id": 41,
+      "name": "Alright guys, how you doing?",
+      "file": "alright-guys.mp3",
+      "loop": false
+    },
+    {
+      "id": 42,
+      "name": "Course you can mate",
+      "file": "course-you-can.mp3",
+      "loop": false
+    },
+    {
+      "id": 43,
+      "name": "Cheese beautiful cheese",
+      "file": "cheese-beautiful-cheese.mp3",
+      "loop": false
+    },
+    {
+      "id": 44,
+      "name": "Everybodys raving",
+      "file": "everybodys-raving.mp3",
+      "loop": false
+    },
+    {
+      "id": 45,
+      "name": "That is amazing",
+      "file": "that-is-amazing.mp3",
+      "loop": false
+    },
+    {
+      "id": 46,
+      "name": "Value for money",
+      "file": "value-for-money.mp3",
+      "loop": false
+    },
+    {
+      "id": 47,
+      "name": "Presented well",
+      "file": "presented-well.mp3",
+      "loop": false
+    },
+    {
+      "id": 48,
+      "name": "Looks good",
+      "file": "looks-good.mp3",
+      "loop": false
+    },
+    {
+      "id": 49,
+      "name": "Serious flavour",
+      "file": "serious-flavour.mp3",
+      "loop": false
+    },
+    {
+      "id": 50,
+      "name": "Absolutely spot on",
+      "file": "spot-on.mp3",
+      "loop": false
+    },
+    {
+      "id": 51,
+      "name": "The base",
+      "file": "the-base.mp3",
+      "loop": false
+    }
+  ]
+}
