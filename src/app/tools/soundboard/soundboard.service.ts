@@ -9,9 +9,9 @@ export class SoundboardService {
 
   constructor() {}
 
-  initialise(configs: SampleConfig[]) {
+  initialise(baseDir: string, configs: SampleConfig[]) {
     configs.forEach(c => {
-      let audio = new Audio(AppSettings.ASSET_SHOW_SOUND + c.file);
+      let audio = new Audio(`${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${c.file}`);
       audio.loop = c.loop;
       audio.title = c.name;
 
