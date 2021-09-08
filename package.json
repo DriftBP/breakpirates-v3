@@ -33,7 +33,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@popperjs/core": "^2.10.1",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.1.1",
     "luxon": "^2.0.2",
     "mediaelement": "^4.2.16",
     "ngx-bootstrap": "^7.0.0",
