@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { DateTime } from 'luxon';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
@@ -84,7 +85,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    if (this.dialogService.isDialogSupported()) {
+    const hideDialogDate = DateTime.utc(2021, 9, 18, 23, 0);
+
+    if (DateTime.utc() < hideDialogDate && this.dialogService.isDialogSupported()) {
       const alt = 'Break Pirates 20th birthday';
       const dialogConfig: IDialogConfig = {
         title: alt,
