@@ -45,9 +45,7 @@ export class ShowService {
 
     if (endTime.hour < startTime.hour) {
       // Ends the following day
-      const duration = Duration.fromObject({days: 1});
-
-      endDate = startDate.plus(duration).set({hour: endTime.hour, minute: endTime.minute});
+      endDate = startDate.plus({days: 1}).set({hour: endTime.hour, minute: endTime.minute});
     } else {
       endDate = startDate.set({hour: endTime.hour, minute: endTime.minute});
     }
