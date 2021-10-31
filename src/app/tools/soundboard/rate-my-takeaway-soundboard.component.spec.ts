@@ -2,7 +2,7 @@ import { waitForAsync } from '@angular/core/testing';
 import { from } from 'rxjs';
 import { Shallow } from 'shallow-render';
 
-import { SoundboardComponent } from './soundboard.component';
+import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
 import { SoundboardModule } from './soundboard.module';
 import { SoundboardService } from './soundboard.service';
 
@@ -11,11 +11,11 @@ const mockSoundboardService = {
   isLoaded$: from([false]),
 };
 
-describe('SoundboardComponent', () => {
-  let shallow: Shallow<SoundboardComponent>;
+describe('RateMyTakeawaySoundboardComponent', () => {
+  let shallow: Shallow<RateMyTakeawaySoundboardComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(SoundboardComponent, SoundboardModule)
+    shallow = new Shallow(RateMyTakeawaySoundboardComponent, SoundboardModule)
       .mock(SoundboardService, mockSoundboardService);
   }));
 
