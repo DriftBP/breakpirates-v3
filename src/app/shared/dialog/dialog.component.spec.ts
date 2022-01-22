@@ -22,7 +22,7 @@ describe('DialogComponent', () => {
 
     const dialog = find('dialog');
 
-    expect(dialog.attributes.open).toBeFalsy();
+    expect(dialog.attributes['open']).toBeFalsy();
   });
 
   it('should set the dialog content', async () => {
