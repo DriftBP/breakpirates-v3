@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DateTime, Interval } from 'luxon';
+import { DateTime, Duration, Interval } from 'luxon';
 
 import { Show } from '../models/show';
 
@@ -45,7 +45,7 @@ export class ShowService {
 
     if (endTime.hour < startTime.hour) {
       // Ends the following day
-      endDate = startDate.plus({day: 1}).set({hour: endTime.hour, minute: endTime.minute});
+      endDate = startDate.plus({days: 1}).set({hour: endTime.hour, minute: endTime.minute});
     } else {
       endDate = startDate.set({hour: endTime.hour, minute: endTime.minute});
     }
