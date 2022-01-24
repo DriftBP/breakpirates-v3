@@ -22,8 +22,8 @@ export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements
   ];
 
   constructor(
-    readonly breadcrumbService: BreadcrumbService,
-    readonly soundboardService: SoundboardService
+    override readonly breadcrumbService: BreadcrumbService,
+    override readonly soundboardService: SoundboardService
   ) {
     super(breadcrumbService, soundboardService);
   }
