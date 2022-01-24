@@ -36,7 +36,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSubscription = this.route.data.subscribe(data => {
-      this.types = data.types;
+      this.types = data['types'];
     });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
