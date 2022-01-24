@@ -8,7 +8,7 @@ import config from './rate-my-takeaway.json';
 import { SoundboardBase } from './soundboard-base';
 
 @Component({
-  selector: 'bp-soundboard',
+  selector: 'bp-rate-my-takeaway-soundboard',
   templateUrl: './soundboard-base.html',
   styleUrls: ['./soundboard-base.scss']
 })
