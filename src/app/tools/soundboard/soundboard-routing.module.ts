@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SoundboardComponent } from './soundboard.component';
+import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
 
 const routes: Routes = [
-  { path: '', component: SoundboardComponent, pathMatch: 'full' }
+  { path: '', component: RateMyTakeawaySoundboardComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
