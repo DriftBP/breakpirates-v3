@@ -21,6 +21,7 @@ export class RadioPlayerComponent implements AfterViewInit {
 
   loadMediaPlayer() {
     this.mediaPlayer = new MediaElementPlayer(this.mediaPlayerElement.nativeElement, {
+      iconSprite: 'assets/mejs-controls.svg',
       alwaysShowControls: true,
       stretching: 'responsive',
       features: [
