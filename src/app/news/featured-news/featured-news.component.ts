@@ -16,9 +16,11 @@ export class FeaturedNewsComponent implements OnChanges {
   hover = false;
 
   ngOnChanges() {
-    let imageFilename = this.article?.image ?? 'bp.jpg';
+    this.imagePath = 'url(' + AppSettings.ASSET_NEWS_IMAGE + this.getArticleImageFilename(this.article) + ')';
+  }
 
-    this.imagePath = 'url(' + AppSettings.ASSET_NEWS_IMAGE + imageFilename + ')';
+  getArticleImageFilename(article: News): string {
+    return article?.image ?? 'bp.jpg';
   }
 
   onMouseOver(event: any) {
