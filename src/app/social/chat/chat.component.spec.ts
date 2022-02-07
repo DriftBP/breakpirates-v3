@@ -15,7 +15,8 @@ describe('ChatComponent', () => {
         canRequestFullscreen: true
       })
       .mock(ScreenService, {
-        canPreventSleep: true
+        canPreventSleep: true,
+        endPreventSleep: jest.fn()
       });
   }));
 

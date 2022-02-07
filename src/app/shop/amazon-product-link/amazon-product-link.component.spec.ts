@@ -12,7 +12,7 @@ describe('AmazonProductLinkComponent', () => {
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
+    const { element } = await shallow.render({bind: {asin: '1234'}});
 
     expect(element.nativeElement).toBeTruthy();
   });

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { AppSettings } from '../../../app-settings';
-
 declare let gtag: Function;
 
 @Injectable({
@@ -9,9 +7,11 @@ declare let gtag: Function;
 })
 export class GoogleAnalyticsService {
   public trackPageHit(path: string) {
-    gtag('config', AppSettings.GA_PROPERTY_ID, {
-      page_path: path
-    });
+    setTimeout(() => {
+      gtag('event', 'page_view', {
+        page_path: path
+      });
+    }, 1000);
   }
 
   public trackEvent(
