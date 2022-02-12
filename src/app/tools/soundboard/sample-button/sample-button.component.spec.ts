@@ -2,7 +2,7 @@ import { waitForAsync } from '@angular/core/testing';
 import { Shallow } from 'shallow-render';
 
 import { SampleButtonComponent } from './sample-button.component';
-import { SoundboardModule } from './../soundboard.module';
+import { SoundboardModule } from '../soundboard.module';
 
 describe('SampleButtonComponent', () => {
   let shallow: Shallow<SampleButtonComponent>;
