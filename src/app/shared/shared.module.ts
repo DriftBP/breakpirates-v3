@@ -38,6 +38,7 @@ import { HttpRequestService } from './services/http-request/http-request.service
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
 import { TimePipe } from './pipes/time.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 // Directives
 import { ActiveDirective } from './directives/active.directive';
@@ -71,6 +72,7 @@ export function customHttpLoader(http: HttpClient) {
     DonateComponent,
     SafePipe,
     TimePipe,
+    SortByPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
@@ -94,6 +96,7 @@ export function customHttpLoader(http: HttpClient) {
     DonateComponent,
     SafePipe,
     TimePipe,
+    SortByPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
