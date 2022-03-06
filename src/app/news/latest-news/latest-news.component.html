@@ -1,5 +1,3 @@
-<div class="latest-news">
-  <div class="latest-news__news-item" *ngFor="let article of news">
-    <bp-featured-news [article]="article"></bp-featured-news>
-  </div>
-</div>
+<ng-container *ngFor="let article of news">
+  <bp-featured-news [article]="article"></bp-featured-news>
+</ng-container>

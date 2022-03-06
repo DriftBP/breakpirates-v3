@@ -8,8 +8,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 
 @Component({
   selector: 'bp-music',
-  templateUrl: './music.component.html',
-  styleUrls: ['./music.component.scss']
+  templateUrl: './music.component.html'
 })
 export class MusicComponent implements OnInit {
 
