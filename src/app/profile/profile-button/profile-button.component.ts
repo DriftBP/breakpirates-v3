@@ -15,6 +15,6 @@ export class ProfileButtonComponent implements OnChanges {
   imagePath: string;
 
   ngOnChanges() {
-    this.imagePath = 'url(' + AppSettings.ASSET_PROFILE_IMAGE + this.host.image + ')';
+    this.imagePath = `url(${AppSettings.ASSET_PROFILE_IMAGE}${this.host.image})`;
   }
 }
