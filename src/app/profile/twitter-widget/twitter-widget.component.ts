@@ -24,7 +24,7 @@ export class TwitterWidgetComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    this.twitterWidgetUrl = 'https://twitter.com/' + this.user + '?ref_src=twsrc%5Etfw';
+    this.twitterWidgetUrl = `https://twitter.com/${this.user}?ref_src=twsrc%5Etfw`;
   }
 
 }

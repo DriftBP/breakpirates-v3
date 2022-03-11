@@ -1,4 +1,4 @@
-.product-listing {
+:host {
   display: grid;
   grid-template-columns: repeat(auto-fill, 120px);
   grid-gap: 1em;

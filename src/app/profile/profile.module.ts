@@ -12,7 +12,6 @@ import { MixcloudWidgetComponent } from './mixcloud-widget/mixcloud-widget.compo
 import { TwitterWidgetComponent } from './twitter-widget/twitter-widget.component';
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
 import { ProfileService } from './services/profile.service';
-import { SortByPipe } from './pipes/sort-by.pipe';
 import { ReadMoreComponent } from './read-more/read-more.component';
 import { HostNavigationComponent } from './host-navigation/host-navigation.component';
 
@@ -31,7 +30,6 @@ import { HostNavigationComponent } from './host-navigation/host-navigation.compo
     MixcloudWidgetComponent,
     TwitterWidgetComponent,
     ProfileButtonComponent,
-    SortByPipe,
     ReadMoreComponent,
     HostNavigationComponent
   ],

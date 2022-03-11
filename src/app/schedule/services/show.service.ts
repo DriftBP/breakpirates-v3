@@ -5,7 +5,7 @@ import { Show } from '../models/show';
 
 @Injectable()
 export class ShowService {
-  timeFormat = 'HH:mm:ss';
+  readonly timeFormat = 'HH:mm:ss';
 
   private getNextDate(show: Show): DateTime {
     const today = DateTime.local().weekday;
