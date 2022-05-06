@@ -54,17 +54,42 @@
             <li role="menuitem">
               <a
                 class="dropdown-item"
-                (click)="onTuneInClick('TuneIn Radio')"
-                href="https://tunein.com/radio/Break-Pirates-Radio-s97007/"
+                (click)="onTuneInClick('RealPlayer')"
+                href="/stream.ram"
+              >RealPlayer</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('myTuner Radio')"
+                href="https://mytuner-radio.com/radio/break-pirates-450101/"
                 target="_blank"
-              >TuneIn Radio</a>
+              >myTuner Radio <fa-icon [icon]="faExternalLink"></fa-icon></a>
             </li>
             <li role="menuitem">
               <a
                 class="dropdown-item"
-                (click)="onTuneInClick('RealPlayer')"
-                href="/stream.ram"
-              >RealPlayer</a>
+                (click)="onTuneInClick('Online Radio Box')"
+                href="https://onlineradiobox.com/uk/breakpirates/"
+                target="_blank"
+              >Online Radio Box <fa-icon [icon]="faExternalLink"></fa-icon></a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Internet Radio UK')"
+                href="https://internetradiouk.com/break-pirates/"
+                target="_blank"
+              >Internet Radio UK <fa-icon [icon]="faExternalLink"></fa-icon></a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Radio UK')"
+                href="https://www.radio-uk.co.uk/break-pirates"
+                target="_blank"
+              >Radio UK <fa-icon [icon]="faExternalLink"></fa-icon></a>
             </li>
             <li class="dropdown-divider"></li>
             <li role="menuitem">
