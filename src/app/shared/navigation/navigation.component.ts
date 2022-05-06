@@ -39,6 +39,18 @@ export class NavigationComponent implements OnInit, OnDestroy {
     {
       Url: 'https://www.radio-uk.co.uk/break-pirates',
       Text: 'Radio UK'
+    },
+    {
+      Url: 'https://uk.radio.net/s/breakpirates',
+      Text: 'Radio.net'
+    },
+    {
+      Url: 'https://streema.com/radios/Break_Pirates',
+      Text: 'Streema'
+    },
+    {
+      Url: 'https://radio-live-uk.com/break-pirates',
+      Text: 'Radio Live UK'
     }
   ];
 
