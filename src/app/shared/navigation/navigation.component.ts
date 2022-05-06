@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -17,6 +18,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   archiveUrl: string;
   isCollapsed: boolean;
   assetRoot = AppSettings.ASSET_ROOT;
+
+  faExternalLink = faExternalLink;
 
   constructor(
     private readonly navigationService: NavigationService,
