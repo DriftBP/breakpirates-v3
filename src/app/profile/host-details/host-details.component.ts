@@ -47,19 +47,15 @@ export class HostDetailsComponent implements OnInit, OnDestroy {
     this.profile = this.route.snapshot.data['profile'];
 
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.profile.name,
+      name: this.profile?.name,
       isActive: true
     });
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
-  hasMixcloud(): boolean {
-    return this.profile?.mixcloud !== null;
-  }
-
-  hasTwitter(): boolean {
-    return this.profile.twitter !== null;
+  hasValue(value: string): boolean {
+    return value !== null && value !== '';
   }
 
 }
