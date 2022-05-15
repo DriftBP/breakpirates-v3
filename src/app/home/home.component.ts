@@ -12,7 +12,8 @@ interface ISlide {
 
 @Component({
   selector: 'bp-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
