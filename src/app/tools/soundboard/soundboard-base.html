@@ -1,0 +1,11 @@
+<h1>{{'SOUNDBOARD.TITLE' | translate}}</h1>
+
+<div *ngIf="loaded; else loading" class="soundboard__container" [style]="'background-image:' + imagePath | safe:'style'">
+  <ng-container *ngFor="let config of configs">
+    <bp-sample-button [config]="config" (clicked)="onButtonClick($event)"></bp-sample-button>
+  </ng-container>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

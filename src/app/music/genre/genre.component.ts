@@ -10,8 +10,7 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 
 @Component({
   selector: 'bp-genre',
-  templateUrl: './genre.component.html',
-  styleUrls: ['./genre.component.scss']
+  templateUrl: './genre.component.html'
 })
 export class GenreComponent implements OnInit, OnDestroy {
 

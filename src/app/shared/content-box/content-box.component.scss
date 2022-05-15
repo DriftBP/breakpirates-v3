@@ -1,7 +1,8 @@
 @import '~src/sass/mixins';
 
-.content-box {
+:host {
   @include box-padding();
+  display: block;
   margin: 0 0 1em 0;
   border: 1px solid var(--border);
   background-color: var(--panel-bg);

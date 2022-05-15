@@ -10,6 +10,7 @@
             class="host-details__image"
             [src]="imagePath + profile.image"
             [alt]="profile.name"
+            loading="lazy"
             itemprop="image">
 
       <div class="host-details__biog">
@@ -32,12 +33,12 @@
     </ng-container>
   </ng-container>
 
-  <div *ngIf="hasMixcloud()">
+  <div *ngIf="hasValue(profile.mixcloud)">
       <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
       <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
   </div>
 
-  <div *ngIf="hasTwitter()">
+  <div *ngIf="hasValue(profile.twitter)">
     <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
     <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
   </div>

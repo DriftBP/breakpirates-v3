@@ -1,0 +1,4 @@
+<button class="sample-button" (click)="onClick()" *ngIf="config">
+  {{config.name}}
+  <fa-icon [icon]="faRetweet" *ngIf="config.loop"></fa-icon>
+</button>

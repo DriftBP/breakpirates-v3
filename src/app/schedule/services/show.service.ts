@@ -5,8 +5,29 @@ import { Show } from '../models/show';
 
 @Injectable()
 export class ShowService {
+  readonly timeFormat = 'HH:mm:ss';
 
-  timeFormat = 'HH:mm:ss';
+  private getNextDate(show: Show): DateTime {
+    const today = DateTime.local().weekday;
+
+    // if we haven't yet passed the day of the week that I need:
+    if (today <= show.day_id) {
+      // then just give me this week's instance of that day
+      return DateTime.local().set({weekday: show.day_id});
+    } else {
+      // otherwise, give me *next week's* instance of that same day
+      return DateTime.local().plus({weeks: 1}).set({weekday: show.day_id});
+    }
+  }
+
+  private getEndDate(startDate: DateTime, endTime: DateTime): DateTime {
+    if (endTime.hour < startDate.hour) {
+      // Ends the following day
+      return startDate.plus({days: 1}).set({hour: endTime.hour, minute: endTime.minute});
+    } else {
+      return startDate.set({hour: endTime.hour, minute: endTime.minute});
+    }
+  }
 
   getShowProgress(show: Show): number {
     var progress = 0;
@@ -24,31 +45,15 @@ export class ShowService {
   }
 
   getDates(show: Show): { startDate: DateTime, endDate: DateTime } {
-    const today = DateTime.local().weekday;
     const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
     const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
 
-    let nextDate: DateTime;
-    let endDate: DateTime;
-
-    // if we haven't yet passed the day of the week that I need:
-    if (today <= show.day_id) {
-      // then just give me this week's instance of that day
-      nextDate = DateTime.local().set({weekday: show.day_id});
-    } else {
-      // otherwise, give me *next week's* instance of that same day
-      nextDate = DateTime.local().plus({weeks: 1}).set({weekday: show.day_id});
-    }
+    const nextDate = this.getNextDate(show);
 
     // Set show time
     const startDate = DateTime.local(nextDate.year, nextDate.month, nextDate.day, startTime.hour, startTime.minute, startTime.second);
 
-    if (endTime.hour < startTime.hour) {
-      // Ends the following day
-      endDate = startDate.plus({day: 1}).set({hour: endTime.hour, minute: endTime.minute});
-    } else {
-      endDate = startDate.set({hour: endTime.hour, minute: endTime.minute});
-    }
+    const endDate = this.getEndDate(startDate, endTime);
 
     return { startDate: startDate, endDate: endDate };
   }

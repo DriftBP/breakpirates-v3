@@ -8,8 +8,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 
 @Component({
   selector: 'bp-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  templateUrl: './video.component.html'
 })
 export class VideoComponent implements OnInit {
 

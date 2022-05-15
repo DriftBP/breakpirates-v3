@@ -7,8 +7,9 @@ import { SupportedBrowsersService } from '../services/supported-browsers/support
   templateUrl: './supported-browsers-notice.component.html'
 })
 export class SupportedBrowsersNoticeComponent {
+  readonly alertType = 'danger';
+
   isBrowserSupported: boolean;
-  alertType = 'danger';
 
   constructor(private readonly supportedBrowsersService: SupportedBrowsersService) {
     this.isBrowserSupported = this.supportedBrowsersService.isBrowserSupported;

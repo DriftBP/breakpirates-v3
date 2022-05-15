@@ -45,4 +45,4 @@ jobs:
       # Build app
       - run:
           name: Building for Production
-          command: ng build --prod
+          command: ng build
