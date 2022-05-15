@@ -5,7 +5,6 @@ import { Show } from '../models/show';
 
 @Injectable()
 export class ShowService {
-
   readonly timeFormat = 'HH:mm:ss';
 
   private getNextDate(show: Show): DateTime {

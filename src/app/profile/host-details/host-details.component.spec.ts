@@ -21,4 +21,17 @@ describe('HostDetailsComponent', () => {
 
     expect(element.nativeElement).toBeTruthy();
   });
+
+  it('should recognise non-empty value', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.hasValue('test')).toBeTruthy();
+  });
+
+  it('should recognise empty value', async () => {
+    const { instance } = await shallow.render();
+
+    expect(instance.hasValue(null)).toBeFalsy();
+    expect(instance.hasValue('')).toBeFalsy();
+  });
 });
