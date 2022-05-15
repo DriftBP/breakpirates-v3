@@ -52,14 +52,14 @@ describe('FeaturedNewsComponent', () => {
   it('should use specified image if set in article', async () => {
     const { instance } = await shallow.render({bind: {article: mockArticleWithImage}});
 
-    const filename = instance.getArticleImageFilename(instance.article);
+    const filename = instance['getArticleImageFilename'](instance.article);
     expect(filename).toEqual(mockArticleWithImage.image);
   });
 
   it('should use default image if not set in article', async () => {
     const { instance } = await shallow.render({bind: {article: mockArticleWithoutImage}});
 
-    const filename = instance.getArticleImageFilename(instance.article);
+    const filename = instance['getArticleImageFilename'](instance.article);
     expect(filename).toEqual(defaultImageFilename);
   });
 
