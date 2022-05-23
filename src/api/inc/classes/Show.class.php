@@ -68,10 +68,10 @@ class Show {
 					INNER join hosts h on h.hostid = sh.hostid
 				WHERE sh.showid = " . $this->id;
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($host_id)=mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($host_id)=mysqli_fetch_row($result)) {
 				$host = getHost($host_id);
 
 				if($host) {
@@ -91,10 +91,10 @@ class Show {
 					INNER join genres g on g.genreid = sg.genreid
 				WHERE sg.showid = " . $this->id;
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($genre_id)=mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($genre_id)=mysqli_fetch_row($result)) {
 				$genre = getGenre($genre_id);
 
 				if($genre) {
@@ -140,10 +140,10 @@ class Show {
 						WHERE showid = " . $this->id . "
 						ORDER BY date DESC";
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($videoid, $name, $code, $date) = mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($videoid, $name, $code, $date) = mysqli_fetch_row($result)) {
 				array_push($videos, new Video($videoid, $name, $code, $this->id, $date));
 			}
 		}
@@ -174,10 +174,10 @@ class Show {
 						ORDER BY matches DESC
 						LIMIT " . $number;
 
-			$result = mysql_query($sql);
+			$result = mysqli_query($db, $sql);
 
-			if($result && mysql_num_rows($result)>0) {
-				while(list($show_id, $matches) = mysql_fetch_row($result)) {
+			if($result && mysqli_num_rows($result)>0) {
+				while(list($show_id, $matches) = mysqli_fetch_row($result)) {
 					$show = getShow($show_id);
 
 					if($show) {

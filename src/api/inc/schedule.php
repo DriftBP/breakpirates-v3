@@ -27,10 +27,10 @@ function getHost($host_id) {
 			FROM hosts
 			WHERE hostid = " . $host_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($host_id, $name, $biog, $location, $image, $twitter, $mixcloud) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($host_id, $name, $biog, $location, $image, $twitter, $mixcloud) = mysqli_fetch_row($result);
 
 		return new Host($host_id, $name, $biog, $location, $image, $twitter, $mixcloud);
 	} else {
@@ -51,10 +51,10 @@ function getHosts($show_id = 0) {
 					WHERE sh.showid = " . $show_id;
 	}
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($host_id)=mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($host_id)=mysqli_fetch_row($result)) {
 			$host = getHost($host_id);
 
 			if($host) {
@@ -73,10 +73,10 @@ function getShow($show_id) {
 			FROM shows
 			WHERE showid = " . $show_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($id, $title, $description, $image, $day_id, $start_time, $end_time) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($id, $title, $description, $image, $day_id, $start_time, $end_time) = mysqli_fetch_row($result);
 
 		return new Show($id, $title, $description, $image, $day_id, $start_time, $end_time);
 	} else {
@@ -91,10 +91,10 @@ function getVideo($video_id) {
 			FROM video
 			WHERE videoid = " . $video_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($name, $code, $show_id, $date) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($name, $code, $show_id, $date) = mysqli_fetch_row($result);
 
 		return new Video($video_id, $name, $code, $show_id, $date);
 	} else {
@@ -109,10 +109,10 @@ function getAllVideos() {
 			FROM video
 			ORDER BY date DESC";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($video_id) = mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($video_id) = mysqli_fetch_row($result)) {
 			$video = getVideo($video_id);
 
 			if($video) {
@@ -135,10 +135,10 @@ function getNews($news_id) {
 			WHERE  approved='yes'
 				AND newsid = " . $news_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($title, $summary, $text, $image, $date, $added_by) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($title, $summary, $text, $image, $date, $added_by) = mysqli_fetch_row($result);
 
 		return new News($news_id, stripslashes($title), stripslashes($summary), stripslashes($text), stripslashes($image), $added_by, $date);
 	} else {
@@ -169,10 +169,10 @@ function getAllNews($only_approved = false, $number = 0) {
 		$sql .= " LIMIT " . $number;
 	}
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($newsid) = mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($newsid) = mysqli_fetch_row($result)) {
 			$news = getNews($newsid);
 
 			if($news) {
@@ -191,10 +191,10 @@ function getDay($day_id) {
 			FROM days
 			WHERE dayid = " . $day_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($name) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($name) = mysqli_fetch_row($result);
 
 		return new Day($day_id, $name);
 	} else {
@@ -207,10 +207,10 @@ function getDayByName($day_name) {
 			FROM days
 			WHERE name = '" . addslashes($day_name) . "'";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($day_id, $name) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($day_id, $name) = mysqli_fetch_row($result);
 
 		return new Day($day_id, $name);
 	} else {
@@ -225,10 +225,10 @@ function getGenre($genre_id) {
 			FROM genres
 			WHERE genreid = " . $genre_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($name) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($name) = mysqli_fetch_row($result);
 
 		return new Genre($genre_id, $name);
 	} else {
@@ -243,10 +243,10 @@ function getGenres() {
           FROM genres g
           INNER JOIN shows_genres sg ON sg.genreid = g.genreid";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($genre_id)=mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($genre_id)=mysqli_fetch_row($result)) {
 			$genre = getGenre($genre_id);
 
 			if($genre) {
@@ -266,10 +266,10 @@ function getShowOnNow() {
 			AND s.starttime <= '" . date('H:i') . "'
 			AND s.endtime > '" . date('H:i') . "'";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($show_id) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($show_id) = mysqli_fetch_row($result);
 
 		return getShow($show_id);
 	} else {
@@ -286,10 +286,10 @@ function getShows($day) {
 			WHERE d.name = '" . addslashes($day) . "'
 			ORDER BY s.starttime ASC";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($show_id)=mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($show_id)=mysqli_fetch_row($result)) {
 			$show = getShow($show_id);
 
 			if($show) {

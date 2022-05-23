@@ -4,9 +4,5 @@ $dbuser="root";
 $dbpass="root";
 $dbname="breakpirates";
 
-$db=mysql_connect($dbaddr,$dbuser,$dbpass);
-if($db) {
-	mysql_select_db($dbname);
-	}
-
+$db=mysqli_connect($dbaddr,$dbuser,$dbpass,$dbname);
 ?>
