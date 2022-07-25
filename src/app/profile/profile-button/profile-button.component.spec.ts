@@ -1,8 +1,6 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProfileButtonComponent } from './profile-button.component';
-import { ProfileModule } from '../profile.module';
 import { Host } from '../host';
 
 const mockHost: Host = {
@@ -13,15 +11,29 @@ const mockHost: Host = {
 };
 
 describe('ProfileButtonComponent', () => {
-  let shallow: Shallow<ProfileButtonComponent>;
+  let component: ProfileButtonComponent;
+  let fixture: ComponentFixture<ProfileButtonComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ProfileButtonComponent, ProfileModule);
+    TestBed.configureTestingModule({
+      declarations: [
+        ProfileButtonComponent
+      ]
+    });
   }));
 
-  it('should create', async () => {
-    const { element } = await shallow.render({bind: {host: mockHost}});
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ProfileButtonComponent);
+    component = fixture.componentInstance;
+    component.host = {
+      id: 1,
+      name: '',
+      image: ''
+    };
+    fixture.detectChanges();
+  });
 
-    expect(element.nativeElement).toBeTruthy();
+  it('should create', async () => {
+    expect(component).toBeDefined();
   });
 });

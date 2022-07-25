@@ -1,19 +1,51 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ToolsComponent } from './tools.component';
-import { ToolsModule } from './tools.module';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+
+class MockBreadcrumbService {
+  setBreadcrumb = jest.fn()
+}
+
+function I18nHttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, `assets/i18n/`, '.json');
+}
 
 describe('ToolsComponent', () => {
-  let shallow: Shallow<ToolsComponent>;
+  let component: ToolsComponent;
+  let fixture: ComponentFixture<ToolsComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ToolsComponent, ToolsModule);
+    TestBed.configureTestingModule({
+      declarations: [
+        ToolsComponent
+      ],
+      providers: [
+        { provide: BreadcrumbService, useClass: MockBreadcrumbService }
+      ],
+      imports: [
+        HttpClientModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: I18nHttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+      ]
+    });
   }));
 
-  it('should create', async () => {
-    const { element } = await shallow.render();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ToolsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    expect(element.nativeElement).toBeTruthy();
+  it('should create', async () => {
+    expect(component).toBeDefined();
   });
 });
