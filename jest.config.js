@@ -5,6 +5,5 @@ module.exports = {
   ],
   transformIgnorePatterns: [
     "^.+\\.js$"
-  ],
-  moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs']
+  ]
 };
