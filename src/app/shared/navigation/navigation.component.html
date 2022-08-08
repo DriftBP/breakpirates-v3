@@ -54,17 +54,18 @@
             <li role="menuitem">
               <a
                 class="dropdown-item"
-                (click)="onTuneInClick('TuneIn Radio')"
-                href="https://tunein.com/radio/Break-Pirates-Radio-s97007/"
-                target="_blank"
-              >TuneIn Radio</a>
-            </li>
-            <li role="menuitem">
-              <a
-                class="dropdown-item"
                 (click)="onTuneInClick('RealPlayer')"
                 href="/stream.ram"
               >RealPlayer</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li role="menuitem" *ngFor="let link of externalLinks">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick(link.Text)"
+                [href]="link.Url"
+                target="_blank"
+              >{{link.Text}} <fa-icon [icon]="faExternalLink"></fa-icon></a>
             </li>
             <li class="dropdown-divider"></li>
             <li role="menuitem">

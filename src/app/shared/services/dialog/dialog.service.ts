@@ -3,6 +3,8 @@ import { Observable, Subject } from 'rxjs';
 
 import { IDialogConfig } from './dialog-config';
 
+declare var HTMLDialogElement;
+
 @Injectable({
   providedIn: 'root'
 })

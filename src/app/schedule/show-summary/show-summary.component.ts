@@ -42,7 +42,7 @@ export class ShowSummaryComponent implements OnChanges {
       this.endDate = endDate.toISO();
 
       if (this.show.image) {
-        this.showImage = 'url(' + AppSettings.ASSET_SHOW_IMAGE + this.show.image + ')';
+        this.showImage = `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show.image})`;
       }
     }
   }

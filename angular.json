@@ -38,7 +38,12 @@
               "src/stream.m3u",
               "src/stream.php",
               "src/stream.pls",
-              "src/stream.ram"
+              "src/stream.ram",
+              {
+                "glob": "mejs-controls.svg",
+                "input": "./node_modules/mediaelement/build/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -102,12 +107,15 @@
           "options": {
             "lintFilePatterns": [
               "src/**/*.ts",
-              "src/**/*.component.html"
+              "src/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "breakpirates-v3"
+  "defaultProject": "breakpirates-v3",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
