@@ -38,12 +38,7 @@
               "src/stream.m3u",
               "src/stream.php",
               "src/stream.pls",
-              "src/stream.ram",
-              {
-                "glob": "mejs-controls.svg",
-                "input": "./node_modules/mediaelement/build/",
-                "output": "./assets/"
-              }
+              "src/stream.ram"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
