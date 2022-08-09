@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { FooterBarComponent } from './footer-bar.component';
 import { SharedModule } from '../shared.module';

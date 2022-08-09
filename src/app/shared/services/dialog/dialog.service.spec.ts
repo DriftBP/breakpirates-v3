@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { DialogService } from './dialog.service';
 import { SharedModule } from '../../shared.module';

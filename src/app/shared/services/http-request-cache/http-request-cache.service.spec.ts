@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { HttpRequestCacheService } from './http-request-cache.service';
 import { SharedModule } from '../../shared.module';

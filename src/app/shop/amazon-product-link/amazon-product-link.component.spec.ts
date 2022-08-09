@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { AmazonProductLinkComponent } from './amazon-product-link.component';
 import { ShopModule } from '../shop.module';

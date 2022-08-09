@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { SocialService } from './social.service';
 import { SocialModule } from '../social.module';

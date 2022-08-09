@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { SoundboardService } from './soundboard.service';
 import { SoundboardModule } from './soundboard.module';

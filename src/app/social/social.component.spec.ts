@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { SocialComponent } from './social.component';
 import { SocialModule } from './social.module';

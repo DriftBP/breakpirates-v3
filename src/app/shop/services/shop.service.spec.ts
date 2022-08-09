@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { ShopService } from './shop.service';
 import { ShopModule } from '../shop.module';

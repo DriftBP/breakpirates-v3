@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice.component';
 import { SharedModule } from '../shared.module';

@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { GoogleAnalyticsService } from './google-analytics.service';
 import { SharedModule } from '../../shared.module';

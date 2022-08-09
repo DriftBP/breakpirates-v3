@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { DaySelectComponent } from './day-select.component';
 import { ScheduleModule } from '../schedule.module';

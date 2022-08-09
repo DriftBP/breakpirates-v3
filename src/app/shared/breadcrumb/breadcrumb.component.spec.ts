@@ -1,7 +1,7 @@
 import { waitForAsync } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { from, of } from 'rxjs';
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
 import { SharedModule } from '../shared.module';

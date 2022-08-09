@@ -1,4 +1,4 @@
-import { Shallow } from 'shallow-render';
+import { Shallow } from 'shallow-render/dist/lib/shallow';
 
 import { ShowService } from './show.service';
 import { ScheduleModule } from '../schedule.module';
