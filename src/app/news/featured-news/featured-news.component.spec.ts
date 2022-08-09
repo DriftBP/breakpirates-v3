@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
+import { waitForAsync } from '@angular/core/testing';
+import { Shallow } from 'shallow-render';
 
 import { FeaturedNewsComponent } from './featured-news.component';
+import { NewsModule } from '../news.module';
 import { News } from '../models/news';
 
 const mockArticleWithImage: News = {
@@ -23,75 +23,59 @@ const mockArticleWithoutImage: News = {
 const defaultImageFilename = 'bp.jpg';
 
 describe('FeaturedNewsComponent', () => {
-  let component: FeaturedNewsComponent;
-  let fixture: ComponentFixture<FeaturedNewsComponent>;
+  let shallow: Shallow<FeaturedNewsComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        FeaturedNewsComponent
-      ]
-    });
+    shallow = new Shallow(FeaturedNewsComponent, NewsModule);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FeaturedNewsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', async () => {
-    expect(component).toBeDefined();
+    const { element } = await shallow.render();
+
+    expect(element.nativeElement).toBeTruthy();
   });
 
-  describe('mockArticleWithImage', () => {
-    beforeEach(() => {
-      component.article = mockArticleWithImage;
-      fixture.detectChanges();
-    });
+  it('should populate the template', async () => {
+    const { fixture, find } = await shallow.render({bind: {article: mockArticleWithImage}});
 
-    it('should populate the template', async () => {
-      fixture.detectChanges();
+    fixture.detectChanges();
 
-      const title = fixture.debugElement.queryAll(By.css('.featured-news__title'));
-      const paragraph = fixture.debugElement.queryAll(By.css('.featured-news__summary'));
+    const title = find('.featured-news__title');
+    const paragraph = find('.featured-news__summary');
 
-      expect(title.length).toEqual(1);
-      expect(title[0].nativeElement.innerHTML).toEqual(mockArticleWithImage.title);
-      expect(paragraph.length).toEqual(1);
-      expect(paragraph[0].nativeElement.innerHTML).toEqual(mockArticleWithImage.summary);
-    });
-
-    it('should use specified image if set in article', async () => {
-      const filename = component['getArticleImageFilename'](component.article);
-      expect(filename).toEqual(mockArticleWithImage.image);
-    });
+    expect(title.length).toEqual(1);
+    expect(title.nativeElement.innerHTML).toEqual(mockArticleWithImage.title);
+    expect(paragraph.length).toEqual(1);
+    expect(paragraph.nativeElement.innerHTML).toEqual(mockArticleWithImage.summary);
   });
 
-  describe('mockArticleWithoutImage', () => {
-    beforeEach(() => {
-      component.article = mockArticleWithoutImage;
-      fixture.detectChanges();
-    });
+  it('should use specified image if set in article', async () => {
+    const { instance } = await shallow.render({bind: {article: mockArticleWithImage}});
 
-    it('should use default image if not set in article', async () => {
-      const filename = component['getArticleImageFilename'](component.article);
-      expect(filename).toEqual(defaultImageFilename);
-    });
+    const filename = instance['getArticleImageFilename'](instance.article);
+    expect(filename).toEqual(mockArticleWithImage.image);
+  });
+
+  it('should use default image if not set in article', async () => {
+    const { instance } = await shallow.render({bind: {article: mockArticleWithoutImage}});
+
+    const filename = instance['getArticleImageFilename'](instance.article);
+    expect(filename).toEqual(defaultImageFilename);
   });
 
   it('should set hover state true on mouse over', async () => {
-    component.hover = false;
-    component.onMouseOver({});
-    expect(component.hover).toBeTruthy();
+    const { instance } = await shallow.render();
+
+    instance.hover = false;
+    instance.onMouseOver({});
+    expect(instance.hover).toBeTruthy();
   });
 
   it('should set hover state false on mouse out', async () => {
-    component.hover = true;
-    component.onMouseOut({});
-    expect(component.hover).toBeFalsy();
+    const { instance } = await shallow.render();
+
+    instance.hover = true;
+    instance.onMouseOut({});
+    expect(instance.hover).toBeFalsy();
   });
 });
