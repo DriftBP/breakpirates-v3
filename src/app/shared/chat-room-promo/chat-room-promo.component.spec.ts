@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render/dist/lib/shallow';
+import { Shallow } from 'shallow-render';
 
 import { ChatRoomPromoComponent } from './chat-room-promo.component';
 import { SharedModule } from '../shared.module';

@@ -1,6 +1,6 @@
 import { waitForAsync } from '@angular/core/testing';
 import { from } from 'rxjs';
-import { Shallow } from 'shallow-render/dist/lib/shallow';
+import { Shallow } from 'shallow-render';
 
 import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
 import { SoundboardModule } from './soundboard.module';

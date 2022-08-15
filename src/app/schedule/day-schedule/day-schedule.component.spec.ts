@@ -1,7 +1,7 @@
 import { waitForAsync } from '@angular/core/testing';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render/dist/lib/shallow';
+import { Shallow } from 'shallow-render';
 
 import { DayScheduleComponent } from './day-schedule.component';
 import { ScheduleModule } from '../schedule.module';

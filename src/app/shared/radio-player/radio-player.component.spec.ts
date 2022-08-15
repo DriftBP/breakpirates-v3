@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render/dist/lib/shallow';
+import { Shallow } from 'shallow-render';
 
 import { RadioPlayerComponent } from './radio-player.component';
 import { SharedModule } from '../shared.module';

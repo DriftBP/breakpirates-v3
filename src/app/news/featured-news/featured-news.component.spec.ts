@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render/dist/lib/shallow';
+import { Shallow } from 'shallow-render';
 
 import { FeaturedNewsComponent } from './featured-news.component';
 import { NewsModule } from '../news.module';

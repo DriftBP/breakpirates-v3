@@ -1,5 +1,5 @@
 import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render/dist/lib/shallow';
+import { Shallow } from 'shallow-render';
 
 import { SampleButtonComponent } from './sample-button.component';
 import { SoundboardModule } from '../soundboard.module';
