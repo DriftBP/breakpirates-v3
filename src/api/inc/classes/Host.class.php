@@ -9,7 +9,7 @@ class Host {
 	var $twitter;
 	var $mixcloud;
 
-	function Host($id, $name, $biog, $location, $image, $twitter, $mixcloud) {
+	public function __construct($id, $name, $biog, $location, $image, $twitter, $mixcloud) {
 		$this->id = intval($id);
 		$this->name = $name;
 		$this->biog = $biog;

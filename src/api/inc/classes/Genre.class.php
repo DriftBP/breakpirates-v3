@@ -3,7 +3,7 @@ class Genre {
 	var $id;
 	var $name;
 
-	function Genre($id, $name) {
+	public function __construct($id, $name) {
 		$this->id = intval($id);
 		$this->name = $name;
 	}

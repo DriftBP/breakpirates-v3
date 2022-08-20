@@ -11,7 +11,7 @@ class Show {
   var $genres;
   var $hosts;
 
-	function Show($id, $title, $description, $image, $day_id, $start_time, $end_time) {
+	public function __construct($id, $title, $description, $image, $day_id, $start_time, $end_time) {
 		$this->id = intval($id);
 		$this->title = $title;
 		$this->description = $description;
