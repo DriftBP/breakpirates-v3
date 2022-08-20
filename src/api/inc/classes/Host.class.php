@@ -48,6 +48,7 @@ class Host {
 	}
 
 	function getShows() {
+    global $db;
 		$shows = array();
 
 		$sql = "SELECT s.showid

@@ -20,6 +20,7 @@ class Genre {
 	 * Returns a list of shows featuring this genre
 	 */
 	function getShows() {
+    global $db;
 		$shows = array();
 
 		$sql = "SELECT DISTINCT s.showid, s.dayid, s.starttime

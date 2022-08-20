@@ -61,6 +61,7 @@ class Show {
 	}
 
 	function getHosts() {
+    global $db;
 		$hosts = array();
 
 		$sql = "SELECT DISTINCT h.hostid
@@ -84,6 +85,7 @@ class Show {
 	}
 
 	function getGenres() {
+    global $db;
 		$genres = array();
 
 		$sql = "SELECT DISTINCT g.genreid
@@ -133,6 +135,7 @@ class Show {
 	}
 
 	function getVideos() {
+    global $db;
 		$videos = array();
 
 		$sql = "SELECT videoid, name, code, date
@@ -152,6 +155,7 @@ class Show {
 	}
 
 	function getSimilar($number = 3) {
+    global $db;
 		$number = intval($number);
 
 		$similar_shows = array();

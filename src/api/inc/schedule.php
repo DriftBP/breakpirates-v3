@@ -21,6 +21,7 @@ if($daylight_saving == 0) {
 }
 
 function getHost($host_id) {
+  global $db;
 	$host_id = intval($host_id);
 
 	$sql = "SELECT hostid, name, biog, location, image, twitter, mixcloud
@@ -39,6 +40,7 @@ function getHost($host_id) {
 }
 
 function getHosts($show_id = 0) {
+  global $db;
 	$show_id = intval($show_id);
 
 	$hosts = array();
@@ -67,6 +69,7 @@ function getHosts($show_id = 0) {
 }
 
 function getShow($show_id) {
+  global $db;
 	$show_id = intval($show_id);
 
 	$sql = "SELECT showid, title, description, image, dayid, starttime, endtime
@@ -85,6 +88,7 @@ function getShow($show_id) {
 }
 
 function getVideo($video_id) {
+  global $db;
 	$video_id = intval($video_id);
 
 	$sql = "SELECT name, code, showid, date
@@ -103,6 +107,7 @@ function getVideo($video_id) {
 }
 
 function getAllVideos() {
+  global $db;
 	$videos = array();
 
 	$sql = "SELECT videoid
@@ -128,6 +133,7 @@ function getAllVideos() {
  * Returns a single news article
  */
 function getNews($news_id) {
+  global $db;
 	$news_id = intval($news_id);
 
 	$sql = "SELECT title, summary, text, image, date, addedby
@@ -151,6 +157,7 @@ function getNews($news_id) {
  * A $number of 0 indicates all
  */
 function getAllNews($only_approved = false, $number = 0) {
+  global $db;
 	$number = intval($number);
 	$offset = intval($offset);
 
@@ -185,6 +192,7 @@ function getAllNews($only_approved = false, $number = 0) {
 }
 
 function getDay($day_id) {
+  global $db;
 	$day_id = intval($day_id);
 
 	$sql = "SELECT name
@@ -203,6 +211,7 @@ function getDay($day_id) {
 }
 
 function getDayByName($day_name) {
+  global $db;
 	$sql = "SELECT dayid, name
 			FROM days
 			WHERE name = '" . addslashes($day_name) . "'";
@@ -219,6 +228,7 @@ function getDayByName($day_name) {
 }
 
 function getGenre($genre_id) {
+  global $db;
 	$genre_id = intval($genre_id);
 
 	$sql = "SELECT name
@@ -237,6 +247,7 @@ function getGenre($genre_id) {
 }
 
 function getGenres() {
+  global $db;
 	$genres = array();
 
 	$sql = "SELECT DISTINCT(g.genreid)
@@ -259,6 +270,7 @@ function getGenres() {
 }
 
 function getShowOnNow() {
+  global $db;
 	$sql = "SELECT s.showid
 			FROM shows s
 				INNER JOIN days d ON d.dayid = s.dayid
@@ -278,6 +290,7 @@ function getShowOnNow() {
 }
 
 function getShows($day) {
+  global $db;
 	$shows = array();
 
 	$sql = "SELECT s.showid
