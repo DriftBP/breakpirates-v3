@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import('jest').Config} */
+const config = {
   preset: "jest-preset-angular",
   setupFilesAfterEnv: [
     "<rootDir>/setupJest.ts"
@@ -7,3 +8,5 @@ module.exports = {
     "^.+\\.js$"
   ]
 };
+
+module.exports = config;
