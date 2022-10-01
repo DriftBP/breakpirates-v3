@@ -1,9 +1,12 @@
-module.exports = {
-  "preset": "jest-preset-angular",
-  "setupFilesAfterEnv": [
+/** @type {import('jest').Config} */
+const config = {
+  preset: "jest-preset-angular",
+  setupFilesAfterEnv: [
     "<rootDir>/setupJest.ts"
   ],
-  "transformIgnorePatterns": [
+  transformIgnorePatterns: [
     "^.+\\.js$"
   ]
 };
+
+module.exports = config;
