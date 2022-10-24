@@ -6,7 +6,8 @@ import { Show } from '../models/show';
 
 @Component({
   selector: 'bp-day-schedule',
-  templateUrl: './day-schedule.component.html'
+  templateUrl: './day-schedule.component.html',
+  styleUrls: ['./day-schedule.component.scss']
 })
 export class DayScheduleComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
