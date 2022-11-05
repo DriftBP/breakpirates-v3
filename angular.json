@@ -114,8 +114,9 @@
       }
     }
   },
-  "defaultProject": "breakpirates-v3",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
