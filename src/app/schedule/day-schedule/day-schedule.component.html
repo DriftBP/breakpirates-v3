@@ -1,3 +1,9 @@
-<ng-container *ngFor="let show of todaysSchedule">
-  <bp-show-summary [show]="show"></bp-show-summary>
+<ng-container *ngIf="todaysSchedule.length > 0; else noShows">
+  <ng-container *ngFor="let show of todaysSchedule">
+    <bp-show-summary [show]="show"></bp-show-summary>
+  </ng-container>
 </ng-container>
+
+<ng-template #noShows>
+  <p class="no-shows">{{'SCHEDULE.NO_LIVE_SHOWS' | translate}}</p>
+</ng-template>
