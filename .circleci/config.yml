@@ -8,7 +8,7 @@ jobs:
   test:
     working_directory: ~/breakpirates-v3
     machine:
-      image: ubuntu-2004:202101-01
+      image: cimg/base:2022.11
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
