@@ -1,24 +1,37 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
 import { VideoDetailsComponent } from './video-details.component';
-import { VideoModule } from '../video.module';
-
-const routes: Routes = [];
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
+import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 
 describe('VideoDetailsComponent', () => {
-  let shallow: Shallow<VideoDetailsComponent>;
+  let component: VideoDetailsComponent;
+  let fixture: ComponentFixture<VideoDetailsComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(VideoDetailsComponent, VideoModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [
+          VideoDetailsComponent,
+          MockSafePipe
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(VideoDetailsComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

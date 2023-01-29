@@ -1,17 +1,19 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { ShopService } from './shop.service';
-import { ShopModule } from '../shop.module';
 
 describe('ShopService', () => {
-  let shallow: Shallow<ShopService>;
+  let service: ShopService;
 
   beforeEach(() => {
-    shallow = new Shallow(ShopService, ShopModule);
+    TestBed.configureTestingModule({
+      providers: [ShopService]
+    });
+
+    service = TestBed.inject(ShopService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

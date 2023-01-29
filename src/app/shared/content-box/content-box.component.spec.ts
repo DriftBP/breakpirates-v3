@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ContentBoxComponent } from './content-box.component';
-import { SharedModule } from '../shared.module';
 
 describe('ContentBoxComponent', () => {
-  let shallow: Shallow<ContentBoxComponent>;
+  let component: ContentBoxComponent;
+  let fixture: ComponentFixture<ContentBoxComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ContentBoxComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ ContentBoxComponent ]
+    });
+    fixture = TestBed.createComponent(ContentBoxComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

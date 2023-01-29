@@ -1,24 +1,26 @@
-import { waitForAsync } from '@angular/core/testing';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HostNavigationComponent } from './host-navigation.component';
-import { ProfileModule } from '../profile.module';
-
-const routes: Routes = [];
 
 describe('HostNavigationComponent', () => {
-  let shallow: Shallow<HostNavigationComponent>;
+  let component: HostNavigationComponent;
+  let fixture: ComponentFixture<HostNavigationComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(HostNavigationComponent, ProfileModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [
+          HostNavigationComponent
+        ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(HostNavigationComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

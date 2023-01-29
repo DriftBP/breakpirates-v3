@@ -1,24 +1,39 @@
-import { waitForAsync } from '@angular/core/testing';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute, Routes } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MusicComponent } from './music.component';
-import { MusicModule } from './music.module';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 const routes: Routes = [];
 
 describe('MusicComponent', () => {
-  let shallow: Shallow<MusicComponent>;
+  let component: MusicComponent;
+  let fixture: ComponentFixture<MusicComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(MusicComponent, MusicModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [ MusicComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(MusicComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProgressIndicatorComponent } from './progress-indicator.component';
-import { SharedModule } from '../shared.module';
+import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 
 describe('ProgressIndicatorComponent', () => {
-  let shallow: Shallow<ProgressIndicatorComponent>;
+  let component: ProgressIndicatorComponent;
+  let fixture: ComponentFixture<ProgressIndicatorComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ProgressIndicatorComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [
+          ProgressIndicatorComponent,
+          MockSafePipe
+        ]
+    });
+    fixture = TestBed.createComponent(ProgressIndicatorComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

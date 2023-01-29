@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MixcloudWidgetComponent } from './mixcloud-widget.component';
-import { ProfileModule } from '../profile.module';
 
 describe('MixcloudWidgetComponent', () => {
-  let shallow: Shallow<MixcloudWidgetComponent>;
+  let component: MixcloudWidgetComponent;
+  let fixture: ComponentFixture<MixcloudWidgetComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(MixcloudWidgetComponent, ProfileModule);
+    TestBed.configureTestingModule({
+        declarations: [ MixcloudWidgetComponent ]
+    });
+    fixture = TestBed.createComponent(MixcloudWidgetComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render({bind: {user: 'test'}});
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

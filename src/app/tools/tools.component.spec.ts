@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ToolsComponent } from './tools.component';
-import { ToolsModule } from './tools.module';
 
 describe('ToolsComponent', () => {
-  let shallow: Shallow<ToolsComponent>;
+  let component: ToolsComponent;
+  let fixture: ComponentFixture<ToolsComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ToolsComponent, ToolsModule);
+    TestBed.configureTestingModule({
+        declarations: [ ToolsComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(ToolsComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

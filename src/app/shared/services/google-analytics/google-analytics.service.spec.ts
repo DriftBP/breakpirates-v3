@@ -1,17 +1,19 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { GoogleAnalyticsService } from './google-analytics.service';
-import { SharedModule } from '../../shared.module';
 
 describe('GoogleAnalyticsService', () => {
-  let shallow: Shallow<GoogleAnalyticsService>;
+  let service: GoogleAnalyticsService;
 
   beforeEach(() => {
-    shallow = new Shallow(GoogleAnalyticsService, SharedModule);
+    TestBed.configureTestingModule({
+      providers: [GoogleAnalyticsService],
+    });
+
+    service = TestBed.inject(GoogleAnalyticsService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });
