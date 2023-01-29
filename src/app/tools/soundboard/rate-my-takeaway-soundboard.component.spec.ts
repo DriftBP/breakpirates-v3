@@ -1,27 +1,32 @@
-import { waitForAsync } from '@angular/core/testing';
-import { from } from 'rxjs';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
-import { SoundboardModule } from './soundboard.module';
 import { SoundboardService } from './soundboard.service';
-
-const mockSoundboardService = {
-  initialise: jest.fn(),
-  isLoaded$: from([false]),
-};
+import { MockSoundboardService } from '../../../test/services/mock.soundboard.service';
 
 describe('RateMyTakeawaySoundboardComponent', () => {
-  let shallow: Shallow<RateMyTakeawaySoundboardComponent>;
+  let component: RateMyTakeawaySoundboardComponent;
+  let fixture: ComponentFixture<RateMyTakeawaySoundboardComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(RateMyTakeawaySoundboardComponent, SoundboardModule)
-      .mock(SoundboardService, mockSoundboardService);
+    TestBed.configureTestingModule({
+        declarations: [ RateMyTakeawaySoundboardComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: SoundboardService,
+            useValue: MockSoundboardService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(RateMyTakeawaySoundboardComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

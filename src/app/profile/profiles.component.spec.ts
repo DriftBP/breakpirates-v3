@@ -1,41 +1,54 @@
-import { waitForAsync } from '@angular/core/testing';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ProfilesComponent } from './profiles.component';
-import { ProfileModule } from './profile.module';
 import { SortOrder } from '../shared/pipes/sort-order';
-
-const routes: Routes = [];
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { MockSortByPipe } from '../../test/pipes/mock.sort-by.pipe';
+import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 describe('ProfilesComponent', () => {
-  let shallow: Shallow<ProfilesComponent>;
+  let component: ProfilesComponent;
+  let fixture: ComponentFixture<ProfilesComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ProfilesComponent, ProfileModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [
+          ProfilesComponent,
+          MockSortByPipe
+        ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(ProfilesComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should default to ascending order', async () => {
-    const { instance } = await shallow.render();
-
-    expect(instance.order).toEqual(SortOrder.Ascending);
+    expect(component.order).toEqual(SortOrder.Ascending);
   });
 
   it('should toggle ordering', async () => {
-    const { instance } = await shallow.render();
-
-    expect(instance.order).toEqual(SortOrder.Ascending);
-    instance.toggleOrderBy();
-    expect(instance.order).toEqual(SortOrder.Descending);
-    instance.toggleOrderBy();
-    expect(instance.order).toEqual(SortOrder.Ascending);
+    expect(component.order).toEqual(SortOrder.Ascending);
+    component.toggleOrderBy();
+    expect(component.order).toEqual(SortOrder.Descending);
+    component.toggleOrderBy();
+    expect(component.order).toEqual(SortOrder.Ascending);
   });
 });

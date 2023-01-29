@@ -1,27 +1,28 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { ThemeService } from './theme.service';
-import { SharedModule } from '../../shared.module';
 import { ThemeSetting } from './theme-setting';
 import { Theme } from './theme';
 
 describe('ThemeService', () => {
-  let shallow: Shallow<ThemeService>;
+  let service: ThemeService;
 
   beforeEach(() => {
-    shallow = new Shallow(ThemeService, SharedModule);
+    TestBed.configureTestingModule({
+      providers: [ThemeService]
+    });
+
+    service = TestBed.inject(ThemeService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   it('should provide light theme as default theme', () => {
-    const {instance} = shallow.createService();
     let theme: Theme;
 
-    instance.currentTheme$.subscribe(currentTheme => {
+    service.currentTheme$.subscribe(currentTheme => {
       theme = currentTheme;
     });
 
@@ -29,46 +30,41 @@ describe('ThemeService', () => {
   });
 
   it('should use light theme as default theme setting', () => {
-    const {instance} = shallow.createService();
-    expect(instance['defaultThemeSetting']).toBe(ThemeSetting.Auto);
+    expect(service['defaultThemeSetting']).toBe(ThemeSetting.Auto);
   });
 
   it('should return light theme with light setting', () => {
-    const {instance} = shallow.createService();
-    expect(instance['getThemeForSetting'](ThemeSetting.Light)).toBe(Theme.Light);
+    expect(service['getThemeForSetting'](ThemeSetting.Light)).toBe(Theme.Light);
   });
 
   it('should emit theme after theme is set', () => {
-    const {instance} = shallow.createService();
     let theme: Theme;
 
-    instance.currentTheme$.subscribe(currentTheme => {
+    service.currentTheme$.subscribe(currentTheme => {
       theme = currentTheme;
     });
 
-    instance.setThemeSetting(ThemeSetting.Light);
+    service.setThemeSetting(ThemeSetting.Light);
 
     expect(theme).toBe(Theme.Light);
 
-    instance.setThemeSetting(ThemeSetting.Dark);
+    service.setThemeSetting(ThemeSetting.Dark);
 
     expect(theme).toBe(Theme.Dark);
   });
 
   it('should save selected theme setting to local storage', () => {
-    const {instance} = shallow.createService();
+    const localStorageKey = service['localStorageKey'];
 
-    const localStorageKey = instance['localStorageKey'];
-
-    instance['saveThemeSetting'](ThemeSetting.Auto);
+    service['saveThemeSetting'](ThemeSetting.Auto);
 
     expect(localStorage.getItem(localStorageKey)).toBe(ThemeSetting.Auto);
 
-    instance['saveThemeSetting'](ThemeSetting.Light);
+    service['saveThemeSetting'](ThemeSetting.Light);
 
     expect(localStorage.getItem(localStorageKey)).toBe(ThemeSetting.Light);
 
-    instance['saveThemeSetting'](ThemeSetting.Dark);
+    service['saveThemeSetting'](ThemeSetting.Dark);
 
     expect(localStorage.getItem(localStorageKey)).toBe(ThemeSetting.Dark);
   });

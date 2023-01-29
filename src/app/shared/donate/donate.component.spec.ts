@@ -1,34 +1,43 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { DonateComponent } from './donate.component';
-import { SharedModule } from '../shared.module';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
+import { MockGoogleAnalyticsService } from '../../../test/services/mock.google-analytics.service';
 
-const mockGoogleAnalyticsService = {
-  trackEvent: jest.fn()
-};
+const mockGoogleAnalyticsService = MockGoogleAnalyticsService;
 
 describe('DonateComponent', () => {
-  let shallow: Shallow<DonateComponent>;
+  let component: DonateComponent;
+  let fixture: ComponentFixture<DonateComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(DonateComponent, SharedModule)
-      .mock(GoogleAnalyticsService, mockGoogleAnalyticsService);
+    TestBed.configureTestingModule({
+        declarations: [ DonateComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: GoogleAnalyticsService,
+            useValue: mockGoogleAnalyticsService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(DonateComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should track form submission', async () => {
-    const { instance } = await shallow.render();
+    fixture.detectChanges();
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(0);
 
-    instance.donateFormElement.nativeElement.dispatchEvent(new Event('submit'));
+    component.donateFormElement.nativeElement.dispatchEvent(new Event('submit'));
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(1);
   });

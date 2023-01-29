@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NotFoundComponent } from './not-found.component';
-import { SharedModule } from '../shared.module';
 
 describe('NotFoundComponent', () => {
-  let shallow: Shallow<NotFoundComponent>;
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(NotFoundComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ NotFoundComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(NotFoundComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

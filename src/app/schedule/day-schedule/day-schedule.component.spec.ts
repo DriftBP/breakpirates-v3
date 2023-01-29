@@ -1,33 +1,39 @@
-import { waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
 import { DayScheduleComponent } from './day-schedule.component';
-import { ScheduleModule } from '../schedule.module';
-
-const routes: Routes = [];
 
 describe('DayScheduleComponent', () => {
-  let shallow: Shallow<DayScheduleComponent>;
+  let component: DayScheduleComponent;
+  let fixture: ComponentFixture<DayScheduleComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(DayScheduleComponent, ScheduleModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .mock(ActivatedRoute, {
-        paramMap: of(null),
-        snapshot: {
-          data: {
-            'schedule': []
+    TestBed.configureTestingModule({
+        declarations: [ DayScheduleComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              paramMap: of(null),
+              snapshot: {
+                data: {
+                  'schedule': []
+                }
+              }
+            }
           }
-        }
-      });
+        ]
+    });
+    fixture = TestBed.createComponent(DayScheduleComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

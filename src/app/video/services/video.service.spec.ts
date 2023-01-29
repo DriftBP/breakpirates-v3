@@ -1,9 +1,11 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { VideoService } from './video.service';
 
 describe('VideoService', () => {
+  let service: VideoService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [VideoService],
@@ -11,9 +13,11 @@ describe('VideoService', () => {
         HttpClientModule
       ]
     });
+
+    service = TestBed.inject(VideoService);
   });
 
-  it('should be created', inject([VideoService], (service: VideoService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 });

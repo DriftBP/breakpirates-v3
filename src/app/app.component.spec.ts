@@ -1,27 +1,33 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { RouterModule, Routes, NavigationStart, NavigationEnd } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NavigationStart, NavigationEnd, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
+import { MockGoogleAnalyticsService } from '../test/services/mock.google-analytics.service';
+import { MockRouterService } from '../test/services/mock.router.service';
 
-const routes: Routes = [];
-
-const mockGoogleAnalyticsService = {
-  trackPageHit: jest.fn()
-};
+const mockGoogleAnalyticsService = MockGoogleAnalyticsService;
 
 describe('AppComponent', () => {
-  let shallow: Shallow<AppComponent>;
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(AppComponent, AppModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
-      .mock(GoogleAnalyticsService, mockGoogleAnalyticsService);
+    TestBed.configureTestingModule({
+        declarations: [ AppComponent ],
+        providers: [
+          {
+            provide: Router,
+            useClass: MockRouterService
+          },
+          {
+            provide: GoogleAnalyticsService,
+            useValue: mockGoogleAnalyticsService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   }));
 
   afterEach(() => {
@@ -29,40 +35,30 @@ describe('AppComponent', () => {
   });
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should indicate loading on NavigationStart', async () => {
-    const { instance } = await shallow.render();
+    component['processEvent'](new NavigationStart(1, ''));
 
-    instance['processEvent'](new NavigationStart(1, ''));
-
-    expect(instance.loading).toBeTruthy();
+    expect(component.loading).toBeTruthy();
   });
 
   it('should not indicate loading on NavigationEnd', async () => {
-    const { instance } = await shallow.render();
+    component['processEvent'](new NavigationEnd(1, '', ''));
 
-    instance['processEvent'](new NavigationEnd(1, '', ''));
-
-    expect(instance.loading).toBeFalsy();
+    expect(component.loading).toBeFalsy();
   });
 
   it('should track page hit on NavigationEnd', async () => {
-    const { instance } = await shallow.render();
-
-    instance['processEvent'](new NavigationEnd(1, '', ''));
+    component['processEvent'](new NavigationEnd(1, '', ''));
 
     expect(mockGoogleAnalyticsService.trackPageHit.mock.calls.length).toEqual(1);
   });
 
   it('should clean up subscriptions onDestroy', async () => {
-    const { instance } = await shallow.render();
+    component.ngOnDestroy();
 
-    instance.ngOnDestroy();
-
-    expect(instance['eventsSubscription'].closed).toEqual(true);
+    expect(component['eventsSubscription'].closed).toEqual(true);
   });
 });

@@ -1,17 +1,19 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { DialogService } from './dialog.service';
-import { SharedModule } from '../../shared.module';
 
 describe('DialogService', () => {
-  let shallow: Shallow<DialogService>;
+  let service: DialogService;
 
   beforeEach(() => {
-    shallow = new Shallow(DialogService, SharedModule);
+    TestBed.configureTestingModule({
+      providers: [DialogService]
+    });
+
+    service = TestBed.inject(DialogService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

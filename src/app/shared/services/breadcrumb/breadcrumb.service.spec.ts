@@ -1,17 +1,23 @@
-import { Shallow } from 'shallow-render';
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 import { BreadcrumbService } from './breadcrumb.service';
-import { SharedModule } from '../../shared.module';
 
 describe('BreadcrumbService', () => {
-  let shallow: Shallow<BreadcrumbService>;
+  let service: BreadcrumbService;
 
   beforeEach(() => {
-    shallow = new Shallow(BreadcrumbService, SharedModule);
+    TestBed.configureTestingModule({
+      providers: [BreadcrumbService],
+      imports: [
+        HttpClientModule
+      ]
+    });
+
+    service = TestBed.inject(BreadcrumbService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

@@ -1,19 +1,22 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SampleButtonComponent } from './sample-button.component';
-import { SoundboardModule } from '../soundboard.module';
 
 describe('SampleButtonComponent', () => {
-  let shallow: Shallow<SampleButtonComponent>;
+  let component: SampleButtonComponent;
+  let fixture: ComponentFixture<SampleButtonComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(SampleButtonComponent, SoundboardModule);
+    TestBed.configureTestingModule({
+        declarations: [
+          SampleButtonComponent
+        ]
+    });
+    fixture = TestBed.createComponent(SampleButtonComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
