@@ -1,28 +1,43 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ChatComponent } from './chat.component';
-import { SocialModule } from '../social.module';
+import { MockFullscreenService } from '../../../test/services/mock.fullscreen.service';
+import { MockScreenService } from '../../../test/services/mock.screen.service';
 import { FullscreenService } from '../services/fullscreen.service';
 import { ScreenService } from '../services/screen.service';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 describe('ChatComponent', () => {
-  let shallow: Shallow<ChatComponent>;
+  let component: ChatComponent;
+  let fixture: ComponentFixture<ChatComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ChatComponent, SocialModule)
-      .mock(FullscreenService, {
-        canRequestFullscreen: true
-      })
-      .mock(ScreenService, {
-        canPreventSleep: true,
-        endPreventSleep: jest.fn()
-      });
+    TestBed.configureTestingModule({
+        declarations: [ ChatComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
+          {
+            provide: FullscreenService,
+            useClass: MockFullscreenService
+          },
+          {
+            provide: ScreenService,
+            useClass: MockScreenService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(ChatComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

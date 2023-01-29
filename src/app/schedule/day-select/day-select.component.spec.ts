@@ -1,8 +1,7 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DaySelectComponent } from './day-select.component';
-import { ScheduleModule } from '../schedule.module';
 import { Day } from '../models/day';
 
 const mockDay: Day = {
@@ -11,21 +10,27 @@ const mockDay: Day = {
 };
 
 describe('DaySelectComponent', () => {
-  let shallow: Shallow<DaySelectComponent>;
+  let component: DaySelectComponent;
+  let fixture: ComponentFixture<DaySelectComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(DaySelectComponent, ScheduleModule);
+    TestBed.configureTestingModule({
+        declarations: [ DaySelectComponent ]
+    });
+    fixture = TestBed.createComponent(DaySelectComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should list days of the week', async () => {
-    const { find } = await shallow.render({bind: {days: [ mockDay ]}});
-    const days = find('.nav-link');
+    component.days = [ mockDay ];
+
+    fixture.detectChanges();
+
+    const days = fixture.debugElement.queryAll(By.css('.nav-link'));
 
     expect(days.length).toBeGreaterThan(0);
   });

@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TwitterWidgetComponent } from './twitter-widget.component';
-import { ProfileModule } from '../profile.module';
 
 describe('TwitterWidgetComponent', () => {
-  let shallow: Shallow<TwitterWidgetComponent>;
+  let component: TwitterWidgetComponent;
+  let fixture: ComponentFixture<TwitterWidgetComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(TwitterWidgetComponent, ProfileModule);
+    TestBed.configureTestingModule({
+        declarations: [ TwitterWidgetComponent ]
+    });
+    fixture = TestBed.createComponent(TwitterWidgetComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

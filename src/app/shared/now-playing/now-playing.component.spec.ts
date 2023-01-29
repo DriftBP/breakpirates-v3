@@ -1,42 +1,44 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { from, of } from 'rxjs';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NowPlayingComponent } from './now-playing.component';
-import { SharedModule } from '../shared.module';
-import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
-
-const mockShow: Show = {
-  id: 1,
-  title: 'title',
-  start_time: '01:00:00',
-  end_time: '02:00:00',
-  day_id: 1,
-  genres: [],
-  hosts: []
-};
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
+import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
 
 describe('NowPlayingComponent', () => {
-  let shallow: Shallow<NowPlayingComponent>;
+  let component: NowPlayingComponent;
+  let fixture: ComponentFixture<NowPlayingComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(NowPlayingComponent, SharedModule)
-      .mock(ScheduleService, {
-        nowPlaying$: from([mockShow]),
-        showProgress$: of( 50 ),
+    TestBed.configureTestingModule({
+        declarations: [
+          NowPlayingComponent,
+          MockSafePipe,
+          MockTimePipe
+        ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ScheduleService,
+            useClass: MockScheduleService
+          }
+        ]
     });
+    fixture = TestBed.createComponent(NowPlayingComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should always have an image filename', async () => {
-    const { instance } = await shallow.render();
+    fixture.detectChanges();
 
-    expect(instance.nowPlayingImage).toBeTruthy();
+    expect(component.nowPlayingImage).toBeTruthy();
   });
 });

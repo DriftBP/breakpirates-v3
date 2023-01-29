@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ReadMoreComponent } from './read-more.component';
-import { ProfileModule } from '../profile.module';
 
 describe('ReadMoreComponent', () => {
-  let shallow: Shallow<ReadMoreComponent>;
+  let component: ReadMoreComponent;
+  let fixture: ComponentFixture<ReadMoreComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ReadMoreComponent, ProfileModule);
+    TestBed.configureTestingModule({
+        declarations: [ ReadMoreComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(ReadMoreComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

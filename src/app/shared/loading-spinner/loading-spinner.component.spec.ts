@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LoadingSpinnerComponent } from './loading-spinner.component';
-import { SharedModule } from '../shared.module';
 
 describe('LoadingSpinnerComponent', () => {
-  let shallow: Shallow<LoadingSpinnerComponent>;
+  let component: LoadingSpinnerComponent;
+  let fixture: ComponentFixture<LoadingSpinnerComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(LoadingSpinnerComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ LoadingSpinnerComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(LoadingSpinnerComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

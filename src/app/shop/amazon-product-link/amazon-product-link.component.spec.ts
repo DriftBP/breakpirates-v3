@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AmazonProductLinkComponent } from './amazon-product-link.component';
-import { ShopModule } from '../shop.module';
 
 describe('AmazonProductLinkComponent', () => {
-  let shallow: Shallow<AmazonProductLinkComponent>;
+  let component: AmazonProductLinkComponent;
+  let fixture: ComponentFixture<AmazonProductLinkComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(AmazonProductLinkComponent, ShopModule);
+    TestBed.configureTestingModule({
+        declarations: [ AmazonProductLinkComponent ]
+    });
+    fixture = TestBed.createComponent(AmazonProductLinkComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render({bind: {asin: '1234'}});
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
