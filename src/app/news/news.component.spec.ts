@@ -1,24 +1,37 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { NewsModule } from './news.module';
 import { NewsComponent } from './news.component';
-
-const routes: Routes = [];
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 describe('NewsComponent', () => {
-  let shallow: Shallow<NewsComponent>;
+  let component: NewsComponent;
+  let fixture: ComponentFixture<NewsComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(NewsComponent, NewsModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [ NewsComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(NewsComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

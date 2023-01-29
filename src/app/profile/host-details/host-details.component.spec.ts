@@ -1,37 +1,52 @@
-import { waitForAsync } from '@angular/core/testing';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HostDetailsComponent } from './host-details.component';
-import { ProfileModule } from '../profile.module';
-
-const routes: Routes = [];
+import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { ProfileService } from '../services/profile.service';
+import { MockProfileService } from '../../../test/services/mock.profile.service';
+import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 
 describe('HostDetailsComponent', () => {
-  let shallow: Shallow<HostDetailsComponent>;
+  let component: HostDetailsComponent;
+  let fixture: ComponentFixture<HostDetailsComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(HostDetailsComponent, ProfileModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [ HostDetailsComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: ProfileService,
+            useClass: MockProfileService
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(HostDetailsComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should recognise non-empty value', async () => {
-    const { instance } = await shallow.render();
-
-    expect(instance.hasValue('test')).toBeTruthy();
+    expect(component.hasValue('test')).toBeTruthy();
   });
 
   it('should recognise empty value', async () => {
-    const { instance } = await shallow.render();
-
-    expect(instance.hasValue(null)).toBeFalsy();
-    expect(instance.hasValue('')).toBeFalsy();
+    expect(component.hasValue(null)).toBeFalsy();
+    expect(component.hasValue('')).toBeFalsy();
   });
 });

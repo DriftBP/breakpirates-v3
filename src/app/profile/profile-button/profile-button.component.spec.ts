@@ -1,27 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProfileButtonComponent } from './profile-button.component';
-import { ProfileModule } from '../profile.module';
-import { Host } from '../host';
-
-const mockHost: Host = {
-  id: 1,
-  name: 'name',
-  image: 'image.jpg',
-  location: 'location'
-};
 
 describe('ProfileButtonComponent', () => {
-  let shallow: Shallow<ProfileButtonComponent>;
+  let component: ProfileButtonComponent;
+  let fixture: ComponentFixture<ProfileButtonComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ProfileButtonComponent, ProfileModule);
+    TestBed.configureTestingModule({
+        declarations: [ ProfileButtonComponent ]
+    });
+    fixture = TestBed.createComponent(ProfileButtonComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render({bind: {host: mockHost}});
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

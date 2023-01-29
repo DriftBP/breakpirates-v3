@@ -1,36 +1,42 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { Routes, RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ScheduleComponent } from './schedule.component';
-import { ScheduleModule } from './schedule.module';
-import { Show } from './models/show';
-
-const routes: Routes = [];
-
-const mockShow: Show = {
-  id: 1,
-  title: 'title',
-  start_time: '00:00',
-  end_time: '01:00',
-  day_id: 1,
-  description: 'descripion',
-  genres: [],
-  hosts: []
-};
+import { TranslateModule } from '@ngx-translate/core';
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { MockRouterService } from '../../test/services/mock.router.service';
+import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 describe('ScheduleComponent', () => {
-  let shallow: Shallow<ScheduleComponent>;
+  let component: ScheduleComponent;
+  let fixture: ComponentFixture<ScheduleComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ScheduleComponent, ScheduleModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [ ScheduleComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: Router,
+            useClass: MockRouterService
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(ScheduleComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

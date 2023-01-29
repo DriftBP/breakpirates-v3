@@ -1,24 +1,42 @@
-import { waitForAsync } from '@angular/core/testing';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ShopComponent } from './shop.component';
-import { ShopModule } from './shop.module';
-
-const routes: Routes = [];
+import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { MockRouterService } from '../../test/services/mock.router.service';
+import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 describe('ShopComponent', () => {
-  let shallow: Shallow<ShopComponent>;
+  let component: ShopComponent;
+  let fixture: ComponentFixture<ShopComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ShopComponent, ShopModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes));
+    TestBed.configureTestingModule({
+        declarations: [ ShopComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          },
+          {
+            provide: Router,
+            useClass: MockRouterService
+          },
+          {
+            provide: BreadcrumbService,
+            useClass: MockBreadcrumbService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(ShopComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

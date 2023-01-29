@@ -1,8 +1,6 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LatestNewsComponent } from './latest-news.component';
-import { NewsModule } from '../news.module';
 import { News } from '../models/news';
 
 const mockNews: News = {
@@ -16,21 +14,26 @@ const mockNews: News = {
 };
 
 describe('LatestNewsComponent', () => {
-  let shallow: Shallow<LatestNewsComponent>;
+  let component: LatestNewsComponent;
+  let fixture: ComponentFixture<LatestNewsComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(LatestNewsComponent, NewsModule);
+    TestBed.configureTestingModule({
+        declarations: [
+          LatestNewsComponent
+        ]
+    });
+    fixture = TestBed.createComponent(LatestNewsComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should have at least one article', async () => {
-    const { instance } = await shallow.render({bind: {news: [mockNews]}});
+    component.news = [mockNews];
 
-    expect(instance.news.length).toBeGreaterThan(0);
+    expect(component.news.length).toBeGreaterThan(0);
   });
 });

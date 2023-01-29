@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdUnitComponent } from './ad-unit.component';
-import { SharedModule } from '../shared.module';
 
 describe('AdUnitComponent', () => {
-  let shallow: Shallow<AdUnitComponent>;
+  let component: AdUnitComponent;
+  let fixture: ComponentFixture<AdUnitComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(AdUnitComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ AdUnitComponent ]
+    });
+    fixture = TestBed.createComponent(AdUnitComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

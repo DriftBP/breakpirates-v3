@@ -1,17 +1,19 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { SupportedBrowsersService } from './supported-browsers.service';
-import { SharedModule } from '../../shared.module';
 
 describe('SupportedBrowsersService', () => {
-  let shallow: Shallow<SupportedBrowsersService>;
+  let service: SupportedBrowsersService;
 
   beforeEach(() => {
-    shallow = new Shallow(SupportedBrowsersService, SharedModule);
+    TestBed.configureTestingModule({
+      providers: [SupportedBrowsersService]
+    });
+
+    service = TestBed.inject(SupportedBrowsersService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

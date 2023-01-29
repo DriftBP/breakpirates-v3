@@ -1,9 +1,8 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { BpmComponent } from './bpm.component';
-import { BpmModule } from './bpm.module';
 import { DataCollectionStatus } from './data-collection-status';
 
 const maxDataPoints = 20;
@@ -16,40 +15,40 @@ const fullDataPoints = new Array(maxDataPoints).fill({
 }, 0, maxDataPoints);
 
 describe('BpmComponent', () => {
-  let shallow: Shallow<BpmComponent>;
+  let component: BpmComponent;
+  let fixture: ComponentFixture<BpmComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(BpmComponent, BpmModule);
+    TestBed.configureTestingModule({
+        declarations: [ BpmComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(BpmComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should recognise no data points', async () => {
-    const { instance } = await shallow.render();
-
-    const result = instance['isEmpty'](emptyDataPoints);
+    const result = component['isEmpty'](emptyDataPoints);
 
     expect(result).toBeTruthy();
   });
 
   it('should recognise required number of data points', async () => {
-    const { instance } = await shallow.render();
-
-    const result = instance['isFull'](fullDataPoints);
+    const result = component['isFull'](fullDataPoints);
 
     expect(result).toBeTruthy();
   });
 
   it('should return relevant status', async () => {
-    const { instance } = await shallow.render();
-
-    const emptyStatus = instance['getStatus'](emptyDataPoints);
-    const insufficientStatus = instance['getStatus'](insufficientDataPoints);
-    const fullStatus = instance['getStatus'](fullDataPoints);
+    const emptyStatus = component['getStatus'](emptyDataPoints);
+    const insufficientStatus = component['getStatus'](insufficientDataPoints);
+    const fullStatus = component['getStatus'](fullDataPoints);
 
     expect(emptyStatus).toEqual(DataCollectionStatus.Empty);
     expect(insufficientStatus).toEqual(DataCollectionStatus.Insufficient);

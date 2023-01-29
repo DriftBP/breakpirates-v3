@@ -1,17 +1,19 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { SoundboardService } from './soundboard.service';
-import { SoundboardModule } from './soundboard.module';
 
 describe('SoundboardService', () => {
-  let shallow: Shallow<SoundboardService>;
+  let service: SoundboardService;
 
   beforeEach(() => {
-    shallow = new Shallow(SoundboardService, SoundboardModule);
+    TestBed.configureTestingModule({
+      providers: [SoundboardService]
+    });
+
+    service = TestBed.inject(SoundboardService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });
