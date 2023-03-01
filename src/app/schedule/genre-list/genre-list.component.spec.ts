@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GenreListComponent } from './genre-list.component';
-import { ScheduleModule } from '../schedule.module';
+import { MockSortByPipe } from '../../../test/pipes/mock.sort-by.pipe';
 
 describe('GenreListComponent', () => {
-  let shallow: Shallow<GenreListComponent>;
+  let component: GenreListComponent;
+  let fixture: ComponentFixture<GenreListComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(GenreListComponent, ScheduleModule);
+    TestBed.configureTestingModule({
+        declarations: [
+          GenreListComponent,
+          MockSortByPipe
+        ]
+    });
+    fixture = TestBed.createComponent(GenreListComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

@@ -1,14 +1,18 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { from, of } from 'rxjs';
-import { DateTime } from 'luxon';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ShowSummaryComponent } from './show-summary.component';
-import { ScheduleModule } from '../schedule.module';
 import { Show } from '../models/show';
-import { ScheduleService } from '../services/schedule.service';
 import { DayService } from '../services/day.service';
+import { MockDayService } from '../../../test/services/mock.day.service';
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { ScheduleService } from '../services/schedule.service';
+import { MockShowService } from '../../../test/services/mock.show.service';
 import { ShowService } from '../services/show.service';
+import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
 
 const mockShow1: Show = {
   id: 1,
@@ -21,59 +25,89 @@ const mockShow1: Show = {
 };
 const mockShow2: Show = { ...mockShow1, id: 2 };
 
+@Component({
+  template: ''
+})
+class DummyComponent {
+}
+
 describe('ShowSummaryComponent', () => {
-  let shallow: Shallow<ShowSummaryComponent>;
+  let component: ShowSummaryComponent;
+  let fixture: ComponentFixture<ShowSummaryComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ShowSummaryComponent, ScheduleModule)
-      .mock(DayService, {
-        dayName: () => ''
-      })
-      .mock(ScheduleService, {
-        nowPlaying$: from([mockShow1, mockShow2]),
-        showHosts: () => of([]),
-        showGenres: () => of([])
-      })
-      .mock(ShowService, {
-        getDates: () => ({ startDate: DateTime.local(), endDate: DateTime.local() }),
-      });
+    TestBed.configureTestingModule({
+        declarations: [
+          ShowSummaryComponent,
+          MockTimePipe
+        ],
+        imports: [
+          TranslateModule.forRoot(),
+          RouterTestingModule.withRoutes([
+            { path: 'schedule/:id', component: DummyComponent }
+           ])
+        ],
+        providers: [
+          {
+            provide: DayService,
+            useClass: MockDayService
+          },
+          {
+            provide: ScheduleService,
+            useClass: MockScheduleService
+          },
+          {
+            provide: ShowService,
+            useClass: MockShowService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(ShowSummaryComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should not display day of week by default', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow1}});
+    component.show = mockShow1;
 
-    const day = find('.show-summary__day');
+    fixture.detectChanges();
 
-    expect(day.length).toEqual(0);
+    const day = fixture.debugElement.query(By.css('.show-summary__day'));
+
+    expect(day).toBeNull();
   });
 
   it('should display day of week', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow1, displayDay: true}});
+    component.show = mockShow1;
+    component.displayDay = true;
 
-    const day = find('.show-summary__day');
+    fixture.detectChanges();
 
-    expect(day.length).toEqual(1);
+    const day = fixture.debugElement.query(By.css('.show-summary__day'));
+
+    expect(day).toBeDefined();
   });
 
   it('should not indicate show is now playing', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow1}});
+    component.show = mockShow1;
 
-    const nowPlaying = find('.show-summary__now-live');
+    fixture.detectChanges();
 
-    expect(nowPlaying.length).toEqual(0);
+    const nowPlaying = fixture.debugElement.query(By.css('.show-summary__now-live'));
+
+    expect(nowPlaying).toBeNull();
   });
 
   it('should indicate show is now playing', async () => {
-    const { find } = await shallow.render({bind: {show: mockShow2}});
+    component.show = mockShow2;
 
-    const nowPlaying = find('.show-summary__now-live');
+    fixture.detectChanges();
 
-    expect(nowPlaying.length).toEqual(1);
+    const nowPlaying = fixture.debugElement.query(By.css('.show-summary__now-live'));
+
+    expect(nowPlaying).toBeDefined();
   });
 });

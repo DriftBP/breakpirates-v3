@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProductTypeSelectComponent } from './product-type-select.component';
-import { ShopModule } from '../shop.module';
 
 describe('ProductTypeSelectComponent', () => {
-  let shallow: Shallow<ProductTypeSelectComponent>;
+  let component: ProductTypeSelectComponent;
+  let fixture: ComponentFixture<ProductTypeSelectComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ProductTypeSelectComponent, ShopModule);
+    TestBed.configureTestingModule({
+        declarations: [ ProductTypeSelectComponent ]
+    });
+    fixture = TestBed.createComponent(ProductTypeSelectComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

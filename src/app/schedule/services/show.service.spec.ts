@@ -1,17 +1,19 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { ShowService } from './show.service';
-import { ScheduleModule } from '../schedule.module';
 
 describe('ShowService', () => {
-  let shallow: Shallow<ShowService>;
+  let service: ShowService;
 
   beforeEach(() => {
-    shallow = new Shallow(ShowService, ScheduleModule);
+    TestBed.configureTestingModule({
+      providers: [ShowService]
+    });
+
+    service = TestBed.inject(ShowService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

@@ -1,28 +1,32 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { RouterModule, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NavigationComponent } from './navigation.component';
-import { SharedModule } from '../shared.module';
-import { SocialService } from '../../social/services/social.service';
-
-const routes: Routes = [];
+import { MockRouterService } from '../../../test/services/mock.router.service';
 
 describe('NavigationComponent', () => {
-  let shallow: Shallow<NavigationComponent>;
+  let component: NavigationComponent;
+  let fixture: ComponentFixture<NavigationComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(NavigationComponent, SharedModule)
-      .replaceModule(RouterModule, RouterTestingModule.withRoutes(routes))
-      .mock(SocialService, {
-        getSocialSites: () => []
-      });
+    TestBed.configureTestingModule({
+        declarations: [ NavigationComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: Router,
+            useClass: MockRouterService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(NavigationComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

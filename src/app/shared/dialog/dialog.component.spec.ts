@@ -1,26 +1,26 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DialogComponent } from './dialog.component';
-import { SharedModule } from '../shared.module';
 
 describe('DialogComponent', () => {
-  let shallow: Shallow<DialogComponent>;
+  let component: DialogComponent;
+  let fixture: ComponentFixture<DialogComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(DialogComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ DialogComponent ]
+    });
+    fixture = TestBed.createComponent(DialogComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should be closed by default', async () => {
-    const { find } = await shallow.render();
-
-    const dialog = find('dialog');
+    const dialog = fixture.debugElement.nativeElement.querySelector('dialog');
 
     expect(dialog.attributes['open']).toBeFalsy();
   });
@@ -28,11 +28,11 @@ describe('DialogComponent', () => {
   it('should set the dialog content', async () => {
     const content = 'My content';
 
-    const { instance, find } = await shallow.render();
+    fixture.detectChanges();
 
-    const contentElement = find('.dialog__content');
+    const contentElement = fixture.debugElement.query(By.css('.dialog__content'));
 
-    instance['setContent'](content);
+    component['setContent'](content);
 
     expect(contentElement.nativeElement.innerHTML).toEqual(content);
   });
@@ -40,11 +40,11 @@ describe('DialogComponent', () => {
   it('should set the dialog title', async () => {
     const title = 'My title';
 
-    const { instance, find } = await shallow.render();
+    fixture.detectChanges();
 
-    const titleElement = find('.dialog__title');
+    const titleElement = fixture.debugElement.query(By.css('.dialog__title'));
 
-    instance['setTitle'](title);
+    component['setTitle'](title);
 
     expect(titleElement.nativeElement.innerHTML).toEqual(title);
   });

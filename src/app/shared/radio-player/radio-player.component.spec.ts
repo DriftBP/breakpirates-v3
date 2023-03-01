@@ -1,19 +1,20 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RadioPlayerComponent } from './radio-player.component';
-import { SharedModule } from '../shared.module';
 
 describe('RadioPlayerComponent', () => {
-  let shallow: Shallow<RadioPlayerComponent>;
+  let component: RadioPlayerComponent;
+  let fixture: ComponentFixture<RadioPlayerComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(RadioPlayerComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ RadioPlayerComponent ]
+    });
+    fixture = TestBed.createComponent(RadioPlayerComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

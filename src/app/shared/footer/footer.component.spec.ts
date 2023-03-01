@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { FooterComponent } from './footer.component';
-import { SharedModule } from '../shared.module';
 
 describe('FooterComponent', () => {
-  let shallow: Shallow<FooterComponent>;
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(FooterComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ FooterComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(FooterComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

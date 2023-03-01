@@ -1,37 +1,33 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
-import { of } from 'rxjs';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HomeComponent } from './home.component';
-import { HomeModule } from './home.module';
 import { ScheduleService } from '../schedule/services/schedule.service';
-import { Show } from '../schedule/models/show';
-
-const mockShow: Show = {
-  id: 1,
-  title: 'title',
-  start_time: '00:00',
-  end_time: '01:00',
-  day_id: 1,
-  description: 'descripion',
-  genres: [],
-  hosts: []
-};
+import { MockScheduleService } from '../../test/services/mock.schedule.service';
 
 describe('HomeComponent', () => {
-  let shallow: Shallow<HomeComponent>;
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(HomeComponent, HomeModule)
-      .mock(ScheduleService, {
-        shows: () => of([ mockShow ]),
-      });
+    TestBed.configureTestingModule({
+        declarations: [ HomeComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: ScheduleService,
+            useClass: MockScheduleService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
 

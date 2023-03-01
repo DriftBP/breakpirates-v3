@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SidebarComponent } from './sidebar.component';
-import { SharedModule } from '../shared.module';
 
 describe('SidebarComponent', () => {
-  let shallow: Shallow<SidebarComponent>;
+  let component: SidebarComponent;
+  let fixture: ComponentFixture<SidebarComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(SidebarComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ SidebarComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(SidebarComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

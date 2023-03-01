@@ -1,23 +1,32 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SocialComponent } from './social.component';
-import { SocialModule } from './social.module';
+import { MockSocialService } from '../../test/services/mock.social.service';
 import { SocialService } from './services/social.service';
 
 describe('SocialComponent', () => {
-  let shallow: Shallow<SocialComponent>;
+  let component: SocialComponent;
+  let fixture: ComponentFixture<SocialComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(SocialComponent, SocialModule)
-      .mock(SocialService, {
-        getSocialSites: () => []
-      });
+    TestBed.configureTestingModule({
+        declarations: [ SocialComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: SocialService,
+            useClass: MockSocialService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(SocialComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

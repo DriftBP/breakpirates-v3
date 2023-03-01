@@ -1,23 +1,32 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { FooterBarComponent } from './footer-bar.component';
-import { SharedModule } from '../shared.module';
 import { SocialService } from '../../social/services/social.service';
+import { MockSocialService } from '../../../test/services/mock.social.service';
 
 describe('FooterBarComponent', () => {
-  let shallow: Shallow<FooterBarComponent>;
+  let component: FooterBarComponent;
+  let fixture: ComponentFixture<FooterBarComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(FooterBarComponent, SharedModule)
-      .mock(SocialService, {
-        getSocialSites: () => []
-      });
+    TestBed.configureTestingModule({
+        declarations: [ FooterBarComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ],
+        providers: [
+          {
+            provide: SocialService,
+            useClass: MockSocialService
+          }
+        ]
+    });
+    fixture = TestBed.createComponent(FooterBarComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

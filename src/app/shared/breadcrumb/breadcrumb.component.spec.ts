@@ -1,64 +1,42 @@
-import { waitForAsync } from '@angular/core/testing';
-import { TranslateService } from '@ngx-translate/core';
-import { from, of } from 'rxjs';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
-import { SharedModule } from '../shared.module';
-import { BreadcrumbConfigItem } from './breadcrumb-config-item';
-import { homeConfigInactive, scheduleConfigActive } from './breadcrumb-config';
-import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
-
-const mockHomeConfig: BreadcrumbConfigItem[] = [];
-
-const mockScheduleConfig: BreadcrumbConfigItem[] = [
-  homeConfigInactive,
-  scheduleConfigActive
-];
-
-const mockBreadcrumbService = {
-  breadcrumb$: from([mockScheduleConfig])
-};
-
-const mockTranslateService = {
-  get: jest.fn(key => of(key))
-};
+import { mockHomeConfig, mockScheduleConfig } from '../../../test/services/mock.breadcrumb.service';
 
 describe('BreadcrumbComponent', () => {
-  let shallow: Shallow<BreadcrumbComponent>;
+  let component: BreadcrumbComponent;
+  let fixture: ComponentFixture<BreadcrumbComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(BreadcrumbComponent, SharedModule)
-      .mock(BreadcrumbService, mockBreadcrumbService)
-      .mock(TranslateService, mockTranslateService);
+    TestBed.configureTestingModule({
+        declarations: [ BreadcrumbComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(BreadcrumbComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should detect home', async () => {
-    const { instance } = await shallow.render();
-
-    const isHome = instance['isHome'](mockHomeConfig);
+    const isHome = component['isHome'](mockHomeConfig);
 
     expect(isHome).toBeTruthy();
   });
 
   it('should detect not home', async () => {
-    const { instance } = await shallow.render();
-
-    const isHome = instance['isHome'](mockScheduleConfig);
+    const isHome = component['isHome'](mockScheduleConfig);
 
     expect(isHome).toBeFalsy();
   });
 
   it('should find the active breadcrumb item', async () => {
-    const { instance } = await shallow.render();
-
-    const activeItem = instance['getActiveItem'](mockScheduleConfig);
+    const activeItem = component['getActiveItem'](mockScheduleConfig);
 
     expect(activeItem.isActive).toBeTruthy();
   });

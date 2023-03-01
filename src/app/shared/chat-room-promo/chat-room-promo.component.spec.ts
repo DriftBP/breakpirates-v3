@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ChatRoomPromoComponent } from './chat-room-promo.component';
-import { SharedModule } from '../shared.module';
 
 describe('ChatRoomPromoComponent', () => {
-  let shallow: Shallow<ChatRoomPromoComponent>;
+  let component: ChatRoomPromoComponent;
+  let fixture: ComponentFixture<ChatRoomPromoComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ChatRoomPromoComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ ChatRoomPromoComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(ChatRoomPromoComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

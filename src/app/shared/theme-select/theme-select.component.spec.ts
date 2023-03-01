@@ -1,19 +1,24 @@
-import { waitForAsync } from '@angular/core/testing';
-import { Shallow } from 'shallow-render';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeSelectComponent } from './theme-select.component';
-import { SharedModule } from '../shared.module';
 
 describe('ThemeSelectComponent', () => {
-  let shallow: Shallow<ThemeSelectComponent>;
+  let component: ThemeSelectComponent;
+  let fixture: ComponentFixture<ThemeSelectComponent>;
 
   beforeEach(waitForAsync(() => {
-    shallow = new Shallow(ThemeSelectComponent, SharedModule);
+    TestBed.configureTestingModule({
+        declarations: [ ThemeSelectComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
+    });
+    fixture = TestBed.createComponent(ThemeSelectComponent);
+    component = fixture.componentInstance;
   }));
 
   it('should create', async () => {
-    const { element } = await shallow.render();
-
-    expect(element.nativeElement).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

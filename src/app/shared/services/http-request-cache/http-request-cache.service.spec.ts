@@ -1,23 +1,23 @@
-import { Shallow } from 'shallow-render';
+import { TestBed } from '@angular/core/testing';
 
 import { HttpRequestCacheService } from './http-request-cache.service';
-import { SharedModule } from '../../shared.module';
 
 describe('HttpRequestCacheService', () => {
-  let shallow: Shallow<HttpRequestCacheService>;
+  let service: HttpRequestCacheService;
 
   beforeEach(() => {
-    shallow = new Shallow(HttpRequestCacheService, SharedModule);
+    TestBed.configureTestingModule({
+      providers: [HttpRequestCacheService]
+    });
+
+    service = TestBed.inject(HttpRequestCacheService);
   });
 
   it('should be created', () => {
-    const {instance} = shallow.createService();
-    expect(instance).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   it('should store value', () => {
-    const {instance} = shallow.createService();
-
     const key = 'test';
     const value = {
       testString: 'test',
@@ -25,8 +25,8 @@ describe('HttpRequestCacheService', () => {
       testArray: []
     }
 
-    instance.put(key, value);
+    service.put(key, value);
 
-    expect(instance.get(key)).toEqual(value);
+    expect(service.get(key)).toEqual(value);
   });
 });
