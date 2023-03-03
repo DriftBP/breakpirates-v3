@@ -36,7 +36,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "luxon": "^3.2.1",
-    "mediaelement": "^5.1.1",
+    "mediaelement": "^6.0.1",
     "ngx-bootstrap": "^9.0.0",
     "rxjs": "^7.5.6",
     "tslib": "^2.5.0",
