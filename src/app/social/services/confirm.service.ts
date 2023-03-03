@@ -13,7 +13,7 @@ export class ConfirmService {
     return new Observable((observer: Observer<boolean>) => {
       this.translateService.get(translateKey)
         .subscribe(t => {
-          if (confirm(t)) {
+          if (window.confirm(t)) {
             observer.next(true);
           } else {
             observer.next(false);

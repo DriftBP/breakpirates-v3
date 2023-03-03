@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class MockTranslateService {
-  get() {
-    return jest.fn(key => of(key));
+  get(key: any): any {
+    return of(key);
   }
 }
