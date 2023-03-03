@@ -3,8 +3,8 @@
 This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
 Local software:
-* NPM 6.14.11
-* Node 14.15.4
+* NPM 6.14.17
+* Node 14.21.2
 
 ## Development server
 
