@@ -6,6 +6,7 @@ import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
@@ -20,6 +21,7 @@ describe('NowPlayingComponent', () => {
         ],
         imports: [
           TranslateModule.forRoot(),
+          RouterTestingModule
         ],
         providers: [
           {

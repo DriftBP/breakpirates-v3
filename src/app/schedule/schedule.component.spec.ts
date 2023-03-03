@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockRouterService } from '../../test/services/mock.router.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ScheduleComponent', () => {
   let component: ScheduleComponent;
@@ -16,6 +17,7 @@ describe('ScheduleComponent', () => {
         declarations: [ ScheduleComponent ],
         imports: [
           TranslateModule.forRoot(),
+          RouterTestingModule
         ],
         providers: [
           {

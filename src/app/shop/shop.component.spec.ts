@@ -6,6 +6,7 @@ import { ShopComponent } from './shop.component';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockRouterService } from '../../test/services/mock.router.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
@@ -16,6 +17,7 @@ describe('ShopComponent', () => {
         declarations: [ ShopComponent ],
         imports: [
           TranslateModule.forRoot(),
+          RouterTestingModule
         ],
         providers: [
           {

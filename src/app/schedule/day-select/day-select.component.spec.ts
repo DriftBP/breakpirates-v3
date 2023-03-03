@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaySelectComponent } from './day-select.component';
 import { Day } from '../models/day';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const mockDay: Day = {
   id: 1,
@@ -15,7 +16,8 @@ describe('DaySelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ DaySelectComponent ]
+        declarations: [ DaySelectComponent ],
+        imports: [ RouterTestingModule ]
     });
     fixture = TestBed.createComponent(DaySelectComponent);
     component = fixture.componentInstance;
