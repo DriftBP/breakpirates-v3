@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 import { SocialComponent } from './social.component';
 import { ChatComponent } from './chat/chat.component';
-import { first } from 'rxjs/operators';
 
 const routes: Routes = [
   {
