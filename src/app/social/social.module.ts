@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SocialService } from './services/social.service';
 import { FullscreenService } from './services/fullscreen.service';
 import { ScreenService } from './services/screen.service';
+import { ConfirmService } from './services/confirm.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ScreenService } from './services/screen.service';
   providers: [
     SocialService,
     FullscreenService,
-    ScreenService
+    ScreenService,
+    ConfirmService
   ]
 })
 export class SocialModule { }
