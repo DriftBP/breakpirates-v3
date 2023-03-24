@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,7 +21,8 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   constructor(
     private readonly titleService: Title,
     private readonly translateService: TranslateService,
-    private readonly breadcrumbService: BreadcrumbService
+    private readonly breadcrumbService: BreadcrumbService,
+    private readonly meta: Meta
   ) {}
 
   ngOnInit() {
@@ -41,7 +42,13 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
 
       if (activeItem) {
         this.translateService.get(activeItem.name)
-          .subscribe(t => this.titleService.setTitle(`${t} : Break Pirates - Live Pirate Style Radio`));
+          .subscribe(t => {
+            var title = `${t} : Break Pirates - Live Pirate Style Radio`;
+
+            this.titleService.setTitle(title);
+            this.meta.updateTag({ property: 'og:title', content: title });
+            this.meta.updateTag({ name: 'twitter:title', content: title });
+          });
       }
     });
   }
