@@ -36,8 +36,8 @@ export class ThemeService {
   }
 
   private getEnumKeyByEnumValue(myEnum, enumValue) {
-    const keys = Object.keys(myEnum).filter(x => myEnum[x] === enumValue);
-    return keys.length > 0 ? keys[0] : null;
+    const key = Object.keys(myEnum).find(x => myEnum[x] === enumValue);
+    return key === undefined ? null : key;
   }
 
   private saveThemeSetting(themeSetting: ThemeSetting): void {
