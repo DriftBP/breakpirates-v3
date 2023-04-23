@@ -3,7 +3,7 @@ class Day {
 	var $id;
 	var $name;
 
-	function Day($id, $name) {
+	public function __construct($id, $name) {
 		$this->id = intval($id);
 		$this->name = $name;
 	}

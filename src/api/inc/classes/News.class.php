@@ -6,7 +6,7 @@ class News {
 	var $added_by;
 	var $date;
 
-	function News($id, $title, $summary, $text, $image, $added_by, $date) {
+	public function __construct($id, $title, $summary, $text, $image, $added_by, $date) {
 		$this->id = intval($id);
 		$this->title = $title;
 		$this->summary = $summary;
