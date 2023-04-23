@@ -21,16 +21,17 @@ if($daylight_saving == 0) {
 }
 
 function getHost($host_id) {
+  global $db;
 	$host_id = intval($host_id);
 
 	$sql = "SELECT hostid, name, biog, location, image, twitter, mixcloud
 			FROM hosts
 			WHERE hostid = " . $host_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($host_id, $name, $biog, $location, $image, $twitter, $mixcloud) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($host_id, $name, $biog, $location, $image, $twitter, $mixcloud) = mysqli_fetch_row($result);
 
 		return new Host($host_id, $name, $biog, $location, $image, $twitter, $mixcloud);
 	} else {
@@ -39,6 +40,7 @@ function getHost($host_id) {
 }
 
 function getHosts($show_id = 0) {
+  global $db;
 	$show_id = intval($show_id);
 
 	$hosts = array();
@@ -51,10 +53,10 @@ function getHosts($show_id = 0) {
 					WHERE sh.showid = " . $show_id;
 	}
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($host_id)=mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($host_id)=mysqli_fetch_row($result)) {
 			$host = getHost($host_id);
 
 			if($host) {
@@ -67,16 +69,17 @@ function getHosts($show_id = 0) {
 }
 
 function getShow($show_id) {
+  global $db;
 	$show_id = intval($show_id);
 
 	$sql = "SELECT showid, title, description, image, dayid, starttime, endtime
 			FROM shows
 			WHERE showid = " . $show_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($id, $title, $description, $image, $day_id, $start_time, $end_time) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($id, $title, $description, $image, $day_id, $start_time, $end_time) = mysqli_fetch_row($result);
 
 		return new Show($id, $title, $description, $image, $day_id, $start_time, $end_time);
 	} else {
@@ -85,16 +88,17 @@ function getShow($show_id) {
 }
 
 function getVideo($video_id) {
+  global $db;
 	$video_id = intval($video_id);
 
 	$sql = "SELECT name, code, showid, date
 			FROM video
 			WHERE videoid = " . $video_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($name, $code, $show_id, $date) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($name, $code, $show_id, $date) = mysqli_fetch_row($result);
 
 		return new Video($video_id, $name, $code, $show_id, $date);
 	} else {
@@ -103,16 +107,17 @@ function getVideo($video_id) {
 }
 
 function getAllVideos() {
+  global $db;
 	$videos = array();
 
 	$sql = "SELECT videoid
 			FROM video
 			ORDER BY date DESC";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($video_id) = mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($video_id) = mysqli_fetch_row($result)) {
 			$video = getVideo($video_id);
 
 			if($video) {
@@ -128,6 +133,7 @@ function getAllVideos() {
  * Returns a single news article
  */
 function getNews($news_id) {
+  global $db;
 	$news_id = intval($news_id);
 
 	$sql = "SELECT title, summary, text, image, date, addedby
@@ -135,10 +141,10 @@ function getNews($news_id) {
 			WHERE  approved='yes'
 				AND newsid = " . $news_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($title, $summary, $text, $image, $date, $added_by) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($title, $summary, $text, $image, $date, $added_by) = mysqli_fetch_row($result);
 
 		return new News($news_id, stripslashes($title), stripslashes($summary), stripslashes($text), stripslashes($image), $added_by, $date);
 	} else {
@@ -151,6 +157,7 @@ function getNews($news_id) {
  * A $number of 0 indicates all
  */
 function getAllNews($only_approved = false, $number = 0) {
+  global $db;
 	$number = intval($number);
 	$offset = intval($offset);
 
@@ -169,10 +176,10 @@ function getAllNews($only_approved = false, $number = 0) {
 		$sql .= " LIMIT " . $number;
 	}
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($newsid) = mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($newsid) = mysqli_fetch_row($result)) {
 			$news = getNews($newsid);
 
 			if($news) {
@@ -185,16 +192,17 @@ function getAllNews($only_approved = false, $number = 0) {
 }
 
 function getDay($day_id) {
+  global $db;
 	$day_id = intval($day_id);
 
 	$sql = "SELECT name
 			FROM days
 			WHERE dayid = " . $day_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($name) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($name) = mysqli_fetch_row($result);
 
 		return new Day($day_id, $name);
 	} else {
@@ -203,14 +211,15 @@ function getDay($day_id) {
 }
 
 function getDayByName($day_name) {
+  global $db;
 	$sql = "SELECT dayid, name
 			FROM days
 			WHERE name = '" . addslashes($day_name) . "'";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($day_id, $name) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($day_id, $name) = mysqli_fetch_row($result);
 
 		return new Day($day_id, $name);
 	} else {
@@ -219,16 +228,17 @@ function getDayByName($day_name) {
 }
 
 function getGenre($genre_id) {
+  global $db;
 	$genre_id = intval($genre_id);
 
 	$sql = "SELECT name
 			FROM genres
 			WHERE genreid = " . $genre_id;
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($name) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($name) = mysqli_fetch_row($result);
 
 		return new Genre($genre_id, $name);
 	} else {
@@ -237,16 +247,17 @@ function getGenre($genre_id) {
 }
 
 function getGenres() {
+  global $db;
 	$genres = array();
 
 	$sql = "SELECT DISTINCT(g.genreid)
           FROM genres g
           INNER JOIN shows_genres sg ON sg.genreid = g.genreid";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($genre_id)=mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($genre_id)=mysqli_fetch_row($result)) {
 			$genre = getGenre($genre_id);
 
 			if($genre) {
@@ -259,6 +270,7 @@ function getGenres() {
 }
 
 function getShowOnNow() {
+  global $db;
 	$sql = "SELECT s.showid
 			FROM shows s
 				INNER JOIN days d ON d.dayid = s.dayid
@@ -266,10 +278,10 @@ function getShowOnNow() {
 			AND s.starttime <= '" . date('H:i') . "'
 			AND s.endtime > '" . date('H:i') . "'";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		list($show_id) = mysql_fetch_row($result);
+	if($result && mysqli_num_rows($result)>0) {
+		list($show_id) = mysqli_fetch_row($result);
 
 		return getShow($show_id);
 	} else {
@@ -278,6 +290,7 @@ function getShowOnNow() {
 }
 
 function getShows($day) {
+  global $db;
 	$shows = array();
 
 	$sql = "SELECT s.showid
@@ -286,10 +299,10 @@ function getShows($day) {
 			WHERE d.name = '" . addslashes($day) . "'
 			ORDER BY s.starttime ASC";
 
-	$result = mysql_query($sql);
+	$result = mysqli_query($db, $sql);
 
-	if($result && mysql_num_rows($result)>0) {
-		while(list($show_id)=mysql_fetch_row($result)) {
+	if($result && mysqli_num_rows($result)>0) {
+		while(list($show_id)=mysqli_fetch_row($result)) {
 			$show = getShow($show_id);
 
 			if($show) {
