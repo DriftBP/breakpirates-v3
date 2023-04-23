@@ -11,7 +11,13 @@
 <ng-container *ngIf="scheduleService.shows(activeDayId) | async as todaysSchedule">
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
-  <ng-container *ngFor="let show of todaysSchedule">
-    <bp-show-summary [show]="show"></bp-show-summary>
+  <ng-container *ngIf="todaysSchedule.length > 0; else noShows">
+    <ng-container *ngFor="let show of todaysSchedule">
+      <bp-show-summary [show]="show"></bp-show-summary>
+    </ng-container>
   </ng-container>
+
+  <ng-template #noShows>
+    <p>{{'SCHEDULE.NO_LIVE_SHOWS' | translate}}</p>
+  </ng-template>
 </ng-container>
