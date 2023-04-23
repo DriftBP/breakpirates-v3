@@ -17,10 +17,14 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   nowPlaying: Show;
   nowPlayingImage: string;
   isLiveShow = false;
+  showRadioPlayer = false;
 
   constructor(
     public readonly scheduleService: ScheduleService
-  ) { }
+  ) {
+    // HTML5 audio player will only work over HTTP
+    this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
+  }
 
   ngOnInit() {
     this.nowPlayingSubscription = this.scheduleService.nowPlaying$.subscribe(nowPlaying => {

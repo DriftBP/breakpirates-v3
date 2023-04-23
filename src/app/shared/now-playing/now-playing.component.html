@@ -38,5 +38,7 @@
       </div>
     </div>
 
-    <bp-radio-player></bp-radio-player>
+    <ng-container *ngIf="showRadioPlayer">
+      <bp-radio-player></bp-radio-player>
+    </ng-container>
 </aside>
