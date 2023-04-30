@@ -6,7 +6,7 @@ class Video {
 	var $showid;
 	var $date;
 
-	function Video($id, $name, $code, $showid, $date) {
+	public function __construct($id, $name, $code, $showid, $date) {
 		$this->id = intval($id);
 		$this->name = $name;
 		$this->code = $code;

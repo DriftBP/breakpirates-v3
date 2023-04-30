@@ -9,7 +9,7 @@ class Host {
 	var $twitter;
 	var $mixcloud;
 
-	function Host($id, $name, $biog, $location, $image, $twitter, $mixcloud) {
+	public function __construct($id, $name, $biog, $location, $image, $twitter, $mixcloud) {
 		$this->id = intval($id);
 		$this->name = $name;
 		$this->biog = $biog;
@@ -48,6 +48,7 @@ class Host {
 	}
 
 	function getShows() {
+    global $db;
 		$shows = array();
 
 		$sql = "SELECT s.showid
@@ -56,10 +57,10 @@ class Host {
 				WHERE s.active = 'yes' AND sh.hostid = " . $this->id . "
 				ORDER BY s.dayid ASC, s.starttime ASC";
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($show_id)=mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($show_id)=mysqli_fetch_row($result)) {
 				$show = getShow($show_id);
 
 				if($show) {

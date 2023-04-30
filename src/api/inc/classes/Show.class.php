@@ -11,7 +11,7 @@ class Show {
   var $genres;
   var $hosts;
 
-	function Show($id, $title, $description, $image, $day_id, $start_time, $end_time) {
+	public function __construct($id, $title, $description, $image, $day_id, $start_time, $end_time) {
 		$this->id = intval($id);
 		$this->title = $title;
 		$this->description = $description;
@@ -61,6 +61,7 @@ class Show {
 	}
 
 	function getHosts() {
+    global $db;
 		$hosts = array();
 
 		$sql = "SELECT DISTINCT h.hostid
@@ -68,10 +69,10 @@ class Show {
 					INNER join hosts h on h.hostid = sh.hostid
 				WHERE sh.showid = " . $this->id;
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($host_id)=mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($host_id)=mysqli_fetch_row($result)) {
 				$host = getHost($host_id);
 
 				if($host) {
@@ -84,6 +85,7 @@ class Show {
 	}
 
 	function getGenres() {
+    global $db;
 		$genres = array();
 
 		$sql = "SELECT DISTINCT g.genreid
@@ -91,10 +93,10 @@ class Show {
 					INNER join genres g on g.genreid = sg.genreid
 				WHERE sg.showid = " . $this->id;
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($genre_id)=mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($genre_id)=mysqli_fetch_row($result)) {
 				$genre = getGenre($genre_id);
 
 				if($genre) {
@@ -133,6 +135,7 @@ class Show {
 	}
 
 	function getVideos() {
+    global $db;
 		$videos = array();
 
 		$sql = "SELECT videoid, name, code, date
@@ -140,10 +143,10 @@ class Show {
 						WHERE showid = " . $this->id . "
 						ORDER BY date DESC";
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($videoid, $name, $code, $date) = mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($videoid, $name, $code, $date) = mysqli_fetch_row($result)) {
 				array_push($videos, new Video($videoid, $name, $code, $this->id, $date));
 			}
 		}
@@ -152,6 +155,7 @@ class Show {
 	}
 
 	function getSimilar($number = 3) {
+    global $db;
 		$number = intval($number);
 
 		$similar_shows = array();
@@ -174,10 +178,10 @@ class Show {
 						ORDER BY matches DESC
 						LIMIT " . $number;
 
-			$result = mysql_query($sql);
+			$result = mysqli_query($db, $sql);
 
-			if($result && mysql_num_rows($result)>0) {
-				while(list($show_id, $matches) = mysql_fetch_row($result)) {
+			if($result && mysqli_num_rows($result)>0) {
+				while(list($show_id, $matches) = mysqli_fetch_row($result)) {
 					$show = getShow($show_id);
 
 					if($show) {
