@@ -31,7 +31,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private currentTheme: Theme;
 
   loading: boolean;
-  adRefreshSecs = AppSettings.AD_REFRESH_SECS;
 
   constructor (
     private router: Router,
