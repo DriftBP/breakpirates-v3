@@ -23,43 +23,6 @@ class Show {
     $this->hosts = $this->getHosts();
 	}
 
-	function getID() {
-			return $this->id;
-	}
-
-	function getTitle() {
-			return $this->title;
-	}
-
-	function getDescription() {
-			return $this->description;
-	}
-
-	function getImage() {
-			return $this->image;
-	}
-
-	function getDayID() {
-			return $this->day_id;
-	}
-
-	function getStartTime() {
-			return $this->timeToHM($this->start_time);
-	}
-
-	function getEndTime() {
-			return $this->timeToHM($this->end_time);
-	}
-
-	function timeToHM($time) {
-		$time_bits = explode(':', $time);
-
-		// Lose the minutes
-		array_pop($time_bits);
-
-		return join(':', $time_bits);
-	}
-
 	function getHosts() {
     global $db;
 		$hosts = array();
@@ -108,32 +71,6 @@ class Show {
 		return $genres;
 	}
 
-	function isOnNow() {
-		$today=date("l");
-
-		if($today == $this->getDayName()) {
-			return ($this->start_time <= date('H:i') && $this->end_time > date('H:i')) ? true : false;
-		} else {
-			return false;
-		}
-	}
-
-	function getDayName() {
-		$day = getDay($this->day_id);
-
-		if($day) {
-			return $day->getName();
-		} else {
-			return false;
-		}
-	}
-
-	function getDownloads() {
-		$downloads = array();
-
-		return $downloads;
-	}
-
 	function getVideos() {
     global $db;
 		$videos = array();
@@ -152,46 +89,6 @@ class Show {
 		}
 
 		return $videos;
-	}
-
-	function getSimilar($number = 3) {
-    global $db;
-		$number = intval($number);
-
-		$similar_shows = array();
-
-		$genre_ids = array();
-
-		$genres = $this->getGenres();
-
-		foreach($genres as $genre) {
-			array_push($genre_ids, $genre->getID());
-		}
-
-		if(count($genre_ids) > 0) {
-			$sql = "select s.showid, count(*) as matches from shows s
-						INNER JOIN shows_genres sg ON s.showid = sg.showid
-						WHERE sg.genreid IN (" . join(",", $genre_ids) . ")
-							AND s.showid != " . $this->id . "
-							AND s.active = 'yes'
-						GROUP BY s.showid
-						ORDER BY matches DESC
-						LIMIT " . $number;
-
-			$result = mysqli_query($db, $sql);
-
-			if($result && mysqli_num_rows($result)>0) {
-				while(list($show_id, $matches) = mysqli_fetch_row($result)) {
-					$show = getShow($show_id);
-
-					if($show) {
-						array_push($similar_shows, $show);
-					}
-				}
-			}
-		}
-
-		return $similar_shows;
 	}
 }
 
