@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { NewsService } from '../services/news.service';
 import { News } from '../models/news';
@@ -8,7 +8,7 @@ import { NewsResolvesModule } from './news-resolves.module';
 @Injectable({
   providedIn: NewsResolvesModule
 })
-export class NewsArticleResolve implements Resolve<News> {
+export class NewsArticleResolve  {
 
   constructor(private newsService: NewsService) {}
 
