@@ -7,23 +7,23 @@ import { Subscription } from 'rxjs';
   templateUrl: './product-type.component.html'
 })
 export class ProductTypeComponent implements OnInit, OnDestroy {
-  private paramsSubscription: Subscription;
+  private routeDataSubscription: Subscription;
 
   products: string[];
 
   constructor(
-    private readonly route: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.products = this.route.snapshot.data['products'];
+    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ products }) => {
+      this.products = products;
     });
   }
 
   ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+    if (this.routeDataSubscription) {
+      this.routeDataSubscription.unsubscribe();
     }
   }
 }

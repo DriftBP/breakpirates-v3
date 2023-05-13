@@ -26,7 +26,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   activetype: ProductType;
 
   constructor(
-    private readonly route: ActivatedRoute,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService,
     private readonly translateService: TranslateService
@@ -35,13 +35,13 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.data.subscribe(data => {
+    this.paramsSubscription = this.activatedRoute.data.subscribe(data => {
       this.types = data['types'];
     });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(e => this.route.firstChild?.paramMap)).subscribe(params => {
+      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
         this.onParamChange(params);
     });
   }

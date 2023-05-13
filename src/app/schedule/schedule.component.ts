@@ -24,19 +24,19 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   days: Day[];
 
   constructor(
-    private readonly route: ActivatedRoute,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.data.subscribe(data => {
+    this.paramsSubscription = this.activatedRoute.data.subscribe(data => {
       this.days = data['days'];
     });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(e => this.route.firstChild?.paramMap)).subscribe(params => {
+      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
         this.onParamChange(params);
     });
   }
