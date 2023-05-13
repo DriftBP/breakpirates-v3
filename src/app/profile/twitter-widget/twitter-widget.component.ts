@@ -12,15 +12,15 @@ export class TwitterWidgetComponent implements OnChanges {
   twitterWidgetUrl: string;
 
   constructor(
-    private _renderer2: Renderer2,
+    private renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document
   ) {
-    const script = this._renderer2.createElement('script');
+    const script = this.renderer2.createElement('script');
     script.async = 'async';
     script.src = 'https://platform.twitter.com/widgets.js';
     script.charset = 'utf-8';
 
-    this._renderer2.appendChild(this._document.body, script);
+    this.renderer2.appendChild(this._document.body, script);
   }
 
   ngOnChanges(): void {
