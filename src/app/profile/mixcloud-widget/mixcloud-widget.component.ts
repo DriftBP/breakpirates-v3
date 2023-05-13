@@ -7,7 +7,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MixcloudWidgetComponent implements OnChanges {
-  @Input() user: string;
+  @Input({ required: true }) user: string;
 
   mixcloudWidgetUrl: SafeResourceUrl;
 
