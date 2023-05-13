@@ -1,8 +1,8 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { ImageClickDirective } from './image-click.directive';
-import { By } from '@angular/platform-browser';
 
 @Component({
   template: `<div type="text" bpImageClick></div>`
