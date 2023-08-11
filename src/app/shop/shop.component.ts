@@ -16,8 +16,8 @@ import { defaultProductType } from './services/product-types';
   templateUrl: './shop.component.html'
 })
 export class ShopComponent implements OnInit, OnDestroy {
+  private routeDataSubscription: Subscription;
   private childParamsSubscription: Subscription;
-  private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
   private defaultType = defaultProductType;
@@ -35,8 +35,8 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.paramsSubscription = this.activatedRoute.data.subscribe(data => {
-      this.types = data['types'];
+    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ types }) => {
+      this.types = types;
     });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
@@ -73,12 +73,12 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.childParamsSubscription) {
-      this.childParamsSubscription.unsubscribe();
+    if (this.routeDataSubscription) {
+      this.routeDataSubscription.unsubscribe();
     }
 
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+    if (this.childParamsSubscription) {
+      this.childParamsSubscription.unsubscribe();
     }
   }
 
