@@ -7,5 +7,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentBoxComponent {
-  @Input() title: string;
+  @Input({ required: true }) title: string;
 }

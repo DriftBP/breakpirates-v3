@@ -9,7 +9,7 @@ import { SampleConfig } from '../sample-config';
   styleUrls: ['./sample-button.component.scss']
 })
 export class SampleButtonComponent {
-  @Input() config: SampleConfig;
+  @Input({ required: true }) config: SampleConfig;
 
   @Output() clicked = new EventEmitter<number>();
 

@@ -10,7 +10,7 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeaturedNewsComponent implements OnChanges {
-  @Input() article: News;
+  @Input({ required: true }) article: News;
 
   imagePath = '';
   hover = false;

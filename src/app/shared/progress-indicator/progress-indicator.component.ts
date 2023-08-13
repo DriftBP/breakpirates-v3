@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressIndicatorComponent implements OnChanges {
-  @Input() progress: number;
+  @Input({ required: true }) progress: number;
 
   private strokeLength = 295.3;
 

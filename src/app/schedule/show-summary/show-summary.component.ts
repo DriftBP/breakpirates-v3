@@ -14,7 +14,7 @@ import { ShowService } from '../services/show.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShowSummaryComponent implements OnChanges {
-  @Input() show: Show;
+  @Input({ required: true }) show: Show;
   @Input() displayDay = false;
 
   dayName: string;
