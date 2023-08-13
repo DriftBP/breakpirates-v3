@@ -14,9 +14,8 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './schedule.component.html'
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
-
+  private routeDataSubscription: Subscription;
   private childParamsSubscription: Subscription;
-  private paramsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
@@ -24,19 +23,19 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   days: Day[];
 
   constructor(
-    private readonly route: ActivatedRoute,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.data.subscribe(data => {
-      this.days = data['days'];
+    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ days }) => {
+      this.days = days;
     });
 
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(e => this.route.firstChild?.paramMap)).subscribe(params => {
+      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
         this.onParamChange(params);
     });
   }
@@ -68,12 +67,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.childParamsSubscription) {
-      this.childParamsSubscription.unsubscribe();
+    if (this.routeDataSubscription) {
+      this.routeDataSubscription.unsubscribe();
     }
 
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+    if (this.childParamsSubscription) {
+      this.childParamsSubscription.unsubscribe();
     }
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { ShopResolvesModule } from './shop-resolves.module';
 import { ShopService } from '../services/shop.service';
@@ -7,7 +7,7 @@ import { ShopService } from '../services/shop.service';
 @Injectable({
   providedIn: ShopResolvesModule
 })
-export class ProductTypeResolve implements Resolve<string[]> {
+export class ProductTypeResolve  {
 
   constructor(private shopService: ShopService) {}
 

@@ -29,7 +29,7 @@ export class AppComponent implements OnDestroy {
 
   constructor (
     private router: Router,
-    private _renderer2: Renderer2,
+    private renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
     private googleAnalyticsService: GoogleAnalyticsService,
     private themeService: ThemeService
@@ -40,15 +40,15 @@ export class AppComponent implements OnDestroy {
     });
 
     // Google Adsense script
-    const adwordsScript = this._renderer2.createElement('script');
+    const adwordsScript = this.renderer2.createElement('script');
     adwordsScript.async = 'async';
     adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
 
-    const adsByGoogleScript = this._renderer2.createElement('script');
+    const adsByGoogleScript = this.renderer2.createElement('script');
     adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
 
-    this._renderer2.appendChild(this._document.body, adwordsScript);
-    this._renderer2.appendChild(this._document.body, adsByGoogleScript);
+    this.renderer2.appendChild(this._document.body, adwordsScript);
+    this.renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 
   private processEvent(event: Event) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { VideoService } from '../services/video.service';
 import { Video } from '../models/video';
@@ -8,7 +8,7 @@ import { VideoResolvesModule } from './video-resolves.module';
 @Injectable({
   providedIn: VideoResolvesModule
 })
-export class VideoDetailResolve implements Resolve<Video> {
+export class VideoDetailResolve  {
 
   constructor(private videoService: VideoService) {}
 

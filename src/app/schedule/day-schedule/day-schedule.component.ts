@@ -10,23 +10,23 @@ import { Show } from '../models/show';
   styleUrls: ['./day-schedule.component.scss']
 })
 export class DayScheduleComponent implements OnInit, OnDestroy {
-  private paramsSubscription: Subscription;
+  private routeDataSubscription: Subscription;
 
   todaysSchedule: Show[];
 
   constructor(
-    private readonly route: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.todaysSchedule = this.route.snapshot.data['schedule'];
+    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ schedule }) => {
+      this.todaysSchedule = schedule;
     });
   }
 
   ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+    if (this.routeDataSubscription) {
+      this.routeDataSubscription.unsubscribe();
     }
   }
 }
