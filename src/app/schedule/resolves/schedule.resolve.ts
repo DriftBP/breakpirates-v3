@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { ScheduleService } from '../services/schedule.service';
 import { ScheduleResolvesModule } from './schedule-resolves.module';
@@ -8,7 +8,7 @@ import { Show } from '../models/show';
 @Injectable({
   providedIn: ScheduleResolvesModule
 })
-export class ScheduleResolve implements Resolve<Show[]> {
+export class ScheduleResolve  {
 
   constructor(private scheduleService: ScheduleService) {}
 
