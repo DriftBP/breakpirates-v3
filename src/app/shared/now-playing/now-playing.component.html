@@ -38,7 +38,9 @@
       </div>
     </div>
 
-    <ng-container *ngIf="showRadioPlayer">
+    <ng-container *ngIf="!showRadioPlayer; else popupPlayerLink">
       <bp-radio-player></bp-radio-player>
     </ng-container>
+
+    <ng-template #popupPlayerLink><button class="btn btn-primary" (click)="openPopupPlayer()">Listen now in a popup player <fa-icon [icon]="faExternalLink"></fa-icon></button></ng-template>
 </aside>
