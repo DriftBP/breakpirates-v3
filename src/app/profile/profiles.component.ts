@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Host } from './host';
@@ -14,14 +12,13 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.scss']
 })
-export class ProfilesComponent implements OnInit, OnDestroy {
+export class ProfilesComponent implements OnInit {
+  @Input() profiles: Host[];
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigActive
   ];
 
-  private routeDataSubscription: Subscription;
-
-  profiles: Host[];
   orders = SortOrder;
   order = SortOrder.Ascending;
 
@@ -29,22 +26,11 @@ export class ProfilesComponent implements OnInit, OnDestroy {
   faChevronDown = faChevronDown;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ profiles }) => {
-      this.profiles = profiles;
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
   }
 
   toggleOrderBy(): void {

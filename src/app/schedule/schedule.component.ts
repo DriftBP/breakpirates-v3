@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
@@ -14,13 +14,13 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './schedule.component.html'
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
-  private routeDataSubscription: Subscription;
+  @Input() days: Day[];
+
   private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = DateTime.local().weekday;
-  days: Day[];
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -29,10 +29,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ days }) => {
-      this.days = days;
-    });
-
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
       switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
@@ -67,10 +63,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
-
     if (this.childParamsSubscription) {
       this.childParamsSubscription.unsubscribe();
     }
