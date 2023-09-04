@@ -16,9 +16,9 @@ import { defaultProductType } from './services/product-types';
   templateUrl: './shop.component.html'
 })
 export class ShopComponent implements OnInit, OnDestroy {
-  @Input() types: ProductTypeModel[];
+  @Input() types?: ProductTypeModel[];
 
-  private childParamsSubscription: Subscription;
+  private childParamsSubscription?: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
   private defaultType = defaultProductType;
@@ -75,7 +75,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   private getTypeName(type: ProductType): string {
-    const activeType = this.types.find(t => t.id === type);
+    const activeType = this.types?.find(t => t.id === type);
 
     if (activeType) {
       return this.translateService.instant(activeType.name);

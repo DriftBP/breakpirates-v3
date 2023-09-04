@@ -8,6 +8,6 @@ import { Day } from '../models/day';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaySelectComponent {
-  @Input({ required: true }) days: Day[];
-  @Input({ required: true }) activeDayId: number;
+  @Input({ required: true }) days?: Day[];
+  @Input({ required: true }) activeDayId?: number;
 }

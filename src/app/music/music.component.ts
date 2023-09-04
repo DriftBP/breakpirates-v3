@@ -10,7 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './music.component.html'
 })
 export class MusicComponent implements OnInit {
-  @Input() genres: Genre[];
+  @Input() genres?: Genre[];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigActive

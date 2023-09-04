@@ -13,10 +13,10 @@ import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
   templateUrl: './breadcrumb.component.html'
 })
 export class BreadcrumbComponent implements OnInit, OnDestroy {
-  private breadcrumbSubscription: Subscription;
+  private breadcrumbSubscription?: Subscription;
 
   enabled = AppSettings.ENABLE_BREADCRUMB;
-  configItems: BreadcrumbConfigItem[];
+  configItems: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly titleService: Title,
@@ -59,7 +59,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem {
+  private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem | undefined {
     return configItems.find((i: BreadcrumbConfigItem) => i.isActive);
   }
 

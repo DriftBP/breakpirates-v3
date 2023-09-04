@@ -25,14 +25,14 @@ export class NewsComponent implements OnInit {
     }
   }
 
-  private _news: News[];
+  private _news: News[] = [];
   private latestNewsItems = 4;
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigActive
   ];
 
-  latestNews: News[];
-  otherNews: News[];
+  latestNews: News[] = [];
+  otherNews: News[] = [];
   showMore = false;
 
   constructor(

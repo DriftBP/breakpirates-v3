@@ -20,7 +20,7 @@ describe('ThemeService', () => {
   });
 
   it('should provide light theme as default theme', () => {
-    let theme: Theme;
+    let theme: Theme | undefined;
 
     service.currentTheme$.subscribe(currentTheme => {
       theme = currentTheme;
@@ -38,7 +38,7 @@ describe('ThemeService', () => {
   });
 
   it('should emit theme after theme is set', () => {
-    let theme: Theme;
+    let theme: Theme | undefined;
 
     service.currentTheme$.subscribe(currentTheme => {
       theme = currentTheme;

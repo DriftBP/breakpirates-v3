@@ -11,7 +11,7 @@ import { SortOrder } from '../../shared/pipes/sort-order';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HostListComponent {
-  @Input({ required: true }) hosts: Host[];
+  @Input({ required: true }) hosts?: Host[];
 
   order = SortOrder.Ascending;
   faHeadphonesAlt = faHeadphonesAlt;

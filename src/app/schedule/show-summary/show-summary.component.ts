@@ -14,13 +14,13 @@ import { ShowService } from '../services/show.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShowSummaryComponent implements OnChanges {
-  @Input({ required: true }) show: Show;
+  @Input({ required: true }) show?: Show;
   @Input() displayDay = false;
 
-  dayName: string;
-  nextDate: string;
-  endDate: string;
-  showImage: string;
+  dayName?: string;
+  nextDate?: string;
+  endDate?: string;
+  showImage?: string;
 
   faVolumeUp = faVolumeUp;
 
@@ -38,8 +38,8 @@ export class ShowSummaryComponent implements OnChanges {
 
       const { startDate, endDate } = this.showService.getDates(this.show);
 
-      this.nextDate = startDate.toISO();
-      this.endDate = endDate.toISO();
+      this.nextDate = startDate.toISO() ?? '';
+      this.endDate = endDate.toISO() ?? '';
 
       if (this.show.image) {
         this.showImage = `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show.image})`;

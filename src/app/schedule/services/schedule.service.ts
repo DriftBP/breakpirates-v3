@@ -11,14 +11,14 @@ import { ShowService } from './show.service';
 
 @Injectable()
 export class ScheduleService implements OnDestroy {
-  private _nowPlaying: BehaviorSubject<Show> = new BehaviorSubject(null);
+  private _nowPlaying: BehaviorSubject<Show | null> = new BehaviorSubject<Show | null>(null);
   private _showProgress: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  public readonly nowPlaying$: Observable<Show> = this._nowPlaying.asObservable().pipe(distinctUntilChanged());
+  public readonly nowPlaying$: Observable<Show | null> = this._nowPlaying.asObservable().pipe(distinctUntilChanged());
   public readonly showProgress$: Observable<number> = this._showProgress.asObservable();
 
   private nowPlayingTimerSubscription: Subscription;
-  private nowPlayingSubscription: Subscription;
+  private nowPlayingSubscription?: Subscription;
 
   constructor(
     private httpRequestService: HttpRequestService,

@@ -6,7 +6,7 @@ import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { DataCollectionStatus } from './data-collection-status';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
-class DataPoint {
+export interface DataPoint {
   time: DateTime;
 }
 
@@ -24,10 +24,10 @@ export class BpmComponent implements OnInit {
     }
   ];
 
-  message: DataCollectionStatus;
+  message = DataCollectionStatus.Empty;
   statuses = DataCollectionStatus;
-  bpm: number;
-  beatBuffer: DataPoint[];
+  bpm: number = 0;
+  beatBuffer: DataPoint[] = [];
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -81,11 +81,15 @@ export class BpmComponent implements OnInit {
       const last = dataPoints.slice(dataPoints.length - 1, dataPoints.length).shift();
 
       // Difference in milliseconds
-      const diff = last.time.diff(first.time);
+      if (first && last) {
+        const diff = last.time.diff(first.time);
 
-      const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
+        const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
 
-      return Math.round(bpmUnrounded * 10) / 10;
+        return Math.round(bpmUnrounded * 10) / 10;
+      } else {
+        return 0;
+      }
     }
 
     return 0;

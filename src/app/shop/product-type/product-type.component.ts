@@ -5,5 +5,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './product-type.component.html'
 })
 export class ProductTypeComponent {
-  @Input() products: string[];
+  @Input() products?: string[];
 }

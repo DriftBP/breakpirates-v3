@@ -13,15 +13,15 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 })
 export class NewsArticleComponent {
   @Input()
-  get article(): News {
+  get article(): News | undefined {
     return this._article;
   }
-  set article(article: News) {
+  set article(article: News | undefined) {
     this._article = article;
     this.setBreadcrumb();
   }
 
-  private _article: News;
+  private _article?: News;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigInactive
   ];
@@ -35,7 +35,7 @@ export class NewsArticleComponent {
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.article?.title,
+      name: this.article?.title ?? '',
       isActive: true
     });
 

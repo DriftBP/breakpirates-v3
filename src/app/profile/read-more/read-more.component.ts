@@ -9,12 +9,12 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./read-more.component.scss']
 })
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
-  @ViewChild('contentContainer') contentContainerElement: ElementRef;
+  @ViewChild('contentContainer') contentContainerElement?: ElementRef;
 
-  contentObserverSubscription: Subscription
+  contentObserverSubscription?: Subscription
 
-  enableShowMore: boolean;
-  showMore: boolean;
+  enableShowMore: boolean = false;
+  showMore: boolean = false;
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
@@ -27,7 +27,7 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
   ngAfterViewInit(): void {
     this.initialise();
 
-    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement.nativeElement).subscribe((event: MutationRecord[]) => {
+    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement?.nativeElement).subscribe((event: MutationRecord[]) => {
       this.initialise();
     });
   }
@@ -49,7 +49,9 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
   private initialise(): void {
     this.enableShowMore = true;
     this.showMore = false;
-    this.enableShowMore = this.isTextOverflow(this.contentContainerElement);
+    if (this.contentContainerElement) {
+      this.enableShowMore = this.isTextOverflow(this.contentContainerElement);
+    }
   }
 
   private isTextOverflow(element: ElementRef): boolean {

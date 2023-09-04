@@ -9,13 +9,13 @@ import { SampleConfig } from '../sample-config';
   styleUrls: ['./sample-button.component.scss']
 })
 export class SampleButtonComponent {
-  @Input({ required: true }) config: SampleConfig;
+  @Input({ required: true }) config?: SampleConfig;
 
   @Output() clicked = new EventEmitter<number>();
 
   faRetweet = faRetweet;
 
   onClick() {
-    this.clicked.emit(this.config.id);
+    this.clicked.emit(this.config?.id);
   }
 }

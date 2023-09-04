@@ -7,9 +7,9 @@ import { DOCUMENT } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TwitterWidgetComponent implements OnChanges {
-  @Input({ required: true }) user: string;
+  @Input({ required: true }) user?: string;
 
-  twitterWidgetUrl: string;
+  twitterWidgetUrl?: string;
 
   constructor(
     private renderer2: Renderer2,

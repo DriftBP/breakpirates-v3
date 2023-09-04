@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
@@ -10,12 +10,12 @@ import { AppSettings } from '../../app-settings';
   templateUrl: './now-playing.component.html',
   styleUrls: ['./now-playing.component.scss']
 })
-export class NowPlayingComponent implements OnInit, OnDestroy {
+export class NowPlayingComponent implements OnDestroy {
 
   private nowPlayingSubscription: Subscription;
 
-  nowPlaying: Show;
-  nowPlayingImage: string;
+  nowPlaying?: Show | null;
+  nowPlayingImage = '';
   isLiveShow = false;
   showRadioPlayer = false;
 
@@ -24,15 +24,13 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   ) {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
-  }
 
-  ngOnInit() {
     this.nowPlayingSubscription = this.scheduleService.nowPlaying$.subscribe(nowPlaying => {
       this.nowPlaying = nowPlaying;
 
-      let imageFilename: string;
+      let imageFilename: string | undefined;
 
-      if (nowPlaying?.id !== undefined) {
+      if (nowPlaying?.id) {
         this.isLiveShow = true;
 
         if (nowPlaying.image) {

@@ -10,7 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './video.component.html'
 })
 export class VideoComponent implements OnInit {
-  @Input() videos: Video[];
+  @Input() videos?: Video[];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigActive

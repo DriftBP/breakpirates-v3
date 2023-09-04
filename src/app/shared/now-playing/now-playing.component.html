@@ -15,8 +15,8 @@
         </div>
 
         <ng-container *ngIf="isLiveShow; else playlist">
-          <div class="now-playing__show-info-name" [title]="nowPlaying.title">
-            <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
+          <div class="now-playing__show-info-name" [title]="nowPlaying?.title">
+            <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying?.id]">{{nowPlaying?.title}}</a>
           </div>
 
           <div class="now-playing__show-info-description">
@@ -24,7 +24,7 @@
             <a
               class="now-playing__show-info-host"
               [routerLink]="['/profiles',host.id]"
-              *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a>
+              *ngFor="let host of nowPlaying?.hosts">{{ host.name }}</a>
           </div>
         </ng-container>
 

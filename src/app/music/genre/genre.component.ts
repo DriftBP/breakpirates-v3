@@ -12,18 +12,18 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 })
 export class GenreComponent {
   @Input()
-  get genre(): Genre {
+  get genre(): Genre | undefined {
     return this._genre;
   }
-  set genre(genre: Genre) {
+  set genre(genre: Genre | undefined) {
     if (genre) {
       this._genre = genre;
       this.setBreadcrumb();
     }
   }
-  @Input() shows: Show[];
+  @Input() shows?: Show[];
 
-  private _genre: Genre;
+  private _genre?: Genre;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigInactive
   ];
@@ -36,7 +36,7 @@ export class GenreComponent {
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.genre.name,
+      name: this.genre?.name ?? '',
       isActive: true
     });
 

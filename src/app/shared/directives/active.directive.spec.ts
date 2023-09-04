@@ -39,7 +39,7 @@ describe('ActiveDirective', () => {
 
     fixture.detectChanges();
 
-    expect(div.className).toEqual(activeClass);
+    expect(div?.className).toEqual(activeClass);
   });
 
   it('should not have active class if false', () => {
@@ -51,6 +51,6 @@ describe('ActiveDirective', () => {
 
     fixture.detectChanges();
 
-    expect(div.className).not.toEqual(activeClass);
+    expect(div?.className).not.toEqual(activeClass);
   });
 });
