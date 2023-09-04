@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -15,31 +13,14 @@ import { ShowService } from '../services/show.service';
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.scss']
 })
-export class ShowComponent implements OnInit, OnDestroy {
-
-  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
-    scheduleConfigInactive
-  ];
-  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
-
-  private routeDataSubscription: Subscription;
-
-  show: Show;
-  dayName: string;
-  imagePath = AppSettings.ASSET_SHOW_IMAGE;
-  nextDate: string;
-  endDate: string;
-
-  constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly dayService: DayService,
-    private readonly showService: ShowService,
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
-
-  ngOnInit() {
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ show }) => {
-      this.show = show;
+export class ShowComponent {
+  @Input()
+  get show(): Show {
+    return this._show;
+  }
+  set show(show: Show) {
+    if (show) {
+      this._show = show;
 
       this.dayName = this.dayService.dayName(this.show.day_id);
 
@@ -49,14 +30,25 @@ export class ShowComponent implements OnInit, OnDestroy {
       this.endDate = endDate.toISO();
 
       this.setBreadcrumb();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
     }
   }
+
+  private _show: Show;
+  private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
+    scheduleConfigInactive
+  ];
+  private breadcrumbConfig: BreadcrumbConfigItem[] = [];
+
+  dayName: string;
+  imagePath = AppSettings.ASSET_SHOW_IMAGE;
+  nextDate: string;
+  endDate: string;
+
+  constructor(
+    private readonly dayService: DayService,
+    private readonly showService: ShowService,
+    private readonly breadcrumbService: BreadcrumbService
+  ) { }
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({

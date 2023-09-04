@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Genre } from './models/genre';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -11,32 +9,18 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   selector: 'bp-music',
   templateUrl: './music.component.html'
 })
-export class MusicComponent implements OnInit, OnDestroy {
+export class MusicComponent implements OnInit {
+  @Input() genres: Genre[];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigActive
   ];
 
-  private routeDataSubscription: Subscription;
-
-  genres: Genre[];
-
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ genres }) => {
-      this.genres = genres;
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
   }
 }

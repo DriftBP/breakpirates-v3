@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
@@ -12,38 +10,29 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   selector: 'bp-genre',
   templateUrl: './genre.component.html'
 })
-export class GenreComponent implements OnInit, OnDestroy {
+export class GenreComponent {
+  @Input()
+  get genre(): Genre {
+    return this._genre;
+  }
+  set genre(genre: Genre) {
+    if (genre) {
+      this._genre = genre;
+      this.setBreadcrumb();
+    }
+  }
+  @Input() shows: Show[];
 
+  private _genre: Genre;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigInactive
   ];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  private routeDataSubscription: Subscription;
-
-  genre: Genre;
-  shows: Show[];
-
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
-
-  ngOnInit() {
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ genre, shows }) => {
-      this.genre = genre;
-      this.shows = shows;
-
-      this.setBreadcrumb();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
-  }
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
