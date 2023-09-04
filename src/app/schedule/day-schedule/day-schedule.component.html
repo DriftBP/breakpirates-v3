@@ -1,4 +1,4 @@
-<ng-container *ngIf="todaysSchedule.length > 0; else noShows">
+<ng-container *ngIf="todaysSchedule?.length > 0; else noShows">
   <ng-container *ngFor="let show of todaysSchedule">
     <bp-show-summary [show]="show"></bp-show-summary>
   </ng-container>

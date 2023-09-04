@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { Video } from '../models/video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -11,35 +9,27 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   selector: 'bp-video-details',
   templateUrl: './video-details.component.html'
 })
-export class VideoDetailsComponent implements OnInit, OnDestroy {
+export class VideoDetailsComponent {
+  @Input()
+  get video(): Video {
+    return this._video;
+  }
+  set video(video: Video) {
+    if (video) {
+      this._video = video;
+      this.setBreadcrumb();
+    }
+  }
 
+  private _video: Video;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  private routeDataSubscription: Subscription;
-
-  video: Video;
-
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
-
-  ngOnInit() {
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ video }) => {
-      this.video = video;
-
-      this.setBreadcrumb();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
-  }
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({

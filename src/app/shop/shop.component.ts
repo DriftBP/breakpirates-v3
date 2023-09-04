@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -16,13 +16,13 @@ import { defaultProductType } from './services/product-types';
   templateUrl: './shop.component.html'
 })
 export class ShopComponent implements OnInit, OnDestroy {
-  private routeDataSubscription: Subscription;
+  @Input() types: ProductTypeModel[];
+
   private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
   private defaultType = defaultProductType;
 
-  types: ProductTypeModel[];
   activetype: ProductType;
 
   constructor(
@@ -35,10 +35,6 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ types }) => {
-      this.types = types;
-    });
-
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
       switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
@@ -73,10 +69,6 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
-
     if (this.childParamsSubscription) {
       this.childParamsSubscription.unsubscribe();
     }
