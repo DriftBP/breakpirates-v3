@@ -8,5 +8,5 @@ import { Show } from '../models/show';
   styleUrls: ['./day-schedule.component.scss']
 })
 export class DayScheduleComponent {
-  @Input('schedule') todaysSchedule: Show[];
+  @Input() schedule: Show[];
 }
