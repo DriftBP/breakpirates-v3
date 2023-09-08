@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
@@ -13,35 +11,27 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   templateUrl: './news-article.component.html',
   styleUrls: ['./news-article.component.scss']
 })
-export class NewsArticleComponent implements OnInit, OnDestroy {
+export class NewsArticleComponent {
+  @Input()
+  get article(): News {
+    return this._article;
+  }
+  set article(article: News) {
+    this._article = article;
+    this.setBreadcrumb();
+  }
+
+  private _article: News;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  private routeDataSubscription: Subscription;
-
   imagePath = AppSettings.ASSET_NEWS_IMAGE;
-  article: News;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
-
-  ngOnInit() {
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ article }) => {
-      this.article = article;
-
-      this.setBreadcrumb();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
-  }
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({

@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Video } from './models/video';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -11,32 +9,18 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   selector: 'bp-video',
   templateUrl: './video.component.html'
 })
-export class VideoComponent implements OnInit, OnDestroy {
+export class VideoComponent implements OnInit {
+  @Input() videos: Video[];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigActive
   ];
 
-  private routeDataSubscription: Subscription;
-
-  videos: Video[];
-
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.routeDataSubscription = this.activatedRoute.data.subscribe(({ videos }) => {
-      this.videos = videos;
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.routeDataSubscription) {
-      this.routeDataSubscription.unsubscribe();
-    }
   }
 }
