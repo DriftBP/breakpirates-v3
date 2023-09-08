@@ -1,4 +1,4 @@
-<ng-container *ngIf="schedule?.length > 0; else noShows">
+<ng-container *ngIf="schedule.length > 0; else noShows">
   <ng-container *ngFor="let show of schedule">
     <bp-show-summary [show]="show"></bp-show-summary>
   </ng-container>
