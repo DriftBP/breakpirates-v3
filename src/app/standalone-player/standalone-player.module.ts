@@ -12,8 +12,7 @@ import { ScheduleModule } from '../schedule/schedule.module';
     CommonModule,
     RouterModule,
     SharedModule,
-    StandalonePlayerRoutingModule,
-    ScheduleModule
+    StandalonePlayerRoutingModule
   ],
   declarations: [StandalonePlayerComponent]
 })
