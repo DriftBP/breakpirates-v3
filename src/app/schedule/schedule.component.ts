@@ -2,7 +2,7 @@ import { Component, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
-import { filter, startWith, switchMap } from 'rxjs/operators';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 
 import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -27,11 +27,20 @@ export class ScheduleComponent implements OnDestroy {
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService
   ) {
-    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
-      startWith(undefined),
-      switchMap(async () => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
-        return this.onParamChange(params);
-    });
+    this.childParamsSubscription = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      mergeMap((route) => route.paramMap),
+      tap(
+        paramMap => console.log('ParamMap', paramMap)
+      )
+    ).subscribe(
+      (paramAsMap: any) => this.onParamChange(paramAsMap)
+    )
   }
 
   onParamChange(params: ParamMap) {

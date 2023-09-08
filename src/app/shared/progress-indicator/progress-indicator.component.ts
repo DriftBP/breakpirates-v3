@@ -7,14 +7,16 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressIndicatorComponent implements OnChanges {
-  @Input({ required: true }) progress: number = 0;
+  @Input({ required: true }) progress: number | null = 0;
 
   private strokeLength = 295.3;
 
   progressStyle = '';
 
   ngOnChanges(): void {
-    this.progressStyle = this.getProgressStyle(this.progress, this.strokeLength)
+    if (this.progress) {
+      this.progressStyle = this.getProgressStyle(this.progress, this.strokeLength);
+    }
   }
 
   private getProgressStyle(progress: number, strokeLength: number): string {

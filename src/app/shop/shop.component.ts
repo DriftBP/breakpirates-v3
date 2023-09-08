@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { filter, startWith, switchMap } from 'rxjs/operators';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 
 import { shopConfigActive, shopConfigInactive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -35,11 +35,20 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
-      startWith(undefined),
-      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
-        this.onParamChange(params);
-    });
+    this.childParamsSubscription = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      mergeMap((route) => route.paramMap),
+      tap(
+        paramMap => console.log('ParamMap', paramMap)
+      )
+    ).subscribe(
+      (paramAsMap: any) => this.onParamChange(paramAsMap)
+    )
   }
 
   onParamChange(params: ParamMap) {
