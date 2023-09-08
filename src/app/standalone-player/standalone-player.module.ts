@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { StandalonePlayerComponent } from './standalone-player.component';
 import { StandalonePlayerRoutingModule } from './standalone-player-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { ScheduleModule } from '../schedule/schedule.module';
 
 @NgModule({
   imports: [
