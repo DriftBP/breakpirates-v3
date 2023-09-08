@@ -14,7 +14,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './schedule.component.html'
 })
 export class ScheduleComponent implements OnDestroy {
-  @Input() days?: Day[];
+  @Input() days: Day[] = [];
 
   private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];

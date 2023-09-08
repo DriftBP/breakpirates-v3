@@ -21,7 +21,7 @@ export class GenreComponent {
       this.setBreadcrumb();
     }
   }
-  @Input() shows?: Show[];
+  @Input() shows: Show[] = [];
 
   private _genre?: Genre;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [

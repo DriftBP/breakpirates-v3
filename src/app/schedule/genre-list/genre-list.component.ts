@@ -10,7 +10,7 @@ import { SortOrder } from '../../shared/pipes/sort-order';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreListComponent {
-  @Input({ required: true }) genres?: Genre[];
+  @Input({ required: true }) genres: Genre[] = [];
 
   order = SortOrder.Ascending;
 }
