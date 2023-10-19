@@ -1,0 +1,113 @@
+{
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "name": "breakpirates-v3",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    },
+    "@schematics/angular:application": {
+      "strict": false
+    }
+  },
+  "sourceRoot": "src",
+  "prefix": "bp",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/breakpirates-v3",
+        "index": "src/index.html",
+        "main": "src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "src/.htaccess",
+          "src/ads.txt",
+          "src/api",
+          "src/assets",
+          "src/favicon.ico",
+          "src/google9626a1e073cd04b6.html",
+          "src/robots.txt",
+          "src/stream.asx",
+          "src/stream.m3u",
+          "src/stream.php",
+          "src/stream.pls",
+          "src/stream.ram",
+          {
+            "glob": "mejs-controls.svg",
+            "input": "./node_modules/mediaelement/build/",
+            "output": "./assets/"
+          }
+        ],
+        "styles": [
+          "node_modules/mediaelement/build/mediaelementplayer.min.css",
+          "src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "breakpirates-v3:build:production"
+        },
+        "development": {
+          "browserTarget": "breakpirates-v3:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "breakpirates-v3:build"
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "lintFilePatterns": [
+          "src/**/*.ts",
+          "src/**/*.html"
+        ]
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    }
+  }
+}

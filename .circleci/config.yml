@@ -37,7 +37,7 @@ jobs:
       # Lint the source code
       - run:
           name: Linting
-          command: ng lint
+          command: npm run lint
       # Test the source code
       - run:
           name: Testing via Jest
@@ -45,4 +45,4 @@ jobs:
       # Build app
       - run:
           name: Building for Production
-          command: ng build
+          command: npm run build
