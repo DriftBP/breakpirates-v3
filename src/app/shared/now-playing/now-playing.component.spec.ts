@@ -41,4 +41,13 @@ describe('NowPlayingComponent', () => {
 
     expect(component.nowPlayingImage).toBeTruthy();
   });
+
+  it('should diplay embedded player when not on https', async () => {
+    fixture.detectChanges();
+
+    const compiled: HTMLElement = fixture.debugElement.nativeElement;
+    const player = compiled.querySelector('bp-radio-player');
+
+    expect(player).toBeTruthy();
+  });
 });
