@@ -5,5 +5,4 @@ export interface Host {
     image?: string;
     location?: string;
     mixcloud?: string;
-    twitter?: string;
 }

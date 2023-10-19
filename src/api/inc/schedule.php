@@ -24,16 +24,16 @@ function getHost($host_id) {
   global $db;
 	$host_id = intval($host_id);
 
-	$sql = "SELECT hostid, name, biog, location, image, twitter, mixcloud
+	$sql = "SELECT hostid, name, biog, location, image, mixcloud
 			FROM hosts
 			WHERE hostid = " . $host_id;
 
 	$result = mysqli_query($db, $sql);
 
 	if($result && mysqli_num_rows($result)>0) {
-		list($host_id, $name, $biog, $location, $image, $twitter, $mixcloud) = mysqli_fetch_row($result);
+		list($host_id, $name, $biog, $location, $image, $mixcloud) = mysqli_fetch_row($result);
 
-		return new Host($host_id, $name, $biog, $location, $image, $twitter, $mixcloud);
+		return new Host($host_id, $name, $biog, $location, $image, $mixcloud);
 	} else {
 		return false;
 	}

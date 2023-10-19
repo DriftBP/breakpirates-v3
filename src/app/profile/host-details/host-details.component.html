@@ -38,11 +38,6 @@
       <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
   </div>
 
-  <div *ngIf="hasValue(profile.twitter)">
-    <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
-    <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
-  </div>
-
   <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
     <hr class="host-details__divider">
 

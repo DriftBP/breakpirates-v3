@@ -6,16 +6,14 @@ class Host {
 	var $biog;
 	var $location;
 	var $image;
-	var $twitter;
 	var $mixcloud;
 
-	public function __construct($id, $name, $biog, $location, $image, $twitter, $mixcloud) {
+	public function __construct($id, $name, $biog, $location, $image, $mixcloud) {
 		$this->id = intval($id);
 		$this->name = $name;
 		$this->biog = $biog;
 		$this->location = $location;
 		$this->image = $image;
-		$this->twitter = $twitter;
 		$this->mixcloud = $mixcloud;
 	}
 
@@ -37,10 +35,6 @@ class Host {
 
 	function getImage() {
 		return $this->image;
-	}
-
-	function getTwitter() {
-		return $this->twitter;
 	}
 
 	function getMixcloud() {
