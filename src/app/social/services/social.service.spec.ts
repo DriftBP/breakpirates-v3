@@ -17,7 +17,7 @@ describe('SocialService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return three social sites', () => {
-    expect(service.getSocialSites().length).toBe(3);
+  it('should return two social sites', () => {
+    expect(service.getSocialSites().length).toBe(2);
   });
 });
