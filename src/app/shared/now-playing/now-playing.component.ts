@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -18,6 +19,8 @@ export class NowPlayingComponent implements OnDestroy {
   nowPlayingImage = '';
   isLiveShow = false;
   showRadioPlayer = false;
+
+  faExternalLink = faExternalLink;
 
   constructor(
     public readonly scheduleService: ScheduleService
@@ -47,6 +50,14 @@ export class NowPlayingComponent implements OnDestroy {
 
       this.nowPlayingImage = `url(${AppSettings.ASSET_SHOW_IMAGE}${imageFilename})`;
     });
+  }
+
+  openPopupPlayer() {
+    const port = location.port ? `:${location.port}` : '';
+    const url = `http://${location.hostname}${port}/player`;
+    const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=100`;
+
+    window.open(url, 'player', params)
   }
 
   ngOnDestroy() {

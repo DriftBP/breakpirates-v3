@@ -1,0 +1,35 @@
+<div class="app">
+  <bp-supported-browsers-notice></bp-supported-browsers-notice>
+
+  <div class="container-fluid">
+    <bp-navigation></bp-navigation>
+
+    <bp-now-playing></bp-now-playing>
+
+    <div class="row">
+      <div class="col-md-9">
+        <main class="main">
+          <bp-breadcrumb></bp-breadcrumb>
+
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+      <div class="col-md-3">
+        <aside>
+          <router-outlet name="sidebar"></router-outlet>
+        </aside>
+      </div>
+    </div>
+
+    <bp-ad-unit
+      [adSlot]="4643712095"
+      [width]="728"
+      [height]="90"></bp-ad-unit>
+
+    <bp-footer></bp-footer>
+
+    <bp-footer-bar></bp-footer-bar>
+  </div>
+</div>
+
+<bp-dialog></bp-dialog>

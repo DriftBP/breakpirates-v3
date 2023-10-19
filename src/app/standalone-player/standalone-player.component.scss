@@ -1,0 +1,13 @@
+@import './../../sass/variables';
+
+.standalone-player {
+  background-color: $color-brand-primary;
+  color: var(--color);
+
+  &__ {
+    &logo-image {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
