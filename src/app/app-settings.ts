@@ -7,7 +7,6 @@ export class AppSettings {
 
     // Social URLs
     public static FACEBOOK_URL = 'https://www.facebook.com/breakpirates';
-    public static TWITTER_URL = 'https://twitter.com/breakpirates';
     public static MIXCLOUD_URL = 'https://www.mixcloud.com/breakpirates';
 
     // Chat room
