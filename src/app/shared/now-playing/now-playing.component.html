@@ -21,10 +21,11 @@
 
           <div class="now-playing__show-info-description">
             {{'NOW_PLAYING.HOSTED_BY' | translate}}:
-            <a
-              class="now-playing__show-info-host"
-              [routerLink]="['/profiles',host.id]"
-              *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a>
+            @for (host of nowPlaying.hosts; track host.id) {
+              <a
+                class="now-playing__show-info-host"
+                [routerLink]="['/profiles',host.id]">{{ host.name }}</a>
+            }
           </div>
         } @else {
           <div class="now-playing__show-info-name">

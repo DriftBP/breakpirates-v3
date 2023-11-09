@@ -1,7 +1,5 @@
-@if (schedule?.length > 0) {
-  <ng-container *ngFor="let show of schedule">
-    <bp-show-summary [show]="show"></bp-show-summary>
-  </ng-container>
-} @else {
+@for (show of schedule; track show.id) {
+  <bp-show-summary [show]="show"></bp-show-summary>
+} @empty {
   <p class="no-shows">{{'SCHEDULE.NO_LIVE_SHOWS' | translate}}</p>
 }

@@ -2,9 +2,9 @@
 
 @if (loaded) {
   <div class="soundboard__container" [style]="'background-image:' + imagePath | safe:'style'">
-    <ng-container *ngFor="let config of configs">
+    @for (config of configs; track config.id) {
       <bp-sample-button [config]="config" (clicked)="onButtonClick($event)"></bp-sample-button>
-    </ng-container>
+    }
   </div>
 } @else {
   <p>Loading...</p>

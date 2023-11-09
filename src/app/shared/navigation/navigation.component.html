@@ -59,14 +59,16 @@
               >RealPlayer</a>
             </li>
             <li class="dropdown-divider"></li>
-            <li role="menuitem" *ngFor="let link of externalLinks">
-              <a
-                class="dropdown-item"
-                (click)="onTuneInClick(link.Text)"
-                [href]="link.Url"
-                target="_blank"
-              >{{link.Text}} <fa-icon [icon]="faExternalLink"></fa-icon></a>
-            </li>
+            @for (link of externalLinks; track link.Text) {
+              <li role="menuitem">
+                <a
+                  class="dropdown-item"
+                  (click)="onTuneInClick(link.Text)"
+                  [href]="link.Url"
+                  target="_blank"
+                >{{link.Text}} <fa-icon [icon]="faExternalLink"></fa-icon></a>
+              </li>
+            }
             <li class="dropdown-divider"></li>
             <li role="menuitem">
               <a

@@ -28,9 +28,9 @@
       <ng-container *ngIf="shows.length > 0">
         <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
-        <ng-container *ngFor="let show of shows">
-            <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
-        </ng-container>
+        @for (show of shows; track show.id) {
+          <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
+        }
       </ng-container>
     </ng-container>
 
