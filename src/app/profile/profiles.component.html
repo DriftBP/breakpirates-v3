@@ -5,8 +5,12 @@
 <button class="btn btn-primary" (click)="toggleOrderBy()">
   {{'PROFILES.ORDERING' | translate}}
   @switch (order) {
-    @case (orders.Ascending) { <fa-icon [icon]="faChevronUp"></fa-icon> }
-    @case (orders.Descending) { <fa-icon [icon]="faChevronDown"></fa-icon> }
+    @case (orders.Ascending) {
+      <fa-icon [icon]="faChevronUp"></fa-icon>
+    }
+    @case (orders.Descending) {
+      <fa-icon [icon]="faChevronDown"></fa-icon>
+    }
   }
 </button>
 

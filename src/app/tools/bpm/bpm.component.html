@@ -2,9 +2,15 @@
 
 <p>
   @switch (message) {
-    @case (statuses.Empty) { {{'BPM_COUNTER.TAP_THE_BUTTON' | translate}} }
-    @case (statuses.Insufficient) { {{'BPM_COUNTER.KEEP_GOING' | translate}} }
-    @case (statuses.Full) { {{'BPM_COUNTER.YOUR_BPM_IS' | translate}} }
+    @case (statuses.Empty) {
+      {{'BPM_COUNTER.TAP_THE_BUTTON' | translate}}
+    }
+    @case (statuses.Insufficient) {
+      {{'BPM_COUNTER.KEEP_GOING' | translate}}
+    }
+    @case (statuses.Full) {
+      {{'BPM_COUNTER.YOUR_BPM_IS' | translate}}
+    }
   }
 </p>
 <p><button class="btn btn-primary btn-lg" (click)="onClick()">{{'BPM_COUNTER.TAP_ME' | translate}}</button></p>
