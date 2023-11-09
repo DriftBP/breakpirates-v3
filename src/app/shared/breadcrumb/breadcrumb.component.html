@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb" *ngIf="enabled">
   <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li *ngFor="let item of configItems; index as i"
-        class="breadcrumb-item"
+    @for (item of configItems; track $index) {
+      <li class="breadcrumb-item"
         [bpActive]="item.isActive"
         [attr.aria-current]="item.isActive"
         itemprop="itemListElement" itemscope
@@ -13,7 +13,8 @@
         } @else {
           <span itemprop="name">{{item.name | translate}}</span>
         }
-        <meta itemprop="position" content="{{ i + 1}}" />
-    </li>
+        <meta itemprop="position" content="{{ $index + 1}}" />
+      </li>
+    }
   </ol>
 </nav>

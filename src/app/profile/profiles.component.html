@@ -9,7 +9,9 @@
 </button>
 
 <ul class="profile-list">
-    <li class="profile-list__list-item" *ngFor="let profile of profiles | sortBy:order:'name'; trackBy: trackByFn">
-        <bp-profile-button [host]="profile"></bp-profile-button>
+  @for (profile of profiles | sortBy:order:'name'; track profile.id) {
+    <li class="profile-list__list-item">
+      <bp-profile-button [host]="profile"></bp-profile-button>
     </li>
+  }
 </ul>
