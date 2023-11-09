@@ -1,53 +1,53 @@
-<div *ngIf="show; else notFound" itemscope itemtype="http://schema.org/MusicEvent">
-  <meta itemprop="startDate" content="{{nextDate}}">
-  <meta itemprop="endDate" content="{{endDate}}">
+@if (show) {
+  <div itemscope itemtype="http://schema.org/MusicEvent">
+    <meta itemprop="startDate" content="{{nextDate}}">
+    <meta itemprop="endDate" content="{{endDate}}">
 
-  <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
-    <meta itemprop="name" content="Break Pirates">
-    <link itemprop="sameAs" href="http://www.breakpirates.com">
-    <meta itemprop="address" content="UK">
-  </div>
+    <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
+      <meta itemprop="name" content="Break Pirates">
+      <link itemprop="sameAs" href="http://www.breakpirates.com">
+      <meta itemprop="address" content="UK">
+    </div>
 
-  <article>
-    <h1 itemprop="name">{{ show.title }}</h1>
+    <article>
+      <h1 itemprop="name">{{ show.title }}</h1>
 
-    <p>
-      <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
-      <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
-      {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
-    </p>
-    <ng-container *ngIf="show.description">
-      <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
+      <p>
+        <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
+        <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
+        {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
+      </p>
+      <ng-container *ngIf="show.description">
+        <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
-      <img *ngIf="show.image"
-            bpImageClick
-            class="show__image"
-            [src]="imagePath + show.image"
-            [alt]="show.title"
-            loading="lazy"
-            itemprop="image">
+        <img *ngIf="show.image"
+              bpImageClick
+              class="show__image"
+              [src]="imagePath + show.image"
+              [alt]="show.title"
+              loading="lazy"
+              itemprop="image">
 
-      <p itemprop="description">{{ show.description }}</p>
+        <p itemprop="description">{{ show.description }}</p>
 
-      <div class="show__clear"></div>
+        <div class="show__clear"></div>
+      </ng-container>
+    </article>
+
+    <ng-container *ngIf="show.genres.length > 0">
+      <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
+
+      <bp-genre-list [genres]="show.genres"></bp-genre-list>
     </ng-container>
-  </article>
 
-  <ng-container *ngIf="show.genres.length > 0">
-    <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
+    <ng-container *ngIf="show.hosts.length > 0">
+      <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
 
-    <bp-genre-list [genres]="show.genres"></bp-genre-list>
-  </ng-container>
+      <bp-host-list [hosts]="show.hosts"></bp-host-list>
+    </ng-container>
 
-  <ng-container *ngIf="show.hosts.length > 0">
-    <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
-
-    <bp-host-list [hosts]="show.hosts"></bp-host-list>
-  </ng-container>
-
-</div>
-
-<ng-template #notFound>
+  </div>
+} @else {
   <h1>{{'SCHEDULE.NOT_FOUND' | translate}}</h1>
   <p>{{'SCHEDULE.COULD_NOT_FIND' | translate}}</p>
-</ng-template>
+}

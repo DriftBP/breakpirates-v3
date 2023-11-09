@@ -14,7 +14,7 @@
           <ng-container *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</ng-container>
         </div>
 
-        <ng-container *ngIf="isLiveShow; else playlist">
+        @if (isLiveShow) {
           <div class="now-playing__show-info-name" [title]="nowPlaying.title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
           </div>
@@ -26,21 +26,21 @@
               [routerLink]="['/profiles',host.id]"
               *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a>
           </div>
-        </ng-container>
-
-        <ng-template #playlist>
+        } @else {
           <div class="now-playing__show-info-name">
             {{'NOW_PLAYING.PLAYLIST' | translate}}
           </div>
 
           <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
-        </ng-template>
+        }
       </div>
     </div>
 
-    <ng-container *ngIf="showRadioPlayer; else popupPlayerLink">
+    @if (showRadioPlayer) {
       <bp-radio-player></bp-radio-player>
-    </ng-container>
-
-    <ng-template #popupPlayerLink><button class="btn btn-primary now-playing__popup-player-button" (click)="openPopupPlayer()">Listen now in a popup player <fa-icon [icon]="faExternalLink"></fa-icon></button></ng-template>
+    } @else {
+      <button class="btn btn-primary now-playing__popup-player-button" (click)="openPopupPlayer()">
+        {{'LISTEN_NOW_POPUP' | translate}} <fa-icon [icon]="faExternalLink"></fa-icon>
+      </button>
+    }
 </aside>

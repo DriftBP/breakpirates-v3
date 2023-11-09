@@ -6,12 +6,11 @@
       }"
       *ngFor="let link of hostLinks | keyvalue">
     <span class="host-navigation__direction">
-      <ng-container *ngIf="link.key === 'previous'; else nextBlock">
+      @if (link.key === 'previous') {
         {{'PROFILES.PREVIOUS' | translate}}
-      </ng-container>
-      <ng-template #nextBlock>
+      } @else {
         {{'PROFILES.NEXT' | translate}}
-      </ng-template>
+      }
     </span>
     <a class="host-navigation__link" [routerLink]="['/profiles',link.value.id]">
       {{link.value.name}}
