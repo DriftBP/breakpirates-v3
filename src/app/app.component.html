@@ -1,3 +1,5 @@
 <router-outlet></router-outlet>
 
-<bp-loading-spinner *ngIf="loading"></bp-loading-spinner>
+@if (loading) {
+  <bp-loading-spinner></bp-loading-spinner>
+}

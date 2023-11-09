@@ -1,3 +1,5 @@
-<alert *ngIf="!isBrowserSupported" [type]="alertType" [dismissible]="true">
-  {{'SUPPORTED_BROWSERS.UNSUPPORTED_BROWSER' | translate}}
-</alert>
+@if (!isBrowserSupported) {
+  <alert [type]="alertType" [dismissible]="true">
+    {{'SUPPORTED_BROWSERS.UNSUPPORTED_BROWSER' | translate}}
+  </alert>
+}

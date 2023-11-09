@@ -2,18 +2,22 @@
 
 <iframe #chatIframe title="Break Pirates chat room" width="100%" height="470" [src]="chatUrl"></iframe>
 
-<button *ngIf="enableFullscreen" (click)="fullscreen()" class="chat__button btn btn-primary">
-  {{'SOCIAL.FULL_SCREEN' | translate}}
-</button>
+@if (enableFullscreen) {
+  <button (click)="fullscreen()" class="chat__button btn btn-primary">
+    {{'SOCIAL.FULL_SCREEN' | translate}}
+  </button>
+}
 
-<button *ngIf="enablePreventSleep" (click)="togglePreventSleep()" class="chat__button btn btn-primary">
-  {{'SOCIAL.PREVENT_SLEEP' | translate}}:
-  @if (preventSleep) {
-    {{'SOCIAL.ON' | translate}}
-  } @else {
-    {{'SOCIAL.OFF' | translate}}
-  }
-</button>
+@if (enablePreventSleep) {
+  <button (click)="togglePreventSleep()" class="chat__button btn btn-primary">
+    {{'SOCIAL.PREVENT_SLEEP' | translate}}:
+    @if (preventSleep) {
+      {{'SOCIAL.ON' | translate}}
+    } @else {
+      {{'SOCIAL.OFF' | translate}}
+    }
+  </button>
+}
 
 <h2>{{'SOCIAL.USE_OWN_APP' | translate}}</h2>
 

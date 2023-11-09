@@ -1,20 +1,22 @@
-<nav aria-label="breadcrumb" *ngIf="enabled">
-  <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
-    @for (item of configItems; track $index) {
-      <li class="breadcrumb-item"
-        [bpActive]="item.isActive"
-        [attr.aria-current]="item.isActive"
-        itemprop="itemListElement" itemscope
-        itemtype="http://schema.org/ListItem">
-        @if (item.routerLink) {
-          <a [routerLink]="item.routerLink" itemprop="item">
+@if (enabled) {
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+      @for (item of configItems; track $index) {
+        <li class="breadcrumb-item"
+          [bpActive]="item.isActive"
+          [attr.aria-current]="item.isActive"
+          itemprop="itemListElement" itemscope
+          itemtype="http://schema.org/ListItem">
+          @if (item.routerLink) {
+            <a [routerLink]="item.routerLink" itemprop="item">
+              <span itemprop="name">{{item.name | translate}}</span>
+            </a>
+          } @else {
             <span itemprop="name">{{item.name | translate}}</span>
-          </a>
-        } @else {
-          <span itemprop="name">{{item.name | translate}}</span>
-        }
-        <meta itemprop="position" content="{{ $index + 1}}" />
-      </li>
-    }
-  </ol>
-</nav>
+          }
+          <meta itemprop="position" content="{{ $index + 1}}" />
+        </li>
+      }
+    </ol>
+  </nav>
+}

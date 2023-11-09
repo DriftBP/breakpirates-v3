@@ -1,17 +1,23 @@
 <aside class="now-playing">
     <div class="now-playing__show-info">
-      <div class="now-playing__show-info-image-container" *ngIf="nowPlayingImage">
-        <div
-            class="now-playing__show-info-image"
-            [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
-        <div class="now-playing__show-info-progress-container" *ngIf="isLiveShow">
-          <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
+      @if (nowPlayingImage) {
+        <div class="now-playing__show-info-image-container">
+          <div
+              class="now-playing__show-info-image"
+              [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
+          @if (isLiveShow) {
+            <div class="now-playing__show-info-progress-container">
+              <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
+            </div>
+          }
         </div>
-      </div>
+      }
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
           {{'NOW_PLAYING.ON_AIR' | translate}}:
-          <ng-container *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</ng-container>
+          @if (isLiveShow) {
+            {{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}
+          }
         </div>
 
         @if (isLiveShow) {

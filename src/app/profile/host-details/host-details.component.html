@@ -3,16 +3,19 @@
     <article>
       <h1 itemprop="name">{{profile.name}}</h1>
 
-      <p *ngIf="profile.location">{{ profile.location }}</p>
+      @if (profile.location) {
+        <p>{{ profile.location }}</p>
+      }
 
-      <ng-container *ngIf="profile.biog">
-        <img *ngIf="profile.image"
-              bpImageClick
+      @if (profile.biog) {
+        @if (profile.image) {
+          <img bpImageClick
               class="host-details__image"
               [src]="imagePath + profile.image"
               [alt]="profile.name"
               loading="lazy"
               itemprop="image">
+        }
 
         <div class="host-details__biog">
           <bp-read-more>
@@ -21,28 +24,28 @@
         </div>
 
         <div class="host-details__clear"></div>
-      </ng-container>
+      }
     </article>
 
     <ng-container *ngIf="profileService.profileShows(profile.id) | async as shows">
-      <ng-container *ngIf="shows.length > 0">
+      @if (shows.length > 0) {
         <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
         @for (show of shows; track show.id) {
           <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
         }
-      </ng-container>
+      }
     </ng-container>
 
-    <div *ngIf="hasValue(profile.mixcloud)">
-        <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
-        <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
-    </div>
+    @if (hasValue(profile.mixcloud)) {
+      <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
+      <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
+    }
 
-    <div *ngIf="hasValue(profile.twitter)">
+    @if (hasValue(profile.twitter)) {
       <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
       <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
-    </div>
+    }
 
     <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
       <hr class="host-details__divider">
