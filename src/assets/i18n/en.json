@@ -115,7 +115,9 @@
     "OFF": "Off"
   },
   "VIDEO": {
-    "TITLE": "Video"
+    "TITLE": "Video",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the video you were looking for."
   },
   "SHOP": {
     "TITLE": "Shop",
