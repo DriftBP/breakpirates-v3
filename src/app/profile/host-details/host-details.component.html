@@ -34,21 +34,32 @@
   </ng-container>
 
   <div *ngIf="hasValue(profile.mixcloud)">
+    @defer (on viewport) {
       <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
       <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
+    } @placeholder {
+      <div></div>
+    }
   </div>
 
   <div *ngIf="hasValue(profile.twitter)">
-    <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
-    <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
+    @defer (on viewport) {
+      <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
+      <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
+    } @placeholder {
+      <div></div>
+    }
   </div>
 
-  <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
-    <hr class="host-details__divider">
+  @defer (on viewport) {
+    <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
+      <hr class="host-details__divider">
 
-    <bp-host-navigation [hostLinks]="links"></bp-host-navigation>
-  </ng-container>
-
+      <bp-host-navigation [hostLinks]="links"></bp-host-navigation>
+    </ng-container>
+  } @placeholder {
+    <div></div>
+  }
 </div>
 
 <ng-template #notFound>
