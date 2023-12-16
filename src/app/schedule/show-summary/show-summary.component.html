@@ -1,9 +1,11 @@
 @if (show !== undefined) {
   <div class="show-summary" itemscope itemtype="http://schema.org/MusicEvent">
     <div>
-      <div class="show-summary__day" *ngIf="displayDay">
-        <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
-      </div>
+      @if (displayDay) {
+        <div class="show-summary__day">
+          <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
+        </div>
+      }
       <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
 
       <meta itemprop="startDate" content="{{nextDate}}">
@@ -37,11 +39,13 @@
       </div>
 
       <bp-genre-list [genres]="show.genres"></bp-genre-list>
-      <ng-container *ngIf="show.hosts.length > 0">
-          {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
-          <bp-host-list [hosts]="show.hosts"></bp-host-list>
-      </ng-container>
+      @if (show.hosts.length > 0) {
+        {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
+        <bp-host-list [hosts]="show.hosts"></bp-host-list>
+      }
     </div>
-    <div *ngIf="showImage" class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
+    @if (showImage) {
+      <div class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
+    }
   </div>
 }
