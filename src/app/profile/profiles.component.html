@@ -4,12 +4,20 @@
 
 <button class="btn btn-primary" (click)="toggleOrderBy()">
   {{'PROFILES.ORDERING' | translate}}
-  <fa-icon [icon]="faChevronUp" *ngIf="order === orders.Ascending"></fa-icon>
-  <fa-icon [icon]="faChevronDown" *ngIf="order === orders.Descending"></fa-icon>
+  @switch (order) {
+    @case (orders.Ascending) {
+      <fa-icon [icon]="faChevronUp"></fa-icon>
+    }
+    @case (orders.Descending) {
+      <fa-icon [icon]="faChevronDown"></fa-icon>
+    }
+  }
 </button>
 
 <ul class="profile-list">
-    <li class="profile-list__list-item" *ngFor="let profile of profiles | sortBy:order:'name'; trackBy: trackByFn">
-        <bp-profile-button [host]="profile"></bp-profile-button>
+  @for (profile of profiles | sortBy:order:'name'; track profile.id) {
+    <li class="profile-list__list-item">
+      <bp-profile-button [host]="profile"></bp-profile-button>
     </li>
+  }
 </ul>
