@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faFacebook, faMixcloud, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faMixcloud, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import { AppSettings } from '../../app-settings';
 import { Site } from './site';
@@ -16,10 +16,10 @@ export class SocialService {
         Icon: faFacebook
       },
       {
-        Name: 'Twitter',
-        Url: AppSettings.TWITTER_URL,
-        Description: 'Follow us on Twitter',
-        Icon: faTwitter
+        Name: 'X',
+        Url: AppSettings.X_URL,
+        Description: 'Follow us on X',
+        Icon: faXTwitter
       },
       {
         Name: 'Mixcloud',
