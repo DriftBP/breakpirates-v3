@@ -27,7 +27,7 @@
       }
     </article>
 
-    <ng-container *ngIf="profileService.profileShows(profile.id) | async as shows">
+    @if (profileService.profileShows(profile.id) | async; as shows) {
       @if (shows.length > 0) {
         <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
@@ -35,7 +35,7 @@
           <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
         }
       }
-    </ng-container>
+    }
 
     @if (hasValue(profile.mixcloud)) {
       @defer (on viewport) {
@@ -56,11 +56,11 @@
     }
 
     @defer (on viewport) {
-      <ng-container *ngIf="profileService.getProfileLinks(profile.id) | async as links">
+      @if (profileService.getProfileLinks(profile.id) | async; as links) {
         <hr class="host-details__divider">
 
         <bp-host-navigation [hostLinks]="links"></bp-host-navigation>
-      </ng-container>
+      }
     } @placeholder {
       <div></div>
     }
