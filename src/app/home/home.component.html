@@ -8,7 +8,7 @@
 
 <p><a routerLink="/profiles">{{'HOME.FIND_OUT_MORE' | translate}}</a></p>
 
-<ng-container *ngIf="scheduleService.shows(activeDayId) | async as todaysSchedule">
+@if (scheduleService.shows(activeDayId) | async; as todaysSchedule) {
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
   @for (show of todaysSchedule; track show.id) {
@@ -16,4 +16,4 @@
   } @empty {
     <p>{{'SCHEDULE.NO_LIVE_SHOWS' | translate}}</p>
   }
-</ng-container>
+}

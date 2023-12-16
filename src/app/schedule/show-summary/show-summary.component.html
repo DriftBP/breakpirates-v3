@@ -11,7 +11,7 @@
       <meta itemprop="startDate" content="{{nextDate}}">
       <meta itemprop="endDate" content="{{endDate}}">
 
-      <ng-container *ngIf="scheduleService.nowPlaying$ | async as nowPlaying">
+      @if (scheduleService.nowPlaying$ | async; as nowPlaying) {
         @if (nowPlaying.id === show.id) {
           <div
             class="show-summary__now-live">
@@ -21,7 +21,7 @@
               </span>
           </div>
         }
-      </ng-container>
+      }
     </div>
     <div>
       <h3 class="show-summary__title" itemprop="name">
