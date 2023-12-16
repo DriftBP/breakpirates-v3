@@ -1,7 +1,7 @@
 @if (enabled) {
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
-      @for (item of configItems; track $index; let index = $index) {
+      @for (item of configItems; track index; let index = $index) {
         <li class="breadcrumb-item"
           [bpActive]="item.isActive"
           [attr.aria-current]="item.isActive"
