@@ -7,5 +7,7 @@
     </h3>
     <p class="profile-button__location">{{host.location}}</p>
   </div>
-  <div *ngIf="host.image" class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'"></div>
+  @if (host.image) {
+    <div class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'"></div>
+  }
 </div>
