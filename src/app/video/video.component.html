@@ -1,7 +1,9 @@
 <h1>{{'VIDEO.TITLE' | translate}}</h1>
 
 <ul class="list-unstyled">
-  <li *ngFor="let video of videos">
-    <a [routerLink]="['/video',video.id]">{{video.name}}</a>
-  </li>
+  @for (video of videos; track video.id) {
+    <li>
+      <a [routerLink]="['/video',video.id]">{{video.name}}</a>
+    </li>
+  }
 </ul>

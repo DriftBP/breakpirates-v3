@@ -1,20 +1,20 @@
 <ul class="host-navigation">
-  <li class="host-navigation__host"
+  @for (link of hostLinks | keyvalue; track link.key) {
+    <li class="host-navigation__host"
       [ngClass]="{
         'host-navigation__host-previous': link.key === 'previous',
         'host-navigation__host-next': link.key === 'next'
-      }"
-      *ngFor="let link of hostLinks | keyvalue">
-    <span class="host-navigation__direction">
-      <ng-container *ngIf="link.key === 'previous'; else nextBlock">
-        {{'PROFILES.PREVIOUS' | translate}}
-      </ng-container>
-      <ng-template #nextBlock>
-        {{'PROFILES.NEXT' | translate}}
-      </ng-template>
-    </span>
-    <a class="host-navigation__link" [routerLink]="['/profiles',link.value.id]">
-      {{link.value.name}}
-    </a>
-  </li>
+      }">
+      <span class="host-navigation__direction">
+        @if (link.key === 'previous') {
+          {{'PROFILES.PREVIOUS' | translate}}
+        } @else {
+          {{'PROFILES.NEXT' | translate}}
+        }
+      </span>
+      <a class="host-navigation__link" [routerLink]="['/profiles',link.value.id]">
+        {{link.value.name}}
+      </a>
+    </li>
+  }
 </ul>

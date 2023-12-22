@@ -36,9 +36,4 @@ export class ProfilesComponent implements OnInit {
   toggleOrderBy(): void {
     this.order = this.order === SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
   }
-
-  trackByFn(index: any, item: any): number {
-    return item.id;
-  }
-
 }

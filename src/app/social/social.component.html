@@ -1,9 +1,11 @@
 <h1>{{'SOCIAL.TITLE' | translate}}</h1>
 
-<p *ngFor="let site of socialSites">
-  <a
-    target="_blank"
-    rel="noopener"
-    [href]="site.Url"
-    >{{ site.Description }}</a>
-</p>
+@for (site of socialSites; track site.Name) {
+  <p>
+    <a
+      target="_blank"
+      rel="noopener"
+      [href]="site.Url"
+      >{{ site.Description }}</a>
+  </p>
+}
