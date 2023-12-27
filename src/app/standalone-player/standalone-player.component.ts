@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../app-settings';
 
@@ -9,6 +10,7 @@ import { AppSettings } from '../app-settings';
 })
 export class StandalonePlayerComponent implements OnDestroy {
   assetRoot = AppSettings.ASSET_ROOT;
+  faExclamationTriangle = faExclamationTriangle;
 
   constructor() {
     document.body.className = 'bp-popup';
