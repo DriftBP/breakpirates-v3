@@ -107,6 +107,7 @@
   "SOCIAL": {
     "TITLE": "Social",
     "CHAT": "Chat",
+    "CHAT_ISSUES": "Issues with the chat room disconnecting or not scrolling? Consider installing an IRC chat app for your computer or phone using the instructions below.",
     "USE_OWN_APP": "Want to use your own app?",
     "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.",
     "CONFIRM_LEAVE_CHAT": "Are you sure you want to leave the chat room?",
