@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { StandalonePlayerComponent } from './standalone-player.component';
 
@@ -8,7 +9,10 @@ describe('StandalonePlayerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ StandalonePlayerComponent ]
+        declarations: [ StandalonePlayerComponent ],
+        imports: [
+          TranslateModule.forRoot(),
+        ]
     });
     fixture = TestBed.createComponent(StandalonePlayerComponent);
     component = fixture.componentInstance;
