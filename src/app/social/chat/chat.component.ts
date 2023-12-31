@@ -1,11 +1,12 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { FullscreenService } from '../services/fullscreen.service';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ScreenService } from '../services/screen.service';
 
 @Component({
@@ -15,6 +16,8 @@ import { ScreenService } from '../services/screen.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatIframe') chatElement: ElementRef;
+
+  faExclamationTriangle = faExclamationTriangle;
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigInactive,
