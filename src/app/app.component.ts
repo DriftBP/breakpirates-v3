@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
+import { AppSettings } from './app-settings';
 
 @Component({
   selector: 'bp-root',
@@ -42,7 +43,8 @@ export class AppComponent implements OnDestroy {
     // Google Adsense script
     const adwordsScript = this.renderer2.createElement('script');
     adwordsScript.async = 'async';
-    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+    adwordsScript.crossorigin = 'anonymous';
+    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AppSettings.ADSENSE_CLIENT;
 
     const adsByGoogleScript = this.renderer2.createElement('script');
     adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
