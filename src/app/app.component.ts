@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit } from '@angular/core';
 import {
   Event,
   Router,
@@ -19,7 +19,7 @@ import { AppSettings } from './app-settings';
   selector: 'bp-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme; }
 
   private eventsSubscription: Subscription;
@@ -39,18 +39,6 @@ export class AppComponent implements OnDestroy {
     this.themeSubscription = this.themeService.currentTheme$.subscribe(theme => {
       return this.currentTheme = theme
     });
-
-    // Google Adsense script
-    const adwordsScript = this.renderer2.createElement('script');
-    adwordsScript.async = 'async';
-    adwordsScript.crossorigin = 'anonymous';
-    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AppSettings.ADSENSE_CLIENT;
-
-    const adsByGoogleScript = this.renderer2.createElement('script');
-    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
-
-    this.renderer2.appendChild(this._document.body, adwordsScript);
-    this.renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 
   private processEvent(event: Event) {
@@ -77,6 +65,20 @@ export class AppComponent implements OnDestroy {
         break;
       }
     }
+  }
+
+  ngOnInit(): void {
+    // Google Adsense script
+    const adwordsScript = this.renderer2.createElement('script');
+    adwordsScript.async = 'async';
+    adwordsScript.crossorigin = 'anonymous';
+    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AppSettings.ADSENSE_CLIENT;
+
+    const adsByGoogleScript = this.renderer2.createElement('script');
+    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
+
+    this.renderer2.appendChild(this._document.body, adwordsScript);
+    this.renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 
   ngOnDestroy() {
