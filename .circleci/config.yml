@@ -4,13 +4,8 @@ version: 2.1
 commands:
   # Log the current branch
   current-branch:
-    parameters:
-      branch:
-        type: string
     steps:
-      - run:
-        name: Show current branch
-        command: echo <<parameters.branch>>
+      - run: echo "Hello"
 
 # Define the jobs we want to run for this project
 jobs:
@@ -22,8 +17,7 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
-          branch: ${CIRCLE_BRANCH}
+      - current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -53,8 +47,7 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
-          branch: ${CIRCLE_BRANCH}
+      - current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -84,8 +77,7 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
-          branch: ${CIRCLE_BRANCH}
+      - current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
