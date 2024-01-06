@@ -4,7 +4,7 @@ version: 2.1
 commands:
   # Log the current branch
   current-branch:
-    description: Show current branch
+    description: "Show current branch"
     steps:
       - run: echo ${CIRCLE_BRANCH}
 
@@ -18,9 +18,8 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - run:
+      - current-branch:
         name: Show current branch
-        command: current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -50,9 +49,8 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - run:
+      - current-branch:
         name: Show current branch
-        command: current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -82,9 +80,8 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - run:
+      - current-branch:
         name: Show current branch
-        command: current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
