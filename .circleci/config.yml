@@ -1,9 +1,40 @@
 version: 2.1
-workflows:
-  test_my_app:
-    jobs:
-      - test
+
+# Define the jobs we want to run for this project
 jobs:
+  # The build job
+  build:
+    working_directory: ~/breakpirates-v3
+    machine:
+      image: ubuntu-2204:2023.10.1
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      # Restore local dependencies from cache
+      - restore_cache:
+          keys:
+          - npm-deps-{{ checksum "package-lock.json" }}
+      # Install global dependencies
+      - run:
+          name: Install global dependencies
+          command: npm install -g @angular/cli
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          key: npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+              - node_modules
+      # Build app
+      - run:
+          name: Building for Production
+          command: ng build
   # The test job
   test:
     working_directory: ~/breakpirates-v3
@@ -19,8 +50,7 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
+          - npm-deps-{{ checksum "package-lock.json" }}
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -31,18 +61,55 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+              - node_modules
+      # Test the source code
+      - run:
+          name: Testing via Jest
+          command: npm run test
+  # The lint job
+  lint:
+    working_directory: ~/breakpirates-v3
+    machine:
+      image: ubuntu-2204:2023.10.1
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      # Restore local dependencies from cache
+      - restore_cache:
+          keys:
+          - npm-deps-{{ checksum "package-lock.json" }}
+      # Install global dependencies
+      - run:
+          name: Install global dependencies
+          command: npm install -g @angular/cli
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          key: npm-deps-{{ checksum "package-lock.json" }}
           paths:
               - node_modules
       # Lint the source code
       - run:
           name: Linting
           command: ng lint
-      # Test the source code
-      - run:
-          name: Testing via Jest
-          command: npm run test
-      # Build app
-      - run:
-          name: Building for Production
-          command: ng build
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build
