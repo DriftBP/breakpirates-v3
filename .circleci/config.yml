@@ -19,10 +19,6 @@ jobs:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
           - v1-deps-
-      # Install global dependencies
-      - run:
-          name: Install global dependencies
-          command: sudo npm install -g @angular/cli
       # Install project dependencies
       - run:
           name: Install local dependencies
@@ -53,10 +49,6 @@ jobs:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
           - v1-deps-
-      # Install global dependencies
-      - run:
-          name: Install global dependencies
-          command: sudo npm install -g @angular/cli
       # Install project dependencies
       - run:
           name: Install local dependencies
@@ -87,10 +79,6 @@ jobs:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
           - v1-deps-
-      # Install global dependencies
-      - run:
-          name: Install global dependencies
-          command: sudo npm install -g @angular/cli
       # Install project dependencies
       - run:
           name: Install local dependencies
