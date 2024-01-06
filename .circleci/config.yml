@@ -5,8 +5,8 @@ jobs:
   # The build job
   build:
     working_directory: ~/breakpirates-v3
-    docker:
-      - image: cimg/node:18.16.0
+    machine:
+      image: ubuntu-2204:2023.10.1
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -39,8 +39,8 @@ jobs:
   # The test job
   test:
     working_directory: ~/breakpirates-v3
-    docker:
-      - image: cimg/node:18.16.0
+    machine:
+      image: ubuntu-2204:2023.10.1
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -73,8 +73,8 @@ jobs:
   # The lint job
   lint:
     working_directory: ~/breakpirates-v3
-    docker:
-      - image: cimg/node:18.16.0
+    machine:
+      image: ubuntu-2204:2023.10.1
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
