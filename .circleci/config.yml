@@ -17,8 +17,8 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
+          - npm-deps-{{ checksum "package-lock.json" }}
+          - npm-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -29,7 +29,7 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: npm-deps-{{ checksum "package-lock.json" }}
           paths:
               - node_modules
       # Build app
@@ -51,8 +51,8 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
+          - npm-deps-{{ checksum "package-lock.json" }}
+          - npm-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -63,7 +63,7 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: npm-deps-{{ checksum "package-lock.json" }}
           paths:
               - node_modules
       # Test the source code
@@ -85,8 +85,8 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
+          - npm-deps-{{ checksum "package-lock.json" }}
+          - npm-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -97,7 +97,7 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: npm-deps-{{ checksum "package-lock.json" }}
           paths:
               - node_modules
       # Lint the source code
