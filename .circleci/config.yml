@@ -18,6 +18,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
+          - v1-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -51,6 +52,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
+          - v1-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -84,6 +86,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
+          - v1-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
