@@ -18,8 +18,9 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
+      - run:
         name: Show current branch
+        command: current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -49,8 +50,9 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
+      - run:
         name: Show current branch
+        command: current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -80,8 +82,9 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
+      - run:
         name: Show current branch
+        command: current-branch
       # Restore local dependencies from cache
       - restore_cache:
           keys:
