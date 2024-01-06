@@ -1,13 +1,5 @@
 version: 2.1
 
-# Reusable commands
-commands:
-  # Log the current branch
-  current-branch:
-    description: "Show current branch"
-    steps:
-      - run: echo ${CIRCLE_BRANCH}
-
 # Define the jobs we want to run for this project
 jobs:
   # The build job
@@ -18,8 +10,9 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
-        name: Show current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -49,8 +42,9 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
-        name: Show current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -80,8 +74,9 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - current-branch:
-        name: Show current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore local dependencies from cache
       - restore_cache:
           keys:
