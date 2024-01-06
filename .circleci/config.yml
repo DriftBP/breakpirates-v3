@@ -1,6 +1,7 @@
 version: 2.1
 
-commands: # a reusable command with parameters
+# Reusable commands
+commands:
   # Log the current branch
   current-branch:
     steps:
