@@ -18,7 +18,6 @@ jobs:
       - restore_cache:
           keys:
           - npm-deps-{{ checksum "package-lock.json" }}
-          - npm-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -52,7 +51,6 @@ jobs:
       - restore_cache:
           keys:
           - npm-deps-{{ checksum "package-lock.json" }}
-          - npm-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -86,7 +84,6 @@ jobs:
       - restore_cache:
           keys:
           - npm-deps-{{ checksum "package-lock.json" }}
-          - npm-deps-
       # Install global dependencies
       - run:
           name: Install global dependencies
