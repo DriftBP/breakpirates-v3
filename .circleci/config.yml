@@ -5,9 +5,7 @@ commands:
   # Log the current branch
   current-branch:
     steps:
-      - run:
-        name: Show current branch
-        command: echo ${CIRCLE_BRANCH}
+      - run: echo "Hello"
 
 # Define the jobs we want to run for this project
 jobs:
