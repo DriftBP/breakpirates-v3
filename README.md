@@ -4,7 +4,7 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 
 Local software:
 * NPM 9.5.1
-* Node 18.16.0
+* Node 18.18.0
 
 ## Development server
 
