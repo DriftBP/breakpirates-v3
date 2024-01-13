@@ -9,5 +9,5 @@ import { HostNavigation } from './host-navigation';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HostNavigationComponent {
-  @Input() hostLinks: HostNavigation;
+  @Input({ required: true }) hostLinks: HostNavigation;
 }

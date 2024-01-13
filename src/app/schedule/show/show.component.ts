@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -15,49 +13,44 @@ import { ShowService } from '../services/show.service';
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.scss']
 })
-export class ShowComponent implements OnInit, OnDestroy {
+export class ShowComponent {
+  @Input()
+  get show(): Show {
+    return this._show;
+  }
+  set show(show: Show) {
+    if (show) {
+      this._show = show;
 
-  private paramsSubscription: Subscription;
+      this.dayName = this.dayService.dayName(this.show.day_id);
+
+      const { startDate, endDate } = this.showService.getDates(this.show);
+
+      this.nextDate = startDate.toISO();
+      this.endDate = endDate.toISO();
+
+      this.setBreadcrumb();
+    }
+  }
+
+  private _show: Show;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     scheduleConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  show: Show;
   dayName: string;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
   nextDate: string;
   endDate: string;
 
   constructor(
-    private readonly route: ActivatedRoute,
     private readonly dayService: DayService,
     private readonly showService: ShowService,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
-  ngOnInit() {
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.initialiseState();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
-    }
-  }
-
-  initialiseState(): void {
-    this.show = this.route.snapshot.data['show'];
-
-    this.dayName = this.dayService.dayName(this.show.day_id);
-
-    const { startDate, endDate } = this.showService.getDates(this.show);
-
-    this.nextDate = startDate.toISO();
-    this.endDate = endDate.toISO();
-
+  setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
       name: this.show.title,
       isActive: true

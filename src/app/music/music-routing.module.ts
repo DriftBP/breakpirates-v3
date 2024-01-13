@@ -9,8 +9,22 @@ import { GenreResolve } from './resolves/genre.resolve';
 import { GenreShowsResolve } from './resolves/genre-shows.resolve';
 
 const routes: Routes = [
-  { path: '', component: MusicComponent, resolve: { genres: GenresResolve }, pathMatch: 'full' },
-  { path: ':id', component: GenreComponent, resolve: { genre: GenreResolve, shows: GenreShowsResolve } }
+  {
+    path: '',
+    component: MusicComponent,
+    resolve: {
+      genres: GenresResolve
+    },
+    pathMatch: 'full'
+  },
+  {
+    path: ':id',
+    component: GenreComponent,
+    resolve: {
+      genre: GenreResolve,
+      shows: GenreShowsResolve
+    }
+  }
 ];
 
 @NgModule({

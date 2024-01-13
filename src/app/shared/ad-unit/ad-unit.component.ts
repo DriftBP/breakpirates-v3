@@ -9,9 +9,7 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdUnitComponent {
-  @Input() adSlot: number;
-  @Input() width: number;
-  @Input() height: number;
+  @Input({ required: true }) adSlot: number;
 
   adsenseClient = AppSettings.ADSENSE_CLIENT;
 }

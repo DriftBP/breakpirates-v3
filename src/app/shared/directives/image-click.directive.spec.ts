@@ -1,28 +1,43 @@
-import { ElementRef } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import { DialogService } from '../services/dialog/dialog.service';
 import { ImageClickDirective } from './image-click.directive';
 
-class MockDialogService extends DialogService {}
-
-class MockElementRef extends ElementRef {
-  constructor() { super(null); }
+@Component({
+  template: `<div type="text" bpImageClick></div>`
+})
+class TestImageClickDirectiveComponent {
 }
 
 describe('ImageClickDirective', () => {
-  beforeEach(async () => {
+  let component: TestImageClickDirectiveComponent;
+  let fixture: ComponentFixture<TestImageClickDirectiveComponent>;
+  let element: DebugElement;
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ImageClickDirective],
-      providers: [
-        { provide: DialogService, useClass: MockDialogService },
-        { provide: ElementRef, useClass: MockElementRef }
+      declarations: [
+        TestImageClickDirectiveComponent,
+        ImageClickDirective
       ]
-    }).compileComponents();
+    });
+    fixture = TestBed.createComponent(TestImageClickDirectiveComponent); (2)
+    component = fixture.componentInstance;
+    element = fixture.debugElement.query(By.css('div'));
+  }));
+
+  it('should create', async () => {
+    expect(component).toBeDefined();
   });
 
-  it('should create an instance', () => {
-    const directive = new ImageClickDirective(new MockDialogService(), new MockElementRef());
-    expect(directive).toBeTruthy();
+  it('hovering over element', () => {
+    element.triggerEventHandler('mouseover', null);
+    fixture.detectChanges();
+    expect(element.nativeElement.style.cursor).toBe('pointer');
+
+    element.triggerEventHandler('mouseout', null);
+    fixture.detectChanges();
+    expect(element.nativeElement.style.cursor).toBe('auto');
   });
 });

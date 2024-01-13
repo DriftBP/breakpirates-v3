@@ -1,9 +1,22 @@
 <h1>{{'BPM_COUNTER.TITLE' | translate}}</h1>
-<ng-container [ngSwitch]="message">
-  <p *ngSwitchCase="statuses.Empty">{{'BPM_COUNTER.TAP_THE_BUTTON' | translate}}</p>
-  <p *ngSwitchCase="statuses.Insufficient">{{'BPM_COUNTER.KEEP_GOING' | translate}}</p>
-  <p *ngSwitchCase="statuses.Full">{{'BPM_COUNTER.YOUR_BPM_IS' | translate}}</p>
-</ng-container>
+
+<p>
+  @switch (message) {
+    @case (statuses.Empty) {
+      {{'BPM_COUNTER.TAP_THE_BUTTON' | translate}}
+    }
+    @case (statuses.Insufficient) {
+      {{'BPM_COUNTER.KEEP_GOING' | translate}}
+    }
+    @case (statuses.Full) {
+      {{'BPM_COUNTER.YOUR_BPM_IS' | translate}}
+    }
+  }
+</p>
 <p><button class="btn btn-primary btn-lg" (click)="onClick()">{{'BPM_COUNTER.TAP_ME' | translate}}</button></p>
-<p><span *ngIf="message === statuses.Full">{{'BPM_COUNTER.BPM' | translate}}: {{ bpm }}</span></p>
+<p>
+  @if (message === statuses.Full) {
+    <span>{{'BPM_COUNTER.BPM' | translate}}: {{ bpm }}</span>
+  }
+</p>
 <div><button class="btn btn-secondary" (click)="onReset()">{{'BPM_COUNTER.START_AGAIN' | translate}}</button></div>

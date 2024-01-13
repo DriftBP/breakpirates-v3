@@ -9,6 +9,6 @@ import { ProductTypeModel } from '../models/product-type-model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductTypeSelectComponent {
-  @Input() types: ProductTypeModel[];
-  @Input() activeType: ProductType;
+  @Input({ required: true }) types: ProductTypeModel[];
+  @Input({ required: true }) activeType: ProductType;
 }

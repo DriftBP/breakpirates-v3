@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Genre } from './models/genre';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -11,21 +10,17 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './music.component.html'
 })
 export class MusicComponent implements OnInit {
+  @Input() genres: Genre[];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigActive
   ];
 
-  genres: Genre[];
-
   constructor(
-    private readonly route: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.genres = this.route.snapshot.data['genres'];
   }
 }

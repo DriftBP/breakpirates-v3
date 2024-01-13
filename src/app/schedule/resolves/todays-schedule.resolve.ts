@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+
 import { DateTime } from 'luxon';
 
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -9,7 +9,7 @@ import { Show } from '../models/show';
 @Injectable({
   providedIn: ScheduleResolvesModule
 })
-export class TodaysScheduleResolve implements Resolve<Show[]> {
+export class TodaysScheduleResolve  {
 
   constructor(private scheduleService: ScheduleService) {}
 

@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding, AfterViewInit } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit } from '@angular/core';
 import {
   Event,
   Router,
@@ -9,21 +9,17 @@ import {
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { DateTime } from 'luxon';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
-import { DialogService } from './shared/services/dialog/dialog.service';
-import { IDialogConfig } from './shared/services/dialog/dialog-config';
 
 @Component({
   selector: 'bp-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme; }
 
   private eventsSubscription: Subscription;
@@ -31,31 +27,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private currentTheme: Theme;
 
   loading: boolean;
-  adRefreshSecs = AppSettings.AD_REFRESH_SECS;
 
   constructor (
     private router: Router,
-    private _renderer2: Renderer2,
+    private renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
     private googleAnalyticsService: GoogleAnalyticsService,
-    private themeService: ThemeService,
-    private dialogService: DialogService
+    private themeService: ThemeService
   ) {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
     this.themeSubscription = this.themeService.currentTheme$.subscribe(theme => {
       return this.currentTheme = theme
     });
-
-    // Google Adsense script
-    const adwordsScript = this._renderer2.createElement('script');
-    adwordsScript.async = 'async';
-    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-
-    const adsByGoogleScript = this._renderer2.createElement('script');
-    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
-
-    this._renderer2.appendChild(this._document.body, adwordsScript);
-    this._renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 
   private processEvent(event: Event) {
@@ -84,18 +67,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngAfterViewInit() {
-    const hideDialogDate = DateTime.utc(2021, 9, 18, 23, 0);
+  ngOnInit(): void {
+    // Google Adsense script
+    const adwordsScript = this.renderer2.createElement('script');
+    adwordsScript.async = 'async';
+    adwordsScript.crossorigin = 'anonymous';
+    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AppSettings.ADSENSE_CLIENT;
 
-    if (DateTime.utc() < hideDialogDate && this.dialogService.isDialogSupported()) {
-      const alt = 'Break Pirates 20th birthday';
-      const dialogConfig: IDialogConfig = {
-        title: alt,
-        content: `<img src="${AppSettings.ASSET_NEWS_IMAGE}20th-birthday-flyer.jpg" width="1024" height="768" alt="${alt}" style="max-width: 100%; height: auto">`
-      };
+    const adsByGoogleScript = this.renderer2.createElement('script');
+    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
 
-      this.dialogService.showDialog(dialogConfig);
-    }
+    this.renderer2.appendChild(this._document.body, adwordsScript);
+    this.renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 
   ngOnDestroy() {

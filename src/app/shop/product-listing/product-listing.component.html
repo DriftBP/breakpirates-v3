@@ -1,1 +1,3 @@
-<bp-amazon-product-link [asin]="product" *ngFor="let product of products"></bp-amazon-product-link>
+@for (product of products; track product) {
+  <bp-amazon-product-link [asin]="product"></bp-amazon-product-link>
+}

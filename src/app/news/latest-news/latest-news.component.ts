@@ -9,5 +9,5 @@ import { News } from '../models/news';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LatestNewsComponent {
-  @Input() news: News[];
+  @Input({ required: true }) news: News[];
 }

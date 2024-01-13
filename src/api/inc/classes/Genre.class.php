@@ -3,7 +3,7 @@ class Genre {
 	var $id;
 	var $name;
 
-	function Genre($id, $name) {
+	public function __construct($id, $name) {
 		$this->id = intval($id);
 		$this->name = $name;
 	}
@@ -20,6 +20,7 @@ class Genre {
 	 * Returns a list of shows featuring this genre
 	 */
 	function getShows() {
+    global $db;
 		$shows = array();
 
 		$sql = "SELECT DISTINCT s.showid, s.dayid, s.starttime
@@ -29,10 +30,10 @@ class Genre {
 					AND s.active = 'yes'
 				ORDER BY s.dayid ASC, s.starttime ASC";;
 
-		$result = mysql_query($sql);
+		$result = mysqli_query($db, $sql);
 
-		if($result && mysql_num_rows($result)>0) {
-			while(list($show_id)=mysql_fetch_row($result)) {
+		if($result && mysqli_num_rows($result)>0) {
+			while(list($show_id)=mysqli_fetch_row($result)) {
 				$show = getShow($show_id);
 
 				if($show) {

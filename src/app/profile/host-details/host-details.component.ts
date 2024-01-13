@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { Host } from '../host';
 import { ProfileService } from '../services/profile.service';
@@ -14,38 +12,32 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   templateUrl: './host-details.component.html',
   styleUrls: ['./host-details.component.scss']
 })
-export class HostDetailsComponent implements OnInit, OnDestroy {
+export class HostDetailsComponent {
+  @Input()
+  get profile(): Host {
+    return this._profile;
+  }
+  set profile(profile: Host) {
+    if (profile) {
+      this._profile = profile;
+      this.setBreadcrumb();
+    }
+  }
 
-  private paramsSubscription: Subscription;
+  private _profile: Host;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  profile: Host;
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
 
   constructor(
-    private readonly route: ActivatedRoute,
     public readonly profileService: ProfileService,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
-  ngOnInit() {
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.initialiseState();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
-    }
-  }
-
-  initialiseState(): void {
-    this.profile = this.route.snapshot.data['profile'];
-
+  setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
       name: this.profile?.name,
       isActive: true

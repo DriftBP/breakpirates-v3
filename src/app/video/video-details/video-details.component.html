@@ -1,3 +1,8 @@
-<h1>{{video?.name}}</h1>
+@if (video) {
+  <h1>{{video?.name}}</h1>
 
-<div [innerHTML]="video?.code | safe: 'html'"></div>
+  <div [innerHTML]="video?.code | safe: 'html'"></div>
+} @else {
+  <h1>{{'VIDEO.NOT_FOUND' | translate}}</h1>
+  <p>{{'VIDEO.COULD_NOT_FIND' | translate}}</p>
+}

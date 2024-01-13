@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { DateTime } from 'luxon';
 
 import { News } from './models/news';
@@ -13,7 +12,20 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  private news: News[];
+  @Input()
+  get news(): News[] {
+    return this._news;
+  }
+  set news(news: News[]) {
+    this._news = news;
+
+    if (this.news && Array.isArray(this.news)) {
+      this.latestNews = this.news.slice(0, this.latestNewsItems);
+      this.otherNews = this.news.slice(this.latestNewsItems);
+    }
+  }
+
+  private _news: News[];
   private latestNewsItems = 4;
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigActive
@@ -24,19 +36,11 @@ export class NewsComponent implements OnInit {
   showMore = false;
 
   constructor(
-    private readonly route: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.news = this.route.snapshot.data['news'];
-
-    if (this.news && Array.isArray(this.news)) {
-      this.latestNews = this.news.slice(0, this.latestNewsItems);
-      this.otherNews = this.news.slice(this.latestNewsItems);
-    }
   }
 
   onShowMore() {

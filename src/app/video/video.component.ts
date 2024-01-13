@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Video } from './models/video';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -11,22 +10,17 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './video.component.html'
 })
 export class VideoComponent implements OnInit {
+  @Input() videos: Video[];
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigActive
   ];
 
-  videos: Video[];
-
   constructor(
-    private readonly route: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.videos = this.route.snapshot.data['videos'];
   }
-
 }

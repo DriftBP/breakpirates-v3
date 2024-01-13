@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Host } from './host';
@@ -14,11 +13,12 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent implements OnInit {
+  @Input() profiles: Host[];
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigActive
   ];
 
-  profiles: Host[];
   orders = SortOrder;
   order = SortOrder.Ascending;
 
@@ -26,22 +26,14 @@ export class ProfilesComponent implements OnInit {
   faChevronDown = faChevronDown;
 
   constructor(
-    private readonly route: ActivatedRoute,
     private readonly breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
-
-    this.profiles = this.route.snapshot.data['profiles'];
   }
 
   toggleOrderBy(): void {
     this.order = this.order === SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
   }
-
-  trackByFn(index: any, item: any): number {
-    return item.id;
-  }
-
 }

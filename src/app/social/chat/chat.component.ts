@@ -1,13 +1,12 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Observable, Observer } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { FullscreenService } from '../services/fullscreen.service';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ScreenService } from '../services/screen.service';
 
 @Component({
@@ -17,6 +16,8 @@ import { ScreenService } from '../services/screen.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatIframe') chatElement: ElementRef;
+
+  faExclamationTriangle = faExclamationTriangle;
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigInactive,
@@ -36,7 +37,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   preventSleep = false;
 
   constructor(
-    private readonly translateService: TranslateService,
     private readonly fullscreenService: FullscreenService,
     private readonly breadcrumbService: BreadcrumbService,
     private readonly sanitizer: DomSanitizer,
@@ -56,21 +56,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.screenService.endPreventSleep();
-  }
-
-  canExit(): Observable<boolean> {
-    return new Observable((observer: Observer<boolean>) => {
-      this.translateService.get('SOCIAL.CONFIRM_LEAVE_CHAT')
-        .subscribe(t => {
-          if (confirm(t)) {
-            observer.next(true);
-          } else {
-            observer.next(false);
-          }
-        });
-
-      observer.complete();
-    });
   }
 
   fullscreen(): void {

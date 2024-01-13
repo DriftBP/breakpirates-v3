@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { ProfileService } from '../services/profile.service';
 import { Host } from '../host';
@@ -8,7 +8,7 @@ import { ProfileResolvesModule } from './profile-resolves.module';
 @Injectable({
   providedIn: ProfileResolvesModule
 })
-export class HostDetailsResolve implements Resolve<Host> {
+export class HostDetailsResolve  {
 
   constructor(private profileService: ProfileService) {}
 

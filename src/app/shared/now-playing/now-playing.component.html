@@ -1,42 +1,55 @@
 <aside class="now-playing">
     <div class="now-playing__show-info">
-      <div class="now-playing__show-info-image-container" *ngIf="nowPlayingImage">
-        <div
-            class="now-playing__show-info-image"
-            [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
-        <div class="now-playing__show-info-progress-container" *ngIf="isLiveShow">
-          <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
+      @if (nowPlayingImage) {
+        <div class="now-playing__show-info-image-container">
+          <div
+              class="now-playing__show-info-image"
+              [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
+          @if (isLiveShow) {
+            <div class="now-playing__show-info-progress-container">
+              <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
+            </div>
+          }
         </div>
-      </div>
+      }
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
           {{'NOW_PLAYING.ON_AIR' | translate}}:
-          <ng-container *ngIf="isLiveShow">{{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}</ng-container>
+          @if (isLiveShow) {
+            {{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}
+          }
         </div>
 
-        <ng-container *ngIf="isLiveShow; else playlist">
+        @if (isLiveShow) {
           <div class="now-playing__show-info-name" [title]="nowPlaying.title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
           </div>
 
-          <div class="now-playing__show-info-description">
-            {{'NOW_PLAYING.HOSTED_BY' | translate}}:
-            <a
-              class="now-playing__show-info-host"
-              [routerLink]="['/profiles',host.id]"
-              *ngFor="let host of nowPlaying.hosts">{{ host.name }}</a>
-          </div>
-        </ng-container>
-
-        <ng-template #playlist>
+          @if (nowPlaying.hosts.length > 0) {
+            <div class="now-playing__show-info-description">
+              {{'NOW_PLAYING.HOSTED_BY' | translate}}:
+              @for (host of nowPlaying.hosts; track host.id) {
+                <a
+                  class="now-playing__show-info-host"
+                  [routerLink]="['/profiles',host.id]">{{ host.name }}</a>
+              }
+            </div>
+          }
+        } @else {
           <div class="now-playing__show-info-name">
             {{'NOW_PLAYING.PLAYLIST' | translate}}
           </div>
 
           <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
-        </ng-template>
+        }
       </div>
     </div>
 
-    <bp-radio-player></bp-radio-player>
+    @if (showRadioPlayer) {
+      <bp-radio-player></bp-radio-player>
+    } @else {
+      <button class="btn btn-primary now-playing__popup-player-button" (click)="openPopupPlayer()">
+        {{'NOW_PLAYING.LISTEN_NOW_POPUP' | translate}} <fa-icon [icon]="faExternalLink"></fa-icon>
+      </button>
+    }
 </aside>

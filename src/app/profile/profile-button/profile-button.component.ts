@@ -10,7 +10,7 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileButtonComponent implements OnChanges {
-  @Input() host: Host;
+  @Input({ required: true }) host: Host;
 
   imagePath: string;
 

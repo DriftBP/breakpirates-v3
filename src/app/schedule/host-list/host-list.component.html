@@ -1,5 +1,6 @@
 <ul class="host-list">
-  <li class="host-list__host-item" *ngFor="let host of hosts | sortBy:order:'name'" itemprop="performer" itemscope itemtype="http://schema.org/Person">
+  @for (host of hosts | sortBy:order:'name'; track host.id) {
+    <li class="host-list__host-item" itemprop="performer" itemscope itemtype="http://schema.org/Person">
       <a
         class="host-list__host-item-link"
         [routerLink]="['/profiles',host.id]"
@@ -7,5 +8,6 @@
           <fa-icon [icon]="faHeadphonesAlt"></fa-icon>
           <span itemprop="name">{{host.name}}</span>
       </a>
-  </li>
+    </li>
+  }
 </ul>

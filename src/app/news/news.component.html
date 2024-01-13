@@ -2,19 +2,21 @@
 
 <bp-latest-news [news]="latestNews"></bp-latest-news>
 
-<button *ngIf="!showMore; else moreBlock"
+@if (!showMore) {
+  <button
         class="news__show-more btn btn-primary"
         (click)="onShowMore()">
-  {{'NEWS.SHOW_MORE' | translate}}
-</button>
-
-<ng-template #moreBlock>
+    {{'NEWS.SHOW_MORE' | translate}}
+  </button>
+} @else {
   <h2 class="news__other-news-header">{{'NEWS.OTHER_NEWS' | translate}}</h2>
 
   <ul class="list-unstyled">
-      <li *ngFor="let article of otherNews">
-          <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
-          <a [routerLink]="['/news',article.id]">{{article.title}}</a>
+    @for (article of otherNews; track article.id) {
+      <li>
+        <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
+        <a [routerLink]="['/news',article.id]">{{article.title}}</a>
       </li>
+    }
   </ul>
-</ng-template>
+}

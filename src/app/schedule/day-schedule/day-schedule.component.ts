@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { Show } from '../models/show';
 
@@ -9,24 +7,6 @@ import { Show } from '../models/show';
   templateUrl: './day-schedule.component.html',
   styleUrls: ['./day-schedule.component.scss']
 })
-export class DayScheduleComponent implements OnInit, OnDestroy {
-  private paramsSubscription: Subscription;
-
-  todaysSchedule: Show[];
-
-  constructor(
-    private readonly route: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
-    this.paramsSubscription = this.route.paramMap.subscribe(params => {
-      this.todaysSchedule = this.route.snapshot.data['schedule'];
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
-    }
-  }
+export class DayScheduleComponent {
+  @Input() schedule: Show[];
 }

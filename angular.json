@@ -18,25 +18,26 @@
       "prefix": "bp",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/breakpirates-v3",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/.htaccess",
               "src/ads.txt",
               "src/api",
-              "src/assets",
               "src/favicon.ico",
+              "src/assets",
               "src/google9626a1e073cd04b6.html",
               "src/robots.txt",
               "src/stream.asx",
               "src/stream.m3u",
-              "src/stream.php",
               "src/stream.pls",
               "src/stream.ram"
             ],
@@ -60,21 +61,12 @@
                   "maximumError": "4kb"
                 }
               ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -83,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "breakpirates-v3:build:production"
+              "buildTarget": "breakpirates-v3:build:production"
             },
             "development": {
-              "browserTarget": "breakpirates-v3:build:development"
+              "buildTarget": "breakpirates-v3:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "breakpirates-v3:build"
+            "buildTarget": "breakpirates-v3:build"
           }
         },
         "lint": {

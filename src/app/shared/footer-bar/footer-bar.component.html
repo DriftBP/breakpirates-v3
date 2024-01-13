@@ -5,16 +5,18 @@
   <div class="footer-bar__social-sites">
     {{'FOOTER_BAR.FOLLOW_US' | translate}}:
     <ul class="footer-bar__social-site-list">
-      <li *ngFor="let site of socialSites" class="footer-bar__social-site">
-        <a
-            target="_blank"
-            rel="noopener"
-            class="footer-bar__social-site-link"
-            [title]="site.Description"
-            [href]="site.Url"
-            (click)="onSocialClick(site)"
-            ><fa-icon [icon]="site.Icon"></fa-icon></a>
-      </li>
+      @for (site of socialSites; track site.Name) {
+        <li class="footer-bar__social-site">
+          <a
+              target="_blank"
+              rel="noopener"
+              class="footer-bar__social-site-link"
+              [title]="site.Description"
+              [href]="site.Url"
+              (click)="onSocialClick(site)"
+              ><fa-icon [icon]="site.Icon"></fa-icon></a>
+        </li>
+      }
     </ul>
   </div>
 </div>

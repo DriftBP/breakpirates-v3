@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -17,10 +18,16 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   nowPlaying: Show;
   nowPlayingImage: string;
   isLiveShow = false;
+  showRadioPlayer = false;
+
+  faExternalLink = faExternalLink;
 
   constructor(
     public readonly scheduleService: ScheduleService
-  ) { }
+  ) {
+    // HTML5 audio player will only work over HTTP
+    this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
+  }
 
   ngOnInit() {
     this.nowPlayingSubscription = this.scheduleService.nowPlaying$.subscribe(nowPlaying => {
@@ -45,6 +52,14 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
 
       this.nowPlayingImage = `url(${AppSettings.ASSET_SHOW_IMAGE}${imageFilename})`;
     });
+  }
+
+  openPopupPlayer() {
+    const port = location.port ? `:${location.port}` : '';
+    const url = `http://${location.hostname}${port}/player`;
+    const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=143`;
+
+    window.open(url, 'player', params)
   }
 
   ngOnDestroy() {
