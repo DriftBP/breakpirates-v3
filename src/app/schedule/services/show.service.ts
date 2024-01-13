@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DateTime, Interval } from 'luxon';
+import { DateTime, Interval, WeekdayNumbers } from 'luxon';
 
 import { Show } from '../models/show';
 
@@ -13,10 +13,10 @@ export class ShowService {
     // if we haven't yet passed the day of the week that I need:
     if (today <= show.day_id) {
       // then just give me this week's instance of that day
-      return DateTime.local().set({weekday: show.day_id});
+      return DateTime.local().set({weekday: show.day_id as WeekdayNumbers});
     } else {
       // otherwise, give me *next week's* instance of that same day
-      return DateTime.local().plus({weeks: 1}).set({weekday: show.day_id});
+      return DateTime.local().plus({weeks: 1}).set({weekday: show.day_id as WeekdayNumbers});
     }
   }
 

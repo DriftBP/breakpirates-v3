@@ -55,7 +55,7 @@ export class NowPlayingComponent implements OnDestroy {
   openPopupPlayer() {
     const port = location.port ? `:${location.port}` : '';
     const url = `http://${location.hostname}${port}/player`;
-    const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=100`;
+    const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=143`;
 
     window.open(url, 'player', params)
   }
