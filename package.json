@@ -5,14 +5,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run supportedBrowsers && ng build",
-    "build:stats": "npm run supportedBrowsers && ng build --stats-json",
+    "build": "npm run ng build",
+    "build:stats": "npm run ng build --stats-json",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cc": "jest --coverage",
-    "lint": "ng lint",
-    "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -55,7 +54,6 @@
     "@types/node": "^12.20.55",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
-    "browserslist-useragent-regexp": "^4.1.1",
     "eslint": "^8.53.0",
     "jest": "^29.5.0",
     "jest-preset-angular": "^14.0.0",
