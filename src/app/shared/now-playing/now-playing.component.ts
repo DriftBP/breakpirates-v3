@@ -5,6 +5,7 @@ import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
+import { SortOrder } from '../pipes/sort-order';
 
 @Component({
   selector: 'bp-now-playing',
@@ -21,6 +22,8 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   showRadioPlayer = false;
 
   faExternalLink = faExternalLink;
+
+  order = SortOrder.Ascending;
 
   constructor(
     public readonly scheduleService: ScheduleService
