@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 
 import { FeaturedNewsComponent } from './featured-news.component';
 import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
-import { mockArticleWithImage } from '../../../test/data/mock.articles';
+import { mockArticleWithImage, mockArticleWithoutImage } from '../../../test/data/mock.articles';
 
 const defaultImageFilename = 'bp.jpg';
 
