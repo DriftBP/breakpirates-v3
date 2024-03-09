@@ -2,23 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { FeaturedNewsComponent } from './featured-news.component';
-import { News } from '../models/news';
 import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
-
-const mockArticleWithImage: News = {
-  id: 1,
-  date: '1',
-  title: 'Article title',
-  text: 'Article text',
-  summary: 'Article summary',
-  image: 'article.jpg',
-  added_by: 'BP'
-};
-
-const mockArticleWithoutImage: News = {
-  ...mockArticleWithImage,
-  image: null
-};
+import { mockArticleWithImage, mockArticleWithoutImage } from '../../../test/data/mock.articles';
 
 const defaultImageFilename = 'bp.jpg';
 
