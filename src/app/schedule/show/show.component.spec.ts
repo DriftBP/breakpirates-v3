@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,6 +10,15 @@ import { DayService } from '../services/day.service';
 import { MockDayService } from '../../../test/services/mock.day.service';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
+import { mockShow } from '../../../test/data/mock.shows';
+import { Show } from '../models/show';
+import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
+
+const mockShowWithDescriptionAndImage: Show = {
+  ...mockShow,
+  description: 'description',
+  image: 'image.jpg'
+};
 
 describe('ShowComponent', () => {
   let component: ShowComponent;
@@ -16,7 +26,10 @@ describe('ShowComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ShowComponent ],
+        declarations: [
+          ShowComponent,
+          MockTimePipe
+        ],
         imports: [
           TranslateModule.forRoot(),
         ],
@@ -45,5 +58,28 @@ describe('ShowComponent', () => {
 
   it('should create', async () => {
     expect(component).toBeDefined();
+  });
+
+  describe('Show images', () => {
+    it('should not display an image if the article doesn`t have one defined', async () => {
+      component.show = mockShow;
+
+      fixture.detectChanges();
+
+      const image = fixture.debugElement.query(By.css('.show__image'));
+
+      expect(image).toBeNull();
+    });
+
+    it('should display an image if the article has one and a description defined', async () => {
+      component.show = mockShowWithDescriptionAndImage;
+
+      fixture.detectChanges();
+
+      const image: HTMLImageElement = fixture.debugElement.query(By.css('.show__image')).nativeElement;
+
+      expect(image).toBeDefined();
+      expect(image.src).toBeDefined();
+    });
   });
 });
