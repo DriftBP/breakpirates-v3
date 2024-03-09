@@ -61,7 +61,7 @@ describe('ShowComponent', () => {
   });
 
   describe('Show images', () => {
-    it('should not display an image if the article doesn`t have one defined', async () => {
+    it('should not display an image if the show doesn`t have one defined', async () => {
       component.show = mockShow;
 
       fixture.detectChanges();
@@ -71,7 +71,7 @@ describe('ShowComponent', () => {
       expect(image).toBeNull();
     });
 
-    it('should display an image if the article has one and a description defined', async () => {
+    it('should display an image if the show has one and a description defined', async () => {
       component.show = mockShowWithDescriptionAndImage;
 
       fixture.detectChanges();
