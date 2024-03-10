@@ -1,5 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -64,7 +64,8 @@ export function customHttpLoader(http: HttpClient) {
       },
       isolate: false
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgOptimizedImage
   ],
   declarations: [
     NavigationComponent,
