@@ -1,5 +1,11 @@
 <div class="standalone-player">
-  <img class="standalone-player__logo-image" [src]="assetRoot + 'bp-head.jpg'" width="354" height="57" alt="Break Pirates" />
+  <img
+    class="standalone-player__logo-image"
+    [ngSrc]="assetRoot + 'bp-head.jpg'"
+    width="354"
+    height="57"
+    alt="Break Pirates"
+    priority />
   <bp-radio-player></bp-radio-player>
   <p class="standalone-player__message"><fa-icon [icon]="faExclamationTriangle"></fa-icon>&nbsp;{{'STANDALONE_PLAYER.PLAY_BUTTON_DOESNT_WORK' | translate}}</p>
 </div>
