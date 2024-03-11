@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,12 +16,12 @@ interface ExternalLink {
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit, OnDestroy {
+export class NavigationComponent implements OnDestroy {
 
   private collapsedSubscription: Subscription;
 
   archiveUrl: string;
-  isCollapsed: boolean;
+  isCollapsed: boolean = false;
   assetRoot = AppSettings.ASSET_ROOT;
   externalLinks: ExternalLink[] = [
     {
@@ -59,9 +59,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   constructor(
     private readonly navigationService: NavigationService,
     private readonly googleAnalyticsService: GoogleAnalyticsService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.archiveUrl = AppSettings.MIXCLOUD_URL;
     this.collapsedSubscription = this.navigationService.isCollapsed$.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
   }

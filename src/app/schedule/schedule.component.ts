@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
-import { filter, startWith, switchMap } from 'rxjs/operators';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 
 import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -13,8 +13,8 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   selector: 'bp-schedule',
   templateUrl: './schedule.component.html'
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
-  @Input() days: Day[];
+export class ScheduleComponent implements OnDestroy {
+  @Input() days: Day[] = [];
 
   private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
@@ -26,14 +26,21 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
-
-  ngOnInit() {
-    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
-      startWith(undefined),
-      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
-        this.onParamChange(params);
-    });
+  ) {
+    this.childParamsSubscription = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      mergeMap((route) => route.paramMap),
+      tap(
+        paramMap => console.log('ParamMap', paramMap)
+      )
+    ).subscribe(
+      (paramAsMap: any) => this.onParamChange(paramAsMap)
+    )
   }
 
   onParamChange(params: ParamMap) {
@@ -69,7 +76,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   private getDayName(activeDayId: number): string {
-    const activeDay = this.days.find(day => day.id === activeDayId);
+    const activeDay = this.days?.find(day => day.id === activeDayId);
 
     if (activeDay) {
       return activeDay.name;

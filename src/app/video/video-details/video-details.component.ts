@@ -11,17 +11,17 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 })
 export class VideoDetailsComponent {
   @Input()
-  get video(): Video {
+  get video(): Video | undefined {
     return this._video;
   }
-  set video(video: Video) {
+  set video(video: Video | undefined) {
     if (video) {
       this._video = video;
       this.setBreadcrumb();
     }
   }
 
-  private _video: Video;
+  private _video?: Video;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigInactive
   ];
@@ -33,7 +33,7 @@ export class VideoDetailsComponent {
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.video?.name,
+      name: this.video?.name ?? '',
       isActive: true
     });
 

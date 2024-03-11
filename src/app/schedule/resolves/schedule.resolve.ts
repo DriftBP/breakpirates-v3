@@ -13,7 +13,7 @@ export class ScheduleResolve  {
   constructor(private scheduleService: ScheduleService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    const dayId = parseInt(route.paramMap.get('id'), 10);
+    const dayId = parseInt(route.paramMap.get('id') ?? '', 10);
 
     return this.scheduleService.shows(dayId);
   }

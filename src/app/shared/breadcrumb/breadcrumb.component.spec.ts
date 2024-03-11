@@ -38,6 +38,6 @@ describe('BreadcrumbComponent', () => {
   it('should find the active breadcrumb item', async () => {
     const activeItem = component['getActiveItem'](mockScheduleConfig);
 
-    expect(activeItem.isActive).toBeTruthy();
+    expect(activeItem?.isActive).toBeTruthy();
   });
 });

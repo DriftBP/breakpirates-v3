@@ -14,17 +14,17 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 })
 export class HostDetailsComponent {
   @Input()
-  get profile(): Host {
+  get profile(): Host | undefined {
     return this._profile;
   }
-  set profile(profile: Host) {
+  set profile(profile: Host | undefined) {
     if (profile) {
       this._profile = profile;
       this.setBreadcrumb();
     }
   }
 
-  private _profile: Host;
+  private _profile?: Host;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigInactive
   ];
@@ -39,14 +39,14 @@ export class HostDetailsComponent {
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.profile?.name,
+      name: this.profile?.name ?? '',
       isActive: true
     });
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
-  hasValue(value: string): boolean {
+  hasValue(value: string | null): boolean {
     return value !== null && value !== '';
   }
 

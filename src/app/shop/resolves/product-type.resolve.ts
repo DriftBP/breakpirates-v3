@@ -12,7 +12,7 @@ export class ProductTypeResolve  {
   constructor(private shopService: ShopService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    const type = parseInt(route.paramMap.get('type'), 10);
+    const type = parseInt(route.paramMap.get('type') ?? '', 10);
 
     return this.shopService.getProductsByType(type);
   }

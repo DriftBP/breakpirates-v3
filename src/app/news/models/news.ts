@@ -4,6 +4,6 @@ export interface News {
     title: string;
     text: string;
     summary: string;
-    image: string;
+    image: string | null;
     added_by: string;
 }

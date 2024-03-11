@@ -15,16 +15,16 @@ import { ShowService } from '../services/show.service';
 })
 export class ShowComponent {
   @Input()
-  get show(): Show {
+  get show(): Show | undefined {
     return this._show;
   }
-  set show(show: Show) {
+  set show(show: Show | undefined) {
     if (show) {
       this._show = show;
 
-      this.dayName = this.dayService.dayName(this.show.day_id);
+      this.dayName = this.dayService.dayName(show.day_id);
 
-      const { startDate, endDate } = this.showService.getDates(this.show);
+      const { startDate, endDate } = this.showService.getDates(show);
 
       this.nextDate = startDate.toISO();
       this.endDate = endDate.toISO();
@@ -33,16 +33,16 @@ export class ShowComponent {
     }
   }
 
-  private _show: Show;
+  private _show?: Show;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     scheduleConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  dayName: string;
+  dayName: string = '';
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
-  nextDate: string;
-  endDate: string;
+  nextDate: string | null = null;
+  endDate: string | null = null;
 
   constructor(
     private readonly dayService: DayService,
@@ -52,7 +52,7 @@ export class ShowComponent {
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.show.title,
+      name: this.show?.title ?? '',
       isActive: true
     });
 

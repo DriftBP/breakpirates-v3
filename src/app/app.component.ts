@@ -24,9 +24,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private eventsSubscription: Subscription;
   private themeSubscription: Subscription;
-  private currentTheme: Theme;
+  private currentTheme?: Theme;
 
-  loading: boolean;
+  loading: boolean = false;
 
   constructor (
     private router: Router,

@@ -16,7 +16,7 @@ export class SortByPipe implements PipeTransform {
   }
 
   private compareValues(key: string, order = SortOrder.Ascending) {
-    return function innerSort(a, b) {
+    return function innerSort(a: any, b: any) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
         // property doesn't exist on either object
         return 0;

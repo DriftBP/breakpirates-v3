@@ -9,9 +9,9 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AmazonProductLinkComponent implements OnChanges{
-  @Input({ required: true }) asin: string;
+  @Input({ required: true }) asin?: string;
 
-  amazonWidgetUrl: SafeResourceUrl;
+  amazonWidgetUrl?: SafeResourceUrl;
 
   constructor(private readonly sanitizer: DomSanitizer) {}
 

@@ -7,7 +7,7 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
   templateUrl: './donate.component.html'
 })
 export class DonateComponent {
-  @ViewChild('donateForm') donateFormElement: ElementRef;
+  @ViewChild('donateForm') donateFormElement?: ElementRef;
 
   constructor(
     private readonly googleAnalyticsService: GoogleAnalyticsService

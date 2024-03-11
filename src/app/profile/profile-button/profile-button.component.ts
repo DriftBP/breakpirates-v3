@@ -10,9 +10,9 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileButtonComponent implements OnChanges {
-  @Input({ required: true }) host: Host;
+  @Input({ required: true }) host?: Host;
 
-  imagePath: string;
+  imagePath?: string;
 
   ngOnChanges() {
     if (this.host) {

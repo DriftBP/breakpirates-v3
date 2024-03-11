@@ -11,18 +11,18 @@ import { DialogService } from '../services/dialog/dialog.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit, OnDestroy {
-  @ViewChild('dialog') dialogElement: ElementRef;
-  @ViewChild('dialogContentWrapper') dialogContentWrapperElement: ElementRef;
-  @ViewChild('dialogContent') dialogContentElement: ElementRef;
-  @ViewChild('dialogTitle') dialogTitleElement: ElementRef;
+  @ViewChild('dialog') dialogElement?: ElementRef;
+  @ViewChild('dialogContentWrapper') dialogContentWrapperElement?: ElementRef;
+  @ViewChild('dialogContent') dialogContentElement?: ElementRef;
+  @ViewChild('dialogTitle') dialogTitleElement?: ElementRef;
 
-  private showSubscription: Subscription;
+  private showSubscription?: Subscription;
 
   faTimes = faTimes
 
   @HostListener('document:click', ['$event'])
   clickOut(event: MouseEvent) {
-    if (!this.dialogContentWrapperElement.nativeElement.contains(event.target)) {
+    if (!this.dialogContentWrapperElement?.nativeElement.contains(event.target)) {
       this.close();
     }
   }
@@ -33,7 +33,9 @@ export class DialogComponent implements OnInit, OnDestroy {
   ) { }
 
   private setContent(content: string) {
-    this.setInnerHtml(this.dialogContentElement, content);
+    if (this.dialogContentElement) {
+      this.setInnerHtml(this.dialogContentElement, content);
+    }
   }
 
   private setInnerHtml(element: ElementRef, content: string) {
@@ -41,7 +43,9 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   private setTitle(title: string) {
-    this.setInnerHtml(this.dialogTitleElement, title);
+    if (this.dialogTitleElement) {
+      this.setInnerHtml(this.dialogTitleElement, title);
+    }
   }
 
   private showModal(config: IDialogConfig) {
@@ -61,8 +65,8 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    if (this.dialogElement.nativeElement.close) {
-      this.dialogElement.nativeElement.close();
+    if (this.dialogElement?.nativeElement.close) {
+      this.dialogElement?.nativeElement.close();
     }
   }
 

@@ -10,15 +10,17 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeaturedNewsComponent implements OnChanges {
-  @Input({ required: true }) article: News;
+  @Input({ required: true }) article?: News;
 
   imagePath = '';
   hover = false;
 
   ngOnChanges() {
-    const filename = this.getArticleImageFilename(this.article);
+    if (this.article) {
+      const filename = this.getArticleImageFilename(this.article);
 
-    this.imagePath = `url(${AppSettings.ASSET_NEWS_IMAGE}${filename})`;
+      this.imagePath = `url(${AppSettings.ASSET_NEWS_IMAGE}${filename})`;
+    }
   }
 
   private getArticleImageFilename(article: News): string {

@@ -22,10 +22,14 @@ export class ThemeService {
 
     // Use saved option if available
     if (themeSettingName) {
-      const savedThemeSetting = ThemeSetting[this.getEnumKeyByEnumValue(Theme, themeSettingName)];
+      const key = this.getEnumKeyByEnumValue(Theme, themeSettingName);
 
-      if (savedThemeSetting) {
-        themeSetting = savedThemeSetting;
+      if (key) {
+        const savedThemeSetting = (ThemeSetting as any)[key];
+
+        if (savedThemeSetting) {
+          themeSetting = savedThemeSetting;
+        }
       }
     }
 
@@ -35,7 +39,7 @@ export class ThemeService {
     localStorage.removeItem('theme');
   }
 
-  private getEnumKeyByEnumValue(myEnum, enumValue) {
+  private getEnumKeyByEnumValue(myEnum: any, enumValue: any) {
     const keys = Object.keys(myEnum).filter(x => myEnum[x] === enumValue);
     return keys.length > 0 ? keys[0] : null;
   }
