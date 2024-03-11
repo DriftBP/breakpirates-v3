@@ -1,6 +1,12 @@
 <div class="footer-bar">
   <div>
-    <img class="footer-bar__logo-image" [src]="assetRoot + 'bp-head.jpg'" width="354" height="57" alt="Break Pirates" />
+    <img
+      class="footer-bar__logo-image"
+      [ngSrc]="assetRoot + 'bp-head.jpg'"
+      width="354"
+      height="57"
+      alt="Break Pirates"
+      priority />
   </div>
   <div class="footer-bar__social-sites">
     {{'FOOTER_BAR.FOLLOW_US' | translate}}:

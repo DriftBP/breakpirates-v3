@@ -5,6 +5,7 @@ import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
+import { SortOrder } from '../pipes/sort-order';
 
 @Component({
   selector: 'bp-now-playing',
@@ -21,6 +22,8 @@ export class NowPlayingComponent implements OnDestroy {
   showRadioPlayer = false;
 
   faExternalLink = faExternalLink;
+
+  order = SortOrder.Ascending;
 
   constructor(
     public readonly scheduleService: ScheduleService
@@ -53,11 +56,12 @@ export class NowPlayingComponent implements OnDestroy {
   }
 
   openPopupPlayer() {
+    const hostname = location.hostname === 'localhost' ? location.hostname : 'listen.breakpirates.com';
     const port = location.port ? `:${location.port}` : '';
-    const url = `http://${location.hostname}${port}/player`;
+    const url = `http://${hostname}${port}/player`;
     const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=143`;
 
-    window.open(url, 'player', params)
+    window.open(url, 'player', params).focus();
   }
 
   ngOnDestroy() {

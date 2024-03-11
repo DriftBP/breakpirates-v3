@@ -13,17 +13,9 @@ import { ScheduleService } from '../services/schedule.service';
 import { MockShowService } from '../../../test/services/mock.show.service';
 import { ShowService } from '../services/show.service';
 import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
+import { mockShow } from '../../../test/data/mock.shows';
 
-const mockShow1: Show = {
-  id: 1,
-  title: 'title',
-  start_time: '00:00:00',
-  end_time: '00:00:00',
-  day_id: 1,
-  genres: [],
-  hosts: []
-};
-const mockShow2: Show = { ...mockShow1, id: 2 };
+const mockShow2: Show = { ...mockShow, id: 2 };
 
 @Component({
   template: ''
@@ -71,7 +63,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should not display day of week by default', async () => {
-    component.show = mockShow1;
+    component.show = mockShow;
 
     fixture.detectChanges();
 
@@ -81,7 +73,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should display day of week', async () => {
-    component.show = mockShow1;
+    component.show = mockShow;
     component.displayDay = true;
 
     fixture.detectChanges();
@@ -92,7 +84,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should not indicate show is now playing', async () => {
-    component.show = mockShow1;
+    component.show = mockShow;
 
     fixture.detectChanges();
 
