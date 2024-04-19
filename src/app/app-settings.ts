@@ -30,4 +30,7 @@ export class AppSettings {
 
     // UI settings
     public static ENABLE_BREADCRUMB = false;
+
+    // Release tracker
+    public static RELEASE_TRACKER_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1lU6Z8awouJ5siFIiu7XtZ-1c1VPYv5moa9wWMhZsBpQ/edit?usp=sharing';
 }

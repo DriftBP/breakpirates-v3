@@ -140,6 +140,7 @@
   "TOOLS": {
     "TITLE": "Tools",
     "BPM_COUNTER": "BPM counter",
+    "RELEASES": "Releases",
     "SOUNDBOARD": "Soundboard"
   },
   "BPM_COUNTER": {
@@ -150,6 +151,9 @@
     "TAP_ME": "Tap me or Enter key",
     "BPM": "BPM",
     "START_AGAIN": "Start again"
+  },
+  "RELEASES": {
+    "TITLE": "Releases"
   },
   "SOUNDBOARD": {
     "TITLE": "Rate My Takeaway soundboard"
