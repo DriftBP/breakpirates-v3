@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 
 @Component({
   selector: 'bp-progress-indicator',
@@ -11,11 +11,11 @@ export class ProgressIndicatorComponent {
 
   private strokeLength = 295.3;
 
-  progressStyle = '';
+  progressStyle: Signal<string>;
 
   constructor() {
-    effect(() => {
-      this.progressStyle = this.getProgressStyle(this.progress(), this.strokeLength);
+    this.progressStyle = computed(() => {
+      return this.getProgressStyle(this.progress(), this.strokeLength);
     });
   }
 
