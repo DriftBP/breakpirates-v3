@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 
 import { Video } from './models/video';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -10,7 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './video.component.html'
 })
 export class VideoComponent implements OnInit {
-  @Input() videos: Video[];
+  videos = input<Video[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigActive
