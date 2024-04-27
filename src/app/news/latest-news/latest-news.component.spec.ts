@@ -32,8 +32,8 @@ describe('LatestNewsComponent', () => {
   });
 
   it('should have at least one article', async () => {
-    component.news = [mockNews];
+    fixture.componentRef.setInput('news', [mockNews]);
 
-    expect(component.news.length).toBeGreaterThan(0);
+    expect(component.news().length).toBeGreaterThan(0);
   });
 });
