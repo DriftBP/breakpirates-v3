@@ -1,18 +1,18 @@
 @if (show !== undefined) {
   <div class="show-summary" itemscope itemtype="http://schema.org/MusicEvent">
     <div>
-      @if (displayDay) {
+      @if (displayDay()) {
         <div class="show-summary__day">
-          <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
+          <a [routerLink]="['/schedule',show().day_id]">{{ dayName() }}</a>
         </div>
       }
-      <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
+      <div class="show-summary__time">{{show().start_time | time}} - {{show().end_time | time}}</div>
 
       <meta itemprop="startDate" content="{{nextDate}}">
       <meta itemprop="endDate" content="{{endDate}}">
 
       @if (scheduleService.nowPlaying$ | async; as nowPlaying) {
-        @if (nowPlaying.id === show.id) {
+        @if (nowPlaying.id === show().id) {
           <div
             class="show-summary__now-live">
               {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
@@ -25,12 +25,12 @@
     </div>
     <div>
       <h3 class="show-summary__title" itemprop="name">
-        <a [routerLink]="['/schedule/shows',show.id]" itemprop="url">
-          {{show.title}}
+        <a [routerLink]="['/schedule/shows',show().id]" itemprop="url">
+          {{show().title}}
         </a>
       </h3>
 
-      <meta itemprop="description" content="{{show.description}}">
+      <meta itemprop="description" content="{{show().description}}">
 
       <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
         <meta itemprop="name" content="Break Pirates">
@@ -38,14 +38,14 @@
         <meta itemprop="address" content="UK">
       </div>
 
-      <bp-genre-list [genres]="show.genres"></bp-genre-list>
-      @if (show.hosts.length > 0) {
+      <bp-genre-list [genres]="show().genres"></bp-genre-list>
+      @if (show().hosts.length > 0) {
         {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
-        <bp-host-list [hosts]="show.hosts"></bp-host-list>
+        <bp-host-list [hosts]="show().hosts"></bp-host-list>
       }
     </div>
-    @if (showImage) {
-      <div class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
+    @if (showImage()) {
+      <div class="show-summary__image" [style]="'background-image:' + showImage() | safe:'style'"></div>
     }
   </div>
 }
