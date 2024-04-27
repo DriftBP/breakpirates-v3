@@ -33,7 +33,7 @@ export class HostDetailsComponent {
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.profile?.name,
+      name: this.profile()?.name,
       isActive: true
     });
 
