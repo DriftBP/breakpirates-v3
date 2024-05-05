@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Renderer2, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Renderer2, Inject, ChangeDetectionStrategy, input, Signal, computed } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -6,10 +6,10 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './twitter-widget.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TwitterWidgetComponent implements OnChanges {
-  @Input({ required: true }) user: string | null = null;
+export class TwitterWidgetComponent {
+  user = input.required<string>();
 
-  twitterWidgetUrl?: string;
+  twitterWidgetUrl: Signal<string>;
 
   constructor(
     private renderer2: Renderer2,
@@ -21,10 +21,10 @@ export class TwitterWidgetComponent implements OnChanges {
     script.charset = 'utf-8';
 
     this.renderer2.appendChild(this._document.body, script);
-  }
 
-  ngOnChanges(): void {
-    this.twitterWidgetUrl = `https://twitter.com/${this.user}?ref_src=twsrc%5Etfw`;
+    this.twitterWidgetUrl = computed(() => {
+      return `https://twitter.com/${this.user()}?ref_src=twsrc%5Etfw`;
+    });
   }
 
 }

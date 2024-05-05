@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 
 import { Host } from '../host';
 import { AppSettings } from '../../app-settings';
@@ -9,14 +9,14 @@ import { AppSettings } from '../../app-settings';
   styleUrls: ['./profile-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileButtonComponent implements OnChanges {
-  @Input({ required: true }) host?: Host;
+export class ProfileButtonComponent {
+  host = input.required<Host>();
 
-  imagePath?: string;
+  imagePath: Signal<string | undefined>;
 
-  ngOnChanges() {
-    if (this.host) {
-      this.imagePath = `url(${AppSettings.ASSET_PROFILE_IMAGE}${this.host.image})`;
-    }
+  constructor() {
+    this.imagePath = computed(() => {
+      return this.host()?.image ? `url(${AppSettings.ASSET_PROFILE_IMAGE}${this.host().image})` : undefined;
+    });
   }
 }

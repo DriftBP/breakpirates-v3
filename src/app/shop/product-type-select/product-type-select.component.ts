@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ProductType } from '../models/product-type';
 
 import { ProductTypeModel } from '../models/product-type-model';
@@ -9,6 +9,6 @@ import { ProductTypeModel } from '../models/product-type-model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductTypeSelectComponent {
-  @Input({ required: true }) types: ProductTypeModel[] = [];
-  @Input({ required: true }) activeType?: ProductType;
+  types = input.required<ProductTypeModel[]>();
+  activeType = input.required<ProductType>();
 }

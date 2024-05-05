@@ -27,7 +27,7 @@ describe('FeaturedNewsComponent', () => {
   });
 
   it('should populate the template', async () => {
-    component.article = mockArticleWithImage;
+    fixture.componentRef.setInput('article', mockArticleWithImage);
 
     fixture.detectChanges();
 
@@ -41,16 +41,16 @@ describe('FeaturedNewsComponent', () => {
   });
 
   it('should use specified image if set in article', async () => {
-    component.article = mockArticleWithImage;
+    fixture.componentRef.setInput('article', mockArticleWithImage);
 
-    const filename = component['getArticleImageFilename'](component.article);
+    const filename = component['getArticleImageFilename'](component.article());
     expect(filename).toEqual(mockArticleWithImage.image);
   });
 
   it('should use default image if not set in article', async () => {
-    component.article = mockArticleWithoutImage;
+    fixture.componentRef.setInput('article', mockArticleWithoutImage);
 
-    const filename = component['getArticleImageFilename'](component.article);
+    const filename = component['getArticleImageFilename'](component.article());
     expect(filename).toEqual(defaultImageFilename);
   });
 

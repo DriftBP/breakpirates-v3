@@ -1,25 +1,25 @@
-@if (profile) {
+@if (profile()) {
   <div itemscope itemtype="http://schema.org/Person">
     <article>
-      <h1 itemprop="name">{{profile.name}}</h1>
+      <h1 itemprop="name">{{profile().name}}</h1>
 
-      @if (profile.location) {
-        <p>{{ profile.location }}</p>
+      @if (profile().location) {
+        <p>{{ profile().location }}</p>
       }
 
-      @if (profile.biog) {
-        @if (profile.image) {
+      @if (profile().biog) {
+        @if (profile().image) {
           <img bpImageClick
               class="host-details__image"
-              [src]="imagePath + profile.image"
-              [alt]="profile.name"
+              [src]="imagePath + profile().image"
+              [alt]="profile().name"
               loading="lazy"
               itemprop="image">
         }
 
         <div class="host-details__biog">
           <bp-read-more>
-            <div [innerHTML]="profile.biog | safe: 'html'" itemprop="description"></div>
+            <div [innerHTML]="profile().biog | safe: 'html'" itemprop="description"></div>
           </bp-read-more>
         </div>
 
@@ -27,7 +27,7 @@
       }
     </article>
 
-    @if (profileService.profileShows(profile.id) | async; as shows) {
+    @if (profileService.profileShows(profile().id) | async; as shows) {
       @if (shows.length > 0) {
         <h2>{{'PROFILES.SHOWS' | translate}}</h2>
 
@@ -37,26 +37,26 @@
       }
     }
 
-    @if (hasValue(profile.mixcloud)) {
+    @if (hasValue(profile().mixcloud)) {
       @defer (on viewport) {
-        <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
-        <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
+        <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile().name} }}</h2>
+        <bp-mixcloud-widget [user]="profile().mixcloud"></bp-mixcloud-widget>
       } @placeholder {
         <div></div>
       }
     }
 
-    @if (hasValue(profile.twitter)) {
+    @if (hasValue(profile().twitter)) {
       @defer (on viewport) {
-        <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
-        <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>
+        <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile().name} }}</h2>
+        <bp-twitter-widget [user]="profile().twitter"></bp-twitter-widget>
       } @placeholder {
         <div></div>
       }
     }
 
     @defer (on viewport) {
-      @if (profileService.getProfileLinks(profile.id) | async; as links) {
+      @if (profileService.getProfileLinks(profile().id) | async; as links) {
         <hr class="host-details__divider">
 
         <bp-host-navigation [hostLinks]="links"></bp-host-navigation>

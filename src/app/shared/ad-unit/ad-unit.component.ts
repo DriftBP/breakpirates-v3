@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 
@@ -9,7 +9,7 @@ import { AppSettings } from '../../app-settings';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdUnitComponent {
-  @Input({ required: true }) adSlot: number | undefined;
+  adSlot = input.required<number>();
 
   adsenseClient = AppSettings.ADSENSE_CLIENT;
 }

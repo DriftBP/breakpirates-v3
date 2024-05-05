@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { defaultProductType } from './services/product-types';
   templateUrl: './shop.component.html'
 })
 export class ShopComponent implements OnInit, OnDestroy {
-  @Input() types: ProductTypeModel[] = [];
+  types = input.required<ProductTypeModel[]>();
 
   private childParamsSubscription?: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
@@ -56,16 +56,19 @@ export class ShopComponent implements OnInit, OnDestroy {
 
     if (type) {
       this.activetype = parseInt(type);
+      const types = this.types();
 
-      const typeName = this.getTypeName(this.activetype);
+      if (types) {
+        const typeName = this.getTypeName(this.activetype, types);
 
-      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-        shopConfigInactive,
-        {
-          name: typeName,
-          isActive: true
-        }
-      ]);
+        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+          shopConfigInactive,
+          {
+            name: typeName,
+            isActive: true
+          }
+        ]);
+      }
     } else {
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         shopConfigActive
@@ -83,8 +86,8 @@ export class ShopComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getTypeName(type: ProductType): string {
-    const activeType = this.types?.find(t => t.id === type);
+  private getTypeName(type: ProductType, types: ProductTypeModel[]): string {
+    const activeType = types.find(t => t.id === type);
 
     if (activeType) {
       return this.translateService.instant(activeType.name);

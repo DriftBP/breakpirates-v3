@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 
 import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
@@ -12,16 +12,8 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   styleUrls: ['./news-article.component.scss']
 })
 export class NewsArticleComponent {
-  @Input()
-  get article(): News | undefined {
-    return this._article;
-  }
-  set article(article: News | undefined) {
-    this._article = article;
-    this.setBreadcrumb();
-  }
+  article = input<News>();
 
-  private _article?: News;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigInactive
   ];
@@ -31,11 +23,19 @@ export class NewsArticleComponent {
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
+  ) {
+    effect(() => {
+      const article = this.article();
 
-  setBreadcrumb(): void {
+      if (article) {
+        this.setBreadcrumb(article);
+      }
+    });
+  }
+
+  setBreadcrumb(article: News): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.article?.title ?? '',
+      name: article.title,
       isActive: true
     });
 

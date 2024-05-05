@@ -1,4 +1,4 @@
-@if (video) {
+@if (video(); as video) {
   <h1>{{video.name}}</h1>
 
   <div [innerHTML]="video.code | safe: 'html'"></div>

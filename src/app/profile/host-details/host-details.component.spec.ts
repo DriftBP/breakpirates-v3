@@ -56,7 +56,7 @@ describe('HostDetailsComponent', () => {
 
   describe('Host images', () => {
     it('should not display an image if the host doesn`t have one defined', async () => {
-      component.profile = mockHost;
+      fixture.componentRef.setInput('profile', mockHost);
 
       fixture.detectChanges();
 
@@ -66,7 +66,7 @@ describe('HostDetailsComponent', () => {
     });
 
     it('should display an image if the host has one and a description defined', async () => {
-      component.profile = mockHostWithBiogAndImage;
+      fixture.componentRef.setInput('profile', mockHostWithBiogAndImage);
 
       fixture.detectChanges();
 

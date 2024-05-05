@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { Show } from '../models/show';
 
@@ -8,5 +8,5 @@ import { Show } from '../models/show';
   styleUrls: ['./day-schedule.component.scss']
 })
 export class DayScheduleComponent {
-  @Input() schedule: Show[] = [];
+  schedule = input<Show[]>();
 }

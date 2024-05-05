@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Genre } from '../../music/models/genre';
 import { SortOrder } from '../../shared/pipes/sort-order';
@@ -10,7 +10,7 @@ import { SortOrder } from '../../shared/pipes/sort-order';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreListComponent {
-  @Input({ required: true }) genres: Genre[] = [];
+  genres = input.required<Genre[]>();
 
   order = SortOrder.Ascending;
 }

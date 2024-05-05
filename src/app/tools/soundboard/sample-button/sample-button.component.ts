@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { faRetweet } from '@fortawesome/free-solid-svg-icons';
 
 import { SampleConfig } from '../sample-config';
@@ -9,13 +9,13 @@ import { SampleConfig } from '../sample-config';
   styleUrls: ['./sample-button.component.scss']
 })
 export class SampleButtonComponent {
-  @Input({ required: true }) config?: SampleConfig;
+  config = input.required<SampleConfig>();
 
   @Output() clicked = new EventEmitter<number>();
 
   faRetweet = faRetweet;
 
   onClick() {
-    this.clicked.emit(this.config?.id);
+    this.clicked.emit(this.config().id);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 
 import { Genre } from './models/genre';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -10,7 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './music.component.html'
 })
 export class MusicComponent implements OnInit {
-  @Input() genres: Genre[] = [];
+  genres = input<Genre[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigActive

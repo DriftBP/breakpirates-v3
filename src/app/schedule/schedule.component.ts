@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   templateUrl: './schedule.component.html'
 })
 export class ScheduleComponent implements OnDestroy {
-  @Input() days: Day[] = [];
+  days = input.required<Day[]>();
 
   private childParamsSubscription: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
@@ -48,16 +48,19 @@ export class ScheduleComponent implements OnDestroy {
 
     if (dayId) {
       this.activeDayId = parseInt(dayId) as WeekdayNumbers;
+      const days = this.days();
 
-      const dayName = this.getDayName(this.activeDayId);
+      if (days) {
+        const dayName = this.getDayName(this.activeDayId, days);
 
-      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-        scheduleConfigInactive,
-        {
-          name: dayName,
-          isActive: true
-        }
-      ]);
+        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+          scheduleConfigInactive,
+          {
+            name: dayName,
+            isActive: true
+          }
+        ]);
+      }
     } else {
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         scheduleConfigActive
@@ -75,8 +78,8 @@ export class ScheduleComponent implements OnDestroy {
     }
   }
 
-  private getDayName(activeDayId: number): string {
-    const activeDay = this.days?.find(day => day.id === activeDayId);
+  private getDayName(activeDayId: number, days: Day[]): string {
+    const activeDay = days.find(day => day.id === activeDayId);
 
     if (activeDay) {
       return activeDay.name;

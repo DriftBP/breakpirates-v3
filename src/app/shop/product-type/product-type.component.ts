@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'bp-product-type',
   templateUrl: './product-type.component.html'
 })
 export class ProductTypeComponent {
-  @Input() products: string[] = [];
+  products = input.required<string[]>();
 }
