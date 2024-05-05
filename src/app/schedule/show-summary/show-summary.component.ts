@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, effect, input } from '@angular/core';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../models/show';
@@ -13,14 +13,14 @@ import { ShowService } from '../services/show.service';
   styleUrls: ['./show-summary.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShowSummaryComponent implements OnChanges {
-  @Input({ required: true }) show: Show;
-  @Input() displayDay = false;
+export class ShowSummaryComponent {
+  show = input.required<Show>();
+  displayDay = input<boolean>(false);
 
-  dayName: string;
+  dayName: Signal<string>;
   nextDate: string;
   endDate: string;
-  showImage: string;
+  showImage: Signal<string>;
 
   faVolumeUp = faVolumeUp;
 
@@ -28,23 +28,23 @@ export class ShowSummaryComponent implements OnChanges {
     private readonly dayService: DayService,
     public readonly scheduleService: ScheduleService,
     private readonly showService: ShowService
-  ) { }
+  ) {
+    effect(() => {
+      if (this.show() !== undefined) {
+        const { startDate, endDate } = this.showService.getDates(this.show());
 
-  ngOnChanges() {
-    if (this.show !== undefined) {
-      if (this.displayDay) {
-        this.dayName = this.dayService.dayName(this.show.day_id);
+        this.nextDate = startDate.toISO();
+        this.endDate = endDate.toISO();
       }
+    });
 
-      const { startDate, endDate } = this.showService.getDates(this.show);
+    this.dayName = computed(() => {
+      return this.displayDay() ? this.dayService.dayName(this.show().day_id) : undefined;
+    });
 
-      this.nextDate = startDate.toISO();
-      this.endDate = endDate.toISO();
-
-      if (this.show.image) {
-        this.showImage = `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show.image})`;
-      }
-    }
+    this.showImage = computed(() => {
+      return this.show().image ? `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show().image})` : undefined;
+    });
   }
 
   scrollToPlayer() {

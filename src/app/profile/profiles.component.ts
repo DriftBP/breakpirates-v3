@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Host } from './host';
@@ -13,7 +13,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent implements OnInit {
-  @Input() profiles: Host[];
+  profiles = input<Host[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigActive

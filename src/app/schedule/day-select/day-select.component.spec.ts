@@ -26,7 +26,8 @@ describe('DaySelectComponent', () => {
   });
 
   it('should list days of the week', async () => {
-    component.days = [ mockDay ];
+    fixture.componentRef.setInput('days', [ mockDay ]);
+    fixture.componentRef.setInput('activeDayId', 1);
 
     fixture.detectChanges();
 
