@@ -1,9 +1,9 @@
 <nav>
   <ul class="nav nav-tabs">
-    @for (day of days; track day.id) {
+    @for (day of days(); track day.id) {
       <li class="nav-item">
         <a class="nav-link"
-            [bpActive]="day.id === activeDayId"
+            [bpActive]="day.id === activeDayId()"
             [routerLink]="['/schedule',day.id]">{{ day.name }}</a>
       </li>
     }

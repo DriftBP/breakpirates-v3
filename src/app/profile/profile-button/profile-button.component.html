@@ -1,13 +1,13 @@
 <div class="profile-button" itemscope itemtype="http://schema.org/Person">
-  <div class="profile-button__info-container" [ngClass]="{'profile-button__info-container--with-image': host.image}">
+  <div class="profile-button__info-container" [ngClass]="{'profile-button__info-container--with-image': host().image}">
     <h3 class="profile-button__name">
-      <a class="profile-button__link" [routerLink]="['/profiles',host.id]"  itemprop="url">
-        <span itemprop="name">{{host.name}}</span>
+      <a class="profile-button__link" [routerLink]="['/profiles',host().id]"  itemprop="url">
+        <span itemprop="name">{{host().name}}</span>
       </a>
     </h3>
-    <p class="profile-button__location">{{host.location}}</p>
+    <p class="profile-button__location">{{host().location}}</p>
   </div>
-  @if (host.image) {
-    <div class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'"></div>
+  @if (imagePath()) {
+    <div class="profile-button__image" [style]="'background-image:' + imagePath() | safe:'style'"></div>
   }
 </div>

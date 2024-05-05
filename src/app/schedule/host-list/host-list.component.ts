@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Host } from '../../profile/host';
@@ -11,7 +11,7 @@ import { SortOrder } from '../../shared/pipes/sort-order';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HostListComponent {
-  @Input({ required: true }) hosts: Host[];
+  hosts = input.required<Host[]>();
 
   order = SortOrder.Ascending;
   faHeadphonesAlt = faHeadphonesAlt;

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, effect } from '@angular/core';
 
 import { Host } from '../host';
 import { ProfileService } from '../services/profile.service';
@@ -13,18 +13,8 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   styleUrls: ['./host-details.component.scss']
 })
 export class HostDetailsComponent {
-  @Input()
-  get profile(): Host {
-    return this._profile;
-  }
-  set profile(profile: Host) {
-    if (profile) {
-      this._profile = profile;
-      this.setBreadcrumb();
-    }
-  }
+  profile = input<Host>();
 
-  private _profile: Host;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigInactive
   ];
@@ -35,11 +25,15 @@ export class HostDetailsComponent {
   constructor(
     public readonly profileService: ProfileService,
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
+  ) {
+    effect(() => {
+      this.setBreadcrumb();
+    });
+  }
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.profile?.name,
+      name: this.profile()?.name,
       isActive: true
     });
 

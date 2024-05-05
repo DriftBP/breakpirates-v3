@@ -1,7 +1,7 @@
-<h1>{{genre?.name}}</h1>
+<h1>{{genre()?.name}}</h1>
 
 <h2>{{'MUSIC.SHOWS_FEATURING_GENRE' | translate}}</h2>
 
-@for (show of shows; track show.id) {
+@for (show of shows(); track show.id) {
   <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
 }

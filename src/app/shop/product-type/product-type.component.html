@@ -1,5 +1,5 @@
-@if (products?.length > 0) {
-  <bp-product-listing [products]="products"></bp-product-listing>
+@if (products()?.length > 0) {
+  <bp-product-listing [products]="products()"></bp-product-listing>
 } @else {
   <p>No products found.</p>
 }

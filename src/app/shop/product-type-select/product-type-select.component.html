@@ -1,9 +1,9 @@
 <nav>
   <ul class="nav nav-tabs">
-    @for (type of types; track type.id) {
+    @for (type of types(); track type.id) {
       <li class="nav-item">
         <a class="nav-link"
-            [bpActive]="type.id === activeType"
+            [bpActive]="type.id === activeType()"
             [routerLink]="['/shop',type.id]">{{ type.name | translate }}</a>
       </li>
     }
