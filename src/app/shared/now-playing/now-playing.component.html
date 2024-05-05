@@ -6,9 +6,11 @@
               class="now-playing__show-info-image"
               [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
           @if (isLiveShow) {
-            <div class="now-playing__show-info-progress-container">
-              <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
-            </div>
+            @if (scheduleService.showProgress$ | async; as progress) {
+              <div class="now-playing__show-info-progress-container">
+                <bp-progress-indicator [progress]="progress"></bp-progress-indicator>
+              </div>
+            }
           }
         </div>
       }
