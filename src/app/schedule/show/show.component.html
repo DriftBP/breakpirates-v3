@@ -1,4 +1,4 @@
-@if (show) {
+@if (show()) {
   <div itemscope itemtype="http://schema.org/MusicEvent">
     <meta itemprop="startDate" content="{{nextDate}}">
     <meta itemprop="endDate" content="{{endDate}}">
@@ -10,41 +10,41 @@
     </div>
 
     <article>
-      <h1 itemprop="name">{{ show.title }}</h1>
+      <h1 itemprop="name">{{ show().title }}</h1>
 
       <p>
-        <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
-        <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
-        {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
+        <time [attr.datetime]="show().start_time | time">{{ show().start_time | time }}</time> -
+        <time [attr.datetime]="show().end_time | time">{{ show().end_time | time }}</time>
+        {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show().day_id]">{{ dayName() }}</a>
       </p>
-      @if (show.description) {
+      @if (show().description) {
         <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
-        @if (show.image) {
+        @if (show().image) {
           <img bpImageClick
               class="show__image"
-              [src]="imagePath + show.image"
-              [alt]="show.title"
+              [src]="imagePath + show().image"
+              [alt]="show().title"
               loading="lazy"
               itemprop="image">
         }
 
-        <p itemprop="description">{{ show.description }}</p>
+        <p itemprop="description">{{ show().description }}</p>
 
         <div class="show__clear"></div>
       }
     </article>
 
-    @if (show.genres.length > 0) {
+    @if (show().genres.length > 0) {
       <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
 
-      <bp-genre-list [genres]="show.genres"></bp-genre-list>
+      <bp-genre-list [genres]="show().genres"></bp-genre-list>
     }
 
-    @if (show.hosts.length > 0) {
+    @if (show().hosts.length > 0) {
       <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
 
-      <bp-host-list [hosts]="show.hosts"></bp-host-list>
+      <bp-host-list [hosts]="show().hosts"></bp-host-list>
     }
   </div>
 } @else {

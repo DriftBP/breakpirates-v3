@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { HostNavigation } from './host-navigation';
 
@@ -9,5 +9,5 @@ import { HostNavigation } from './host-navigation';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HostNavigationComponent {
-  @Input({ required: true }) hostLinks: HostNavigation;
+  hostLinks = input.required<HostNavigation>();
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, effect } from '@angular/core';
 
 import { Video } from '../models/video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -10,18 +10,8 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   templateUrl: './video-details.component.html'
 })
 export class VideoDetailsComponent {
-  @Input()
-  get video(): Video {
-    return this._video;
-  }
-  set video(video: Video) {
-    if (video) {
-      this._video = video;
-      this.setBreadcrumb();
-    }
-  }
+  video = input<Video>();
 
-  private _video: Video;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigInactive
   ];
@@ -29,11 +19,15 @@ export class VideoDetailsComponent {
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
+  ) {
+    effect(() => {
+      this.setBreadcrumb();
+    });
+  }
 
   setBreadcrumb(): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.video?.name,
+      name: this.video()?.name,
       isActive: true
     });
 

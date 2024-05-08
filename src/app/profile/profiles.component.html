@@ -15,7 +15,7 @@
 </button>
 
 <ul class="profile-list">
-  @for (profile of profiles | sortBy:order:'name'; track profile.id) {
+  @for (profile of profiles() | sortBy:order:'name'; track profile.id) {
     <li class="profile-list__list-item">
       <bp-profile-button [host]="profile"></bp-profile-button>
     </li>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -6,17 +6,17 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './mixcloud-widget.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MixcloudWidgetComponent implements OnChanges {
-  @Input({ required: true }) user: string;
+export class MixcloudWidgetComponent {
+  user = input.required<string>();
 
-  mixcloudWidgetUrl: SafeResourceUrl;
+  mixcloudWidgetUrl: Signal<SafeResourceUrl>;
 
-  constructor(private readonly sanitizer: DomSanitizer) {}
+  constructor(private readonly sanitizer: DomSanitizer) {
+    this.mixcloudWidgetUrl = computed(() => {
+      const url = `https://www.mixcloud.com/widget/follow/?u=%2F${this.user()}%2F`;
 
-  ngOnChanges(): void {
-    const url = `https://www.mixcloud.com/widget/follow/?u=%2F${this.user}%2F`;
-
-    this.mixcloudWidgetUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    });
   }
 
 }

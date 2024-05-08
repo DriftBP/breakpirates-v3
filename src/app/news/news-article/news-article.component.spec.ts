@@ -47,7 +47,7 @@ describe('NewsArticleComponent', () => {
 
   describe('News article images', () => {
     it('should not display an image if the article doesn`t have one defined', async () => {
-      component.article = mockArticleWithoutImage;
+      fixture.componentRef.setInput('article', mockArticleWithoutImage);
 
       fixture.detectChanges();
 
@@ -57,7 +57,7 @@ describe('NewsArticleComponent', () => {
     });
 
     it('should display an image if the article has one defined', async () => {
-      component.article = mockArticleWithImage;
+      fixture.componentRef.setInput('article', mockArticleWithImage);
 
       fixture.detectChanges();
 

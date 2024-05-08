@@ -1,6 +1,6 @@
 <h1>{{'NEWS.LATEST_NEWS' | translate}}</h1>
 
-<bp-latest-news [news]="latestNews"></bp-latest-news>
+<bp-latest-news [news]="latestNews()"></bp-latest-news>
 
 @if (!showMore) {
   <button
@@ -12,7 +12,7 @@
   <h2 class="news__other-news-header">{{'NEWS.OTHER_NEWS' | translate}}</h2>
 
   <ul class="list-unstyled">
-    @for (article of otherNews; track article.id) {
+    @for (article of otherNews(); track article.id) {
       <li>
         <span>{{unixTimeToStampToTime(article.date) | date: 'dd/MM/yyyy'}}</span> -
         <a [routerLink]="['/news',article.id]">{{article.title}}</a>

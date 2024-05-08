@@ -1,7 +1,7 @@
 @if (config) {
   <button class="sample-button" (click)="onClick()">
-    {{config.name}}
-    @if (config.loop) {
+    {{config().name}}
+    @if (config().loop) {
       <fa-icon [icon]="faRetweet"></fa-icon>
     }
   </button>
