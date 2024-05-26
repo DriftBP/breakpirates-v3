@@ -6,7 +6,7 @@ jobs:
   build:
     working_directory: ~/breakpirates-v3
     machine:
-      image: ubuntu-2204:2023.10.1
+      image: ubuntu-2204:2024.04.4
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
