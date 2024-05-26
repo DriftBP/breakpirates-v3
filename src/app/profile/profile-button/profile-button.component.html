@@ -7,7 +7,7 @@
     </h3>
     <p class="profile-button__location">{{host().location}}</p>
   </div>
-  @if (imagePath()) {
-    <div class="profile-button__image" [style]="'background-image:' + imagePath() | safe:'style'"></div>
+  @if (imagePath(); as imagePath) {
+    <div class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'"></div>
   }
 </div>
