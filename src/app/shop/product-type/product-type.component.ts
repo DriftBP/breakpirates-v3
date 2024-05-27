@@ -5,5 +5,5 @@ import { Component, input } from '@angular/core';
   templateUrl: './product-type.component.html'
 })
 export class ProductTypeComponent {
-  products = input<string[]>();
+  products = input.required<string[]>();
 }
