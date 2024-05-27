@@ -13,7 +13,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent implements OnInit {
-  profiles = input<Host[]>();
+  profiles = input.required<Host[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     profilesConfigActive
