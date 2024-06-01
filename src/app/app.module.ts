@@ -18,29 +18,35 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-@NgModule({ declarations: [
-        AppComponent,
-        PageTemplateComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        ObserversModule,
-        SharedModule,
-        BrowserAnimationsModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        FontAwesomeModule], providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: appInitializerFactory,
-            deps: [TranslateService, Injector],
-            multi: true
-        },
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+      AppComponent,
+      PageTemplateComponent
+  ],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ObserversModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
+    FontAwesomeModule
+  ],
+  providers: [
+    {
+        provide: APP_INITIALIZER,
+        useFactory: appInitializerFactory,
+        deps: [TranslateService, Injector],
+        multi: true
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+})
 export class AppModule { }
