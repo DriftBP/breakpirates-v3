@@ -37,7 +37,7 @@ describe('DonateComponent', () => {
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(0);
 
-    component.donateFormElement?.nativeElement.dispatchEvent(new Event('submit'));
+    component.donateFormElement().nativeElement.dispatchEvent(new Event('submit'));
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(1);
   });

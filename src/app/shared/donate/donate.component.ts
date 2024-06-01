@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, viewChild } from '@angular/core';
 
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 
@@ -7,7 +7,7 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
   templateUrl: './donate.component.html'
 })
 export class DonateComponent {
-  @ViewChild('donateForm') donateFormElement?: ElementRef;
+  donateFormElement = viewChild.required<ElementRef>('donateForm');
 
   constructor(
     private readonly googleAnalyticsService: GoogleAnalyticsService
