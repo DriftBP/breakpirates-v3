@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, viewChild } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
@@ -11,10 +11,10 @@ import { DialogService } from '../services/dialog/dialog.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit, OnDestroy {
-  @ViewChild('dialog') dialogElement: ElementRef;
-  @ViewChild('dialogContentWrapper') dialogContentWrapperElement: ElementRef;
-  @ViewChild('dialogContent') dialogContentElement: ElementRef;
-  @ViewChild('dialogTitle') dialogTitleElement: ElementRef;
+  dialogElement = viewChild.required<ElementRef>('dialog');
+  dialogContentWrapperElement = viewChild.required<ElementRef>('dialogContentWrapper');
+  dialogContentElement = viewChild.required<ElementRef>('dialogContent');
+  dialogTitleElement = viewChild.required<ElementRef>('dialogTitle') ;
 
   private showSubscription: Subscription;
 
@@ -22,7 +22,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event'])
   clickOut(event: MouseEvent) {
-    if (!this.dialogContentWrapperElement.nativeElement.contains(event.target)) {
+    if (!this.dialogContentWrapperElement().nativeElement.contains(event.target)) {
       this.close();
     }
   }
@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   ) { }
 
   private setContent(content: string) {
-    this.setInnerHtml(this.dialogContentElement, content);
+    this.setInnerHtml(this.dialogContentElement(), content);
   }
 
   private setInnerHtml(element: ElementRef, content: string) {
@@ -41,7 +41,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   private setTitle(title: string) {
-    this.setInnerHtml(this.dialogTitleElement, title);
+    this.setInnerHtml(this.dialogTitleElement(), title);
   }
 
   private showModal(config: IDialogConfig) {
@@ -50,7 +50,7 @@ export class DialogComponent implements OnInit, OnDestroy {
       if (config.title) {
         this.setTitle(config.title);
       }
-      this.dialogElement.nativeElement.showModal();
+      this.dialogElement().nativeElement.showModal();
     }
   }
 
@@ -61,8 +61,8 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    if (this.dialogElement.nativeElement.close) {
-      this.dialogElement.nativeElement.close();
+    if (this.dialogElement().nativeElement.close) {
+      this.dialogElement().nativeElement.close();
     }
   }
 
