@@ -20,8 +20,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-      AppComponent,
-      PageTemplateComponent
+    AppComponent,
+    PageTemplateComponent
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -31,20 +31,20 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
     }),
     FontAwesomeModule
   ],
   providers: [
     {
-        provide: APP_INITIALIZER,
-        useFactory: appInitializerFactory,
-        deps: [TranslateService, Injector],
-        multi: true
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFactory,
+      deps: [TranslateService, Injector],
+      multi: true
     },
     provideHttpClient(withInterceptorsFromDi())
   ]
