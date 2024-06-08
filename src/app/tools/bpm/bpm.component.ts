@@ -6,7 +6,7 @@ import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { DataCollectionStatus } from './data-collection-status';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
-class DataPoint {
+export interface DataPoint {
   time: DateTime;
 }
 
@@ -24,10 +24,10 @@ export class BpmComponent implements OnInit {
     }
   ];
 
-  message: DataCollectionStatus;
+  message = DataCollectionStatus.Empty;
   statuses = DataCollectionStatus;
-  bpm: number;
-  beatBuffer: DataPoint[];
+  bpm: number = 0;
+  beatBuffer: DataPoint[] = [];
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
