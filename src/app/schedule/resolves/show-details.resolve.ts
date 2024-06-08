@@ -13,6 +13,6 @@ export class ShowDetailsResolve  {
   constructor(private scheduleService: ScheduleService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.scheduleService.show(parseInt(route.paramMap.get('id'), 10));
+    return this.scheduleService.show(parseInt(route.paramMap.get('id') ?? '', 10));
   }
 }

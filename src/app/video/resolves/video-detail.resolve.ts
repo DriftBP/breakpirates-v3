@@ -13,6 +13,6 @@ export class VideoDetailResolve  {
   constructor(private videoService: VideoService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.videoService.video(parseInt(route.paramMap.get('id'), 10));
+    return this.videoService.video(parseInt(route.paramMap.get('id') ?? '', 10));
   }
 }
