@@ -25,13 +25,17 @@ export class NewsArticleComponent {
     private readonly breadcrumbService: BreadcrumbService
   ) {
     effect(() => {
-      this.setBreadcrumb();
+      const article = this.article();
+
+      if (article) {
+        this.setBreadcrumb(article);
+      }
     });
   }
 
-  setBreadcrumb(): void {
+  setBreadcrumb(article: News): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.article()?.title,
+      name: article.title,
       isActive: true
     });
 

@@ -21,13 +21,17 @@ export class VideoDetailsComponent {
     private readonly breadcrumbService: BreadcrumbService
   ) {
     effect(() => {
-      this.setBreadcrumb();
+      const video = this.video();
+
+      if (video) {
+        this.setBreadcrumb(video);
+      }
     });
   }
 
-  setBreadcrumb(): void {
+  setBreadcrumb(video: Video): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.video()?.name,
+      name: video.name,
       isActive: true
     });
 
