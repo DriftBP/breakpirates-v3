@@ -32,13 +32,15 @@ export class ShowComponent {
     private readonly breadcrumbService: BreadcrumbService
   ) {
     effect(() => {
-      if (this.show()) {
-        const { startDate, endDate } = this.showService.getDates(this.show());
+      const show = this.show();
+
+      if (show) {
+        const { startDate, endDate } = this.showService.getDates(show);
 
         this.nextDate = startDate.toISO();
         this.endDate = endDate.toISO();
 
-        this.setBreadcrumb();
+        this.setBreadcrumb(show);
       }
     });
 
@@ -47,9 +49,9 @@ export class ShowComponent {
     });
   }
 
-  setBreadcrumb(): void {
+  setBreadcrumb(show: Show): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.show().title,
+      name: show.title,
       isActive: true
     });
 
