@@ -81,11 +81,13 @@ export class BpmComponent implements OnInit {
       const last = dataPoints.slice(dataPoints.length - 1, dataPoints.length).shift();
 
       // Difference in milliseconds
-      const diff = last.time.diff(first.time);
+      if (first && last) {
+        const diff = last.time.diff(first.time);
 
-      const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
+        const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
 
-      return Math.round(bpmUnrounded * 10) / 10;
+        return Math.round(bpmUnrounded * 10) / 10;
+      }
     }
 
     return 0;
