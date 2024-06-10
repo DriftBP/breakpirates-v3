@@ -11,10 +11,10 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
   contentContainerElement = viewChild.required<ElementRef>('contentContainer');
 
-  contentObserverSubscription: Subscription
+  contentObserverSubscription?: Subscription
 
-  enableShowMore: boolean;
-  showMore: boolean;
+  enableShowMore = false;
+  showMore = false;
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
