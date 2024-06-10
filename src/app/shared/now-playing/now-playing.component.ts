@@ -14,7 +14,7 @@ import { SortOrder } from '../pipes/sort-order';
 })
 export class NowPlayingComponent implements OnDestroy {
 
-  private nowPlayingSubscription: Subscription;
+  private nowPlayingSubscription?: Subscription;
 
   nowPlaying?: Show | null;
   nowPlayingImage = '';

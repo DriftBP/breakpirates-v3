@@ -13,8 +13,8 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
 
   contentObserverSubscription?: Subscription
 
-  enableShowMore: boolean = false;
-  showMore: boolean = false;
+  enableShowMore = false;
+  showMore = false;
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;

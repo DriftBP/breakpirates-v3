@@ -87,8 +87,6 @@ export class BpmComponent implements OnInit {
         const bpmUnrounded = (millisecondsInMinute / diff.milliseconds) * (this.maxDataPoints - 1);
 
         return Math.round(bpmUnrounded * 10) / 10;
-      } else {
-        return 0;
       }
     }
 
