@@ -44,7 +44,7 @@ export class HostDetailsComponent {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
-  hasValue(value: string): boolean {
+  hasValue(value: string | null): boolean {
     return value !== null && value !== '';
   }
 
