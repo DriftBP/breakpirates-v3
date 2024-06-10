@@ -10,7 +10,7 @@ interface NavigatorWakeLock extends Navigator {
 @Injectable()
 export class ScreenService {
   private _canPreventSleep: boolean;
-  private wakeLock = null;
+  private wakeLock: any = null;
 
   constructor() {
     // Screen Wake Lock API is only available when served over HTTPS
