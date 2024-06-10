@@ -17,6 +17,14 @@ const host3: Host = { ...mockHost, id: 3, name: 'Oliver' };
 const host4: Host = { ...mockHost, id: 5, name: 'Jon' };
 const host5: Host = { ...mockHost, id: 2, name: 'Dan' };
 
+const hosts: Host[] = [
+  host1,
+  host2,
+  host3,
+  host4,
+  host5
+];
+
 describe('SortByPipe', () => {
   let pipe: SortByPipe;
 
