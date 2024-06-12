@@ -24,15 +24,17 @@ export class GenreComponent {
     private readonly breadcrumbService: BreadcrumbService
   ) {
     effect(() => {
-      if (this.genre()) {
-        this.setBreadcrumb();
+      const genre = this.genre();
+
+      if (genre) {
+        this.setBreadcrumb(genre);
       }
     });
   }
 
-  setBreadcrumb(): void {
+  setBreadcrumb(genre: Genre): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.genre().name,
+      name: genre.name,
       isActive: true
     });
 

@@ -37,7 +37,7 @@
       }
     }
 
-    @if (hasValue(profile.mixcloud)) {
+    @if (profile.mixcloud && hasValue(profile.mixcloud)) {
       @defer (on viewport) {
         <h2>{{'PROFILES.LISTEN_ON_MIXCLOUD' | translate: {name: profile.name} }}</h2>
         <bp-mixcloud-widget [user]="profile.mixcloud"></bp-mixcloud-widget>
@@ -46,7 +46,7 @@
       }
     }
 
-    @if (hasValue(profile.twitter)) {
+    @if (profile.twitter && hasValue(profile.twitter)) {
       @defer (on viewport) {
         <h2>{{'PROFILES.FOLLOW_ON_TWITTER' | translate: {name: profile.name} }}</h2>
         <bp-twitter-widget [user]="profile.twitter"></bp-twitter-widget>

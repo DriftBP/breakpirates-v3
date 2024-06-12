@@ -14,10 +14,10 @@ import { SortOrder } from '../pipes/sort-order';
 })
 export class NowPlayingComponent implements OnInit, OnDestroy {
 
-  private nowPlayingSubscription: Subscription;
+  private nowPlayingSubscription?: Subscription;
 
   nowPlaying: Show;
-  nowPlayingImage: string;
+  nowPlayingImage = '';
   isLiveShow = false;
   showRadioPlayer = false;
 

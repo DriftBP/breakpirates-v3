@@ -23,6 +23,6 @@ export class DayService {
   dayName(dayId: number): string {
     const day = this.daysOfWeek.find((d: Day) => d.id === dayId);
 
-    return day?.name;
+    return day?.name ?? '';
   }
 }

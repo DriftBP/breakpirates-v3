@@ -18,7 +18,7 @@ import { defaultProductType } from './services/product-types';
 export class ShopComponent implements OnInit, OnDestroy {
   types = input.required<ProductTypeModel[]>();
 
-  private childParamsSubscription: Subscription;
+  private childParamsSubscription?: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
   private defaultType = defaultProductType;

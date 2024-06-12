@@ -27,11 +27,15 @@ export class NewsComponent implements OnInit {
     private readonly breadcrumbService: BreadcrumbService
   ) {
     this.latestNews = computed(() => {
-      return Array.isArray(this.news()) ? this.news().slice(0, this.latestNewsItems) : [];
+      const news = this.news();
+
+      return Array.isArray(news) ? news.slice(0, this.latestNewsItems) : [];
     });
 
     this.otherNews = computed(() => {
-      return Array.isArray(this.news()) ? this.news().slice(this.latestNewsItems) : [];
+      const news = this.news();
+
+      return Array.isArray(news) ? news.slice(this.latestNewsItems) : [];
     });
   }
 
