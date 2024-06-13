@@ -15,7 +15,7 @@
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "^18.13.0 || ^20.9.0"
   },
   "private": true,
   "dependencies": {
