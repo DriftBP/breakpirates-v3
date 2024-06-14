@@ -41,13 +41,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private readonly breadcrumbService: BreadcrumbService,
     private readonly sanitizer: DomSanitizer,
     private readonly screenService: ScreenService
-  ) {}
-
-  ngOnInit() {
+  ) {
     const url = `https://thelounge.hostco.de/?join=${this.ircChannel}`;
 
     this.chatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
+  ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen;

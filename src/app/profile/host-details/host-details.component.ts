@@ -27,20 +27,24 @@ export class HostDetailsComponent {
     private readonly breadcrumbService: BreadcrumbService
   ) {
     effect(() => {
-      this.setBreadcrumb();
+      const profile = this.profile();
+
+      if (profile) {
+        this.setBreadcrumb(profile);
+      }
     });
   }
 
-  setBreadcrumb(): void {
+  setBreadcrumb(profile: Host): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.profile()?.name,
+      name: profile.name,
       isActive: true
     });
 
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
-  hasValue(value: string): boolean {
+  hasValue(value: string | null): boolean {
     return value !== null && value !== '';
   }
 

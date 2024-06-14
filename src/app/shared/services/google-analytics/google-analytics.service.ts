@@ -18,7 +18,7 @@ export class GoogleAnalyticsService {
     eventName: string,
     eventCategory: string,
     eventLabel: string,
-    eventValue: number = null) {
+    eventValue: number | null = null) {
       gtag('event', eventName, {
         event_category: eventCategory,
         event_label: eventLabel,
