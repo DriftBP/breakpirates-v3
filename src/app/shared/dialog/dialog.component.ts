@@ -16,7 +16,7 @@ export class DialogComponent implements OnDestroy {
   dialogContentElement = viewChild.required<ElementRef>('dialogContent');
   dialogTitleElement = viewChild.required<ElementRef>('dialogTitle') ;
 
-  private showSubscription: Subscription;
+  private showSubscription?: Subscription;
 
   faTimes = faTimes
 

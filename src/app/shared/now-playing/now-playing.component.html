@@ -6,21 +6,23 @@
               class="now-playing__show-info-image"
               [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
           @if (isLiveShow) {
-            <div class="now-playing__show-info-progress-container">
-              <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
-            </div>
+            @if (scheduleService.showProgress$ | async; as progress) {
+              <div class="now-playing__show-info-progress-container">
+                <bp-progress-indicator [progress]="progress"></bp-progress-indicator>
+              </div>
+            }
           }
         </div>
       }
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
           {{'NOW_PLAYING.ON_AIR' | translate}}:
-          @if (isLiveShow) {
+          @if (isLiveShow && nowPlaying) {
             {{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}
           }
         </div>
 
-        @if (isLiveShow) {
+        @if (isLiveShow && nowPlaying) {
           <div class="now-playing__show-info-name" [title]="nowPlaying.title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
           </div>

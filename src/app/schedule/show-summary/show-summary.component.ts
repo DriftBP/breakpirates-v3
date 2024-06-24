@@ -17,10 +17,10 @@ export class ShowSummaryComponent {
   show = input.required<Show>();
   displayDay = input<boolean>(false);
 
-  dayName: Signal<string>;
-  nextDate: string;
-  endDate: string;
-  showImage: Signal<string>;
+  dayName: Signal<string | undefined>;
+  nextDate: string | undefined | null;
+  endDate: string | undefined | null;
+  showImage: Signal<string | undefined>;
 
   faVolumeUp = faVolumeUp;
 

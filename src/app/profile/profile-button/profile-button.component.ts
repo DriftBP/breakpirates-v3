@@ -12,7 +12,7 @@ import { AppSettings } from '../../app-settings';
 export class ProfileButtonComponent {
   host = input.required<Host>();
 
-  imagePath: Signal<string>;
+  imagePath: Signal<string | undefined>;
 
   constructor() {
     this.imagePath = computed(() => {

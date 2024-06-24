@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,11 +12,11 @@ import { SortOrder } from '../pipes/sort-order';
   templateUrl: './now-playing.component.html',
   styleUrls: ['./now-playing.component.scss']
 })
-export class NowPlayingComponent implements OnInit, OnDestroy {
+export class NowPlayingComponent implements OnDestroy {
 
   private nowPlayingSubscription?: Subscription;
 
-  nowPlaying: Show;
+  nowPlaying?: Show | null;
   nowPlayingImage = '';
   isLiveShow = false;
   showRadioPlayer = false;
@@ -30,15 +30,13 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   ) {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
-  }
 
-  ngOnInit() {
     this.nowPlayingSubscription = this.scheduleService.nowPlaying$.subscribe(nowPlaying => {
       this.nowPlaying = nowPlaying;
 
-      let imageFilename: string;
+      let imageFilename: string | undefined;
 
-      if (nowPlaying?.id !== undefined) {
+      if (nowPlaying?.id) {
         this.isLiveShow = true;
 
         if (nowPlaying.image) {
@@ -63,7 +61,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     const url = `http://${hostname}${port}/player`;
     const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=143`;
 
-    window.open(url, 'player', params).focus();
+    window.open(url, 'player', params)?.focus();
   }
 
   ngOnDestroy() {
