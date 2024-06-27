@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit, computed, Signal } from '@angular/core';
 import {
   Event,
   Router,
@@ -20,11 +20,10 @@ import { AppSettings } from './app-settings';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @HostBinding('attr.data-theme') get theme() { return this.currentTheme; }
+  @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }
 
   private eventsSubscription: Subscription;
-  private themeSubscription: Subscription;
-  private currentTheme?: Theme;
+  private currentTheme: Signal<Theme>;
 
   loading: boolean = false;
 
@@ -36,8 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private themeService: ThemeService
   ) {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
-    this.themeSubscription = this.themeService.currentTheme$.subscribe(theme => {
-      return this.currentTheme = theme
+    this.currentTheme = computed(() => {
+      return this.themeService.currentTheme();
     });
   }
 
@@ -84,10 +83,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.eventsSubscription) {
       this.eventsSubscription.unsubscribe();
-    }
-
-    if (this.themeSubscription) {
-      this.themeSubscription.unsubscribe();
     }
   }
 }

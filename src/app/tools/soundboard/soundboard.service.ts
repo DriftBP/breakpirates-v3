@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 import { SampleConfig } from './sample-config';
@@ -7,13 +6,12 @@ import { SampleConfig } from './sample-config';
 @Injectable()
 export class SoundboardService {
   private sounds: { [id: number]: HTMLAudioElement } = {};
-  private _isLoaded: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  public readonly isLoaded$: Observable<boolean> = this._isLoaded.asObservable();
+  public readonly isLoaded = signal<boolean>(false)
 
   initialise(baseDir: string, configs: SampleConfig[]) {
     let samplesLoaded = 0;
-    this._isLoaded.next(false);
+    this.isLoaded.set(false);
 
     configs.forEach(c => {
       let audio = new Audio(`${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${c.file}`);
@@ -25,7 +23,7 @@ export class SoundboardService {
         samplesLoaded++;
 
         if (samplesLoaded == configs.length) {
-          this._isLoaded.next(true);
+          this.isLoaded.set(true);
         }
       }, false);
 

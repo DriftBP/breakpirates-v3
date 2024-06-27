@@ -60,6 +60,5 @@ describe('AppComponent', () => {
     component.ngOnDestroy();
 
     expect(component['eventsSubscription'].closed).toEqual(true);
-    expect(component['themeSubscription'].closed).toEqual(true);
   });
 });

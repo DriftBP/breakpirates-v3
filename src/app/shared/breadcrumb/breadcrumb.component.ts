@@ -1,6 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Signal, computed, effect } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
@@ -12,11 +11,9 @@ import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
   selector: 'bp-breadcrumb',
   templateUrl: './breadcrumb.component.html'
 })
-export class BreadcrumbComponent implements OnDestroy {
-  private breadcrumbSubscription: Subscription;
-
+export class BreadcrumbComponent {
   enabled = AppSettings.ENABLE_BREADCRUMB;
-  configItems: BreadcrumbConfigItem[] = [];
+  configItems: Signal<BreadcrumbConfigItem[]>;
 
   constructor(
     private readonly titleService: Title,
@@ -24,30 +21,28 @@ export class BreadcrumbComponent implements OnDestroy {
     private readonly breadcrumbService: BreadcrumbService,
     private readonly meta: Meta
   ) {
-    this.breadcrumbSubscription = this.breadcrumbService.breadcrumb$.subscribe(config => {
+    this.configItems = computed(() => {
+      var config = this.breadcrumbService.breadcrumb();
+
       if (!config) {
         config = [];
       }
 
       if (this.isHome(config)) {
-        this.configItems = [homeConfigActive].concat(config);
+        return [homeConfigActive].concat(config);
       } else {
-        this.configItems = [homeConfigInactive].concat(config);
+        return [homeConfigInactive].concat(config);
       }
+    });
 
+    effect(() => {
       // Set page title to the translated value of the last breadcrumb item
-      const activeItem = this.getActiveItem(this.configItems);
+      const activeItem = this.getActiveItem(this.configItems());
 
       if (activeItem) {
         this.setTitle(activeItem);
       }
     });
-  }
-
-  ngOnDestroy() {
-    if (this.breadcrumbSubscription) {
-      this.breadcrumbSubscription.unsubscribe();
-    }
   }
 
   private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem | undefined {

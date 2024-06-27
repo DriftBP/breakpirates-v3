@@ -1,3 +1,5 @@
+import { Signal, computed } from '@angular/core';
+
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { SampleConfig } from './sample-config';
@@ -9,19 +11,19 @@ export abstract class SoundboardBase {
 
   imagePath: string = '';
   configs: SampleConfig[] = [];
-  loaded = false;
+  loaded: Signal<boolean>;
 
   constructor(
     readonly breadcrumbService: BreadcrumbService,
     readonly soundboardService: SoundboardService
-  ) {}
+  ) {
+    this.loaded = computed(() => this.soundboardService.isLoaded());
+  }
 
   initialise(baseDir: string, image: string, sampleConfigs: SampleConfig[]):void {
     this.imagePath = `url('${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${image}')`;
     this.configs = sampleConfigs;
     this.soundboardService.initialise(baseDir, sampleConfigs);
-
-    this.soundboardService.isLoaded$.subscribe((loaded) => this.loaded = loaded);
   }
 
   onButtonClick(id: number) {
