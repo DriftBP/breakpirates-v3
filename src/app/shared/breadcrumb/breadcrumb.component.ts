@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,20 +12,18 @@ import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
   selector: 'bp-breadcrumb',
   templateUrl: './breadcrumb.component.html'
 })
-export class BreadcrumbComponent implements OnInit, OnDestroy {
+export class BreadcrumbComponent implements OnDestroy {
   private breadcrumbSubscription: Subscription;
 
   enabled = AppSettings.ENABLE_BREADCRUMB;
-  configItems: BreadcrumbConfigItem[];
+  configItems: BreadcrumbConfigItem[] = [];
 
   constructor(
     private readonly titleService: Title,
     private readonly translateService: TranslateService,
     private readonly breadcrumbService: BreadcrumbService,
     private readonly meta: Meta
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.breadcrumbSubscription = this.breadcrumbService.breadcrumb$.subscribe(config => {
       if (!config) {
         config = [];
@@ -41,14 +39,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
       const activeItem = this.getActiveItem(this.configItems);
 
       if (activeItem) {
-        this.translateService.get(activeItem.name)
-          .subscribe(t => {
-            var title = `${t} : Break Pirates - Live Pirate Style Radio`;
-
-            this.titleService.setTitle(title);
-            this.meta.updateTag({ property: 'og:title', content: title });
-            this.meta.updateTag({ name: 'twitter:title', content: title });
-          });
+        this.setTitle(activeItem);
       }
     });
   }
@@ -59,11 +50,22 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem {
+  private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem | undefined {
     return configItems.find((i: BreadcrumbConfigItem) => i.isActive);
   }
 
   private isHome(config: BreadcrumbConfigItem[]): boolean {
     return config && config.length === 0;
+  }
+
+  private setTitle(activeItem: BreadcrumbConfigItem): void {
+    this.translateService.get(activeItem.name)
+      .subscribe(t => {
+        var title = `${t} : Break Pirates - Live Pirate Style Radio`;
+
+        this.titleService.setTitle(title);
+        this.meta.updateTag({ property: 'og:title', content: title });
+        this.meta.updateTag({ name: 'twitter:title', content: title });
+      });
   }
 }
