@@ -1,5 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Signal, computed } from '@angular/core';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../../app-settings';
@@ -16,12 +15,9 @@ interface ExternalLink {
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnDestroy {
-
-  private collapsedSubscription: Subscription;
-
+export class NavigationComponent {
   archiveUrl: string;
-  isCollapsed: boolean = false;
+  isCollapsed: Signal<boolean>;
   assetRoot = AppSettings.ASSET_ROOT;
   externalLinks: ExternalLink[] = [
     {
@@ -61,17 +57,11 @@ export class NavigationComponent implements OnDestroy {
     private readonly googleAnalyticsService: GoogleAnalyticsService
   ) {
     this.archiveUrl = AppSettings.MIXCLOUD_URL;
-    this.collapsedSubscription = this.navigationService.isCollapsed$.subscribe(isCollapsed => this.isCollapsed = isCollapsed);
-  }
-
-  ngOnDestroy() {
-    if (this.collapsedSubscription) {
-      this.collapsedSubscription.unsubscribe();
-    }
+    this.isCollapsed = computed(() => this.navigationService.isCollapsed());
   }
 
   toggleIsCollapsed() {
-    this.navigationService.setCollapsed(!this.isCollapsed);
+    this.navigationService.setCollapsed(!this.isCollapsed());
   }
 
   onTuneInClick(option: string) {
