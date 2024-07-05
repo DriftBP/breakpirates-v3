@@ -1,6 +1,5 @@
-import { Component, ElementRef, HostListener, OnDestroy, Renderer2, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, effect, viewChild } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
 
 import { IDialogConfig } from '../services/dialog/dialog-config';
 import { DialogService } from '../services/dialog/dialog.service';
@@ -10,13 +9,11 @@ import { DialogService } from '../services/dialog/dialog.service';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent implements OnDestroy {
+export class DialogComponent {
   dialogElement = viewChild.required<ElementRef>('dialog');
   dialogContentWrapperElement = viewChild.required<ElementRef>('dialogContentWrapper');
   dialogContentElement = viewChild.required<ElementRef>('dialogContent');
   dialogTitleElement = viewChild.required<ElementRef>('dialogTitle') ;
-
-  private showSubscription?: Subscription;
 
   faTimes = faTimes
 
@@ -31,8 +28,12 @@ export class DialogComponent implements OnDestroy {
     private readonly dialogService: DialogService,
     private readonly renderer: Renderer2
   ) {
-    this.showSubscription = this.dialogService.show.subscribe(config => {
-      this.showModal(config);
+    effect(() => {
+      const config = this.dialogService.show();
+
+      if (config) {
+        this.showModal(config);
+      }
     });
   }
 
@@ -63,11 +64,4 @@ export class DialogComponent implements OnDestroy {
       this.dialogElement().nativeElement.close();
     }
   }
-
-  ngOnDestroy() {
-    if (this.showSubscription) {
-      this.showSubscription.unsubscribe();
-    }
-  }
-
 }

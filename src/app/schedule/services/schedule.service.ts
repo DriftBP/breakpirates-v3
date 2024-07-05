@@ -1,6 +1,5 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription, Observable, timer } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { Injectable, OnDestroy, signal } from '@angular/core';
+import { Subscription, Observable, timer } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Show } from '../models/show';
@@ -11,11 +10,8 @@ import { ShowService } from './show.service';
 
 @Injectable()
 export class ScheduleService implements OnDestroy {
-  private _nowPlaying: BehaviorSubject<Show | null> = new BehaviorSubject<Show | null>(null);
-  private _showProgress: BehaviorSubject<number> = new BehaviorSubject(0);
-
-  public readonly nowPlaying$: Observable<Show | null> = this._nowPlaying.asObservable().pipe(distinctUntilChanged());
-  public readonly showProgress$: Observable<number> = this._showProgress.asObservable();
+  public readonly nowPlaying = signal<Show | null>(null);
+  public readonly showProgress = signal<number>(0)
 
   private nowPlayingTimerSubscription: Subscription;
   private nowPlayingSubscription?: Subscription;
@@ -26,8 +22,8 @@ export class ScheduleService implements OnDestroy {
   ) {
     this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
       this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => {
-        this._nowPlaying.next(nowPlaying);
-        this._showProgress.next(this.showService.getShowProgress(nowPlaying));
+        this.nowPlaying.set(nowPlaying);
+        this.showProgress.set(this.showService.getShowProgress(nowPlaying));
       });
     });
   }

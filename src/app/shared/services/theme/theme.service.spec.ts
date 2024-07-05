@@ -1,3 +1,4 @@
+import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { ThemeService } from './theme.service';
@@ -20,11 +21,7 @@ describe('ThemeService', () => {
   });
 
   it('should provide light theme as default theme', () => {
-    let theme: Theme | undefined;
-
-    service.currentTheme$.subscribe(currentTheme => {
-      theme = currentTheme;
-    });
+    let theme: Theme = service.currentTheme();
 
     expect(theme).toBe(Theme.Light);
   });
@@ -38,19 +35,17 @@ describe('ThemeService', () => {
   });
 
   it('should emit theme after theme is set', () => {
-    let theme: Theme | undefined;
-
-    service.currentTheme$.subscribe(currentTheme => {
-      theme = currentTheme;
+    let theme = computed(() => {
+      return service.currentTheme();
     });
 
     service.setThemeSetting(ThemeSetting.Light);
 
-    expect(theme).toBe(Theme.Light);
+    expect(theme()).toBe(Theme.Light);
 
     service.setThemeSetting(ThemeSetting.Dark);
 
-    expect(theme).toBe(Theme.Dark);
+    expect(theme()).toBe(Theme.Dark);
   });
 
   it('should save selected theme setting to local storage', () => {

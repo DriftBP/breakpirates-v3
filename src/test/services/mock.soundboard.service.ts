@@ -1,6 +1,6 @@
-import { from } from "rxjs";
+import { signal } from "@angular/core";
 
 export const MockSoundboardService = {
   initialise: jest.fn(),
-  isLoaded$: from([false]),
+  isLoaded: signal(false),
 };
