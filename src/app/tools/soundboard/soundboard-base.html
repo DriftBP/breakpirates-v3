@@ -1,6 +1,6 @@
 <h1>{{'SOUNDBOARD.TITLE' | translate}}</h1>
 
-@if (loaded) {
+@if (loaded()) {
   <div class="soundboard__container" [style]="'background-image:' + imagePath | safe:'style'">
     @for (config of configs; track config.id) {
       <bp-sample-button [config]="config" (clicked)="onButtonClick($event)"></bp-sample-button>
