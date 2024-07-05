@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, Signal } from '@angular/core';
+import { Component, computed, Signal } from '@angular/core';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../../schedule/models/show';
@@ -11,8 +11,8 @@ import { SortOrder } from '../pipes/sort-order';
   templateUrl: './now-playing.component.html',
   styleUrls: ['./now-playing.component.scss']
 })
-export class NowPlayingComponent implements OnInit {
-  nowPlaying: Signal<Show>;
+export class NowPlayingComponent {
+  nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
   showRadioPlayer = false;
@@ -27,7 +27,6 @@ export class NowPlayingComponent implements OnInit {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
 
-  ngOnInit() {
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
     });
