@@ -36,11 +36,7 @@ export class NowPlayingComponent implements OnInit {
     this.isLiveShow = computed(() => {
       const nowPlaying = this.scheduleService.nowPlaying();
 
-      if (nowPlaying?.id !== undefined) {
-        return true;
-      } else {
-        return false;
-      }
+      return nowPlaying?.id !== undefined;
     });
 
     this.nowPlayingImage = computed(() => {
