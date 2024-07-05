@@ -15,7 +15,7 @@
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
           {{'NOW_PLAYING.ON_AIR' | translate}}:
-          @if (isLiveShow(); as isLiveShow) {
+          @if (isLiveShow()) {
             @if (nowPlaying(); as nowPlaying) {
               @if (nowPlaying) {
                 {{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}
