@@ -61,7 +61,7 @@ export class NavigationComponent {
   }
 
   toggleIsCollapsed() {
-    this.navigationService.setCollapsed(!this.isCollapsed);
+    this.navigationService.setCollapsed(!this.isCollapsed());
   }
 
   onTuneInClick(option: string) {
