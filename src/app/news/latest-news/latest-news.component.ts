@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { News } from '../models/news';
 
@@ -9,5 +9,5 @@ import { News } from '../models/news';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LatestNewsComponent {
-  @Input({ required: true }) news: News[];
+  news = input.required<News[]>();
 }

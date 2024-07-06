@@ -1,5 +1,5 @@
 import { ContentObserver } from '@angular/cdk/observers';
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,12 +9,12 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./read-more.component.scss']
 })
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
-  @ViewChild('contentContainer') contentContainerElement: ElementRef;
+  contentContainerElement = viewChild.required<ElementRef>('contentContainer');
 
-  contentObserverSubscription: Subscription
+  contentObserverSubscription?: Subscription
 
-  enableShowMore: boolean;
-  showMore: boolean;
+  enableShowMore = false;
+  showMore = false;
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
@@ -27,7 +27,7 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
   ngAfterViewInit(): void {
     this.initialise();
 
-    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement.nativeElement).subscribe((event: MutationRecord[]) => {
+    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement().nativeElement).subscribe((event: MutationRecord[]) => {
       this.initialise();
     });
   }
@@ -49,7 +49,7 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
   private initialise(): void {
     this.enableShowMore = true;
     this.showMore = false;
-    this.enableShowMore = this.isTextOverflow(this.contentContainerElement);
+    this.enableShowMore = this.isTextOverflow(this.contentContainerElement());
   }
 
   private isTextOverflow(element: ElementRef): boolean {

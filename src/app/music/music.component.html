@@ -3,7 +3,7 @@
 <p>{{'MUSIC.INTRO' | translate}}</p>
 
 <ul>
-  @for (genre of genres; track genre.id) {
+  @for (genre of genres(); track genre.id) {
     <li>
       <a [routerLink]="['/music',genre.id]">{{genre.name}}</a>
     </li>

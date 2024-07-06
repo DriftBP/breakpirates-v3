@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 
 import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
@@ -11,19 +11,9 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
   templateUrl: './genre.component.html'
 })
 export class GenreComponent {
-  @Input()
-  get genre(): Genre {
-    return this._genre;
-  }
-  set genre(genre: Genre) {
-    if (genre) {
-      this._genre = genre;
-      this.setBreadcrumb();
-    }
-  }
-  @Input() shows: Show[];
+  genre = input<Genre>();
+  shows = input<Show[]>();
 
-  private _genre: Genre;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigInactive
   ];
@@ -32,11 +22,19 @@ export class GenreComponent {
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
+  ) {
+    effect(() => {
+      const genre = this.genre();
 
-  setBreadcrumb(): void {
+      if (genre) {
+        this.setBreadcrumb(genre);
+      }
+    });
+  }
+
+  setBreadcrumb(genre: Genre): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.genre.name,
+      name: genre.name,
       isActive: true
     });
 

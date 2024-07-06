@@ -1,13 +1,13 @@
 <aside class="now-playing">
     <div class="now-playing__show-info">
-      @if (nowPlayingImage) {
+      @if (nowPlayingImage(); as nowPlayingImage) {
         <div class="now-playing__show-info-image-container">
           <div
               class="now-playing__show-info-image"
               [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
-          @if (isLiveShow) {
+          @if (isLiveShow()) {
             <div class="now-playing__show-info-progress-container">
-              <bp-progress-indicator [progress]="scheduleService.showProgress$ | async"></bp-progress-indicator>
+              <bp-progress-indicator [progress]="scheduleService.showProgress()"></bp-progress-indicator>
             </div>
           }
         </div>
@@ -15,20 +15,20 @@
       <div class="now-playing__show-info-text">
         <div class="now-playing__on-air">
           {{'NOW_PLAYING.ON_AIR' | translate}}:
-          @if (isLiveShow) {
-            {{nowPlaying.start_time | time}} - {{nowPlaying.end_time | time}}
+          @if (isLiveShow()) {
+            {{nowPlaying().start_time | time}} - {{nowPlaying().end_time | time}}
           }
         </div>
 
-        @if (isLiveShow) {
-          <div class="now-playing__show-info-name" [title]="nowPlaying.title">
-            <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying.id]">{{nowPlaying.title}}</a>
+        @if (isLiveShow()) {
+          <div class="now-playing__show-info-name" [title]="nowPlaying().title">
+            <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying().id]">{{nowPlaying().title}}</a>
           </div>
 
-          @if (nowPlaying.hosts.length > 0) {
+          @if (nowPlaying().hosts.length > 0) {
             <div class="now-playing__show-info-description">
               {{'NOW_PLAYING.HOSTED_BY' | translate}}:
-              @for (host of nowPlaying.hosts | sortBy:order:'name'; track host.id) {
+              @for (host of nowPlaying().hosts | sortBy:order:'name'; track host.id) {
                 <a
                   class="now-playing__show-info-host"
                   [routerLink]="['/profiles',host.id]">{{ host.name }}</a>

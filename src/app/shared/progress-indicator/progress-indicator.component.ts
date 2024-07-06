@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 
 @Component({
   selector: 'bp-progress-indicator',
@@ -6,15 +6,17 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/c
   styleUrls: ['./progress-indicator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProgressIndicatorComponent implements OnChanges {
-  @Input({ required: true }) progress: number;
+export class ProgressIndicatorComponent {
+  progress = input.required<number>();
 
   private strokeLength = 295.3;
 
-  progressStyle = '';
+  progressStyle: Signal<string>;
 
-  ngOnChanges(): void {
-    this.progressStyle = this.getProgressStyle(this.progress, this.strokeLength)
+  constructor() {
+    this.progressStyle = computed(() => {
+      return this.getProgressStyle(this.progress(), this.strokeLength);
+    });
   }
 
   private getProgressStyle(progress: number, strokeLength: number): string {

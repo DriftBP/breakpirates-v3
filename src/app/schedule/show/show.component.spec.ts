@@ -62,7 +62,7 @@ describe('ShowComponent', () => {
 
   describe('Show images', () => {
     it('should not display an image if the show doesn`t have one defined', async () => {
-      component.show = mockShow;
+      fixture.componentRef.setInput('show', mockShow);
 
       fixture.detectChanges();
 
@@ -72,7 +72,7 @@ describe('ShowComponent', () => {
     });
 
     it('should display an image if the show has one and a description defined', async () => {
-      component.show = mockShowWithDescriptionAndImage;
+      fixture.componentRef.setInput('show', mockShowWithDescriptionAndImage);
 
       fixture.detectChanges();
 

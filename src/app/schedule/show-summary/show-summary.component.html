@@ -1,9 +1,9 @@
-@if (show !== undefined) {
+@if (show(); as show) {
   <div class="show-summary" itemscope itemtype="http://schema.org/MusicEvent">
     <div>
-      @if (displayDay) {
+      @if (displayDay()) {
         <div class="show-summary__day">
-          <a [routerLink]="['/schedule',show.day_id]">{{ dayName }}</a>
+          <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
         </div>
       }
       <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
@@ -11,7 +11,7 @@
       <meta itemprop="startDate" content="{{nextDate}}">
       <meta itemprop="endDate" content="{{endDate}}">
 
-      @if (scheduleService.nowPlaying$ | async; as nowPlaying) {
+      @if (scheduleService.nowPlaying(); as nowPlaying) {
         @if (nowPlaying.id === show.id) {
           <div
             class="show-summary__now-live">
@@ -44,7 +44,7 @@
         <bp-host-list [hosts]="show.hosts"></bp-host-list>
       }
     </div>
-    @if (showImage) {
+    @if (showImage(); as showImage) {
       <div class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
     }
   </div>

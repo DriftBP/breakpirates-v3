@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, effect, input, Signal } from '@angular/core';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -14,32 +14,14 @@ import { ShowService } from '../services/show.service';
   styleUrls: ['./show.component.scss']
 })
 export class ShowComponent {
-  @Input()
-  get show(): Show {
-    return this._show;
-  }
-  set show(show: Show) {
-    if (show) {
-      this._show = show;
+  show = input<Show>();
 
-      this.dayName = this.dayService.dayName(this.show.day_id);
-
-      const { startDate, endDate } = this.showService.getDates(this.show);
-
-      this.nextDate = startDate.toISO();
-      this.endDate = endDate.toISO();
-
-      this.setBreadcrumb();
-    }
-  }
-
-  private _show: Show;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     scheduleConfigInactive
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  dayName: string;
+  dayName: Signal<string>;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
   nextDate: string;
   endDate: string;
@@ -48,11 +30,28 @@ export class ShowComponent {
     private readonly dayService: DayService,
     private readonly showService: ShowService,
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
+  ) {
+    effect(() => {
+      const show = this.show();
 
-  setBreadcrumb(): void {
+      if (show) {
+        const { startDate, endDate } = this.showService.getDates(show);
+
+        this.nextDate = startDate.toISO();
+        this.endDate = endDate.toISO();
+
+        this.setBreadcrumb(show);
+      }
+    });
+
+    this.dayName = computed(() => {
+      return this.show() ? this.dayService.dayName(this.show().day_id) : undefined;
+    });
+  }
+
+  setBreadcrumb(show: Show): void {
     this.breadcrumbConfig = this.baseBreadcrumbConfig.concat({
-      name: this.show.title,
+      name: show.title,
       isActive: true
     });
 

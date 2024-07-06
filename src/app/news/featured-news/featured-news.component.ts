@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 
 import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
@@ -9,16 +9,18 @@ import { AppSettings } from '../../app-settings';
   styleUrls: ['./featured-news.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FeaturedNewsComponent implements OnChanges {
-  @Input({ required: true }) article: News;
+export class FeaturedNewsComponent {
+  article = input.required<News>();
 
-  imagePath = '';
+  imagePath: Signal<string>;
   hover = false;
 
-  ngOnChanges() {
-    const filename = this.getArticleImageFilename(this.article);
+  constructor() {
+    this.imagePath = computed(() => {
+      const filename = this.getArticleImageFilename(this.article());
 
-    this.imagePath = `url(${AppSettings.ASSET_NEWS_IMAGE}${filename})`;
+      return `url(${AppSettings.ASSET_NEWS_IMAGE}${filename})`;
+    });
   }
 
   private getArticleImageFilename(article: News): string {

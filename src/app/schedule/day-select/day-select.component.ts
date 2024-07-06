@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Day } from '../models/day';
 
@@ -8,6 +8,6 @@ import { Day } from '../models/day';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaySelectComponent {
-  @Input({ required: true }) days: Day[];
-  @Input({ required: true }) activeDayId: number;
+  days = input.required<Day[]>();
+  activeDayId = input.required<number>();
 }

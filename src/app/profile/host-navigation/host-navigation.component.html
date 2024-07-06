@@ -1,5 +1,5 @@
 <ul class="host-navigation">
-  @for (link of hostLinks | keyvalue; track link.key) {
+  @for (link of hostLinks() | keyvalue; track link.key) {
     <li class="host-navigation__host"
       [ngClass]="{
         'host-navigation__host-previous': link.key === 'previous',

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, viewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,7 +15,7 @@ import { ScreenService } from '../services/screen.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  @ViewChild('chatIframe') chatElement: ElementRef;
+  chatElement = viewChild.required<ElementRef>('chatIframe');
 
   faExclamationTriangle = faExclamationTriangle;
 
@@ -41,13 +41,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private readonly breadcrumbService: BreadcrumbService,
     private readonly sanitizer: DomSanitizer,
     private readonly screenService: ScreenService
-  ) {}
-
-  ngOnInit() {
+  ) {
     const url = `https://thelounge.hostco.de/?join=${this.ircChannel}`;
 
     this.chatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
+  ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
 
     this.enableFullscreen = this.fullscreenService.canRequestFullscreen;
@@ -59,7 +59,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   fullscreen(): void {
-    this.fullscreenService.requestFullscreen(this.chatElement.nativeElement);
+    this.fullscreenService.requestFullscreen(this.chatElement().nativeElement);
   }
 
   async togglePreventSleep(): Promise<void> {

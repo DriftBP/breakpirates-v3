@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, computed, input, OnInit, Signal } from '@angular/core';
 import { DateTime } from 'luxon';
 
 import { News } from './models/news';
@@ -12,32 +12,32 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  @Input()
-  get news(): News[] {
-    return this._news;
-  }
-  set news(news: News[]) {
-    this._news = news;
+  news = input<News[]>();
 
-    if (this.news && Array.isArray(this.news)) {
-      this.latestNews = this.news.slice(0, this.latestNewsItems);
-      this.otherNews = this.news.slice(this.latestNewsItems);
-    }
-  }
-
-  private _news: News[];
   private latestNewsItems = 4;
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigActive
   ];
 
-  latestNews: News[];
-  otherNews: News[];
+  latestNews: Signal<News[]>;
+  otherNews: Signal<News[]>;
   showMore = false;
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
+  ) {
+    this.latestNews = computed(() => {
+      const news = this.news();
+
+      return Array.isArray(news) ? news.slice(0, this.latestNewsItems) : [];
+    });
+
+    this.otherNews = computed(() => {
+      const news = this.news();
+
+      return Array.isArray(news) ? news.slice(this.latestNewsItems) : [];
+    });
+  }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

@@ -63,7 +63,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should not display day of week by default', async () => {
-    component.show = mockShow;
+    fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
 
@@ -73,8 +73,8 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should display day of week', async () => {
-    component.show = mockShow;
-    component.displayDay = true;
+    fixture.componentRef.setInput('show', mockShow);
+    fixture.componentRef.setInput('displayDay', true);
 
     fixture.detectChanges();
 
@@ -84,7 +84,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should not indicate show is now playing', async () => {
-    component.show = mockShow;
+    fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
 
@@ -94,7 +94,7 @@ describe('ShowSummaryComponent', () => {
   });
 
   it('should indicate show is now playing', async () => {
-    component.show = mockShow2;
+    fixture.componentRef.setInput('show', mockShow2);
 
     fixture.detectChanges();
 

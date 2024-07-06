@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER, Injector } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ObserversModule } from '@angular/cdk/observers';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -24,13 +24,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     PageTemplateComponent
   ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ObserversModule,
     SharedModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
@@ -47,8 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       useFactory: appInitializerFactory,
       deps: [TranslateService, Injector],
       multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class AppModule { }

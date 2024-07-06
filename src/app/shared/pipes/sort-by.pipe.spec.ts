@@ -2,11 +2,20 @@ import { SortByPipe } from './sort-by.pipe';
 import { Host } from '../../profile/host';
 import { SortOrder } from './sort-order';
 
-const host1: Host = { id: 4, name: 'Phil' };
-const host2: Host = { id: 1, name: 'Nick' };
-const host3: Host = { id: 3, name: 'Oliver' };
-const host4: Host = { id: 5, name: 'Jon' };
-const host5: Host = { id: 2, name: 'Dan' };
+const mockHost = {
+  id: 0,
+  name: '',
+  biog: null,
+  image: null,
+  location: null,
+  mixcloud: null,
+  twitter: null
+}
+const host1: Host = { ...mockHost, id: 4, name: 'Phil' };
+const host2: Host = { ...mockHost, id: 1, name: 'Nick' };
+const host3: Host = { ...mockHost, id: 3, name: 'Oliver' };
+const host4: Host = { ...mockHost, id: 5, name: 'Jon' };
+const host5: Host = { ...mockHost, id: 2, name: 'Dan' };
 
 const hosts: Host[] = [
   host1,
