@@ -1,10 +1,10 @@
 <aside class="now-playing">
     <div class="now-playing__show-info">
-      @if (nowPlayingImage) {
+      @if (nowPlayingImage(); as nowPlayingImage) {
         <div class="now-playing__show-info-image-container">
           <div
               class="now-playing__show-info-image"
-              [style]="'background-image:' + nowPlayingImage() | safe:'style'"></div>
+              [style]="'background-image:' + nowPlayingImage | safe:'style'"></div>
           @if (isLiveShow()) {
             <div class="now-playing__show-info-progress-container">
               <bp-progress-indicator [progress]="scheduleService.showProgress()"></bp-progress-indicator>
