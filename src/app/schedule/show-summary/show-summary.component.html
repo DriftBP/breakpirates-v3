@@ -11,16 +11,14 @@
       <meta itemprop="startDate" content="{{nextDate}}">
       <meta itemprop="endDate" content="{{endDate}}">
 
-      @if (scheduleService.nowPlaying(); as nowPlaying) {
-        @if (nowPlaying.id === show.id) {
-          <div
-            class="show-summary__now-live">
-              {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
-              <span class="show-summary__now-live-icon" (click)="scrollToPlayer()" role="button">
-                <fa-icon [icon]="faVolumeUp"></fa-icon>
-              </span>
-          </div>
-        }
+      @if (isOnAir()) {
+        <div
+          class="show-summary__now-live">
+            {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
+            <span class="show-summary__now-live-icon" (click)="scrollToPlayer()" role="button">
+              <fa-icon [icon]="faVolumeUp"></fa-icon>
+            </span>
+        </div>
       }
     </div>
     <div>
