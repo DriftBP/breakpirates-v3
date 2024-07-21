@@ -37,7 +37,7 @@ describe('ShowSummaryComponent', () => {
           TranslateModule.forRoot(),
           RouterModule.forRoot([
             { path: 'schedule/:id', component: DummyComponent }
-           ])
+          ])
         ],
         providers: [
           {
