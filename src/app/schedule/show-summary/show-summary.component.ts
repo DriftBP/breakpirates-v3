@@ -21,12 +21,13 @@ export class ShowSummaryComponent {
   nextDate: string;
   endDate: string;
   showImage: Signal<string>;
+  isOnAir: Signal<boolean>;
 
   faVolumeUp = faVolumeUp;
 
   constructor(
     private readonly dayService: DayService,
-    public readonly scheduleService: ScheduleService,
+    private readonly scheduleService: ScheduleService,
     private readonly showService: ShowService
   ) {
     effect(() => {
@@ -44,6 +45,10 @@ export class ShowSummaryComponent {
 
     this.showImage = computed(() => {
       return this.show().image ? `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show().image})` : undefined;
+    });
+
+    this.isOnAir = computed(() => {
+      return this.scheduleService.nowPlaying()?.id === this.show().id;
     });
   }
 
