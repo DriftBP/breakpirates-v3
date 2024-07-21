@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ShowSummaryComponent } from './show-summary.component';
@@ -13,7 +14,6 @@ import { MockShowService } from '../../../test/services/mock.show.service';
 import { ShowService } from '../services/show.service';
 import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
 import { mockShow } from '../../../test/data/mock.shows';
-import { RouterModule } from '@angular/router';
 
 const mockShow2: Show = { ...mockShow, id: 2 };
 
