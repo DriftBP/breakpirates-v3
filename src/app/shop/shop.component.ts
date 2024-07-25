@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 
@@ -10,10 +10,17 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 import { ProductType } from './models/product-type';
 import { ProductTypeModel } from './models/product-type-model';
 import { defaultProductType } from './services/product-types';
+import { ProductTypeSelectComponent } from './product-type-select/product-type-select.component';
 
 @Component({
   selector: 'bp-shop',
-  templateUrl: './shop.component.html'
+  templateUrl: './shop.component.html',
+  imports: [
+    ProductTypeSelectComponent,
+    RouterModule,
+    TranslateModule
+  ],
+  standalone: true
 })
 export class ShopComponent implements OnInit, OnDestroy {
   types = input.required<ProductTypeModel[]>();

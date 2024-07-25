@@ -4,11 +4,32 @@ import { DateTime } from 'luxon';
 import { AppSettings } from './app-settings';
 import { DialogService } from './shared/services/dialog/dialog.service';
 import { IDialogConfig } from './shared/services/dialog/dialog-config';
+import { NowPlayingComponent } from './shared/now-playing/now-playing.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { FooterBarComponent } from './shared/footer-bar/footer-bar.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { AdUnitComponent } from './shared/ad-unit/ad-unit.component';
+import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
+import { SupportedBrowsersNoticeComponent } from './shared/supported-browsers-notice/supported-browsers-notice.component';
 
 @Component({
   selector: 'bp-page-template',
   templateUrl: './page-template.component.html',
-  styleUrls: ['./page-template.component.scss']
+  styleUrls: ['./page-template.component.scss'],
+  imports: [
+    NowPlayingComponent,
+    DialogComponent,
+    FooterBarComponent,
+    FooterComponent,
+    AdUnitComponent,
+    RouterModule,
+    BreadcrumbComponent,
+    NavigationComponent,
+    SupportedBrowsersNoticeComponent
+  ],
+  standalone: true
 })
 export class PageTemplateComponent implements AfterViewInit {
   constructor (

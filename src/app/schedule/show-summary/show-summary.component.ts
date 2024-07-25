@@ -1,17 +1,34 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, effect, input } from '@angular/core';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
 import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { ShowService } from '../services/show.service';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { HostListComponent } from '../host-list/host-list.component';
+import { GenreListComponent } from '../genre-list/genre-list.component';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TimePipe } from '../../shared/pipes/time.pipe';
 
 @Component({
   selector: 'bp-show-summary',
   templateUrl: './show-summary.component.html',
   styleUrls: ['./show-summary.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    SafePipe,
+    HostListComponent,
+    GenreListComponent,
+    TranslateModule,
+    RouterModule,
+    FontAwesomeModule,
+    TimePipe
+  ],
+  standalone: true
 })
 export class ShowSummaryComponent {
   show = input.required<Show>();

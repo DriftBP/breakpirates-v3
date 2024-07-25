@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ThemeService } from '../services/theme/theme.service';
 import { ThemeSetting } from '../services/theme/theme-setting';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface IThemeOption {
   setting: ThemeSetting;
@@ -12,7 +13,9 @@ interface IThemeOption {
 @Component({
   selector: 'bp-theme-select',
   templateUrl: './theme-select.component.html',
-  styleUrls: ['./theme-select.component.scss']
+  styleUrls: ['./theme-select.component.scss'],
+  imports: [TranslateModule],
+  standalone: true
 })
 export class ThemeSelectComponent {
   options: IThemeOption[] = [

@@ -7,11 +7,24 @@ import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-confi
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { ShowService } from '../services/show.service';
+import { HostListComponent } from '../host-list/host-list.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { GenreListComponent } from '../genre-list/genre-list.component';
+import { RouterModule } from '@angular/router';
+import { TimePipe } from '../../shared/pipes/time.pipe';
 
 @Component({
   selector: 'bp-show',
   templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+  styleUrls: ['./show.component.scss'],
+  imports: [
+    HostListComponent,
+    GenreListComponent,
+    TranslateModule,
+    RouterModule,
+    TimePipe
+  ],
+  standalone: true
 })
 export class ShowComponent {
   show = input<Show>();

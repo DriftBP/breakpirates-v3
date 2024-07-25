@@ -4,10 +4,19 @@ import { DateTime } from 'luxon';
 import { ScheduleService } from '../schedule/services/schedule.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { ShowSummaryComponent } from '../schedule/show-summary/show-summary.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'bp-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  imports: [
+    ShowSummaryComponent,
+    TranslateModule,
+    AsyncPipe
+  ],
+  standalone: true
 })
 export class HomeComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];

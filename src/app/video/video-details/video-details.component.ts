@@ -4,10 +4,17 @@ import { Video } from '../models/video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { videoConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-video-details',
-  templateUrl: './video-details.component.html'
+  templateUrl: './video-details.component.html',
+  imports: [
+    SafePipe,
+    TranslateModule
+  ],
+  standalone: true
 })
 export class VideoDetailsComponent {
   video = input<Video>();
