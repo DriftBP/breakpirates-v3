@@ -8,7 +8,7 @@ describe('AdUnitComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ AdUnitComponent ]
+        imports: [ AdUnitComponent ]
     });
     fixture = TestBed.createComponent(AdUnitComponent);
     component = fixture.componentInstance;

@@ -8,7 +8,7 @@ describe('MixcloudWidgetComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ MixcloudWidgetComponent ]
+        imports: [ MixcloudWidgetComponent ]
     });
     fixture = TestBed.createComponent(MixcloudWidgetComponent);
     component = fixture.componentInstance;

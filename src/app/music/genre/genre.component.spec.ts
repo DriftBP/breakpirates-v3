@@ -1,10 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GenreComponent } from './genre.component';
-import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 
 describe('GenreComponent', () => {
   let component: GenreComponent;
@@ -12,20 +9,10 @@ describe('GenreComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ GenreComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      imports: [
+        GenreComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(GenreComponent);
     component = fixture.componentInstance;

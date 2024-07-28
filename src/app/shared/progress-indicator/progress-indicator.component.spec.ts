@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProgressIndicatorComponent } from './progress-indicator.component';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 
 describe('ProgressIndicatorComponent', () => {
   let component: ProgressIndicatorComponent;
@@ -9,9 +8,8 @@ describe('ProgressIndicatorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ProgressIndicatorComponent,
-          MockSafePipe
+        imports: [
+          ProgressIndicatorComponent
         ]
     });
     fixture = TestBed.createComponent(ProgressIndicatorComponent);

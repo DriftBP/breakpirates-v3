@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ScheduleComponent } from './schedule.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockRouterService } from '../../test/services/mock.router.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
@@ -13,8 +13,8 @@ describe('ScheduleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ScheduleComponent ],
         imports: [
+          ScheduleComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

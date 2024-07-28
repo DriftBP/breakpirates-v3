@@ -10,7 +10,6 @@ import { MockProfileService } from '../../../test/services/mock.profile.service'
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockHost } from '../../../test/data/mock.profiles';
 import { Host } from '../host';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 
 const mockHostWithBiogAndImage: Host = {
   ...mockHost,
@@ -24,27 +23,24 @@ describe('HostDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostDetailsComponent,
-          MockSafePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: ProfileService,
-            useClass: MockProfileService
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      imports: [
+        HostDetailsComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: ProfileService,
+          useClass: MockProfileService
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        }
+      ]
     });
     fixture = TestBed.createComponent(HostDetailsComponent);
     component = fixture.componentInstance;

@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { DateTime } from 'luxon';
 
 import { AppSettings } from './app-settings';
@@ -9,7 +10,6 @@ import { DialogComponent } from './shared/dialog/dialog.component';
 import { FooterBarComponent } from './shared/footer-bar/footer-bar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AdUnitComponent } from './shared/ad-unit/ad-unit.component';
-import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { SupportedBrowsersNoticeComponent } from './shared/supported-browsers-notice/supported-browsers-notice.component';
