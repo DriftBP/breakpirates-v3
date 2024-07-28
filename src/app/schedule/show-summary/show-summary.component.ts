@@ -6,6 +6,7 @@ import { DayService } from '../services/day.service';
 import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { ShowService } from '../services/show.service';
+import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
 @Component({
   selector: 'bp-show-summary',
@@ -28,7 +29,8 @@ export class ShowSummaryComponent {
   constructor(
     private readonly dayService: DayService,
     private readonly scheduleService: ScheduleService,
-    private readonly showService: ShowService
+    private readonly showService: ShowService,
+    private readonly scrollService: ScrollService
   ) {
     effect(() => {
       if (this.show() !== undefined) {
@@ -52,7 +54,7 @@ export class ShowSummaryComponent {
     });
   }
 
-  scrollToPlayer() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  scrollToPlayer(): void {
+    this.scrollService.scrollToTop();
   }
 }
