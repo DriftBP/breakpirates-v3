@@ -9,12 +9,10 @@ describe('HostNavigationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostNavigationComponent
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        HostNavigationComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(HostNavigationComponent);
     component = fixture.componentInstance;

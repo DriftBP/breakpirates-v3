@@ -8,7 +8,9 @@ describe('ProductTypeSelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ProductTypeSelectComponent ]
+      imports: [
+        ProductTypeSelectComponent
+      ]
     });
     fixture = TestBed.createComponent(ProductTypeSelectComponent);
     component = fixture.componentInstance;

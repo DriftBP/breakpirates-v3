@@ -6,11 +6,22 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { SortOrder } from '../shared/pipes/sort-order';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { ProfileButtonComponent } from './profile-button/profile-button.component';
+import { SortByPipe } from '../shared/pipes/sort-by.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-profile',
   templateUrl: './profiles.component.html',
-  styleUrls: ['./profiles.component.scss']
+  styleUrls: ['./profiles.component.scss'],
+  imports: [
+    ProfileButtonComponent,
+    SortByPipe,
+    FontAwesomeModule,
+    TranslateModule
+  ],
+  standalone: true
 })
 export class ProfilesComponent implements OnInit {
   profiles = input.required<Host[]>();

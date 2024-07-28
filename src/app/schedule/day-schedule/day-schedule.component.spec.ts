@@ -11,8 +11,8 @@ describe('DayScheduleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ DayScheduleComponent ],
         imports: [
+          DayScheduleComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

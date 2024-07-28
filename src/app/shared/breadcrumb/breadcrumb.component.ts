@@ -1,16 +1,24 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 import { homeConfigActive, homeConfigInactive } from './breadcrumb-config';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
+import { RouterModule } from '@angular/router';
+import { ActiveDirective } from '../directives/active.directive';
 
 @Component({
   selector: 'bp-breadcrumb',
-  templateUrl: './breadcrumb.component.html'
+  templateUrl: './breadcrumb.component.html',
+  imports: [
+    TranslateModule,
+    RouterModule,
+    ActiveDirective
+  ],
+  standalone: true
 })
 export class BreadcrumbComponent implements OnDestroy {
   private breadcrumbSubscription: Subscription;
