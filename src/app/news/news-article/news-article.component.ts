@@ -30,7 +30,7 @@ export class NewsArticleComponent {
       if (article) {
         this.setBreadcrumb(article);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   setBreadcrumb(article: News): void {

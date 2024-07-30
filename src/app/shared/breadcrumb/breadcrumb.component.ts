@@ -42,7 +42,7 @@ export class BreadcrumbComponent {
       if (activeItem) {
         this.setTitle(activeItem);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   private getActiveItem(configItems: BreadcrumbConfigItem[]): BreadcrumbConfigItem | undefined {
