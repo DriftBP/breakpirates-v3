@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { filter, startWith, switchMap } from 'rxjs/operators';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 
 import { shopConfigActive, shopConfigInactive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -35,11 +35,20 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
-      startWith(undefined),
-      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
-        this.onParamChange(params);
-    });
+    this.childParamsSubscription = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      mergeMap((route) => route.paramMap),
+      tap(
+        paramMap => console.log('ParamMap', paramMap)
+      )
+    ).subscribe(
+      (paramAsMap: any) => this.onParamChange(paramAsMap)
+    )
   }
 
   onParamChange(params: ParamMap) {
@@ -47,16 +56,19 @@ export class ShopComponent implements OnInit, OnDestroy {
 
     if (type) {
       this.activetype = parseInt(type);
+      const types = this.types();
 
-      const typeName = this.getTypeName(this.activetype);
+      if (types) {
+        const typeName = this.getTypeName(this.activetype, types);
 
-      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-        shopConfigInactive,
-        {
-          name: typeName,
-          isActive: true
-        }
-      ]);
+        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+          shopConfigInactive,
+          {
+            name: typeName,
+            isActive: true
+          }
+        ]);
+      }
     } else {
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         shopConfigActive
@@ -74,8 +86,8 @@ export class ShopComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getTypeName(type: ProductType): string {
-    const activeType = this.types().find(t => t.id === type);
+  private getTypeName(type: ProductType, types: ProductTypeModel[]): string {
+    const activeType = types.find(t => t.id === type);
 
     if (activeType) {
       return this.translateService.instant(activeType.name);
