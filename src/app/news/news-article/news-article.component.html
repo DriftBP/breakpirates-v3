@@ -16,7 +16,7 @@
     <meta itemprop="datePublished" content="{{ article.date | isoDate }}">
 
     @if (article.image) {
-      <a [href]="'/assets/news/' + article.image">
+      <a [href]="imagePath + article.image">
         <img class="news-article__image"
               bpImageClick
               [src]="imagePath + article.image"

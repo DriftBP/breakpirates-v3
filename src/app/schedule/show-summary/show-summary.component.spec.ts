@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ShowSummaryComponent } from './show-summary.component';
@@ -35,9 +35,9 @@ describe('ShowSummaryComponent', () => {
         ],
         imports: [
           TranslateModule.forRoot(),
-          RouterTestingModule.withRoutes([
+          RouterModule.forRoot([
             { path: 'schedule/:id', component: DummyComponent }
-           ])
+          ])
         ],
         providers: [
           {

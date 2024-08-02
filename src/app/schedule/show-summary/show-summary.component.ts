@@ -6,6 +6,7 @@ import { DayService } from '../services/day.service';
 import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { ShowService } from '../services/show.service';
+import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
 @Component({
   selector: 'bp-show-summary',
@@ -21,13 +22,15 @@ export class ShowSummaryComponent {
   nextDate: string | undefined | null;
   endDate: string | undefined | null;
   showImage: Signal<string | undefined>;
+  isOnAir: Signal<boolean>;
 
   faVolumeUp = faVolumeUp;
 
   constructor(
     private readonly dayService: DayService,
-    public readonly scheduleService: ScheduleService,
-    private readonly showService: ShowService
+    private readonly scheduleService: ScheduleService,
+    private readonly showService: ShowService,
+    private readonly scrollService: ScrollService
   ) {
     effect(() => {
       if (this.show() !== undefined) {
@@ -45,9 +48,13 @@ export class ShowSummaryComponent {
     this.showImage = computed(() => {
       return this.show().image ? `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show().image})` : undefined;
     });
+
+    this.isOnAir = computed(() => {
+      return this.scheduleService.nowPlaying()?.id === this.show().id;
+    });
   }
 
-  scrollToPlayer() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  scrollToPlayer(): void {
+    this.scrollService.scrollToTop();
   }
 }
