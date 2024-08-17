@@ -2,7 +2,7 @@
 
 <p>{{'PROFILES.INTRO' | translate}}</p>
 
-<button class="btn btn-primary" (click)="toggleOrderBy()">
+<button mat-flat-button (click)="toggleOrderBy()">
   {{'PROFILES.ORDERING' | translate}}
   @switch (order) {
     @case (orders.Ascending) {

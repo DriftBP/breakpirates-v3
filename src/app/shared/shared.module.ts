@@ -6,6 +6,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Components
 import { NowPlayingComponent } from './now-playing/now-playing.component';
@@ -59,7 +60,8 @@ export function customHttpLoader(http: HttpClient) {
       isolate: false
     }),
     FontAwesomeModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatProgressSpinnerModule
   ],
   declarations: [
     NavigationComponent,

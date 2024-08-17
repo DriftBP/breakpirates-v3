@@ -4,8 +4,9 @@
 
 @if (!showMore) {
   <button
-        class="news__show-more btn btn-primary"
-        (click)="onShowMore()">
+    mat-flat-button
+    class="news__show-more btn btn-primary"
+    (click)="onShowMore()">
     {{'NEWS.SHOW_MORE' | translate}}
   </button>
 } @else {

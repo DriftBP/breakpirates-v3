@@ -1,7 +1,9 @@
-@import './sass/variables';
+/* Importing Material styles */
+@use '@angular/material' as mat;
 
-/* Importing Bootstrap SCSS file. */
-@import "../node_modules/bootstrap/scss/bootstrap";
+@include mat.core();
+
+@import './sass/variables';
 
 /* Template styles */
 
@@ -56,31 +58,6 @@ a {
   &:hover {
       text-decoration: underline;
       color: var(--color);
-  }
-}
-
-/* Bootstrap overrides */
-
-.nav-link {
-  color: inherit;
-
-  &:hover,
-  &:focus {
-    color: inherit;
-  }
-}
-
-.container-fluid {
-  max-width: 1192px;
-  margin: 0 auto;
-}
-
-.btn-primary {
-  background-color: $color-brand-primary;
-  border-color: $color-brand-primary;
-
-  &:hover {
-    background-color: lighten($color-brand-primary, 10%);
   }
 }
 

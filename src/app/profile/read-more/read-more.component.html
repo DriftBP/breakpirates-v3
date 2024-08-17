@@ -3,7 +3,7 @@
 </div>
 
 @if (enableShowMore) {
-  <button class="read-more__toggle btn btn-primary" (click)="toggleShowMore()">
+  <button mat-flat-button class="read-more__toggle btn btn-primary" (click)="toggleShowMore()">
     @if (!showMore) {
       {{'PROFILES.MORE' | translate}} <fa-icon [icon]="faChevronDown"></fa-icon>
     } @else {

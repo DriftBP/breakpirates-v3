@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 import { NewsComponent } from './news.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
@@ -16,7 +17,8 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
     CommonModule,
     RouterModule,
     NewsRoutingModule,
-    SharedModule
+    SharedModule,
+    MatButtonModule
   ],
   declarations: [
     NewsComponent,
