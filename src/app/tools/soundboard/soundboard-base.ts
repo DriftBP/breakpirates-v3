@@ -21,7 +21,7 @@ export abstract class SoundboardBase {
   }
 
   initialise(baseDir: string, image: string, sampleConfigs: SampleConfig[]):void {
-    this.imagePath = `url('${AppSettings.ASSET_TOOLS_SOUND}${baseDir}/${image}')`;
+    this.imagePath = `url('${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${image}')`;
     this.configs = sampleConfigs;
     this.soundboardService.initialise(baseDir, sampleConfigs);
   }

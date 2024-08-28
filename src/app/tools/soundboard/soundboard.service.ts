@@ -14,7 +14,7 @@ export class SoundboardService {
     this.isLoaded.set(false);
 
     configs.forEach(c => {
-      let audio = new Audio(`${AppSettings.ASSET_TOOLS_SOUND}${baseDir}/${c.file}`);
+      let audio = new Audio(`${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${c.file}`);
       audio.loop = c.loop;
       audio.title = c.name;
       audio.preload = 'auto';
