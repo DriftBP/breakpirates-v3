@@ -1,3 +1,1 @@
-export const MockDjNameService = {
-  generate: jest.fn()
-};
+export const MockDjNameService = {};
