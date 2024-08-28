@@ -36,9 +36,9 @@ export class DjNameComponent implements OnInit {
   }
 
   generate() {
-    this.animal = this.djNameService.getRandomAnimal();
-    this.number = this.djNameService.getRandomNumber();
-    this.shape = this.djNameService.getRandomShape();
+    this.animal = this.djNameService.getAnimal();
+    this.number = this.djNameService.getNumber();
+    this.shape = this.djNameService.getShape();
 
     this.generated = true;
   }

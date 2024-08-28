@@ -5,18 +5,26 @@ import { shapes } from './shapes';
 
 @Injectable()
 export class DjNameService {
-  getRandomAnimal(): string {
-    return animals[Math.floor(Math.random() * animals.length)];
-  }
-
-  getRandomNumber(): number {
-    const min = 11;
-    const max = 99;
-
+  private getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  getRandomShape(): string {
-    return shapes[Math.floor(Math.random() * shapes.length)];
+  getAnimal(): string {
+    const index = this.getRandomNumber(0, animals.length);
+
+    return animals[index];
+  }
+
+  getNumber(): number {
+    const min = 11;
+    const max = 99;
+
+    return this.getRandomNumber(min, max);
+  }
+
+  getShape(): string {
+    const index = this.getRandomNumber(0, shapes.length);
+
+    return shapes[index];
   }
 }
