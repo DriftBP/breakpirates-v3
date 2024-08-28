@@ -140,6 +140,7 @@
   "TOOLS": {
     "TITLE": "Tools",
     "BPM_COUNTER": "BPM counter",
+    "DJ_NAME": "DJ name generator",
     "RELEASES": "Releases",
     "SOUNDBOARD": "Soundboard"
   },
@@ -151,6 +152,10 @@
     "TAP_ME": "Tap me or Enter key",
     "BPM": "BPM",
     "START_AGAIN": "Start again"
+  },
+  "DJ_NAME": {
+    "TITLE": "DJ name generator",
+    "GENERATE": "Generate"
   },
   "RELEASES": {
     "TITLE": "Releases"

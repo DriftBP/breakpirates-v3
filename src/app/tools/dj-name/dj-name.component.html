@@ -1,0 +1,16 @@
+<h1>{{'DJ_NAME.TITLE' | translate}}</h1>
+
+<button (click)="generate()" class="btn btn-primary">{{'DJ_NAME.GENERATE' | translate}}</button>
+
+@if (generated) {
+  <hr>
+  <div class="dj-name__result">
+    <p>Your DJ name is <span class="dj-name__result-name">{{animal}}<span class="dj-name__result-name-number">{{number}}</span>{{shape}}</span></p>
+    <img
+        class="dj-name__result-image"
+        [ngSrc]="imagePath + 'dj.jpg'"
+        width="1024"
+        height="1024"
+        alt="" />
+  </div>
+}

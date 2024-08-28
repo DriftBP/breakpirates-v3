@@ -20,7 +20,8 @@ export class AppSettings {
     public static ASSET_NEWS_IMAGE = 'assets/news/';
     public static ASSET_PROFILE_IMAGE = 'assets/profiles/';
     public static ASSET_SHOW_IMAGE =  'assets/shows/';
-    public static ASSET_SHOW_SOUND =  'assets/sounds/';
+    public static ASSET_TOOLS = 'assets/tools/';
+    public static ASSET_TOOLS_SOUND =  'assets/tools/sounds/';
 
     // Google Adsense
     public static ADSENSE_CLIENT = 'ca-pub-0817931421481428';
