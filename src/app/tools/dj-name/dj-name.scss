@@ -15,6 +15,7 @@
           display: block;
           font-size: 4em;
           font-weight: $font-weight-bold;
+          line-height: 1em;
           overflow-wrap: break-word;
           text-transform: uppercase;
           color: $color-brand-primary;
@@ -22,6 +23,11 @@
 
           &-number {
             color: var(--color);
+          }
+
+          > span {
+            display: inline-block;
+            overflow-wrap: normal;
           }
         }
       }
