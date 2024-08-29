@@ -155,7 +155,8 @@
   },
   "DJ_NAME": {
     "TITLE": "DJ name generator",
-    "GENERATE": "Generate"
+    "GENERATE": "Generate",
+    "YOUR_NAME_IS": "Your DJ name is"
   },
   "RELEASES": {
     "TITLE": "Releases"
