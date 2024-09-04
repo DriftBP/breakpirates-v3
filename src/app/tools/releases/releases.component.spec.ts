@@ -9,10 +9,10 @@ describe('ReleasesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ReleasesComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        ReleasesComponent,
+        TranslateModule.forRoot()
+      ]
     });
     fixture = TestBed.createComponent(ReleasesComponent);
     component = fixture.componentInstance;

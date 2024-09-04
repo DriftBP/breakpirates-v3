@@ -6,8 +6,8 @@ import { ToolsComponent } from './tools.component';
 const routes: Routes = [
   { path: '', component: ToolsComponent, pathMatch: 'full' },
   { path: 'bpm', loadChildren: () => import('./bpm/bpm.module').then(m => m.BpmModule) },
-  { path: 'dj-name', loadChildren: () => import('./dj-name/dj-name.module').then(m => m.DjNameModule) },
-  { path: 'releases', loadChildren: () => import('./releases/releases.module').then(m => m.ReleasesModule) },
+  { path: 'dj-name', loadComponent: () => import('./dj-name/dj-name.component').then(m => m.DjNameComponent) },
+  { path: 'releases', loadComponent: () => import('./releases/releases.component').then(m => m.ReleasesComponent) },
   { path: 'soundboard', loadChildren: () => import('./soundboard/soundboard.module').then(m => m.SoundboardModule) },
 ];
 

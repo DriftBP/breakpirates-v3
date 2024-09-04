@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -9,7 +11,15 @@ import { AppSettings } from '../../app-settings';
 @Component({
   selector: 'bp-releases',
   templateUrl: './dj-name.component.html',
-  styleUrls: ['./dj-name.scss']
+  styleUrls: ['./dj-name.scss'],
+  imports: [
+    TranslateModule,
+    NgOptimizedImage
+  ],
+  providers: [
+    DjNameService
+  ],
+  standalone: true
 })
 export class DjNameComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
