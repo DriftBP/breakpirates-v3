@@ -4,10 +4,15 @@ import { Video } from '../models/video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { videoConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'bp-video-details',
-  templateUrl: './video-details.component.html'
+  templateUrl: './video-details.component.html',
+  imports: [
+    SharedModule
+  ],
+  standalone: true
 })
 export class VideoDetailsComponent {
   video = input<Video>();
