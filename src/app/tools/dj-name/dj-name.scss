@@ -1,0 +1,36 @@
+@import '../../../sass/variables';
+
+.dj-name {
+  &__ {
+    &result {
+      text-align: center;
+
+      &- {
+        &image {
+          max-width: 50%;
+          height: auto;
+        }
+
+        &name {
+          display: block;
+          font-size: 4em;
+          font-weight: $font-weight-bold;
+          line-height: 1em;
+          overflow-wrap: break-word;
+          text-transform: uppercase;
+          color: $color-brand-primary;
+          text-shadow: 2px 2px $color-brand-secondary;
+
+          &-number {
+            color: var(--color);
+          }
+
+          > span {
+            display: inline-block;
+            overflow-wrap: normal;
+          }
+        }
+      }
+    }
+  }
+}

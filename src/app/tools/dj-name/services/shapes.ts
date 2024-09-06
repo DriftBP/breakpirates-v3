@@ -1,0 +1,19 @@
+export const shapes = [
+  'Circle',
+  'Square',
+  'Rectangle',
+  'Triangle',
+  'Pentagon',
+  'Hexagon',
+  'Octagon',
+  'Ellipse',
+  'Trapezoid',
+  'Parallelogram',
+  'Rhombus',
+  'Cube',
+  'Sphere',
+  'Cylinder',
+  'Cone',
+  'Pyramid',
+  'Prism'
+];
