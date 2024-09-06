@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -8,7 +9,11 @@ import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'bp-releases',
-  templateUrl: './releases.component.html'
+  templateUrl: './releases.component.html',
+  imports: [
+    TranslateModule
+  ],
+  standalone: true
 })
 export class ReleasesComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
