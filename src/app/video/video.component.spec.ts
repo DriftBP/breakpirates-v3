@@ -1,10 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { VideoComponent } from './video.component';
-
-const routes: Routes = [];
 
 describe('VideoComponent', () => {
   let component: VideoComponent;
