@@ -1,39 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { DjNameService } from './services/dj-name.service';
 import { AppSettings } from '../../app-settings';
 
 @Component({
   selector: 'bp-releases',
-  templateUrl: './releases.component.html',
+  templateUrl: './dj-name.component.html',
+  styleUrls: ['./dj-name.scss'],
   imports: [
-    TranslateModule
+    TranslateModule,
+    NgOptimizedImage
+  ],
+  providers: [
+    DjNameService
   ],
   standalone: true
 })
-export class ReleasesComponent implements OnInit {
+export class DjNameComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
-      name: 'RELEASES.TITLE',
+      name: 'DJ_NAME.TITLE',
       isActive: true
     }
   ];
 
-  sheetUrl: SafeResourceUrl;
+  imagePath = AppSettings.ASSET_TOOLS;
+  generated: boolean = false;
+  animal: string = '';
+  number: number = 0;
+  shape: string = '';
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService,
-    private readonly sanitizer: DomSanitizer
-  ) {
-    this.sheetUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppSettings.RELEASE_TRACKER_SHEET_URL)
-  }
+    private readonly djNameService: DjNameService
+  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+  }
+
+  generate() {
+    this.animal = this.djNameService.getAnimal();
+    this.number = this.djNameService.getNumber();
+    this.shape = this.djNameService.getShape();
+
+    this.generated = true;
   }
 }

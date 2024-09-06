@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ReleasesComponent } from './releases.component';
+import { DjNameComponent } from './dj-name.component';
 
-describe('ReleasesComponent', () => {
-  let component: ReleasesComponent;
-  let fixture: ComponentFixture<ReleasesComponent>;
+describe('DjNameComponent', () => {
+  let component: DjNameComponent;
+  let fixture: ComponentFixture<DjNameComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReleasesComponent,
+        DjNameComponent,
         TranslateModule.forRoot()
       ]
     });
-    fixture = TestBed.createComponent(ReleasesComponent);
+    fixture = TestBed.createComponent(DjNameComponent);
     component = fixture.componentInstance;
   }));
 
