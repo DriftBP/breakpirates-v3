@@ -20,9 +20,9 @@ describe('BpmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ BpmComponent ],
         imports: [
-          TranslateModule.forRoot(),
+          BpmComponent,
+          TranslateModule.forRoot()
         ]
     });
     fixture = TestBed.createComponent(BpmComponent);
