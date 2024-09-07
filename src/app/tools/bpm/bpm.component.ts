@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -12,7 +13,11 @@ export interface DataPoint {
 
 @Component({
   selector: 'bp-bpm',
-  templateUrl: './bpm.component.html'
+  templateUrl: './bpm.component.html',
+  imports: [
+    TranslateModule
+  ],
+  standalone: true
 })
 export class BpmComponent implements OnInit {
   private maxDataPoints = 20;

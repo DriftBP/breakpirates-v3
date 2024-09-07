@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, effect, input } from '@angular/core';
-import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -10,9 +12,8 @@ import { ShowService } from '../services/show.service';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { HostListComponent } from '../host-list/host-list.component';
 import { GenreListComponent } from '../genre-list/genre-list.component';
-import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimePipe } from '../../shared/pipes/time.pipe';
+import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
 @Component({
   selector: 'bp-show-summary',
@@ -45,7 +46,8 @@ export class ShowSummaryComponent {
   constructor(
     private readonly dayService: DayService,
     private readonly scheduleService: ScheduleService,
-    private readonly showService: ShowService
+    private readonly showService: ShowService,
+    private readonly scrollService: ScrollService
   ) {
     effect(() => {
       if (this.show() !== undefined) {
@@ -69,7 +71,7 @@ export class ShowSummaryComponent {
     });
   }
 
-  scrollToPlayer() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  scrollToPlayer(): void {
+    this.scrollService.scrollToTop();
   }
 }

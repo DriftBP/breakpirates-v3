@@ -25,6 +25,9 @@ import { HttpRequestService } from './services/http-request/http-request.service
 // Directives
 import { ImageClickDirective } from './directives/image-click.directive';
 import { ShowService } from '../schedule/services/show.service';
+import { SafePipe } from './pipes/safe.pipe';
+import { TimePipe } from './pipes/time.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,7 +47,10 @@ export function customHttpLoader(http: HttpClient) {
       isolate: false
     }),
     FontAwesomeModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    SafePipe,
+    TimePipe,
+    SortByPipe,
   ],
   declarations: [
     DonateComponent,

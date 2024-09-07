@@ -1,11 +1,11 @@
 import { Component, input, effect } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { Video } from '../models/video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { videoConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-video-details',
