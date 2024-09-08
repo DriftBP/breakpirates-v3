@@ -11,8 +11,8 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
   selector: 'bp-video-details',
   templateUrl: './video-details.component.html',
   imports: [
-    SafePipe,
-    TranslateModule
+    TranslateModule,
+    SafePipe
   ],
   standalone: true
 })
