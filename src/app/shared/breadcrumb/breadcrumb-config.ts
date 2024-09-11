@@ -28,10 +28,6 @@ const musicConfig: BreadcrumbConfigItem = { name: 'MUSIC.TITLE' };
 export const musicConfigInactive = { ...musicConfig, routerLink: '/music' };
 export const musicConfigActive = { ...musicConfig, isActive: true };
 
-const shopConfig: BreadcrumbConfigItem = { name: 'SHOP.TITLE' };
-export const shopConfigInactive = { ...shopConfig, routerLink: '/shop' };
-export const shopConfigActive = { ...shopConfig, isActive: true };
-
 const toolsConfig: BreadcrumbConfigItem = { name: 'TOOLS.TITLE' };
 export const toolsConfigInactive = { ...toolsConfig, routerLink: '/tools' };
 export const toolsConfigActive = { ...toolsConfig, isActive: true };

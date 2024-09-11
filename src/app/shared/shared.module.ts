@@ -64,13 +64,13 @@ export function customHttpLoader(http: HttpClient) {
       isolate: false
     }),
     FontAwesomeModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    SafePipe
   ],
   declarations: [
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SafePipe,
     TimePipe,
     SortByPipe,
     ContentBoxComponent,
