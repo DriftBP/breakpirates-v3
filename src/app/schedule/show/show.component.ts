@@ -21,10 +21,10 @@ export class ShowComponent {
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  dayName: Signal<string>;
+  dayName: Signal<string | undefined>;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
-  nextDate: string;
-  endDate: string;
+  nextDate: string | null = null;
+  endDate: string | null = null;
 
   constructor(
     private readonly dayService: DayService,
@@ -45,7 +45,9 @@ export class ShowComponent {
     });
 
     this.dayName = computed(() => {
-      return this.show() ? this.dayService.dayName(this.show().day_id) : undefined;
+      const show = this.show();
+
+      return show ? this.dayService.dayName(show.day_id) : undefined;
     });
   }
 

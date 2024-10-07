@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
-import { filter, startWith, switchMap } from 'rxjs/operators';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 
 import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -13,7 +13,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
   selector: 'bp-schedule',
   templateUrl: './schedule.component.html'
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
+export class ScheduleComponent implements OnDestroy {
   days = input.required<Day[]>();
 
   private childParamsSubscription?: Subscription;
@@ -26,14 +26,21 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly breadcrumbService: BreadcrumbService
-  ) { }
-
-  ngOnInit() {
-    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
-      startWith(undefined),
-      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
-        this.onParamChange(params);
-    });
+  ) {
+    this.childParamsSubscription = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      mergeMap((route) => route.paramMap),
+      tap(
+        paramMap => console.log('ParamMap', paramMap)
+      )
+    ).subscribe(
+      (paramAsMap: any) => this.onParamChange(paramAsMap)
+    )
   }
 
   onParamChange(params: ParamMap) {
@@ -41,16 +48,19 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
     if (dayId) {
       this.activeDayId = parseInt(dayId) as WeekdayNumbers;
+      const days = this.days();
 
-      const dayName = this.getDayName(this.activeDayId);
+      if (days) {
+        const dayName = this.getDayName(this.activeDayId, days);
 
-      this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
-        scheduleConfigInactive,
-        {
-          name: dayName,
-          isActive: true
-        }
-      ]);
+        this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
+          scheduleConfigInactive,
+          {
+            name: dayName,
+            isActive: true
+          }
+        ]);
+      }
     } else {
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         scheduleConfigActive
@@ -68,8 +78,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getDayName(activeDayId: number): string {
-    const activeDay = this.days().find(day => day.id === activeDayId);
+  private getDayName(activeDayId: number, days: Day[]): string {
+    const activeDay = days.find(day => day.id === activeDayId);
 
     if (activeDay) {
       return activeDay.name;
