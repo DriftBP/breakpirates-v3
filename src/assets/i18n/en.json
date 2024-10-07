@@ -127,7 +127,6 @@
     "TITLE": "Tools",
     "BPM_COUNTER": "BPM counter",
     "DJ_NAME": "DJ name generator",
-    "RELEASES": "Releases",
     "SOUNDBOARD": "Soundboard"
   },
   "BPM_COUNTER": {
@@ -143,9 +142,6 @@
     "TITLE": "DJ name generator",
     "GENERATE": "Generate",
     "YOUR_NAME_IS": "Your DJ name is"
-  },
-  "RELEASES": {
-    "TITLE": "Releases"
   },
   "SOUNDBOARD": {
     "TITLE": "Rate My Takeaway soundboard"
