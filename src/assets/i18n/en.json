@@ -9,8 +9,7 @@
     "PROFILES": "Profiles",
     "VIDEO": "Video",
     "SOCIAL": "Social",
-    "CHAT_ROOM": "Chat",
-    "SHOP": "Shop"
+    "CHAT_ROOM": "Chat"
   },
   "FOOTER": {
     "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
@@ -121,19 +120,6 @@
     "NOT_FOUND": "Not found",
     "COULD_NOT_FIND": "We couldn't find the video you were looking for."
   },
-  "SHOP": {
-    "TITLE": "Shop",
-    "AS_USED_BY": "Here's a selection of products used by BP staff. By checking them out you'll be helping to support the station if you go ahead and make any purchases.",
-    "TURNTABLES": "Turntables",
-    "MIXERS": "Mixers",
-    "HEADPHONES": "Headphones",
-    "CARTS_STYLI": "Cartridges & styli",
-    "MICROPHONES": "Microphones",
-    "SPEAKERS": "Speakers",
-    "DVS_CONTROLLERS": "DVS & controllers",
-    "VINYL_CARE": "Vinyl care",
-    "AUDIO_INTERFACES": "Audio interfaces"
-  },
   "STANDALONE_PLAYER": {
     "PLAY_BUTTON_DOESNT_WORK": "Not supported in all browsers. If the play button doesn't work then use a link in the Tune in menu."
   },
@@ -141,7 +127,6 @@
     "TITLE": "Tools",
     "BPM_COUNTER": "BPM counter",
     "DJ_NAME": "DJ name generator",
-    "RELEASES": "Releases",
     "SOUNDBOARD": "Soundboard"
   },
   "BPM_COUNTER": {
@@ -157,9 +142,6 @@
     "TITLE": "DJ name generator",
     "GENERATE": "Generate",
     "YOUR_NAME_IS": "Your DJ name is"
-  },
-  "RELEASES": {
-    "TITLE": "Releases"
   },
   "SOUNDBOARD": {
     "TITLE": "Rate My Takeaway soundboard"
