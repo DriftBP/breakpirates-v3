@@ -11,16 +11,16 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ HomeComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ScheduleService,
-            useClass: MockScheduleService
-          }
-        ]
+      imports: [
+        HomeComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
+        }
+      ]
     });
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;

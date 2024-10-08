@@ -5,11 +5,30 @@ import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { SortOrder } from '../pipes/sort-order';
+import { SafePipe } from '../pipes/safe.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TranslateModule } from '@ngx-translate/core';
+import { RadioPlayerComponent } from '../radio-player/radio-player.component';
+import { RouterModule } from '@angular/router';
+import { SortByPipe } from '../pipes/sort-by.pipe';
+import { TimePipe } from '../pipes/time.pipe';
+import { ProgressIndicatorComponent } from '../progress-indicator/progress-indicator.component';
 
 @Component({
   selector: 'bp-now-playing',
   templateUrl: './now-playing.component.html',
-  styleUrls: ['./now-playing.component.scss']
+  styleUrls: ['./now-playing.component.scss'],
+  imports: [
+    SafePipe,
+    FontAwesomeModule,
+    TranslateModule,
+    RadioPlayerComponent,
+    RouterModule,
+    SortByPipe,
+    TimePipe,
+    ProgressIndicatorComponent
+  ],
+  standalone: true
 })
 export class NowPlayingComponent implements OnInit {
   nowPlaying: Signal<Show>;

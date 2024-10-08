@@ -5,11 +5,22 @@ import { News } from './models/news';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { LatestNewsComponent } from './latest-news/latest-news.component';
+import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  styleUrls: ['./news.component.scss'],
+  imports: [
+    LatestNewsComponent,
+    RouterModule,
+    DatePipe,
+    TranslateModule
+  ],
+  standalone: true
 })
 export class NewsComponent implements OnInit {
   news = input<News[]>();

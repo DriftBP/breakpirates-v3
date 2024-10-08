@@ -3,7 +3,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DateTime } from 'luxon';
 
 @Pipe({
-    name: 'formattedDate'
+    name: 'formattedDate',
+    standalone: true
 })
 export class FormattedDatePipe implements PipeTransform {
 

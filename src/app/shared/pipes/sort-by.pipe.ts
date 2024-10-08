@@ -7,7 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { SortOrder } from './sort-order';
 
 @Pipe({
-  name: 'sortBy'
+  name: 'sortBy',
+  standalone: true
 })
 export class SortByPipe implements PipeTransform {
 

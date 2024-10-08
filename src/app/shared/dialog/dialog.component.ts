@@ -3,11 +3,14 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { IDialogConfig } from '../services/dialog/dialog-config';
 import { DialogService } from '../services/dialog/dialog.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'bp-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styleUrls: ['./dialog.component.scss'],
+  imports: [FontAwesomeModule],
+  standalone: true
 })
 export class DialogComponent {
   dialogElement = viewChild.required<ElementRef>('dialog');
