@@ -11,16 +11,16 @@ describe('RateMyTakeawaySoundboardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ RateMyTakeawaySoundboardComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: SoundboardService,
-            useValue: MockSoundboardService
-          }
-        ]
+      imports: [
+        RateMyTakeawaySoundboardComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: SoundboardService,
+          useValue: MockSoundboardService
+        }
+      ]
     });
     fixture = TestBed.createComponent(RateMyTakeawaySoundboardComponent);
     component = fixture.componentInstance;

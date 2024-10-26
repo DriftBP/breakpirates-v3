@@ -12,7 +12,6 @@ import { MockScheduleService } from '../../../test/services/mock.schedule.servic
 import { ScheduleService } from '../services/schedule.service';
 import { MockShowService } from '../../../test/services/mock.show.service';
 import { ShowService } from '../services/show.service';
-import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
 import { mockShow } from '../../../test/data/mock.shows';
 
 const mockShow2: Show = { ...mockShow, id: 2 };
@@ -29,11 +28,8 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ShowSummaryComponent,
-          MockTimePipe
-        ],
         imports: [
+          ShowSummaryComponent,
           TranslateModule.forRoot(),
           RouterModule.forRoot([
             { path: 'schedule/:id', component: DummyComponent }

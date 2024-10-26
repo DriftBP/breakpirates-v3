@@ -9,8 +9,8 @@ describe('ReadMoreComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ReadMoreComponent ],
         imports: [
+          ReadMoreComponent,
           TranslateModule.forRoot(),
         ]
     });

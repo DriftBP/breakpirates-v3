@@ -4,6 +4,11 @@ import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 import { NavigationService } from '../services/navigation/navigation.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { NgOptimizedImage } from '@angular/common';
 
 interface ExternalLink {
   Url: string;
@@ -13,7 +18,15 @@ interface ExternalLink {
 @Component({
   selector: 'bp-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  imports: [
+    TranslateModule,
+    RouterModule,
+    FontAwesomeModule,
+    CollapseModule,
+    NgOptimizedImage
+  ],
+  standalone: true
 })
 export class NavigationComponent {
   archiveUrl: string;

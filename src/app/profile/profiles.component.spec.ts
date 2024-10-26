@@ -5,7 +5,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProfilesComponent } from './profiles.component';
 import { SortOrder } from '../shared/pipes/sort-order';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
-import { MockSortByPipe } from '../../test/pipes/mock.sort-by.pipe';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 describe('ProfilesComponent', () => {
@@ -14,11 +13,8 @@ describe('ProfilesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ProfilesComponent,
-          MockSortByPipe
-        ],
         imports: [
+          ProfilesComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

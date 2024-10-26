@@ -7,7 +7,8 @@ declare var MediaElementPlayer: any;
 @Component({
   selector: 'bp-radio-player',
   templateUrl: './radio-player.component.html',
-  styleUrls: ['./radio-player.component.scss']
+  styleUrls: ['./radio-player.component.scss'],
+  standalone: true
 })
 export class RadioPlayerComponent implements AfterViewInit {
   mediaPlayerElement = viewChild.required<ElementRef>('mediaPlayer');
