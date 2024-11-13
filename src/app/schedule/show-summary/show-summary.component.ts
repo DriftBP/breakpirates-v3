@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Signal, computed, effect, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
+import { DateTime } from 'luxon';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../models/show';
@@ -19,8 +20,10 @@ export class ShowSummaryComponent {
   displayDay = input<boolean>(false);
 
   dayName: Signal<string>;
-  nextDate: string;
-  endDate: string;
+  dates: Signal<{
+    startDate: DateTime;
+    endDate: DateTime;
+  }>;
   showImage: Signal<string>;
   isOnAir: Signal<boolean>;
 
@@ -32,13 +35,8 @@ export class ShowSummaryComponent {
     private readonly showService: ShowService,
     private readonly scrollService: ScrollService
   ) {
-    effect(() => {
-      if (this.show() !== undefined) {
-        const { startDate, endDate } = this.showService.getDates(this.show());
-
-        this.nextDate = startDate.toISO();
-        this.endDate = endDate.toISO();
-      }
+    this.dates = computed(() => {
+      return this.show() !== undefined ? this.showService.getDates(this.show()) : undefined;
     });
 
     this.dayName = computed(() => {
