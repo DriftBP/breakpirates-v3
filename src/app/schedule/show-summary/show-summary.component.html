@@ -8,8 +8,11 @@
       }
       <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
 
-      <meta itemprop="startDate" content="{{nextDate}}">
-      <meta itemprop="endDate" content="{{endDate}}">
+      <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
+      <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
+      @if (showImage(); as showImage) {
+        <meta itemprop="image" content="{{showImage}}">
+      }
 
       @if (isOnAir()) {
         <div
@@ -42,8 +45,8 @@
         <bp-host-list [hosts]="show.hosts"></bp-host-list>
       }
     </div>
-    @if (showImage(); as showImage) {
-      <div class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
+    @if (showImageCssValue(); as showImageCssValue) {
+      <div class="show-summary__image" [style]="'background-image:' + showImageCssValue | safe:'style'"></div>
     }
   </div>
 }
