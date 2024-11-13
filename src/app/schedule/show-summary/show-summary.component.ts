@@ -25,6 +25,7 @@ export class ShowSummaryComponent {
     endDate: DateTime;
   }>;
   showImage: Signal<string>;
+  showImageCssValue: Signal<string>;
   isOnAir: Signal<boolean>;
 
   faVolumeUp = faVolumeUp;
@@ -44,7 +45,11 @@ export class ShowSummaryComponent {
     });
 
     this.showImage = computed(() => {
-      return this.show().image ? `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show().image})` : undefined;
+      return this.show().image ? `${AppSettings.ASSET_SHOW_IMAGE}${this.show().image}` : undefined;
+    });
+
+    this.showImageCssValue = computed(() => {
+      return this.showImage() ? `url(${this.showImage()})` : undefined;
     });
 
     this.isOnAir = computed(() => {
