@@ -8,9 +8,10 @@ import { SortOrder } from '../shared/pipes/sort-order';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-profile',
-  templateUrl: './profiles.component.html',
-  styleUrls: ['./profiles.component.scss']
+    selector: 'bp-profile',
+    templateUrl: './profiles.component.html',
+    styleUrls: ['./profiles.component.scss'],
+    standalone: false
 })
 export class ProfilesComponent implements OnInit {
   profiles = input.required<Host[]>();

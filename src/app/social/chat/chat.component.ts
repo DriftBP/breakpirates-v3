@@ -10,9 +10,10 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { ScreenService } from '../services/screen.service';
 
 @Component({
-  selector: 'bp-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+    selector: 'bp-chat',
+    templateUrl: './chat.component.html',
+    styleUrls: ['./chat.component.scss'],
+    standalone: false
 })
 export class ChatComponent implements OnInit, OnDestroy {
   chatElement = viewChild.required<ElementRef>('chatIframe');
