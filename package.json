@@ -43,6 +43,8 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-devkit/core": "^19.0.1",
+    "@angular-devkit/schematics": "^19.0.1",
     "@angular-eslint/builder": "18.4.1",
     "@angular-eslint/eslint-plugin": "18.4.1",
     "@angular-eslint/eslint-plugin-template": "18.4.1",
@@ -51,8 +53,6 @@
     "@angular/build": "^19.0.1",
     "@angular/cli": "^19.0.1",
     "@angular/compiler-cli": "^19.0.0",
-    "@angular-devkit/core": "^18.2.12",
-    "@angular-devkit/schematics": "^18.2.12",
     "@types/jest": "^29.5.12",
     "@types/luxon": "^3.3.0",
     "@types/node": "^12.20.55",
