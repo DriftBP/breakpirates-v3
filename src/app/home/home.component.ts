@@ -6,8 +6,9 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-home',
-  templateUrl: './home.component.html'
+    selector: 'bp-home',
+    templateUrl: './home.component.html',
+    standalone: false
 })
 export class HomeComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];

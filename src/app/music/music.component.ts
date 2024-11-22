@@ -6,8 +6,9 @@ import { musicConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-music',
-  templateUrl: './music.component.html'
+    selector: 'bp-music',
+    templateUrl: './music.component.html',
+    standalone: false
 })
 export class MusicComponent implements OnInit {
   genres = input<Genre[]>();

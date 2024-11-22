@@ -5,9 +5,10 @@ import { IDialogConfig } from '../services/dialog/dialog-config';
 import { DialogService } from '../services/dialog/dialog.service';
 
 @Component({
-  selector: 'bp-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+    selector: 'bp-dialog',
+    templateUrl: './dialog.component.html',
+    styleUrls: ['./dialog.component.scss'],
+    standalone: false
 })
 export class DialogComponent {
   dialogElement = viewChild.required<ElementRef>('dialog');
