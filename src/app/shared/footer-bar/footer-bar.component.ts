@@ -6,9 +6,10 @@ import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 
 @Component({
-  selector: 'bp-footer-bar',
-  templateUrl: './footer-bar.component.html',
-  styleUrls: ['./footer-bar.component.scss']
+    selector: 'bp-footer-bar',
+    templateUrl: './footer-bar.component.html',
+    styleUrls: ['./footer-bar.component.scss'],
+    standalone: false
 })
 export class FooterBarComponent {
   socialSites: Site[];

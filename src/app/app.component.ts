@@ -16,8 +16,9 @@ import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
 
 @Component({
-  selector: 'bp-root',
-  templateUrl: './app.component.html'
+    selector: 'bp-root',
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }

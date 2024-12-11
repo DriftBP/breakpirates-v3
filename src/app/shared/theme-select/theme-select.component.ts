@@ -10,9 +10,10 @@ interface IThemeOption {
 }
 
 @Component({
-  selector: 'bp-theme-select',
-  templateUrl: './theme-select.component.html',
-  styleUrls: ['./theme-select.component.scss']
+    selector: 'bp-theme-select',
+    templateUrl: './theme-select.component.html',
+    styleUrls: ['./theme-select.component.scss'],
+    standalone: false
 })
 export class ThemeSelectComponent {
   options: IThemeOption[] = [

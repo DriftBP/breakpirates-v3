@@ -9,17 +9,16 @@ import { DjNameService } from './services/dj-name.service';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'bp-releases',
-  templateUrl: './dj-name.component.html',
-  styleUrls: ['./dj-name.scss'],
-  imports: [
-    TranslateModule,
-    NgOptimizedImage
-  ],
-  providers: [
-    DjNameService
-  ],
-  standalone: true
+    selector: 'bp-releases',
+    templateUrl: './dj-name.component.html',
+    styleUrls: ['./dj-name.scss'],
+    imports: [
+        TranslateModule,
+        NgOptimizedImage
+    ],
+    providers: [
+        DjNameService
+    ]
 })
 export class DjNameComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

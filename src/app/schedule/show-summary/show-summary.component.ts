@@ -10,10 +10,11 @@ import { ShowService } from '../services/show.service';
 import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
 @Component({
-  selector: 'bp-show-summary',
-  templateUrl: './show-summary.component.html',
-  styleUrls: ['./show-summary.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-show-summary',
+    templateUrl: './show-summary.component.html',
+    styleUrls: ['./show-summary.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ShowSummaryComponent {
   show = input.required<Show>();

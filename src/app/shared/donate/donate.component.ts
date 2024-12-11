@@ -3,8 +3,9 @@ import { Component, ElementRef, viewChild } from '@angular/core';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 
 @Component({
-  selector: 'bp-donate',
-  templateUrl: './donate.component.html'
+    selector: 'bp-donate',
+    templateUrl: './donate.component.html',
+    standalone: false
 })
 export class DonateComponent {
   donateFormElement = viewChild.required<ElementRef>('donateForm');
