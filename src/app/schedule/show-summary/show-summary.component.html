@@ -1,12 +1,10 @@
 @if (show(); as show) {
   <div class="show-summary" itemscope itemtype="http://schema.org/MusicEvent">
-    <div>
+    <div class="show-summary__when">
       @if (displayDay()) {
-        <div class="show-summary__day">
-          <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
-        </div>
+        <a [routerLink]="['/schedule',show.day_id]" class="show-summary__day">{{ dayName() }}</a>
       }
-      <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
+      <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
 
       <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
       <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
