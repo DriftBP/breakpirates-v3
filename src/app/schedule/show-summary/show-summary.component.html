@@ -2,7 +2,9 @@
   <div class="show-summary" itemscope itemtype="http://schema.org/MusicEvent">
     <div class="show-summary__when">
       @if (displayDay()) {
-        <a [routerLink]="['/schedule',show.day_id]" class="show-summary__day">{{ dayName() }}</a>
+        <div>
+          <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
+        </div>
       }
       <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
 
