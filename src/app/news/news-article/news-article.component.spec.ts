@@ -18,13 +18,13 @@ describe('NewsArticleComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          NewsArticleComponent,
-          MockIsoDatePipe,
-          MockFormattedDatePipe,
-          MockSafePipe
+          NewsArticleComponent
         ],
         imports: [
           TranslateModule.forRoot(),
+          MockIsoDatePipe,
+          MockFormattedDatePipe,
+          MockSafePipe
         ],
         providers: [
           {

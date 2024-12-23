@@ -25,14 +25,14 @@ describe('ShowSummaryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          ShowSummaryComponent,
-          MockTimePipe
+          ShowSummaryComponent
         ],
         imports: [
           TranslateModule.forRoot(),
           RouterModule.forRoot([
             { path: 'schedule/:id', component: DummyComponent }
-          ])
+          ]),
+          MockTimePipe
         ],
         providers: [
           {
