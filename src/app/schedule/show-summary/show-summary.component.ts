@@ -1,13 +1,10 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 import { DateTime } from 'luxon';
-import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
-import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { ShowService } from '../services/show.service';
-import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
 @Component({
     selector: 'bp-show-summary',
@@ -27,15 +24,10 @@ export class ShowSummaryComponent {
   }>;
   showImage: Signal<string>;
   showImageCssValue: Signal<string>;
-  isOnAir: Signal<boolean>;
-
-  faVolumeUp = faVolumeUp;
 
   constructor(
     private readonly dayService: DayService,
-    private readonly scheduleService: ScheduleService,
-    private readonly showService: ShowService,
-    private readonly scrollService: ScrollService
+    private readonly showService: ShowService
   ) {
     this.dates = computed(() => {
       return this.show() !== undefined ? this.showService.getDates(this.show()) : undefined;
@@ -52,13 +44,5 @@ export class ShowSummaryComponent {
     this.showImageCssValue = computed(() => {
       return this.showImage() ? `url(${this.showImage()})` : undefined;
     });
-
-    this.isOnAir = computed(() => {
-      return this.scheduleService.nowPlaying()?.id === this.show().id;
-    });
-  }
-
-  scrollToPlayer(): void {
-    this.scrollService.scrollToTop();
   }
 }
