@@ -10,7 +10,9 @@ describe('ProgressIndicatorComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          ProgressIndicatorComponent,
+          ProgressIndicatorComponent
+        ],
+        imports: [
           MockSafePipe
         ]
     });

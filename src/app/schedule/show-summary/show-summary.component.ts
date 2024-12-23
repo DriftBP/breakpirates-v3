@@ -7,10 +7,11 @@ import { AppSettings } from '../../app-settings';
 import { ShowService } from '../services/show.service';
 
 @Component({
-  selector: 'bp-show-summary',
-  templateUrl: './show-summary.component.html',
-  styleUrls: ['./show-summary.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-show-summary',
+    templateUrl: './show-summary.component.html',
+    styleUrls: ['./show-summary.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ShowSummaryComponent {
   show = input.required<Show>();

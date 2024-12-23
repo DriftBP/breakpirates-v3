@@ -27,11 +27,11 @@ describe('ShowComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          ShowComponent,
-          MockTimePipe
+          ShowComponent
         ],
         imports: [
           TranslateModule.forRoot(),
+          MockTimePipe
         ],
         providers: [
           {

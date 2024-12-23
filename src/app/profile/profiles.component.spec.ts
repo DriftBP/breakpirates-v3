@@ -15,11 +15,11 @@ describe('ProfilesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          ProfilesComponent,
-          MockSortByPipe
+          ProfilesComponent
         ],
         imports: [
           TranslateModule.forRoot(),
+          MockSortByPipe
         ],
         providers: [
           {

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
 
 @Component({
-  selector: 'bp-progress-indicator',
-  templateUrl: './progress-indicator.component.html',
-  styleUrls: ['./progress-indicator.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-progress-indicator',
+    templateUrl: './progress-indicator.component.html',
+    styleUrls: ['./progress-indicator.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProgressIndicatorComponent {
   progress = input.required<number>();

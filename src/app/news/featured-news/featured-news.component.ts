@@ -4,10 +4,11 @@ import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'bp-featured-news',
-  templateUrl: './featured-news.component.html',
-  styleUrls: ['./featured-news.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-featured-news',
+    templateUrl: './featured-news.component.html',
+    styleUrls: ['./featured-news.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FeaturedNewsComponent {
   article = input.required<News>();

@@ -18,11 +18,13 @@ describe('ImageClickDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestImageClickDirectiveComponent,
         ImageClickDirective
+      ],
+      imports: [
+        TestImageClickDirectiveComponent
       ]
     });
-    fixture = TestBed.createComponent(TestImageClickDirectiveComponent); (2)
+    fixture = TestBed.createComponent(TestImageClickDirectiveComponent);
     component = fixture.componentInstance;
     element = fixture.debugElement.query(By.css('div'));
   }));

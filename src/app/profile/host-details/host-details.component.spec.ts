@@ -25,11 +25,11 @@ describe('HostDetailsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          HostDetailsComponent,
-          MockSafePipe
+          HostDetailsComponent
         ],
         imports: [
           TranslateModule.forRoot(),
+          MockSafePipe
         ],
         providers: [
           {

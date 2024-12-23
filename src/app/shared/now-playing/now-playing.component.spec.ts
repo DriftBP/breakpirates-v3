@@ -14,12 +14,12 @@ describe('NowPlayingComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          NowPlayingComponent,
-          MockSafePipe,
-          MockTimePipe
+          NowPlayingComponent
         ],
         imports: [
           TranslateModule.forRoot(),
+          MockSafePipe,
+          MockTimePipe
         ],
         providers: [
           {

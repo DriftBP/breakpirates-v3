@@ -4,9 +4,10 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { AppSettings } from '../app-settings';
 
 @Component({
-  selector: 'bp-standalone-player',
-  templateUrl: './standalone-player.component.html',
-  styleUrls: ['./standalone-player.component.scss']
+    selector: 'bp-standalone-player',
+    templateUrl: './standalone-player.component.html',
+    styleUrls: ['./standalone-player.component.scss'],
+    standalone: false
 })
 export class StandalonePlayerComponent implements OnDestroy {
   assetRoot = AppSettings.ASSET_ROOT;

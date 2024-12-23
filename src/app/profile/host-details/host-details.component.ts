@@ -8,9 +8,10 @@ import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-confi
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-host-details',
-  templateUrl: './host-details.component.html',
-  styleUrls: ['./host-details.component.scss']
+    selector: 'bp-host-details',
+    templateUrl: './host-details.component.html',
+    styleUrls: ['./host-details.component.scss'],
+    standalone: false
 })
 export class HostDetailsComponent {
   profile = input<Host>();

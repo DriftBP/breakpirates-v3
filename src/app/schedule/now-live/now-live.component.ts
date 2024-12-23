@@ -9,7 +9,8 @@ import { Show } from '../models/show';
   selector: 'bp-now-live',
   templateUrl: './now-live.component.html',
   styleUrls: ['./now-live.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NowLiveComponent {
   show = input.required<Show>();

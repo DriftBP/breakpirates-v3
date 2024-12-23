@@ -7,8 +7,9 @@ import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-social',
-  templateUrl: './social.component.html'
+    selector: 'bp-social',
+    templateUrl: './social.component.html',
+    standalone: false
 })
 export class SocialComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

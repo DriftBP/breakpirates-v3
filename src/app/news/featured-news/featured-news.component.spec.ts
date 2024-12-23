@@ -14,7 +14,9 @@ describe('FeaturedNewsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         declarations: [
-          FeaturedNewsComponent,
+          FeaturedNewsComponent
+        ],
+        imports: [
           MockSafePipe
         ]
     });
