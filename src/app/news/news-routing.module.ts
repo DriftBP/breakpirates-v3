@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NewsResolve } from './resolves/news.resolve';
-import { NewsArticleResolve } from './resolves/news-article.resolve';
+import { NewsResolver } from './resolvers/news.resolver';
+import { NewsArticleResolver } from './resolvers/news-article.resolver';
 import { NewsComponent } from './news.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
 
 
 const routes: Routes = [
-  { path: '', component: NewsComponent, resolve: { news: NewsResolve }, pathMatch: 'full' },
-  { path: ':id', component: NewsArticleComponent, resolve: { article: NewsArticleResolve } }
+  { path: '', component: NewsComponent, resolve: { news: NewsResolver }, pathMatch: 'full' },
+  { path: ':id', component: NewsArticleComponent, resolve: { article: NewsArticleResolver } }
 ];
 
 @NgModule({

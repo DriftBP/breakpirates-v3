@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { VideoResolve } from './resolves/video.resolve';
-import { VideoDetailResolve } from './resolves/video-detail.resolve';
+import { VideoResolver } from './resolvers/video.resolver';
+import { VideoDetailResolver } from './resolvers/video-detail.resolver';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { VideoComponent } from './video.component';
 
 
 const routes: Routes = [
-  { path: '', component: VideoComponent, resolve: { videos: VideoResolve }, pathMatch: 'full' },
-  { path: ':id', component: VideoDetailsComponent, resolve: { video: VideoDetailResolve } },
+  { path: '', component: VideoComponent, resolve: { videos: VideoResolver }, pathMatch: 'full' },
+  { path: ':id', component: VideoDetailsComponent, resolve: { video: VideoDetailResolver } },
 ];
 
 @NgModule({

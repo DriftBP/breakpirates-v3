@@ -4,18 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { ScheduleComponent } from './schedule.component';
 import { ShowComponent } from './show/show.component';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
-import { ScheduleResolve } from './resolves/schedule.resolve';
-import { ShowDetailsResolve } from './resolves/show-details.resolve';
-import { TodaysScheduleResolve } from './resolves/todays-schedule.resolve';
-import { DaysResolve } from './resolves/days.resolve';
+import { ScheduleResolver } from './resolvers/schedule.resolver';
+import { ShowDetailsResolver } from './resolvers/show-details.resolver';
+import { TodaysScheduleResolver } from './resolvers/todays-schedule.resolver';
+import { DaysResolver } from './resolvers/days.resolver';
 
 
 const routes: Routes = [
-  { path: '', component: ScheduleComponent, resolve: { days: DaysResolve }, children: [
-    { path: '', component: DayScheduleComponent, resolve: { schedule: TodaysScheduleResolve } },
-    { path: ':id', component: DayScheduleComponent, resolve: { schedule: ScheduleResolve } },
+  { path: '', component: ScheduleComponent, resolve: { days: DaysResolver }, children: [
+    { path: '', component: DayScheduleComponent, resolve: { schedule: TodaysScheduleResolver } },
+    { path: ':id', component: DayScheduleComponent, resolve: { schedule: ScheduleResolver } },
   ] },
-  { path: 'shows/:id', component: ShowComponent, resolve: { show: ShowDetailsResolve } }
+  { path: 'shows/:id', component: ShowComponent, resolve: { show: ShowDetailsResolver } }
 ];
 
 @NgModule({

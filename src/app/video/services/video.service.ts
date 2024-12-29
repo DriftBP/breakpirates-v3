@@ -6,7 +6,9 @@ import { Video } from '../models/video';
 
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class VideoService {
 
   constructor(

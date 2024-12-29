@@ -4,16 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
 
-import { GenresResolve } from './resolves/genres.resolve';
-import { GenreResolve } from './resolves/genre.resolve';
-import { GenreShowsResolve } from './resolves/genre-shows.resolve';
+import { GenresResolver } from './resolvers/genres.resolver';
+import { GenreResolver } from './resolvers/genre.resolver';
+import { GenreShowsResolver } from './resolvers/genre-shows.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: MusicComponent,
     resolve: {
-      genres: GenresResolve
+      genres: GenresResolver
     },
     pathMatch: 'full'
   },
@@ -21,8 +21,8 @@ const routes: Routes = [
     path: ':id',
     component: GenreComponent,
     resolve: {
-      genre: GenreResolve,
-      shows: GenreShowsResolve
+      genre: GenreResolver,
+      shows: GenreShowsResolver
     }
   }
 ];

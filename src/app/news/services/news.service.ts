@@ -6,7 +6,9 @@ import { News } from '../models/news';
 
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NewsService {
 
   constructor(
