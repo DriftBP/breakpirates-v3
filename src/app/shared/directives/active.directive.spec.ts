@@ -21,7 +21,11 @@ describe('ActiveDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [ActiveDirective, TrueComponent, FalseComponent]
+      imports: [
+        ActiveDirective,
+        TrueComponent,
+        FalseComponent
+      ]
     }).compileComponents();
   });
 

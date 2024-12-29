@@ -14,7 +14,9 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ AppComponent ],
+        imports: [
+          AppComponent
+        ],
         providers: [
           {
             provide: Router,

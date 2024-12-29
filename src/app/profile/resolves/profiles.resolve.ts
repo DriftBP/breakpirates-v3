@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 
-
 import { ProfileService } from '../services/profile.service';
-import { Host } from '../host';
-import { ProfileResolvesModule } from './profile-resolves.module';
 
-@Injectable({
-  providedIn: ProfileResolvesModule
-})
+@Injectable()
 export class ProfilesResolve  {
 
   constructor(private profileService: ProfileService) {}

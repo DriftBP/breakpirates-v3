@@ -8,13 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { ScheduleModule } from '../schedule/schedule.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    HomeRoutingModule,
-    ScheduleModule
-  ],
-  declarations: [HomeComponent]
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        HomeRoutingModule,
+        ScheduleModule,
+        HomeComponent
+    ]
 })
 export class HomeModule { }

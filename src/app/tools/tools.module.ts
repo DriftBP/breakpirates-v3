@@ -9,9 +9,7 @@ import { ToolsComponent } from './tools.component';
   imports: [
     CommonModule,
     ToolsRoutingModule,
-    SharedModule
-  ],
-  declarations: [
+    SharedModule,
     ToolsComponent
   ]
 })

@@ -1,6 +1,6 @@
 # Breakpirates V3
 
-This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+This project was originally generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
 Local software:
 * NPM 10.7.0
@@ -8,20 +8,42 @@ Local software:
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To start a local development server, run:
+
+```bash
+ng serve
+```
+
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-## Build
+```bash
+ng generate component component-name
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
 ## Running unit tests
 
 Run `npm run test` to execute the unit tests via Jest.
 
-## Further help
+## Additional Resources
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

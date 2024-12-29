@@ -13,8 +13,8 @@ describe('ScheduleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ScheduleComponent ],
         imports: [
+          ScheduleComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

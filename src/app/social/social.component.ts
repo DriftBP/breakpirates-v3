@@ -5,10 +5,14 @@ import { SocialService } from './services/social.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-social',
-  templateUrl: './social.component.html'
+  templateUrl: './social.component.html',
+  imports: [
+    TranslatePipe
+  ]
 })
 export class SocialComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

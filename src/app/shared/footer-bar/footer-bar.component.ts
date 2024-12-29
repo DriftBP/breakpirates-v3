@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Site } from '../../social/services/site';
 import { SocialService } from '../../social/services/social.service';
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'bp-footer-bar',
   templateUrl: './footer-bar.component.html',
-  styleUrls: ['./footer-bar.component.scss']
+  styleUrls: ['./footer-bar.component.scss'],
+  imports: [
+    NgOptimizedImage,
+    TranslatePipe,
+    FontAwesomeModule
+  ]
 })
 export class FooterBarComponent {
   socialSites: Site[];

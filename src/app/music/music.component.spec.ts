@@ -14,9 +14,9 @@ describe('MusicComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ MusicComponent ],
         imports: [
-          TranslateModule.forRoot(),
+          MusicComponent,
+          TranslateModule.forRoot()
         ],
         providers: [
           {

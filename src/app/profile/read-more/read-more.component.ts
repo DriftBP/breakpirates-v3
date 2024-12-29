@@ -1,12 +1,20 @@
 import { ContentObserver } from '@angular/cdk/observers';
 import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bp-read-more',
   templateUrl: './read-more.component.html',
-  styleUrls: ['./read-more.component.scss']
+  styleUrls: ['./read-more.component.scss'],
+  imports: [
+    CommonModule,
+    TranslatePipe,
+    FontAwesomeModule
+  ]
 })
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
   contentContainerElement = viewChild.required<ElementRef>('contentContainer');

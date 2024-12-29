@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { ScheduleService } from '../services/schedule.service';
-import { ScheduleResolvesModule } from './schedule-resolves.module';
+
 import { Show } from '../models/show';
 
-@Injectable({
-  providedIn: ScheduleResolvesModule
-})
+@Injectable()
 export class ScheduleResolve  {
 
   constructor(private scheduleService: ScheduleService) {}

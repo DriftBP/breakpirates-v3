@@ -8,7 +8,7 @@ import { ScheduleResolve } from './resolves/schedule.resolve';
 import { ShowDetailsResolve } from './resolves/show-details.resolve';
 import { TodaysScheduleResolve } from './resolves/todays-schedule.resolve';
 import { DaysResolve } from './resolves/days.resolve';
-import { ScheduleResolvesModule } from './resolves/schedule-resolves.module';
+
 
 const routes: Routes = [
   { path: '', component: ScheduleComponent, resolve: { days: DaysResolve }, children: [
@@ -20,9 +20,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    ScheduleResolvesModule,
     RouterModule.forChild(routes)
-  ],
+],
   exports: [RouterModule]
 })
 export class ScheduleRoutingModule { }

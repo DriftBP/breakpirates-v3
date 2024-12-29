@@ -8,7 +8,9 @@ describe('TwitterWidgetComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ TwitterWidgetComponent ]
+        imports: [
+          TwitterWidgetComponent
+        ]
     });
     fixture = TestBed.createComponent(TwitterWidgetComponent);
     component = fixture.componentInstance;

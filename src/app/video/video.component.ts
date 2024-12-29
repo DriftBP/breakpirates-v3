@@ -13,8 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule,
     TranslateModule
-  ],
-  standalone: true
+  ]
 })
 export class VideoComponent implements OnInit {
   videos = input<Video[]>();

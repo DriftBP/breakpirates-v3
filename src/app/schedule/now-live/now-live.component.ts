@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, Signal } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { ScheduleService } from '../services/schedule.service';
@@ -9,6 +11,10 @@ import { Show } from '../models/show';
   selector: 'bp-now-live',
   templateUrl: './now-live.component.html',
   styleUrls: ['./now-live.component.scss'],
+  imports: [
+    FontAwesomeModule,
+    TranslatePipe
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NowLiveComponent {

@@ -16,10 +16,8 @@ describe('NowLiveComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          NowLiveComponent
-        ],
         imports: [
+          NowLiveComponent,
           TranslateModule.forRoot()
         ],
         providers: [

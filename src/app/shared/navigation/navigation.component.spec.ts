@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { NavigationComponent } from './navigation.component';
@@ -11,14 +11,18 @@ describe('NavigationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ NavigationComponent ],
         imports: [
+          NavigationComponent,
           TranslateModule.forRoot(),
         ],
         providers: [
           {
             provide: Router,
             useClass: MockRouterService
+          },
+          {
+            provide: ActivatedRoute,
+            useValue: {}
           }
         ]
     });

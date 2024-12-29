@@ -18,8 +18,7 @@ import { AppSettings } from '../../app-settings';
   ],
   providers: [
     DjNameService
-  ],
-  standalone: true
+  ]
 })
 export class DjNameComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

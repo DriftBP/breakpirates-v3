@@ -1,4 +1,6 @@
 import { Component, OnInit, input } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Genre } from './models/genre';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -7,7 +9,11 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 
 @Component({
   selector: 'bp-music',
-  templateUrl: './music.component.html'
+  templateUrl: './music.component.html',
+  imports: [
+    TranslatePipe,
+    RouterModule
+  ]
 })
 export class MusicComponent implements OnInit {
   genres = input<Genre[]>();

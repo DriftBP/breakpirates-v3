@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProfileButtonComponent } from './profile-button.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ProfileButtonComponent', () => {
   let component: ProfileButtonComponent;
@@ -8,7 +9,15 @@ describe('ProfileButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ProfileButtonComponent ]
+        imports: [
+          ProfileButtonComponent
+        ],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: {}
+          }
+        ]
     });
     fixture = TestBed.createComponent(ProfileButtonComponent);
     component = fixture.componentInstance;

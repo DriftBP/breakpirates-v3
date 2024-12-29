@@ -14,32 +14,28 @@ import { ScheduleService } from './services/schedule.service';
 import { GenreListComponent } from './genre-list/genre-list.component';
 import { HostListComponent } from './host-list/host-list.component';
 import { ShowService } from './services/show.service';
-import { NowLiveComponent } from './now-live/now-live.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ScheduleRoutingModule,
-    SharedModule,
-    FontAwesomeModule
-  ],
-  declarations: [
-    ScheduleComponent,
-    ShowSummaryComponent,
-    ShowComponent,
-    DaySelectComponent,
-    DayScheduleComponent,
-    GenreListComponent,
-    HostListComponent,
-    NowLiveComponent
-  ],
-  exports: [
-    ShowSummaryComponent
-  ],
-  providers: [
-    DayService,
-    ScheduleService,
-    ShowService
-  ]
+    imports: [
+        CommonModule,
+        ScheduleRoutingModule,
+        SharedModule,
+        FontAwesomeModule,
+        ScheduleComponent,
+        ShowSummaryComponent,
+        ShowComponent,
+        DaySelectComponent,
+        DayScheduleComponent,
+        GenreListComponent,
+        HostListComponent
+    ],
+    exports: [
+        ShowSummaryComponent
+    ],
+    providers: [
+        DayService,
+        ScheduleService,
+        ShowService
+    ]
 })
 export class ScheduleModule { }

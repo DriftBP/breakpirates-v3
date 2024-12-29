@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { HostDetailsComponent } from './host-details.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -10,7 +9,13 @@ import { MockProfileService } from '../../../test/services/mock.profile.service'
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockHost } from '../../../test/data/mock.profiles';
 import { Host } from '../host';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
+import { TranslateModule } from '@ngx-translate/core';
+import { DayService } from '../../schedule/services/day.service';
+import { MockDayService } from '../../../test/services/mock.day.service';
+import { ShowService } from '../../schedule/services/show.service';
+import { MockShowService } from '../../../test/services/mock.show.service';
+import { ScheduleService } from '../../schedule/services/schedule.service';
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 
 const mockHostWithBiogAndImage: Host = {
   ...mockHost,
@@ -24,12 +29,9 @@ describe('HostDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostDetailsComponent,
-          MockSafePipe
-        ],
         imports: [
-          TranslateModule.forRoot(),
+          HostDetailsComponent,
+          TranslateModule.forRoot()
         ],
         providers: [
           {
@@ -43,6 +45,19 @@ describe('HostDetailsComponent', () => {
           {
             provide: BreadcrumbService,
             useClass: MockBreadcrumbService
+          },
+          {
+            provide: DayService,
+            useClass: MockDayService
+          },
+          {
+            provide: ShowService,
+            useClass: MockShowService
+          }
+          ,
+          {
+            provide: ScheduleService,
+            useClass: MockScheduleService
           }
         ]
     });

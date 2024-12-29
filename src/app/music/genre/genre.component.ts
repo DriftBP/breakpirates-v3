@@ -5,10 +5,16 @@ import { Show } from '../../schedule/models/show';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { musicConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-genre',
-  templateUrl: './genre.component.html'
+  templateUrl: './genre.component.html',
+  imports: [
+    ShowSummaryComponent,
+    TranslatePipe
+  ]
 })
 export class GenreComponent {
   genre = input<Genre>();

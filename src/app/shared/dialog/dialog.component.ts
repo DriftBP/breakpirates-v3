@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, Renderer2, effect, viewChild } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { IDialogConfig } from '../services/dialog/dialog-config';
@@ -7,7 +8,10 @@ import { DialogService } from '../services/dialog/dialog.service';
 @Component({
   selector: 'bp-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styleUrls: ['./dialog.component.scss'],
+  imports: [
+    FontAwesomeModule
+  ]
 })
 export class DialogComponent {
   dialogElement = viewChild.required<ElementRef>('dialog');

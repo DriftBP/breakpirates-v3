@@ -12,19 +12,17 @@ import { IsoDatePipe } from './pipes/iso-date.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NewsRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    NewsComponent,
-    NewsArticleComponent,
-    LatestNewsComponent,
-    FeaturedNewsComponent,
-    IsoDatePipe,
-    FormattedDatePipe
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        NewsRoutingModule,
+        SharedModule,
+        NewsComponent,
+        NewsArticleComponent,
+        LatestNewsComponent,
+        FeaturedNewsComponent,
+        IsoDatePipe,
+        FormattedDatePipe
+    ]
 })
 export class NewsModule { }

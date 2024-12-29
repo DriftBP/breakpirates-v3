@@ -17,7 +17,7 @@ describe('ImageClickDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         TestImageClickDirectiveComponent,
         ImageClickDirective
       ]

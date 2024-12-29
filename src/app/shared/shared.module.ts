@@ -50,74 +50,71 @@ export function customHttpLoader(http: HttpClient) {
 }
 
 @NgModule({
-  imports: [
-    BsDropdownModule.forRoot(),
-    CollapseModule.forRoot(),
-    AlertModule.forRoot(),
-    CommonModule,
-    RouterModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: customHttpLoader,
-        deps: [HttpClient],
-      },
-      isolate: false
-    }),
-    FontAwesomeModule,
-    NgOptimizedImage,
-    SafePipe
-  ],
-  declarations: [
-    NavigationComponent,
-    NowPlayingComponent,
-    DonateComponent,
-    TimePipe,
-    SortByPipe,
-    ContentBoxComponent,
-    RadioPlayerComponent,
-    LoadingSpinnerComponent,
-    SidebarComponent,
-    FooterComponent,
-    ThemeSelectComponent,
-    ChatRoomPromoComponent,
-    NotFoundComponent,
-    BreadcrumbComponent,
-    FooterBarComponent,
-    SupportedBrowsersNoticeComponent,
-    ActiveDirective,
-    DialogComponent,
-    ImageClickDirective,
-    AdUnitComponent,
-    ProgressIndicatorComponent
-  ],
-  exports: [
-    NavigationComponent,
-    NowPlayingComponent,
-    DonateComponent,
-    SafePipe,
-    TimePipe,
-    SortByPipe,
-    ContentBoxComponent,
-    RadioPlayerComponent,
-    LoadingSpinnerComponent,
-    FooterComponent,
-    TranslateModule,
-    BreadcrumbComponent,
-    FooterBarComponent,
-    SupportedBrowsersNoticeComponent,
-    ActiveDirective,
-    DialogComponent,
-    ImageClickDirective,
-    AdUnitComponent
-  ],
-  providers: [
-    HttpRequestService,
-    GoogleAnalyticsService,
-    SocialService,
-    ScheduleService,
-    ShowService
-  ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+    imports: [
+        BsDropdownModule.forRoot(),
+        CollapseModule.forRoot(),
+        AlertModule.forRoot(),
+        CommonModule,
+        RouterModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: customHttpLoader,
+                deps: [HttpClient],
+            },
+            isolate: false
+        }),
+        FontAwesomeModule,
+        NgOptimizedImage,
+        SafePipe,
+        NavigationComponent,
+        NowPlayingComponent,
+        DonateComponent,
+        TimePipe,
+        SortByPipe,
+        ContentBoxComponent,
+        RadioPlayerComponent,
+        LoadingSpinnerComponent,
+        SidebarComponent,
+        FooterComponent,
+        ThemeSelectComponent,
+        ChatRoomPromoComponent,
+        NotFoundComponent,
+        BreadcrumbComponent,
+        FooterBarComponent,
+        SupportedBrowsersNoticeComponent,
+        ActiveDirective,
+        DialogComponent,
+        ImageClickDirective,
+        AdUnitComponent,
+        ProgressIndicatorComponent
+    ],
+    exports: [
+        NavigationComponent,
+        NowPlayingComponent,
+        DonateComponent,
+        SafePipe,
+        TimePipe,
+        SortByPipe,
+        ContentBoxComponent,
+        RadioPlayerComponent,
+        LoadingSpinnerComponent,
+        FooterComponent,
+        TranslateModule,
+        BreadcrumbComponent,
+        FooterBarComponent,
+        SupportedBrowsersNoticeComponent,
+        ActiveDirective,
+        DialogComponent,
+        AdUnitComponent
+    ],
+    providers: [
+        HttpRequestService,
+        GoogleAnalyticsService,
+        SocialService,
+        ScheduleService,
+        ShowService
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

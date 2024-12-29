@@ -13,7 +13,6 @@ describe('SupportedBrowsersNoticeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ SupportedBrowsersNoticeComponent ],
         providers: [
           {
             provide: GoogleAnalyticsService,
@@ -21,6 +20,7 @@ describe('SupportedBrowsersNoticeComponent', () => {
           }
         ],
         imports: [
+          SupportedBrowsersNoticeComponent,
           TranslateModule.forRoot(),
         ]
     });

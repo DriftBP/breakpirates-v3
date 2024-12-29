@@ -13,8 +13,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
   imports: [
     TranslateModule,
     SafePipe
-  ],
-  standalone: true
+  ]
 })
 export class VideoDetailsComponent {
   video = input<Video>();

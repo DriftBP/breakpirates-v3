@@ -16,8 +16,7 @@ export interface DataPoint {
   templateUrl: './bpm.component.html',
   imports: [
     TranslateModule
-  ],
-  standalone: true
+  ]
 })
 export class BpmComponent implements OnInit {
   private maxDataPoints = 20;

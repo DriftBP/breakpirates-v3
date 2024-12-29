@@ -11,8 +11,8 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ HomeComponent ],
         imports: [
+          HomeComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

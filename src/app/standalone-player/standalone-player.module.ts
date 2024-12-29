@@ -14,8 +14,8 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     StandalonePlayerRoutingModule,
     FontAwesomeModule,
-    NgOptimizedImage
-  ],
-  declarations: [StandalonePlayerComponent]
+    NgOptimizedImage,
+    StandalonePlayerComponent
+  ]
 })
 export class StandalonePlayerModule { }
