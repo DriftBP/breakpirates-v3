@@ -6,12 +6,18 @@ import { ActiveDirective } from './active.directive';
 const activeClass = 'active';
 
 @Component({
-  template: '<div [bpActive]="true"></div>'
+  template: '<div [bpActive]="true"></div>',
+  imports: [
+    ActiveDirective
+  ]
 })
 class TrueComponent {}
 
 @Component({
-  template: '<div [bpActive]="false"></div>'
+  template: '<div [bpActive]="false"></div>',
+  imports: [
+    ActiveDirective
+  ]
 })
 class FalseComponent {}
 
