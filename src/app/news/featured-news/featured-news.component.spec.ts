@@ -61,13 +61,13 @@ describe('FeaturedNewsComponent', () => {
 
   it('should set hover state true on mouse over', async () => {
     component.hover = false;
-    component.onMouseOver({});
+    component.onMouseOver();
     expect(component.hover).toBeTruthy();
   });
 
   it('should set hover state false on mouse out', async () => {
     component.hover = true;
-    component.onMouseOut({});
+    component.onMouseOut();
     expect(component.hover).toBeFalsy();
   });
 });

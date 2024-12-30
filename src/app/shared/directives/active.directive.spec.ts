@@ -35,7 +35,6 @@ describe('ActiveDirective', () => {
 
   it('should have active class if true', () => {
     fixture = TestBed.createComponent(TrueComponent);
-    component = fixture.componentInstance;
 
     const compiled: HTMLElement = fixture.debugElement.nativeElement;
     const div = compiled.querySelector('div');
@@ -47,7 +46,6 @@ describe('ActiveDirective', () => {
 
   it('should not have active class if false', () => {
     fixture = TestBed.createComponent(FalseComponent);
-    component = fixture.componentInstance;
 
     const compiled: HTMLElement = fixture.debugElement.nativeElement;
     const div = compiled.querySelector('div');

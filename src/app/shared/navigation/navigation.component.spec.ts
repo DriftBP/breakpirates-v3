@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -14,6 +15,7 @@ describe('NavigationComponent', () => {
         imports: [
           NavigationComponent,
           TranslateModule.forRoot(),
+          NoopAnimationsModule
         ],
         providers: [
           {
