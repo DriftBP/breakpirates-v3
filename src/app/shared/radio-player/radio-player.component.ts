@@ -2,7 +2,8 @@ import { Component, viewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 
-declare var MediaElementPlayer: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const MediaElementPlayer: any;
 
 @Component({
   selector: 'bp-radio-player',
@@ -13,6 +14,7 @@ export class RadioPlayerComponent implements AfterViewInit {
   mediaPlayerElement = viewChild.required<ElementRef>('mediaPlayer');
 
   tuneInUrl = AppSettings.STREAM_URL_PRIMARY;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public mediaPlayer: any;
 
   ngAfterViewInit() {

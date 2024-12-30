@@ -68,7 +68,7 @@ export class BreadcrumbComponent implements OnDestroy {
   private setTitle(activeItem: BreadcrumbConfigItem): void {
     this.translateService.get(activeItem.name)
       .subscribe((t: Translation) => {
-        var title = `${t} : Break Pirates - Live Pirate Style Radio`;
+        const title = `${t} : Break Pirates - Live Pirate Style Radio`;
 
         this.titleService.setTitle(title);
         this.meta.updateTag({ property: 'og:title', content: title });

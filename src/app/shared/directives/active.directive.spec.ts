@@ -17,7 +17,6 @@ class FalseComponent {}
 
 describe('ActiveDirective', () => {
   let fixture: ComponentFixture<TrueComponent>;
-  let component: TrueComponent;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({

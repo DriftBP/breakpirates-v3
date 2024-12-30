@@ -35,7 +35,7 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
   ngAfterViewInit(): void {
     this.initialise();
 
-    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement().nativeElement).subscribe((event: MutationRecord[]) => {
+    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement().nativeElement).subscribe(() => {
       this.initialise();
     });
   }

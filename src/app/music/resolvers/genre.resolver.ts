@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { MusicService } from '../services/music.service';
 import { Genre } from '../models/genre';
 
-export const GenreResolver: ResolveFn<any> =
-  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Genre> =>
+export const GenreResolver: ResolveFn<Observable<Genre>> =
+  (route: ActivatedRouteSnapshot): Observable<Genre> =>
     {
       const musicService = inject(MusicService);
 

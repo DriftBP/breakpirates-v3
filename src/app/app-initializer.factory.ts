@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LOCATION_INITIALIZED } from '@angular/common';
 
 export function appInitializerFactory(translate: TranslateService, injector: Injector) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return () => new Promise<any>((resolve: any) => {
     const locationInitialized = injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
     locationInitialized.then(() => {
@@ -11,7 +12,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
       translate.use(langToSet)
         .subscribe(
           () => {},
-          err => {},
+          () => {},
           () => {
             resolve(null);
           });

@@ -1,12 +1,12 @@
-import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ScheduleService } from '../services/schedule.service';
 import { Show } from '../models/show';
 
-export const ShowDetailsResolver: ResolveFn<any> =
-  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Show> =>
+export const ShowDetailsResolver: ResolveFn<Observable<Show>> =
+  (route: ActivatedRouteSnapshot): Observable<Show> =>
     {
       const scheduleService = inject(ScheduleService);
 

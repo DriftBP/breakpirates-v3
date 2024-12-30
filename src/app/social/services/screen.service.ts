@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 interface NavigatorWakeLock extends Navigator {
   wakeLock: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     request: (type: any) => any;
     release: () => void;
   }
@@ -10,6 +11,7 @@ interface NavigatorWakeLock extends Navigator {
 @Injectable()
 export class ScreenService {
   private _canPreventSleep: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private wakeLock: any = null;
 
   constructor() {
@@ -25,6 +27,7 @@ export class ScreenService {
     if (this._canPreventSleep) {
       try {
         this.wakeLock = await (navigator as NavigatorWakeLock).wakeLock.request('screen');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         console.error(`${err.name}, ${err.message}`);
       }
