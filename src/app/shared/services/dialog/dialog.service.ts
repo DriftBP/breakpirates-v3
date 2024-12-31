@@ -2,7 +2,8 @@ import { Injectable, signal } from '@angular/core';
 
 import { IDialogConfig } from './dialog-config';
 
-declare var HTMLDialogElement: any;
+// eslint-disable-next-line no-var
+declare var HTMLDialogElement: Element;
 
 @Injectable({
   providedIn: 'root'

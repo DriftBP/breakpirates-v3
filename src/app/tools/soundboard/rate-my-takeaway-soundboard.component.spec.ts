@@ -11,9 +11,9 @@ describe('RateMyTakeawaySoundboardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ RateMyTakeawaySoundboardComponent ],
         imports: [
-          TranslateModule.forRoot(),
+          RateMyTakeawaySoundboardComponent,
+          TranslateModule.forRoot()
         ],
         providers: [
           {

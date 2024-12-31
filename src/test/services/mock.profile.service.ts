@@ -6,7 +6,7 @@ import { Show } from '../../app/schedule/models/show';
 
 @Injectable()
 export class MockProfileService {
-  profileShows(id: number): Observable<Show[]> {
+  profileShows(): Observable<Show[]> {
     return of([mockShow])
   }
 }

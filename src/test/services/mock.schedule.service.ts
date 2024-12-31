@@ -15,7 +15,7 @@ export class MockScheduleService {
     return signal(50);
   }
 
-  shows(dayId: number): WritableSignal<Show[]> {
+  shows(): WritableSignal<Show[]> {
       return signal([ mockShow ]);
   }
 }

@@ -9,10 +9,8 @@ describe('HostNavigationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostNavigationComponent
-        ],
         imports: [
+          HostNavigationComponent,
           TranslateModule.forRoot(),
         ]
     });
