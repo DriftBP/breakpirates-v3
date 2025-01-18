@@ -6,22 +6,31 @@ import { ActiveDirective } from './active.directive';
 const activeClass = 'active';
 
 @Component({
-  template: '<div [bpActive]="true"></div>'
+  template: '<div [bpActive]="true"></div>',
+  imports: [
+    ActiveDirective
+  ]
 })
 class TrueComponent {}
 
 @Component({
-  template: '<div [bpActive]="false"></div>'
+  template: '<div [bpActive]="false"></div>',
+  imports: [
+    ActiveDirective
+  ]
 })
 class FalseComponent {}
 
 describe('ActiveDirective', () => {
   let fixture: ComponentFixture<TrueComponent>;
-  let component: TrueComponent;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [ActiveDirective, TrueComponent, FalseComponent]
+      imports: [
+        ActiveDirective,
+        TrueComponent,
+        FalseComponent
+      ]
     }).compileComponents();
   });
 
@@ -32,7 +41,6 @@ describe('ActiveDirective', () => {
 
   it('should have active class if true', () => {
     fixture = TestBed.createComponent(TrueComponent);
-    component = fixture.componentInstance;
 
     const compiled: HTMLElement = fixture.debugElement.nativeElement;
     const div = compiled.querySelector('div');
@@ -44,7 +52,6 @@ describe('ActiveDirective', () => {
 
   it('should not have active class if false', () => {
     fixture = TestBed.createComponent(FalseComponent);
-    component = fixture.componentInstance;
 
     const compiled: HTMLElement = fixture.debugElement.nativeElement;
     const div = compiled.querySelector('div');

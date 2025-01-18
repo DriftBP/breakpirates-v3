@@ -30,6 +30,7 @@ export class ShowService {
   }
 
   getShowProgress(show: Show): number {
+    // eslint-disable-next-line no-var
     var progress = 0;
 
     if (show) {

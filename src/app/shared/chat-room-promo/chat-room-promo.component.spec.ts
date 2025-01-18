@@ -9,8 +9,8 @@ describe('ChatRoomPromoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ChatRoomPromoComponent ],
         imports: [
+          ChatRoomPromoComponent,
           TranslateModule.forRoot(),
         ]
     });

@@ -5,7 +5,8 @@ import {
   NavigationStart,
   NavigationEnd,
   NavigationCancel,
-  NavigationError
+  NavigationError,
+  RouterModule
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -14,10 +15,15 @@ import { GoogleAnalyticsService } from './shared/services/google-analytics/googl
 import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'bp-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  imports: [
+    LoadingSpinnerComponent,
+    RouterModule
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }

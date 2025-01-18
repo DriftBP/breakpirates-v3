@@ -1,12 +1,20 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 
 @Component({
   selector: 'bp-featured-news',
   templateUrl: './featured-news.component.html',
   styleUrls: ['./featured-news.component.scss'],
+  imports: [
+    SafePipe,
+    CommonModule,
+    RouterModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeaturedNewsComponent {
@@ -28,11 +36,11 @@ export class FeaturedNewsComponent {
     return article?.image ? article.image : 'bp.jpg';
   }
 
-  onMouseOver(event: any) {
+  onMouseOver() {
     this.hover = true;
   }
 
-  onMouseOut(event: any) {
+  onMouseOut() {
     this.hover = false;
   }
 }

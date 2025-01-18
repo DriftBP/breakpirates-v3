@@ -16,25 +16,23 @@ import { ReadMoreComponent } from './read-more/read-more.component';
 import { HostNavigationComponent } from './host-navigation/host-navigation.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    ProfileRoutingModule,
-    SharedModule,
-    ScheduleModule,
-    FontAwesomeModule
-  ],
-  declarations: [
-    ProfilesComponent,
-    HostDetailsComponent,
-    MixcloudWidgetComponent,
-    TwitterWidgetComponent,
-    ProfileButtonComponent,
-    ReadMoreComponent,
-    HostNavigationComponent
-  ],
-  providers: [
-    ProfileService
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        ProfileRoutingModule,
+        SharedModule,
+        ScheduleModule,
+        FontAwesomeModule,
+        ProfilesComponent,
+        HostDetailsComponent,
+        MixcloudWidgetComponent,
+        TwitterWidgetComponent,
+        ProfileButtonComponent,
+        ReadMoreComponent,
+        HostNavigationComponent
+    ],
+    providers: [
+        ProfileService
+    ]
 })
 export class ProfileModule { }

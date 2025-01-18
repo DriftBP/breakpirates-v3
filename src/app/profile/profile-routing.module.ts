@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfilesResolve } from './resolves/profiles.resolve';
+import { ProfilesResolver } from './resolvers/profiles.resolver';
 import { HostDetailsComponent } from './host-details/host-details.component';
-import { HostDetailsResolve } from './resolves/host-details.resolve';
+import { HostDetailsResolver } from './resolvers/host-details.resolver';
 import { ProfilesComponent } from './profiles.component';
-import { ProfileResolvesModule } from './resolves/profile-resolves.module';
+
 
 const routes: Routes = [
-  { path: '', component: ProfilesComponent, resolve: { profiles: ProfilesResolve }, pathMatch: 'full' },
-  { path: ':id', component: HostDetailsComponent, resolve: { profile: HostDetailsResolve } },
+  { path: '', component: ProfilesComponent, resolve: { profiles: ProfilesResolver }, pathMatch: 'full' },
+  { path: ':id', component: HostDetailsComponent, resolve: { profile: HostDetailsResolver } },
 ];
 
 @NgModule({
   imports: [
-    ProfileResolvesModule,
     RouterModule.forChild(routes)
-  ],
+],
   exports: [RouterModule]
 })
 export class ProfileRoutingModule { }

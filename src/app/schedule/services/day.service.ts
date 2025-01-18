@@ -3,7 +3,9 @@ import { Info } from 'luxon';
 
 import { Day } from '../models/day';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DayService {
   private daysOfWeek: Day[];
 

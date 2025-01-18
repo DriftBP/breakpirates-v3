@@ -11,12 +11,15 @@ import { SortOrder } from './sort-order';
 })
 export class SortByPipe implements PipeTransform {
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public transform(value: any[], order = SortOrder.Ascending, column: string = ''): any[] {
     return value.sort(this.compareValues(column, order));
   }
 
   private compareValues(key: string, order = SortOrder.Ascending) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return function innerSort(a: any, b: any) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
         // property doesn't exist on either object
         return 0;
