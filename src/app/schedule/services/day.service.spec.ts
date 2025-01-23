@@ -52,7 +52,7 @@ describe('DayService', () => {
     expect(day7.name).toEqual('Sunday');
   });
 
-  describe('dayById', () => {
+  describe('dayByName', () => {
     it('should return day from mixed case name', () => {
       const day1 = service.dayByName('Monday');
       const day2 = service.dayByName('Tuesday');
