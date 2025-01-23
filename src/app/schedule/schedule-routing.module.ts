@@ -9,11 +9,12 @@ import { ShowDetailsResolve } from './resolves/show-details.resolve';
 import { TodaysScheduleResolve } from './resolves/todays-schedule.resolve';
 import { DaysResolve } from './resolves/days.resolve';
 import { ScheduleResolvesModule } from './resolves/schedule-resolves.module';
+import { validDayGuard } from './guards/valid-day.guard';
 
 const routes: Routes = [
   { path: '', component: ScheduleComponent, resolve: { days: DaysResolve }, children: [
     { path: '', component: DayScheduleComponent, resolve: { schedule: TodaysScheduleResolve } },
-    { path: ':id', component: DayScheduleComponent, resolve: { schedule: ScheduleResolve } },
+    { path: ':day', component: DayScheduleComponent, canActivate: [validDayGuard()], resolve: { schedule: ScheduleResolve } },
   ] },
   { path: 'shows/:id', component: ShowComponent, resolve: { show: ShowDetailsResolve } }
 ];
