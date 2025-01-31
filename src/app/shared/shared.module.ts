@@ -66,14 +66,14 @@ export function customHttpLoader(http: HttpClient) {
     }),
     FontAwesomeModule,
     NgOptimizedImage,
-    SafePipe
+    SafePipe,
+    TimePipe,
+    SortByPipe
   ],
   declarations: [
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    TimePipe,
-    SortByPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
