@@ -66,7 +66,8 @@ export function customHttpLoader(http: HttpClient) {
     }),
     FontAwesomeModule,
     NgOptimizedImage,
-    SafePipe
+    SafePipe,
+    FooterBarComponent
   ],
   declarations: [
     NavigationComponent,
@@ -83,7 +84,6 @@ export function customHttpLoader(http: HttpClient) {
     ChatRoomPromoComponent,
     NotFoundComponent,
     BreadcrumbComponent,
-    FooterBarComponent,
     SupportedBrowsersNoticeComponent,
     ActiveDirective,
     DialogComponent,

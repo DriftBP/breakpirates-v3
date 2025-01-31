@@ -1,4 +1,7 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Site } from '../../social/services/site';
 import { SocialService } from '../../social/services/social.service';
@@ -8,7 +11,13 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
 @Component({
   selector: 'bp-footer-bar',
   templateUrl: './footer-bar.component.html',
-  styleUrls: ['./footer-bar.component.scss']
+  styleUrls: ['./footer-bar.component.scss'],
+  imports: [
+    NgOptimizedImage,
+    FontAwesomeModule,
+    TranslatePipe
+  ],
+  standalone: true
 })
 export class FooterBarComponent {
   socialSites: Site[];
