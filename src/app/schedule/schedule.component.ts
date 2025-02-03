@@ -40,7 +40,11 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   onParamChange(params: ParamMap) {
     const dayName = params.get('day');
-    const day = this.dayService.dayByName(dayName);
+    var day: Day;
+
+    if (dayName) {
+      day = this.dayService.dayByName(dayName);
+    }
 
     if (day) {
       this.activeDayId = day.id as WeekdayNumbers;
