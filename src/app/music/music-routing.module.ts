@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
-import { genresResolver } from './resolves/genres.resolve';
-import { genreResolver } from './resolves/genre.resolve';
-import { genreShowsResolver } from './resolves/genre-shows.resolve';
-import { MusicResolvesModule } from './resolves/music-resolves.module';
+import { genresResolver } from './resolvers/genres.resolver';
+import { genreResolver } from './resolvers/genre.resolver';
+import { genreShowsResolver } from './resolvers/genre-shows.resolver';
+import { MusicResolversModule } from './resolvers/music-resolvers.module';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    MusicResolvesModule,
+    MusicResolversModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
