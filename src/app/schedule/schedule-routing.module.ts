@@ -4,11 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ScheduleComponent } from './schedule.component';
 import { ShowComponent } from './show/show.component';
 import { DayScheduleComponent } from './day-schedule/day-schedule.component';
-import { scheduleResolver } from './resolves/schedule.resolver';
-import { showDetailsResolver } from './resolves/show-details.resolver';
-import { todaysScheduleResolver } from './resolves/todays-schedule.resolver';
-import { daysResolver } from './resolves/days.resolver';
-import { ScheduleResolversModule } from './resolves/schedule-resolvers.module';
+import { scheduleResolver } from './resolvers/schedule.resolver';
+import { showDetailsResolver } from './resolvers/show-details.resolver';
+import { todaysScheduleResolver } from './resolvers/todays-schedule.resolver';
+import { daysResolver } from './resolvers/days.resolver';
+import { ScheduleResolversModule } from './resolvers/schedule-resolvers.module';
 import { validDayGuard } from './guards/valid-day.guard';
 
 const routes: Routes = [
