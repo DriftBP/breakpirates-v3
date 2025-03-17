@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
@@ -8,11 +9,17 @@ import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { DaySelectComponent } from './day-select/day-select.component';
 import { DayService } from './services/day.service';
 
 @Component({
   selector: 'bp-schedule',
-  templateUrl: './schedule.component.html'
+  templateUrl: './schedule.component.html',
+  imports: [
+    RouterModule,
+    TranslatePipe,
+    DaySelectComponent
+  ]
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
   days = input.required<Day[]>();
@@ -33,14 +40,14 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(e => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
+      switchMap(() => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
         this.onParamChange(params);
     });
   }
 
   onParamChange(params: ParamMap) {
     const dayName = params.get('day');
-    var day: Day;
+    let day: Day;
 
     if (dayName) {
       day = this.dayService.dayByName(dayName);

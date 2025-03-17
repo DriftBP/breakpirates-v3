@@ -34,7 +34,7 @@ describe('ConfirmService', () => {
   it('should emit false when cancelled', async () => {
     confirmSpy.mockImplementation(jest.fn(() => false));
 
-    let result = await lastValueFrom(service.confirm(''));
+    const result = await lastValueFrom(service.confirm(''));
 
     expect(confirmSpy).toHaveBeenCalled();
     expect(result).toBeFalsy();
@@ -43,7 +43,7 @@ describe('ConfirmService', () => {
   it('should emit true when confirmed', async () => {
     confirmSpy.mockImplementation(jest.fn(() => true));
 
-    let result = await lastValueFrom(service.confirm(''));
+    const result = await lastValueFrom(service.confirm(''));
 
     expect(confirmSpy).toHaveBeenCalled();
     expect(result).toBeTruthy();

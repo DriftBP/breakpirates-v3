@@ -8,7 +8,9 @@ describe('ContentBoxComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ContentBoxComponent ]
+        imports: [
+          ContentBoxComponent
+        ]
     });
     fixture = TestBed.createComponent(ContentBoxComponent);
     component = fixture.componentInstance;

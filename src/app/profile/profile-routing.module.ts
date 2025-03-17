@@ -29,7 +29,7 @@ const routes: Routes = [
   imports: [
     ProfileResolversModule,
     RouterModule.forChild(routes)
-  ],
+],
   exports: [RouterModule]
 })
 export class ProfileRoutingModule { }

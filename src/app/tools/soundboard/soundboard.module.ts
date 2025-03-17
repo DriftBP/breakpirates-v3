@@ -13,9 +13,7 @@ import { SoundboardService } from './soundboard.service';
     CommonModule,
     SoundboardRoutingModule,
     SharedModule,
-    FontAwesomeModule
-  ],
-  declarations: [
+    FontAwesomeModule,
     RateMyTakeawaySoundboardComponent,
     SampleButtonComponent
   ],

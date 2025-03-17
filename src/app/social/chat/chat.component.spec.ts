@@ -14,8 +14,8 @@ describe('ChatComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ChatComponent ],
         imports: [
+          ChatComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

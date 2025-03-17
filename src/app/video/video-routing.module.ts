@@ -28,7 +28,7 @@ const routes: Routes = [
   imports: [
     VideoResolversModule,
     RouterModule.forChild(routes)
-  ],
+],
   exports: [RouterModule]
 })
 export class VideoRoutingModule { }

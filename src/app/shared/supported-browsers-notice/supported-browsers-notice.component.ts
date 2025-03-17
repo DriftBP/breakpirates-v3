@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { SupportedBrowsersService } from '../services/supported-browsers/supported-browsers.service';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 
 @Component({
   selector: 'bp-supported-browsers-notice',
-  templateUrl: './supported-browsers-notice.component.html'
+  templateUrl: './supported-browsers-notice.component.html',
+  imports: [
+    TranslatePipe,
+    AlertModule
+  ]
 })
 export class SupportedBrowsersNoticeComponent {
   readonly alertType = 'danger';

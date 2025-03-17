@@ -1,15 +1,25 @@
 import { Component, effect, input } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { newsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { IsoDatePipe } from '../pipes/iso-date.pipe';
+import { FormattedDatePipe } from '../pipes/formatted-date.pipe';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 
 @Component({
   selector: 'bp-news-article',
   templateUrl: './news-article.component.html',
-  styleUrls: ['./news-article.component.scss']
+  styleUrls: ['./news-article.component.scss'],
+  imports: [
+    IsoDatePipe,
+    FormattedDatePipe,
+    TranslatePipe,
+    SafePipe
+  ]
 })
 export class NewsArticleComponent {
   article = input<News>();

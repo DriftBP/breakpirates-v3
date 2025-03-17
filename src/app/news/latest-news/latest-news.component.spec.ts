@@ -19,7 +19,7 @@ describe('LatestNewsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
+        imports: [
           LatestNewsComponent
         ]
     });

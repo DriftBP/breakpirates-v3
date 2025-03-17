@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
+
 import { genresResolver } from './resolvers/genres.resolver';
 import { genreResolver } from './resolvers/genre.resolver';
 import { genreShowsResolver } from './resolvers/genre-shows.resolver';

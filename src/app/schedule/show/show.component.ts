@@ -1,4 +1,6 @@
 import { Component, computed, effect, input, Signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { Show } from '../models/show';
@@ -8,11 +10,23 @@ import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-confi
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { ShowService } from '../services/show.service';
+import { TimePipe } from '../../shared/pipes/time.pipe';
+import { NowLiveComponent } from '../now-live/now-live.component';
+import { GenreListComponent } from '../genre-list/genre-list.component';
+import { HostListComponent } from '../host-list/host-list.component';
 
 @Component({
   selector: 'bp-show',
   templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+  styleUrls: ['./show.component.scss'],
+  imports: [
+    RouterModule,
+    TimePipe,
+    TranslatePipe,
+    NowLiveComponent,
+    GenreListComponent,
+    HostListComponent
+  ]
 })
 export class ShowComponent {
   show = input<Show>();

@@ -9,8 +9,8 @@ describe('ThemeSelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ThemeSelectComponent ],
         imports: [
+          ThemeSelectComponent,
           TranslateModule.forRoot(),
         ]
     });

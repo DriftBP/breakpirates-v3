@@ -2,8 +2,10 @@
   <div
     class="now-live">
       {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
-      <span class="now-live-icon" (click)="scrollToPlayer()" role="button">
-        <fa-icon [icon]="faVolumeUp"></fa-icon>
-      </span>
+      <button
+        class="now-live-icon btn-link"
+        (click)="scrollToPlayer()">
+          <fa-icon [icon]="faVolumeUp"></fa-icon>
+      </button>
   </div>
 }

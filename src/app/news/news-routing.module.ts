@@ -26,7 +26,7 @@ const routes: Routes = [
   imports: [
     NewsResolversModule,
     RouterModule.forChild(routes)
-  ],
+],
   exports: [RouterModule]
 })
 export class NewsRoutingModule { }

@@ -51,7 +51,7 @@ const routes: Routes = [
   imports: [
     ScheduleResolversModule,
     RouterModule.forChild(routes)
-  ],
+],
   exports: [RouterModule]
 })
 export class ScheduleRoutingModule { }

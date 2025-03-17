@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, input } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRetweet } from '@fortawesome/free-solid-svg-icons';
 
 import { SampleConfig } from '../sample-config';
@@ -6,7 +7,10 @@ import { SampleConfig } from '../sample-config';
 @Component({
   selector: 'bp-sample-button',
   templateUrl: './sample-button.component.html',
-  styleUrls: ['./sample-button.component.scss']
+  styleUrls: ['./sample-button.component.scss'],
+  imports: [
+    FontAwesomeModule
+  ]
 })
 export class SampleButtonComponent {
   config = input.required<SampleConfig>();

@@ -9,8 +9,8 @@ describe('ToolsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ToolsComponent ],
         imports: [
+          ToolsComponent,
           TranslateModule.forRoot(),
         ]
     });
