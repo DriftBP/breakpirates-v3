@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../../app-settings';
 import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
-
+import { MusicResolversModule } from '../resolvers/music-resolvers.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: MusicResolversModule
 })
 export class MusicService {
 

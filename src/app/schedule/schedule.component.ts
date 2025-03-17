@@ -10,6 +10,7 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { DaySelectComponent } from './day-select/day-select.component';
+import { DayService } from './services/day.service';
 
 @Component({
   selector: 'bp-schedule',
@@ -32,7 +33,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
-    private readonly breadcrumbService: BreadcrumbService
+    private readonly breadcrumbService: BreadcrumbService,
+    private readonly dayService: DayService
   ) { }
 
   ngOnInit() {
@@ -44,17 +46,20 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   onParamChange(params: ParamMap) {
-    const dayId = params.get('id');
+    const dayName = params.get('day');
+    let day: Day;
 
-    if (dayId) {
-      this.activeDayId = parseInt(dayId) as WeekdayNumbers;
+    if (dayName) {
+      day = this.dayService.dayByName(dayName);
+    }
 
-      const dayName = this.getDayName(this.activeDayId);
+    if (day) {
+      this.activeDayId = day.id as WeekdayNumbers;
 
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         scheduleConfigInactive,
         {
-          name: dayName,
+          name: day.name,
           isActive: true
         }
       ]);
@@ -74,15 +79,4 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.childParamsSubscription.unsubscribe();
     }
   }
-
-  private getDayName(activeDayId: number): string {
-    const activeDay = this.days().find(day => day.id === activeDayId);
-
-    if (activeDay) {
-      return activeDay.name;
-    }
-
-    return '';
-  }
-
 }

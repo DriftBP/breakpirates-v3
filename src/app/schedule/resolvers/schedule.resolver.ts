@@ -1,16 +1,16 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { ScheduleService } from '../services/schedule.service';
+import { DayService } from '../services/day.service';
 import { Show } from '../models/show';
 
-export const ScheduleResolver: ResolveFn<Observable<Show[]>> =
-  (route: ActivatedRouteSnapshot): Observable<Show[]> =>
-    {
-      const scheduleService = inject(ScheduleService);
+export const scheduleResolver: ResolveFn<Show[]> = (
+  route: ActivatedRouteSnapshot
+) => {
+  const dayName = route.paramMap.get('day');
 
-      const dayId = parseInt(route.paramMap.get('id') ?? '', 10);
+  const dayId = inject(DayService).dayByName(dayName)?.id ?? 0;
 
-      return scheduleService.shows(dayId);
-    }
+  return inject(ScheduleService).shows(dayId);
+};
