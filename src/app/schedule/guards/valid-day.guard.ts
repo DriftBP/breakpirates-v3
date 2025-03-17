@@ -17,4 +17,4 @@ export function validDayGuard(): CanActivateFn {
       return false;
     }
   };
-};
+}
