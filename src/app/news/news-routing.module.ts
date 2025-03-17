@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { newsResolver } from './resolves/news.resolver';
-import { newsArticleResolver } from './resolves/news-article.resolver';
+import { newsResolver } from './resolvers/news.resolver';
+import { newsArticleResolver } from './resolvers/news-article.resolver';
 import { NewsComponent } from './news.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
-import { NewsResolversModule } from './resolves/news-resolvers.module';
+import { NewsResolversModule } from './resolvers/news-resolvers.module';
 
 const routes: Routes = [
   {

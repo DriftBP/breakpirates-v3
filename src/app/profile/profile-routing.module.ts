@@ -5,7 +5,7 @@ import { profilesResolver } from './resolvers/profiles.resolver';
 import { HostDetailsComponent } from './host-details/host-details.component';
 import { hostDetailsResolver } from './resolvers/host-details.resolver';
 import { ProfilesComponent } from './profiles.component';
-import { ProfileResolvesModule } from './resolvers/profile-resolves.module';
+import { ProfileResolversModule } from './resolvers/profile-resolvers.module';
 
 const routes: Routes = [
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    ProfileResolvesModule,
+    ProfileResolversModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

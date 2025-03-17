@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../../app-settings';
 import { Host } from '../host';
 import { Show } from '../../schedule/models/show';
-import { ProfileResolvesModule } from '../resolvers/profile-resolves.module';
+import { ProfileResolversModule } from '../resolvers/profile-resolvers.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
-  providedIn: ProfileResolvesModule
+  providedIn: ProfileResolversModule
 })
 export class ProfileService {
 

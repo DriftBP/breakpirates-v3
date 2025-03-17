@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { News } from '../models/news';
-import { NewsResolversModule } from '../resolves/news-resolvers.module';
+import { NewsResolversModule } from '../resolvers/news-resolvers.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
