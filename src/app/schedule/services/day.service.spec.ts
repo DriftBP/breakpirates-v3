@@ -30,26 +30,26 @@ describe('DayService', () => {
     const day6 = service.dayById(6);
     const day7 = service.dayById(7);
 
-    expect(day1.id).toEqual(1);
-    expect(day1.name).toEqual('Monday');
+    expect(day1?.id).toEqual(1);
+    expect(day1?.name).toEqual('Monday');
 
-    expect(day2.id).toEqual(2);
-    expect(day2.name).toEqual('Tuesday');
+    expect(day2?.id).toEqual(2);
+    expect(day2?.name).toEqual('Tuesday');
 
-    expect(day3.id).toEqual(3);
-    expect(day3.name).toEqual('Wednesday');
+    expect(day3?.id).toEqual(3);
+    expect(day3?.name).toEqual('Wednesday');
 
-    expect(day4.id).toEqual(4);
-    expect(day4.name).toEqual('Thursday');
+    expect(day4?.id).toEqual(4);
+    expect(day4?.name).toEqual('Thursday');
 
-    expect(day5.id).toEqual(5);
-    expect(day5.name).toEqual('Friday');
+    expect(day5?.id).toEqual(5);
+    expect(day5?.name).toEqual('Friday');
 
-    expect(day6.id).toEqual(6);
-    expect(day6.name).toEqual('Saturday');
+    expect(day6?.id).toEqual(6);
+    expect(day6?.name).toEqual('Saturday');
 
-    expect(day7.id).toEqual(7);
-    expect(day7.name).toEqual('Sunday');
+    expect(day7?.id).toEqual(7);
+    expect(day7?.name).toEqual('Sunday');
   });
 
   describe('dayByName', () => {
@@ -62,26 +62,26 @@ describe('DayService', () => {
       const day6 = service.dayByName('Saturday');
       const day7 = service.dayByName('Sunday');
 
-      expect(day1.id).toEqual(1);
-      expect(day1.name).toEqual('Monday');
+      expect(day1?.id).toEqual(1);
+      expect(day1?.name).toEqual('Monday');
 
-      expect(day2.id).toEqual(2);
-      expect(day2.name).toEqual('Tuesday');
+      expect(day2?.id).toEqual(2);
+      expect(day2?.name).toEqual('Tuesday');
 
-      expect(day3.id).toEqual(3);
-      expect(day3.name).toEqual('Wednesday');
+      expect(day3?.id).toEqual(3);
+      expect(day3?.name).toEqual('Wednesday');
 
-      expect(day4.id).toEqual(4);
-      expect(day4.name).toEqual('Thursday');
+      expect(day4?.id).toEqual(4);
+      expect(day4?.name).toEqual('Thursday');
 
-      expect(day5.id).toEqual(5);
-      expect(day5.name).toEqual('Friday');
+      expect(day5?.id).toEqual(5);
+      expect(day5?.name).toEqual('Friday');
 
-      expect(day6.id).toEqual(6);
-      expect(day6.name).toEqual('Saturday');
+      expect(day6?.id).toEqual(6);
+      expect(day6?.name).toEqual('Saturday');
 
-      expect(day7.id).toEqual(7);
-      expect(day7.name).toEqual('Sunday');
+      expect(day7?.id).toEqual(7);
+      expect(day7?.name).toEqual('Sunday');
     });
 
     it('should return day from lower case name', () => {
@@ -93,26 +93,26 @@ describe('DayService', () => {
       const day6 = service.dayByName('saturday');
       const day7 = service.dayByName('sunday');
 
-      expect(day1.id).toEqual(1);
-      expect(day1.name).toEqual('Monday');
+      expect(day1?.id).toEqual(1);
+      expect(day1?.name).toEqual('Monday');
 
-      expect(day2.id).toEqual(2);
-      expect(day2.name).toEqual('Tuesday');
+      expect(day2?.id).toEqual(2);
+      expect(day2?.name).toEqual('Tuesday');
 
-      expect(day3.id).toEqual(3);
-      expect(day3.name).toEqual('Wednesday');
+      expect(day3?.id).toEqual(3);
+      expect(day3?.name).toEqual('Wednesday');
 
-      expect(day4.id).toEqual(4);
-      expect(day4.name).toEqual('Thursday');
+      expect(day4?.id).toEqual(4);
+      expect(day4?.name).toEqual('Thursday');
 
-      expect(day5.id).toEqual(5);
-      expect(day5.name).toEqual('Friday');
+      expect(day5?.id).toEqual(5);
+      expect(day5?.name).toEqual('Friday');
 
-      expect(day6.id).toEqual(6);
-      expect(day6.name).toEqual('Saturday');
+      expect(day6?.id).toEqual(6);
+      expect(day6?.name).toEqual('Saturday');
 
-      expect(day7.id).toEqual(7);
-      expect(day7.name).toEqual('Sunday');
+      expect(day7?.id).toEqual(7);
+      expect(day7?.name).toEqual('Sunday');
     });
 
     it('should return day from upper case name', () => {
@@ -124,26 +124,26 @@ describe('DayService', () => {
       const day6 = service.dayByName('SATURDAY');
       const day7 = service.dayByName('SUNDAY');
 
-      expect(day1.id).toEqual(1);
-      expect(day1.name).toEqual('Monday');
+      expect(day1?.id).toEqual(1);
+      expect(day1?.name).toEqual('Monday');
 
-      expect(day2.id).toEqual(2);
-      expect(day2.name).toEqual('Tuesday');
+      expect(day2?.id).toEqual(2);
+      expect(day2?.name).toEqual('Tuesday');
 
-      expect(day3.id).toEqual(3);
-      expect(day3.name).toEqual('Wednesday');
+      expect(day3?.id).toEqual(3);
+      expect(day3?.name).toEqual('Wednesday');
 
-      expect(day4.id).toEqual(4);
-      expect(day4.name).toEqual('Thursday');
+      expect(day4?.id).toEqual(4);
+      expect(day4?.name).toEqual('Thursday');
 
-      expect(day5.id).toEqual(5);
-      expect(day5.name).toEqual('Friday');
+      expect(day5?.id).toEqual(5);
+      expect(day5?.name).toEqual('Friday');
 
-      expect(day6.id).toEqual(6);
-      expect(day6.name).toEqual('Saturday');
+      expect(day6?.id).toEqual(6);
+      expect(day6?.name).toEqual('Saturday');
 
-      expect(day7.id).toEqual(7);
-      expect(day7.name).toEqual('Sunday');
+      expect(day7?.id).toEqual(7);
+      expect(day7?.name).toEqual('Sunday');
     });
   });
 
