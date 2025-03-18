@@ -1,4 +1,5 @@
 import { Component, computed, effect, input, Signal } from '@angular/core';
+import { DateTime } from 'luxon';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -14,7 +15,7 @@ import { ShowService } from '../services/show.service';
   styleUrls: ['./show.component.scss']
 })
 export class ShowComponent {
-  show = input<Show>();
+  show = input.required<Show>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     scheduleConfigInactive
@@ -23,23 +24,24 @@ export class ShowComponent {
 
   dayName: Signal<string | undefined>;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
-  nextDate: string | null = null;
-  endDate: string | null = null;
+  dates: Signal<{
+    startDate: DateTime;
+    endDate: DateTime;
+  }>;
 
   constructor(
     private readonly dayService: DayService,
     private readonly showService: ShowService,
     private readonly breadcrumbService: BreadcrumbService
   ) {
+    this.dates = computed(() => {
+      return this.showService.getDates(this.show());
+    });
+
     effect(() => {
       const show = this.show();
 
       if (show) {
-        const { startDate, endDate } = this.showService.getDates(show);
-
-        this.nextDate = startDate.toISO();
-        this.endDate = endDate.toISO();
-
         this.setBreadcrumb(show);
       }
     });

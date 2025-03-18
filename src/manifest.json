@@ -1,0 +1,15 @@
+{
+  "short_name": "BP",
+  "name": "Break Pirates",
+  "icons": [
+    {
+      "src": "/assets/bp480x480.jpg",
+      "sizes": "480x480",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#545691",
+  "background_color": "#ffffff"
+}

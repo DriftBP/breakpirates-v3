@@ -1,20 +1,33 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfilesResolve } from './resolves/profiles.resolve';
+import { profilesResolver } from './resolvers/profiles.resolver';
 import { HostDetailsComponent } from './host-details/host-details.component';
-import { HostDetailsResolve } from './resolves/host-details.resolve';
+import { hostDetailsResolver } from './resolvers/host-details.resolver';
 import { ProfilesComponent } from './profiles.component';
-import { ProfileResolvesModule } from './resolves/profile-resolves.module';
+import { ProfileResolversModule } from './resolvers/profile-resolvers.module';
 
 const routes: Routes = [
-  { path: '', component: ProfilesComponent, resolve: { profiles: ProfilesResolve }, pathMatch: 'full' },
-  { path: ':id', component: HostDetailsComponent, resolve: { profile: HostDetailsResolve } },
+  {
+    path: '',
+    component: ProfilesComponent,
+    resolve: {
+      profiles: profilesResolver
+    },
+    pathMatch: 'full'
+  },
+  {
+    path: ':id',
+    component: HostDetailsComponent,
+    resolve: {
+      profile: hostDetailsResolver
+    }
+  },
 ];
 
 @NgModule({
   imports: [
-    ProfileResolvesModule,
+    ProfileResolversModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

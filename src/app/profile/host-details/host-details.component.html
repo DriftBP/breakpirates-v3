@@ -1,6 +1,6 @@
 @if (profile(); as profile) {
-  <div itemscope itemtype="http://schema.org/Person">
-    <article>
+  <div itemscope itemtype="http://schema.org/ProfilePage">
+    <article itemprop="mainEntity" itemscope itemtype="http://schema.org/Person">
       <h1 itemprop="name">{{profile.name}}</h1>
 
       @if (profile.location) {

@@ -4,7 +4,7 @@
       <li class="nav-item">
         <a class="nav-link"
             [bpActive]="day.id === activeDayId()"
-            [routerLink]="['/schedule',day.id]">{{ day.name }}</a>
+            [routerLink]="['/schedule',day.name.toLowerCase()]">{{ day.name }}</a>
       </li>
     }
   </ul>
