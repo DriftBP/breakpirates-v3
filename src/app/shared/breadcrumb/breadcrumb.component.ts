@@ -1,6 +1,6 @@
 import { Component, Signal, computed, effect } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, Translation } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 import { homeConfigActive, homeConfigInactive } from './breadcrumb-config';
@@ -55,7 +55,7 @@ export class BreadcrumbComponent {
 
   private setTitle(activeItem: BreadcrumbConfigItem): void {
     this.translateService.get(activeItem.name)
-      .subscribe(t => {
+      .subscribe((t: Translation) => {
         var title = `${t} : Break Pirates - Live Pirate Style Radio`;
 
         this.titleService.setTitle(title);

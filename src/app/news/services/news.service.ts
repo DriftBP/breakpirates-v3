@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { News } from '../models/news';
-import { NewsResolvesModule } from '../resolves/news-resolves.module';
+import { NewsResolversModule } from '../resolvers/news-resolvers.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
-  providedIn: NewsResolvesModule
+  providedIn: NewsResolversModule
 })
 export class NewsService {
 

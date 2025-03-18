@@ -1,7 +1,7 @@
 @if (show(); as show) {
   <div itemscope itemtype="http://schema.org/MusicEvent">
-    <meta itemprop="startDate" content="{{nextDate}}">
-    <meta itemprop="endDate" content="{{endDate}}">
+    <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
+    <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
 
     <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
       <meta itemprop="name" content="Break Pirates">
@@ -16,6 +16,7 @@
         <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
         <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
         {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
+        <bp-now-live [show]="show"></bp-now-live>
       </p>
       @if (show.description) {
         <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>

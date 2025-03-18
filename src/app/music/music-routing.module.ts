@@ -3,17 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MusicComponent } from './music.component';
 import { GenreComponent } from './genre/genre.component';
-import { MusicResolvesModule } from './resolves/music-resolves.module';
-import { GenresResolve } from './resolves/genres.resolve';
-import { GenreResolve } from './resolves/genre.resolve';
-import { GenreShowsResolve } from './resolves/genre-shows.resolve';
+import { genresResolver } from './resolvers/genres.resolver';
+import { genreResolver } from './resolvers/genre.resolver';
+import { genreShowsResolver } from './resolvers/genre-shows.resolver';
+import { MusicResolversModule } from './resolvers/music-resolvers.module';
 
 const routes: Routes = [
   {
     path: '',
     component: MusicComponent,
     resolve: {
-      genres: GenresResolve
+      genres: genresResolver
     },
     pathMatch: 'full'
   },
@@ -21,17 +21,17 @@ const routes: Routes = [
     path: ':id',
     component: GenreComponent,
     resolve: {
-      genre: GenreResolve,
-      shows: GenreShowsResolve
+      genre: genreResolver,
+      shows: genreShowsResolver
     }
   }
 ];
 
 @NgModule({
   imports: [
-    MusicResolvesModule,
-    RouterModule.forChild(routes)]
-  ,
+    MusicResolversModule,
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule]
 })
 export class MusicRoutingModule { }
