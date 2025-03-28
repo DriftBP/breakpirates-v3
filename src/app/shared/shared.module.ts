@@ -23,7 +23,6 @@ import { ThemeSelectComponent } from './theme-select/theme-select.component';
 import { ChatRoomPromoComponent } from './chat-room-promo/chat-room-promo.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { SupportedBrowsersNoticeComponent } from './supported-browsers-notice/supported-browsers-notice.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { AdUnitComponent } from './ad-unit/ad-unit.component';
 import { DialogComponent } from './dialog/dialog.component';
@@ -84,7 +83,6 @@ export function customHttpLoader(http: HttpClient) {
     NotFoundComponent,
     BreadcrumbComponent,
     FooterBarComponent,
-    SupportedBrowsersNoticeComponent,
     ActiveDirective,
     DialogComponent,
     ImageClickDirective,
@@ -105,7 +103,6 @@ export function customHttpLoader(http: HttpClient) {
     TranslateModule,
     BreadcrumbComponent,
     FooterBarComponent,
-    SupportedBrowsersNoticeComponent,
     ActiveDirective,
     DialogComponent,
     ImageClickDirective,
