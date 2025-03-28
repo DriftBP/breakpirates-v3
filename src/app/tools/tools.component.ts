@@ -4,8 +4,9 @@ import { toolsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-tools',
-  templateUrl: './tools.component.html'
+    selector: 'bp-tools',
+    templateUrl: './tools.component.html',
+    standalone: false
 })
 export class ToolsComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

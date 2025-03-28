@@ -4,9 +4,10 @@ import { faRetweet } from '@fortawesome/free-solid-svg-icons';
 import { SampleConfig } from '../sample-config';
 
 @Component({
-  selector: 'bp-sample-button',
-  templateUrl: './sample-button.component.html',
-  styleUrls: ['./sample-button.component.scss']
+    selector: 'bp-sample-button',
+    templateUrl: './sample-button.component.html',
+    styleUrls: ['./sample-button.component.scss'],
+    standalone: false
 })
 export class SampleButtonComponent {
   config = input.required<SampleConfig>();

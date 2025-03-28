@@ -8,13 +8,12 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'bp-video',
-  templateUrl: './video.component.html',
-  imports: [
-    RouterModule,
-    TranslateModule
-  ],
-  standalone: true
+    selector: 'bp-video',
+    templateUrl: './video.component.html',
+    imports: [
+        RouterModule,
+        TranslateModule
+    ]
 })
 export class VideoComponent implements OnInit {
   videos = input<Video[]>();

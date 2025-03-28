@@ -4,8 +4,9 @@ import { SupportedBrowsersService } from '../services/supported-browsers/support
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 
 @Component({
-  selector: 'bp-supported-browsers-notice',
-  templateUrl: './supported-browsers-notice.component.html'
+    selector: 'bp-supported-browsers-notice',
+    templateUrl: './supported-browsers-notice.component.html',
+    standalone: false
 })
 export class SupportedBrowsersNoticeComponent {
   readonly alertType = 'danger';

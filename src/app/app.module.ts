@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER, Injector } from '@angular/core';
+import { NgModule, Injector, inject, provideAppInitializer } from '@angular/core';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -40,12 +40,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitializerFactory,
-      deps: [TranslateService, Injector],
-      multi: true
-    },
+    provideAppInitializer(() => {
+        const initializerFn = (appInitializerFactory)(inject(TranslateService), inject(Injector));
+        return initializerFn();
+      }),
     provideHttpClient(withInterceptorsFromDi())
   ]
 })
