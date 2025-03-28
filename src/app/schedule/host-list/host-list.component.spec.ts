@@ -9,10 +9,12 @@ describe('HostListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostListComponent,
-          MockSortByPipe
-        ]
+      imports: [
+        MockSortByPipe
+      ],
+      declarations: [
+        HostListComponent
+      ]
     });
     fixture = TestBed.createComponent(HostListComponent);
     component = fixture.componentInstance;

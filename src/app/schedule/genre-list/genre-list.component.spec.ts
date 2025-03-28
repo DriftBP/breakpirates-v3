@@ -9,10 +9,12 @@ describe('GenreListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          GenreListComponent,
-          MockSortByPipe
-        ]
+      imports: [
+        MockSortByPipe
+      ],
+      declarations: [
+        GenreListComponent
+      ]
     });
     fixture = TestBed.createComponent(GenreListComponent);
     component = fixture.componentInstance;

@@ -5,6 +5,6 @@ import { Directive, HostBinding, Input } from '@angular/core';
     standalone: false
 })
 export class ActiveDirective {
-  @Input('bpActive') condition: boolean;
+  @Input('bpActive') condition: boolean = false;
   @HostBinding('class.active') get active() { return this.condition; }
 }
