@@ -12,7 +12,7 @@ import { DjListComponent } from "./dj-list.component";
   imports: [
     TranslateModule,
     DjListComponent
-],
+  ],
   standalone: true
 })
 export class DjsComponent implements OnInit {
@@ -24,7 +24,7 @@ export class DjsComponent implements OnInit {
     }
   ];
 
-  allDjs: string[] = [
+  private allDjs: string[] = [
     // A
     'Advance',
     'Abo',
@@ -123,7 +123,7 @@ export class DjsComponent implements OnInit {
     'Lynel Vynel',
     'LTJ Bukem',
     'Lien',
-    'Louise Plusone',
+    'Louise Plus One',
     // M
     'Maxx Vinyl',
     'Moving Fusion',
@@ -212,13 +212,29 @@ export class DjsComponent implements OnInit {
     'Zippy',
   ];
 
-  djs: string[] = [];
+  public djsByLetter: { letter: string; djs: string[] }[] = [];
 
   constructor(
     private readonly breadcrumbService: BreadcrumbService
   ) {
-    this.djs = this.allDjs;
-    this.djs.sort();
+    // Get a list of all the first letters of the djs
+    const firstLetters = this.allDjs.map(dj => dj.charAt(0).toUpperCase());
+
+    // Remove duplicates
+    let uniqueFirstLetters = [...new Set(firstLetters)];
+
+    // Sort the letters
+    uniqueFirstLetters = uniqueFirstLetters.sort();
+
+    // Create an array of objects with the letter and the djs that start with that letter
+    this.djsByLetter = uniqueFirstLetters.map(letter => {
+      return {
+        letter: letter,
+        djs: this.allDjs
+          .filter(dj => dj.charAt(0).toUpperCase() === letter)
+          .sort((a, b) => a.localeCompare(b))
+      };
+    });
   }
 
   ngOnInit() {
