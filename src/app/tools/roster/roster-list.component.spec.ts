@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { DjListComponent } from './dj-list.component';
+import { RosterListComponent } from './roster-list.component';
 
-describe('DjListComponent', () => {
-  let component: DjListComponent;
-  let fixture: ComponentFixture<DjListComponent>;
+describe('RosterListComponent', () => {
+  let component: RosterListComponent;
+  let fixture: ComponentFixture<RosterListComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
         imports: [
-          DjListComponent
+          RosterListComponent
         ]
     });
-    fixture = TestBed.createComponent(DjListComponent);
+    fixture = TestBed.createComponent(RosterListComponent);
     component = fixture.componentInstance;
   }));
 

@@ -4,22 +4,22 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-import { DjListComponent } from "./dj-list.component";
+import { RosterListComponent } from "./roster-list.component";
 
 @Component({
-  selector: 'bp-djs',
-  templateUrl: './djs.component.html',
+  selector: 'bp-roster',
+  templateUrl: './roster.component.html',
   imports: [
     TranslateModule,
-    DjListComponent
+    RosterListComponent
   ],
   standalone: true
 })
-export class DjsComponent implements OnInit {
+export class RosterComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
-      name: 'DJS.TITLE',
+      name: 'ROSTER.TITLE',
       isActive: true
     }
   ];

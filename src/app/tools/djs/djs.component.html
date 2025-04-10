@@ -1,7 +1,0 @@
-<h1>{{'DJS.TITLE' | translate}}</h1>
-<p>{{'DJS.RESPECT_TO' | translate}}<p>
-
-@for (item of djsByLetter; track item.letter) {
-  <h2>{{item.letter}}</h2>
-  <bp-dj-list [djs]="item.djs"></bp-dj-list>
-}
