@@ -1,4 +1,5 @@
 import { Component, computed, effect, input, Signal } from '@angular/core';
+import { DateTime } from 'luxon';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -23,23 +24,24 @@ export class ShowComponent {
 
   dayName: Signal<string>;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
-  nextDate: string;
-  endDate: string;
+  dates: Signal<{
+    startDate: DateTime;
+    endDate: DateTime;
+  }>;
 
   constructor(
     private readonly dayService: DayService,
     private readonly showService: ShowService,
     private readonly breadcrumbService: BreadcrumbService
   ) {
+    this.dates = computed(() => {
+      return this.show() !== undefined ? this.showService.getDates(this.show()) : undefined;
+    });
+
     effect(() => {
       const show = this.show();
 
       if (show) {
-        const { startDate, endDate } = this.showService.getDates(show);
-
-        this.nextDate = startDate.toISO();
-        this.endDate = endDate.toISO();
-
         this.setBreadcrumb(show);
       }
     });

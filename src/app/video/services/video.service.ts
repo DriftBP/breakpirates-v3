@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Video } from '../models/video';
-import { VideoResolvesModule } from '../resolves/video-resolves.module';
+import { VideoResolversModule } from '../resolvers/video-resolvers.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
 @Injectable({
-  providedIn: VideoResolvesModule
+  providedIn: VideoResolversModule
 })
 export class VideoService {
 

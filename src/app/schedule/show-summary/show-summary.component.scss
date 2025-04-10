@@ -18,17 +18,10 @@
   }
 
   &__ {
-    &time,
-    &day,
-    &title,
-    &now-live {
+    &when,
+    &title {
       font-size: 1.2rem;
       font-weight: $font-weight-bold;
-
-      &-icon {
-        margin-left: 0.25em;
-        cursor: pointer;
-      }
     }
 
     &title {

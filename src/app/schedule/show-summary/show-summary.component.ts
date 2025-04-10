@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, Signal, computed, effect, input } from '@angular/core';
-import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
+import { DateTime } from 'luxon';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
-import { ScheduleService } from '../services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { ShowService } from '../services/show.service';
-import { ScrollService } from '../../shared/services/scroll/scroll.service';
 
 @Component({
   selector: 'bp-show-summary',
@@ -19,26 +17,19 @@ export class ShowSummaryComponent {
   displayDay = input<boolean>(false);
 
   dayName: Signal<string>;
-  nextDate: string;
-  endDate: string;
+  dates: Signal<{
+    startDate: DateTime;
+    endDate: DateTime;
+  }>;
   showImage: Signal<string>;
-  isOnAir: Signal<boolean>;
-
-  faVolumeUp = faVolumeUp;
+  showImageCssValue: Signal<string>;
 
   constructor(
     private readonly dayService: DayService,
-    private readonly scheduleService: ScheduleService,
-    private readonly showService: ShowService,
-    private readonly scrollService: ScrollService
+    private readonly showService: ShowService
   ) {
-    effect(() => {
-      if (this.show() !== undefined) {
-        const { startDate, endDate } = this.showService.getDates(this.show());
-
-        this.nextDate = startDate.toISO();
-        this.endDate = endDate.toISO();
-      }
+    this.dates = computed(() => {
+      return this.show() !== undefined ? this.showService.getDates(this.show()) : undefined;
     });
 
     this.dayName = computed(() => {
@@ -46,15 +37,11 @@ export class ShowSummaryComponent {
     });
 
     this.showImage = computed(() => {
-      return this.show().image ? `url(${AppSettings.ASSET_SHOW_IMAGE}${this.show().image})` : undefined;
+      return this.show().image ? `${AppSettings.ASSET_SHOW_IMAGE}${this.show().image}` : undefined;
     });
 
-    this.isOnAir = computed(() => {
-      return this.scheduleService.nowPlaying()?.id === this.show().id;
+    this.showImageCssValue = computed(() => {
+      return this.showImage() ? `url(${this.showImage()})` : undefined;
     });
-  }
-
-  scrollToPlayer(): void {
-    this.scrollService.scrollToTop();
   }
 }
