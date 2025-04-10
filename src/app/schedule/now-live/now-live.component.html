@@ -1,0 +1,9 @@
+@if (isOnAir()) {
+  <div
+    class="now-live">
+      {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
+      <span class="now-live-icon" (click)="scrollToPlayer()" role="button">
+        <fa-icon [icon]="faVolumeUp"></fa-icon>
+      </span>
+  </div>
+}

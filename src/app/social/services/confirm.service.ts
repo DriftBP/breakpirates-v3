@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, Translation } from '@ngx-translate/core';
 import { Observable, Observer } from 'rxjs';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class ConfirmService {
   confirm(translateKey: string): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
       this.translateService.get(translateKey)
-        .subscribe(t => {
+        .subscribe((t: Translation) => {
           if (window.confirm(t)) {
             observer.next(true);
           } else {

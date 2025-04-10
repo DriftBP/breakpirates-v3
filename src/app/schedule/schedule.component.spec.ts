@@ -6,6 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockRouterService } from '../../test/services/mock.router.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
+import { DayService } from './services/day.service';
+import { MockDayService } from '../../test/services/mock.day.service';
 
 describe('ScheduleComponent', () => {
   let component: ScheduleComponent;
@@ -29,6 +31,10 @@ describe('ScheduleComponent', () => {
           {
             provide: BreadcrumbService,
             useClass: MockBreadcrumbService
+          },
+          {
+            provide: DayService,
+            useClass: MockDayService
           }
         ]
     });
