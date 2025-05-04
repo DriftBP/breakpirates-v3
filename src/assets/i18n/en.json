@@ -124,6 +124,7 @@
     "PLAY_BUTTON_DOESNT_WORK": "Not supported in all browsers. If the play button doesn't work then use a link in the Tune in menu."
   },
   "TOOLS": {
+    "ROSTER": "Break Pirates roster",
     "TITLE": "Tools",
     "BPM_COUNTER": "BPM counter",
     "DJ_NAME": "DJ name generator",
@@ -142,6 +143,10 @@
     "TITLE": "DJ name generator",
     "GENERATE": "Generate",
     "YOUR_NAME_IS": "Your DJ name is"
+  },
+  "ROSTER": {
+    "TITLE": "Break Pirates roster",
+    "RESPECT_TO": "Respect to all of the DJs and MCs who have featured on our shows, events and live broadcasts over the years. We couldn't have done it without you!"
   },
   "SOUNDBOARD": {
     "TITLE": "Rate My Takeaway soundboard"
