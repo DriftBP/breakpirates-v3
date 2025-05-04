@@ -5,7 +5,8 @@ import { By } from '@angular/platform-browser';
 import { ImageClickDirective } from './image-click.directive';
 
 @Component({
-  template: `<div type="text" bpImageClick></div>`
+  template: `<div type="text" bpImageClick></div>`,
+  standalone: false,
 })
 class TestImageClickDirectiveComponent {
 }
@@ -17,10 +18,8 @@ describe('ImageClickDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        TestImageClickDirectiveComponent
-      ],
       declarations: [
+        TestImageClickDirectiveComponent,
         ImageClickDirective
       ]
     });
