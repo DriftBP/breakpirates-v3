@@ -7,9 +7,10 @@ import { newsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-news-article',
-  templateUrl: './news-article.component.html',
-  styleUrls: ['./news-article.component.scss']
+    selector: 'bp-news-article',
+    templateUrl: './news-article.component.html',
+    styleUrls: ['./news-article.component.scss'],
+    standalone: false
 })
 export class NewsArticleComponent {
   article = input<News>();

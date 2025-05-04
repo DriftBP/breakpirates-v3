@@ -6,10 +6,11 @@ import { ScrollService } from '../../shared/services/scroll/scroll.service';
 import { Show } from '../models/show';
 
 @Component({
-  selector: 'bp-now-live',
-  templateUrl: './now-live.component.html',
-  styleUrls: ['./now-live.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-now-live',
+    templateUrl: './now-live.component.html',
+    styleUrls: ['./now-live.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class NowLiveComponent {
   show = input.required<Show>();

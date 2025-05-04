@@ -7,9 +7,10 @@ import { AppSettings } from '../../app-settings';
 import { SortOrder } from '../pipes/sort-order';
 
 @Component({
-  selector: 'bp-now-playing',
-  templateUrl: './now-playing.component.html',
-  styleUrls: ['./now-playing.component.scss']
+    selector: 'bp-now-playing',
+    templateUrl: './now-playing.component.html',
+    styleUrls: ['./now-playing.component.scss'],
+    standalone: false
 })
 export class NowPlayingComponent implements OnInit {
   nowPlaying: Signal<Show>;

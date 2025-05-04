@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@an
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'bp-mixcloud-widget',
-  templateUrl: './mixcloud-widget.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-mixcloud-widget',
+    templateUrl: './mixcloud-widget.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MixcloudWidgetComponent {
   user = input.required<string>();

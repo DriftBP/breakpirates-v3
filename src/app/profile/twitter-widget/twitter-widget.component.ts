@@ -2,9 +2,10 @@ import { Component, Renderer2, Inject, ChangeDetectionStrategy, input, Signal, c
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'bp-twitter-widget',
-  templateUrl: './twitter-widget.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-twitter-widget',
+    templateUrl: './twitter-widget.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TwitterWidgetComponent {
   user = input.required<string>();
