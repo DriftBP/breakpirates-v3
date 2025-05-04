@@ -32,7 +32,7 @@ export class VideoDetailsComponent {
       if (video) {
         this.setBreadcrumb(video);
       }
-    }, { allowSignalWrites: true });
+    });
   }
 
   setBreadcrumb(video: Video): void {

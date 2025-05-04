@@ -33,7 +33,7 @@ export class HostDetailsComponent {
       if (profile) {
         this.setBreadcrumb(profile);
       }
-    }, { allowSignalWrites: true });
+    });
   }
 
   setBreadcrumb(profile: Host): void {

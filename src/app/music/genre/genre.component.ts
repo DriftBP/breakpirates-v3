@@ -30,7 +30,7 @@ export class GenreComponent {
       if (genre) {
         this.setBreadcrumb(genre);
       }
-    }, { allowSignalWrites: true });
+    });
   }
 
   setBreadcrumb(genre: Genre): void {

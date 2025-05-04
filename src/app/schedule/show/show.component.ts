@@ -45,7 +45,7 @@ export class ShowComponent {
       if (show) {
         this.setBreadcrumb(show);
       }
-    }, { allowSignalWrites: true });
+    });
 
     this.dayName = computed(() => {
       return this.show() ? this.dayService.dayName(this.show().day_id) : undefined;
