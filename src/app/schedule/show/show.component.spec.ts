@@ -26,31 +26,31 @@ describe('ShowComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ShowComponent,
-          MockTimePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: DayService,
-            useClass: MockDayService
-          },
-          {
-            provide: ShowService,
-            useClass: MockShowService
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      declarations: [
+        ShowComponent
+      ],
+      imports: [
+        MockTimePipe,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: DayService,
+          useClass: MockDayService
+        },
+        {
+          provide: ShowService,
+          useClass: MockShowService
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        }
+      ]
     });
     fixture = TestBed.createComponent(ShowComponent);
     component = fixture.componentInstance;

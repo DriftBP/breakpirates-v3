@@ -9,8 +9,9 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-breadcrumb',
-  templateUrl: './breadcrumb.component.html'
+    selector: 'bp-breadcrumb',
+    templateUrl: './breadcrumb.component.html',
+    standalone: false
 })
 export class BreadcrumbComponent implements OnDestroy {
   private breadcrumbSubscription: Subscription;

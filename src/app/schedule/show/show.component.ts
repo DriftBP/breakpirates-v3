@@ -10,9 +10,10 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { ShowService } from '../services/show.service';
 
 @Component({
-  selector: 'bp-show',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+    selector: 'bp-show',
+    templateUrl: './show.component.html',
+    styleUrls: ['./show.component.scss'],
+    standalone: false
 })
 export class ShowComponent {
   show = input.required<Show>();

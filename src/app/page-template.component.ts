@@ -6,9 +6,10 @@ import { DialogService } from './shared/services/dialog/dialog.service';
 import { IDialogConfig } from './shared/services/dialog/dialog-config';
 
 @Component({
-  selector: 'bp-page-template',
-  templateUrl: './page-template.component.html',
-  styleUrls: ['./page-template.component.scss']
+    selector: 'bp-page-template',
+    templateUrl: './page-template.component.html',
+    styleUrls: ['./page-template.component.scss'],
+    standalone: false
 })
 export class PageTemplateComponent implements AfterViewInit {
   constructor (

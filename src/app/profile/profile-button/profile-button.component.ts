@@ -4,10 +4,11 @@ import { Host } from '../host';
 import { AppSettings } from '../../app-settings';
 
 @Component({
-  selector: 'bp-profile-button',
-  templateUrl: './profile-button.component.html',
-  styleUrls: ['./profile-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-profile-button',
+    templateUrl: './profile-button.component.html',
+    styleUrls: ['./profile-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProfileButtonComponent {
   host = input.required<Host>();

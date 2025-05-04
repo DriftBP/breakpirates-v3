@@ -14,23 +14,23 @@ describe('ProfilesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ProfilesComponent,
-          MockSortByPipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      imports: [
+        MockSortByPipe,
+        TranslateModule.forRoot()
+      ],
+      declarations: [
+        ProfilesComponent
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        }
+      ]
     });
     fixture = TestBed.createComponent(ProfilesComponent);
     component = fixture.componentInstance;

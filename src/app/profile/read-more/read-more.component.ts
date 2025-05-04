@@ -4,9 +4,10 @@ import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'bp-read-more',
-  templateUrl: './read-more.component.html',
-  styleUrls: ['./read-more.component.scss']
+    selector: 'bp-read-more',
+    templateUrl: './read-more.component.html',
+    styleUrls: ['./read-more.component.scss'],
+    standalone: false
 })
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
   contentContainerElement = viewChild.required<ElementRef>('contentContainer');

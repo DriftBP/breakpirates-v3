@@ -7,8 +7,9 @@ import { musicConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-genre',
-  templateUrl: './genre.component.html'
+    selector: 'bp-genre',
+    templateUrl: './genre.component.html',
+    standalone: false
 })
 export class GenreComponent {
   genre = input<Genre>();

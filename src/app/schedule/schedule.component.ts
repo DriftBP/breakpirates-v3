@@ -11,8 +11,9 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 import { DayService } from './services/day.service';
 
 @Component({
-  selector: 'bp-schedule',
-  templateUrl: './schedule.component.html'
+    selector: 'bp-schedule',
+    templateUrl: './schedule.component.html',
+    standalone: false
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
   days = input.required<Day[]>();
