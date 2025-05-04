@@ -13,20 +13,20 @@ describe('NowPlayingComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          NowPlayingComponent,
-          MockSafePipe,
-          MockTimePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ScheduleService,
-            useClass: MockScheduleService
-          }
-        ]
+      declarations: [
+        NowPlayingComponent
+      ],
+      imports: [
+        MockSafePipe,
+        MockTimePipe,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
+        }
+      ]
     });
     fixture = TestBed.createComponent(NowPlayingComponent);
     component = fixture.componentInstance;

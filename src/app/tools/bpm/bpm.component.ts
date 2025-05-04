@@ -12,12 +12,11 @@ export interface DataPoint {
 }
 
 @Component({
-  selector: 'bp-bpm',
-  templateUrl: './bpm.component.html',
-  imports: [
-    TranslateModule
-  ],
-  standalone: true
+    selector: 'bp-bpm',
+    templateUrl: './bpm.component.html',
+    imports: [
+        TranslateModule
+    ]
 })
 export class BpmComponent implements OnInit {
   private maxDataPoints = 20;

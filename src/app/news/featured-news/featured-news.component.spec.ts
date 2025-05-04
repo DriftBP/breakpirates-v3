@@ -13,10 +13,12 @@ describe('FeaturedNewsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          FeaturedNewsComponent,
-          MockSafePipe
-        ]
+      imports: [
+        MockSafePipe
+      ],
+      declarations: [
+        FeaturedNewsComponent
+      ]
     });
     fixture = TestBed.createComponent(FeaturedNewsComponent);
     component = fixture.componentInstance;

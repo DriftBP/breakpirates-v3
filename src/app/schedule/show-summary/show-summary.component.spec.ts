@@ -24,26 +24,26 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ShowSummaryComponent,
-          MockTimePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-          RouterModule.forRoot([
-            { path: 'schedule/:id', component: DummyComponent }
-          ])
-        ],
-        providers: [
-          {
-            provide: DayService,
-            useClass: MockDayService
-          },
-          {
-            provide: ShowService,
-            useClass: MockShowService
-          }
-        ]
+      declarations: [
+        ShowSummaryComponent
+      ],
+      imports: [
+        MockTimePipe,
+        TranslateModule.forRoot(),
+        RouterModule.forRoot([
+          { path: 'schedule/:id', component: DummyComponent }
+        ])
+      ],
+      providers: [
+        {
+          provide: DayService,
+          useClass: MockDayService
+        },
+        {
+          provide: ShowService,
+          useClass: MockShowService
+        }
+      ]
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
     component = fixture.componentInstance;
