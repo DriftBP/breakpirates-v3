@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, Signal } from '@angular/core';
+import { Component, computed, Signal } from '@angular/core';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 
 import { Show } from '../../schedule/models/show';
@@ -12,8 +12,8 @@ import { SortOrder } from '../pipes/sort-order';
     styleUrls: ['./now-playing.component.scss'],
     standalone: false
 })
-export class NowPlayingComponent implements OnInit {
-  nowPlaying: Signal<Show>;
+export class NowPlayingComponent {
+  nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
   showRadioPlayer = false;
@@ -27,9 +27,7 @@ export class NowPlayingComponent implements OnInit {
   ) {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
-  }
 
-  ngOnInit() {
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
     });
@@ -43,7 +41,7 @@ export class NowPlayingComponent implements OnInit {
     this.nowPlayingImage = computed(() => {
       const nowPlaying = this.scheduleService.nowPlaying();
 
-      let imageFilename: string;
+      let imageFilename: string | undefined;
 
       if (nowPlaying?.image) {
         imageFilename = nowPlaying.image;
@@ -62,6 +60,6 @@ export class NowPlayingComponent implements OnInit {
     const url = `http://${hostname}${port}/player`;
     const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=143`;
 
-    window.open(url, 'player', params).focus();
+    window.open(url, 'player', params)?.focus();
   }
 }
