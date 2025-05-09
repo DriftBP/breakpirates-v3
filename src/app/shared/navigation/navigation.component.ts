@@ -11,9 +11,10 @@ interface ExternalLink {
 }
 
 @Component({
-  selector: 'bp-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+    selector: 'bp-navigation',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss'],
+    standalone: false
 })
 export class NavigationComponent {
   archiveUrl: string;

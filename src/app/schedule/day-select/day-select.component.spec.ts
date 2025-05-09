@@ -15,7 +15,9 @@ describe('DaySelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ DaySelectComponent ]
+      declarations: [
+        DaySelectComponent
+      ]
     });
     fixture = TestBed.createComponent(DaySelectComponent);
     component = fixture.componentInstance;

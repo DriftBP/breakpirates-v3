@@ -4,8 +4,9 @@ import { BreadcrumbConfigItem } from '../breadcrumb/breadcrumb-config-item';
 import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'bp-not-found',
-  templateUrl: './not-found.component.html'
+    selector: 'bp-not-found',
+    templateUrl: './not-found.component.html',
+    standalone: false
 })
 export class NotFoundComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

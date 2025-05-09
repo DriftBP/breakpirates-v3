@@ -8,9 +8,10 @@ import config from './rate-my-takeaway.json';
 import { SoundboardBase } from './soundboard-base';
 
 @Component({
-  selector: 'bp-rate-my-takeaway-soundboard',
-  templateUrl: './soundboard-base.html',
-  styleUrls: ['./soundboard-base.scss']
+    selector: 'bp-rate-my-takeaway-soundboard',
+    templateUrl: './soundboard-base.html',
+    styleUrls: ['./soundboard-base.scss'],
+    standalone: false
 })
 export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements OnInit {
   breadcrumbConfig: BreadcrumbConfigItem[] = [

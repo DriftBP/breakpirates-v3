@@ -17,25 +17,25 @@ describe('NewsArticleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          NewsArticleComponent,
-          MockIsoDatePipe,
-          MockFormattedDatePipe,
-          MockSafePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      declarations: [
+        NewsArticleComponent
+      ],
+      imports: [
+        MockIsoDatePipe,
+        MockFormattedDatePipe,
+        MockSafePipe,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        }
+      ]
     });
     fixture = TestBed.createComponent(NewsArticleComponent);
     component = fixture.componentInstance;

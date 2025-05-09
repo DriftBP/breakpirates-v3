@@ -8,13 +8,12 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 
 @Component({
-  selector: 'bp-video-details',
-  templateUrl: './video-details.component.html',
-  imports: [
-    TranslateModule,
-    SafePipe
-  ],
-  standalone: true
+    selector: 'bp-video-details',
+    templateUrl: './video-details.component.html',
+    imports: [
+        TranslateModule,
+        SafePipe
+    ]
 })
 export class VideoDetailsComponent {
   video = input<Video>();

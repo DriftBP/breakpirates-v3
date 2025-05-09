@@ -4,7 +4,8 @@ import { IDialogConfig } from '../services/dialog/dialog-config';
 import { DialogService } from '../services/dialog/dialog.service';
 
 @Directive({
-  selector: '[bpImageClick]'
+    selector: '[bpImageClick]',
+    standalone: false
 })
 export class ImageClickDirective {
   @HostListener('click', ['$event'])
