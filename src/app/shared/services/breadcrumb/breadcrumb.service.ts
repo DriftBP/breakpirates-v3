@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 import { BreadcrumbConfigItem } from '../../breadcrumb/breadcrumb-config-item';
 
@@ -7,11 +6,9 @@ import { BreadcrumbConfigItem } from '../../breadcrumb/breadcrumb-config-item';
   providedIn: 'root'
 })
 export class BreadcrumbService {
-  private _breadcrumb: BehaviorSubject<BreadcrumbConfigItem[] | null> = new BehaviorSubject<BreadcrumbConfigItem[] | null>(null);
-
-  public readonly breadcrumb$: Observable<BreadcrumbConfigItem[] | null> = this._breadcrumb.asObservable();
+  public readonly breadcrumb = signal<BreadcrumbConfigItem[] | null>(null);
 
   setBreadcrumb(config: BreadcrumbConfigItem[]): void {
-    this._breadcrumb.next(config);
+    this.breadcrumb.set(config);
   }
 }

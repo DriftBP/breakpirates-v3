@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { from } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 import { BreadcrumbConfigItem } from '../../app/shared/breadcrumb/breadcrumb-config-item';
 import { homeConfigInactive, scheduleConfigActive } from '../../app/shared/breadcrumb/breadcrumb-config';
@@ -13,8 +12,8 @@ export const mockScheduleConfig: BreadcrumbConfigItem[] = [
 
 @Injectable()
 export class MockBreadcrumbService {
-  get breadcrumb$() {
-    return from([mockScheduleConfig]);
+  get breadcrumb() {
+    return signal([mockScheduleConfig]);
   }
 
   setBreadcrumb(config: BreadcrumbConfigItem[]): void {}
