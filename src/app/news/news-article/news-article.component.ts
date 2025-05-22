@@ -9,6 +9,7 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { IsoDatePipe } from '../pipes/iso-date.pipe';
 import { FormattedDatePipe } from '../pipes/formatted-date.pipe';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { ImageClickDirective } from '../../shared/directives/image-click.directive';
 
 @Component({
     selector: 'bp-news-article',
@@ -18,7 +19,8 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
       TranslatePipe,
       IsoDatePipe,
       FormattedDatePipe,
-      SafePipe
+      SafePipe,
+      ImageClickDirective
     ]
 })
 export class NewsArticleComponent {
