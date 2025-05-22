@@ -68,7 +68,8 @@ export function customHttpLoader(http: HttpClient) {
     NgOptimizedImage,
     SafePipe,
     TimePipe,
-    SortByPipe
+    SortByPipe,
+    ActiveDirective
   ],
   declarations: [
     NavigationComponent,
@@ -85,7 +86,6 @@ export function customHttpLoader(http: HttpClient) {
     BreadcrumbComponent,
     FooterBarComponent,
     SupportedBrowsersNoticeComponent,
-    ActiveDirective,
     DialogComponent,
     ImageClickDirective,
     AdUnitComponent,
