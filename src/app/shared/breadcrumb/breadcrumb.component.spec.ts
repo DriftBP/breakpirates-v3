@@ -10,10 +10,10 @@ describe('BreadcrumbComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ BreadcrumbComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        BreadcrumbComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(BreadcrumbComponent);
     component = fixture.componentInstance;

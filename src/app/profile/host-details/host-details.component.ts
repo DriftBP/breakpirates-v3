@@ -14,6 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { HostNavigationComponent } from '../host-navigation/host-navigation.component';
 import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
 import { ReadMoreComponent } from '../read-more/read-more.component';
+import { ImageClickDirective } from '../../shared/directives/image-click.directive';
 
 @Component({
     selector: 'bp-host-details',
@@ -27,7 +28,8 @@ import { ReadMoreComponent } from '../read-more/read-more.component';
       ShowSummaryComponent,
       MixcloudWidgetComponent,
       TwitterWidgetComponent,
-      HostNavigationComponent
+      HostNavigationComponent,
+      ImageClickDirective
     ]
 })
 export class HostDetailsComponent {
