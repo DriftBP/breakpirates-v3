@@ -1,16 +1,25 @@
 import { Component, computed, input, OnInit, Signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { News } from './models/news';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { LatestNewsComponent } from './latest-news/latest-news.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'bp-news',
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.scss'],
-    standalone: false
+    imports: [
+      RouterModule,
+      TranslatePipe,
+      DatePipe,
+      LatestNewsComponent
+    ]
 })
 export class NewsComponent implements OnInit {
   news = input<News[]>();
