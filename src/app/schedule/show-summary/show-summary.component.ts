@@ -37,19 +37,19 @@ export class ShowSummaryComponent {
     startDate: DateTime;
     endDate: DateTime;
   }>;
-  showImage: Signal<string>;
-  showImageCssValue: Signal<string>;
+  showImage: Signal<string | undefined>;
+  showImageCssValue: Signal<string | undefined>;
 
   constructor(
     private readonly dayService: DayService,
     private readonly showService: ShowService
   ) {
     this.dates = computed(() => {
-      return this.show() !== undefined ? this.showService.getDates(this.show()) : undefined;
+      return this.showService.getDates(this.show());
     });
 
     this.dayName = computed(() => {
-      return this.displayDay() ? this.dayService.dayName(this.show().day_id) : undefined;
+      return this.dayService.dayName(this.show().day_id);
     });
 
     this.showImage = computed(() => {

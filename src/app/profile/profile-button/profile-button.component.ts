@@ -20,7 +20,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
 export class ProfileButtonComponent {
   host = input.required<Host>();
 
-  imagePath: Signal<string>;
+  imagePath: Signal<string | undefined>;
 
   constructor() {
     this.imagePath = computed(() => {
