@@ -4,8 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'bp-roster-list',
   templateUrl: './roster-list.component.html',
   styleUrls: ['./roster-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RosterListComponent {
   names = input.required<string[]>();

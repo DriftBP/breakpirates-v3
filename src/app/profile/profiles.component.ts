@@ -20,8 +20,7 @@ import { SortByPipe } from '../shared/pipes/sort-by.pipe';
         TranslatePipe,
         ProfileButtonComponent,
         SortByPipe
-    ],
-    standalone: true
+    ]
 })
 export class ProfilesComponent implements OnInit {
   profiles = input.required<Host[]>();

@@ -13,8 +13,7 @@ import { SortByPipe } from '../../shared/pipes/sort-by.pipe';
     imports: [
       RouterModule,
       SortByPipe
-    ],
-    standalone: true
+    ]
 })
 export class GenreListComponent {
   genres = input.required<Genre[]>();
