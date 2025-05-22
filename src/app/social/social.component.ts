@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Site } from './services/site';
 import { SocialService } from './services/social.service';
@@ -9,7 +10,9 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 @Component({
     selector: 'bp-social',
     templateUrl: './social.component.html',
-    standalone: false
+    imports: [
+      TranslatePipe
+    ]
 })
 export class SocialComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
