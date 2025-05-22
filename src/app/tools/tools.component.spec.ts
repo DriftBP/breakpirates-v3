@@ -9,10 +9,10 @@ describe('ToolsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ToolsComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        ToolsComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(ToolsComponent);
     component = fixture.componentInstance;
