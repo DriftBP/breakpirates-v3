@@ -10,7 +10,7 @@ import { ProfileResolversModule } from './resolvers/profile-resolvers.module';
 const routes: Routes = [
   {
     path: '',
-    component: ProfilesComponent,
+    loadComponent: () => import('./profiles.component').then(mod => mod.ProfilesComponent),
     resolve: {
       profiles: profilesResolver
     },
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: HostDetailsComponent,
+    loadComponent: () => import('./host-details/host-details.component').then(mod => mod.HostDetailsComponent),
     resolve: {
       profile: hostDetailsResolver
     }
