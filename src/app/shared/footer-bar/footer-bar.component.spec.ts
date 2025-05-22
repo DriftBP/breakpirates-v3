@@ -11,16 +11,16 @@ describe('FooterBarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ FooterBarComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: SocialService,
-            useClass: MockSocialService
-          }
-        ]
+      imports: [
+        FooterBarComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: SocialService,
+          useClass: MockSocialService
+        }
+      ]
     });
     fixture = TestBed.createComponent(FooterBarComponent);
     component = fixture.componentInstance;

@@ -1,9 +1,14 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, Signal, computed } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 import { NavigationService } from '../services/navigation/navigation.service';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 interface ExternalLink {
   Url: string;
@@ -11,10 +16,16 @@ interface ExternalLink {
 }
 
 @Component({
-    selector: 'bp-navigation',
-    templateUrl: './navigation.component.html',
-    styleUrls: ['./navigation.component.scss'],
-    standalone: false
+  selector: 'bp-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss'],
+  imports: [
+    NgOptimizedImage,
+    RouterModule,
+    FontAwesomeModule,
+    CollapseModule,
+    TranslatePipe
+  ]
 })
 export class NavigationComponent {
   archiveUrl: string;

@@ -8,7 +8,9 @@ describe('PageTemplateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ PageTemplateComponent ]
+        imports: [
+          PageTemplateComponent
+        ]
     });
     fixture = TestBed.createComponent(PageTemplateComponent);
     component = fixture.componentInstance;
