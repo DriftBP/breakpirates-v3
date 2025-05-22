@@ -1,6 +1,8 @@
 import { Component, viewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -13,7 +15,10 @@ import { ScreenService } from '../services/screen.service';
     selector: 'bp-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
-    standalone: false
+    imports: [
+      FontAwesomeModule,
+      TranslatePipe
+    ]
 })
 export class ChatComponent implements OnInit, OnDestroy {
   chatElement = viewChild.required<ElementRef>('chatIframe');

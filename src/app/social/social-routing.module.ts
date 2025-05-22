@@ -2,19 +2,17 @@ import { inject, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { SocialComponent } from './social.component';
-import { ChatComponent } from './chat/chat.component';
 import { ConfirmService } from './services/confirm.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: SocialComponent,
+    loadComponent: () => import('./social.component').then(mod => mod.SocialComponent),
     pathMatch: 'full'
   },
   {
     path: 'chat',
-    component: ChatComponent,
+    loadComponent: () => import('./chat/chat.component').then(mod => mod.ChatComponent),
     canDeactivate: [
       () => inject(ConfirmService).confirm('SOCIAL.CONFIRM_LEAVE_CHAT').pipe(first())
     ]

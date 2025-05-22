@@ -11,8 +11,8 @@ describe('SocialComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ SocialComponent ],
         imports: [
+          SocialComponent,
           TranslateModule.forRoot(),
         ],
         providers: [
