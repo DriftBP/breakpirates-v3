@@ -26,8 +26,7 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
       SafePipe,
       TimePipe,
       TranslatePipe
-    ],
-    standalone: true
+    ]
 })
 export class ShowSummaryComponent {
   show = input.required<Show>();

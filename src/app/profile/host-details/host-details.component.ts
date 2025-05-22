@@ -28,8 +28,7 @@ import { ReadMoreComponent } from '../read-more/read-more.component';
       MixcloudWidgetComponent,
       TwitterWidgetComponent,
       HostNavigationComponent
-    ],
-    standalone: true
+    ]
 })
 export class HostDetailsComponent {
   profile = input<Host>();

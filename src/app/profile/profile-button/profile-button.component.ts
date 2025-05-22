@@ -15,8 +15,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
       CommonModule,
       RouterModule,
       SafePipe
-    ],
-    standalone: true
+    ]
 })
 export class ProfileButtonComponent {
   host = input.required<Host>();

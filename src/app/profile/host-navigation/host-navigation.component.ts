@@ -15,8 +15,7 @@ import { RouterModule } from '@angular/router';
       RouterModule,
       TranslatePipe,
       KeyValuePipe
-    ],
-    standalone: true
+    ]
 })
 export class HostNavigationComponent {
   hostLinks = input.required<HostNavigation>();

@@ -15,8 +15,7 @@ import { Show } from '../models/show';
     imports: [
       FontAwesomeModule,
       TranslatePipe
-    ],
-    standalone: true
+    ]
 })
 export class NowLiveComponent {
   show = input.required<Show>();
