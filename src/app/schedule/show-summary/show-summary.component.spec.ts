@@ -9,8 +9,9 @@ import { DayService } from '../services/day.service';
 import { MockDayService } from '../../../test/services/mock.day.service';
 import { MockShowService } from '../../../test/services/mock.show.service';
 import { ShowService } from '../services/show.service';
-import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
 import { mockShow } from '../../../test/data/mock.shows';
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   template: ''
@@ -24,11 +25,8 @@ describe('ShowSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ShowSummaryComponent
-      ],
       imports: [
-        MockTimePipe,
+        ShowSummaryComponent,
         TranslateModule.forRoot(),
         RouterModule.forRoot([
           { path: 'schedule/:id', component: DummyComponent }
@@ -42,6 +40,10 @@ describe('ShowSummaryComponent', () => {
         {
           provide: ShowService,
           useClass: MockShowService
+        },
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
         }
       ]
     });

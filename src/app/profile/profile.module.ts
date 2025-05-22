@@ -22,16 +22,12 @@ import { HostNavigationComponent } from './host-navigation/host-navigation.compo
     ProfileRoutingModule,
     SharedModule,
     ScheduleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HostDetailsComponent
   ],
   declarations: [
     ProfilesComponent,
-    HostDetailsComponent,
-    MixcloudWidgetComponent,
-    TwitterWidgetComponent,
-    ProfileButtonComponent,
-    ReadMoreComponent,
-    HostNavigationComponent
+    ProfileButtonComponent
   ],
   providers: [
     ProfileService

@@ -21,17 +21,17 @@ import { NowLiveComponent } from './now-live/now-live.component';
     CommonModule,
     ScheduleRoutingModule,
     SharedModule,
-    FontAwesomeModule
-  ],
-  declarations: [
-    ScheduleComponent,
+    FontAwesomeModule,
     ShowSummaryComponent,
-    ShowComponent,
-    DaySelectComponent,
-    DayScheduleComponent,
     GenreListComponent,
     HostListComponent,
     NowLiveComponent
+  ],
+  declarations: [
+    ScheduleComponent,
+    ShowComponent,
+    DaySelectComponent,
+    DayScheduleComponent
   ],
   exports: [
     ShowSummaryComponent

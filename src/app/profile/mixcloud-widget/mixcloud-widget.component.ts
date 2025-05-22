@@ -5,7 +5,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     selector: 'bp-mixcloud-widget',
     templateUrl: './mixcloud-widget.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true
 })
 export class MixcloudWidgetComponent {
   user = input.required<string>();

@@ -6,12 +6,30 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { TwitterWidgetComponent } from '../twitter-widget/twitter-widget.component';
+import { MixcloudWidgetComponent } from '../mixcloud-widget/mixcloud-widget.component';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { AsyncPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { HostNavigationComponent } from '../host-navigation/host-navigation.component';
+import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
+import { ReadMoreComponent } from '../read-more/read-more.component';
 
 @Component({
     selector: 'bp-host-details',
     templateUrl: './host-details.component.html',
     styleUrls: ['./host-details.component.scss'],
-    standalone: false
+    imports: [
+      AsyncPipe,
+      SafePipe,
+      TranslatePipe,
+      ReadMoreComponent,
+      ShowSummaryComponent,
+      MixcloudWidgetComponent,
+      TwitterWidgetComponent,
+      HostNavigationComponent
+    ],
+    standalone: true
 })
 export class HostDetailsComponent {
   profile = input<Host>();
