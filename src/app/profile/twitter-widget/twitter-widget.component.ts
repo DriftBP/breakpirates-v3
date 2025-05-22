@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
     selector: 'bp-twitter-widget',
     templateUrl: './twitter-widget.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true
 })
 export class TwitterWidgetComponent {
   user = input.required<string>();
