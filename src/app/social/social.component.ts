@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Site } from './services/site';
 import { SocialService } from './services/social.service';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { socialConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'bp-social',
