@@ -16,8 +16,7 @@ import { SortByPipe } from '../../shared/pipes/sort-by.pipe';
       RouterModule,
       FontAwesomeModule,
       SortByPipe
-    ],
-    standalone: true
+    ]
 })
 export class HostListComponent {
   hosts = input.required<Host[]>();

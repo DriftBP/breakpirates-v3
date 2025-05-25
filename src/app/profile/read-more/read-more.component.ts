@@ -14,8 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
       CommonModule,
       TranslateModule,
       FontAwesomeModule
-    ],
-    standalone: true
+    ]
 })
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
   contentContainerElement = viewChild.required<ElementRef>('contentContainer');

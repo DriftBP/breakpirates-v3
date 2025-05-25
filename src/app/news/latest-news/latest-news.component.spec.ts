@@ -19,9 +19,9 @@ describe('LatestNewsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          LatestNewsComponent
-        ]
+      imports: [
+        LatestNewsComponent
+      ]
     });
     fixture = TestBed.createComponent(LatestNewsComponent);
     component = fixture.componentInstance;

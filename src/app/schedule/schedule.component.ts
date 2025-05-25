@@ -1,19 +1,25 @@
 import { Component, OnDestroy, OnInit, input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterModule } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { DayService } from './services/day.service';
+import { DaySelectComponent } from './day-select/day-select.component';
 
 @Component({
     selector: 'bp-schedule',
     templateUrl: './schedule.component.html',
-    standalone: false
+    imports: [
+      RouterModule,
+      DaySelectComponent,
+      TranslatePipe
+    ]
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
   days = input.required<Day[]>();

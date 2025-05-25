@@ -12,8 +12,7 @@ import { RosterListComponent } from "./roster-list.component";
   imports: [
     TranslateModule,
     RosterListComponent
-  ],
-  standalone: true
+  ]
 })
 export class RosterComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

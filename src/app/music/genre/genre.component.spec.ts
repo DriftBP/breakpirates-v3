@@ -12,8 +12,8 @@ describe('GenreComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ GenreComponent ],
         imports: [
+          GenreComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

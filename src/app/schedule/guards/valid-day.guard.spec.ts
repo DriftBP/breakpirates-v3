@@ -6,7 +6,7 @@ import { RouterTestingHarness } from "@angular/router/testing";
 import { validDayGuard } from "./valid-day.guard";
 import { DayService } from "../services/day.service";
 
-@Component({ standalone: true })
+@Component({})
 class PageComponent {}
 
 describe("validDayGuard", () => {

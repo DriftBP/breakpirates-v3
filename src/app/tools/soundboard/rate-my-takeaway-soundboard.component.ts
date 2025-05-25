@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -6,12 +7,18 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { SoundboardService } from './soundboard.service';
 import config from './rate-my-takeaway.json';
 import { SoundboardBase } from './soundboard-base';
+import { SampleButtonComponent } from './sample-button/sample-button.component';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 
 @Component({
     selector: 'bp-rate-my-takeaway-soundboard',
     templateUrl: './soundboard-base.html',
     styleUrls: ['./soundboard-base.scss'],
-    standalone: false
+    imports: [
+      SampleButtonComponent,
+      TranslatePipe,
+      SafePipe
+    ]
 })
 export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements OnInit {
   breadcrumbConfig: BreadcrumbConfigItem[] = [
