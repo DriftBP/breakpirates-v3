@@ -14,8 +14,8 @@ import { ActiveDirective } from '../directives/active.directive';
     templateUrl: './breadcrumb.component.html',
     imports: [
       RouterModule,
-      ActiveDirective,
-      TranslatePipe
+      TranslatePipe,
+      ActiveDirective
     ]
 })
 export class BreadcrumbComponent {
