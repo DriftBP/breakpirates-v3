@@ -36,13 +36,6 @@ import { SocialService } from '../social/services/social.service';
 import { HttpRequestService } from './services/http-request/http-request.service';
 import { ShowService } from '../schedule/services/show.service';
 
-// Pipes
-import { SafePipe } from './pipes/safe.pipe';
-import { TimePipe } from './pipes/time.pipe';
-import { SortByPipe } from './pipes/sort-by.pipe';
-import { ActiveDirective } from './directives/active.directive';
-import { ImageClickDirective } from './directives/image-click.directive';
-
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -64,12 +57,7 @@ export function customHttpLoader(http: HttpClient) {
     }),
     FontAwesomeModule,
     NgOptimizedImage,
-    BreadcrumbComponent,
-    SafePipe,
-    TimePipe,
-    SortByPipe,
-    ActiveDirective,
-    ImageClickDirective
+    BreadcrumbComponent
   ],
   declarations: [
     NavigationComponent,
@@ -93,9 +81,6 @@ export function customHttpLoader(http: HttpClient) {
     NavigationComponent,
     NowPlayingComponent,
     DonateComponent,
-    SafePipe,
-    TimePipe,
-    SortByPipe,
     ContentBoxComponent,
     RadioPlayerComponent,
     LoadingSpinnerComponent,
