@@ -34,16 +34,12 @@ import { GoogleAnalyticsService } from './services/google-analytics/google-analy
 import { ScheduleService } from '../schedule/services/schedule.service';
 import { SocialService } from '../social/services/social.service';
 import { HttpRequestService } from './services/http-request/http-request.service';
+import { ShowService } from '../schedule/services/show.service';
 
 // Pipes
 import { SafePipe } from './pipes/safe.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
-
-// Directives
-import { ActiveDirective } from './directives/active.directive';
-import { ImageClickDirective } from './directives/image-click.directive';
-import { ShowService } from '../schedule/services/show.service';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -66,11 +62,10 @@ export function customHttpLoader(http: HttpClient) {
     }),
     FontAwesomeModule,
     NgOptimizedImage,
+    BreadcrumbComponent,
     SafePipe,
     TimePipe,
-    SortByPipe,
-    ActiveDirective,
-    ImageClickDirective
+    SortByPipe
   ],
   declarations: [
     NavigationComponent,
@@ -84,7 +79,6 @@ export function customHttpLoader(http: HttpClient) {
     ThemeSelectComponent,
     ChatRoomPromoComponent,
     NotFoundComponent,
-    BreadcrumbComponent,
     FooterBarComponent,
     SupportedBrowsersNoticeComponent,
     DialogComponent,
@@ -106,9 +100,7 @@ export function customHttpLoader(http: HttpClient) {
     BreadcrumbComponent,
     FooterBarComponent,
     SupportedBrowsersNoticeComponent,
-    ActiveDirective,
     DialogComponent,
-    ImageClickDirective,
     AdUnitComponent
   ],
   providers: [

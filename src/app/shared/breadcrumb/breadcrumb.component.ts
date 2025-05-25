@@ -1,16 +1,22 @@
 import { Component, Signal, computed, effect } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
-import { TranslateService, Translation } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService, Translation } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 import { homeConfigActive, homeConfigInactive } from './breadcrumb-config';
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../services/breadcrumb/breadcrumb.service';
+import { ActiveDirective } from '../directives/active.directive';
 
 @Component({
     selector: 'bp-breadcrumb',
     templateUrl: './breadcrumb.component.html',
-    standalone: false
+    imports: [
+      RouterModule,
+      TranslatePipe,
+      ActiveDirective
+    ]
 })
 export class BreadcrumbComponent {
   enabled = AppSettings.ENABLE_BREADCRUMB;
