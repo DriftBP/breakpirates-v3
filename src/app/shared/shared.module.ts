@@ -69,7 +69,8 @@ export function customHttpLoader(http: HttpClient) {
     SafePipe,
     TimePipe,
     SortByPipe,
-    ActiveDirective
+    ActiveDirective,
+    ImageClickDirective
   ],
   declarations: [
     NavigationComponent,
@@ -87,7 +88,6 @@ export function customHttpLoader(http: HttpClient) {
     FooterBarComponent,
     SupportedBrowsersNoticeComponent,
     DialogComponent,
-    ImageClickDirective,
     AdUnitComponent,
     ProgressIndicatorComponent
   ],
