@@ -14,6 +14,7 @@ import { NowLiveComponent } from '../now-live/now-live.component';
 import { TimePipe } from '../../shared/pipes/time.pipe';
 import { GenreListComponent } from '../genre-list/genre-list.component';
 import { HostListComponent } from '../host-list/host-list.component';
+import { ImageClickDirective } from '../../shared/directives/image-click.directive';
 
 @Component({
     selector: 'bp-show',
@@ -25,7 +26,8 @@ import { HostListComponent } from '../host-list/host-list.component';
       GenreListComponent,
       HostListComponent,
       TimePipe,
-      TranslatePipe
+      TranslatePipe,
+      ImageClickDirective
     ]
 })
 export class ShowComponent {

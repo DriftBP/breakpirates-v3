@@ -40,6 +40,8 @@ import { ShowService } from '../schedule/services/show.service';
 import { SafePipe } from './pipes/safe.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { ActiveDirective } from './directives/active.directive';
+import { ImageClickDirective } from './directives/image-click.directive';
 
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -65,7 +67,9 @@ export function customHttpLoader(http: HttpClient) {
     BreadcrumbComponent,
     SafePipe,
     TimePipe,
-    SortByPipe
+    SortByPipe,
+    ActiveDirective,
+    ImageClickDirective
   ],
   declarations: [
     NavigationComponent,
