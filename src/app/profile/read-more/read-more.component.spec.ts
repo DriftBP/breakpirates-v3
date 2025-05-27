@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { ReadMoreComponent } from './read-more.component';
 
@@ -9,9 +8,8 @@ describe('ReadMoreComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ReadMoreComponent ],
         imports: [
-          TranslateModule.forRoot(),
+          ReadMoreComponent
         ]
     });
     fixture = TestBed.createComponent(ReadMoreComponent);

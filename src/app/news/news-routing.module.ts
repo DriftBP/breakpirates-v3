@@ -3,19 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { newsResolver } from './resolvers/news.resolver';
 import { newsArticleResolver } from './resolvers/news-article.resolver';
-import { NewsComponent } from './news.component';
-import { NewsArticleComponent } from './news-article/news-article.component';
 import { NewsResolversModule } from './resolvers/news-resolvers.module';
 
 const routes: Routes = [
   {
-    path: '', component: NewsComponent,
+    path: '',
+    loadComponent: () => import('./news.component').then(mod => mod.NewsComponent),
     resolve: {
       news: newsResolver
     },
     pathMatch: 'full' },
   {
-    path: ':id', component: NewsArticleComponent,
+    path: ':id',
+    loadComponent: () => import('./news-article/news-article.component').then(mod => mod.NewsArticleComponent),
     resolve: {
       article: newsArticleResolver
     }

@@ -12,7 +12,8 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockShow } from '../../../test/data/mock.shows';
 import { Show } from '../models/show';
-import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 
 const mockShowWithDescriptionAndImage: Show = {
   ...mockShow,
@@ -26,11 +27,8 @@ describe('ShowComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ShowComponent
-      ],
       imports: [
-        MockTimePipe,
+        ShowComponent,
         TranslateModule.forRoot()
       ],
       providers: [
@@ -45,6 +43,10 @@ describe('ShowComponent', () => {
         {
           provide: ShowService,
           useClass: MockShowService
+        },
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
         },
         {
           provide: BreadcrumbService,

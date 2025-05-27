@@ -12,8 +12,8 @@ describe('NewsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ NewsComponent ],
         imports: [
+          NewsComponent,
           TranslateModule.forRoot(),
         ],
         providers: [

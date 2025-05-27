@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { NowLiveComponent } from './now-live.component';
 import { Show } from '../models/show';
 import { mockShow } from '../../../test/data/mock.shows';
 import { ScheduleService } from '../services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 const mockShow2: Show = { ...mockShow, id: 2 };
 
@@ -16,10 +16,8 @@ describe('NowLiveComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          NowLiveComponent
-        ],
         imports: [
+          NowLiveComponent,
           TranslateModule.forRoot()
         ],
         providers: [

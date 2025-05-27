@@ -1,15 +1,20 @@
 import { Component, effect, input } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { musicConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
 
 @Component({
     selector: 'bp-genre',
     templateUrl: './genre.component.html',
-    standalone: false
+    imports: [
+      ShowSummaryComponent,
+      TranslatePipe
+    ]
 })
 export class GenreComponent {
   genre = input<Genre>();

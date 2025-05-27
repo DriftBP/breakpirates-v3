@@ -1,5 +1,7 @@
 import { Component, computed, effect, input, Signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { DateTime } from 'luxon';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
@@ -8,12 +10,25 @@ import { scheduleConfigInactive } from '../../shared/breadcrumb/breadcrumb-confi
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { ShowService } from '../services/show.service';
+import { NowLiveComponent } from '../now-live/now-live.component';
+import { TimePipe } from '../../shared/pipes/time.pipe';
+import { GenreListComponent } from '../genre-list/genre-list.component';
+import { HostListComponent } from '../host-list/host-list.component';
+import { ImageClickDirective } from '../../shared/directives/image-click.directive';
 
 @Component({
     selector: 'bp-show',
     templateUrl: './show.component.html',
     styleUrls: ['./show.component.scss'],
-    standalone: false
+    imports: [
+      RouterModule,
+      NowLiveComponent,
+      GenreListComponent,
+      HostListComponent,
+      TimePipe,
+      TranslatePipe,
+      ImageClickDirective
+    ]
 })
 export class ShowComponent {
   show = input.required<Show>();

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MusicComponent } from './music.component';
-import { GenreComponent } from './genre/genre.component';
 import { genresResolver } from './resolvers/genres.resolver';
 import { genreResolver } from './resolvers/genre.resolver';
 import { genreShowsResolver } from './resolvers/genre-shows.resolver';
@@ -11,7 +9,7 @@ import { MusicResolversModule } from './resolvers/music-resolvers.module';
 const routes: Routes = [
   {
     path: '',
-    component: MusicComponent,
+    loadComponent: () => import('./music.component').then(mod => mod.MusicComponent),
     resolve: {
       genres: genresResolver
     },
@@ -19,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: GenreComponent,
+    loadComponent: () => import('./genre/genre.component').then(mod => mod.GenreComponent),
     resolve: {
       genre: genreResolver,
       shows: genreShowsResolver

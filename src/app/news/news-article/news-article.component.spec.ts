@@ -7,9 +7,6 @@ import { NewsArticleComponent } from './news-article.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockArticleWithImage, mockArticleWithoutImage } from '../../../test/data/mock.articles';
-import { MockIsoDatePipe } from '../../../test/pipes/mock.iso-date.pipe';
-import { MockFormattedDatePipe } from '../../../test/pipes/mock.formatted-date.pipe';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 
 describe('NewsArticleComponent', () => {
   let component: NewsArticleComponent;
@@ -17,13 +14,8 @@ describe('NewsArticleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        NewsArticleComponent
-      ],
       imports: [
-        MockIsoDatePipe,
-        MockFormattedDatePipe,
-        MockSafePipe,
+        NewsArticleComponent,
         TranslateModule.forRoot()
       ],
       providers: [

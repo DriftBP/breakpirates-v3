@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DateTime } from 'luxon';
 
 @Pipe({
-    name: 'isoDate',
-    standalone: false
+    name: 'isoDate'
 })
 export class IsoDatePipe implements PipeTransform {
 

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HostListComponent } from './host-list.component';
-import { MockSortByPipe } from '../../../test/pipes/mock.sort-by.pipe';
 
 describe('HostListComponent', () => {
   let component: HostListComponent;
@@ -10,9 +9,6 @@ describe('HostListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        MockSortByPipe
-      ],
-      declarations: [
         HostListComponent
       ]
     });
