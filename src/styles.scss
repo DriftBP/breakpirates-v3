@@ -1,28 +1,28 @@
-@import './sass/variables';
+@use './sass/variables' as variables;
 
 /* Importing Bootstrap SCSS file. */
-@import "../node_modules/bootstrap/scss/bootstrap";
+@use "../node_modules/bootstrap/scss/bootstrap";
 
 /* Template styles */
 
 :root {
-  --bg: #{lighten($color-brand-primary, 50%)};
-  --panel-bg: #{$color-brand-tertiary};
+  --bg: #{lighten(variables.$color-brand-primary, 50%)};
+  --panel-bg: #{variables.$color-brand-tertiary};
   --color: #212529;
   --color-link: #{lighten(#000, 5%)};
   --border: #000;
 }
 
 [data-theme='dark'] {
-  --bg: #{darken($color-brand-primary, 30%)};
+  --bg: #{darken(variables.$color-brand-primary, 30%)};
   --panel-bg: #333;
-  --color: #{$color-brand-tertiary};
+  --color: #{variables.$color-brand-tertiary};
   --color-link: #{darken(#fff, 10%)};
-  --border: #{$color-brand-tertiary};
+  --border: #{variables.$color-brand-tertiary};
 }
 
 html {
-  font-size: $font-base-size;
+  font-size: variables.$font-base-size;
 }
 
 body {
@@ -30,9 +30,9 @@ body {
   padding-top: 53px;
   padding-bottom: 20px;
   font-family: 'Lato', sans-serif;
-  font-weight: $font-weight-regular;
+  font-weight: variables.$font-weight-regular;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: variables.$breakpoint-md) {
     padding-top: 68px;
   }
 
@@ -43,11 +43,11 @@ body {
 
 h1 {
   font-size: 2.2rem;
-  font-weight: $font-weight-bold;
+  font-weight: variables.$font-weight-bold;
 }
 
 h2 {
-  font-weight: $font-weight-bold;
+  font-weight: variables.$font-weight-bold;
 }
 
 a {
@@ -76,11 +76,11 @@ a {
 }
 
 .btn-primary {
-  background-color: $color-brand-primary;
-  border-color: $color-brand-primary;
+  background-color: variables.$color-brand-primary;
+  border-color: variables.$color-brand-primary;
 
   &:hover {
-    background-color: lighten($color-brand-primary, 10%);
+    background-color: lighten(variables.$color-brand-primary, 10%);
   }
 }
 
