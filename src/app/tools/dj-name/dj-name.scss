@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .dj-name {
   &__ {
@@ -14,12 +14,12 @@
         &name {
           display: block;
           font-size: 4em;
-          font-weight: $font-weight-bold;
+          font-weight: variables.$font-weight-bold;
           line-height: 1em;
           overflow-wrap: break-word;
           text-transform: uppercase;
-          color: $color-brand-primary;
-          text-shadow: 2px 2px $color-brand-secondary;
+          color: variables.$color-brand-primary;
+          text-shadow: 2px 2px variables.$color-brand-secondary;
 
           &-number {
             color: var(--color);

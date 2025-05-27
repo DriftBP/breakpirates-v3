@@ -1,4 +1,4 @@
-@import '../sass/mixins';
+@use '../sass/mixins' as mixins;
 
 .app {
   background-color: var(--bg);
@@ -9,7 +9,7 @@
 }
 
 .main {
-  @include box-padding;
+  @include mixins.box-padding;
   background-color: var(--panel-bg);
   border: 1px solid var(--border);
 }

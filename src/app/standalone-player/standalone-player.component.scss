@@ -1,7 +1,7 @@
-@import './../../sass/variables';
+@use './../../sass/variables' as variables;
 
 .standalone-player {
-  background-color: $color-brand-primary;
+  background-color: variables.$color-brand-primary;
   color: var(--color);
 
   &__ {

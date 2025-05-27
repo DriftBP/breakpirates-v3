@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .progress-indicator {
   &__ {
@@ -7,13 +7,13 @@
 
       &- {
         &total {
-          background-color: $color-brand-tertiary;
-          stroke: $color-brand-tertiary;
+          background-color: variables.$color-brand-tertiary;
+          stroke: variables.$color-brand-tertiary;
         }
 
         &current {
-          background-color: $color-brand-primary;
-          stroke: $color-brand-primary;
+          background-color: variables.$color-brand-primary;
+          stroke: variables.$color-brand-primary;
         }
       }
     }

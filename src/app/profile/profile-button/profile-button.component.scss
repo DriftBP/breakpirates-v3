@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 $profile-image-width: 20%;
 
@@ -19,7 +19,7 @@ $profile-image-width: 20%;
 
     &name {
       font-size: 1.2em;
-      font-weight: $font-weight-bold;
+      font-weight: variables.$font-weight-bold;
     }
 
     &name,
