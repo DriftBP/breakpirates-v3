@@ -6,9 +6,16 @@ import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 
+declare var global: any;
+
 describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
   let fixture: ComponentFixture<NowPlayingComponent>;
+
+  // Mock MediaElementPlayer for tests
+  beforeAll(() => {
+    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
+  });
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
