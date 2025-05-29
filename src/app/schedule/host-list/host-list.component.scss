@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .host-list {
   display: block;
@@ -20,7 +20,7 @@
     &-link {
       display: inline-block;
       padding: 0.25em 0.5em;
-      background-color: $color-brand-primary;
+      background-color: variables.$color-brand-primary;
       color: #fff;
       border: 1px solid var(--border);
       border-radius: 0.5em;

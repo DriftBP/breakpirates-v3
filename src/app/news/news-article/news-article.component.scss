@@ -1,13 +1,13 @@
-@import '../../../sass/variables';
-@import '../../../sass/mixins';
+@use '../../../sass/variables' as variables;
+@use '../../../sass/mixins' as mixins;
 
 .news-article {
   &__ {
     &image {
-      @include responsive-image;
+      @include mixins.responsive-image;
       margin-bottom: 1em;
 
-      @media (min-width: $breakpoint-md) {
+      @media (min-width: variables.$breakpoint-md) {
         width: 30%;
         float: right;
         margin-left: 1em;

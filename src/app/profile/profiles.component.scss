@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@use '../../sass/variables' as variables;
 
 .profile-list {
   display: grid;
@@ -8,11 +8,11 @@
   padding: 0;
   list-style: none;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: variables.$breakpoint-md) {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: variables.$breakpoint-lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
