@@ -1,11 +1,14 @@
 import { Component, ElementRef, viewChild } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 
 @Component({
     selector: 'bp-donate',
     templateUrl: './donate.component.html',
-    standalone: false
+    imports: [
+      TranslatePipe
+    ]
 })
 export class DonateComponent {
   donateFormElement = viewChild.required<ElementRef>('donateForm');

@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 
 import supportedBrowsers from '../../../../../supportedBrowsers';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SupportedBrowsersService {
   private _isBrowserSupported: boolean;
 

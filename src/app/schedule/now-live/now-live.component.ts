@@ -15,6 +15,9 @@ import { Show } from '../models/show';
     imports: [
       FontAwesomeModule,
       TranslatePipe
+    ],
+    providers: [
+      ScrollService
     ]
 })
 export class NowLiveComponent {

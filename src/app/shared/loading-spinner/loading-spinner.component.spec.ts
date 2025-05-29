@@ -9,10 +9,10 @@ describe('LoadingSpinnerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ LoadingSpinnerComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        LoadingSpinnerComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(LoadingSpinnerComponent);
     component = fixture.componentInstance;

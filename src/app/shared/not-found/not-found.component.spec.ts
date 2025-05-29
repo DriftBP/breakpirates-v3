@@ -9,10 +9,10 @@ describe('NotFoundComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ NotFoundComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        NotFoundComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;

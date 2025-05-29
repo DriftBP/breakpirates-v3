@@ -13,16 +13,16 @@ describe('SupportedBrowsersNoticeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ SupportedBrowsersNoticeComponent ],
-        providers: [
-          {
-            provide: GoogleAnalyticsService,
-            useValue: mockGoogleAnalyticsService
-          }
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        SupportedBrowsersNoticeComponent,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: GoogleAnalyticsService,
+          useValue: mockGoogleAnalyticsService
+        }
+      ]
     });
     fixture = TestBed.createComponent(SupportedBrowsersNoticeComponent);
     component = fixture.componentInstance;

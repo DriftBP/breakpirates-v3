@@ -9,10 +9,10 @@ describe('FooterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ FooterComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        FooterComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;

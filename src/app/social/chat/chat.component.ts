@@ -18,6 +18,10 @@ import { ScreenService } from '../services/screen.service';
     imports: [
       FontAwesomeModule,
       TranslatePipe
+    ],
+    providers: [
+      FullscreenService,
+      ScreenService
     ]
 })
 export class ChatComponent implements OnInit, OnDestroy {
