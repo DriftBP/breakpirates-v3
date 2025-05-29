@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
-import { BsDropdownDirective, BsDropdownToggleDirective } from 'ngx-bootstrap/dropdown';
+import { BsDropdownDirective, BsDropdownModule, BsDropdownToggleDirective } from 'ngx-bootstrap/dropdown';
 
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -25,8 +25,7 @@ interface ExternalLink {
     NgOptimizedImage,
     RouterModule,
     FontAwesomeModule,
-    BsDropdownToggleDirective,
-    BsDropdownDirective,
+    BsDropdownModule,
     CollapseModule,
     TranslatePipe
   ]
