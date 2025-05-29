@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit, computed, Signal } from '@angular/core';
+import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT } from '@angular/core';
 import {
   Event,
   Router,
@@ -7,7 +7,7 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';

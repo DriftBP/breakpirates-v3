@@ -1,5 +1,5 @@
-import { Component, Renderer2, Inject, ChangeDetectionStrategy, input, Signal, computed } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, Inject, ChangeDetectionStrategy, input, Signal, computed, DOCUMENT } from '@angular/core';
+
 
 @Component({
     selector: 'bp-twitter-widget',
