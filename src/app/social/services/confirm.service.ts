@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { TranslateService, Translation } from '@ngx-translate/core';
 import { Observable, Observer } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ConfirmService {
 
   constructor(

@@ -11,6 +11,9 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     imports: [
       AlertModule,
       TranslatePipe
+    ],
+    providers: [
+      SupportedBrowsersService
     ]
 })
 export class SupportedBrowsersNoticeComponent {

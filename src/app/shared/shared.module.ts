@@ -10,13 +10,6 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-// Services
-import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { ScheduleService } from '../schedule/services/schedule.service';
-import { SocialService } from '../social/services/social.service';
-import { HttpRequestService } from './services/http-request/http-request.service';
-import { ShowService } from '../schedule/services/show.service';
-
 export function customHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -41,13 +34,6 @@ export function customHttpLoader(http: HttpClient) {
   ],
   exports: [
     TranslateModule
-  ],
-  providers: [
-    HttpRequestService,
-    GoogleAnalyticsService,
-    SocialService,
-    ScheduleService,
-    ShowService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
