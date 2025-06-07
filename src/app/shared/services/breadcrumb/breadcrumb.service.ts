@@ -6,7 +6,7 @@ import { BreadcrumbConfigItem } from '../../breadcrumb/breadcrumb-config-item';
   providedIn: 'root'
 })
 export class BreadcrumbService {
-  public readonly breadcrumb = signal<BreadcrumbConfigItem[]>(null);
+  public readonly breadcrumb = signal<BreadcrumbConfigItem[] | null>(null);
 
   setBreadcrumb(config: BreadcrumbConfigItem[]): void {
     this.breadcrumb.set(config);
