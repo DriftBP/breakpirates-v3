@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { PageTemplateComponent } from './page-template.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'player', loadChildren: () => import('./standalone-player/standalone-player.module').then(m => m.StandalonePlayerModule) },
   { path: '', component: PageTemplateComponent, children: [
     { path: '', redirectTo: 'radio', pathMatch: 'full' },
@@ -22,19 +20,3 @@ const routes: Routes = [
     { path: '**', component: NotFoundComponent }
   ] }
 ];
-
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(
-      routes,
-      {
-        scrollPositionRestoration: 'enabled',
-        bindToComponentInputs: true
-      }
-    )
-  ],
-  exports: [RouterModule],
-  declarations: []
-})
-export class AppRoutingModule { }

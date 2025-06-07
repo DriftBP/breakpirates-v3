@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ThemeService } from '../services/theme/theme.service';
 import { ThemeSetting } from '../services/theme/theme-setting';
@@ -13,7 +14,9 @@ interface IThemeOption {
     selector: 'bp-theme-select',
     templateUrl: './theme-select.component.html',
     styleUrls: ['./theme-select.component.scss'],
-    standalone: false
+    imports: [
+      TranslatePipe
+    ]
 })
 export class ThemeSelectComponent {
   options: IThemeOption[] = [

@@ -1,6 +1,6 @@
 import { Component, Signal, computed, effect } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService, Translation } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';

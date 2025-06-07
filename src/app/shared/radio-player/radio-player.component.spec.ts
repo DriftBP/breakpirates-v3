@@ -8,7 +8,9 @@ describe('RadioPlayerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ RadioPlayerComponent ]
+        imports: [
+          RadioPlayerComponent
+        ]
     });
     fixture = TestBed.createComponent(RadioPlayerComponent);
     component = fixture.componentInstance;

@@ -3,7 +3,9 @@ import { DateTime, Interval, WeekdayNumbers } from 'luxon';
 
 import { Show } from '../models/show';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ShowService {
   readonly timeFormat = 'HH:mm:ss';
 

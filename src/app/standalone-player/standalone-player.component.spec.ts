@@ -9,10 +9,8 @@ describe('StandalonePlayerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          StandalonePlayerComponent
-        ],
         imports: [
+          StandalonePlayerComponent,
           TranslateModule.forRoot(),
         ]
     });

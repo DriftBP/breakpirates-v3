@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { SidebarComponent } from './sidebar.component';
@@ -9,10 +10,16 @@ describe('SidebarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ SidebarComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        SidebarComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        }
+      ]
     });
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;

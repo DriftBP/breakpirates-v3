@@ -18,6 +18,9 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
       SampleButtonComponent,
       TranslatePipe,
       SafePipe
+    ],
+    providers: [
+      SoundboardService
     ]
 })
 export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements OnInit {
