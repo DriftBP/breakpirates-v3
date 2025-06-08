@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { NewsComponent } from './news.component';
+import NewsComponent from './news.component';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 

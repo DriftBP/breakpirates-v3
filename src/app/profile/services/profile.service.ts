@@ -6,9 +6,7 @@ import { Host } from '../host';
 import { Show } from '../../schedule/models/show';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProfileService {
 
   constructor(

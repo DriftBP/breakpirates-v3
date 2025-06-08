@@ -5,9 +5,7 @@ import { AppSettings } from '../../app-settings';
 import { News } from '../models/news';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NewsService {
 
   constructor(

@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
-import { BpmComponent, DataPoint } from './bpm.component';
+import BpmComponent from './bpm.component';
 import { DataCollectionStatus } from './data-collection-status';
+import { DataPoint } from './data-point';
 
 const maxDataPoints = 20;
 const emptyDataPoints: DataPoint[] = [];

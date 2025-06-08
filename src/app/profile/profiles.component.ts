@@ -22,7 +22,7 @@ import { SortByPipe } from '../shared/pipes/sort-by.pipe';
         SortByPipe
     ]
 })
-export class ProfilesComponent implements OnInit {
+export default class ProfilesComponent implements OnInit {
   profiles = input.required<Host[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [

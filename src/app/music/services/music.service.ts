@@ -6,9 +6,7 @@ import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MusicService {
 
   constructor(

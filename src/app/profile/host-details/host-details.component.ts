@@ -32,7 +32,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       ImageClickDirective
     ]
 })
-export class HostDetailsComponent {
+export default class HostDetailsComponent {
   profile = input<Host>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
