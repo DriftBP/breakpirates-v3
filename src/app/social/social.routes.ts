@@ -1,10 +1,10 @@
-import { inject, NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { inject } from '@angular/core';
+import { Routes } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { ConfirmService } from './services/confirm.service';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./social.component').then(mod => mod.SocialComponent),
@@ -18,9 +18,3 @@ const routes: Routes = [
     ]
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class SocialRoutingModule { }
