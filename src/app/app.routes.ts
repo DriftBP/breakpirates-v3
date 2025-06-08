@@ -8,9 +8,9 @@ export const routes: Routes = [
   { path: 'player', loadChildren: () => import('./standalone-player/standalone-player.module').then(m => m.StandalonePlayerModule) },
   { path: '', component: PageTemplateComponent, children: [
     { path: '', redirectTo: 'radio', pathMatch: 'full' },
-    { path: 'radio', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-    { path: 'news', loadChildren: () => import('./news/news.module').then(m => m.NewsModule) },
-    { path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule) },
+    { path: 'radio', loadChildren: () => import('./home/home.routes').then(m => m.routes) },
+    { path: 'news', loadChildren: () => import('./news/news.routes').then(m => m.routes) },
+    { path: 'music', loadChildren: () => import('./music/music.routes').then(m => m.routes) },
     { path: 'schedule', loadChildren: () => import('./schedule/schedule.module').then(m => m.ScheduleModule) },
     { path: 'profiles', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
     { path: 'video', loadChildren: () => import('./video/video.module').then(m => m.VideoModule) },

@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { genresResolver } from './resolvers/genres.resolver';
 import { genreResolver } from './resolvers/genre.resolver';
 import { genreShowsResolver } from './resolvers/genre-shows.resolver';
-import { MusicResolversModule } from './resolvers/music-resolvers.module';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./music.component').then(mod => mod.MusicComponent),
@@ -24,12 +22,3 @@ const routes: Routes = [
     }
   }
 ];
-
-@NgModule({
-  imports: [
-    MusicResolversModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [RouterModule]
-})
-export class MusicRoutingModule { }

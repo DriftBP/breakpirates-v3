@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { newsResolver } from './resolvers/news.resolver';
 import { newsArticleResolver } from './resolvers/news-article.resolver';
-import { NewsResolversModule } from './resolvers/news-resolvers.module';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./news.component').then(mod => mod.NewsComponent),
@@ -21,12 +19,3 @@ const routes: Routes = [
     }
   }
 ];
-
-@NgModule({
-  imports: [
-    NewsResolversModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [RouterModule]
-})
-export class NewsRoutingModule { }
