@@ -13,8 +13,12 @@ export class StandalonePlayerComponent implements OnDestroy {
   assetRoot = AppSettings.ASSET_ROOT;
   faExclamationTriangle = faExclamationTriangle;
 
+  siteUrl: string;
+
   constructor() {
     document.body.className = 'bp-popup';
+
+    this.siteUrl = 'https://www.breakpirates.com';
   }
 
   ngOnDestroy(): void {

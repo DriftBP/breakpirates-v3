@@ -1,7 +1,7 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .now-live {
-  font-weight: $font-weight-bold;
+  font-weight: variables.$font-weight-bold;
 
   &-icon {
     margin-left: 0.25em;
