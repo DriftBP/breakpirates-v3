@@ -23,7 +23,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       ImageClickDirective
     ]
 })
-export class NewsArticleComponent {
+export default class NewsArticleComponent {
   article = input<News>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [

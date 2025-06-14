@@ -20,7 +20,7 @@ import { AppSettings } from '../../app-settings';
         DjNameService
     ]
 })
-export class DjNameComponent implements OnInit {
+export default class DjNameComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {

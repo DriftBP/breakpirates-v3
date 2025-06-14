@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { NewsArticleComponent } from './news-article.component';
+import NewsArticleComponent from './news-article.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockArticleWithImage, mockArticleWithoutImage } from '../../../test/data/mock.articles';
