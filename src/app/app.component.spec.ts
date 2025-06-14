@@ -14,17 +14,19 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ AppComponent ],
-        providers: [
-          {
-            provide: Router,
-            useClass: MockRouterService
-          },
-          {
-            provide: GoogleAnalyticsService,
-            useValue: mockGoogleAnalyticsService
-          }
-        ]
+      imports: [
+        AppComponent
+      ],
+      providers: [
+        {
+          provide: Router,
+          useClass: MockRouterService
+        },
+        {
+          provide: GoogleAnalyticsService,
+          useValue: mockGoogleAnalyticsService
+        }
+      ]
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;

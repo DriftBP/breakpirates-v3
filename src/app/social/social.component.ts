@@ -14,7 +14,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
       TranslatePipe
     ]
 })
-export class SocialComponent implements OnInit {
+export default class SocialComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigActive
   ];

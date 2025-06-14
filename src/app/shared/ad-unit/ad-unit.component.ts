@@ -6,8 +6,7 @@ import { AppSettings } from '../../app-settings';
     selector: 'bp-ad-unit',
     templateUrl: './ad-unit.component.html',
     styleUrls: ['./ad-unit.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdUnitComponent {
   adSlot = input.required<number>();

@@ -16,7 +16,7 @@ import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.c
       TranslatePipe
     ]
 })
-export class GenreComponent {
+export default class GenreComponent {
   genre = input<Genre>();
   shows = input<Show[]>();
 

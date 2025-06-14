@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ChatRoomPromoComponent } from './chat-room-promo.component';
@@ -9,10 +10,16 @@ describe('ChatRoomPromoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ChatRoomPromoComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        ChatRoomPromoComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        }
+      ]
     });
     fixture = TestBed.createComponent(ChatRoomPromoComponent);
     component = fixture.componentInstance;
