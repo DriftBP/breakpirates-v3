@@ -12,11 +12,11 @@ import { ShowService } from './show.service';
   providedIn: 'root'
 })
 export class ScheduleService implements OnDestroy {
-  public readonly nowPlaying = signal<Show>(null);
+  public readonly nowPlaying = signal<Show | null>(null);
   public readonly showProgress = signal<number>(0)
 
   private nowPlayingTimerSubscription: Subscription;
-  private nowPlayingSubscription: Subscription;
+  private nowPlayingSubscription?: Subscription;
 
   constructor(
     private httpRequestService: HttpRequestService,

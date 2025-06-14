@@ -7,7 +7,7 @@ import { MockTranslateService } from '../../../test/services/mock.translate.serv
 
 describe('ConfirmService', () => {
   let service: ConfirmService;
-  let confirmSpy;
+  let confirmSpy: jest.SpyInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
