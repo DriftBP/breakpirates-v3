@@ -18,9 +18,13 @@ import { ScreenService } from '../services/screen.service';
     imports: [
       FontAwesomeModule,
       TranslatePipe
+    ],
+    providers: [
+      FullscreenService,
+      ScreenService
     ]
 })
-export class ChatComponent implements OnInit, OnDestroy {
+export default class ChatComponent implements OnInit, OnDestroy {
   chatElement = viewChild.required<ElementRef>('chatIframe');
 
   faExclamationTriangle = faExclamationTriangle;

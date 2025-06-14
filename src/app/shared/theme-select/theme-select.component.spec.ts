@@ -9,10 +9,10 @@ describe('ThemeSelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        declarations: [ ThemeSelectComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ]
+      imports: [
+        ThemeSelectComponent,
+        TranslateModule.forRoot(),
+      ]
     });
     fixture = TestBed.createComponent(ThemeSelectComponent);
     component = fixture.componentInstance;

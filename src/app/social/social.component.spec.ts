@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SocialComponent } from './social.component';
+import SocialComponent from './social.component';
 import { MockSocialService } from '../../test/services/mock.social.service';
 import { SocialService } from './services/social.service';
 

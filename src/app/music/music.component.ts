@@ -15,7 +15,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
       TranslatePipe
     ]
 })
-export class MusicComponent implements OnInit {
+export default class MusicComponent implements OnInit {
   genres = input<Genre[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
