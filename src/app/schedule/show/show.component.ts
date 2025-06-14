@@ -31,7 +31,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     ]
 })
 export class ShowComponent {
-  show = input<Show>();
+  show = input.required<Show>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     scheduleConfigInactive
