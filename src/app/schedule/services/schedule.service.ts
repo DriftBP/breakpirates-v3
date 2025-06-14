@@ -8,7 +8,9 @@ import { Genre } from '../../music/models/genre';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 import { ShowService } from './show.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ScheduleService implements OnDestroy {
   public readonly nowPlaying = signal<Show | null>(null);
   public readonly showProgress = signal<number>(0)

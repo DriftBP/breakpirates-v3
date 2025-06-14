@@ -1,16 +1,33 @@
 import { Component, computed, Signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { SortOrder } from '../pipes/sort-order';
+import { ProgressIndicatorComponent } from '../progress-indicator/progress-indicator.component';
+import { RadioPlayerComponent } from '../radio-player/radio-player.component';
+import { SortByPipe } from '../pipes/sort-by.pipe';
+import { TimePipe } from '../pipes/time.pipe';
+import { SafePipe } from '../pipes/safe.pipe';
 
 @Component({
     selector: 'bp-now-playing',
     templateUrl: './now-playing.component.html',
     styleUrls: ['./now-playing.component.scss'],
-    standalone: false
+    imports: [
+      RouterModule,
+      FontAwesomeModule,
+      ProgressIndicatorComponent,
+      RadioPlayerComponent,
+      TranslatePipe,
+      SortByPipe,
+      TimePipe,
+      SafePipe
+    ]
 })
 export class NowPlayingComponent {
   nowPlaying: Signal<Show | null>;
