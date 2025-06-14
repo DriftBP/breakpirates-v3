@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { HostDetailsComponent } from './host-details.component';
+import HostDetailsComponent from './host-details.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { ProfileService } from '../services/profile.service';
 import { MockProfileService } from '../../../test/services/mock.profile.service';

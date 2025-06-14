@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { RosterComponent } from './roster.component';
+import RosterComponent from './roster.component';
 
 describe('RosterComponent', () => {
   let component: RosterComponent;

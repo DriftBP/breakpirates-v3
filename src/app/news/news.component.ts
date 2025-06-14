@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
       LatestNewsComponent
     ]
 })
-export class NewsComponent implements OnInit {
+export default class NewsComponent implements OnInit {
   news = input<News[]>();
 
   private latestNewsItems = 4;

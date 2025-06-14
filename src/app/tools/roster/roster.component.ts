@@ -14,7 +14,7 @@ import { RosterListComponent } from "./roster-list.component";
     RosterListComponent
   ]
 })
-export class RosterComponent implements OnInit {
+export default class RosterComponent implements OnInit {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {

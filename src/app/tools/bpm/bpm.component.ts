@@ -6,10 +6,7 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { DataCollectionStatus } from './data-collection-status';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-
-export interface DataPoint {
-  time: DateTime;
-}
+import { DataPoint } from './data-point';
 
 @Component({
     selector: 'bp-bpm',
@@ -18,7 +15,7 @@ export interface DataPoint {
         TranslateModule
     ]
 })
-export class BpmComponent implements OnInit {
+export default class BpmComponent implements OnInit {
   private maxDataPoints = 20;
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,

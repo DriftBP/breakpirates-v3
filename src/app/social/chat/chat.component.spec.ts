@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { ChatComponent } from './chat.component';
+import ChatComponent from './chat.component';
 import { MockFullscreenService } from '../../../test/services/mock.fullscreen.service';
 import { MockScreenService } from '../../../test/services/mock.screen.service';
 import { FullscreenService } from '../services/fullscreen.service';
