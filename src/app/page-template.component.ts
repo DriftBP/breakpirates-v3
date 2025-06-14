@@ -12,7 +12,6 @@ import { AdUnitComponent } from './shared/ad-unit/ad-unit.component';
 import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 import { NowPlayingComponent } from './shared/now-playing/now-playing.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
-import { SupportedBrowsersNoticeComponent } from './shared/supported-browsers-notice/supported-browsers-notice.component';
 
 @Component({
     selector: 'bp-page-template',
@@ -26,8 +25,7 @@ import { SupportedBrowsersNoticeComponent } from './shared/supported-browsers-no
       BreadcrumbComponent,
       FooterComponent,
       FooterBarComponent,
-      AdUnitComponent,
-      SupportedBrowsersNoticeComponent
+      AdUnitComponent
     ]
 })
 export class PageTemplateComponent implements AfterViewInit {
