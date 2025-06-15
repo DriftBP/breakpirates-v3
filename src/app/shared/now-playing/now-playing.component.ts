@@ -30,7 +30,7 @@ import { SafePipe } from '../pipes/safe.pipe';
     ]
 })
 export class NowPlayingComponent implements OnInit {
-  nowPlaying: Signal<Show>;
+  nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
   showRadioPlayer = false;
@@ -60,7 +60,7 @@ export class NowPlayingComponent implements OnInit {
     this.nowPlayingImage = computed(() => {
       const nowPlaying = this.scheduleService.nowPlaying();
 
-      let imageFilename: string;
+      let imageFilename: string | undefined;
 
       if (nowPlaying?.image) {
         imageFilename = nowPlaying.image;
