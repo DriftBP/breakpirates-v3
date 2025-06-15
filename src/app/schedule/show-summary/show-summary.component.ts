@@ -45,11 +45,11 @@ export class ShowSummaryComponent {
     private readonly showService: ShowService
   ) {
     this.dates = computed(() => {
-      return this.show() !== undefined ? this.showService.getDates(this.show()) : undefined;
+      return this.showService.getDates(this.show());
     });
 
     this.dayName = computed(() => {
-      return this.displayDay() ? this.dayService.dayName(this.show().day_id) : undefined;
+      return this.dayService.dayName(this.show().day_id);
     });
 
     this.showImage = computed(() => {
