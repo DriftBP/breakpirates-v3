@@ -37,8 +37,8 @@ export class ShowSummaryComponent {
     startDate: DateTime;
     endDate: DateTime;
   }>;
-  showImage: Signal<string>;
-  showImageCssValue: Signal<string>;
+  showImage: Signal<string | undefined>;
+  showImageCssValue: Signal<string | undefined>;
 
   constructor(
     private readonly dayService: DayService,
