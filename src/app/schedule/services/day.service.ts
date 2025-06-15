@@ -22,11 +22,11 @@ export class DayService {
     return this.daysOfWeek;
   }
 
-  dayById(dayId: number): Day {
+  dayById(dayId: number): Day | undefined {
     return this.daysOfWeek.find((d: Day) => d.id === dayId);
   }
 
-  dayByName(name: string): Day {
+  dayByName(name: string): Day | undefined {
     name = name.toLowerCase();
 
     return this.daysOfWeek.find((d: Day) => d.name.toLowerCase() === name);

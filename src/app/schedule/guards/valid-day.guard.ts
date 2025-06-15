@@ -7,14 +7,16 @@ export function validDayGuard(): CanActivateFn {
   return (route: ActivatedRouteSnapshot) => {
     const dayName = route.paramMap.get('day');
 
-    const day = inject(DayService).dayByName(dayName);
+    if (dayName) {
+      const day = inject(DayService).dayByName(dayName);
 
-    if (day) {
-      return true;
-    } else {
-      inject(Router).navigate(['schedule']);
-
-      return false;
+      if (day) {
+        return true;
+      }
     }
+
+    inject(Router).navigate(['schedule']);
+
+    return false;
   };
 };
