@@ -8,7 +8,7 @@ declare var HTMLDialogElement: any;
   providedIn: 'root'
 })
 export class DialogService {
-  public readonly show = signal<IDialogConfig>(null);
+  public readonly show = signal<IDialogConfig | null>(null);
 
   constructor() { }
 
