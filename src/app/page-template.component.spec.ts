@@ -15,6 +15,7 @@ describe('PageTemplateComponent', () => {
 
   beforeAll(() => {
     global.gtag = global.gtag || function() {};
+    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
   });
 
   beforeEach(waitForAsync(() => {
@@ -41,5 +42,20 @@ describe('PageTemplateComponent', () => {
 
   it('should create', async () => {
     expect(component).toBeDefined();
+  });
+
+  it('should focus on mainContent when skip link clicked', async () => {
+    fixture.detectChanges();
+    const skipLink = document.querySelector('.skip-link');
+    const mainContent = component['mainContent']().nativeElement;
+
+    expect(skipLink).toBeTruthy();
+    expect(mainContent).toBeTruthy();
+
+    skipLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+    fixture.whenStable().then(() => {
+      expect(mainContent.focus).toHaveBeenCalled();
+    });
   });
 });
