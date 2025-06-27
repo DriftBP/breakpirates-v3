@@ -31,4 +31,7 @@ export class AppSettings {
 
     // Release tracker
     public static RELEASE_TRACKER_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1lU6Z8awouJ5siFIiu7XtZ-1c1VPYv5moa9wWMhZsBpQ/edit?usp=sharing';
+
+    // Timezone for show times
+    public static SHOW_TIMEZONE = 'Europe/London';
 }
