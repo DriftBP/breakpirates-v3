@@ -1,12 +1,12 @@
 @if (enabled) {
   <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
       @for (item of configItems(); track index; let index = $index) {
         <li class="breadcrumb-item"
           [bpActive]="item.isActive"
           [attr.aria-current]="item.isActive"
           itemprop="itemListElement" itemscope
-          itemtype="http://schema.org/ListItem">
+          itemtype="https://schema.org/ListItem">
           @if (item.routerLink) {
             <a [routerLink]="item.routerLink" itemprop="item">
               <span itemprop="name">{{item.name | translate}}</span>

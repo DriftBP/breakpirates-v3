@@ -1,9 +1,9 @@
 @if (show(); as show) {
-  <div itemscope itemtype="http://schema.org/MusicEvent">
+  <div itemscope itemtype="https://schema.org/MusicEvent">
     <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
     <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
 
-    <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
+    <div itemprop="location" itemscope itemtype="https://schema.org/MusicVenue">
       <meta itemprop="name" content="Break Pirates">
       <link itemprop="sameAs" href="https://www.breakpirates.com">
       <meta itemprop="address" content="UK">
