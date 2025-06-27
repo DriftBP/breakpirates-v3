@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { DateTime, Interval, WeekdayNumbers } from 'luxon';
 
 import { Show } from '../models/show';
+import { AppSettings } from '../../app-settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowService {
   readonly timeFormat = 'HH:mm:ss';
-  readonly ukTimeZone = 'Europe/London';
+  readonly ukTimeZone = AppSettings.SHOW_TIMEZONE;
 
   private getNextDate(show: Show): DateTime {
     const today = DateTime.local().setZone(this.ukTimeZone).weekday;
