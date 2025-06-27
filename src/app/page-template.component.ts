@@ -1,6 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Inject, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DateTime } from 'luxon';
+import { DOCUMENT } from '@angular/common';
 
 import { AppSettings } from './app-settings';
 import { DialogService } from './shared/services/dialog/dialog.service';
@@ -31,8 +32,11 @@ import { SupportedBrowsersNoticeComponent } from './shared/supported-browsers-no
     ]
 })
 export class PageTemplateComponent implements AfterViewInit {
+  private mainContent = viewChild.required<ElementRef>('mainContent');
+
   constructor (
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngAfterViewInit() {
@@ -46,6 +50,16 @@ export class PageTemplateComponent implements AfterViewInit {
       };
 
       this.dialogService.showDialog(dialogConfig);
+    }
+
+    // Listen for skip link activation using Angular's DOCUMENT
+    const skipLink = this.document.querySelector('.skip-link');
+    if (skipLink) {
+      skipLink.addEventListener('click', (event) => {
+        setTimeout(() => {
+          this.mainContent().nativeElement.focus();
+        }, 0);
+      });
     }
   }
 }
