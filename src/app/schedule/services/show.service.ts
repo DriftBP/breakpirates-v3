@@ -8,17 +8,18 @@ import { Show } from '../models/show';
 })
 export class ShowService {
   readonly timeFormat = 'HH:mm:ss';
+  readonly ukTimeZone = 'Europe/London';
 
   private getNextDate(show: Show): DateTime {
-    const today = DateTime.local().weekday;
+    const today = DateTime.local().setZone(this.ukTimeZone).weekday;
 
     // if we haven't yet passed the day of the week that I need:
     if (today <= show.day_id) {
       // then just give me this week's instance of that day
-      return DateTime.local().set({weekday: show.day_id as WeekdayNumbers});
+      return DateTime.local().setZone(this.ukTimeZone).set({weekday: show.day_id as WeekdayNumbers});
     } else {
       // otherwise, give me *next week's* instance of that same day
-      return DateTime.local().plus({weeks: 1}).set({weekday: show.day_id as WeekdayNumbers});
+      return DateTime.local().setZone(this.ukTimeZone).plus({weeks: 1}).set({weekday: show.day_id as WeekdayNumbers});
     }
   }
 
@@ -36,9 +37,9 @@ export class ShowService {
 
     if (show) {
       // Parse show times as UK time
-      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: 'Europe/London' });
-      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: 'Europe/London' });
-      const now = DateTime.now().setZone('Europe/London');
+      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: this.ukTimeZone });
+      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: this.ukTimeZone });
+      const now = DateTime.now().setZone(this.ukTimeZone);
       const showLengthMinutes = Interval.fromDateTimes(startTime, endTime).toDuration('minutes').minutes;
       const minutesCompleted = Interval.fromDateTimes(startTime, now).toDuration('minutes').minutes;
 
@@ -51,13 +52,20 @@ export class ShowService {
   }
 
   getDates(show: Show): { startDate: DateTime, endDate: DateTime } {
-    const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
-    const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
+    const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: this.ukTimeZone });
+    const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: this.ukTimeZone });
 
     const nextDate = this.getNextDate(show);
 
     // Set show time
-    const startDate = DateTime.local(nextDate.year, nextDate.month, nextDate.day, startTime.hour, startTime.minute, startTime.second);
+    const startDate = DateTime.fromObject({
+      year: nextDate.year,
+      month: nextDate.month,
+      day: nextDate.day,
+      hour: startTime.hour,
+      minute: startTime.minute,
+      second: startTime.second
+    }, { zone: this.ukTimeZone });
 
     const endDate = this.getEndDate(startDate, endTime);
 
