@@ -32,15 +32,19 @@ export class ShowService {
   }
 
   getShowProgress(show: Show): number {
-    var progress = 0;
+    let progress = 0;
 
     if (show) {
-      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
-      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
+      // Parse show times as UK time
+      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: 'Europe/London' });
+      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: 'Europe/London' });
+      const now = DateTime.now().setZone('Europe/London');
       const showLengthMinutes = Interval.fromDateTimes(startTime, endTime).toDuration('minutes').minutes;
-      const minutesCompleted = Interval.fromDateTimes(startTime, DateTime.now()).toDuration('minutes').minutes;
+      const minutesCompleted = Interval.fromDateTimes(startTime, now).toDuration('minutes').minutes;
 
       progress = (100 / showLengthMinutes) * minutesCompleted;
+      // Clamp between 0 and 100
+      progress = Math.max(0, Math.min(100, progress));
     }
 
     return progress;
