@@ -13,7 +13,7 @@ export class TimePipe implements PipeTransform {
       const timeParts = value.split(':');
       if (timeParts.length > 1) {
         // Parse as configured show timezone, then convert to local time
-        const ukTime = DateTime.fromObject(
+        const sourceTime = DateTime.fromObject(
           {
             hour: parseInt(timeParts[0], 10),
             minute: parseInt(timeParts[1], 10)
@@ -21,7 +21,7 @@ export class TimePipe implements PipeTransform {
           { zone: AppSettings.SHOW_TIMEZONE }
         );
         // Convert to local time zone and format
-        return ukTime.setZone(DateTime.local().zoneName).toFormat('HH:mm');
+        return sourceTime.setZone(DateTime.local().zoneName).toFormat('HH:mm');
       }
     }
     return '';
