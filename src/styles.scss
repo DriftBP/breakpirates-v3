@@ -94,3 +94,27 @@ a {
 .mejs__inner {
   height: 40px;
 }
+
+/* Visually hidden styles for accessibility */
+.visually-hidden-focusable {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.visually-hidden-focusable:focus,
+.visually-hidden-focusable.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  left: 0;
+  background: #fff;
+  color: #000;
+  z-index: 10000;
+  padding: 0.5em 1em;
+  outline: 2px solid #545691;
+  text-decoration: underline;
+}
