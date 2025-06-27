@@ -1,5 +1,4 @@
-
-<nav class="navigation navbar fixed-top navbar-expand-md navbar-dark">
+<nav class="navigation navbar fixed-top navbar-expand-md navbar-dark" role="navigation" aria-label="Main navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <a class="navigation__logo navbar-brand" routerLink="/radio">
@@ -32,7 +31,8 @@
             href="#"
             role="button"
             aria-haspopup="true"
-            aria-expanded="false">
+            aria-expanded="false"
+            aria-label="Tune in menu">
               {{'NAVIGATION.TUNE_IN' | translate}} <span class="caret"></span>
           </button>
           <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
@@ -72,7 +72,12 @@
                   (click)="onTuneInClick(link.Text)"
                   [href]="link.Url"
                   target="_blank"
-                >{{link.Text}} <fa-icon [icon]="faExternalLink"></fa-icon></a>
+                  rel="noopener"
+                  [attr.aria-label]="link.Text + ' (opens in a new tab)'">
+                  {{link.Text}}
+                  <fa-icon [icon]="faExternalLink" aria-hidden="true"></fa-icon>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
               </li>
             }
             <li class="dropdown-divider"></li>
@@ -83,24 +88,28 @@
                 href="{{archiveUrl}}"
                 rel="noopener"
                 target="_blank"
-              >{{'NAVIGATION.SHOW_ARCHIVE' | translate}}</a>
+                [attr.aria-label]="('NAVIGATION.SHOW_ARCHIVE' | translate) + ' (opens in a new tab)'"
+              >{{'NAVIGATION.SHOW_ARCHIVE' | translate}}
+                <fa-icon [icon]="faExternalLink" aria-hidden="true"></fa-icon>
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
             </li>
           </ul>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/social/chat">{{'NAVIGATION.CHAT_ROOM' | translate}}</a>
+        <li class="nav-item" [routerLinkActive]="['active']" #rlaChat="routerLinkActive">
+          <a class="nav-link" routerLink="/social/chat" [attr.aria-current]="rlaChat.isActive ? 'page' : null">{{'NAVIGATION.CHAT_ROOM' | translate}}</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/schedule">{{'NAVIGATION.SCHEDULE' | translate}}</a>
+        <li class="nav-item" [routerLinkActive]="['active']" #rlaSchedule="routerLinkActive">
+          <a class="nav-link" routerLink="/schedule" [attr.aria-current]="rlaSchedule.isActive ? 'page' : null">{{'NAVIGATION.SCHEDULE' | translate}}</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/profiles">{{'NAVIGATION.PROFILES' | translate}}</a>
+        <li class="nav-item" [routerLinkActive]="['active']" #rlaProfiles="routerLinkActive">
+          <a class="nav-link" routerLink="/profiles" [attr.aria-current]="rlaProfiles.isActive ? 'page' : null">{{'NAVIGATION.PROFILES' | translate}}</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/news">{{'NAVIGATION.NEWS' | translate}}</a>
+        <li class="nav-item" [routerLinkActive]="['active']" #rlaNews="routerLinkActive">
+          <a class="nav-link" routerLink="/news" [attr.aria-current]="rlaNews.isActive ? 'page' : null">{{'NAVIGATION.NEWS' | translate}}</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
+        <li class="nav-item" [routerLinkActive]="['active']" #rlaVideo="routerLinkActive">
+          <a class="nav-link" routerLink="/video" [attr.aria-current]="rlaVideo.isActive ? 'page' : null">{{'NAVIGATION.VIDEO' | translate}}</a>
         </li>
       </ul>
     </div>
