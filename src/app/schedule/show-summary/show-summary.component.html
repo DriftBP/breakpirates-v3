@@ -10,6 +10,8 @@
 
       <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
       <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
+      <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
+
       @if (showImage(); as showImage) {
         <meta itemprop="image" content="{{showImage}}">
       }
