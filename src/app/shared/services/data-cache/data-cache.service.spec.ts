@@ -1,16 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpRequestCacheService } from './http-request-cache.service';
+import { DataCacheService } from './data-cache.service';
 
-describe('HttpRequestCacheService', () => {
-  let service: HttpRequestCacheService;
+type TestType = {
+  testString: string;
+  testBoolean: boolean;
+  testArray: any[];
+};
+
+describe('DataCacheService', () => {
+  let service: DataCacheService<TestType>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HttpRequestCacheService]
+      providers: [DataCacheService]
     });
 
-    service = TestBed.inject(HttpRequestCacheService);
+    service = TestBed.inject(DataCacheService);
   });
 
   it('should be created', () => {
@@ -19,7 +25,7 @@ describe('HttpRequestCacheService', () => {
 
   it('should store value', () => {
     const key = 'test';
-    const value = {
+    const value: TestType = {
       testString: 'test',
       testBoolean: true,
       testArray: []
