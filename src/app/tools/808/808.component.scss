@@ -26,53 +26,12 @@
   align-items: flex-start;
 }
 
-.tr808__pads {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.tr808__pad {
-  width: 120px;
-  height: 38px;
-  border-radius: 8px;
-  border: none;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #fff;
-  background: linear-gradient(90deg, #333 60%, #f5a623 100%);
-  box-shadow: 0 2px 8px #0007;
-  margin-bottom: 0.2rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-.tr808__pad:active {
-  background: #f5a623;
-  color: #222;
-  transform: scale(0.97);
-}
-.tr808__pad--kick { background: linear-gradient(90deg, #333 60%, #ff3c00 100%); }
-.tr808__pad--snare { background: linear-gradient(90deg, #333 60%, #fff 100%); color: #222; }
-.tr808__pad--clap { background: linear-gradient(90deg, #333 60%, #f5a623 100%); }
-.tr808__pad--hihat { background: linear-gradient(90deg, #333 60%, #ffe600 100%); color: #222; }
-.tr808__pad--tom { background: linear-gradient(90deg, #333 60%, #00eaff 100%); }
-.tr808__pad--rim { background: linear-gradient(90deg, #333 60%, #ff00c8 100%); }
-.tr808__pad--cowbell { background: linear-gradient(90deg, #333 60%, #bfff00 100%); color: #222; }
-
 .tr808__controls {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   margin-left: 2rem;
   align-items: center;
-}
-.tr808__knob {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #444;
-  border: 3px solid #f5a623;
-  box-shadow: 0 1px 4px #000a;
 }
 
 .tr808__sequencer {
@@ -225,4 +184,12 @@
   color: #f5a623;
   padding: 0.2rem 0.5rem;
   font-size: 1rem;
+}
+
+.tr808__footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #888;
+  letter-spacing: 0.05em;
 }
