@@ -1,15 +1,9 @@
 <div class="tr808">
   <h1 class="tr808__title">Roland TR-808 Drum Machine</h1>
   <div class="tr808__panel">
-    <div class="tr808__pads">
-      <button *ngFor="let drum of drums; let i = index" (click)="playSound(drum)" class="tr808__pad tr808__pad--{{drum.sound}}">
-        {{ drum.label }}
-      </button>
-    </div>
     <div class="tr808__controls">
-      <div class="tr808__knob tr808__knob--accent"></div>
+      <!-- Only tempo knob remains -->
       <div class="tr808__knob tr808__knob--tempo"></div>
-      <div class="tr808__slider tr808__slider--volume"></div>
     </div>
   </div>
   <div class="tr808__sequencer">
