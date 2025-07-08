@@ -173,4 +173,12 @@ export default class Drum808Component implements OnInit {
       this.loadShareableBeat(this.sharedBeat);
     }
   }
+
+  clearBeat() {
+    for (let d = 0; d < this.drums.length; d++) {
+      for (let s = 0; s < this.steps.length; s++) {
+        this.sequence[d][s] = false;
+      }
+    }
+  }
 }
