@@ -24,6 +24,7 @@ export default class Drum808Component implements OnInit {
   currentStep = 0;
   isPlaying = false;
   tempo = 120;
+  private _tempo: number = 120;
 
   private audioElements: { [key: string]: HTMLAudioElement } = {};
   private intervalId: any = null;
@@ -76,6 +77,9 @@ export default class Drum808Component implements OnInit {
   }
 
   ngOnInit() {
+    // Ensure tempo is initialized to 120
+    this.tempo = 120;
+
     // Watch for tempo changes
     Object.defineProperty(this, 'tempo', {
       get: () => this._tempo,
@@ -89,8 +93,6 @@ export default class Drum808Component implements OnInit {
     });
     this._tempo = this.tempo;
   }
-
-  private _tempo: number;
 
   restartSequencer() {
     if (this.isPlaying) {
