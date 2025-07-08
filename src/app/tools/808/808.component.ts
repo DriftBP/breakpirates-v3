@@ -43,17 +43,47 @@ export default class Drum808Component implements OnInit {
   tempo = 120;
   private _tempo: number = 120;
 
-  private audioElements: { [key: string]: HTMLAudioElement } = {};
+  private audioElements: { [key: string]: HTMLAudioElement[] } = {};
   private intervalId: any = null;
   private lastTempo: number = this.tempo;
 
-  sharedBeat: string = '';
+  ngOnInit() {
+    // Preload all drum samples with multiple instances for polyphony
+    this.drums.forEach(drum => {
+      this.audioElements[drum.sound] = [];
+      for (let i = 0; i < 6; i++) {
+        const audio = new Audio(`/assets/808/${drum.sound}.wav`);
+        audio.load();
+        this.audioElements[drum.sound].push(audio);
+      }
+    });
+
+    // Ensure tempo is initialized to 120
+    this.tempo = 120;
+
+    // Watch for tempo changes
+    Object.defineProperty(this, 'tempo', {
+      get: () => this._tempo,
+      set: (value: number) => {
+        this._tempo = value;
+        if (this.isPlaying) {
+          this.restartSequencer();
+        }
+      },
+      configurable: true
+    });
+    this._tempo = this.tempo;
+  }
 
   playSound(drum: { sound: string }) {
-    if (!this.audioElements[drum.sound]) {
-      this.audioElements[drum.sound] = new Audio(`/assets/808/${drum.sound}.wav`);
+    // Find a free audio element (not currently playing)
+    const pool = this.audioElements[drum.sound];
+    if (!pool) return;
+    let audio = pool.find(a => a.paused || a.ended);
+    if (!audio) {
+      // If all are busy, reuse the first
+      audio = pool[0];
     }
-    const audio = this.audioElements[drum.sound];
     audio.currentTime = 0;
     audio.play();
   }
@@ -93,24 +123,6 @@ export default class Drum808Component implements OnInit {
         this.playSound(drum);
       }
     });
-  }
-
-  ngOnInit() {
-    // Ensure tempo is initialized to 120
-    this.tempo = 120;
-
-    // Watch for tempo changes
-    Object.defineProperty(this, 'tempo', {
-      get: () => this._tempo,
-      set: (value: number) => {
-        this._tempo = value;
-        if (this.isPlaying) {
-          this.restartSequencer();
-        }
-      },
-      configurable: true
-    });
-    this._tempo = this.tempo;
   }
 
   restartSequencer() {
