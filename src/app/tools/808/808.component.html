@@ -24,6 +24,9 @@
     <div class="tr808__sequencer-controls">
       <button (click)="togglePlay()">{{ isPlaying ? 'Stop' : 'Play' }}</button>
       <label>Tempo: <input type="number" [(ngModel)]="tempo" min="40" max="300" /></label>
+      <button (click)="shareBeat()">Share Beat</button>
+      <input type="text" [(ngModel)]="sharedBeat" placeholder="Paste beat code here" style="width: 220px; margin-left: 1rem;" />
+      <button (click)="loadBeat()">Load</button>
     </div>
   </div>
 </div>

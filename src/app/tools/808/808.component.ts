@@ -47,6 +47,8 @@ export default class Drum808Component implements OnInit {
   private intervalId: any = null;
   private lastTempo: number = this.tempo;
 
+  sharedBeat: string = '';
+
   playSound(drum: { sound: string }) {
     if (!this.audioElements[drum.sound]) {
       this.audioElements[drum.sound] = new Audio(`/assets/808/${drum.sound}.wav`);
@@ -114,6 +116,49 @@ export default class Drum808Component implements OnInit {
   restartSequencer() {
     if (this.isPlaying) {
       this.startSequencer();
+    }
+  }
+
+  // Add method to encode the current beat as a shareable string
+  getShareableBeat(): string {
+    // Convert the sequence to a base64 string
+    const flat = this.sequence.flat().map(v => v ? 1 : 0);
+    const bin = flat.join('');
+    // Pad to nearest 8 bits
+    const pad = bin + '0'.repeat((8 - (bin.length % 8)) % 8);
+    let bytes = [];
+    for (let i = 0; i < pad.length; i += 8) {
+      bytes.push(parseInt(pad.slice(i, i + 8), 2));
+    }
+    return btoa(String.fromCharCode(...bytes));
+  }
+
+  // Add method to load a beat from a shareable string
+  loadShareableBeat(str: string) {
+    try {
+      const bin = Array.from(atob(str)).map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+      let idx = 0;
+      for (let d = 0; d < this.drums.length; d++) {
+        for (let s = 0; s < this.steps.length; s++) {
+          this.sequence[d][s] = bin[idx++] === '1';
+        }
+      }
+    } catch (e) {
+      alert('Invalid beat code');
+    }
+  }
+
+  shareBeat() {
+    this.sharedBeat = this.getShareableBeat();
+    setTimeout(() => {
+      const input = document.querySelector('input[placeholder="Paste beat code here"]') as HTMLInputElement;
+      if (input) input.select();
+    }, 0);
+  }
+
+  loadBeat() {
+    if (this.sharedBeat) {
+      this.loadShareableBeat(this.sharedBeat);
     }
   }
 }
