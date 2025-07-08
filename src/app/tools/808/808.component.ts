@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./808.component.scss'],
   imports: [CommonModule, FormsModule]
 })
-export default class Drum808Component {
+export default class Drum808Component implements OnInit {
   drums = [
     { label: 'Kick', sound: 'kick' },
     { label: 'Snare', sound: 'snare' },
@@ -27,6 +27,7 @@ export default class Drum808Component {
 
   private audioElements: { [key: string]: HTMLAudioElement } = {};
   private intervalId: any = null;
+  private lastTempo: number = this.tempo;
 
   playSound(drum: { sound: string }) {
     if (!this.audioElements[drum.sound]) {
@@ -72,5 +73,28 @@ export default class Drum808Component {
         this.playSound(drum);
       }
     });
+  }
+
+  ngOnInit() {
+    // Watch for tempo changes
+    Object.defineProperty(this, 'tempo', {
+      get: () => this._tempo,
+      set: (value: number) => {
+        this._tempo = value;
+        if (this.isPlaying) {
+          this.restartSequencer();
+        }
+      },
+      configurable: true
+    });
+    this._tempo = this.tempo;
+  }
+
+  private _tempo: number;
+
+  restartSequencer() {
+    if (this.isPlaying) {
+      this.startSequencer();
+    }
   }
 }
