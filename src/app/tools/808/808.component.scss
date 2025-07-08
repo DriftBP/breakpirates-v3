@@ -1,0 +1,195 @@
+.tr808 {
+  background: #222;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #000a;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  color: #f5a623;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  border: 4px solid #f5a623;
+}
+
+.tr808__title {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  color: #f5a623;
+  text-shadow: 0 2px 8px #000a;
+}
+
+.tr808__panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.tr808__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-left: 2rem;
+  align-items: center;
+}
+
+.tr808__sequencer {
+  margin: 0.5rem 0 1.5rem 0;
+  background: #181818;
+  border-radius: 10px;
+  padding: 1.5rem 1rem 1rem 1rem;
+  box-shadow: 0 2px 12px #000a;
+  border: 2px solid #f5a623;
+}
+
+.tr808__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tr808__step-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  min-height: 18px;
+  width: 100%;
+}
+
+.tr808__step-row:first-child {
+  align-items: flex-end;
+  min-height: 18px;
+  margin-bottom: 0.1rem;
+  position: relative;
+  top: 2px;
+}
+
+.tr808__step-label {
+  font-size: 0.8rem;
+  color: #f5a623;
+  margin-right: 0.18rem;
+  margin-bottom: 0;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  min-width: 5.5em;
+  max-width: 5.5em;
+  text-align: right;
+  line-height: 18px;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tr808__step-row:first-child .tr808__step-label {
+  min-width: 5.5em;
+  max-width: 5.5em;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  visibility: hidden;
+}
+
+.tr808__step-number {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  color: #ffe600;
+  text-align: center;
+  margin-right: 3px;
+  margin-bottom: 0.5px;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  line-height: 18px;
+  position: relative;
+  top: 1.5px;
+}
+.tr808__step-row .tr808__step-number:last-child {
+  margin-right: 0;
+}
+
+.tr808__step {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  background: #222;
+  margin-right: 3px;
+  margin-bottom: 0;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background 0.15s, border 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 4px #0007;
+  cursor: pointer;
+  outline: none;
+}
+.tr808__step:last-child {
+  margin-right: 0;
+}
+.tr808__step--active {
+  background: #f5a623;
+  border-color: #f5a623;
+  box-shadow: 0 0 8px #f5a62399;
+}
+.tr808__step--current {
+  border-color: #ff3c00;
+  box-shadow: 0 0 12px #ff3c00cc;
+}
+
+.tr808__sequencer-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.tr808__sequencer-controls button {
+  background: #f5a623;
+  color: #222;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 1rem;
+  box-shadow: 0 2px 8px #0007;
+  transition: background 0.2s, color 0.2s;
+}
+.tr808__sequencer-controls button:active {
+  background: #ff3c00;
+  color: #fff;
+}
+
+.tr808__sequencer-controls label {
+  color: #f5a623;
+  font-size: 1rem;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+}
+
+.tr808__sequencer-controls input[type='number'] {
+  width: 60px;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #222;
+  color: #f5a623;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+}
+
+.tr808__footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #888;
+  letter-spacing: 0.05em;
+}

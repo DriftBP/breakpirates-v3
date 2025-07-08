@@ -1,0 +1,32 @@
+<div class="tr808">
+  <h1 class="tr808__title">Roland BP-808 Drum Machine</h1>
+  <div class="tr808__panel">
+    <div class="tr808__controls">
+      <!-- All knobs removed -->
+    </div>
+  </div>
+  <div class="tr808__sequencer">
+    <div class="tr808__steps">
+      <div class="tr808__step-row">
+        <span class="tr808__step-label"></span>
+        <span *ngFor="let step of steps; let stepIdx = index" class="tr808__step-number">{{ stepIdx + 1 }}</span>
+      </div>
+      <div *ngFor="let drum of drums; let drumIdx = index" class="tr808__step-row">
+        <span class="tr808__step-label">{{ drum.label }}</span>
+        <button *ngFor="let step of steps; let stepIdx = index"
+          (click)="toggleStep(drumIdx, stepIdx)"
+          [class.tr808__step--active]="sequence[drumIdx][stepIdx]"
+          [class.tr808__step--current]="stepIdx === currentStep"
+          class="tr808__step">
+        </button>
+      </div>
+    </div>
+    <div class="tr808__sequencer-controls">
+      <button (click)="togglePlay()">{{ isPlaying ? 'Stop' : 'Play' }}</button>
+      <label>Tempo: <input type="number" [(ngModel)]="tempo" min="40" max="300" /></label>
+      <button (click)="shareBeat()">Share Beat</button>
+      <input type="text" [(ngModel)]="sharedBeat" placeholder="Paste beat code here" style="width: 220px; margin-left: 1rem;" />
+      <button (click)="loadBeat()">Load</button>
+    </div>
+  </div>
+</div>
