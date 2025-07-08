@@ -8,4 +8,5 @@ export const routes: Routes = [
   { path: 'dj-name', loadComponent: () => import('./dj-name/dj-name.component') },
   { path: 'roster', loadComponent: () => import('./roster/roster.component') },
   { path: 'soundboard', loadChildren: () => import('./soundboard/soundboard.routes').then(m => m.routes) },
+  { path: '808', loadComponent: () => import('./808/808.component') },
 ];

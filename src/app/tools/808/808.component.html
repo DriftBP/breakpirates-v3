@@ -1,0 +1,33 @@
+<div class="tr808">
+  <h1 class="tr808__title">Roland TR-808 Drum Machine</h1>
+  <div class="tr808__panel">
+    <div class="tr808__pads">
+      <button *ngFor="let drum of drums; let i = index" (click)="playSound(drum)" class="tr808__pad tr808__pad--{{drum.sound}}">
+        {{ drum.label }}
+      </button>
+    </div>
+    <div class="tr808__controls">
+      <div class="tr808__knob tr808__knob--accent"></div>
+      <div class="tr808__knob tr808__knob--tempo"></div>
+      <div class="tr808__slider tr808__slider--volume"></div>
+    </div>
+  </div>
+  <div class="tr808__sequencer">
+    <div class="tr808__steps">
+      <div *ngFor="let drum of drums; let drumIdx = index" class="tr808__step-row">
+        <span class="tr808__step-label">{{ drum.label }}</span>
+        <button *ngFor="let step of steps; let stepIdx = index"
+          (click)="toggleStep(drumIdx, stepIdx)"
+          [class.tr808__step--active]="sequence[drumIdx][stepIdx]"
+          [class.tr808__step--current]="stepIdx === currentStep"
+          class="tr808__step">
+        </button>
+      </div>
+    </div>
+    <div class="tr808__sequencer-controls">
+      <button (click)="togglePlay()">{{ isPlaying ? 'Stop' : 'Play' }}</button>
+      <label>Tempo: <input type="number" [(ngModel)]="tempo" min="40" max="300" /></label>
+    </div>
+  </div>
+  <div class="tr808__footer">808 Simulation &bull; Not for commercial use</div>
+</div>
