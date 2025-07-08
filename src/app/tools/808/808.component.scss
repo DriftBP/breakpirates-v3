@@ -108,7 +108,6 @@
   gap: 0;
   justify-content: flex-start;
   align-items: flex-start;
-  /* Ensure all rows are the same width */
   width: 100%;
 }
 
@@ -121,10 +120,18 @@
   width: 100%;
 }
 
+.tr808__step-row:first-child {
+  align-items: flex-end;
+  min-height: 18px;
+  margin-bottom: 0.1rem;
+  position: relative;
+  top: 2px;
+}
+
 .tr808__step-label {
   font-size: 0.8rem;
   color: #f5a623;
-  margin-right: 0.4rem;
+  margin-right: 0.18rem;
   margin-bottom: 0;
   font-family: 'Roboto Mono', 'Courier New', monospace;
   min-width: 5.5em;
@@ -137,13 +144,43 @@
   white-space: nowrap;
 }
 
+.tr808__step-row:first-child .tr808__step-label {
+  min-width: 5.5em;
+  max-width: 5.5em;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  visibility: hidden;
+}
+
+.tr808__step-number {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  color: #ffe600;
+  text-align: center;
+  margin-right: 3px;
+  margin-bottom: 0.5px;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  line-height: 18px;
+  position: relative;
+  top: 1.5px;
+}
+.tr808__step-row .tr808__step-number:last-child {
+  margin-right: 0;
+}
+
 .tr808__step {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 2px solid #444;
   background: #222;
-  margin-right: 0.18rem;
+  margin-right: 3px;
   margin-bottom: 0;
   display: inline-block;
   vertical-align: middle;

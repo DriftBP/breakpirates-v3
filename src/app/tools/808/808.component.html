@@ -7,6 +7,10 @@
   </div>
   <div class="tr808__sequencer">
     <div class="tr808__steps">
+      <div class="tr808__step-row">
+        <span class="tr808__step-label"></span>
+        <span *ngFor="let step of steps; let stepIdx = index" class="tr808__step-number">{{ stepIdx + 1 }}</span>
+      </div>
       <div *ngFor="let drum of drums; let drumIdx = index" class="tr808__step-row">
         <span class="tr808__step-label">{{ drum.label }}</span>
         <button *ngFor="let step of steps; let stepIdx = index"
