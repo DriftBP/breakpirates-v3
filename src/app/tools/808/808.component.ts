@@ -56,7 +56,7 @@ export default class Drum808Component implements OnInit {
     this.intervalId = setInterval(() => {
       this.playCurrentStep();
       this.currentStep = (this.currentStep + 1) % this.steps.length;
-    }, (60_000 / this.tempo) / 2);
+    }, (60_000 / this.tempo) / 4); // Double the speed
   }
 
   stopSequencer() {
