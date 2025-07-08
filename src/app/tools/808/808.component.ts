@@ -41,11 +41,11 @@ export default class Drum808Component implements OnInit {
   currentStep = 0;
   isPlaying = false;
   tempo = 120;
+  sharedBeat: string = '';
   private _tempo: number = 120;
 
   private audioElements: { [key: string]: HTMLAudioElement[] } = {};
   private intervalId: any = null;
-  private lastTempo: number = this.tempo;
 
   ngOnInit() {
     // Preload all drum samples with multiple instances for polyphony
