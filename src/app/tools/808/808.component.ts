@@ -20,7 +20,8 @@ export default class Drum808Component implements OnInit {
     { label: 'High Tom', sound: 'high-tom' },
     { label: 'Rim', sound: 'rim' },
     { label: 'Cowbell', sound: 'cowbell' },
-    { label: 'Clave', sound: 'clave' }
+    { label: 'Clave', sound: 'clave' },
+    { label: 'Maracas', sound: 'maracas' }
   ];
 
   steps = Array(32).fill(0);
@@ -48,6 +49,8 @@ export default class Drum808Component implements OnInit {
     [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false],
     // Clave
     [false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false],
+    // Maracas
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
   ];
 
   currentStep = 0;
