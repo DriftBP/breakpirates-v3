@@ -18,6 +18,9 @@ export default class Drum808Component implements OnInit {
     { label: 'Low Tom', sound: 'low-tom' },
     { label: 'Mid Tom', sound: 'mid-tom' },
     { label: 'High Tom', sound: 'high-tom' },
+    { label: 'Low Conga', sound: 'low-conga' },
+    { label: 'Mid Conga', sound: 'mid-conga' },
+    { label: 'High Conga', sound: 'high-conga' },
     { label: 'Rim', sound: 'rim' },
     { label: 'Cowbell', sound: 'cowbell' },
     { label: 'Clave', sound: 'clave' },
@@ -43,6 +46,12 @@ export default class Drum808Component implements OnInit {
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     // High Tom
     [false, false, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, true],
+    // Low Conga
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    // Mid Conga
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    // High Conga
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     // Rim
     [false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false],
     // Cowbell
