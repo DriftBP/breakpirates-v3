@@ -13,29 +13,53 @@ export default class Drum808Component implements OnInit {
     { label: 'Kick', sound: 'kick' },
     { label: 'Snare', sound: 'snare' },
     { label: 'Clap', sound: 'clap' },
-    { label: 'Hi-Hat', sound: 'hihat' },
-    { label: 'Tom', sound: 'tom' },
+    { label: 'Closed Hat', sound: 'closed-hat' },
+    { label: 'Open Hat', sound: 'open-hat' },
+    { label: 'Low Tom', sound: 'low-tom' },
+    { label: 'Mid Tom', sound: 'mid-tom' },
+    { label: 'High Tom', sound: 'high-tom' },
+    { label: 'Low Conga', sound: 'low-conga' },
+    { label: 'Mid Conga', sound: 'mid-conga' },
+    { label: 'High Conga', sound: 'high-conga' },
     { label: 'Rim', sound: 'rim' },
-    { label: 'Cowbell', sound: 'cowbell' }
+    { label: 'Cowbell', sound: 'cowbell' },
+    { label: 'Clave', sound: 'clave' },
+    { label: 'Maracas', sound: 'maracas' }
   ];
 
   steps = Array(32).fill(0);
   // Classic 808 beat: Kick on 1, 9, 17, 25; Snare/Clap on 5, 13, 21, 29; Hi-Hat on all 32
   sequence: boolean[][] = [
-    // Kick
-    [true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false],
-    // Snare
+    // Kick (electro: strong on 1, 9, 11, 17, 25)
+    [true, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false],
+    // Snare (electro: on 5, 13, 21, 29)
     [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false],
-    // Clap
-    [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false],
-    // Hi-Hat
+    // Clap (electro: on 5, 13, 21, 29, with ghost notes)
+    [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, true, false, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false],
+    // Closed Hat (steady 16th)
     [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
-    // Tom
+    // Open Hat (syncopated)
+    [false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false, true],
+    // Rim (electro accent)
+    [false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false],
+    // Cowbell (electro flavor)
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false],
+    // Clave (syncopated electro)
+    [false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false],
+    // Maracas (shaker, subtle)
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    // Rim
+    // Low Tom
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    // Cowbell (add more hits)
-    [true, false, false, false, false, true, false, false, true, false, false, true, false, true, false, false, true, false, false, true, false, true, false, false, true, false, false, true, false, true, false, false],
+    // Mid Tom
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    // High Tom
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    // Low Conga
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    // Mid Conga
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    // High Conga
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
   ];
 
   currentStep = 0;
