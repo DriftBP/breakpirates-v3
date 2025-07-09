@@ -19,10 +19,14 @@ export class ThemeService {
 
     // Use saved option if available
     if (themeSettingName) {
-      const savedThemeSetting = ThemeSetting[this.getEnumKeyByEnumValue(Theme, themeSettingName)];
+      const key = this.getEnumKeyByEnumValue(Theme, themeSettingName);
 
-      if (savedThemeSetting) {
-        themeSetting = savedThemeSetting;
+      if (key) {
+        const savedThemeSetting = (ThemeSetting as any)[key];
+
+        if (savedThemeSetting) {
+          themeSetting = savedThemeSetting;
+        }
       }
     }
 
