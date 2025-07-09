@@ -44,18 +44,26 @@ export default class Drum808Component implements OnInit {
   sharedBeat: string = '';
   private _tempo: number = 120;
 
-  private audioElements: { [key: string]: HTMLAudioElement[] } = {};
-  private intervalId: any = null;
+  private audioContext: AudioContext | null = null;
+  private audioBuffers: { [key: string]: AudioBuffer | null } = {};
+  private loadingBuffers: Promise<void>[] = [];
+  private nextStepTime: number = 0;
+  private schedulerId: any = null;
+  private audioNextStepTime: number = 0; // in seconds
 
   ngOnInit() {
-    // Preload all drum samples with multiple instances for polyphony
-    this.drums.forEach(drum => {
-      this.audioElements[drum.sound] = [];
-      for (let i = 0; i < 6; i++) {
-        const audio = new Audio(`/assets/808/${drum.sound}.wav`);
-        audio.load();
-        this.audioElements[drum.sound].push(audio);
-      }
+    // Create AudioContext on user gesture (defer until play)
+    // Preload all drum samples as AudioBuffers
+    this.audioContext = null;
+    this.audioBuffers = {};
+    this.loadingBuffers = this.drums.map(async drum => {
+      const response = await fetch(`/assets/808/${drum.sound}.wav`);
+      const arrayBuffer = await response.arrayBuffer();
+      // AudioContext may not be available yet, so decode later
+      this.audioBuffers[drum.sound] = await (window.AudioContext || (window as any).webkitAudioContext).prototype.decodeAudioData.call(
+        (this.audioContext || new (window.AudioContext || (window as any).webkitAudioContext)()),
+        arrayBuffer.slice(0)
+      );
     });
 
     // Ensure tempo is initialized to 120
@@ -75,17 +83,27 @@ export default class Drum808Component implements OnInit {
     this._tempo = this.tempo;
   }
 
-  playSound(drum: { sound: string }) {
-    // Find a free audio element (not currently playing)
-    const pool = this.audioElements[drum.sound];
-    if (!pool) return;
-    let audio = pool.find(a => a.paused || a.ended);
-    if (!audio) {
-      // If all are busy, reuse the first
-      audio = pool[0];
+  async ensureAudioContext() {
+    if (!this.audioContext) {
+      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      // Resume context if needed
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume();
+      }
     }
-    audio.currentTime = 0;
-    audio.play();
+    // Wait for all buffers to load
+    await Promise.all(this.loadingBuffers);
+  }
+
+  async playSound(drum: { sound: string }) {
+    await this.ensureAudioContext();
+    const ctx = this.audioContext!;
+    const buffer = this.audioBuffers[drum.sound];
+    if (!buffer) return;
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(ctx.destination);
+    source.start();
   }
 
   toggleStep(drumIdx: number, stepIdx: number) {
@@ -103,16 +121,55 @@ export default class Drum808Component implements OnInit {
 
   startSequencer() {
     this.stopSequencer();
-    this.intervalId = setInterval(() => {
-      this.playCurrentStep();
-      this.currentStep = (this.currentStep + 1) % this.steps.length;
-    }, (60_000 / this.tempo) / 4); // Double the speed
+    this.currentStep = 0;
+    if (!this.audioContext) {
+      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    this.audioNextStepTime = this.audioContext.currentTime + 0.05;
+    this.scheduleSteps(0); // pass starting step
+  }
+
+  scheduleSteps(schedulerStep: number) {
+    const lookahead = 25; // ms
+    const stepInterval = (60 / this.tempo) / 4; // seconds per step
+    const scheduleAheadTime = 0.1; // seconds
+    if (!this.audioContext) return;
+    const now = this.audioContext.currentTime;
+    let step = schedulerStep;
+    let time = this.audioNextStepTime;
+    while (time < now + scheduleAheadTime) {
+      this.scheduleStep(step, time);
+      time += stepInterval;
+      step = (step + 1) % this.steps.length;
+    }
+    this.audioNextStepTime = time;
+    this.schedulerId = setTimeout(() => this.scheduleSteps(step), lookahead);
+  }
+
+  scheduleStep(stepIdx: number, time: number) {
+    this.drums.forEach((drum, drumIdx) => {
+      if (this.sequence[drumIdx][stepIdx]) {
+        this.playSoundAtTime(drum, time);
+      }
+    });
+    setTimeout(() => { this.currentStep = stepIdx; }, (time - this.audioContext!.currentTime) * 1000);
+  }
+
+  async playSoundAtTime(drum: { sound: string }, time: number) {
+    await this.ensureAudioContext();
+    const ctx = this.audioContext!;
+    const buffer = this.audioBuffers[drum.sound];
+    if (!buffer) return;
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(ctx.destination);
+    source.start(time);
   }
 
   stopSequencer() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
+    if (this.schedulerId) {
+      clearTimeout(this.schedulerId);
+      this.schedulerId = null;
     }
     this.currentStep = 0;
   }

@@ -6,6 +6,29 @@ describe('Drum808Component', () => {
   let component: Drum808Component;
   let fixture: ComponentFixture<Drum808Component>;
 
+  beforeAll(() => {
+    globalThis.fetch = jest.fn(() => Promise.resolve({
+      arrayBuffer: () => Promise.resolve(new ArrayBuffer(8))
+    })) as any;
+
+    class MockAudioBuffer {}
+    class MockAudioBufferSourceNode {
+      buffer: any;
+      connect() {}
+      start() {}
+    }
+    class MockAudioContext {
+      public currentTime = 0;
+      public state = 'running';
+      createBufferSource() { return new MockAudioBufferSourceNode(); }
+      decodeAudioData(buffer: ArrayBuffer) { return Promise.resolve(new MockAudioBuffer()); }
+      resume() { return Promise.resolve(); }
+      get destination() { return {}; }
+    }
+    (globalThis as any).AudioContext = MockAudioContext;
+    (globalThis as any).webkitAudioContext = MockAudioContext;
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Drum808Component]
