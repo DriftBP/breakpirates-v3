@@ -46,6 +46,8 @@ export default class Drum808Component implements OnInit {
 
   private audioElements: { [key: string]: HTMLAudioElement[] } = {};
   private intervalId: any = null;
+  private nextStepTime: number = 0;
+  private schedulerId: any = null;
 
   ngOnInit() {
     // Preload all drum samples with multiple instances for polyphony
@@ -103,16 +105,32 @@ export default class Drum808Component implements OnInit {
 
   startSequencer() {
     this.stopSequencer();
-    this.intervalId = setInterval(() => {
+    this.currentStep = 0;
+    this.nextStepTime = performance.now();
+    this.scheduleSteps();
+  }
+
+  scheduleSteps() {
+    const lookahead = 25; // ms
+    const stepInterval = (60_000 / this.tempo) / 4; // ms per step
+    const scheduleAheadTime = 0.1; // seconds
+    const now = performance.now();
+    while (this.nextStepTime < now + scheduleAheadTime * 1000) {
       this.playCurrentStep();
+      this.nextStepTime += stepInterval;
       this.currentStep = (this.currentStep + 1) % this.steps.length;
-    }, (60_000 / this.tempo) / 4); // Double the speed
+      // If we just wrapped, schedule the next stepInterval from now to avoid drift
+      if (this.currentStep === 0) {
+        this.nextStepTime = Math.max(this.nextStepTime, performance.now() + stepInterval);
+      }
+    }
+    this.schedulerId = setTimeout(() => this.scheduleSteps(), lookahead);
   }
 
   stopSequencer() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
+    if (this.schedulerId) {
+      clearTimeout(this.schedulerId);
+      this.schedulerId = null;
     }
     this.currentStep = 0;
   }
