@@ -13,7 +13,8 @@ export default class Drum808Component implements OnInit {
     { label: 'Kick', sound: 'kick' },
     { label: 'Snare', sound: 'snare' },
     { label: 'Clap', sound: 'clap' },
-    { label: 'Hi-Hat', sound: 'hihat' },
+    { label: 'Closed-Hat', sound: 'closed-hat' },
+    { label: 'Open-Hat', sound: 'open-hat' },
     { label: 'Tom', sound: 'tom' },
     { label: 'Rim', sound: 'rim' },
     { label: 'Cowbell', sound: 'cowbell' }
@@ -28,8 +29,10 @@ export default class Drum808Component implements OnInit {
     [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false],
     // Clap
     [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false],
-    // Hi-Hat
+    // Closed Hat
     [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
+    // Open Hat
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     // Tom
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     // Rim
