@@ -12,7 +12,7 @@ declare var MediaElementPlayer: any;
 export class RadioPlayerComponent implements AfterViewInit {
   mediaPlayerElement = viewChild.required<ElementRef>('mediaPlayer');
 
-  tuneInUrl = AppSettings.STREAM_URL_PRIMARY + ';';
+  tuneInUrl = `${AppSettings.STREAM_URL_PRIMARY};`;
   public mediaPlayer: any;
 
   ngAfterViewInit() {
