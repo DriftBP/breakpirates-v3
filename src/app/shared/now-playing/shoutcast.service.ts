@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+import { AppSettings } from '../../app-settings';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class ShoutcastService {
   // Use the Shoutcast '7.html' endpoint via allorigins CORS proxy
-  private statusUrl = 'https://api.allorigins.win/raw?url=http://bpstream.hostco.de:3000/7.html';
+  private statusUrl = `https://api.allorigins.win/raw?url=${AppSettings.STREAM_URL_PRIMARY}7.html`;
 
   constructor(private http: HttpClient) {}
 
