@@ -15,7 +15,7 @@ import { RadioPlayerComponent } from '../radio-player/radio-player.component';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TimePipe } from '../pipes/time.pipe';
 import { SafePipe } from '../pipes/safe.pipe';
-import { ShoutcastService } from './shoutcast.service';
+import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 
 @Component({
     selector: 'bp-now-playing',
