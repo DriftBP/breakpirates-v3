@@ -39,9 +39,11 @@
           <div class="now-playing__show-info-name">
             {{'NOW_PLAYING.PLAYLIST' | translate}}:
 
-            <span *ngIf="currentTrack()" [attr.title]="'Current track: ' + currentTrack()">
-              {{ currentTrack() }}
-            </span>
+            @if (currentTrack(); as currentTrack) {
+              <span [attr.title]="'Current track: ' + currentTrack">
+                {{ currentTrack }}
+              </span>
+            }
           </div>
 
           <div class="now-playing__show-info-description">

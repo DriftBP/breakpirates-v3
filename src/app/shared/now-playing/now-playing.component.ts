@@ -4,7 +4,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -22,7 +21,6 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
     templateUrl: './now-playing.component.html',
     styleUrls: ['./now-playing.component.scss'],
     imports: [
-      CommonModule,
       RouterModule,
       FontAwesomeModule,
       ProgressIndicatorComponent,
