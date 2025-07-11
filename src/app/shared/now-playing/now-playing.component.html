@@ -20,7 +20,7 @@
           }
         </div>
 
-        @if (isLiveShow()) {
+        @if (!isLiveShow()) {
           <div class="now-playing__show-info-name" [title]="nowPlaying().title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying().id]">{{nowPlaying().title}}</a>
           </div>
@@ -37,16 +37,18 @@
           }
         } @else {
           <div class="now-playing__show-info-name">
-            {{'NOW_PLAYING.PLAYLIST' | translate}}
+            {{'NOW_PLAYING.PLAYLIST' | translate}}:
+
+            <span *ngIf="currentTrack()" [attr.title]="'Current track: ' + currentTrack()">
+              {{ currentTrack() }}
+            </span>
           </div>
 
-          <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
+          <div class="now-playing__show-info-description">
+            {{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}
+          </div>
         }
       </div>
-    </div>
-
-    <div class="now-playing__track-info" *ngIf="currentTrack()">
-      <strong>Track:</strong> {{ currentTrack() }}
     </div>
 
     @if (showRadioPlayer) {
