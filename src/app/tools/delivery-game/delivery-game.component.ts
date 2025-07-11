@@ -72,15 +72,29 @@ export class DeliveryGameComponent implements OnInit {
   }
 
   generateMap() {
-    // More realistic town: roads, blocks, parks, shops, houses
+    // Simpler, less grid-like town: main roads, some branches, and a few random streets
     this.map = Array.from({ length: this.mapHeight }, (_, y) =>
       Array.from({ length: this.mapWidth }, (_, x) => {
         // Border buildings
         if (x === 0 || y === 0 || x === this.mapWidth-1 || y === this.mapHeight-1) return 1;
-        // Main roads (vertical/horizontal)
-        if (x % 8 === 0 || y % 7 === 0) return 0; // More grid-like streets
+        // Main horizontal road
+        if (y === Math.floor(this.mapHeight / 2)) return 0;
+        // Main vertical road
+        if (x === Math.floor(this.mapWidth / 2)) return 0;
+        // A few branches off the main roads
+        if ((x === Math.floor(this.mapWidth / 4) && y > 4 && y < this.mapHeight - 4) ||
+            (x === Math.floor(this.mapWidth * 3 / 4) && y > 6 && y < this.mapHeight - 6) ||
+            (y === Math.floor(this.mapHeight / 4) && x > 4 && x < this.mapWidth - 4) ||
+            (y === Math.floor(this.mapHeight * 3 / 4) && x > 6 && x < this.mapWidth - 6)) return 0;
+        // Some random short streets
+        if ((x % 11 === 0 && y > 2 && y < this.mapHeight - 2 && Math.random() < 0.5) ||
+            (y % 9 === 0 && x > 2 && x < this.mapWidth - 2 && Math.random() < 0.5)) return 0;
         // Sidewalks next to roads
-        if (x % 8 === 1 || x % 8 === 7 || y % 7 === 1 || y % 7 === 6) return 3;
+        if (Math.abs(y - Math.floor(this.mapHeight / 2)) === 1 || Math.abs(x - Math.floor(this.mapWidth / 2)) === 1) return 3;
+        if (Math.abs(x - Math.floor(this.mapWidth / 4)) === 1 && y > 4 && y < this.mapHeight - 4) return 3;
+        if (Math.abs(x - Math.floor(this.mapWidth * 3 / 4)) === 1 && y > 6 && y < this.mapHeight - 6) return 3;
+        if (Math.abs(y - Math.floor(this.mapHeight / 4)) === 1 && x > 4 && x < this.mapWidth - 4) return 3;
+        if (Math.abs(y - Math.floor(this.mapHeight * 3 / 4)) === 1 && x > 6 && x < this.mapWidth - 6) return 3;
         // Parks
         if ((x > 30 && x < 36 && y > 3 && y < 8) || (x > 5 && x < 12 && y > 20 && y < 27)) return 4;
         // Shops (yellow)
@@ -98,19 +112,17 @@ export class DeliveryGameComponent implements OnInit {
       this.map[loc.y][loc.x] = 0;
     });
 
-    // Ensure all collection points are accessible by carving a path to the nearest road
+    // Ensure all collection points are accessible by carving a path from each to the nearest road
     const isRoad = (x: number, y: number) => this.map[y]?.[x] === 0;
     const carvePath = (from: Vec2) => {
       // Find nearest road tile using BFS
       const visited = Array.from({ length: this.mapHeight }, () => Array(this.mapWidth).fill(false));
       const queue: { x: number; y: number; path: Vec2[] }[] = [{ x: from.x, y: from.y, path: [] }];
       visited[from.y][from.x] = true;
-      let target: Vec2 | null = null;
       let path: Vec2[] = [];
       while (queue.length) {
         const { x, y, path: p } = queue.shift()!;
         if (isRoad(x, y) && !(x === from.x && y === from.y)) {
-          target = { x, y };
           path = p;
           break;
         }
