@@ -20,7 +20,7 @@
           }
         </div>
 
-        @if (!isLiveShow()) {
+        @if (isLiveShow()) {
           <div class="now-playing__show-info-name" [title]="nowPlaying().title">
             <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying().id]">{{nowPlaying().title}}</a>
           </div>
