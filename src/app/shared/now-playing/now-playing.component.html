@@ -45,6 +45,10 @@
       </div>
     </div>
 
+    <div class="now-playing__track-info" *ngIf="currentTrack()">
+      <strong>Track:</strong> {{ currentTrack() }}
+    </div>
+
     @if (showRadioPlayer) {
       <bp-radio-player></bp-radio-player>
     } @else {
