@@ -9,4 +9,5 @@ export const routes: Routes = [
   { path: 'roster', loadComponent: () => import('./roster/roster.component') },
   { path: 'soundboard', loadChildren: () => import('./soundboard/soundboard.routes').then(m => m.routes) },
   { path: '808', loadComponent: () => import('./808/808.component') },
+  { path: 'delivery-game', loadChildren: () => import('./delivery-game/delivery-game.routes').then(m => m.routes) },
 ];

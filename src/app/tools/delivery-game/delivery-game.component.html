@@ -1,0 +1,15 @@
+<div class="game-container">
+  <canvas #gameCanvas width="640" height="480"></canvas>
+  <div class="hud">
+    <div>Order: <span *ngIf="orderActive">{{ orderActive ? 'Active' : 'None' }}</span></div>
+    <div *ngIf="orderActive">
+      <div>Freshness: {{ freshness | number:'1.0-0' }}%</div>
+      <div>Temperature: {{ temperature | number:'1.0-0' }}°C</div>
+      <div>Quality: {{ quality | number:'1.0-0' }}%</div>
+      <div>Order Value: ${{ getCurrentOrderValue() }}</div>
+    </div>
+    <div>Overall Rating: <span title="Average of all deliveries">{{ overallRating | number:'1.1-1' }}/5 ★</span></div>
+    <div>Total Earnings: ${{ totalEarnings | number:'1.2-2' }}</div>
+    <div class="controls">Use arrow keys or WASD to ride. Pick up and deliver orders!</div>
+  </div>
+</div>

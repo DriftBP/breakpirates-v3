@@ -74,6 +74,8 @@ export default class Drum808Component implements OnInit {
   private nextStepTime: number = 0;
   private schedulerId: any = null;
   private audioNextStepTime: number = 0; // in seconds
+  private visualAnimationId: any = null;
+  private sequencerStartTime: number = 0;
 
   ngOnInit() {
     // Create AudioContext on user gesture (defer until play)
@@ -150,7 +152,38 @@ export default class Drum808Component implements OnInit {
       this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     }
     this.audioNextStepTime = this.audioContext.currentTime + 0.05;
-    this.scheduleSteps(0); // pass starting step
+    this.sequencerStartTime = this.audioNextStepTime;
+    // Start the audio scheduler
+    this.scheduleSteps(0);
+    // Start the visual indicator loop
+    this.visualAnimationId = requestAnimationFrame(() => this.updateVisualStep());
+  }
+
+  stopSequencer() {
+    if (this.schedulerId) {
+      clearTimeout(this.schedulerId);
+      this.schedulerId = null;
+    }
+    if (this.visualAnimationId) {
+      cancelAnimationFrame(this.visualAnimationId);
+      this.visualAnimationId = null;
+    }
+    this.currentStep = 0;
+  }
+
+  updateVisualStep() {
+    if (!this.audioContext) return;
+    const stepInterval = (60 / this.tempo) / 4; // seconds per step
+    const now = this.audioContext.currentTime;
+    const elapsed = now - this.sequencerStartTime;
+    let step = Math.floor(elapsed / stepInterval) % this.steps.length;
+    if (step < 0) step = 0;
+    if (this.currentStep !== step) {
+      this.currentStep = step;
+    }
+    if (this.isPlaying) {
+      this.visualAnimationId = requestAnimationFrame(() => this.updateVisualStep());
+    }
   }
 
   scheduleSteps(schedulerStep: number) {
@@ -176,7 +209,7 @@ export default class Drum808Component implements OnInit {
         this.playSoundAtTime(drum, time);
       }
     });
-    setTimeout(() => { this.currentStep = stepIdx; }, (time - this.audioContext!.currentTime) * 1000);
+    // No setTimeout for currentStep here; handled by requestAnimationFrame
   }
 
   async playSoundAtTime(drum: { sound: string }, time: number) {
@@ -188,22 +221,6 @@ export default class Drum808Component implements OnInit {
     source.buffer = buffer;
     source.connect(ctx.destination);
     source.start(time);
-  }
-
-  stopSequencer() {
-    if (this.schedulerId) {
-      clearTimeout(this.schedulerId);
-      this.schedulerId = null;
-    }
-    this.currentStep = 0;
-  }
-
-  playCurrentStep() {
-    this.drums.forEach((drum, drumIdx) => {
-      if (this.sequence[drumIdx][this.currentStep]) {
-        this.playSound(drum);
-      }
-    });
   }
 
   restartSequencer() {

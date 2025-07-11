@@ -1,0 +1,26 @@
+.game-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+}
+canvas {
+  border: 2px solid #333;
+  background: #222;
+  image-rendering: pixelated;
+}
+.hud {
+  margin-left: 16px;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1.1em;
+  background: rgba(0,0,0,0.7);
+  padding: 12px 18px;
+  border-radius: 8px;
+  min-width: 180px;
+}
+.hud .controls {
+  margin-top: 12px;
+  font-size: 0.95em;
+  color: #ccc;
+}
