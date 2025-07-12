@@ -37,10 +37,18 @@
           }
         } @else {
           <div class="now-playing__show-info-name">
-            {{'NOW_PLAYING.PLAYLIST' | translate}}
+            {{'NOW_PLAYING.PLAYLIST' | translate}}:
+
+            @if (currentTrack(); as currentTrack) {
+              <span [attr.title]="'Current track: ' + currentTrack">
+                {{ currentTrack }}
+              </span>
+            }
           </div>
 
-          <div class="now-playing__show-info-description">{{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}</div>
+          <div class="now-playing__show-info-description">
+            {{'NOW_PLAYING.PLAYLIST_DESCRIPTION' | translate}}
+          </div>
         }
       </div>
     </div>
