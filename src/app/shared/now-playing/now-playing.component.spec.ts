@@ -1,5 +1,6 @@
-import { ActivatedRoute } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { NowPlayingComponent } from './now-playing.component';
@@ -31,7 +32,8 @@ describe('NowPlayingComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {}
-        }
+        },
+        provideHttpClient(withInterceptorsFromDi())
       ]
     });
     fixture = TestBed.createComponent(NowPlayingComponent);
