@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
 import { HttpRequestConfig } from './http-request-config';
-import { HttpRequestCacheService } from '../http-request-cache/http-request-cache.service';
+import { DataCacheService } from '../data-cache/data-cache.service';
 
 const defaultConfig: HttpRequestConfig = {
   useCache: true
@@ -16,7 +16,7 @@ export class HttpRequestService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly cache: HttpRequestCacheService
+    private readonly cache: DataCacheService<any>
   ) { }
 
   get<T>(url: string, config: HttpRequestConfig = defaultConfig) {

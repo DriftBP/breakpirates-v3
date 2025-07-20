@@ -35,7 +35,7 @@
     "ON_AIR": "On air",
     "HOSTED_BY": "Hosted by",
     "LISTEN_NOW_POPUP": "Listen now in a popup player",
-    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST": "Playlist",
     "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
   },
   "CHAT_ROOM": {
@@ -75,7 +75,6 @@
     "TITLE": "Schedule",
     "CHECK_BACK_REGULARLY": "Check back regularly for schedule updates and details of guest shows!",
     "FIND_OUT_MORE": "You can find out more about the DJs featured by entering the Profiles section.",
-    "TIMES_DISPLAYED": "Times displayed are for London, UK.",
     "HOSTED_BY": "Hosted by",
     "MUSIC_STYLES": "Music styles",
     "SHOW_DESCRIPTION": "Show description",
