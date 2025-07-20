@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { of } from 'rxjs';
 
 import { HttpRequestConfig } from './http-request-config';
@@ -13,11 +13,9 @@ const defaultConfig: HttpRequestConfig = {
   providedIn: 'root'
 })
 export class HttpRequestService {
+  private readonly http = inject(HttpClient);
+  private readonly cache = inject<DataCacheService<any>>(DataCacheService);
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly cache: DataCacheService<any>
-  ) { }
 
   get<T>(url: string, config: HttpRequestConfig = defaultConfig) {
     if (config.useCache) {

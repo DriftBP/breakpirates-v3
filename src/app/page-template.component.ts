@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DateTime } from 'luxon';
 
@@ -29,9 +29,8 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
     ]
 })
 export class PageTemplateComponent implements AfterViewInit {
-  constructor (
-    private dialogService: DialogService
-  ) {}
+  private dialogService = inject(DialogService);
+
 
   ngAfterViewInit() {
     const hideDialogDate = DateTime.utc(2021, 9, 18, 23, 0);

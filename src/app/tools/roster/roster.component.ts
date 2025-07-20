@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -15,6 +15,8 @@ import { RosterListComponent } from "./roster-list.component";
   ]
 })
 export default class RosterComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
@@ -213,9 +215,7 @@ export default class RosterComponent implements OnInit {
 
   public djsByLetter: { letter: string; djs: string[] }[] = [];
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     // Get a list of all the first letters of the djs
     const firstLetters = this.allDjs.map(dj => dj.charAt(0).toUpperCase());
 

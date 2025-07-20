@@ -1,4 +1,4 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, input, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -16,15 +16,13 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     ]
 })
 export default class MusicComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   genres = input<Genre[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigActive
   ];
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

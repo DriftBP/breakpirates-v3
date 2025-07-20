@@ -2,7 +2,7 @@ export class AppSettings {
     public static API_BASE = 'https://www.breakpirates.com/api/';
 
     // Stream server
-    public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/;';
+    public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/';
     public static NOW_PLAYING_INTERVAL = 60000; // 60 seconds
 
     // Social URLs

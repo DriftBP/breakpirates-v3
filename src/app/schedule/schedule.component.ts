@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, input } from '@angular/core';
+import { Component, OnDestroy, OnInit, input, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterModule } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { of, Subscription } from 'rxjs';
@@ -22,6 +22,11 @@ import { DaySelectComponent } from './day-select/day-select.component';
     ]
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly dayService = inject(DayService);
+
   days = input.required<Day[]>();
 
   private childParamsSubscription?: Subscription;
@@ -29,13 +34,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = DateTime.local().weekday;
-
-  constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly router: Router,
-    private readonly breadcrumbService: BreadcrumbService,
-    private readonly dayService: DayService
-  ) { }
 
   ngOnInit() {
     this.childParamsSubscription = this.router.events.pipe(

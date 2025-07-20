@@ -1,4 +1,4 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, effect, input, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { News } from '../models/news';
@@ -24,6 +24,8 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     ]
 })
 export default class NewsArticleComponent {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   article = input<News>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -33,9 +35,7 @@ export default class NewsArticleComponent {
 
   imagePath = AppSettings.ASSET_NEWS_IMAGE;
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     effect(() => {
       const article = this.article();
 

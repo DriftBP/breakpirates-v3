@@ -1,8 +1,9 @@
-import { Component, computed, Signal } from '@angular/core';
+import { Component, computed, Signal, effect, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -13,6 +14,7 @@ import { RadioPlayerComponent } from '../radio-player/radio-player.component';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TimePipe } from '../pipes/time.pipe';
 import { SafePipe } from '../pipes/safe.pipe';
+import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 
 @Component({
     selector: 'bp-now-playing',
@@ -26,24 +28,33 @@ import { SafePipe } from '../pipes/safe.pipe';
       TranslatePipe,
       SortByPipe,
       TimePipe,
-      SafePipe
+      SafePipe,
+      HttpClientModule
     ]
 })
 export class NowPlayingComponent {
+  readonly scheduleService = inject(ScheduleService);
+  private shoutcast = inject(ShoutcastService);
+
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
   showRadioPlayer = false;
+  currentTrack = signal<string>('');
 
   faExternalLink = faExternalLink;
 
   order = SortOrder.Ascending;
 
-  constructor(
-    public readonly scheduleService: ScheduleService
-  ) {
+  constructor() {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
+    // Fetch current track in injection context
+    effect(() => {
+      this.shoutcast.getCurrentTrack().subscribe(track => {
+        this.currentTrack.set(track);
+      });
+    });
 
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
