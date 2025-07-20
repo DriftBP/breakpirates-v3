@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
-import { HttpClientModule } from '@angular/common/http';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -28,8 +27,7 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       TranslatePipe,
       SortByPipe,
       TimePipe,
-      SafePipe,
-      HttpClientModule
+      SafePipe
     ]
 })
 export class NowPlayingComponent implements OnInit {
