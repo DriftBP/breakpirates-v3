@@ -24,8 +24,8 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
     ]
 })
 export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements OnInit {
-  override readonly breadcrumbService: BreadcrumbService;
-  override readonly soundboardService: SoundboardService;
+  declare breadcrumbService: BreadcrumbService;
+  declare soundboardService: SoundboardService;
 
   breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
@@ -40,7 +40,7 @@ export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements
     const soundboardService = inject(SoundboardService);
 
     super(breadcrumbService, soundboardService);
-  
+
     this.breadcrumbService = breadcrumbService;
     this.soundboardService = soundboardService;
   }
