@@ -1,4 +1,4 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, input, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { Video } from './models/video';
@@ -16,15 +16,13 @@ import { RouterModule } from '@angular/router';
     ]
 })
 export class VideoComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   videos = input<Video[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigActive
   ];
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

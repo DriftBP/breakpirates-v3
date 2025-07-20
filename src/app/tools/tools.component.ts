@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -15,13 +15,11 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     ]
 })
 export class ToolsComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigActive
   ];
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

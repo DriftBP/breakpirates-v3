@@ -1,5 +1,5 @@
-import { Component, Renderer2, Inject, ChangeDetectionStrategy, input, Signal, computed } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, ChangeDetectionStrategy, input, Signal, computed, DOCUMENT, inject } from '@angular/core';
+
 
 @Component({
     selector: 'bp-twitter-widget',
@@ -7,14 +7,14 @@ import { DOCUMENT } from '@angular/common';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TwitterWidgetComponent {
+  private renderer2 = inject(Renderer2);
+  private _document = inject<Document>(DOCUMENT);
+
   user = input.required<string>();
 
   twitterWidgetUrl: Signal<string>;
 
-  constructor(
-    private renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document
-  ) {
+  constructor() {
     const script = this.renderer2.createElement('script');
     script.async = 'async';
     script.src = 'https://platform.twitter.com/widgets.js';
