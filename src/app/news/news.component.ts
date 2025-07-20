@@ -1,4 +1,4 @@
-import { Component, computed, input, OnInit, Signal } from '@angular/core';
+import { Component, computed, input, OnInit, Signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
@@ -22,6 +22,8 @@ import { DatePipe } from '@angular/common';
     ]
 })
 export default class NewsComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   news = input<News[]>();
 
   private latestNewsItems = 4;
@@ -33,9 +35,7 @@ export default class NewsComponent implements OnInit {
   otherNews: Signal<News[]>;
   showMore = false;
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     this.latestNews = computed(() => {
       const news = this.news();
 

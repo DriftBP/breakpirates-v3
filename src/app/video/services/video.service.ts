@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
@@ -7,10 +7,8 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 
 @Injectable()
 export class VideoService {
+  private httpRequestService = inject(HttpRequestService);
 
-  constructor(
-    private httpRequestService: HttpRequestService
-  ) { }
 
   videos(): Observable<Video[]> {
     return this.httpRequestService.get<Video[]>(AppSettings.API_BASE + 'videos');

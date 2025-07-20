@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
@@ -16,6 +16,8 @@ import { DataPoint } from './data-point';
     ]
 })
 export default class BpmComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   private maxDataPoints = 20;
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
@@ -40,9 +42,7 @@ export default class BpmComponent implements OnInit {
     }
   }
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     this.reset();
   }
 

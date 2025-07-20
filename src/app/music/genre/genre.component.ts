@@ -1,4 +1,4 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, effect, input, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Genre } from '../models/genre';
@@ -17,6 +17,8 @@ import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.c
     ]
 })
 export default class GenreComponent {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   genre = input<Genre>();
   shows = input<Show[]>();
 
@@ -26,9 +28,7 @@ export default class GenreComponent {
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     effect(() => {
       const genre = this.genre();
 

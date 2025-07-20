@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
@@ -8,10 +8,10 @@ import { AppSettings } from '../../../app-settings';
   providedIn: 'root'
 })
 export class ShoutcastService {
+  private http = inject(HttpClient);
+
   // Use the Shoutcast '7.html' endpoint via allorigins CORS proxy
   private statusUrl = `https://api.allorigins.win/raw?url=${AppSettings.STREAM_URL_PRIMARY}7.html`;
-
-  constructor(private http: HttpClient) {}
 
   getCurrentTrack(): Observable<string> {
     return this.http.get(this.statusUrl, { responseType: 'text' }).pipe(

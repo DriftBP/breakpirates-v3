@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ContentObserver } from '@angular/cdk/observers';
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +17,9 @@ import { TranslateModule } from '@ngx-translate/core';
     ]
 })
 export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+  private changeDetector = inject(ChangeDetectorRef);
+  private contentObserver = inject(ContentObserver);
+
   contentContainerElement = viewChild.required<ElementRef>('contentContainer');
 
   contentObserverSubscription?: Subscription
@@ -26,11 +29,6 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
-
-  constructor(
-    private changeDetector : ChangeDetectorRef,
-    private contentObserver: ContentObserver
-  ) {}
 
   ngAfterViewInit(): void {
     this.initialise();

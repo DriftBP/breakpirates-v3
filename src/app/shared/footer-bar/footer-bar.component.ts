@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -19,13 +19,13 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
     ]
 })
 export class FooterBarComponent {
+  private readonly socialService = inject(SocialService);
+  private readonly googleAnalyticsService = inject(GoogleAnalyticsService);
+
   socialSites: Site[];
   assetRoot = AppSettings.ASSET_ROOT;
 
-  constructor(
-    private readonly socialService: SocialService,
-    private readonly googleAnalyticsService: GoogleAnalyticsService
-  ) {
+  constructor() {
     this.socialSites = this.socialService.getSocialSites();
   }
 

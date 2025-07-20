@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT } from '@angular/core';
+import { Component, Renderer2, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT, inject } from '@angular/core';
 import {
   Event,
   Router,
@@ -27,6 +27,12 @@ import { TranslateModule } from '@ngx-translate/core';
   ]
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private renderer2 = inject(Renderer2);
+  private _document = inject<Document>(DOCUMENT);
+  private googleAnalyticsService = inject(GoogleAnalyticsService);
+  private themeService = inject(ThemeService);
+
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }
 
   private eventsSubscription: Subscription;
@@ -34,13 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
 
-  constructor (
-    private router: Router,
-    private renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,
-    private googleAnalyticsService: GoogleAnalyticsService,
-    private themeService: ThemeService
-  ) {
+  constructor () {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
     this.currentTheme = computed(() => {
       return this.themeService.currentTheme();

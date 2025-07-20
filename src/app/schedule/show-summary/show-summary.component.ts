@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, input, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
@@ -29,6 +29,9 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
     ]
 })
 export class ShowSummaryComponent {
+  private readonly dayService = inject(DayService);
+  private readonly showService = inject(ShowService);
+
   show = input.required<Show>();
   displayDay = input<boolean>(false);
 
@@ -40,10 +43,7 @@ export class ShowSummaryComponent {
   showImage: Signal<string | undefined>;
   showImageCssValue: Signal<string | undefined>;
 
-  constructor(
-    private readonly dayService: DayService,
-    private readonly showService: ShowService
-  ) {
+  constructor() {
     this.dates = computed(() => {
       return this.showService.getDates(this.show());
     });
