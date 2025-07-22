@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, Signal, effect, signal, inject } from '@angular/core';
+import { Component, computed, Signal, effect, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
@@ -30,7 +30,7 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       SafePipe
     ]
 })
-export class NowPlayingComponent implements OnInit {
+export class NowPlayingComponent {
   readonly scheduleService = inject(ScheduleService);
   private shoutcast = inject(ShoutcastService);
 
@@ -53,9 +53,7 @@ export class NowPlayingComponent implements OnInit {
         this.currentTrack.set(track);
       });
     });
-  }
 
-  ngOnInit() {
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
     });
