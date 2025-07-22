@@ -1,4 +1,4 @@
-import { Component, Signal, computed, effect } from '@angular/core';
+import { Component, Signal, computed, effect, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService, Translation } from '@ngx-translate/core';
@@ -19,15 +19,15 @@ import { ActiveDirective } from '../directives/active.directive';
     ]
 })
 export class BreadcrumbComponent {
+  private readonly titleService = inject(Title);
+  private readonly translateService = inject(TranslateService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly meta = inject(Meta);
+
   enabled = AppSettings.ENABLE_BREADCRUMB;
   configItems: Signal<BreadcrumbConfigItem[]>;
 
-  constructor(
-    private readonly titleService: Title,
-    private readonly translateService: TranslateService,
-    private readonly breadcrumbService: BreadcrumbService,
-    private readonly meta: Meta
-  ) {
+  constructor() {
     this.configItems = computed(() => {
       var config = this.breadcrumbService.breadcrumb();
 

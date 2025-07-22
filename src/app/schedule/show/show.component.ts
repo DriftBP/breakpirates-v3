@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, Signal } from '@angular/core';
+import { Component, computed, effect, input, Signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DateTime } from 'luxon';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -31,6 +31,10 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     ]
 })
 export class ShowComponent {
+  private readonly dayService = inject(DayService);
+  private readonly showService = inject(ShowService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   show = input.required<Show>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -45,11 +49,7 @@ export class ShowComponent {
     endDate: DateTime;
   }>;
 
-  constructor(
-    private readonly dayService: DayService,
-    private readonly showService: ShowService,
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     this.dates = computed(() => {
       return this.showService.getDates(this.show());
     });

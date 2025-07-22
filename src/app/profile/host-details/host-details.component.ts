@@ -1,4 +1,4 @@
-import { Component, input, effect } from '@angular/core';
+import { Component, input, effect, inject } from '@angular/core';
 
 import { Host } from '../host';
 import { ProfileService } from '../services/profile.service';
@@ -33,6 +33,9 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     ]
 })
 export default class HostDetailsComponent {
+  readonly profileService = inject(ProfileService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   profile = input<Host>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -42,10 +45,7 @@ export default class HostDetailsComponent {
 
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
 
-  constructor(
-    public readonly profileService: ProfileService,
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     effect(() => {
       const profile = this.profile();
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, input, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,6 +23,8 @@ import { SortByPipe } from '../shared/pipes/sort-by.pipe';
     ]
 })
 export default class ProfilesComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   profiles = input.required<Host[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -34,10 +36,6 @@ export default class ProfilesComponent implements OnInit {
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

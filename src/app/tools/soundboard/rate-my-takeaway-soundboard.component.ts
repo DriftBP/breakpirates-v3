@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -24,6 +24,9 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
     ]
 })
 export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements OnInit {
+  declare breadcrumbService: BreadcrumbService;
+  declare soundboardService: SoundboardService;
+
   breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
@@ -32,11 +35,14 @@ export class RateMyTakeawaySoundboardComponent extends SoundboardBase implements
     }
   ];
 
-  constructor(
-    override readonly breadcrumbService: BreadcrumbService,
-    override readonly soundboardService: SoundboardService
-  ) {
+  constructor() {
+    const breadcrumbService = inject(BreadcrumbService);
+    const soundboardService = inject(SoundboardService);
+
     super(breadcrumbService, soundboardService);
+
+    this.breadcrumbService = breadcrumbService;
+    this.soundboardService = soundboardService;
   }
 
   ngOnInit() {

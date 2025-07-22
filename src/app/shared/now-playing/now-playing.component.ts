@@ -1,9 +1,8 @@
-import { Component, OnInit, computed, Signal, effect, signal } from '@angular/core';
+import { Component, OnInit, computed, Signal, effect, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
-import { HttpClientModule } from '@angular/common/http';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -28,11 +27,13 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       TranslatePipe,
       SortByPipe,
       TimePipe,
-      SafePipe,
-      HttpClientModule
+      SafePipe
     ]
 })
 export class NowPlayingComponent implements OnInit {
+  readonly scheduleService = inject(ScheduleService);
+  private shoutcast = inject(ShoutcastService);
+
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
@@ -43,10 +44,7 @@ export class NowPlayingComponent implements OnInit {
 
   order = SortOrder.Ascending;
 
-  constructor(
-    public readonly scheduleService: ScheduleService,
-    private shoutcast: ShoutcastService
-  ) {
+  constructor() {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
     // Fetch current track in injection context

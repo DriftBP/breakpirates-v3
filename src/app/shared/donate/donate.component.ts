@@ -1,4 +1,4 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component, ElementRef, viewChild, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -11,11 +11,9 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
     ]
 })
 export class DonateComponent {
-  donateFormElement = viewChild.required<ElementRef>('donateForm');
+  private readonly googleAnalyticsService = inject(GoogleAnalyticsService);
 
-  constructor(
-    private readonly googleAnalyticsService: GoogleAnalyticsService
-  ) {}
+  donateFormElement = viewChild.required<ElementRef>('donateForm');
 
   onSubmit() {
     this.googleAnalyticsService.trackEvent('click', 'Donate button', 'Side bar');

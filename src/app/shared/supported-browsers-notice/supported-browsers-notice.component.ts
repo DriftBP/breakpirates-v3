@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { SupportedBrowsersService } from '../services/supported-browsers/supported-browsers.service';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -17,14 +17,14 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ]
 })
 export class SupportedBrowsersNoticeComponent {
+  private readonly supportedBrowsersService = inject(SupportedBrowsersService);
+  private readonly googleAnalyticsService = inject(GoogleAnalyticsService);
+
   readonly alertType = 'danger';
 
   isBrowserSupported: boolean;
 
-  constructor(
-    private readonly supportedBrowsersService: SupportedBrowsersService,
-    private readonly googleAnalyticsService: GoogleAnalyticsService
-  ) {
+  constructor() {
     const isBrowserSupported = this.supportedBrowsersService.isBrowserSupported;
 
     this.isBrowserSupported = isBrowserSupported;

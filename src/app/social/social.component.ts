@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Site } from './services/site';
@@ -15,16 +15,16 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     ]
 })
 export default class SocialComponent implements OnInit {
+  private readonly socialService = inject(SocialService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     socialConfigActive
   ];
 
   socialSites: Site[];
 
-  constructor(
-    private readonly socialService: SocialService,
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     this.socialSites = this.socialService.getSocialSites();
   }
 
