@@ -8,7 +8,7 @@ export class ConfirmService {
 
   confirm(translateKey: string): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
-      const translation = this.translateService.instant(translateKey)
+      const translation = this.translateService.instant(translateKey);
 
       if (window.confirm(translation)) {
         observer.next(true);
