@@ -4,14 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run supportedBrowsers && ng build",
-    "build:stats": "npm run supportedBrowsers && ng build --stats-json",
+    "build": "ng build",
+    "build:stats": "ng build --stats-json",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cc": "jest --coverage",
-    "lint": "ng lint",
-    "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
+    "lint": "ng lint"
   },
   "engines": {
     "node": "^20.19.0 || ^22.12.0 || ^24.0.0"
@@ -27,7 +26,7 @@
     "@angular/platform-browser": "^20.1.6",
     "@angular/platform-browser-dynamic": "^20.1.6",
     "@angular/router": "^20.1.6",
-    "@fortawesome/angular-fontawesome": "^2.0.1",
+    "@fortawesome/angular-fontawesome": "^3.0.0",
     "@fortawesome/fontawesome-svg-core": "^7.0.0",
     "@fortawesome/free-brands-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
@@ -61,7 +60,6 @@
     "@typescript-eslint/parser": "^7.2.0",
     "@typescript-eslint/types": "^7.2.0",
     "@typescript-eslint/utils": "^7.2.0",
-    "browserslist-useragent-regexp": "^4.1.1",
     "eslint": "^8.57.0",
     "jest": "^30.0.5",
     "jest-preset-angular": "^15.0.0",
