@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
@@ -9,7 +9,7 @@ describe('DayScheduleComponent', () => {
   let component: DayScheduleComponent;
   let fixture: ComponentFixture<DayScheduleComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
         imports: [
           DayScheduleComponent,
@@ -31,7 +31,7 @@ describe('DayScheduleComponent', () => {
     });
     fixture = TestBed.createComponent(DayScheduleComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

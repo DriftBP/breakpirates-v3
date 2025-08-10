@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
@@ -9,7 +9,7 @@ describe('RateMyTakeawaySoundboardComponent', () => {
   let component: RateMyTakeawaySoundboardComponent;
   let fixture: ComponentFixture<RateMyTakeawaySoundboardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         RateMyTakeawaySoundboardComponent,
@@ -24,7 +24,7 @@ describe('RateMyTakeawaySoundboardComponent', () => {
     });
     fixture = TestBed.createComponent(RateMyTakeawaySoundboardComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

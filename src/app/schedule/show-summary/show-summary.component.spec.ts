@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,7 +23,7 @@ describe('ShowSummaryComponent', () => {
   let component: ShowSummaryComponent;
   let fixture: ComponentFixture<ShowSummaryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         ShowSummaryComponent,
@@ -49,7 +49,7 @@ describe('ShowSummaryComponent', () => {
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

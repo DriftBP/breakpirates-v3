@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -12,7 +12,7 @@ describe('MusicComponent', () => {
   let component: MusicComponent;
   let fixture: ComponentFixture<MusicComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
         imports: [
           MusicComponent,
@@ -31,7 +31,7 @@ describe('MusicComponent', () => {
     });
     fixture = TestBed.createComponent(MusicComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();
