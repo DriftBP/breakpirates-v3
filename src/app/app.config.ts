@@ -1,9 +1,9 @@
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApplicationConfig, Injector, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { provideTranslateService, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { appInitializerFactory } from './app-initializer.factory';
@@ -31,17 +31,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideTranslateService(
       {
-        defaultLanguage: 'en',
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
+        fallbackLang: 'en',
+        loader: provideTranslateHttpLoader({
+          prefix: "./assets/i18n/",
+          suffix: ".json"
+        })
       }
     )
   ]
 };
-
-function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
