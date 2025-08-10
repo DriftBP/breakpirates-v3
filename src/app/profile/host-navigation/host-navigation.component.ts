@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule, KeyValuePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { HostNavigation } from './host-navigation';
-import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'bp-host-navigation',
