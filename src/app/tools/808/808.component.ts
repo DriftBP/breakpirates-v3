@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -71,9 +71,10 @@ export default class Drum808Component implements OnInit {
   private audioContext: AudioContext | null = null;
   private audioBuffers: { [key: string]: AudioBuffer | null } = {};
   private loadingBuffers: Promise<void>[] = [];
-  private nextStepTime: number = 0;
   private schedulerId: any = null;
   private audioNextStepTime: number = 0; // in seconds
+
+  cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
     // Create AudioContext on user gesture (defer until play)
@@ -176,7 +177,11 @@ export default class Drum808Component implements OnInit {
         this.playSoundAtTime(drum, time);
       }
     });
-    setTimeout(() => { this.currentStep = stepIdx; }, (time - this.audioContext!.currentTime) * 1000);
+    setTimeout(() => {
+      this.currentStep = stepIdx;
+
+      this.cdr.detectChanges();
+    }, (time - this.audioContext!.currentTime) * 1000);
   }
 
   async playSoundAtTime(drum: { sound: string }, time: number) {
@@ -196,6 +201,8 @@ export default class Drum808Component implements OnInit {
       this.schedulerId = null;
     }
     this.currentStep = 0;
+
+    this.cdr.detectChanges();
   }
 
   playCurrentStep() {
