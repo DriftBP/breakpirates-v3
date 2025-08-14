@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,7 +11,7 @@ describe('FeaturedNewsComponent', () => {
   let component: FeaturedNewsComponent;
   let fixture: ComponentFixture<FeaturedNewsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         FeaturedNewsComponent
@@ -25,7 +25,7 @@ describe('FeaturedNewsComponent', () => {
     });
     fixture = TestBed.createComponent(FeaturedNewsComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

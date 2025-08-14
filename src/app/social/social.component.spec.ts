@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import SocialComponent from './social.component';
@@ -9,7 +9,7 @@ describe('SocialComponent', () => {
   let component: SocialComponent;
   let fixture: ComponentFixture<SocialComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
         imports: [
           SocialComponent,
@@ -24,7 +24,7 @@ describe('SocialComponent', () => {
     });
     fixture = TestBed.createComponent(SocialComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();
