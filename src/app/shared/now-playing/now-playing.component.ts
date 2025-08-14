@@ -1,8 +1,9 @@
-import { Component, computed, Signal, effect, signal, inject } from '@angular/core';
+import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -30,9 +31,11 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       SafePipe
     ]
 })
-export class NowPlayingComponent {
+export class NowPlayingComponent implements OnDestroy {
   readonly scheduleService = inject(ScheduleService);
   private shoutcast = inject(ShoutcastService);
+
+  private currentTrackSubscription?: Subscription;
 
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
@@ -49,7 +52,7 @@ export class NowPlayingComponent {
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
     // Fetch current track in injection context
     effect(() => {
-      this.shoutcast.getCurrentTrack().subscribe(track => {
+      this.currentTrackSubscription = this.shoutcast.getCurrentTrack().subscribe(track => {
         this.currentTrack.set(track);
       });
     });
@@ -78,6 +81,12 @@ export class NowPlayingComponent {
 
       return `url(${AppSettings.ASSET_SHOW_IMAGE}${imageFilename})`;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.currentTrackSubscription) {
+      this.currentTrackSubscription.unsubscribe();
+    }
   }
 
   openPopupPlayer() {

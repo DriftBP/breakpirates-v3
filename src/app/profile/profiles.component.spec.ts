@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,7 +11,7 @@ describe('ProfilesComponent', () => {
   let component: ProfilesComponent;
   let fixture: ComponentFixture<ProfilesComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         ProfilesComponent,
@@ -30,7 +30,7 @@ describe('ProfilesComponent', () => {
     });
     fixture = TestBed.createComponent(ProfilesComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

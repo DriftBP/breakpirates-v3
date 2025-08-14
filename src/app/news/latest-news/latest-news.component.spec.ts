@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LatestNewsComponent } from './latest-news.component';
 import { News } from '../models/news';
@@ -17,7 +17,7 @@ describe('LatestNewsComponent', () => {
   let component: LatestNewsComponent;
   let fixture: ComponentFixture<LatestNewsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         LatestNewsComponent
@@ -25,7 +25,7 @@ describe('LatestNewsComponent', () => {
     });
     fixture = TestBed.createComponent(LatestNewsComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
@@ -19,7 +19,7 @@ describe('BpmComponent', () => {
   let component: BpmComponent;
   let fixture: ComponentFixture<BpmComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
         imports: [
           BpmComponent,
@@ -28,7 +28,7 @@ describe('BpmComponent', () => {
     });
     fixture = TestBed.createComponent(BpmComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

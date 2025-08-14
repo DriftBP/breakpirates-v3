@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -8,7 +8,7 @@ describe('ChatRoomPromoComponent', () => {
   let component: ChatRoomPromoComponent;
   let fixture: ComponentFixture<ChatRoomPromoComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         ChatRoomPromoComponent,
@@ -23,7 +23,7 @@ describe('ChatRoomPromoComponent', () => {
     });
     fixture = TestBed.createComponent(ChatRoomPromoComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();
