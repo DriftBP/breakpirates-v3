@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -74,7 +74,7 @@ export default class Drum808Component implements OnInit {
   private schedulerId: any = null;
   private audioNextStepTime: number = 0; // in seconds
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
     // Create AudioContext on user gesture (defer until play)
