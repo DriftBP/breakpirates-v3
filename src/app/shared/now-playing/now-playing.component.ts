@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
+import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
@@ -31,11 +31,11 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       SafePipe
     ]
 })
-export class NowPlayingComponent implements OnInit, OnDestroy {
+export class NowPlayingComponent implements OnDestroy {
   readonly scheduleService = inject(ScheduleService);
   private shoutcast = inject(ShoutcastService);
 
-  private currentTrackSubscription: Subscription;
+  private currentTrackSubscription?: Subscription;
 
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
@@ -56,9 +56,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
         this.currentTrack.set(track);
       });
     });
-  }
 
-  ngOnInit() {
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
     });
