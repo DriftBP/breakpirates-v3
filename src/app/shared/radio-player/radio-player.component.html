@@ -1,11 +1,17 @@
 <div class="radio-player">
   <button (click)="togglePlay()">
-    <fa-icon [icon]="faPause" *ngIf="playing"></fa-icon>
-    <fa-icon [icon]="faPlay" *ngIf="!playing"></fa-icon>
+    @if (playing) {
+      <fa-icon [icon]="faPause"></fa-icon>
+    } @else {
+      <fa-icon [icon]="faPlay"></fa-icon>
+    }
   </button>
   <button (click)="toggleMute()">
-    <fa-icon [icon]="faVolumeMute" *ngIf="muted"></fa-icon>
-    <fa-icon [icon]="faVolumeUp" *ngIf="!muted"></fa-icon>
+    @if (muted) {
+      <fa-icon [icon]="faVolumeMute"></fa-icon>
+    } @else {
+      <fa-icon [icon]="faVolumeUp"></fa-icon>
+    }
   </button>
   <input [disabled]="muted" name="volume" type="range" min="0" max="100" [(ngModel)]="volume" (ngModelChange)="onVolumeSet()">
 </div>
