@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .dropdown-toggle {
   border: 0;
@@ -7,17 +7,17 @@
 
 .navbar-dark {
   .navbar-nav .nav-link {
-    color: $color-brand-tertiary;
+    color: variables.$color-brand-tertiary;
   }
 }
 
 .navigation {
-  background-color: $color-brand-primary;
+  background-color: variables.$color-brand-primary;
 
   &__logo {
     padding: 0;
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: variables.$breakpoint-md) {
       padding: 5px 0;
     }
 
@@ -25,7 +25,7 @@
       width: 200px;
       height: auto;
 
-      @media (min-width: $breakpoint-md) {
+      @media (min-width: variables.$breakpoint-md) {
         width: 280px;
       }
     }

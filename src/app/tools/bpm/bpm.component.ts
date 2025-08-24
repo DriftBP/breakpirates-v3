@@ -1,20 +1,23 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { DataCollectionStatus } from './data-collection-status';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
-
-export interface DataPoint {
-  time: DateTime;
-}
+import { DataPoint } from './data-point';
 
 @Component({
-  selector: 'bp-bpm',
-  templateUrl: './bpm.component.html'
+    selector: 'bp-bpm',
+    templateUrl: './bpm.component.html',
+    imports: [
+        TranslateModule
+    ]
 })
-export class BpmComponent implements OnInit {
+export default class BpmComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   private maxDataPoints = 20;
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
@@ -39,9 +42,7 @@ export class BpmComponent implements OnInit {
     }
   }
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     this.reset();
   }
 

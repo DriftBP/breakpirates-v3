@@ -1,31 +1,61 @@
-import { Component, OnInit, computed, Signal } from '@angular/core';
+import { Component, OnInit, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { SortOrder } from '../pipes/sort-order';
+import { ProgressIndicatorComponent } from '../progress-indicator/progress-indicator.component';
+import { RadioPlayerComponent } from '../radio-player/radio-player.component';
+import { SortByPipe } from '../pipes/sort-by.pipe';
+import { TimePipe } from '../pipes/time.pipe';
+import { SafePipe } from '../pipes/safe.pipe';
+import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 
 @Component({
-  selector: 'bp-now-playing',
-  templateUrl: './now-playing.component.html',
-  styleUrls: ['./now-playing.component.scss']
+    selector: 'bp-now-playing',
+    templateUrl: './now-playing.component.html',
+    styleUrls: ['./now-playing.component.scss'],
+    imports: [
+      RouterModule,
+      FontAwesomeModule,
+      ProgressIndicatorComponent,
+      RadioPlayerComponent,
+      TranslatePipe,
+      SortByPipe,
+      TimePipe,
+      SafePipe
+    ]
 })
-export class NowPlayingComponent implements OnInit {
-  nowPlaying: Signal<Show>;
+export class NowPlayingComponent implements OnInit, OnDestroy {
+  readonly scheduleService = inject(ScheduleService);
+  private shoutcast = inject(ShoutcastService);
+
+  private currentTrackSubscription: Subscription;
+
+  nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
   showRadioPlayer = false;
+  currentTrack = signal<string>('');
 
   faExternalLink = faExternalLink;
 
   order = SortOrder.Ascending;
 
-  constructor(
-    public readonly scheduleService: ScheduleService
-  ) {
+  constructor() {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
+    // Fetch current track in injection context
+    effect(() => {
+      this.currentTrackSubscription = this.shoutcast.getCurrentTrack().subscribe(track => {
+        this.currentTrack.set(track);
+      });
+    });
   }
 
   ngOnInit() {
@@ -42,7 +72,7 @@ export class NowPlayingComponent implements OnInit {
     this.nowPlayingImage = computed(() => {
       const nowPlaying = this.scheduleService.nowPlaying();
 
-      let imageFilename: string;
+      let imageFilename: string | undefined;
 
       if (nowPlaying?.image) {
         imageFilename = nowPlaying.image;
@@ -55,12 +85,18 @@ export class NowPlayingComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.currentTrackSubscription) {
+      this.currentTrackSubscription.unsubscribe();
+    }
+  }
+
   openPopupPlayer() {
     const hostname = location.hostname === 'localhost' ? location.hostname : 'listen.breakpirates.com';
     const port = location.port ? `:${location.port}` : '';
     const url = `http://${hostname}${port}/player`;
     const params = `toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=143`;
 
-    window.open(url, 'player', params).focus();
+    window.open(url, 'player', params)?.focus();
   }
 }

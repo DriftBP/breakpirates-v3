@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 $logo-width: 120px;
 
@@ -11,8 +11,8 @@ $logo-width: 120px;
   bottom: 0;
   left: 0;
   padding: 0.25em 0.5em;
-  background-color: $color-brand-primary;
-  color: $color-brand-tertiary;
+  background-color: variables.$color-brand-primary;
+  color: variables.$color-brand-tertiary;
   font-size: 1.2rem;
 
   &__ {
@@ -41,7 +41,7 @@ $logo-width: 120px;
       }
 
       &-link {
-        color: $color-brand-tertiary;
+        color: variables.$color-brand-tertiary;
       }
     }
   }

@@ -1,36 +1,44 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
-import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
+
+declare var global: any;
 
 describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
   let fixture: ComponentFixture<NowPlayingComponent>;
 
-  beforeEach(waitForAsync(() => {
+  // Mock MediaElementPlayer for tests
+  beforeAll(() => {
+    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
+  });
+
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          NowPlayingComponent,
-          MockSafePipe,
-          MockTimePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ScheduleService,
-            useClass: MockScheduleService
-          }
-        ]
+      imports: [
+        NowPlayingComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        provideHttpClient(withInterceptorsFromDi())
+      ]
     });
     fixture = TestBed.createComponent(NowPlayingComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

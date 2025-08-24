@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .show-summary {
   display: grid;
@@ -9,26 +9,19 @@
   border: 1px solid var(--border);
   background-color: var(--bg);
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: variables.$breakpoint-md) {
     grid-template-columns: 130px 1fr;
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: variables.$breakpoint-lg) {
     grid-template-columns: 130px 1fr 130px;
   }
 
   &__ {
-    &time,
-    &day,
-    &title,
-    &now-live {
+    &when,
+    &title {
       font-size: 1.2rem;
-      font-weight: $font-weight-bold;
-
-      &-icon {
-        margin-left: 0.25em;
-        cursor: pointer;
-      }
+      font-weight: variables.$font-weight-bold;
     }
 
     &title {
@@ -41,7 +34,7 @@
       background-position: center;
       background-size: cover;
 
-      @media (min-width: $breakpoint-lg) {
+      @media (min-width: variables.$breakpoint-lg) {
         display: block;
       }
     }

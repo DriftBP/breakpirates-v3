@@ -1,9 +1,16 @@
-import { Component, Signal, computed } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { Component, Signal, computed, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
+import { TranslatePipe } from '@ngx-translate/core';
+import { BsDropdownDirective, BsDropdownModule, BsDropdownToggleDirective } from 'ngx-bootstrap/dropdown';
 
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 import { NavigationService } from '../services/navigation/navigation.service';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 interface ExternalLink {
   Url: string;
@@ -13,9 +20,20 @@ interface ExternalLink {
 @Component({
   selector: 'bp-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  imports: [
+    NgOptimizedImage,
+    RouterModule,
+    FontAwesomeModule,
+    BsDropdownModule,
+    CollapseModule,
+    TranslatePipe
+  ]
 })
 export class NavigationComponent {
+  private readonly navigationService = inject(NavigationService);
+  private readonly googleAnalyticsService = inject(GoogleAnalyticsService);
+
   archiveUrl: string;
   isCollapsed: Signal<boolean>;
   assetRoot = AppSettings.ASSET_ROOT;
@@ -52,10 +70,7 @@ export class NavigationComponent {
 
   faExternalLink = faExternalLink;
 
-  constructor(
-    private readonly navigationService: NavigationService,
-    private readonly googleAnalyticsService: GoogleAnalyticsService
-  ) {
+  constructor() {
     this.archiveUrl = AppSettings.MIXCLOUD_URL;
     this.isCollapsed = computed(() => this.navigationService.isCollapsed());
   }

@@ -1,12 +1,16 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
 
 import { IDialogConfig } from '../services/dialog/dialog-config';
 import { DialogService } from '../services/dialog/dialog.service';
 
 @Directive({
-  selector: '[bpImageClick]'
+    selector: '[bpImageClick]'
 })
 export class ImageClickDirective {
+  private dialogService = inject(DialogService);
+  private element = inject(ElementRef);
+  private renderer2 = inject(Renderer2);
+
   @HostListener('click', ['$event'])
   onClick(e: MouseEvent) {
     if (this.dialogService.isDialogSupported()) {
@@ -35,12 +39,6 @@ export class ImageClickDirective {
   onMouseOut() {
     this.setCursor('auto');
   }
-
-  constructor(
-    private dialogService: DialogService,
-    private element: ElementRef,
-    private renderer2: Renderer2
-  ) {}
 
   private setCursor(cursorType: string): void {
     this.renderer2.setStyle(this.element.nativeElement, 'cursor', cursorType);

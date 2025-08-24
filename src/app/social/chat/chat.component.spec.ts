@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { ChatComponent } from './chat.component';
+import ChatComponent from './chat.component';
 import { MockFullscreenService } from '../../../test/services/mock.fullscreen.service';
 import { MockScreenService } from '../../../test/services/mock.screen.service';
 import { FullscreenService } from '../services/fullscreen.service';
@@ -12,10 +12,10 @@ describe('ChatComponent', () => {
   let component: ChatComponent;
   let fixture: ComponentFixture<ChatComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [ ChatComponent ],
         imports: [
+          ChatComponent,
           TranslateModule.forRoot(),
         ],
         providers: [
@@ -35,7 +35,7 @@ describe('ChatComponent', () => {
     });
     fixture = TestBed.createComponent(ChatComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

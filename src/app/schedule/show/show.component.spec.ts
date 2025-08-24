@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,7 +12,8 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockShow } from '../../../test/data/mock.shows';
 import { Show } from '../models/show';
-import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 
 const mockShowWithDescriptionAndImage: Show = {
   ...mockShow,
@@ -24,37 +25,38 @@ describe('ShowComponent', () => {
   let component: ShowComponent;
   let fixture: ComponentFixture<ShowComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          ShowComponent,
-          MockTimePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: DayService,
-            useClass: MockDayService
-          },
-          {
-            provide: ShowService,
-            useClass: MockShowService
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      imports: [
+        ShowComponent,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: DayService,
+          useClass: MockDayService
+        },
+        {
+          provide: ShowService,
+          useClass: MockShowService
+        },
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        }
+      ]
     });
     fixture = TestBed.createComponent(ShowComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

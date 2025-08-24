@@ -1,9 +1,10 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
-import { BpmComponent, DataPoint } from './bpm.component';
+import BpmComponent from './bpm.component';
 import { DataCollectionStatus } from './data-collection-status';
+import { DataPoint } from './data-point';
 
 const maxDataPoints = 20;
 const emptyDataPoints: DataPoint[] = [];
@@ -18,16 +19,16 @@ describe('BpmComponent', () => {
   let component: BpmComponent;
   let fixture: ComponentFixture<BpmComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [ BpmComponent ],
         imports: [
-          TranslateModule.forRoot(),
+          BpmComponent,
+          TranslateModule.forRoot()
         ]
     });
     fixture = TestBed.createComponent(BpmComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

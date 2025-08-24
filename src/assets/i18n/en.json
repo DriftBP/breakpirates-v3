@@ -9,8 +9,7 @@
     "PROFILES": "Profiles",
     "VIDEO": "Video",
     "SOCIAL": "Social",
-    "CHAT_ROOM": "Chat",
-    "SHOP": "Shop"
+    "CHAT_ROOM": "Chat"
   },
   "FOOTER": {
     "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
@@ -25,9 +24,6 @@
   "LOADING_SPINNER": {
     "LOADING": "Loading"
   },
-  "SUPPORTED_BROWSERS": {
-    "UNSUPPORTED_BROWSER": "Looks like your browser's a little old and some parts of the site may not work correctly. Consider updating to a modern browser such as Chrome, Firefox, Safari or Edge."
-  },
   "NOT_FOUND": {
     "TITLE": "Oops!",
     "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
@@ -36,7 +32,7 @@
     "ON_AIR": "On air",
     "HOSTED_BY": "Hosted by",
     "LISTEN_NOW_POPUP": "Listen now in a popup player",
-    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST": "Playlist",
     "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
   },
   "CHAT_ROOM": {
@@ -76,7 +72,6 @@
     "TITLE": "Schedule",
     "CHECK_BACK_REGULARLY": "Check back regularly for schedule updates and details of guest shows!",
     "FIND_OUT_MORE": "You can find out more about the DJs featured by entering the Profiles section.",
-    "TIMES_DISPLAYED": "Times displayed are for London, UK.",
     "HOSTED_BY": "Hosted by",
     "MUSIC_STYLES": "Music styles",
     "SHOW_DESCRIPTION": "Show description",
@@ -121,26 +116,14 @@
     "NOT_FOUND": "Not found",
     "COULD_NOT_FIND": "We couldn't find the video you were looking for."
   },
-  "SHOP": {
-    "TITLE": "Shop",
-    "AS_USED_BY": "Here's a selection of products used by BP staff. By checking them out you'll be helping to support the station if you go ahead and make any purchases.",
-    "TURNTABLES": "Turntables",
-    "MIXERS": "Mixers",
-    "HEADPHONES": "Headphones",
-    "CARTS_STYLI": "Cartridges & styli",
-    "MICROPHONES": "Microphones",
-    "SPEAKERS": "Speakers",
-    "DVS_CONTROLLERS": "DVS & controllers",
-    "VINYL_CARE": "Vinyl care",
-    "AUDIO_INTERFACES": "Audio interfaces"
-  },
   "STANDALONE_PLAYER": {
     "PLAY_BUTTON_DOESNT_WORK": "Not supported in all browsers. If the play button doesn't work then use a link in the Tune in menu."
   },
   "TOOLS": {
+    "ROSTER": "Break Pirates roster",
     "TITLE": "Tools",
     "BPM_COUNTER": "BPM counter",
-    "RELEASES": "Releases",
+    "DJ_NAME": "DJ name generator",
     "SOUNDBOARD": "Soundboard"
   },
   "BPM_COUNTER": {
@@ -152,8 +135,14 @@
     "BPM": "BPM",
     "START_AGAIN": "Start again"
   },
-  "RELEASES": {
-    "TITLE": "Releases"
+  "DJ_NAME": {
+    "TITLE": "DJ name generator",
+    "GENERATE": "Generate",
+    "YOUR_NAME_IS": "Your DJ name is"
+  },
+  "ROSTER": {
+    "TITLE": "Break Pirates roster",
+    "RESPECT_TO": "Respect to all of the DJs and MCs who have featured on our shows, events and live broadcasts over the years. We couldn't have done it without you!"
   },
   "SOUNDBOARD": {
     "TITLE": "Rate My Takeaway soundboard"

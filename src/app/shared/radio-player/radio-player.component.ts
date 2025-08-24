@@ -5,9 +5,9 @@ import { AppSettings } from '../../app-settings';
 import { AudioService } from '../services/audio/audio.service';
 
 @Component({
-  selector: 'bp-radio-player',
-  templateUrl: './radio-player.component.html',
-  styleUrls: ['./radio-player.component.scss']
+    selector: 'bp-radio-player',
+    templateUrl: './radio-player.component.html',
+    styleUrls: ['./radio-player.component.scss']
 })
 export class RadioPlayerComponent implements OnInit {
   private lastVolume: number;

@@ -3,7 +3,9 @@ import { Info } from 'luxon';
 
 import { Day } from '../models/day';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DayService {
   private daysOfWeek: Day[];
 
@@ -20,8 +22,18 @@ export class DayService {
     return this.daysOfWeek;
   }
 
+  dayById(dayId: number): Day | undefined {
+    return this.daysOfWeek.find((d: Day) => d.id === dayId);
+  }
+
+  dayByName(name: string): Day | undefined {
+    name = name.toLowerCase();
+
+    return this.daysOfWeek.find((d: Day) => d.name.toLowerCase() === name);
+  }
+
   dayName(dayId: number): string {
-    const day = this.daysOfWeek.find((d: Day) => d.id === dayId);
+    const day = this.dayById(dayId);
 
     return day?.name ?? '';
   }

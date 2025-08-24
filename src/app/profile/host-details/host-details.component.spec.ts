@@ -1,16 +1,21 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { HostDetailsComponent } from './host-details.component';
+import HostDetailsComponent from './host-details.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { ProfileService } from '../services/profile.service';
 import { MockProfileService } from '../../../test/services/mock.profile.service';
 import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.service';
 import { mockHost } from '../../../test/data/mock.profiles';
 import { Host } from '../host';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
+import { DayService } from '../../schedule/services/day.service';
+import { MockDayService } from '../../../test/services/mock.day.service';
+import { ShowService } from '../../schedule/services/show.service';
+import { MockShowService } from '../../../test/services/mock.show.service';
+import { ScheduleService } from '../../schedule/services/schedule.service';
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 
 const mockHostWithBiogAndImage: Host = {
   ...mockHost,
@@ -22,33 +27,42 @@ describe('HostDetailsComponent', () => {
   let component: HostDetailsComponent;
   let fixture: ComponentFixture<HostDetailsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostDetailsComponent,
-          MockSafePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: ProfileService,
-            useClass: MockProfileService
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      imports: [
+        HostDetailsComponent,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: ProfileService,
+          useClass: MockProfileService
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        },
+        {
+          provide: DayService,
+          useClass: MockDayService
+        },
+        {
+          provide: ShowService,
+          useClass: MockShowService
+        },
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
+        }
+      ]
     });
     fixture = TestBed.createComponent(HostDetailsComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

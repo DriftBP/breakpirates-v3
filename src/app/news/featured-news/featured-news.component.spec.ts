@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 import { FeaturedNewsComponent } from './featured-news.component';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 import { mockArticleWithImage, mockArticleWithoutImage } from '../../../test/data/mock.articles';
 
 const defaultImageFilename = 'bp.jpg';
@@ -11,16 +11,21 @@ describe('FeaturedNewsComponent', () => {
   let component: FeaturedNewsComponent;
   let fixture: ComponentFixture<FeaturedNewsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          FeaturedNewsComponent,
-          MockSafePipe
-        ]
+      imports: [
+        FeaturedNewsComponent
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        }
+      ]
     });
     fixture = TestBed.createComponent(FeaturedNewsComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

@@ -1,0 +1,11 @@
+.roster-list {
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+
+  &__name {
+    display: inline-block;
+    margin: 0 2em 1em 0;
+    white-space: nowrap;
+  }
+}

@@ -2,21 +2,25 @@ import { Injectable } from '@angular/core';
 import { DateTime, Interval, WeekdayNumbers } from 'luxon';
 
 import { Show } from '../models/show';
+import { AppSettings } from '../../app-settings';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ShowService {
   readonly timeFormat = 'HH:mm:ss';
+  readonly showTimezone = AppSettings.SHOW_TIMEZONE;
 
   private getNextDate(show: Show): DateTime {
-    const today = DateTime.local().weekday;
+    const today = DateTime.local().setZone(this.showTimezone).weekday;
 
     // if we haven't yet passed the day of the week that I need:
     if (today <= show.day_id) {
       // then just give me this week's instance of that day
-      return DateTime.local().set({weekday: show.day_id as WeekdayNumbers});
+      return DateTime.local().setZone(this.showTimezone).set({weekday: show.day_id as WeekdayNumbers});
     } else {
       // otherwise, give me *next week's* instance of that same day
-      return DateTime.local().plus({weeks: 1}).set({weekday: show.day_id as WeekdayNumbers});
+      return DateTime.local().setZone(this.showTimezone).plus({weeks: 1}).set({weekday: show.day_id as WeekdayNumbers});
     }
   }
 
@@ -30,28 +34,39 @@ export class ShowService {
   }
 
   getShowProgress(show: Show): number {
-    var progress = 0;
+    let progress = 0;
 
     if (show) {
-      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
-      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
+      // Parse show times using source timezone
+      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: this.showTimezone });
+      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: this.showTimezone });
+      const now = DateTime.now().setZone(this.showTimezone);
       const showLengthMinutes = Interval.fromDateTimes(startTime, endTime).toDuration('minutes').minutes;
-      const minutesCompleted = Interval.fromDateTimes(startTime, DateTime.now()).toDuration('minutes').minutes;
+      const minutesCompleted = Interval.fromDateTimes(startTime, now).toDuration('minutes').minutes;
 
       progress = (100 / showLengthMinutes) * minutesCompleted;
+      // Clamp between 0 and 100
+      progress = Math.max(0, Math.min(100, progress));
     }
 
     return progress;
   }
 
   getDates(show: Show): { startDate: DateTime, endDate: DateTime } {
-    const startTime = DateTime.fromFormat(show.start_time, this.timeFormat);
-    const endTime = DateTime.fromFormat(show.end_time, this.timeFormat);
+    const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: this.showTimezone });
+    const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: this.showTimezone });
 
     const nextDate = this.getNextDate(show);
 
     // Set show time
-    const startDate = DateTime.local(nextDate.year, nextDate.month, nextDate.day, startTime.hour, startTime.minute, startTime.second);
+    const startDate = DateTime.fromObject({
+      year: nextDate.year,
+      month: nextDate.month,
+      day: nextDate.day,
+      hour: startTime.hour,
+      minute: startTime.minute,
+      second: startTime.second
+    }, { zone: this.showTimezone });
 
     const endDate = this.getEndDate(startDate, endTime);
 

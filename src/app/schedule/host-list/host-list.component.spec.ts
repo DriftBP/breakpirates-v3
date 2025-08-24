@@ -1,22 +1,20 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HostListComponent } from './host-list.component';
-import { MockSortByPipe } from '../../../test/pipes/mock.sort-by.pipe';
 
 describe('HostListComponent', () => {
   let component: HostListComponent;
   let fixture: ComponentFixture<HostListComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          HostListComponent,
-          MockSortByPipe
-        ]
+      imports: [
+        HostListComponent
+      ]
     });
     fixture = TestBed.createComponent(HostListComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

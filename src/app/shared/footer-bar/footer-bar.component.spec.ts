@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FooterBarComponent } from './footer-bar.component';
@@ -9,22 +9,22 @@ describe('FooterBarComponent', () => {
   let component: FooterBarComponent;
   let fixture: ComponentFixture<FooterBarComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [ FooterBarComponent ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: SocialService,
-            useClass: MockSocialService
-          }
-        ]
+      imports: [
+        FooterBarComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: SocialService,
+          useClass: MockSocialService
+        }
+      ]
     });
     fixture = TestBed.createComponent(FooterBarComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

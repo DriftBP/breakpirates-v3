@@ -1,22 +1,20 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProgressIndicatorComponent } from './progress-indicator.component';
-import { MockSafePipe } from '../../../test/pipes/mock.safe.pipe';
 
 describe('ProgressIndicatorComponent', () => {
   let component: ProgressIndicatorComponent;
   let fixture: ComponentFixture<ProgressIndicatorComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          ProgressIndicatorComponent,
-          MockSafePipe
-        ]
+      imports: [
+        ProgressIndicatorComponent
+      ]
     });
     fixture = TestBed.createComponent(ProgressIndicatorComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

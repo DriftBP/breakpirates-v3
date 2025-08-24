@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationStart, NavigationEnd, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -12,23 +12,25 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [ AppComponent ],
-        providers: [
-          {
-            provide: Router,
-            useClass: MockRouterService
-          },
-          {
-            provide: GoogleAnalyticsService,
-            useValue: mockGoogleAnalyticsService
-          }
-        ]
+      imports: [
+        AppComponent
+      ],
+      providers: [
+        {
+          provide: Router,
+          useClass: MockRouterService
+        },
+        {
+          provide: GoogleAnalyticsService,
+          useValue: mockGoogleAnalyticsService
+        }
+      ]
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

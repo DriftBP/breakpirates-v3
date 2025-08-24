@@ -2,7 +2,7 @@ export class AppSettings {
     public static API_BASE = 'https://www.breakpirates.com/api/';
 
     // Stream server
-    public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/;';
+    public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/';
     public static NOW_PLAYING_INTERVAL = 60000; // 60 seconds
 
     // Social URLs
@@ -20,17 +20,18 @@ export class AppSettings {
     public static ASSET_NEWS_IMAGE = 'assets/news/';
     public static ASSET_PROFILE_IMAGE = 'assets/profiles/';
     public static ASSET_SHOW_IMAGE =  'assets/shows/';
+    public static ASSET_TOOLS = 'assets/tools/';
     public static ASSET_SHOW_SOUND =  'assets/sounds/';
 
     // Google Adsense
     public static ADSENSE_CLIENT = 'ca-pub-0817931421481428';
-
-    // Shop
-    public static AMAZON_TRACKING_ID = 'breakpirates-21';
 
     // UI settings
     public static ENABLE_BREADCRUMB = false;
 
     // Release tracker
     public static RELEASE_TRACKER_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1lU6Z8awouJ5siFIiu7XtZ-1c1VPYv5moa9wWMhZsBpQ/edit?usp=sharing';
+
+    // Timezone for show times
+    public static SHOW_TIMEZONE = 'Europe/London';
 }

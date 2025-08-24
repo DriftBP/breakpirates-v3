@@ -7,9 +7,11 @@
       }">
       <span class="host-navigation__direction">
         @if (link.key === 'previous') {
+          <fa-icon [icon]="faChevronLeft"></fa-icon>
           {{'PROFILES.PREVIOUS' | translate}}
         } @else {
           {{'PROFILES.NEXT' | translate}}
+          <fa-icon [icon]="faChevronRight"></fa-icon>
         }
       </span>
       <a class="host-navigation__link" [routerLink]="['/profiles',link.value.id]">

@@ -1,40 +1,36 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ProfilesComponent } from './profiles.component';
+import ProfilesComponent from './profiles.component';
 import { SortOrder } from '../shared/pipes/sort-order';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
-import { MockSortByPipe } from '../../test/pipes/mock.sort-by.pipe';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
 describe('ProfilesComponent', () => {
   let component: ProfilesComponent;
   let fixture: ComponentFixture<ProfilesComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          ProfilesComponent,
-          MockSortByPipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-        ],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: {}
-          },
-          {
-            provide: BreadcrumbService,
-            useClass: MockBreadcrumbService
-          }
-        ]
+      imports: [
+        ProfilesComponent,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        },
+        {
+          provide: BreadcrumbService,
+          useClass: MockBreadcrumbService
+        }
+      ]
     });
     fixture = TestBed.createComponent(ProfilesComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

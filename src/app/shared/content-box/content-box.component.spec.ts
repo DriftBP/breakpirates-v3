@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContentBoxComponent } from './content-box.component';
 
@@ -6,13 +6,15 @@ describe('ContentBoxComponent', () => {
   let component: ContentBoxComponent;
   let fixture: ComponentFixture<ContentBoxComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [ ContentBoxComponent ]
+      imports: [
+        ContentBoxComponent
+      ]
     });
     fixture = TestBed.createComponent(ContentBoxComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

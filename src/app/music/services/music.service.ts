@@ -1,20 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Genre } from '../models/genre';
 import { Show } from '../../schedule/models/show';
-import { MusicResolvesModule } from '../resolves/music-resolves.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable({
-  providedIn: MusicResolvesModule
-})
+@Injectable()
 export class MusicService {
+  private httpRequestService = inject(HttpRequestService);
 
-  constructor(
-    private httpRequestService: HttpRequestService
-  ) { }
 
   genres(): Observable<Genre[]> {
     return this.httpRequestService.get<Genre[]>(AppSettings.API_BASE + 'music');

@@ -1,11 +1,12 @@
 @if (show(); as show) {
-  <div itemscope itemtype="http://schema.org/MusicEvent">
-    <meta itemprop="startDate" content="{{nextDate}}">
-    <meta itemprop="endDate" content="{{endDate}}">
+  <div itemscope itemtype="https://schema.org/MusicEvent">
+    <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
+    <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
+    <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
 
-    <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
+    <div itemprop="location" itemscope itemtype="https://schema.org/MusicVenue">
       <meta itemprop="name" content="Break Pirates">
-      <link itemprop="sameAs" href="http://www.breakpirates.com">
+      <link itemprop="sameAs" href="https://www.breakpirates.com">
       <meta itemprop="address" content="UK">
     </div>
 
@@ -16,6 +17,7 @@
         <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
         <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
         {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
+        <bp-now-live [show]="show"></bp-now-live>
       </p>
       @if (show.description) {
         <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>

@@ -1,4 +1,4 @@
-import { Component, input, effect } from '@angular/core';
+import { Component, input, effect, inject } from '@angular/core';
 
 import { Host } from '../host';
 import { ProfileService } from '../services/profile.service';
@@ -6,13 +6,36 @@ import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { profilesConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { TwitterWidgetComponent } from '../twitter-widget/twitter-widget.component';
+import { MixcloudWidgetComponent } from '../mixcloud-widget/mixcloud-widget.component';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { AsyncPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { HostNavigationComponent } from '../host-navigation/host-navigation.component';
+import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
+import { ReadMoreComponent } from '../read-more/read-more.component';
+import { ImageClickDirective } from '../../shared/directives/image-click.directive';
 
 @Component({
-  selector: 'bp-host-details',
-  templateUrl: './host-details.component.html',
-  styleUrls: ['./host-details.component.scss']
+    selector: 'bp-host-details',
+    templateUrl: './host-details.component.html',
+    styleUrls: ['./host-details.component.scss'],
+    imports: [
+      AsyncPipe,
+      SafePipe,
+      TranslatePipe,
+      ReadMoreComponent,
+      ShowSummaryComponent,
+      MixcloudWidgetComponent,
+      TwitterWidgetComponent,
+      HostNavigationComponent,
+      ImageClickDirective
+    ]
 })
-export class HostDetailsComponent {
+export default class HostDetailsComponent {
+  readonly profileService = inject(ProfileService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   profile = input<Host>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -22,10 +45,7 @@ export class HostDetailsComponent {
 
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
 
-  constructor(
-    public readonly profileService: ProfileService,
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     effect(() => {
       const profile = this.profile();
 

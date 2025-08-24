@@ -1,27 +1,22 @@
 @if (show(); as show) {
-  <div class="show-summary" itemscope itemtype="http://schema.org/MusicEvent">
-    <div>
+  <div class="show-summary" itemscope itemtype="https://schema.org/MusicEvent">
+    <div class="show-summary__when">
       @if (displayDay()) {
-        <div class="show-summary__day">
+        <div>
           <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
         </div>
       }
-      <div class="show-summary__time">{{show.start_time | time}} - {{show.end_time | time}}</div>
+      <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
 
-      <meta itemprop="startDate" content="{{nextDate}}">
-      <meta itemprop="endDate" content="{{endDate}}">
+      <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
+      <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
+      <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
 
-      @if (scheduleService.nowPlaying(); as nowPlaying) {
-        @if (nowPlaying.id === show.id) {
-          <div
-            class="show-summary__now-live">
-              {{'SHOW_SUMMARY.NOW_LIVE' | translate}}
-              <span class="show-summary__now-live-icon" (click)="scrollToPlayer()" role="button">
-                <fa-icon [icon]="faVolumeUp"></fa-icon>
-              </span>
-          </div>
-        }
+      @if (showImage(); as showImage) {
+        <meta itemprop="image" content="{{showImage}}">
       }
+
+      <bp-now-live [show]="show"></bp-now-live>
     </div>
     <div>
       <h3 class="show-summary__title" itemprop="name">
@@ -32,9 +27,9 @@
 
       <meta itemprop="description" content="{{show.description}}">
 
-      <div itemprop="location" itemscope="" itemtype="http://schema.org/MusicVenue">
+      <div itemprop="location" itemscope itemtype="https://schema.org/MusicVenue">
         <meta itemprop="name" content="Break Pirates">
-        <link itemprop="sameAs" href="http://www.breakpirates.com">
+        <link itemprop="sameAs" href="https://www.breakpirates.com">
         <meta itemprop="address" content="UK">
       </div>
 
@@ -44,8 +39,8 @@
         <bp-host-list [hosts]="show.hosts"></bp-host-list>
       }
     </div>
-    @if (showImage(); as showImage) {
-      <div class="show-summary__image" [style]="'background-image:' + showImage | safe:'style'"></div>
+    @if (showImageCssValue(); as showImageCssValue) {
+      <div class="show-summary__image" [style]="'background-image:' + showImageCssValue | safe:'style'"></div>
     }
   </div>
 }

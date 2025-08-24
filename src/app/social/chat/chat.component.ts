@@ -1,6 +1,8 @@
-import { Component, viewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, viewChild, ElementRef, OnInit, OnDestroy, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AppSettings } from '../../app-settings';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -10,11 +12,24 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 import { ScreenService } from '../services/screen.service';
 
 @Component({
-  selector: 'bp-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+    selector: 'bp-chat',
+    templateUrl: './chat.component.html',
+    styleUrls: ['./chat.component.scss'],
+    imports: [
+      FontAwesomeModule,
+      TranslatePipe
+    ],
+    providers: [
+      FullscreenService,
+      ScreenService
+    ]
 })
-export class ChatComponent implements OnInit, OnDestroy {
+export default class ChatComponent implements OnInit, OnDestroy {
+  private readonly fullscreenService = inject(FullscreenService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly screenService = inject(ScreenService);
+
   chatElement = viewChild.required<ElementRef>('chatIframe');
 
   faExclamationTriangle = faExclamationTriangle;
@@ -36,12 +51,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   enablePreventSleep = false;
   preventSleep = false;
 
-  constructor(
-    private readonly fullscreenService: FullscreenService,
-    private readonly breadcrumbService: BreadcrumbService,
-    private readonly sanitizer: DomSanitizer,
-    private readonly screenService: ScreenService
-  ) {
+  constructor() {
     const url = `https://thelounge.hostco.de/?join=${this.ircChannel}`;
 
     this.chatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);

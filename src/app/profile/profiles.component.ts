@@ -1,4 +1,5 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, input, inject } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Host } from './host';
@@ -6,13 +7,24 @@ import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-ite
 import { profilesConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { SortOrder } from '../shared/pipes/sort-order';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { ProfileButtonComponent } from './profile-button/profile-button.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { SortByPipe } from '../shared/pipes/sort-by.pipe';
 
 @Component({
-  selector: 'bp-profile',
-  templateUrl: './profiles.component.html',
-  styleUrls: ['./profiles.component.scss']
+    selector: 'bp-profile',
+    templateUrl: './profiles.component.html',
+    styleUrls: ['./profiles.component.scss'],
+    imports: [
+        FontAwesomeModule,
+        TranslatePipe,
+        ProfileButtonComponent,
+        SortByPipe
+    ]
 })
-export class ProfilesComponent implements OnInit {
+export default class ProfilesComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   profiles = input.required<Host[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -24,10 +36,6 @@ export class ProfilesComponent implements OnInit {
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

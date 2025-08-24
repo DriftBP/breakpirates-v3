@@ -1,17 +1,29 @@
-import { Component, computed, input, OnInit, Signal } from '@angular/core';
+import { Component, computed, input, OnInit, Signal, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { News } from './models/news';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { newsConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { LatestNewsComponent } from './latest-news/latest-news.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'bp-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+    selector: 'bp-news',
+    templateUrl: './news.component.html',
+    styleUrls: ['./news.component.scss'],
+    imports: [
+      RouterModule,
+      TranslatePipe,
+      DatePipe,
+      LatestNewsComponent
+    ]
 })
-export class NewsComponent implements OnInit {
+export default class NewsComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   news = input<News[]>();
 
   private latestNewsItems = 4;
@@ -23,9 +35,7 @@ export class NewsComponent implements OnInit {
   otherNews: Signal<News[]>;
   showMore = false;
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     this.latestNews = computed(() => {
       const news = this.news();
 

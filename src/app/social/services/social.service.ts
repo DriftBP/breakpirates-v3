@@ -4,7 +4,9 @@ import { faFacebook, faMixcloud, faXTwitter } from '@fortawesome/free-brands-svg
 import { AppSettings } from '../../app-settings';
 import { Site } from './site';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SocialService {
 
   public getSocialSites(): Site[] {

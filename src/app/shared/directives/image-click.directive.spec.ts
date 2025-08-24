@@ -1,11 +1,12 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ImageClickDirective } from './image-click.directive';
 
 @Component({
-  template: `<div type="text" bpImageClick></div>`
+  template: `<div type="text" bpImageClick></div>`,
+  standalone: false,
 })
 class TestImageClickDirectiveComponent {
 }
@@ -15,17 +16,19 @@ describe('ImageClickDirective', () => {
   let fixture: ComponentFixture<TestImageClickDirectiveComponent>;
   let element: DebugElement;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestImageClickDirectiveComponent,
+      imports: [
         ImageClickDirective
+      ],
+      declarations: [
+        TestImageClickDirectiveComponent
       ]
     });
     fixture = TestBed.createComponent(TestImageClickDirectiveComponent); (2)
     component = fixture.componentInstance;
     element = fixture.debugElement.query(By.css('div'));
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

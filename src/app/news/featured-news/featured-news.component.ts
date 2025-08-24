@@ -1,13 +1,21 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { News } from '../models/news';
 import { AppSettings } from '../../app-settings';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'bp-featured-news',
-  templateUrl: './featured-news.component.html',
-  styleUrls: ['./featured-news.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bp-featured-news',
+    templateUrl: './featured-news.component.html',
+    styleUrls: ['./featured-news.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+      CommonModule,
+      RouterModule,
+      SafePipe
+    ]
 })
 export class FeaturedNewsComponent {
   article = input.required<News>();

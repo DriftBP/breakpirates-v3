@@ -1,7 +1,7 @@
-@import '../../../sass/mixins';
+@use '../../../sass/mixins' as mixins;
 
 :host {
-  @include box-padding();
+  @include mixins.box-padding();
   display: block;
   margin: 0 0 1em 0;
   border: 1px solid var(--border);

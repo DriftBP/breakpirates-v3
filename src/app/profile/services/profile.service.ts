@@ -1,20 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Host } from '../host';
 import { Show } from '../../schedule/models/show';
-import { ProfileResolvesModule } from '../resolves/profile-resolves.module';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
 
-@Injectable({
-  providedIn: ProfileResolvesModule
-})
+@Injectable()
 export class ProfileService {
+  private httpRequestService = inject(HttpRequestService);
 
-  constructor(
-    private httpRequestService: HttpRequestService
-  ) { }
 
   profiles(): Observable<Host[]> {
     return this.httpRequestService.get<Host[]>(AppSettings.API_BASE + 'hosts');

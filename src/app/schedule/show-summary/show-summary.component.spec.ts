@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ShowSummaryComponent } from './show-summary.component';
-import { Show } from '../models/show';
 import { DayService } from '../services/day.service';
 import { MockDayService } from '../../../test/services/mock.day.service';
-import { MockScheduleService } from '../../../test/services/mock.schedule.service';
-import { ScheduleService } from '../services/schedule.service';
 import { MockShowService } from '../../../test/services/mock.show.service';
 import { ShowService } from '../services/show.service';
-import { MockTimePipe } from '../../../test/pipes/mock.time.pipe';
 import { mockShow } from '../../../test/data/mock.shows';
-
-const mockShow2: Show = { ...mockShow, id: 2 };
+import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   template: ''
@@ -27,36 +23,33 @@ describe('ShowSummaryComponent', () => {
   let component: ShowSummaryComponent;
   let fixture: ComponentFixture<ShowSummaryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [
-          ShowSummaryComponent,
-          MockTimePipe
-        ],
-        imports: [
-          TranslateModule.forRoot(),
-          RouterTestingModule.withRoutes([
-            { path: 'schedule/:id', component: DummyComponent }
-           ])
-        ],
-        providers: [
-          {
-            provide: DayService,
-            useClass: MockDayService
-          },
-          {
-            provide: ScheduleService,
-            useClass: MockScheduleService
-          },
-          {
-            provide: ShowService,
-            useClass: MockShowService
-          }
-        ]
+      imports: [
+        ShowSummaryComponent,
+        TranslateModule.forRoot(),
+        RouterModule.forRoot([
+          { path: 'schedule/:id', component: DummyComponent }
+        ])
+      ],
+      providers: [
+        {
+          provide: DayService,
+          useClass: MockDayService
+        },
+        {
+          provide: ShowService,
+          useClass: MockShowService
+        },
+        {
+          provide: ScheduleService,
+          useClass: MockScheduleService
+        }
+      ]
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();
@@ -81,25 +74,5 @@ describe('ShowSummaryComponent', () => {
     const day = fixture.debugElement.query(By.css('.show-summary__day'));
 
     expect(day).toBeDefined();
-  });
-
-  it('should not indicate show is now playing', async () => {
-    fixture.componentRef.setInput('show', mockShow);
-
-    fixture.detectChanges();
-
-    const nowPlaying = fixture.debugElement.query(By.css('.show-summary__now-live'));
-
-    expect(nowPlaying).toBeNull();
-  });
-
-  it('should indicate show is now playing', async () => {
-    fixture.componentRef.setInput('show', mockShow2);
-
-    fixture.detectChanges();
-
-    const nowPlaying = fixture.debugElement.query(By.css('.show-summary__now-live'));
-
-    expect(nowPlaying).toBeDefined();
   });
 });

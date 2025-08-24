@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
 
 import { ProfileService } from './profile.service';
 import { Host } from '../host';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const mockHost = {
   id: 0,
@@ -23,10 +23,8 @@ describe('ProfileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        ProfileService
-      ],
-      imports: [
-        HttpClientModule
+        ProfileService,
+        provideHttpClient(withInterceptorsFromDi())
       ]
     });
   });

@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .featured-news {
   position: relative;
@@ -6,11 +6,11 @@
   background-position: center;
   background-size: cover;
 
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: variables.$breakpoint-sm) {
     height: 12em;
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: variables.$breakpoint-md) {
     height: 15em;
   }
 
@@ -34,7 +34,7 @@
 
     &title {
       font-size: 1.2rem;
-      font-weight: $font-weight-bold;
+      font-weight: variables.$font-weight-bold;
     }
 
     &summary {

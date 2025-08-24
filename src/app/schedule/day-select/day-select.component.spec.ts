@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 
 import { DaySelectComponent } from './day-select.component';
@@ -13,13 +14,21 @@ describe('DaySelectComponent', () => {
   let component: DaySelectComponent;
   let fixture: ComponentFixture<DaySelectComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-        declarations: [ DaySelectComponent ]
+      imports: [
+        DaySelectComponent
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {}
+        }
+      ]
     });
     fixture = TestBed.createComponent(DaySelectComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

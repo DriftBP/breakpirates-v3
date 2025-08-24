@@ -1,19 +1,32 @@
-import { Component, OnDestroy, OnInit, input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, input, inject } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterModule } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Day } from './models/day';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { scheduleConfigInactive, scheduleConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
+import { DayService } from './services/day.service';
+import { DaySelectComponent } from './day-select/day-select.component';
 
 @Component({
-  selector: 'bp-schedule',
-  templateUrl: './schedule.component.html'
+    selector: 'bp-schedule',
+    templateUrl: './schedule.component.html',
+    imports: [
+      RouterModule,
+      DaySelectComponent,
+      TranslatePipe
+    ]
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly dayService = inject(DayService);
+
   days = input.required<Day[]>();
 
   private childParamsSubscription?: Subscription;
@@ -21,12 +34,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = DateTime.local().weekday;
-
-  constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly router: Router,
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
@@ -37,17 +44,20 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   onParamChange(params: ParamMap) {
-    const dayId = params.get('id');
+    const dayName = params.get('day');
+    var day: Day;
 
-    if (dayId) {
-      this.activeDayId = parseInt(dayId) as WeekdayNumbers;
+    if (dayName) {
+      day = this.dayService.dayByName(dayName);
+    }
 
-      const dayName = this.getDayName(this.activeDayId);
+    if (day) {
+      this.activeDayId = day.id as WeekdayNumbers;
 
       this.breadcrumbConfig = this.baseBreadcrumbConfig.concat([
         scheduleConfigInactive,
         {
-          name: dayName,
+          name: day.name,
           isActive: true
         }
       ]);
@@ -67,15 +77,4 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.childParamsSubscription.unsubscribe();
     }
   }
-
-  private getDayName(activeDayId: number): string {
-    const activeDay = this.days().find(day => day.id === activeDayId);
-
-    if (activeDay) {
-      return activeDay.name;
-    }
-
-    return '';
-  }
-
 }

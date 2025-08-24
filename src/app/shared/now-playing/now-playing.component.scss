@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@use '../../../sass/variables' as variables;
 
 .now-playing {
   margin-bottom: 1em;
@@ -55,7 +55,7 @@
         &name {
           font-size: 1.75rem;
           line-height: 1.2em;
-          font-weight: $font-weight-bold;
+          font-weight: variables.$font-weight-bold;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
