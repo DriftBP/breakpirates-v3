@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPause, faPlay, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { AppSettings } from '../../app-settings';
@@ -7,9 +9,14 @@ import { AudioService } from '../services/audio/audio.service';
 @Component({
     selector: 'bp-radio-player',
     templateUrl: './radio-player.component.html',
-    styleUrls: ['./radio-player.component.scss']
+    styleUrls: ['./radio-player.component.scss'],
+    imports: [
+      FormsModule,
+      FontAwesomeModule
+    ]
 })
 export class RadioPlayerComponent implements OnInit {
+  private readonly audioService = inject(AudioService);
   private lastVolume: number;
 
   playing = false;
@@ -21,7 +28,7 @@ export class RadioPlayerComponent implements OnInit {
   faVolumeUp = faVolumeUp;
   faVolumeMute = faVolumeMute;
 
-  constructor(private readonly audioService: AudioService) {
+  constructor() {
     this.lastVolume = this.volume;
   }
 
