@@ -33,7 +33,7 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 })
 export class NowPlayingComponent implements OnDestroy {
   readonly scheduleService = inject(ScheduleService);
-  private shoutcast = inject(ShoutcastService);
+  private readonly shoutcastService = inject(ShoutcastService);
 
   private currentTrackSubscription?: Subscription;
 
@@ -52,7 +52,7 @@ export class NowPlayingComponent implements OnDestroy {
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
     // Fetch current track in injection context
     effect(() => {
-      this.currentTrackSubscription = this.shoutcast.getCurrentTrack().subscribe(track => {
+      this.currentTrackSubscription = this.shoutcastService.getCurrentTrack().subscribe(track => {
         this.currentTrack.set(track);
       });
     });
@@ -62,18 +62,14 @@ export class NowPlayingComponent implements OnDestroy {
     });
 
     this.isLiveShow = computed(() => {
-      const nowPlaying = this.scheduleService.nowPlaying();
-
-      return nowPlaying?.id !== undefined;
+      return this.nowPlaying()?.id !== undefined;
     });
 
     this.nowPlayingImage = computed(() => {
-      const nowPlaying = this.scheduleService.nowPlaying();
-
       let imageFilename: string | undefined;
 
-      if (nowPlaying?.image) {
-        imageFilename = nowPlaying.image;
+      if (this.nowPlaying()?.image) {
+        imageFilename = this.nowPlaying().image;
       } else {
         // Use default
         imageFilename = 'bp-profile.jpg';
