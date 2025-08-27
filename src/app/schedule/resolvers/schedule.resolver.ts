@@ -10,7 +10,11 @@ export const scheduleResolver: ResolveFn<Show[]> = (
 ) => {
   const dayName = route.paramMap.get('day');
 
-  const dayId = inject(DayService).dayByName(dayName)?.id ?? 0;
+  let dayId = 0;
+
+  if (dayName) {
+    dayId = inject(DayService).dayByName(dayName)?.id ?? 0;
+  }
 
   return inject(ScheduleService).shows(dayId);
 };

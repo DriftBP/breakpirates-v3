@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
+import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
@@ -31,9 +31,9 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       SafePipe
     ]
 })
-export class NowPlayingComponent implements OnInit, OnDestroy {
+export class NowPlayingComponent implements OnDestroy {
   readonly scheduleService = inject(ScheduleService);
-  private shoutcast = inject(ShoutcastService);
+  private readonly shoutcastService = inject(ShoutcastService);
 
   private currentTrackSubscription: Subscription;
 
@@ -52,30 +52,24 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
     // Fetch current track in injection context
     effect(() => {
-      this.currentTrackSubscription = this.shoutcast.getCurrentTrack().subscribe(track => {
+      this.currentTrackSubscription = this.shoutcastService.getCurrentTrack().subscribe(track => {
         this.currentTrack.set(track);
       });
     });
-  }
 
-  ngOnInit() {
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
     });
 
     this.isLiveShow = computed(() => {
-      const nowPlaying = this.scheduleService.nowPlaying();
-
-      return nowPlaying?.id !== undefined;
+      return this.nowPlaying()?.id !== undefined;
     });
 
     this.nowPlayingImage = computed(() => {
-      const nowPlaying = this.scheduleService.nowPlaying();
-
       let imageFilename: string | undefined;
 
-      if (nowPlaying?.image) {
-        imageFilename = nowPlaying.image;
+      if (this.nowPlaying()?.image) {
+        imageFilename = this.nowPlaying().image;
       } else {
         // Use default
         imageFilename = 'bp-profile.jpg';
