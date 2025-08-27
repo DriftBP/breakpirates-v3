@@ -69,7 +69,7 @@ export class NowPlayingComponent implements OnDestroy {
       let imageFilename: string | undefined;
 
       if (this.nowPlaying()?.image) {
-        imageFilename = this.nowPlaying().image;
+        imageFilename = this.nowPlaying()?.image;
       } else {
         // Use default
         imageFilename = 'bp-profile.jpg';
