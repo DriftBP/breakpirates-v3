@@ -35,7 +35,7 @@ export class NowPlayingComponent implements OnDestroy {
   readonly scheduleService = inject(ScheduleService);
   private readonly shoutcastService = inject(ShoutcastService);
 
-  private currentTrackSubscription: Subscription;
+  private currentTrackSubscription?: Subscription;
 
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
@@ -69,7 +69,7 @@ export class NowPlayingComponent implements OnDestroy {
       let imageFilename: string | undefined;
 
       if (this.nowPlaying()?.image) {
-        imageFilename = this.nowPlaying().image;
+        imageFilename = this.nowPlaying()?.image;
       } else {
         // Use default
         imageFilename = 'bp-profile.jpg';
