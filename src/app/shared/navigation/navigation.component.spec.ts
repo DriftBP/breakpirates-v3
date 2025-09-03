@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -23,7 +24,8 @@ describe('NavigationComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {}
-        }
+        },
+        provideAnimations()
       ]
     });
     fixture = TestBed.createComponent(NavigationComponent);

@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PageTemplateComponent } from './page-template.component';
 import { ScheduleService } from './schedule/services/schedule.service';
 import { MockScheduleService } from '../test/services/mock.schedule.service';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 declare var global: any;
 
@@ -32,7 +33,8 @@ describe('PageTemplateComponent', () => {
           provide: ActivatedRoute,
           useValue: {}
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations()
       ]
     });
     fixture = TestBed.createComponent(PageTemplateComponent);
