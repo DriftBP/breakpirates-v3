@@ -1,12 +1,12 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { PageTemplateComponent } from './page-template.component';
 import { ScheduleService } from './schedule/services/schedule.service';
 import { MockScheduleService } from '../test/services/mock.schedule.service';
-import { provideAnimations } from '@angular/platform-browser/animations';
 
 declare var global: any;
 
