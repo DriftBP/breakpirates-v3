@@ -1,33 +1,33 @@
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 
-const homeConfig: BreadcrumbConfigItem = { name: 'HOME.TITLE' };
+const homeConfig: BreadcrumbConfigItem = { name: 'HOME.TITLE', isActive: false };
 export const homeConfigInactive: BreadcrumbConfigItem = { ...homeConfig, routerLink: '/radio' };
 export const homeConfigActive: BreadcrumbConfigItem = { ...homeConfig, isActive: true };
 
-const scheduleConfig: BreadcrumbConfigItem = { name: 'SCHEDULE.TITLE' };
+const scheduleConfig: BreadcrumbConfigItem = { name: 'SCHEDULE.TITLE', isActive: false };
 export const scheduleConfigInactive = { ...scheduleConfig, routerLink: '/schedule' };
 export const scheduleConfigActive = { ...scheduleConfig, isActive: true };
 
-const profilesConfig: BreadcrumbConfigItem = { name: 'PROFILES.TITLE' };
+const profilesConfig: BreadcrumbConfigItem = { name: 'PROFILES.TITLE', isActive: false };
 export const profilesConfigInactive = { ...profilesConfig, routerLink: '/profiles' };
 export const profilesConfigActive = { ...profilesConfig, isActive: true };
 
-const socialConfig: BreadcrumbConfigItem = { name: 'SOCIAL.TITLE' };
+const socialConfig: BreadcrumbConfigItem = { name: 'SOCIAL.TITLE', isActive: false };
 export const socialConfigInactive = { ...socialConfig, routerLink: '/social' };
 export const socialConfigActive = { ...socialConfig, isActive: true };
 
-const newsConfig: BreadcrumbConfigItem = { name: 'NEWS.TITLE' };
+const newsConfig: BreadcrumbConfigItem = { name: 'NEWS.TITLE', isActive: false };
 export const newsConfigInactive = { ...newsConfig, routerLink: '/news' };
 export const newsConfigActive = { ...newsConfig, isActive: true };
 
-const videoConfig: BreadcrumbConfigItem = { name: 'VIDEO.TITLE' };
+const videoConfig: BreadcrumbConfigItem = { name: 'VIDEO.TITLE', isActive: false };
 export const videoConfigInactive = { ...videoConfig, routerLink: '/video' };
 export const videoConfigActive = { ...videoConfig, isActive: true };
 
-const musicConfig: BreadcrumbConfigItem = { name: 'MUSIC.TITLE' };
+const musicConfig: BreadcrumbConfigItem = { name: 'MUSIC.TITLE', isActive: false };
 export const musicConfigInactive = { ...musicConfig, routerLink: '/music' };
 export const musicConfigActive = { ...musicConfig, isActive: true };
 
-const toolsConfig: BreadcrumbConfigItem = { name: 'TOOLS.TITLE' };
+const toolsConfig: BreadcrumbConfigItem = { name: 'TOOLS.TITLE', isActive: false };
 export const toolsConfigInactive = { ...toolsConfig, routerLink: '/tools' };
 export const toolsConfigActive = { ...toolsConfig, isActive: true };
