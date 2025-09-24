@@ -1,5 +1,8 @@
+@import '../../../sass/variables';
+
 .radio-player {
-  &__audio {
-    width: 100%;
-  }
+  display: flex;
+  gap: 5px;
+  background-color: $color-brand-secondary;
+  padding: 5px;
 }
