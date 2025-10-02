@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { NavigationComponent } from './navigation.component';
 import { MockRouterService } from '../../../test/services/mock.router.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -14,8 +14,7 @@ describe('NavigationComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NavigationComponent,
-        TranslateModule.forRoot(),
-        BrowserAnimationsModule
+        TranslateModule.forRoot()
       ],
       providers: [
         {
@@ -25,7 +24,8 @@ describe('NavigationComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {}
-        }
+        },
+        provideAnimations()
       ]
     });
     fixture = TestBed.createComponent(NavigationComponent);

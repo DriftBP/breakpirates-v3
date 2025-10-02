@@ -1,6 +1,6 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -22,8 +22,7 @@ describe('PageTemplateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         PageTemplateComponent,
-        TranslateModule.forRoot(),
-        BrowserAnimationsModule
+        TranslateModule.forRoot()
       ],
       providers: [
         {
@@ -34,7 +33,8 @@ describe('PageTemplateComponent', () => {
           provide: ActivatedRoute,
           useValue: {}
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations()
       ]
     });
     fixture = TestBed.createComponent(PageTemplateComponent);
