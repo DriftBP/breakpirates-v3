@@ -6,6 +6,7 @@
     &image {
       @include mixins.responsive-image;
       margin-bottom: 1em;
+      @include mixins.box-border;
 
       @media (min-width: variables.$breakpoint-md) {
         width: 30%;
