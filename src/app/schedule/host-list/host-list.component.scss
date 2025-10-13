@@ -1,4 +1,5 @@
 @use '../../../sass/variables' as variables;
+@use '../../../sass/mixins' as mixins;
 
 .host-list {
   display: block;
@@ -22,8 +23,8 @@
       padding: 0.25em 0.5em;
       background-color: variables.$color-brand-primary;
       color: #fff;
-      border: 1px solid var(--border);
-      border-radius: 0.5em;
+      @include mixins.box-border;
+
       white-space: nowrap;
 
       > fa-icon {
