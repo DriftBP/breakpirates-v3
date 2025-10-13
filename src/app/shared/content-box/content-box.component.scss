@@ -4,6 +4,6 @@
   @include mixins.box-padding();
   display: block;
   margin: 0 0 1em 0;
-  border: 1px solid var(--border);
+  @include mixins.box-border;
   background-color: var(--panel-bg);
 }
