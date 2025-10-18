@@ -13,6 +13,15 @@
     <article>
       <h1 itemprop="name">{{ show.title }}</h1>
 
+      @if (show.image) {
+        <img bpImageClick
+            class="show__image"
+            [src]="imagePath + show.image"
+            [alt]="show.title"
+            loading="lazy"
+            itemprop="image">
+      }
+
       <p>
         <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
         <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
@@ -22,32 +31,23 @@
       @if (show.description) {
         <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
-        @if (show.image) {
-          <img bpImageClick
-              class="show__image"
-              [src]="imagePath + show.image"
-              [alt]="show.title"
-              loading="lazy"
-              itemprop="image">
+        <p itemprop="description">{{ show.description }}</p>
+
+        @if (show.genres.length > 0) {
+          <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
+
+          <bp-genre-list [genres]="show.genres"></bp-genre-list>
         }
 
-        <p itemprop="description">{{ show.description }}</p>
+        @if (show.hosts.length > 0) {
+          <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
+
+          <bp-host-list [hosts]="show.hosts"></bp-host-list>
+        }
 
         <div class="show__clear"></div>
       }
     </article>
-
-    @if (show.genres.length > 0) {
-      <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
-
-      <bp-genre-list [genres]="show.genres"></bp-genre-list>
-    }
-
-    @if (show.hosts.length > 0) {
-      <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
-
-      <bp-host-list [hosts]="show.hosts"></bp-host-list>
-    }
   </div>
 } @else {
   <h1>{{'SCHEDULE.NOT_FOUND' | translate}}</h1>
