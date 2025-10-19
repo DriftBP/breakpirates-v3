@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Signal, computed, input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { Host } from '../host';
 import { AppSettings } from '../../app-settings';
@@ -13,7 +13,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
       CommonModule,
-      RouterModule,
+      RouterLink,
       SafePipe
     ]
 })

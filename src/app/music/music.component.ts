@@ -1,5 +1,5 @@
 import { Component, OnInit, input, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Genre } from './models/genre';
@@ -11,7 +11,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     selector: 'bp-music',
     templateUrl: './music.component.html',
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe
     ]
 })

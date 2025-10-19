@@ -1,5 +1,5 @@
 import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
     templateUrl: './now-playing.component.html',
     styleUrls: ['./now-playing.component.scss'],
     imports: [
-      RouterModule,
+      RouterLink,
       FontAwesomeModule,
       ProgressIndicatorComponent,
       RadioPlayerComponent,

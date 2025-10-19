@@ -6,7 +6,7 @@ import {
   NavigationEnd,
   NavigationCancel,
   NavigationError,
-  RouterModule
+  RouterOutlet
 } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
   selector: 'bp-root',
   templateUrl: './app.component.html',
   imports: [
-    RouterModule,
+    RouterOutlet,
     LoadingSpinnerComponent
   ]
 })

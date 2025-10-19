@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { Genre } from '../../music/models/genre';
 import { SortOrder } from '../../shared/pipes/sort-order';
@@ -11,7 +11,7 @@ import { SortByPipe } from '../../shared/pipes/sort-by.pipe';
     styleUrls: ['./genre-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-      RouterModule,
+      RouterLink,
       SortByPipe
     ]
 })
