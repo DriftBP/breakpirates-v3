@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { DateTime } from 'luxon';
 
 import { AppSettings } from './app-settings';
@@ -18,7 +18,7 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
     templateUrl: './page-template.component.html',
     styleUrls: ['./page-template.component.scss'],
     imports: [
-      RouterModule,
+      RouterOutlet,
       NavigationComponent,
       NowPlayingComponent,
       DialogComponent,

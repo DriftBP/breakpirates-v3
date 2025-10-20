@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Signal, computed, input, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
@@ -19,7 +19,7 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
     styleUrls: ['./show-summary.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-      RouterModule,
+      RouterLink,
       NowLiveComponent,
       HostListComponent,
       GenreListComponent,

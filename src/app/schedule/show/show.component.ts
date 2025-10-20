@@ -1,5 +1,5 @@
 import { Component, computed, effect, input, Signal, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { DateTime } from 'luxon';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -21,7 +21,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     templateUrl: './show.component.html',
     styleUrls: ['./show.component.scss'],
     imports: [
-      RouterModule,
+      RouterLink,
       NowLiveComponent,
       GenreListComponent,
       HostListComponent,

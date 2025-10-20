@@ -1,6 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, Signal, computed, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -22,7 +22,8 @@ interface ExternalLink {
   styleUrls: ['./navigation.component.scss'],
   imports: [
     NgOptimizedImage,
-    RouterModule,
+    RouterLink,
+    RouterLinkActive,
     FontAwesomeModule,
     BsDropdownModule,
     CollapseModule,

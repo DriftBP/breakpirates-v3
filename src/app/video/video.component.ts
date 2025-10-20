@@ -5,13 +5,13 @@ import { Video } from './models/video';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
 import { videoConfigActive } from '../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'bp-video',
     templateUrl: './video.component.html',
     imports: [
-        RouterModule,
+        RouterLink,
         TranslateModule
     ]
 })
