@@ -38,7 +38,7 @@ jobs:
       - install-deps
       - run:
           name: Building for Production
-          command: npm run build --configuration production
+          command: npm run build -- --configuration production
 
   test:
     executor: node
