@@ -1,11 +1,12 @@
 version: 2.1
 
 # Minimal CircleCI config keeping build, test and lint jobs.
-# Uses docker executor (faster cold-start than machine) and a single reusable
-# install step to avoid duplication. Caches node_modules by package-lock checksum.
+# Uses docker executor and a single reusable install step to avoid duplication.
+# Important: do not install @angular/cli globally in CI (avoids EACCES); use the
+# project-local CLI via npm scripts (npm run build / npm run lint).
 
 executors:
-  node: # lightweight node image with npm
+  node:
     docker:
       - image: cimg/node:20.19.0-browsers
     working_directory: ~/breakpirates-v3
@@ -18,9 +19,6 @@ commands:
           keys:
             - v1-deps-{{ checksum "package-lock.json" }}
             - v1-deps-
-      - run:
-          name: Install global CLI
-          command: npm install -g @angular/cli
       - run:
           name: Install local dependencies
           command: npm ci
@@ -40,7 +38,7 @@ jobs:
       - install-deps
       - run:
           name: Building for Production
-          command: ng build --configuration production
+          command: npm run build -- --configuration production
 
   test:
     executor: node
