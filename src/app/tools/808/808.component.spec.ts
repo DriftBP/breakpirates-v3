@@ -21,7 +21,7 @@ describe('Drum808Component', () => {
       public currentTime = 0;
       public state = 'running';
       createBufferSource() { return new MockAudioBufferSourceNode(); }
-      decodeAudioData(buffer: ArrayBuffer) { return Promise.resolve(new MockAudioBuffer()); }
+      decodeAudioData() { return Promise.resolve(new MockAudioBuffer()); }
       resume() { return Promise.resolve(); }
       get destination() { return {}; }
     }
