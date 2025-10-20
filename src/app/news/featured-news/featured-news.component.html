@@ -1,7 +1,7 @@
 @if (article(); as article) {
   <a [routerLink]="['/news',article.id]"
-    (mouseover)="onMouseOver($event)"
-    (mouseout)="onMouseOut($event)">
+    (mouseover)="onMouseOver()"
+    (mouseout)="onMouseOut()">
     <div class="featured-news"
         [style]="'background-image:' + imagePath() | safe:'style'">
       <div class="featured-news__overlay">
