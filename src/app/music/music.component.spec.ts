@@ -1,12 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Routes } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import MusicComponent from './music.component';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
-
-const routes: Routes = [];
 
 describe('MusicComponent', () => {
   let component: MusicComponent;

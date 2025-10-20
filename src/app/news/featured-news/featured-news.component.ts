@@ -36,11 +36,11 @@ export class FeaturedNewsComponent {
     return article?.image ? article.image : 'bp.jpg';
   }
 
-  onMouseOver(event: any) {
+  onMouseOver() {
     this.hover = true;
   }
 
-  onMouseOut(event: any) {
+  onMouseOut() {
     this.hover = false;
   }
 }
