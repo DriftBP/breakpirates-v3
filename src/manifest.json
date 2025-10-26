@@ -1,15 +1,38 @@
 {
+  "lang": "en-GB",
+  "dir": "ltr",
   "short_name": "BP",
   "name": "Break Pirates",
+  "description": "Break Pirates - Live Pirate Style Radio",
   "icons": [
     {
       "src": "/assets/bp480x480.jpg",
       "sizes": "480x480",
-      "type": "image/jpg"
+      "type": "image/jpeg"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=web_app_manifest",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
+  "orientation": "any",
   "theme_color": "#545691",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "categories": ["music", "news"],
+  "shortcuts": [
+    {
+      "name": "Listen Live",
+      "short_name": "Live",
+      "description": "Open the radio player",
+      "url": "/player",
+      "icons": [{ "src": "/assets/bp480x480.jpg", "sizes": "480x480", "type": "image/jpeg" }]
+    },
+    {
+      "name": "Todays schedule",
+      "short_name": "Schedule",
+      "description": "Live todays live broadcast schedule",
+      "url": "/schedule",
+      "icons": [{ "src": "/assets/bp480x480.jpg", "sizes": "480x480", "type": "image/jpeg" }]
+    }
+  ]
 }
