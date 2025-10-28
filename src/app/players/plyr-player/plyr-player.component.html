@@ -1,5 +1,2 @@
-<ng-container [ngSwitch]="type">
-  <video *ngSwitchCase="'video'" #mediaEl playsinline crossorigin="anonymous" controls></video>
-  <!-- Keep preload and playsinline for streaming; avoid crossorigin for plain shoutcast MP3 streams -->
-  <audio *ngSwitchCase="'audio'" #mediaEl controls playsinline preload="none"></audio>
-</ng-container>
+<!-- Audio-only player (Shoutcast/ICy/MP3 streams). Avoid crossorigin for plain Shoutcast endpoints. -->
+<audio #mediaEl controls playsinline preload="none" class="bp-audio-player"></audio>

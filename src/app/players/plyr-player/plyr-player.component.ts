@@ -14,10 +14,9 @@ let Hls: any = undefined;
   styleUrls: ['./plyr-player.component.scss']
 })
 export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('mediaEl', { static: false }) mediaEl!: ElementRef<HTMLVideoElement | HTMLAudioElement>;
+  @ViewChild('mediaEl', { static: false }) mediaEl!: ElementRef<HTMLAudioElement>;
 
-  @Input() src!: string; // stream or file URL
-  @Input() type: 'video' | 'audio' = 'video';
+  @Input() src!: string; // stream or file URL (audio only)
   @Input() autoplay = false;
   @Input() debug = false;
   @Input() forceNative = false; // when true, skip initializing Plyr (use native element)
@@ -51,7 +50,7 @@ export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
       if (Hls && Hls.isSupported()) {
         this.hls = new Hls();
         this.hls.loadSource(this.src);
-        this.hls.attachMedia(el as HTMLVideoElement);
+        this.hls.attachMedia(el as HTMLAudioElement);
         this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
           if (this.debug) console.info('HLS manifest parsed for', this.src);
           this.attachMediaListeners(el);
@@ -87,7 +86,7 @@ export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
   }
 
   /** Set src using a <source> node and call load() to (re)start fetching. */
-  private setElementSource(el: HTMLVideoElement | HTMLAudioElement, src: string) {
+  private setElementSource(el: HTMLAudioElement, src: string) {
     try {
       // remove existing children
       while (el.firstChild) el.removeChild(el.firstChild);
@@ -118,7 +117,7 @@ export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private attachMediaListeners(el: HTMLVideoElement | HTMLAudioElement) {
+  private attachMediaListeners(el: HTMLAudioElement) {
     try {
       const m = el as HTMLMediaElement;
       const events = [
@@ -149,7 +148,7 @@ export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private initPlyr(el: HTMLVideoElement | HTMLAudioElement) {
+  private initPlyr(el: HTMLAudioElement) {
     if (!Plyr) return;
     this.player = new Plyr(el as any, {
       controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
