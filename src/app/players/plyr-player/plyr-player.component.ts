@@ -16,6 +16,8 @@ export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
   @ViewChild('mediaEl', { static: false }) mediaEl!: ElementRef<HTMLVideoElement | HTMLAudioElement>;
   @Input() src!: string;          // stream or file URL
   @Input() type: 'video'|'audio' = 'video';
+  @Input() autoplay = false;
+  @Input() debug = false;
   player?: any;
   hls?: any;
 
@@ -44,17 +46,87 @@ export class PlyrPlayerComponent implements AfterViewInit, OnDestroy {
         this.hls.loadSource(this.src);
         this.hls.attachMedia(el as HTMLVideoElement);
         this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          if (this.debug) console.info('HLS manifest parsed for', this.src);
+          this.attachMediaListeners(el);
           if (!skipPlyr) this.initPlyr(el);
+          if (this.autoplay) {
+            // attempt to play; browsers may block autoplay without user gesture
+            (el as HTMLMediaElement).play().catch(err => {
+              if (this.debug) console.warn('Autoplay blocked or failed:', err);
+            });
+          }
         });
       } else {
         // Safari builtin HLS or Hls not available
-        el.src = this.src;
+        this.setElementSource(el, this.src);
+        this.attachMediaListeners(el);
         if (!skipPlyr) this.initPlyr(el);
+        if (this.autoplay) {
+          (el as HTMLMediaElement).play().catch(err => {
+            if (this.debug) console.warn('Autoplay blocked or failed:', err);
+          });
+        }
       }
     } else {
       // normal file / progressive stream
-      el.src = this.src;
+      this.setElementSource(el, this.src);
+      this.attachMediaListeners(el);
       if (!skipPlyr) this.initPlyr(el);
+      if (this.autoplay) {
+        (el as HTMLMediaElement).play().catch(err => {
+          if (this.debug) console.warn('Autoplay blocked or failed:', err);
+        });
+      }
+    }
+  }
+
+  /**
+   * Set src on media element using a <source> node and call load().
+   * This helps when dealing with streaming endpoints (Shoutcast/ICY) which
+   * sometimes require explicit source elements and load() to start fetching.
+   */
+  private setElementSource(el: HTMLVideoElement | HTMLAudioElement, src: string) {
+    try {
+      // remove existing sources
+      while (el.firstChild) el.removeChild(el.firstChild);
+
+      const source = document.createElement('source');
+      source.src = src;
+
+      // If it looks like an ICY/Shoutcast stream, set a common MIME type
+      if (/\.(mp3|mp2|aac|m4a)(\?|$)/i.test(src) || /icy|shoutcast|listen/.test(src)) {
+        source.type = 'audio/mpeg';
+      }
+
+      el.appendChild(source);
+      // instruct the element to (re)load the new source
+      // some browsers require calling load() to start streaming
+      el.load();
+      if (this.debug) console.info('Set source on element', src);
+    } catch (e) {
+      // fallback to direct assignment
+      el.src = src;
+      if (this.debug) console.warn('Failed to set <source>; falling back to direct src assignment', e);
+    }
+  }
+
+  private attachMediaListeners(el: HTMLVideoElement | HTMLAudioElement) {
+    try {
+      const m = el as HTMLMediaElement;
+      const events = ['error','stalled','suspend','waiting','playing','canplay','canplaythrough','loadedmetadata','loadeddata','progress','emptied','abort'];
+      events.forEach(ev => {
+        m.addEventListener(ev, (e) => {
+          if (this.debug) console.info('media event', ev, { src: this.src, event: e });
+        });
+      });
+
+      // log the media error object when it occurs
+      m.addEventListener('error', () => {
+        const err = m.error;
+        if (err && this.debug) console.error('Media error', err.code, err.message || err);
+      });
+    } catch (e) {
+      if (this.debug) console.warn('Could not attach media listeners', e);
     }
   }
 
