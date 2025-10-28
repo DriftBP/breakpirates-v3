@@ -37,15 +37,10 @@
               "src/stream.asx",
               "src/stream.m3u",
               "src/stream.pls",
-              "src/stream.ram",
-              {
-                "glob": "mejs-controls.svg",
-                "input": "./node_modules/mediaelement/build/",
-                "output": "./assets/"
-              }
+              "src/stream.ram"
             ],
             "styles": [
-              "node_modules/mediaelement/build/mediaelementplayer.min.css",
+              "node_modules/plyr/dist/plyr.css",
               "src/styles.scss"
             ],
             "scripts": []

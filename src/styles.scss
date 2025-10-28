@@ -84,13 +84,13 @@ a {
   }
 }
 
-/* Mediaelement overrides */
+/* Player overrides (previously mediaelement) */
 
-.mejs__container {
+.radio-player__container, .mejs__container {
   width: auto !important;
 }
 
 /* Fixed player height in some browsers */
-.mejs__inner {
+.radio-player__container .mejs__inner, .mejs__inner {
   height: 40px;
 }

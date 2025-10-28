@@ -13,10 +13,7 @@ describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
   let fixture: ComponentFixture<NowPlayingComponent>;
 
-  // Mock MediaElementPlayer for tests
-  beforeAll(() => {
-    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
-  });
+  // No mediaelement in tests; Plyr is initialized in component when needed.
 
   beforeEach(async () => {
     TestBed.configureTestingModule({

@@ -16,13 +16,15 @@ import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { PlyrPlayerComponent } from './players/plyr-player/plyr-player.component';
 
 @Component({
   selector: 'bp-root',
   templateUrl: './app.component.html',
   imports: [
     RouterOutlet,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    PlyrPlayerComponent
   ]
 })
 export class AppComponent implements OnInit, OnDestroy {

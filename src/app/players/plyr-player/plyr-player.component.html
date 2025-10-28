@@ -1,0 +1,4 @@
+<ng-container [ngSwitch]="type">
+  <video *ngSwitchCase="'video'" #mediaEl playsinline crossorigin="anonymous" controls></video>
+  <audio *ngSwitchCase="'audio'" #mediaEl controls></audio>
+</ng-container>
