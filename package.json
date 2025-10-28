@@ -35,7 +35,6 @@
     "@ngx-translate/http-loader": "^17.0.0",
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.3.7",
-    "hls.js": "^1.4.5",
     "luxon": "^3.7.2",
     "ngx-bootstrap": "^20.0.2",
     "plyr": "^3.7.8",
