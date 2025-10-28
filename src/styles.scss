@@ -84,13 +84,14 @@ a {
   }
 }
 
-/* Player overrides (previously mediaelement) */
+/* Player overrides (previously mediaelement) - migrated to Plyr
+   Keep radio player container sizing; remove mediaelement-specific selectors */
 
-.radio-player__container, .mejs__container {
+.radio-player__container {
   width: auto !important;
 }
 
-/* Fixed player height in some browsers */
-.radio-player__container .mejs__inner, .mejs__inner {
+/* Fixed player height in some browsers for embedded player container */
+.radio-player__container .bp-player-inner {
   height: 40px;
 }

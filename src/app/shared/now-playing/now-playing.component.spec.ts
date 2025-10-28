@@ -13,7 +13,7 @@ describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
   let fixture: ComponentFixture<NowPlayingComponent>;
 
-  // No mediaelement in tests; Plyr is initialized in component when needed.
+  // Plyr is initialized in the component when needed.
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
