@@ -8,8 +8,8 @@
       }
       <div>{{show.start_time | time}} - {{show.end_time | time}}</div>
 
-      <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
-      <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
+      <meta itemprop="startDate" content="{{dates().startDate.toUTC().toISO()}}">
+      <meta itemprop="endDate" content="{{dates().endDate.toUTC().toISO()}}">
       <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
 
       @if (showImage(); as showImage) {
