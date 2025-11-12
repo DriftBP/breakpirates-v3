@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { DateTime } from 'luxon';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { DateTime, WeekdayNumbers } from 'luxon';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ScheduleService } from '../schedule/services/schedule.service';
@@ -13,21 +13,23 @@ import { ShowSummaryComponent } from '../schedule/show-summary/show-summary.comp
   selector: 'bp-home',
   templateUrl: './home.component.html',
   imports: [
-    RouterModule,
+    RouterLink,
     ShowSummaryComponent,
     TranslatePipe,
     AsyncPipe
   ]
 })
 export class HomeComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  readonly scheduleService = inject(ScheduleService);
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  activeDayId = DateTime.local().weekday;
+  activeDayId: WeekdayNumbers;
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService,
-    public readonly scheduleService: ScheduleService
-  ) {}
+  constructor() {
+    this.activeDayId = DateTime.local().weekday;
+  }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { NewsService } from './news.service';
 
@@ -8,9 +8,9 @@ describe('NewsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NewsService],
-      imports: [
-        HttpClientModule
+      providers: [
+        NewsService,
+        provideHttpClient(withInterceptorsFromDi())
       ]
     });
 

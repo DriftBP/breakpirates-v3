@@ -1,8 +1,9 @@
-import { Component, OnInit, computed, Signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -13,13 +14,14 @@ import { RadioPlayerComponent } from '../radio-player/radio-player.component';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TimePipe } from '../pipes/time.pipe';
 import { SafePipe } from '../pipes/safe.pipe';
+import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 
 @Component({
     selector: 'bp-now-playing',
     templateUrl: './now-playing.component.html',
     styleUrls: ['./now-playing.component.scss'],
     imports: [
-      RouterModule,
+      RouterLink,
       FontAwesomeModule,
       ProgressIndicatorComponent,
       RadioPlayerComponent,
@@ -29,41 +31,45 @@ import { SafePipe } from '../pipes/safe.pipe';
       SafePipe
     ]
 })
-export class NowPlayingComponent implements OnInit {
+export class NowPlayingComponent implements OnDestroy {
+  readonly scheduleService = inject(ScheduleService);
+  private readonly shoutcastService = inject(ShoutcastService);
+
+  private currentTrackSubscription: Subscription;
+
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
   isLiveShow: Signal<boolean>;
   showRadioPlayer = false;
+  currentTrack = signal<string>('');
 
   faExternalLink = faExternalLink;
 
   order = SortOrder.Ascending;
 
-  constructor(
-    public readonly scheduleService: ScheduleService
-  ) {
+  constructor() {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
-  }
+    // Fetch current track in injection context
+    effect(() => {
+      this.currentTrackSubscription = this.shoutcastService.getCurrentTrack().subscribe(track => {
+        this.currentTrack.set(track);
+      });
+    });
 
-  ngOnInit() {
     this.nowPlaying = computed(() => {
       return this.scheduleService.nowPlaying();
     });
 
     this.isLiveShow = computed(() => {
-      const nowPlaying = this.scheduleService.nowPlaying();
-
-      return nowPlaying?.id !== undefined;
+      return this.nowPlaying()?.id !== undefined;
     });
 
     this.nowPlayingImage = computed(() => {
-      const nowPlaying = this.scheduleService.nowPlaying();
-
       let imageFilename: string | undefined;
 
-      if (nowPlaying?.image) {
-        imageFilename = nowPlaying.image;
+      if (this.nowPlaying()?.image) {
+        imageFilename = this.nowPlaying().image;
       } else {
         // Use default
         imageFilename = 'bp-profile.jpg';
@@ -71,6 +77,12 @@ export class NowPlayingComponent implements OnInit {
 
       return `url(${AppSettings.ASSET_SHOW_IMAGE}${imageFilename})`;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.currentTrackSubscription) {
+      this.currentTrackSubscription.unsubscribe();
+    }
   }
 
   openPopupPlayer() {

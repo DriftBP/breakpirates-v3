@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RosterListComponent } from './roster-list.component';
 
@@ -6,7 +6,7 @@ describe('RosterListComponent', () => {
   let component: RosterListComponent;
   let fixture: ComponentFixture<RosterListComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
         imports: [
           RosterListComponent
@@ -14,7 +14,7 @@ describe('RosterListComponent', () => {
     });
     fixture = TestBed.createComponent(RosterListComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

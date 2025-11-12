@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, signal } from '@angular/core';
+import { Injectable, OnDestroy, signal, inject } from '@angular/core';
 import { Subscription, Observable, timer } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
@@ -12,16 +12,16 @@ import { ShowService } from './show.service';
   providedIn: 'root'
 })
 export class ScheduleService implements OnDestroy {
+  private httpRequestService = inject(HttpRequestService);
+  private showService = inject(ShowService);
+
   public readonly nowPlaying = signal<Show | null>(null);
   public readonly showProgress = signal<number>(0)
 
   private nowPlayingTimerSubscription: Subscription;
   private nowPlayingSubscription?: Subscription;
 
-  constructor(
-    private httpRequestService: HttpRequestService,
-    private showService: ShowService
-  ) {
+  constructor() {
     this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
       this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => {
         this.nowPlaying.set(nowPlaying);

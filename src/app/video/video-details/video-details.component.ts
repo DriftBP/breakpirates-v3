@@ -1,4 +1,4 @@
-import { Component, input, effect } from '@angular/core';
+import { Component, input, effect, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { Video } from '../models/video';
@@ -16,6 +16,8 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
     ]
 })
 export class VideoDetailsComponent {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   video = input<Video>();
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
@@ -23,9 +25,7 @@ export class VideoDetailsComponent {
   ];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) {
+  constructor() {
     effect(() => {
       const video = this.video();
 

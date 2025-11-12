@@ -1,4 +1,4 @@
-import { Component, Renderer2, Inject, OnDestroy, HostBinding, OnInit, computed, Signal } from '@angular/core';
+import { Component, Renderer2, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT, inject } from '@angular/core';
 import {
   Event,
   Router,
@@ -6,9 +6,9 @@ import {
   NavigationEnd,
   NavigationCancel,
   NavigationError,
-  RouterModule
+  RouterOutlet
 } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
@@ -16,17 +16,22 @@ import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-root',
   templateUrl: './app.component.html',
   imports: [
-    RouterModule,
+    RouterOutlet,
     LoadingSpinnerComponent
   ]
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private renderer2 = inject(Renderer2);
+  private _document = inject<Document>(DOCUMENT);
+  private googleAnalyticsService = inject(GoogleAnalyticsService);
+  private themeService = inject(ThemeService);
+
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }
 
   private eventsSubscription: Subscription;
@@ -34,13 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
 
-  constructor (
-    private router: Router,
-    private renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,
-    private googleAnalyticsService: GoogleAnalyticsService,
-    private themeService: ThemeService
-  ) {
+  constructor () {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
     this.currentTheme = computed(() => {
       return this.themeService.currentTheme();

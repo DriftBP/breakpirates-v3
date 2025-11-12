@@ -1,7 +1,7 @@
-import { Component, Signal, computed, effect } from '@angular/core';
+import { Component, Signal, computed, effect, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { TranslatePipe, TranslateService, Translation } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
 import { homeConfigActive, homeConfigInactive } from './breadcrumb-config';
@@ -13,21 +13,27 @@ import { ActiveDirective } from '../directives/active.directive';
     selector: 'bp-breadcrumb',
     templateUrl: './breadcrumb.component.html',
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe,
       ActiveDirective
     ]
 })
 export class BreadcrumbComponent {
+  private readonly titleService = inject(Title);
+  private readonly translateService = inject(TranslateService);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly meta = inject(Meta);
+
   enabled = AppSettings.ENABLE_BREADCRUMB;
   configItems: Signal<BreadcrumbConfigItem[]>;
 
-  constructor(
-    private readonly titleService: Title,
-    private readonly translateService: TranslateService,
-    private readonly breadcrumbService: BreadcrumbService,
-    private readonly meta: Meta
-  ) {
+  readonly translatedTitle = computed(() => {
+    const activeItem = this.getActiveItem(this.configItems());
+    if (!activeItem) return '';
+    return this.translateService.instant(activeItem.name) + ' : Break Pirates - Live Pirate Style Radio';
+  });
+
+  constructor() {
     this.configItems = computed(() => {
       var config = this.breadcrumbService.breadcrumb();
 
@@ -43,11 +49,11 @@ export class BreadcrumbComponent {
     });
 
     effect(() => {
-      // Set page title to the translated value of the last breadcrumb item
-      const activeItem = this.getActiveItem(this.configItems());
-
-      if (activeItem) {
-        this.setTitle(activeItem);
+      const title = this.translatedTitle();
+      if (title) {
+        this.titleService.setTitle(title);
+        this.meta.updateTag({ property: 'og:title', content: title });
+        this.meta.updateTag({ name: 'twitter:title', content: title });
       }
     });
   }
@@ -58,16 +64,5 @@ export class BreadcrumbComponent {
 
   private isHome(config: BreadcrumbConfigItem[]): boolean {
     return config && config.length === 0;
-  }
-
-  private setTitle(activeItem: BreadcrumbConfigItem): void {
-    this.translateService.get(activeItem.name)
-      .subscribe((t: Translation) => {
-        var title = `${t} : Break Pirates - Live Pirate Style Radio`;
-
-        this.titleService.setTitle(title);
-        this.meta.updateTag({ property: 'og:title', content: title });
-        this.meta.updateTag({ name: 'twitter:title', content: title });
-      });
   }
 }

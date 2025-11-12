@@ -11,7 +11,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
       translate.use(langToSet)
         .subscribe(
           () => {},
-          err => {},
+          () => {},
           () => {
             resolve(null);
           });

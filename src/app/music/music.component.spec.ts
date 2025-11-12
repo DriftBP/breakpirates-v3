@@ -1,18 +1,16 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute, Routes } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import MusicComponent from './music.component';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
 
-const routes: Routes = [];
-
 describe('MusicComponent', () => {
   let component: MusicComponent;
   let fixture: ComponentFixture<MusicComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
         imports: [
           MusicComponent,
@@ -31,7 +29,7 @@ describe('MusicComponent', () => {
     });
     fixture = TestBed.createComponent(MusicComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

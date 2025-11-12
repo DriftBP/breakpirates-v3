@@ -1,24 +1,20 @@
-import { Injectable } from '@angular/core';
-import { TranslateService, Translation } from '@ngx-translate/core';
+import { Injectable, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, Observer } from 'rxjs';
 
 @Injectable()
 export class ConfirmService {
-
-  constructor(
-    private readonly translateService: TranslateService
-  ) {}
+  private readonly translateService = inject(TranslateService);
 
   confirm(translateKey: string): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
-      this.translateService.get(translateKey)
-        .subscribe((t: Translation) => {
-          if (window.confirm(t)) {
-            observer.next(true);
-          } else {
-            observer.next(false);
-          }
-        });
+      const translation = this.translateService.instant(translateKey);
+
+      if (window.confirm(translation)) {
+        observer.next(true);
+      } else {
+        observer.next(false);
+      }
 
       observer.complete();
     });

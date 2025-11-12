@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ThemeService } from '../services/theme/theme.service';
@@ -19,6 +19,9 @@ interface IThemeOption {
     ]
 })
 export class ThemeSelectComponent {
+  private readonly themeService = inject(ThemeService);
+  private readonly googleAnalyticsService = inject(GoogleAnalyticsService);
+
   options: IThemeOption[] = [
     {
       setting: ThemeSetting.Auto,
@@ -33,11 +36,6 @@ export class ThemeSelectComponent {
       key: 'FOOTER.DARK'
     },
   ];
-
-  constructor(
-    private readonly themeService: ThemeService,
-    private readonly googleAnalyticsService: GoogleAnalyticsService
-  ) {}
 
   setThemeSetting(themeSetting: ThemeSetting) {
     this.themeService.setThemeSetting(themeSetting);

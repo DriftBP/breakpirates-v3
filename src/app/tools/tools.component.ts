@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -10,18 +10,16 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     selector: 'bp-tools',
     templateUrl: './tools.component.html',
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe
     ]
 })
 export class ToolsComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigActive
   ];
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

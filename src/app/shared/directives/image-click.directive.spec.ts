@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ImageClickDirective } from './image-click.directive';
@@ -16,7 +16,7 @@ describe('ImageClickDirective', () => {
   let fixture: ComponentFixture<TestImageClickDirectiveComponent>;
   let element: DebugElement;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         ImageClickDirective
@@ -28,7 +28,7 @@ describe('ImageClickDirective', () => {
     fixture = TestBed.createComponent(TestImageClickDirectiveComponent); (2)
     component = fixture.componentInstance;
     element = fixture.debugElement.query(By.css('div'));
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

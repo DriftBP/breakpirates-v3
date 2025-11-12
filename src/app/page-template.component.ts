@@ -1,5 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, AfterViewInit, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { DateTime } from 'luxon';
 
 import { AppSettings } from './app-settings';
@@ -12,28 +12,25 @@ import { AdUnitComponent } from './shared/ad-unit/ad-unit.component';
 import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 import { NowPlayingComponent } from './shared/now-playing/now-playing.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
-import { SupportedBrowsersNoticeComponent } from './shared/supported-browsers-notice/supported-browsers-notice.component';
 
 @Component({
     selector: 'bp-page-template',
     templateUrl: './page-template.component.html',
     styleUrls: ['./page-template.component.scss'],
     imports: [
-      RouterModule,
+      RouterOutlet,
       NavigationComponent,
       NowPlayingComponent,
       DialogComponent,
       BreadcrumbComponent,
       FooterComponent,
       FooterBarComponent,
-      AdUnitComponent,
-      SupportedBrowsersNoticeComponent
+      AdUnitComponent
     ]
 })
 export class PageTemplateComponent implements AfterViewInit {
-  constructor (
-    private dialogService: DialogService
-  ) {}
+  private dialogService = inject(DialogService);
+
 
   ngAfterViewInit() {
     const hideDialogDate = DateTime.utc(2021, 9, 18, 23, 0);

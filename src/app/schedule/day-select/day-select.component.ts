@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { Day } from '../models/day';
 import { ActiveDirective } from '../../shared/directives/active.directive';
@@ -9,7 +9,7 @@ import { ActiveDirective } from '../../shared/directives/active.directive';
     templateUrl: './day-select.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-      RouterModule,
+      RouterLink,
       ActiveDirective
     ]
 })

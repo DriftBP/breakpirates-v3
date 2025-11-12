@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Translation } from '@ngx-translate/core';
 
 @Injectable()
 export class MockTranslateService {
-  get(key: string | string[]): Observable<any> {
-    return of(key);
+  instant(key: string | string[]): Translation {
+    return key;
   }
 }

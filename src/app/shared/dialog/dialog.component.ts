@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Renderer2, effect, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, effect, viewChild, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +14,9 @@ import { DialogService } from '../services/dialog/dialog.service';
   ]
 })
 export class DialogComponent {
+  private readonly dialogService = inject(DialogService);
+  private readonly renderer = inject(Renderer2);
+
   dialogElement = viewChild.required<ElementRef>('dialog');
   dialogContentWrapperElement = viewChild.required<ElementRef>('dialogContentWrapper');
   dialogContentElement = viewChild.required<ElementRef>('dialogContent');
@@ -28,10 +31,7 @@ export class DialogComponent {
     }
   }
 
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly renderer: Renderer2
-  ) {
+  constructor() {
     effect(() => {
       const config = this.dialogService.show();
 

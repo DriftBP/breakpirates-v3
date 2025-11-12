@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,7 +11,7 @@ describe('FeaturedNewsComponent', () => {
   let component: FeaturedNewsComponent;
   let fixture: ComponentFixture<FeaturedNewsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         FeaturedNewsComponent
@@ -25,7 +25,7 @@ describe('FeaturedNewsComponent', () => {
     });
     fixture = TestBed.createComponent(FeaturedNewsComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();
@@ -61,13 +61,13 @@ describe('FeaturedNewsComponent', () => {
 
   it('should set hover state true on mouse over', async () => {
     component.hover = false;
-    component.onMouseOver({});
+    component.onMouseOver();
     expect(component.hover).toBeTruthy();
   });
 
   it('should set hover state false on mouse out', async () => {
     component.hover = true;
-    component.onMouseOut({});
+    component.onMouseOut();
     expect(component.hover).toBeFalsy();
   });
 });

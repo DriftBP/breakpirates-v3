@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -17,12 +18,11 @@ describe('PageTemplateComponent', () => {
     global.gtag = global.gtag || function() {};
   });
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         PageTemplateComponent,
-        TranslateModule.forRoot(),
-        BrowserAnimationsModule
+        TranslateModule.forRoot()
       ],
       providers: [
         {
@@ -32,12 +32,14 @@ describe('PageTemplateComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {}
-        }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations()
       ]
     });
     fixture = TestBed.createComponent(PageTemplateComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

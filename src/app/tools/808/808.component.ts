@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -71,11 +71,12 @@ export default class Drum808Component implements OnInit {
   private audioContext: AudioContext | null = null;
   private audioBuffers: { [key: string]: AudioBuffer | null } = {};
   private loadingBuffers: Promise<void>[] = [];
-  private nextStepTime: number = 0;
   private schedulerId: any = null;
   private audioNextStepTime: number = 0; // in seconds
   private visualAnimationId: any = null;
   private sequencerStartTime: number = 0;
+
+  cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
     // Create AudioContext on user gesture (defer until play)
@@ -209,7 +210,11 @@ export default class Drum808Component implements OnInit {
         this.playSoundAtTime(drum, time);
       }
     });
-    // No setTimeout for currentStep here; handled by requestAnimationFrame
+    setTimeout(() => {
+      this.currentStep = stepIdx;
+
+      this.cdr.detectChanges();
+    }, (time - this.audioContext!.currentTime) * 1000);
   }
 
   async playSoundAtTime(drum: { sound: string }, time: number) {
@@ -221,6 +226,24 @@ export default class Drum808Component implements OnInit {
     source.buffer = buffer;
     source.connect(ctx.destination);
     source.start(time);
+  }
+
+  stopSequencer() {
+    if (this.schedulerId) {
+      clearTimeout(this.schedulerId);
+      this.schedulerId = null;
+    }
+    this.currentStep = 0;
+
+    this.cdr.detectChanges();
+  }
+
+  playCurrentStep() {
+    this.drums.forEach((drum, drumIdx) => {
+      if (this.sequence[drumIdx][this.currentStep]) {
+        this.playSound(drum);
+      }
+    });
   }
 
   restartSequencer() {

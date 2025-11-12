@@ -24,9 +24,6 @@
   "LOADING_SPINNER": {
     "LOADING": "Loading"
   },
-  "SUPPORTED_BROWSERS": {
-    "UNSUPPORTED_BROWSER": "Looks like your browser's a little old and some parts of the site may not work correctly. Consider updating to a modern browser such as Chrome, Firefox, Safari or Edge."
-  },
   "NOT_FOUND": {
     "TITLE": "Oops!",
     "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
@@ -35,7 +32,7 @@
     "ON_AIR": "On air",
     "HOSTED_BY": "Hosted by",
     "LISTEN_NOW_POPUP": "Listen now in a popup player",
-    "PLAYLIST": "Break Pirates playlist",
+    "PLAYLIST": "Playlist",
     "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
   },
   "CHAT_ROOM": {

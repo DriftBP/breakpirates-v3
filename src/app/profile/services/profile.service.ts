@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
@@ -8,10 +8,8 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 
 @Injectable()
 export class ProfileService {
+  private httpRequestService = inject(HttpRequestService);
 
-  constructor(
-    private httpRequestService: HttpRequestService
-  ) { }
 
   profiles(): Observable<Host[]> {
     return this.httpRequestService.get<Host[]>(AppSettings.API_BASE + 'hosts');

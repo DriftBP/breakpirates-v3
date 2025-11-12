@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ShowSummaryComponent } from './show-summary.component';
@@ -13,24 +12,15 @@ import { mockShow } from '../../../test/data/mock.shows';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 import { ScheduleService } from '../services/schedule.service';
 
-@Component({
-  template: ''
-})
-class DummyComponent {
-}
-
 describe('ShowSummaryComponent', () => {
   let component: ShowSummaryComponent;
   let fixture: ComponentFixture<ShowSummaryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         ShowSummaryComponent,
-        TranslateModule.forRoot(),
-        RouterModule.forRoot([
-          { path: 'schedule/:id', component: DummyComponent }
-        ])
+        TranslateModule.forRoot()
       ],
       providers: [
         {
@@ -44,12 +34,16 @@ describe('ShowSummaryComponent', () => {
         {
           provide: ScheduleService,
           useClass: MockScheduleService
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {}
         }
       ]
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

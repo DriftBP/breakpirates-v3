@@ -1,5 +1,5 @@
-import { Component, OnInit, input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit, input, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Genre } from './models/genre';
@@ -11,20 +11,18 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     selector: 'bp-music',
     templateUrl: './music.component.html',
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe
     ]
 })
 export default class MusicComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
   genres = input<Genre[]>();
 
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     musicConfigActive
   ];
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

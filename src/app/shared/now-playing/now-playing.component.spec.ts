@@ -1,5 +1,6 @@
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { NowPlayingComponent } from './now-playing.component';
@@ -17,7 +18,7 @@ describe('NowPlayingComponent', () => {
     global.MediaElementPlayer = global.MediaElementPlayer || function() {};
   });
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         NowPlayingComponent,
@@ -31,12 +32,13 @@ describe('NowPlayingComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {}
-        }
+        },
+        provideHttpClient(withInterceptorsFromDi())
       ]
     });
     fixture = TestBed.createComponent(NowPlayingComponent);
     component = fixture.componentInstance;
-  }));
+  });
 
   it('should create', async () => {
     expect(component).toBeDefined();

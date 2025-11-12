@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
@@ -7,10 +7,8 @@ import { HttpRequestService } from '../../shared/services/http-request/http-requ
 
 @Injectable()
 export class NewsService {
+  private httpRequestService = inject(HttpRequestService);
 
-  constructor(
-    private httpRequestService: HttpRequestService
-  ) { }
 
   news(): Observable<News[]> {
     return this.httpRequestService.get<News[]>(AppSettings.API_BASE + 'news');

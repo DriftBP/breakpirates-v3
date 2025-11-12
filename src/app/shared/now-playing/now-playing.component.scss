@@ -1,8 +1,9 @@
 @use '../../../sass/variables' as variables;
+@use '../../../sass/mixins' as mixins;
 
 .now-playing {
   margin-bottom: 1em;
-  border: 1px solid var(--border);
+  @include mixins.box-border;
   background-color: var(--panel-bg);
 
   &__ {
@@ -36,8 +37,8 @@
           height: 4rem;
           width: 4rem;
           min-width: 4rem;
-          border-radius: 50%;
-          border: 1px solid var(--border);
+          @include mixins.box-border;
+          border-radius: 50% !important;
           background-size: cover;
           background-position: center;
 

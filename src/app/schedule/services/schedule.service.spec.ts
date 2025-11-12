@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { ScheduleService } from './schedule.service';
 import { ShowService } from './show.service';
@@ -12,9 +12,7 @@ describe('ScheduleService', () => {
       providers: [
         ScheduleService,
         { provide: ShowService, useClass: MockShowService },
-      ],
-      imports: [
-        HttpClientModule
+        provideHttpClient(withInterceptorsFromDi())
       ]
     });
   });

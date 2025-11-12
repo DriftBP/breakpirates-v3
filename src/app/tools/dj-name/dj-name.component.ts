@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -21,6 +21,9 @@ import { AppSettings } from '../../app-settings';
     ]
 })
 export default class DjNameComponent implements OnInit {
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly djNameService = inject(DjNameService);
+
   private breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
     {
@@ -34,11 +37,6 @@ export default class DjNameComponent implements OnInit {
   animal: string = '';
   number: number = 0;
   shape: string = '';
-
-  constructor(
-    private readonly breadcrumbService: BreadcrumbService,
-    private readonly djNameService: DjNameService
-  ) { }
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
