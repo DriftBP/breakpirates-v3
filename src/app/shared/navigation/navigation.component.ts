@@ -3,7 +3,8 @@ import { Component, Signal, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
-import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap/collapse';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { AppSettings } from '../../app-settings';
