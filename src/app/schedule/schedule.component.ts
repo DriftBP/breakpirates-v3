@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, input, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterOutlet } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
-import { Subscription } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -36,16 +36,20 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   activeDayId = DateTime.local().weekday;
 
   ngOnInit() {
-    this.childParamsSubscription = this.router.events.pipe(filter(e => e instanceof NavigationEnd),
+    this.childParamsSubscription = this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(() => this.activatedRoute.firstChild?.paramMap)).subscribe(params => {
+      switchMap(() => this.activatedRoute.firstChild?.paramMap ?? of(null))
+    ).subscribe(params => {
+      if (params) {
         this.onParamChange(params);
+      }
     });
   }
 
   onParamChange(params: ParamMap) {
     const dayName = params.get('day');
-    var day: Day;
+    var day: Day | undefined = undefined;
 
     if (dayName) {
       day = this.dayService.dayByName(dayName);
