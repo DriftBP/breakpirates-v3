@@ -3,9 +3,8 @@ import { Component, Signal, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslatePipe } from '@ngx-translate/core';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppSettings } from '../../app-settings';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -25,8 +24,8 @@ interface ExternalLink {
     RouterLink,
     RouterLinkActive,
     FontAwesomeModule,
-    BsDropdownModule,
-    CollapseModule,
+    NgbDropdownModule,
+    NgbCollapseModule,
     TranslatePipe
   ]
 })
