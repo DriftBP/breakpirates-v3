@@ -10,6 +10,6 @@
 
 .main {
   @include mixins.box-padding;
+  @include mixins.box-border;
   background-color: var(--panel-bg);
-  border: 1px solid var(--border);
 }

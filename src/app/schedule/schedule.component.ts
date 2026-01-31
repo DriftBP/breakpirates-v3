@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, input, inject } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterOutlet } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { of, Subscription } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { DaySelectComponent } from './day-select/day-select.component';
     selector: 'bp-schedule',
     templateUrl: './schedule.component.html',
     imports: [
-      RouterModule,
+      RouterOutlet,
       DaySelectComponent,
       TranslatePipe
     ]

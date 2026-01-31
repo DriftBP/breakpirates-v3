@@ -1,6 +1,6 @@
 import { Component, Signal, computed, effect, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from './breadcrumb-config-item';
@@ -13,7 +13,7 @@ import { ActiveDirective } from '../directives/active.directive';
     selector: 'bp-breadcrumb',
     templateUrl: './breadcrumb.component.html',
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe,
       ActiveDirective
     ]

@@ -1,5 +1,5 @@
 import { Component, computed, input, OnInit, Signal, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.scss'],
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe,
       DatePipe,
       LatestNewsComponent

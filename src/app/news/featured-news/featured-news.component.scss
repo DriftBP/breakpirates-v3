@@ -1,10 +1,12 @@
 @use '../../../sass/variables' as variables;
+@use '../../../sass/mixins' as mixins;
 
 .featured-news {
   position: relative;
   height: 10em;
   background-position: center;
   background-size: cover;
+  @include mixins.box-border;
 
   @media (min-width: variables.$breakpoint-sm) {
     height: 12em;
