@@ -23,10 +23,10 @@ jobs:
       - run:
           name: Install global dependencies
           command: npm install -g @angular/cli
-      # Install project dependencies
+      # Install project dependencies (reproducible)
       - run:
           name: Install local dependencies
-          command: npm install
+          command: npm ci
       # Cache local dependencies if they don't exist
       - save_cache:
           key: v21-deps-{{ checksum "package-lock.json" }}
@@ -57,10 +57,10 @@ jobs:
       - run:
           name: Install global dependencies
           command: npm install -g @angular/cli
-      # Install project dependencies
+      # Install project dependencies (reproducible)
       - run:
           name: Install local dependencies
-          command: npm install
+          command: npm ci
       # Cache local dependencies if they don't exist
       - save_cache:
           key: v21-deps-{{ checksum "package-lock.json" }}
@@ -91,10 +91,10 @@ jobs:
       - run:
           name: Install global dependencies
           command: npm install -g @angular/cli
-      # Install project dependencies
+      # Install project dependencies (reproducible)
       - run:
           name: Install local dependencies
-          command: npm install
+          command: npm ci
       # Cache local dependencies if they don't exist
       - save_cache:
           key: v21-deps-{{ checksum "package-lock.json" }}
