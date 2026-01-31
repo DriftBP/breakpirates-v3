@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
 import { ScheduleService } from './schedule.service';
 import { ShowService } from './show.service';
@@ -12,7 +12,10 @@ describe('ScheduleService', () => {
     TestBed.configureTestingModule({
       providers: [
         ScheduleService,
-        { provide: ShowService, useClass: MockShowService },
+        {
+          provide: ShowService,
+          useClass: MockShowService
+        },
         provideHttpClient(),
         provideHttpClientTesting()
       ]
