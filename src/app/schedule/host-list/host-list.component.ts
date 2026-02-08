@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,7 +13,7 @@ import { SortByPipe } from '../../shared/pipes/sort-by.pipe';
     styleUrls: ['./host-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-      RouterModule,
+      RouterLink,
       FontAwesomeModule,
       SortByPipe
     ]

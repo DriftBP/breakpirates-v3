@@ -22,23 +22,24 @@
     </button>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div id="navbar-main" class="navbar-collapse" [collapse]="isCollapsed()">
+    <div id="navbar-main" class="navbar-collapse" [ngbCollapse]="isCollapsed()">
       <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-        <li class="nav-item dropdown" dropdown>
+        <li class="nav-item dropdown" ngbDropdown>
           <button
             id="nav-tune-in"
             class="nav-link dropdown-toggle"
-            dropdownToggle
+            ngbDropdownToggle
             href="#"
             role="button"
             aria-haspopup="true"
             aria-expanded="false">
               {{'NAVIGATION.TUNE_IN' | translate}} <span class="caret"></span>
           </button>
-          <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
+          <ul ngbDropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
             <li role="menuitem">
               <a
                 class="dropdown-item"
+                ngbDropdownItem
                 (click)="onTuneInClick('Default')"
                 href="/stream.pls"
               >{{'NAVIGATION.DEFAULT_PLAYER' | translate}}</a>
@@ -69,6 +70,7 @@
               <li role="menuitem">
                 <a
                   class="dropdown-item"
+                  ngbDropdownItem
                   (click)="onTuneInClick(link.Text)"
                   [href]="link.Url"
                   target="_blank"
@@ -79,6 +81,7 @@
             <li role="menuitem">
               <a
                 class="dropdown-item"
+                ngbDropdownItem
                 (click)="onTuneInClick('Mixcloud archive')"
                 href="{{archiveUrl}}"
                 rel="noopener"

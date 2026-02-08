@@ -1,7 +1,7 @@
 @if (show(); as show) {
   <div itemscope itemtype="https://schema.org/MusicEvent">
-    <meta itemprop="startDate" content="{{dates().startDate.toISO()}}">
-    <meta itemprop="endDate" content="{{dates().endDate.toISO()}}">
+    <meta itemprop="startDate" content="{{dates().startDate.toUTC().toISO()}}">
+    <meta itemprop="endDate" content="{{dates().endDate.toUTC().toISO()}}">
     <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
 
     <div itemprop="location" itemscope itemtype="https://schema.org/MusicVenue">
@@ -19,35 +19,36 @@
         {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
         <bp-now-live [show]="show"></bp-now-live>
       </p>
+
+      @if (show.image) {
+        <img bpImageClick
+            class="show__image"
+            [src]="imagePath + show.image"
+            [alt]="show.title"
+            loading="lazy"
+            itemprop="image">
+      }
+
       @if (show.description) {
         <h2>{{'SCHEDULE.SHOW_DESCRIPTION' | translate}}</h2>
 
-        @if (show.image) {
-          <img bpImageClick
-              class="show__image"
-              [src]="imagePath + show.image"
-              [alt]="show.title"
-              loading="lazy"
-              itemprop="image">
+        <p itemprop="description">{{ show.description }}</p>
+      }
+
+      @if (show.genres.length > 0) {
+          <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
+
+          <bp-genre-list [genres]="show.genres"></bp-genre-list>
         }
 
-        <p itemprop="description">{{ show.description }}</p>
+        @if (show.hosts.length > 0) {
+          <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
+
+          <bp-host-list [hosts]="show.hosts"></bp-host-list>
+        }
 
         <div class="show__clear"></div>
-      }
     </article>
-
-    @if (show.genres.length > 0) {
-      <h2>{{'SCHEDULE.MUSIC_STYLES' | translate}}</h2>
-
-      <bp-genre-list [genres]="show.genres"></bp-genre-list>
-    }
-
-    @if (show.hosts.length > 0) {
-      <h2>{{'SCHEDULE.HOSTED_BY' | translate}}</h2>
-
-      <bp-host-list [hosts]="show.hosts"></bp-host-list>
-    }
   </div>
 } @else {
   <h1>{{'SCHEDULE.NOT_FOUND' | translate}}</h1>

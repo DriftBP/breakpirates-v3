@@ -6,7 +6,7 @@ import {
   NavigationEnd,
   NavigationCancel,
   NavigationError,
-  RouterModule
+  RouterOutlet
 } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -16,13 +16,12 @@ import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
 import { AppSettings } from './app-settings';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'bp-root',
   templateUrl: './app.component.html',
   imports: [
-    RouterModule,
+    RouterOutlet,
     LoadingSpinnerComponent
   ]
 })

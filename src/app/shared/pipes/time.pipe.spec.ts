@@ -13,9 +13,10 @@ describe('TimePipe', () => {
     AppSettings.SHOW_TIMEZONE = 'Europe/London';
     // Patch DateTime.local to always return Europe/London
     originalDateTimeLocal = DateTime.local;
-    DateTime.local = (...args: any[]) => {
-      // Call the original, then set zone
-      return originalDateTimeLocal.apply(DateTime, args).setZone('Europe/London');
+    DateTime.local = function (...args: any[]): DateTime {
+      // Use type assertion to bypass TS error
+      const dt = (originalDateTimeLocal as any).apply(DateTime, args);
+      return dt.setZone('Europe/London');
     };
   });
 

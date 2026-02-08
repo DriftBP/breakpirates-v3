@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -10,7 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
     selector: 'bp-tools',
     templateUrl: './tools.component.html',
     imports: [
-      RouterModule,
+      RouterLink,
       TranslatePipe
     ]
 })
