@@ -226,7 +226,7 @@ export default class Drum808Component implements OnInit {
     const bin = flat.join('');
     // Pad to nearest 8 bits
     const pad = bin + '0'.repeat((8 - (bin.length % 8)) % 8);
-    let bytes = [];
+    const bytes = [];
     for (let i = 0; i < pad.length; i += 8) {
       bytes.push(parseInt(pad.slice(i, i + 8), 2));
     }

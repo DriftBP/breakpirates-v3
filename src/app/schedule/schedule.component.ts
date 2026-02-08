@@ -49,7 +49,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   onParamChange(params: ParamMap) {
     const dayName = params.get('day');
-    var day: Day | undefined = undefined;
+    let day: Day | undefined = undefined;
 
     if (dayName) {
       day = this.dayService.dayByName(dayName);
