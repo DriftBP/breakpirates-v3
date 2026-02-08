@@ -7,7 +7,7 @@ describe('Drum808Component', () => {
   let fixture: ComponentFixture<Drum808Component>;
 
   beforeAll(() => {
-    globalThis.fetch = jest.fn(() => Promise.resolve({
+    globalThis.fetch = vi.fn(() => Promise.resolve({
       arrayBuffer: () => Promise.resolve(new ArrayBuffer(8))
     })) as any;
 

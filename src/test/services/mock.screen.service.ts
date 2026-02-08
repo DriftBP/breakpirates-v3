@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { vi } from "vitest";
+
 @Injectable()
 export class MockScreenService {
   canPreventSleep(): boolean {
@@ -7,6 +9,6 @@ export class MockScreenService {
   }
 
   async endPreventSleep() {
-    return jest.fn();
+    return vi.fn();
   }
 }
