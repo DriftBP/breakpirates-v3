@@ -7,7 +7,6 @@ const activeClass = 'active';
 
 @Component({
   selector: 'spec-true-component',
-  standalone: true,
   template: '<div [bpActive]="true"></div>',
   imports: [ActiveDirective]
 })
@@ -15,7 +14,6 @@ class TrueComponent {}
 
 @Component({
   selector: 'spec-false-component',
-  standalone: true,
   template: '<div [bpActive]="false"></div>',
   imports: [ActiveDirective]
 })
