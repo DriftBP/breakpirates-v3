@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 import { IDialogConfig } from './dialog-config';
 
-declare var HTMLDialogElement: any;
+declare const HTMLDialogElement: any;
 
 @Injectable({
   providedIn: 'root'

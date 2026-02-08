@@ -6,14 +6,16 @@ import { ActiveDirective } from './active.directive';
 const activeClass = 'active';
 
 @Component({
+  selector: 'spec-true-component',
   template: '<div [bpActive]="true"></div>',
-  standalone: false
+  imports: [ActiveDirective]
 })
 class TrueComponent {}
 
 @Component({
+  selector: 'spec-false-component',
   template: '<div [bpActive]="false"></div>',
-  standalone: false
+  imports: [ActiveDirective]
 })
 class FalseComponent {}
 
@@ -23,9 +25,7 @@ describe('ActiveDirective', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        ActiveDirective
-      ],
-      declarations: [
+        ActiveDirective,
         TrueComponent,
         FalseComponent
       ]

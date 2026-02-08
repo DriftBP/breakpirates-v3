@@ -28,7 +28,7 @@ describe('HostDetailsComponent', () => {
   let fixture: ComponentFixture<HostDetailsComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         HostDetailsComponent,
         TranslateModule.forRoot()
@@ -59,7 +59,8 @@ describe('HostDetailsComponent', () => {
           useClass: MockScheduleService
         }
       ]
-    });
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HostDetailsComponent);
     component = fixture.componentInstance;
   });

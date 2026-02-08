@@ -2,7 +2,7 @@ import { Component, viewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 
-declare var MediaElementPlayer: any;
+declare const MediaElementPlayer: any;
 
 @Component({
     selector: 'bp-radio-player',
