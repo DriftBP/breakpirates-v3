@@ -1,5 +1,6 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { VideoService } from './video.service';
 
@@ -10,7 +11,8 @@ describe('VideoService', () => {
     TestBed.configureTestingModule({
       providers: [
         VideoService,
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(),
+        provideHttpClientTesting()
       ]
     });
 

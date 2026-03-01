@@ -1,6 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApplicationConfig, Injector, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -28,7 +27,6 @@ export const appConfig: ApplicationConfig = {
       }),
       withComponentInputBinding()
     ),
-    provideAnimations(),
     provideTranslateService(
       {
         fallbackLang: 'en',

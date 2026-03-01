@@ -1,4 +1,3 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { BreadcrumbService } from './breadcrumb.service';
@@ -9,8 +8,7 @@ describe('BreadcrumbService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        BreadcrumbService,
-        provideHttpClient(withInterceptorsFromDi())
+        BreadcrumbService
       ]
     });
 
