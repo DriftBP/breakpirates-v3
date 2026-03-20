@@ -8,7 +8,7 @@ import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 
-declare const global: any;
+declare const global: unknown;
 
 describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;

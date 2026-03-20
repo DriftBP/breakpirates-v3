@@ -11,13 +11,13 @@ import { SortOrder } from './sort-order';
 })
 export class SortByPipe implements PipeTransform {
 
-  public transform(value: any[], order = SortOrder.Ascending, column: string = ''): any[] {
+  public transform<T>(value: T[], order = SortOrder.Ascending, column: string = ''): T[] {
     return value.sort(this.compareValues(column, order));
   }
 
   private compareValues(key: string, order = SortOrder.Ascending) {
-    return function innerSort(a: any, b: any) {
-      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+    return function innerSort(a: Record<string, unknown>, b: Record<string, unknown>) {
+      if (!Object.prototype.hasOwnProperty.call(a, key) || !Object.prototype.hasOwnProperty.call(b, key)) {
         // property doesn't exist on either object
         return 0;
       }

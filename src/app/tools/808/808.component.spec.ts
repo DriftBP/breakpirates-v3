@@ -9,11 +9,11 @@ describe('Drum808Component', () => {
   beforeAll(() => {
     globalThis.fetch = vi.fn(() => Promise.resolve({
       arrayBuffer: () => Promise.resolve(new ArrayBuffer(8))
-    })) as any;
+    })) as unknown;
 
     class MockAudioBuffer {}
     class MockAudioBufferSourceNode {
-      buffer: any;
+      buffer: unknown;
       connect() {}
       start() {}
     }
@@ -25,8 +25,8 @@ describe('Drum808Component', () => {
       resume() { return Promise.resolve(); }
       get destination() { return {}; }
     }
-    (globalThis as any).AudioContext = MockAudioContext;
-    (globalThis as any).webkitAudioContext = MockAudioContext;
+    (globalThis as unknown).AudioContext = MockAudioContext;
+    (globalThis as unknown).webkitAudioContext = MockAudioContext;
   });
 
   beforeEach(async () => {

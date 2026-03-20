@@ -71,7 +71,7 @@ export default class Drum808Component implements OnInit {
   private audioContext: AudioContext | null = null;
   private audioBuffers: { [key: string]: AudioBuffer | null } = {};
   private loadingBuffers: Promise<void>[] = [];
-  private schedulerId: any = null;
+  private schedulerId: number | null = null;
   private audioNextStepTime: number = 0; // in seconds
 
   cdr = inject(ChangeDetectorRef);
@@ -85,8 +85,8 @@ export default class Drum808Component implements OnInit {
       const response = await fetch(`/assets/808/${drum.sound}.wav`);
       const arrayBuffer = await response.arrayBuffer();
       // AudioContext may not be available yet, so decode later
-      this.audioBuffers[drum.sound] = await (window.AudioContext || (window as any).webkitAudioContext).prototype.decodeAudioData.call(
-        (this.audioContext || new (window.AudioContext || (window as any).webkitAudioContext)()),
+      this.audioBuffers[drum.sound] = await (window.AudioContext || (window as unknown).webkitAudioContext).prototype.decodeAudioData.call(
+        (this.audioContext || new (window.AudioContext || (window as unknown).webkitAudioContext)()),
         arrayBuffer.slice(0)
       );
     });
@@ -110,7 +110,7 @@ export default class Drum808Component implements OnInit {
 
   async ensureAudioContext() {
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.audioContext = new (window.AudioContext || (window as unknown).webkitAudioContext)();
       // Resume context if needed
       if (this.audioContext.state === 'suspended') {
         await this.audioContext.resume();
@@ -148,7 +148,7 @@ export default class Drum808Component implements OnInit {
     this.stopSequencer();
     this.currentStep = 0;
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.audioContext = new (window.AudioContext || (window as unknown).webkitAudioContext)();
     }
     this.audioNextStepTime = this.audioContext.currentTime + 0.05;
     this.scheduleSteps(0); // pass starting step
