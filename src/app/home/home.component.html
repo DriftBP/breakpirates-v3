@@ -8,6 +8,13 @@
 
 <p><a routerLink="/profiles">{{'HOME.FIND_OUT_MORE' | translate}}</a></p>
 
+@if (latestNews) {
+  <div class="latest-news">
+    <h2>{{'NEWS.LATEST_NEWS' | translate}}</h2>
+    <bp-featured-news [article]="latestNews"></bp-featured-news>
+  </div>
+}
+
 @if (scheduleService.shows(activeDayId) | async; as todaysSchedule) {
   <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
 
