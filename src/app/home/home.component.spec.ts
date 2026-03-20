@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { HomeComponent } from './home.component';
 import { ScheduleService } from '../schedule/services/schedule.service';
 import { MockScheduleService } from '../../test/services/mock.schedule.service';
-import { ActivatedRoute } from '@angular/router';
+import { NewsService } from '../news/services/news.service';
+import { MockNewsService } from '../../test/services/mock.news.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -20,6 +22,10 @@ describe('HomeComponent', () => {
         {
           provide: ScheduleService,
           useClass: MockScheduleService
+        },
+        {
+          provide: NewsService,
+          useClass: MockNewsService
         },
         {
           provide: ActivatedRoute,
