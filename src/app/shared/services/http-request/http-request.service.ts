@@ -22,7 +22,7 @@ export class HttpRequestService {
       const cachedResponse = this.cache.get(url);
 
       if (cachedResponse) {
-        return of(cachedResponse);
+        return of(cachedResponse as T);
       }
     }
 

@@ -11,12 +11,14 @@ import { SortOrder } from './sort-order';
 })
 export class SortByPipe implements PipeTransform {
 
-  public transform<T>(value: T[], order = SortOrder.Ascending, column: string = ''): T[] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public transform(value: any[], order = SortOrder.Ascending, column: string = ''): any[] {
     return value.sort(this.compareValues(column, order));
   }
 
   private compareValues(key: string, order = SortOrder.Ascending) {
-    return function innerSort(a: Record<string, unknown>, b: Record<string, unknown>) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return function innerSort(a: any, b: any) {
       if (!Object.prototype.hasOwnProperty.call(a, key) || !Object.prototype.hasOwnProperty.call(b, key)) {
         // property doesn't exist on either object
         return 0;
@@ -28,9 +30,11 @@ export class SortByPipe implements PipeTransform {
         ? b[key].toUpperCase() : b[key];
 
       let comparison = 0;
-      if (varA > varB) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((varA as any) > (varB as any)) {
         comparison = 1;
-      } else if (varA < varB) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } else if ((varA as any) < (varB as any)) {
         comparison = -1;
       }
       return (
