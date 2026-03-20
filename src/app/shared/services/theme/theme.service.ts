@@ -22,7 +22,7 @@ export class ThemeService {
       const key = this.getEnumKeyByEnumValue(Theme, themeSettingName);
 
       if (key) {
-        const savedThemeSetting = (ThemeSetting as any)[key];
+        const savedThemeSetting = (ThemeSetting as Record<string, ThemeSetting>)[key];
 
         if (savedThemeSetting) {
           themeSetting = savedThemeSetting;
@@ -36,7 +36,7 @@ export class ThemeService {
     localStorage.removeItem('theme');
   }
 
-  private getEnumKeyByEnumValue(myEnum: any, enumValue: any) {
+  private getEnumKeyByEnumValue(myEnum: Record<string, unknown>, enumValue: unknown) {
     const keys = Object.keys(myEnum).filter(x => myEnum[x] === enumValue);
     return keys.length > 0 ? keys[0] : null;
   }

@@ -6,7 +6,7 @@ import { ImageClickDirective } from './image-click.directive';
 
 @Component({
   template: `<div type="text" bpImageClick></div>`,
-  standalone: false,
+  imports: [ImageClickDirective]
 })
 class TestImageClickDirectiveComponent {
 }
@@ -19,9 +19,7 @@ describe('ImageClickDirective', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        ImageClickDirective
-      ],
-      declarations: [
+        ImageClickDirective,
         TestImageClickDirectiveComponent
       ]
     });

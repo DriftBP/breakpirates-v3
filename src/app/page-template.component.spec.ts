@@ -8,7 +8,7 @@ import { PageTemplateComponent } from './page-template.component';
 import { ScheduleService } from './schedule/services/schedule.service';
 import { MockScheduleService } from '../test/services/mock.schedule.service';
 
-declare var global: any;
+declare const global: unknown;
 
 describe('PageTemplateComponent', () => {
   let component: PageTemplateComponent;
