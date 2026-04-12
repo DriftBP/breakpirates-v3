@@ -8,7 +8,8 @@ import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 
-declare const global: unknown;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const global: any;
 
 describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;

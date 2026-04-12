@@ -2,14 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import Drum808Component from './808.component';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 describe('Drum808Component', () => {
   let component: Drum808Component;
   let fixture: ComponentFixture<Drum808Component>;
 
   beforeAll(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     globalThis.fetch = vi.fn(() => Promise.resolve({
       arrayBuffer: () => Promise.resolve(new ArrayBuffer(8))
-    })) as unknown;
+    })) as any;
 
     class MockAudioBuffer {}
     class MockAudioBufferSourceNode {
@@ -25,8 +28,10 @@ describe('Drum808Component', () => {
       resume() { return Promise.resolve(); }
       get destination() { return {}; }
     }
-    (globalThis as unknown).AudioContext = MockAudioContext;
-    (globalThis as unknown).webkitAudioContext = MockAudioContext;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).AudioContext = MockAudioContext;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).webkitAudioContext = MockAudioContext;
   });
 
   beforeEach(async () => {
