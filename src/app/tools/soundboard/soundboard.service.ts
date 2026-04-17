@@ -7,11 +7,12 @@ import { SampleConfig } from './sample-config';
 export class SoundboardService {
   private sounds: { [id: number]: HTMLAudioElement } = {};
 
-  public readonly isLoaded = signal<boolean>(false)
+  private _isLoaded = signal<boolean>(false);
+  public readonly isLoaded = this._isLoaded.asReadonly();
 
   initialise(baseDir: string, configs: SampleConfig[]) {
     let samplesLoaded = 0;
-    this.isLoaded.set(false);
+    this._isLoaded.set(false);
 
     configs.forEach(c => {
       let audio = new Audio(`${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${c.file}`);
@@ -23,7 +24,7 @@ export class SoundboardService {
         samplesLoaded++;
 
         if (samplesLoaded == configs.length) {
-          this.isLoaded.set(true);
+          this._isLoaded.set(true);
         }
       }, false);
 
