@@ -1,5 +1,4 @@
 import { Injectable, Signal, signal } from '@angular/core';
-import { Observable, of } from 'rxjs';
 
 import { Show } from '../../app/schedule/models/show';
 import { mockShow } from '../data/mock.shows';
@@ -14,9 +13,5 @@ export class MockScheduleService {
 
   get showProgress() {
     return signal(50);
-  }
-
-  shows(): Observable<Show[]> {
-    return of([ mockShow ]);
   }
 }
