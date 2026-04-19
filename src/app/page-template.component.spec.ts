@@ -8,7 +8,8 @@ import { PageTemplateComponent } from './page-template.component';
 import { ScheduleService } from './schedule/services/schedule.service';
 import { MockScheduleService } from '../test/services/mock.schedule.service';
 
-declare var global: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const global: any;
 
 describe('PageTemplateComponent', () => {
   let component: PageTemplateComponent;

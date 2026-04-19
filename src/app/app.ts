@@ -19,13 +19,13 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 
 @Component({
   selector: 'bp-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.html',
   imports: [
     RouterOutlet,
     LoadingSpinnerComponent
   ]
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class App implements OnInit, OnDestroy {
   private router = inject(Router);
   private renderer2 = inject(Renderer2);
   private _document = inject<Document>(DOCUMENT);

@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LOCATION_INITIALIZED } from '@angular/common';
 
 export function appInitializerFactory(translate: TranslateService, injector: Injector) {
-  return () => new Promise<any>((resolve: any) => {
+  return () => new Promise<void>((resolve) => {
     const locationInitialized = injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
     locationInitialized.then(() => {
       const langToSet = 'en';
@@ -13,7 +13,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
           () => {},
           () => {},
           () => {
-            resolve(null);
+            resolve();
           });
     });
   });

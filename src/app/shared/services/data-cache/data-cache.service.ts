@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-interface ICache<T = any> {
+interface ICache<T = unknown> {
   get(key: string): T | undefined;
   put(key: string, value: T): void;
 }
@@ -8,7 +8,7 @@ interface ICache<T = any> {
 @Injectable({
   providedIn: 'root'
 })
-export class DataCacheService<T = any> implements ICache<T> {
+export class DataCacheService<T = unknown> implements ICache<T> {
   private responseCache = new Map<string, T>();
 
   get(key: string): T | undefined {

@@ -2,7 +2,7 @@ import { Component, viewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 
-declare var MediaElementPlayer: any;
+declare const MediaElementPlayer: unknown;
 
 @Component({
     selector: 'bp-radio-player',
@@ -13,14 +13,14 @@ export class RadioPlayerComponent implements AfterViewInit {
   mediaPlayerElement = viewChild.required<ElementRef>('mediaPlayer');
 
   tuneInUrl = `${AppSettings.STREAM_URL_PRIMARY};`;
-  public mediaPlayer: any;
+  public mediaPlayer: unknown;
 
   ngAfterViewInit() {
     this.loadMediaPlayer();
   }
 
   loadMediaPlayer() {
-    this.mediaPlayer = new MediaElementPlayer(this.mediaPlayerElement().nativeElement, {
+    this.mediaPlayer = new (MediaElementPlayer as new (element: HTMLElement, options: unknown) => unknown)(this.mediaPlayerElement().nativeElement, {
       iconSprite: 'assets/mejs-controls.svg',
       alwaysShowControls: true,
       stretching: 'responsive',
