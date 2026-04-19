@@ -10,12 +10,13 @@ export class NavigationService implements OnDestroy {
 
   private eventsSubscription: Subscription;
 
-  public readonly isCollapsed = signal<boolean>(true);
+  private _isCollapsed = signal<boolean>(true);
+  public readonly isCollapsed = this._isCollapsed.asReadonly();
 
   constructor() {
     this.eventsSubscription = this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.isCollapsed.set(true);
+        this._isCollapsed.set(true);
       }
     });
   }
@@ -27,6 +28,6 @@ export class NavigationService implements OnDestroy {
   }
 
   setCollapsed(isCollapsed: boolean): void {
-    this.isCollapsed.set(isCollapsed);
+    this._isCollapsed.set(isCollapsed);
   }
 }

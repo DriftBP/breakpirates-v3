@@ -8,7 +8,8 @@ declare const HTMLDialogElement: unknown;
   providedIn: 'root'
 })
 export class DialogService {
-  public readonly show = signal<IDialogConfig | null>(null);
+  private _show = signal<IDialogConfig | null>(null);
+  public readonly show = this._show.asReadonly();
 
   constructor() { }
 
@@ -17,6 +18,6 @@ export class DialogService {
   }
 
   showDialog(config: IDialogConfig): void {
-    this.show.set(config);
+    this._show.set(config);
   }
 }
