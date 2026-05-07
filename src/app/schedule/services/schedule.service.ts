@@ -15,8 +15,11 @@ export class ScheduleService implements OnDestroy {
   private httpRequestService = inject(HttpRequestService);
   private showService = inject(ShowService);
 
-  public readonly nowPlaying = signal<Show | null>(null);
-  public readonly showProgress = signal<number>(0)
+  private _nowPlaying = signal<Show | null>(null);
+  public readonly nowPlaying = this._nowPlaying.asReadonly();
+
+  private _showProgress = signal<number>(0)
+  public readonly showProgress = this._showProgress.asReadonly();
 
   private nowPlayingTimerSubscription: Subscription;
   private nowPlayingSubscription?: Subscription;
@@ -24,8 +27,8 @@ export class ScheduleService implements OnDestroy {
   constructor() {
     this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
       this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => {
-        this.nowPlaying.set(nowPlaying);
-        this.showProgress.set(this.showService.getShowProgress(nowPlaying));
+        this._nowPlaying.set(nowPlaying);
+        this._showProgress.set(this.showService.getShowProgress(nowPlaying));
       });
     });
   }

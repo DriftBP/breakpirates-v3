@@ -11,7 +11,8 @@ export class ThemeService {
   private defaultThemeSetting = ThemeSetting.Auto;
   private localStorageKey = 'bp_theme_setting';
 
-  public readonly currentTheme = signal<Theme>(this.defaultTheme);
+  private _currentTheme = signal<Theme>(this.defaultTheme);
+  public readonly currentTheme = this._currentTheme.asReadonly();
 
   constructor() {
     const themeSettingName = localStorage.getItem(this.localStorageKey);
@@ -46,7 +47,7 @@ export class ThemeService {
   }
 
   private setTheme(theme: Theme): void {
-    this.currentTheme.set(theme);
+    this._currentTheme.set(theme);
   }
 
   private getThemeForSetting(themeSetting: ThemeSetting): Theme {
