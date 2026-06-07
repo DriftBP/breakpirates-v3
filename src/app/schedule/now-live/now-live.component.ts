@@ -39,4 +39,11 @@ export class NowLiveComponent {
   scrollToPlayer(): void {
     this.scrollService.scrollToTop();
   }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.scrollToPlayer();
+    }
+  }
 }

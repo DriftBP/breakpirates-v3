@@ -5,7 +5,7 @@ import { DataCacheService } from './data-cache.service';
 type TestType = {
   testString: string;
   testBoolean: boolean;
-  testArray: any[];
+  testArray: unknown[];
 };
 
 describe('DataCacheService', () => {

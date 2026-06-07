@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationStart, NavigationEnd, Router } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { App } from './app';
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { MockGoogleAnalyticsService } from '../test/services/mock.google-analytics.service';
 import { MockRouterService } from '../test/services/mock.router.service';
 
 const mockGoogleAnalyticsService = MockGoogleAnalyticsService;
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('App', () => {
+  let component: App;
+  let fixture: ComponentFixture<App>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        AppComponent
+        App
       ],
       providers: [
         {
@@ -28,12 +28,12 @@ describe('AppComponent', () => {
         }
       ]
     });
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(App);
     component = fixture.componentInstance;
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should create', async () => {

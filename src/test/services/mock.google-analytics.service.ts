@@ -1,4 +1,6 @@
+import { vi } from "vitest";
+
 export const MockGoogleAnalyticsService = {
-  trackPageHit: jest.fn(),
-  trackEvent: jest.fn()
+  trackPageHit: vi.fn(),
+  trackEvent: vi.fn()
 }
