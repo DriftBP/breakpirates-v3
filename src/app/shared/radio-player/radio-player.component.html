@@ -1,3 +1,17 @@
-<audio #mediaPlayer class="radio-player__audio" preload="none">
-  <source [src]="tuneInUrl" type="audio/mpeg">
-</audio>
+<div class="radio-player">
+  <button (click)="togglePlay()">
+    @if (playing) {
+      <fa-icon [icon]="faPause"></fa-icon>
+    } @else {
+      <fa-icon [icon]="faPlay"></fa-icon>
+    }
+  </button>
+  <button (click)="toggleMute()">
+    @if (muted) {
+      <fa-icon [icon]="faVolumeMute"></fa-icon>
+    } @else {
+      <fa-icon [icon]="faVolumeUp"></fa-icon>
+    }
+  </button>
+  <input [disabled]="muted" name="volume" type="range" min="0" max="100" [(ngModel)]="volume" (ngModelChange)="onVolumeSet()">
+</div>
