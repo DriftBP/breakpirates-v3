@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, EventEmitter, Output, input, ChangeDetectionStrategy } from '@angular/core';
 import { faRetweet } from '@fortawesome/free-solid-svg-icons';
 
 import { SampleConfig } from '../sample-config';
@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     selector: 'bp-sample-button',
     templateUrl: './sample-button.component.html',
     styleUrls: ['./sample-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       FontAwesomeModule
     ]

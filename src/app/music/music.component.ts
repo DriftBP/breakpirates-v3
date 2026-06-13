@@ -1,4 +1,4 @@
-import { Component, OnInit, input, inject } from '@angular/core';
+import { Component, OnInit, input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -10,6 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 @Component({
     selector: 'bp-music',
     templateUrl: './music.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterLink,
       TranslatePipe

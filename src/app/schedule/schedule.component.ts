@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, input, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterOutlet } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { of, Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import { DaySelectComponent } from './day-select/day-select.component';
 @Component({
     selector: 'bp-schedule',
     templateUrl: './schedule.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterOutlet,
       DaySelectComponent,

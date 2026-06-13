@@ -1,4 +1,4 @@
-import { Component, ElementRef, viewChild, inject } from '@angular/core';
+import { Component, ElementRef, viewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -6,6 +6,7 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
 @Component({
     selector: 'bp-donate',
     templateUrl: './donate.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       TranslatePipe
     ]

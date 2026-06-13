@@ -1,4 +1,4 @@
-import { Component, input, effect, inject } from '@angular/core';
+import { Component, input, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { Host } from '../host';
 import { ProfileService } from '../services/profile.service';
@@ -20,6 +20,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     selector: 'bp-host-details',
     templateUrl: './host-details.component.html',
     styleUrls: ['./host-details.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       AsyncPipe,
       SafePipe,

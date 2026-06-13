@@ -1,4 +1,4 @@
-import { Component, input, effect, inject } from '@angular/core';
+import { Component, input, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { Video } from '../models/video';
@@ -10,6 +10,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
 @Component({
     selector: 'bp-video-details',
     templateUrl: './video-details.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         TranslateModule,
         SafePipe

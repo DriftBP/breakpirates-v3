@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { NgOptimizedImage } from '@angular/common';
     selector: 'bp-standalone-player',
     templateUrl: './standalone-player.component.html',
     styleUrls: ['./standalone-player.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       NgOptimizedImage,
       FontAwesomeModule,

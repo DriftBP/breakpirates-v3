@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, Signal, inject } from '@angular/core';
+import { Component, computed, effect, input, Signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DateTime } from 'luxon';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -20,6 +20,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     selector: 'bp-show',
     templateUrl: './show.component.html',
     styleUrls: ['./show.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterLink,
       NowLiveComponent,

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Show } from '../models/show';
 import { ShowSummaryComponent } from '../show-summary/show-summary.component';
@@ -8,6 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     selector: 'bp-day-schedule',
     templateUrl: './day-schedule.component.html',
     styleUrls: ['./day-schedule.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       ShowSummaryComponent,
       TranslatePipe

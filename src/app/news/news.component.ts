@@ -1,4 +1,4 @@
-import { Component, computed, input, OnInit, Signal, inject } from '@angular/core';
+import { Component, computed, input, OnInit, Signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
     selector: 'bp-news',
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterLink,
       TranslatePipe,

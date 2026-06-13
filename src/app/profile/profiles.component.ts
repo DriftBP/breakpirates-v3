@@ -1,4 +1,4 @@
-import { Component, OnInit, input, inject } from '@angular/core';
+import { Component, OnInit, input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,7 @@ import { SortByPipe } from '../shared/pipes/sort-by.pipe';
     selector: 'bp-profile',
     templateUrl: './profiles.component.html',
     styleUrls: ['./profiles.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         FontAwesomeModule,
         TranslatePipe,

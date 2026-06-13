@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
@@ -11,6 +11,7 @@ import { DataPoint } from './data-point';
 @Component({
     selector: 'bp-bpm',
     templateUrl: './bpm.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         TranslateModule
     ]

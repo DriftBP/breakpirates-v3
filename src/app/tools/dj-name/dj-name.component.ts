@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,6 +16,7 @@ import { AppSettings } from '../../app-settings';
         TranslateModule,
         NgOptimizedImage
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [
         DjNameService
     ]

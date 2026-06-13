@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -16,6 +16,7 @@ import { FeaturedNewsComponent } from '../news/featured-news/featured-news.compo
   selector: 'bp-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterLink,
     ShowSummaryComponent,

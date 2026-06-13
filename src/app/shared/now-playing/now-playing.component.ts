@@ -1,4 +1,4 @@
-import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
+import { Component, computed, Signal, effect, signal, inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +20,7 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
     selector: 'bp-now-playing',
     templateUrl: './now-playing.component.html',
     styleUrls: ['./now-playing.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterLink,
       FontAwesomeModule,

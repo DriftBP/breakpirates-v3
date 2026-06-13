@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ThemeSelectComponent } from '../theme-select/theme-select.component';
@@ -7,6 +7,7 @@ import { ThemeSelectComponent } from '../theme-select/theme-select.component';
     selector: 'bp-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       ThemeSelectComponent,
       TranslatePipe

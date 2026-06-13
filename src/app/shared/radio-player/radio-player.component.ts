@@ -1,4 +1,4 @@
-import { Component, viewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, viewChild, ElementRef, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { AppSettings } from '../../app-settings';
 
@@ -7,6 +7,7 @@ declare const MediaElementPlayer: unknown;
 @Component({
     selector: 'bp-radio-player',
     templateUrl: './radio-player.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./radio-player.component.scss']
 })
 export class RadioPlayerComponent implements AfterViewInit {

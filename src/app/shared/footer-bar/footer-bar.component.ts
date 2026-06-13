@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -12,6 +12,7 @@ import { GoogleAnalyticsService } from '../services/google-analytics/google-anal
     selector: 'bp-footer-bar',
     templateUrl: './footer-bar.component.html',
     styleUrls: ['./footer-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       FontAwesomeModule,
       NgOptimizedImage,

@@ -1,4 +1,4 @@
-import { Component, effect, input, inject } from '@angular/core';
+import { Component, effect, input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { News } from '../models/news';
@@ -15,6 +15,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
     selector: 'bp-news-article',
     templateUrl: './news-article.component.html',
     styleUrls: ['./news-article.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       TranslatePipe,
       IsoDatePipe,
