@@ -40,6 +40,11 @@
     "DESCRIPTION": "Get involved! Your place to meet other listeners, get shouts and tune IDs.",
     "CTA": "Join the chat"
   },
+  "DOWNLOAD_APP": {
+    "OFFICIAL_APP": "Official app",
+    "APP_DESCRIPTION": "Get the official Break Pirates app for your computer, phone or tablet. Includes stream player, chat room, show recording and more!",
+    "CTA": "Download the app"
+  },
   "DONATE": {
     "TITLE": "Please donate",
     "YOUR_DONATIONS_HELP": "Your donations help to pay our site and server bills!"

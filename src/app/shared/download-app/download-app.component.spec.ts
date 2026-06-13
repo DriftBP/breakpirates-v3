@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DonateComponent } from './donate.component';
+import { DownloadAppComponent } from './download-app.component';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
 import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '../../../test/services/mock.google-analytics.service';
 
 let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
 
-describe('DonateComponent', () => {
-  let component: DonateComponent;
-  let fixture: ComponentFixture<DonateComponent>;
+describe('DownloadAppComponent', () => {
+  let component: DownloadAppComponent;
+  let fixture: ComponentFixture<DownloadAppComponent>;
 
   beforeEach(async () => {
     mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
         imports: [
-          DonateComponent,
+          DownloadAppComponent,
           TranslateModule.forRoot(),
         ],
         providers: [
@@ -25,7 +25,7 @@ describe('DonateComponent', () => {
           }
         ]
     });
-    fixture = TestBed.createComponent(DonateComponent);
+    fixture = TestBed.createComponent(DownloadAppComponent);
     component = fixture.componentInstance;
   });
 
@@ -33,12 +33,12 @@ describe('DonateComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('should track form submission', async () => {
+  it('should track download link clicks', async () => {
     fixture.detectChanges();
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(0);
 
-    component.donateFormElement().nativeElement.dispatchEvent(new Event('submit'));
+    component.donateFormElement().nativeElement.dispatchEvent(new Event('click'));
 
     expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(1);
   });
