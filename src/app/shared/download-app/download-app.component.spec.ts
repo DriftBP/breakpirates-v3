@@ -3,15 +3,16 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { DownloadAppComponent } from './download-app.component';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
-import { MockGoogleAnalyticsService } from '../../../test/services/mock.google-analytics.service';
+import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '../../../test/services/mock.google-analytics.service';
 
-const mockGoogleAnalyticsService = MockGoogleAnalyticsService;
+let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
 
 describe('DownloadAppComponent', () => {
   let component: DownloadAppComponent;
   let fixture: ComponentFixture<DownloadAppComponent>;
 
   beforeEach(async () => {
+    mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
         imports: [
           DownloadAppComponent,
