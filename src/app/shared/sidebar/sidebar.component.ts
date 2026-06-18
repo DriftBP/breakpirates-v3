@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DonateComponent } from '../donate/donate.component';
 import { ContentBoxComponent } from '../content-box/content-box.component';
 import { ChatRoomPromoComponent } from '../chat-room-promo/chat-room-promo.component';
+import { DownloadAppComponent } from '../download-app/download-app.component';
 
 @Component({
     selector: 'bp-sidebar',
@@ -11,6 +12,7 @@ import { ChatRoomPromoComponent } from '../chat-room-promo/chat-room-promo.compo
     styleUrls: ['./sidebar.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+      DownloadAppComponent,
       DonateComponent,
       ContentBoxComponent,
       ChatRoomPromoComponent,

@@ -3,16 +3,17 @@ import { NavigationStart, NavigationEnd, Router } from '@angular/router';
 
 import { App } from './app';
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
-import { MockGoogleAnalyticsService } from '../test/services/mock.google-analytics.service';
+import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '../test/services/mock.google-analytics.service';
 import { MockRouterService } from '../test/services/mock.router.service';
 
-const mockGoogleAnalyticsService = MockGoogleAnalyticsService;
+let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
 
 describe('App', () => {
   let component: App;
   let fixture: ComponentFixture<App>;
 
   beforeEach(async () => {
+    mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
       imports: [
         App
