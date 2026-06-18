@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ContentObserver } from '@angular/cdk/observers';
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild, inject } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
     selector: 'bp-read-more',
     templateUrl: './read-more.component.html',
     styleUrls: ['./read-more.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       CommonModule,
       TranslateModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -19,6 +19,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
       TranslatePipe,
       SafePipe
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [
       SoundboardService
     ]

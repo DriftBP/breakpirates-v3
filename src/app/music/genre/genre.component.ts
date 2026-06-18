@@ -1,4 +1,4 @@
-import { Component, effect, input, inject } from '@angular/core';
+import { Component, effect, input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Genre } from '../models/genre';
@@ -11,6 +11,7 @@ import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.c
 @Component({
     selector: 'bp-genre',
     templateUrl: './genre.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       ShowSummaryComponent,
       TranslatePipe

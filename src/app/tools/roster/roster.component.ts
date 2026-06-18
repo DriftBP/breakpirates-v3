@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -9,6 +9,7 @@ import { RosterListComponent } from "./roster-list.component";
 @Component({
   selector: 'bp-roster',
   templateUrl: './roster.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TranslateModule,
     RosterListComponent

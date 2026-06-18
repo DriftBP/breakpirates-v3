@@ -1,4 +1,4 @@
-import { Component, Renderer2, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT, inject } from '@angular/core';
+import { Component, Renderer2, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   Event,
   Router,
@@ -20,6 +20,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 @Component({
   selector: 'bp-root',
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterOutlet,
     LoadingSpinnerComponent

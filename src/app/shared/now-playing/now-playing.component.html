@@ -26,8 +26,8 @@
 
         @if (isLiveShow()) {
           @if (nowPlaying(); as nowPlaying) {
-            <div class="now-playing__show-info-name" [title]="nowPlaying?.title">
-              <a class="now-playing__show-link" [routerLink]="['/schedule/shows',nowPlaying?.id]">{{nowPlaying?.title}}</a>
+            <div class="now-playing__show-info-name" [title]="$safeNavigationMigration(nowPlaying?.title)">
+              <a class="now-playing__show-link" [routerLink]="['/schedule/shows',$safeNavigationMigration(nowPlaying?.id)]">{{nowPlaying?.title}}</a>
             </div>
 
             @if (nowPlaying && nowPlaying.hosts.length > 0) {

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, inject } from '@angular/core';
+import { Component, AfterViewInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DateTime } from 'luxon';
 
@@ -17,6 +17,7 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
     selector: 'bp-page-template',
     templateUrl: './page-template.component.html',
     styleUrls: ['./page-template.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterOutlet,
       NavigationComponent,

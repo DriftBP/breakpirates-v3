@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Renderer2, effect, viewChild, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, effect, viewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,6 +9,7 @@ import { DialogService } from '../services/dialog/dialog.service';
   selector: 'bp-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FontAwesomeModule
   ]

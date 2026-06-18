@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Site } from './services/site';
@@ -10,6 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 @Component({
     selector: 'bp-social',
     templateUrl: './social.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       TranslatePipe
     ]

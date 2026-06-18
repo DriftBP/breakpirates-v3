@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ThemeService } from '../services/theme/theme.service';
@@ -14,6 +14,7 @@ interface IThemeOption {
     selector: 'bp-theme-select',
     templateUrl: './theme-select.component.html',
     styleUrls: ['./theme-select.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       TranslatePipe
     ]

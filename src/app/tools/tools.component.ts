@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -9,6 +9,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 @Component({
     selector: 'bp-tools',
     templateUrl: './tools.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterLink,
       TranslatePipe

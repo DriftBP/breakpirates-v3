@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApplicationConfig, inject, Injector, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ export const appProviders = [
     const initializerFn = (appInitializerFactory)(inject(TranslateService), inject(Injector));
     return initializerFn();
   }),
-  provideHttpClient(withInterceptorsFromDi())
+  provideHttpClient(withXhr(), withInterceptorsFromDi())
 ];
 
 export const appConfig: ApplicationConfig = {

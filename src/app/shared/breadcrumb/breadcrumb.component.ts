@@ -1,4 +1,4 @@
-import { Component, Signal, computed, effect, inject } from '@angular/core';
+import { Component, Signal, computed, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -12,6 +12,7 @@ import { ActiveDirective } from '../directives/active.directive';
 @Component({
     selector: 'bp-breadcrumb',
     templateUrl: './breadcrumb.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       RouterLink,
       TranslatePipe,

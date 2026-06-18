@@ -1,4 +1,4 @@
-import { Component, OnInit, input, inject } from '@angular/core';
+import { Component, OnInit, input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { Video } from './models/video';
@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
     selector: 'bp-video',
     templateUrl: './video.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         RouterLink,
         TranslateModule

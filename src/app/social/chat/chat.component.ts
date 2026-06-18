@@ -1,4 +1,4 @@
-import { Component, viewChild, ElementRef, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, viewChild, ElementRef, OnInit, OnDestroy, inject, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ import { ScreenService } from '../services/screen.service';
       FontAwesomeModule,
       TranslatePipe
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [
       FullscreenService,
       ScreenService
