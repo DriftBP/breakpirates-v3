@@ -1,5 +1,18 @@
 version: 2.1
 
+commands:
+  install_node:
+    steps:
+      - run:
+          name: Install Node 22.22.3
+          command: |
+            curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.8/install.sh | bash
+            echo 'source $HOME/.nvm/nvm.sh' >> $BASH_ENV
+            source $HOME/.nvm/nvm.sh
+            nvm install 22.22.3
+            nvm alias default 22.22.3
+            node -v
+
 # Define the jobs we want to run for this project
 jobs:
   # The build job
@@ -19,6 +32,7 @@ jobs:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
           - v1-deps-
+      - install_node
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -53,6 +67,7 @@ jobs:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
           - v1-deps-
+      - install_node
       # Install global dependencies
       - run:
           name: Install global dependencies
@@ -87,6 +102,7 @@ jobs:
           keys:
           - v1-deps-{{ checksum "package-lock.json" }}
           - v1-deps-
+      - install_node
       # Install global dependencies
       - run:
           name: Install global dependencies
