@@ -1,0 +1,155 @@
+{
+  "NAVIGATION": {
+    "DEFAULT_PLAYER": "Default player",
+    "TOGGLE_NAVIGATION": "Toggle navigation",
+    "TUNE_IN": "Tune in",
+    "SHOW_ARCHIVE": "Show archive",
+    "NEWS": "News",
+    "SCHEDULE": "Schedule",
+    "PROFILES": "Profiles",
+    "VIDEO": "Video",
+    "SOCIAL": "Social",
+    "CHAT_ROOM": "Chat"
+  },
+  "FOOTER": {
+    "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
+    "SWITCH_THEME": "Switch theme",
+    "AUTO": "Auto",
+    "LIGHT": "Light",
+    "DARK": "Dark"
+  },
+  "FOOTER_BAR": {
+    "FOLLOW_US": "Follow us"
+  },
+  "LOADING_SPINNER": {
+    "LOADING": "Loading"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Oops!",
+    "DESCRIPTION": "We couldn't find the page you were looking for. Please use the menu at the top of the page."
+  },
+  "NOW_PLAYING": {
+    "ON_AIR": "On air",
+    "HOSTED_BY": "Hosted by",
+    "LISTEN_NOW_POPUP": "Listen now in a popup player",
+    "PLAYLIST": "Playlist",
+    "PLAYLIST_DESCRIPTION": "Selected archive shows from Break Pirates residents and guests."
+  },
+  "CHAT_ROOM": {
+    "TITLE": "Chat room",
+    "DESCRIPTION": "Get involved! Your place to meet other listeners, get shouts and tune IDs.",
+    "CTA": "Join the chat"
+  },
+  "DOWNLOAD_APP": {
+    "OFFICIAL_APP": "Official app",
+    "APP_DESCRIPTION": "Get the official Break Pirates app for your computer, phone or tablet. Includes stream player, chat room, show recording and more!",
+    "CTA": "Download the app"
+  },
+  "DONATE": {
+    "TITLE": "Please donate",
+    "YOUR_DONATIONS_HELP": "Your donations help to pay our site and server bills!"
+  },
+  "FOLLOW_US": {
+    "TITLE": "Follow us"
+  },
+  "SHOW_SUMMARY": {
+    "NOW_LIVE": "Now live",
+    "HOSTED_BY": "Hosted by"
+  },
+  "HOME": {
+    "TITLE": "Home",
+    "WELCOME": "Break Pirates - Live Pirate Style Radio",
+    "DESCRIPTION": "Established back in 2001, Break Pirates broadcast the very best in breakbeat music live over the Internet 24/7. From the latest Hardcore, Breaks and Drum & Bass tunes to the Oldskool Hardcore, Techno, House and Jungle classics, you'll find them all here. The station unites DJs worldwide, giving a wider view of the music scene.",
+    "WE_PRIDE_OURSELVES": "We pride ourselves in bringing you an authentic mix of tunes from the classic era of Rave, along with the very latest upfront tunes from current day producers and labels. All of this delivered in a style familiar to those of you who locked into the pirate stations across the UK back in the day.",
+    "FIND_OUT_MORE": "Find out more about our DJs in the profiles area",
+    "TODAYS_SCHEDULE": "Todays schedule"
+  },
+  "NEWS": {
+    "TITLE": "News",
+    "LATEST_NEWS": "Latest news",
+    "SHOW_MORE": "Show more news",
+    "OTHER_NEWS": "Other news",
+    "BY": "by",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the article you were looking for."
+  },
+  "SCHEDULE": {
+    "TITLE": "Schedule",
+    "CHECK_BACK_REGULARLY": "Check back regularly for schedule updates and details of guest shows!",
+    "FIND_OUT_MORE": "You can find out more about the DJs featured by entering the Profiles section.",
+    "HOSTED_BY": "Hosted by",
+    "MUSIC_STYLES": "Music styles",
+    "SHOW_DESCRIPTION": "Show description",
+    "ON": "on",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the show you were looking for.",
+    "NO_LIVE_SHOWS": "No live shows scheduled"
+  },
+  "MUSIC": {
+    "TITLE": "Music",
+    "INTRO": "Break Pirates shows feature a whole range of different music styles. Select a genre from the list below to view current scheduled shows.",
+    "SHOWS_FEATURING_GENRE": "Shows featuring this genre"
+  },
+  "PROFILES": {
+    "TITLE": "Profiles",
+    "INTRO": "Want to find out more about who you're listening to? Select a member of the team from the list below!",
+    "ORDERING": "Ordering",
+    "SHOWS": "Shows",
+    "LISTEN_ON_MIXCLOUD": "{{ name }} on Mixcloud",
+    "FOLLOW_ON_TWITTER": "Follow {{ name }} on Twitter",
+    "MORE": "More",
+    "LESS": "Less",
+    "PREVIOUS": "Previous",
+    "NEXT": "Next",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the profile you were looking for."
+  },
+  "SOCIAL": {
+    "TITLE": "Social",
+    "CHAT": "Chat",
+    "CHAT_ISSUES": "Issues with the chat room disconnecting or not scrolling? Consider installing an IRC chat app for your computer or phone using the instructions below.",
+    "USE_OWN_APP": "Want to use your own app?",
+    "CHAT_SERVER_DETAILS": "Join #{{ ircChannel }} on Hostco IRC network (server: {{ ircServer }}, port: {{ ircPort }}). You'll need a copy of mIRC (<a href=\"http://www.mirc.co.uk\" target=\"_blank\">www.mirc.co.uk</a>), LimeChat, IceChat or a similar IRC client.",
+    "CONFIRM_LEAVE_CHAT": "Are you sure you want to leave the chat room?",
+    "FULL_SCREEN": "Chat full screen",
+    "PREVENT_SLEEP": "Prevent sleep",
+    "ON": "On",
+    "OFF": "Off"
+  },
+  "VIDEO": {
+    "TITLE": "Video",
+    "NOT_FOUND": "Not found",
+    "COULD_NOT_FIND": "We couldn't find the video you were looking for."
+  },
+  "STANDALONE_PLAYER": {
+    "PLAY_BUTTON_DOESNT_WORK": "Not supported in all browsers. If the play button doesn't work then use a link in the Tune in menu."
+  },
+  "TOOLS": {
+    "ROSTER": "Break Pirates roster",
+    "TITLE": "Tools",
+    "BPM_COUNTER": "BPM counter",
+    "DJ_NAME": "DJ name generator",
+    "SOUNDBOARD": "Soundboard"
+  },
+  "BPM_COUNTER": {
+    "TITLE": "BPM counter",
+    "TAP_THE_BUTTON": "Tap the button below in time with the music",
+    "KEEP_GOING": "Keep going!",
+    "YOUR_BPM_IS": "Your BPM is displayed below",
+    "TAP_ME": "Tap me or Enter key",
+    "BPM": "BPM",
+    "START_AGAIN": "Start again"
+  },
+  "DJ_NAME": {
+    "TITLE": "DJ name generator",
+    "GENERATE": "Generate",
+    "YOUR_NAME_IS": "Your DJ name is"
+  },
+  "ROSTER": {
+    "TITLE": "Break Pirates roster",
+    "RESPECT_TO": "Respect to all of the DJs and MCs who have featured on our shows, events and live broadcasts over the years. We couldn't have done it without you!"
+  },
+  "SOUNDBOARD": {
+    "TITLE": "Rate My Takeaway soundboard"
+  }
+}
