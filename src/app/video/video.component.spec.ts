@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { VideoComponent } from './video.component';
 
@@ -11,7 +11,7 @@ describe('VideoComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         VideoComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ]
     });
     fixture = TestBed.createComponent(VideoComponent);

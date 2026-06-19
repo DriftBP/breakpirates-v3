@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import HostDetailsComponent from './host-details.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -31,7 +31,7 @@ describe('HostDetailsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HostDetailsComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
         {

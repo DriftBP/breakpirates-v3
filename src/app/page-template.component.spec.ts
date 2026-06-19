@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { PageTemplateComponent } from './page-template.component';
 import { ScheduleService } from './schedule/services/schedule.service';
@@ -23,7 +23,7 @@ describe('PageTemplateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         PageTemplateComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
         {

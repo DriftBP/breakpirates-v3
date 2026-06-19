@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -24,7 +24,7 @@ describe('NowPlayingComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NowPlayingComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ],
       providers: [
         {

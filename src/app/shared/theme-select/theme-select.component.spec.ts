@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ThemeSelectComponent } from './theme-select.component';
 
@@ -11,7 +11,7 @@ describe('ThemeSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ThemeSelectComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ]
     });
     fixture = TestBed.createComponent(ThemeSelectComponent);

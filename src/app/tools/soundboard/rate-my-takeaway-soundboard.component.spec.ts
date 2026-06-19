@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
 import { SoundboardService } from './soundboard.service';
@@ -13,7 +13,7 @@ describe('RateMyTakeawaySoundboardComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RateMyTakeawaySoundboardComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ],
       providers: [
         {

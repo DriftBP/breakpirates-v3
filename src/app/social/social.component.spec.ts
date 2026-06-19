@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import SocialComponent from './social.component';
 import { MockSocialService } from '../../test/services/mock.social.service';
@@ -13,7 +13,7 @@ describe('SocialComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           SocialComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
           {

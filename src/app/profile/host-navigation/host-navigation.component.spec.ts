@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { HostNavigationComponent } from './host-navigation.component';
 
@@ -11,7 +11,7 @@ describe('HostNavigationComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           HostNavigationComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ]
     });
     fixture = TestBed.createComponent(HostNavigationComponent);

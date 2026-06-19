@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import RosterComponent from './roster.component';
 
@@ -11,7 +11,7 @@ describe('RosterComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           RosterComponent,
-          TranslateModule.forRoot()
+          TranslatePipe
         ]
     });
     fixture = TestBed.createComponent(RosterComponent);

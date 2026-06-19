@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { FooterComponent } from './footer.component';
 
@@ -11,7 +11,7 @@ describe('FooterComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FooterComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ]
     });
     fixture = TestBed.createComponent(FooterComponent);
