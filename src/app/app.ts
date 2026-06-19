@@ -37,7 +37,7 @@ export class App implements OnInit, OnDestroy {
   private eventsSubscription: Subscription;
   private currentTheme: Signal<Theme>;
 
-  loading: boolean = false;
+  loading = false;
 
   constructor () {
     this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));

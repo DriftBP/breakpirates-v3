@@ -29,7 +29,7 @@ export default class BpmComponent implements OnInit {
 
   message = DataCollectionStatus.Empty;
   statuses = DataCollectionStatus;
-  bpm: number = 0;
+  bpm = 0;
   beatBuffer: DataPoint[] = [];
 
   @HostListener('window:keydown', ['$event'])

@@ -17,7 +17,7 @@ describe('NowPlayingComponent', () => {
 
   // Mock MediaElementPlayer for tests
   beforeAll(() => {
-    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
+    global.MediaElementPlayer = global.MediaElementPlayer || function() { return; };
   });
 
   beforeEach(async () => {

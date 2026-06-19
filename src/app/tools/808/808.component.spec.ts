@@ -9,7 +9,6 @@ describe('Drum808Component', () => {
   let fixture: ComponentFixture<Drum808Component>;
 
   beforeAll(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     globalThis.fetch = vi.fn(() => Promise.resolve({
       arrayBuffer: () => Promise.resolve(new ArrayBuffer(8))
     })) as any;
@@ -17,8 +16,12 @@ describe('Drum808Component', () => {
     class MockAudioBuffer {}
     class MockAudioBufferSourceNode {
       buffer: unknown;
-      connect() {}
-      start() {}
+      connect() {
+        return;
+      }
+      start() {
+        return;
+      }
     }
     class MockAudioContext {
       public currentTime = 0;
@@ -28,9 +31,8 @@ describe('Drum808Component', () => {
       resume() { return Promise.resolve(); }
       get destination() { return {}; }
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (globalThis as any).AudioContext = MockAudioContext;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (globalThis as any).webkitAudioContext = MockAudioContext;
   });
 

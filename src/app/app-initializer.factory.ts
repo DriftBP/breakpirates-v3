@@ -10,8 +10,8 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
       translate.setFallbackLang(langToSet);
       translate.use(langToSet)
         .subscribe(
-          () => {},
-          () => {},
+          () => { return; },
+          () => { return; },
           () => {
             resolve();
           });

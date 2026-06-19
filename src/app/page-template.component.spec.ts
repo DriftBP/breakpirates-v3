@@ -16,7 +16,7 @@ describe('PageTemplateComponent', () => {
   let fixture: ComponentFixture<PageTemplateComponent>;
 
   beforeAll(() => {
-    global.gtag = global.gtag || function() {};
+    global.gtag = global.gtag || function() { return; };
   });
 
   beforeEach(async () => {

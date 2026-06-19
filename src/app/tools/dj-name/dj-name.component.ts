@@ -33,10 +33,10 @@ export default class DjNameComponent implements OnInit {
   ];
 
   imagePath = AppSettings.ASSET_TOOLS;
-  generated: boolean = false;
-  animal: string = '';
-  number: number = 0;
-  shape: string = '';
+  generated = false;
+  animal = '';
+  number = 0;
+  shape = '';
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

@@ -12,7 +12,7 @@ import { SortOrder } from './sort-order';
 export class SortByPipe implements PipeTransform {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public transform(value: any[], order = SortOrder.Ascending, column: string = ''): any[] {
+  public transform(value: any[], order = SortOrder.Ascending, column = ''): any[] {
     return value.sort(this.compareValues(column, order));
   }
 
