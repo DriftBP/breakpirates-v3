@@ -1,1 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+@use './sass/variables' as variables;
+
+/* Importing Bootstrap SCSS file. */
+@use "../node_modules/bootstrap/scss/bootstrap";
+
+/* Template styles */
+
+:root {
+  --bg: #{lighten(variables.$color-brand-primary, 50%)};
+  --panel-bg: #{variables.$color-brand-tertiary};
+  --color: #212529;
+  --color-link: #{lighten(#000, 5%)};
+  --border: #000;
+}
+
+[data-theme='dark'] {
+  --bg: #{darken(variables.$color-brand-primary, 30%)};
+  --panel-bg: #333;
+  --color: #{variables.$color-brand-tertiary};
+  --color-link: #{darken(#fff, 10%)};
+  --border: #{variables.$color-brand-tertiary};
+}
+
+html {
+  font-size: variables.$font-base-size;
+}
+
+body {
+  font-size: 1rem;
+  padding-top: 53px;
+  padding-bottom: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: variables.$font-weight-regular;
+
+  @media (min-width: variables.$breakpoint-md) {
+    padding-top: 68px;
+  }
+
+  &.bp-popup {
+    padding: 0;
+  }
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: variables.$font-weight-bold;
+}
+
+h2 {
+  font-weight: variables.$font-weight-bold;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  &:hover {
+      text-decoration: underline;
+      color: var(--color);
+  }
+}
+
+/* Bootstrap overrides */
+
+.nav-link {
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+}
+
+.container-fluid {
+  max-width: 1192px;
+  margin: 0 auto;
+}
+
+.btn-primary {
+  background-color: variables.$color-brand-primary;
+  border-color: variables.$color-brand-primary;
+
+  &:hover {
+    background-color: lighten(variables.$color-brand-primary, 10%);
+  }
+}
+
+/* Mediaelement overrides */
+
+.mejs__container {
+  width: auto !important;
+}
+
+/* Fixed player height in some browsers */
+.mejs__inner {
+  height: 40px;
+}
