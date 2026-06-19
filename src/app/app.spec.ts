@@ -1,23 +1,67 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NavigationStart, NavigationEnd, Router } from '@angular/router';
+
 import { App } from './app';
+import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
+import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '../test/services/mock.google-analytics.service';
+import { MockRouterService } from '../test/services/mock.router.service';
+
+let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
 
 describe('App', () => {
+  let component: App;
+  let fixture: ComponentFixture<App>;
+
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [App],
-    }).compileComponents();
+    mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
+    TestBed.configureTestingModule({
+      imports: [
+        App
+      ],
+      providers: [
+        {
+          provide: Router,
+          useClass: MockRouterService
+        },
+        {
+          provide: GoogleAnalyticsService,
+          useValue: mockGoogleAnalyticsService
+        }
+      ]
+    });
+    fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
-  it('should render title', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, breakpirates-v3');
+  it('should create', async () => {
+    expect(component).toBeDefined();
+  });
+
+  it('should indicate loading on NavigationStart', async () => {
+    component['processEvent'](new NavigationStart(1, ''));
+
+    expect(component.loading).toBeTruthy();
+  });
+
+  it('should not indicate loading on NavigationEnd', async () => {
+    component['processEvent'](new NavigationEnd(1, '', ''));
+
+    expect(component.loading).toBeFalsy();
+  });
+
+  it('should track page hit on NavigationEnd', async () => {
+    component['processEvent'](new NavigationEnd(1, '', ''));
+
+    expect(mockGoogleAnalyticsService.trackPageHit.mock.calls.length).toEqual(1);
+  });
+
+  it('should clean up subscriptions onDestroy', async () => {
+    component.ngOnDestroy();
+
+    expect(component['eventsSubscription'].closed).toEqual(true);
   });
 });
