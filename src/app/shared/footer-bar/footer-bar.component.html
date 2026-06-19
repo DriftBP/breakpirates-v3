@@ -1,0 +1,28 @@
+<div class="footer-bar">
+  <div>
+    <img
+      class="footer-bar__logo-image"
+      [ngSrc]="assetRoot + 'bp-head.jpg'"
+      width="354"
+      height="57"
+      alt="Break Pirates"
+      priority />
+  </div>
+  <div class="footer-bar__social-sites">
+    {{'FOOTER_BAR.FOLLOW_US' | translate}}:
+    <ul class="footer-bar__social-site-list">
+      @for (site of socialSites; track site.Name) {
+        <li class="footer-bar__social-site">
+          <a
+              target="_blank"
+              rel="noopener"
+              class="footer-bar__social-site-link"
+              [title]="site.Description"
+              [href]="site.Url"
+              (click)="onSocialClick(site)"
+              ><fa-icon [icon]="site.Icon"></fa-icon></a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

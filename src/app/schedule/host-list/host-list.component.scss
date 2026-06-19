@@ -1,0 +1,35 @@
+@use '../../../sass/variables' as variables;
+@use '../../../sass/mixins' as mixins;
+
+.host-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &__host-item {
+    display: inline-block;
+    margin: 0.25em 0.5em 0.25em 0;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &-link {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      background-color: variables.$color-brand-primary;
+      color: #fff;
+      @include mixins.box-border;
+
+      white-space: nowrap;
+
+      > fa-icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

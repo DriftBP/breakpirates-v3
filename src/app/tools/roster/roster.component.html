@@ -1,0 +1,7 @@
+<h1>{{'ROSTER.TITLE' | translate}}</h1>
+<p>{{'ROSTER.RESPECT_TO' | translate}}<p>
+
+@for (item of djsByLetter; track item.letter) {
+  <h2>{{item.letter}}</h2>
+  <bp-roster-list [names]="item.djs"></bp-roster-list>
+}

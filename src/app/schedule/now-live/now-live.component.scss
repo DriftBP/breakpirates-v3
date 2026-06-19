@@ -1,0 +1,10 @@
+@use '../../../sass/variables' as variables;
+
+.now-live {
+  font-weight: variables.$font-weight-bold;
+
+  &-icon {
+    margin-left: 0.25em;
+    cursor: pointer;
+  }
+}

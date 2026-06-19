@@ -1,0 +1,29 @@
+.theme-select {
+  &__ {
+    &theme-list {
+      display: inline-block;
+      margin: 0 0 0 0.5em;
+      padding: 0;
+
+      &- {
+        &item {
+          display: inline;
+
+          &:not(:last-of-type) {
+            &:after {
+              content: "|";
+              margin: 0 0.5em;
+            }
+          }
+        }
+
+        &button {
+          border: none;
+          padding: 0;
+          color: inherit;
+          font-size: inherit;
+        }
+      }
+    }
+  }
+}

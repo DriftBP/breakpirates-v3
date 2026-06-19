@@ -1,0 +1,17 @@
+@use './../../sass/variables' as variables;
+
+.standalone-player {
+  background-color: variables.$color-brand-primary;
+  color: var(--color);
+
+  &__ {
+    &logo-image {
+      display: block;
+      margin: 0 auto;
+    }
+
+    &message {
+      margin: 0 23px;
+    }
+  }
+}

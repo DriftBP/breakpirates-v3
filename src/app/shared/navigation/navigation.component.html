@@ -1,0 +1,113 @@
+
+<nav class="navigation navbar fixed-top navbar-expand-md navbar-dark">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <a class="navigation__logo navbar-brand" routerLink="/radio">
+      <img
+        class="navigation__logo-image"
+        [ngSrc]="assetRoot + 'bp-head.jpg'"
+        width="354"
+        height="57"
+        alt="Break Pirates"
+        priority />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleIsCollapsed()"
+      aria-controls="navbar-main"
+      [attr.aria-expanded]="!isCollapsed()"
+      [attr.aria-label]="'NAVIGATION.TOGGLE_NAVIGATION' | translate">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div id="navbar-main" class="navbar-collapse" [ngbCollapse]="isCollapsed()">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li class="nav-item dropdown" ngbDropdown>
+          <button
+            id="nav-tune-in"
+            class="nav-link dropdown-toggle"
+            ngbDropdownToggle
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+              {{'NAVIGATION.TUNE_IN' | translate}} <span class="caret"></span>
+          </button>
+          <ul ngbDropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-tune-in">
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="onTuneInClick('Default')"
+                href="/stream.pls"
+              >{{'NAVIGATION.DEFAULT_PLAYER' | translate}}</a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Apple Music')"
+                href="/stream.m3u"
+              >iTunes / Apple Music</a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Windows Media Player')"
+                href="/stream.asx"
+              >Windows Media Player</a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('RealPlayer')"
+                href="/stream.ram"
+              >RealPlayer</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            @for (link of externalLinks; track link.Text) {
+              <li role="menuitem">
+                <a
+                  class="dropdown-item"
+                  ngbDropdownItem
+                  (click)="onTuneInClick(link.Text)"
+                  [href]="link.Url"
+                  target="_blank"
+                >{{link.Text}} <fa-icon [icon]="faExternalLink"></fa-icon></a>
+              </li>
+            }
+            <li class="dropdown-divider"></li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="onTuneInClick('Mixcloud archive')"
+                href="{{archiveUrl}}"
+                rel="noopener"
+                target="_blank"
+              >{{'NAVIGATION.SHOW_ARCHIVE' | translate}}</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/social/chat">{{'NAVIGATION.CHAT_ROOM' | translate}}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/schedule">{{'NAVIGATION.SCHEDULE' | translate}}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/profiles">{{'NAVIGATION.PROFILES' | translate}}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/news">{{'NAVIGATION.NEWS' | translate}}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+  <!-- /.navbar-collapse -->
+</nav>

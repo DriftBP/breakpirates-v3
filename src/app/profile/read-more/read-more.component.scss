@@ -1,0 +1,20 @@
+.read-more {
+  &__ {
+    &content-wrapper {
+      &-- {
+        &clamped {
+          max-height: 222px;
+          overflow: hidden;
+        }
+
+        &more {
+          max-height: none;
+        }
+      }
+    }
+
+    &toggle {
+      margin-top: 1em;
+    }
+  }
+}
