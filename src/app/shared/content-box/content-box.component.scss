@@ -1,9 +1,0 @@
-@use '../../../sass/mixins' as mixins;
-
-:host {
-  @include mixins.box-padding();
-  display: block;
-  margin: 0 0 1em 0;
-  @include mixins.box-border;
-  background-color: var(--panel-bg);
-}
