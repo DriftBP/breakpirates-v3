@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import MusicComponent from './music.component';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
@@ -14,7 +14,7 @@ describe('MusicComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           MusicComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
           {

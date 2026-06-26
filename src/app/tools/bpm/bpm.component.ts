@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -12,7 +12,7 @@ import { DataPoint } from './data-point';
     selector: 'bp-bpm',
     templateUrl: './bpm.component.html',
     imports: [
-        TranslateModule
+        TranslatePipe
     ]
 })
 export default class BpmComponent implements OnInit {
@@ -29,7 +29,7 @@ export default class BpmComponent implements OnInit {
 
   message = DataCollectionStatus.Empty;
   statuses = DataCollectionStatus;
-  bpm: number = 0;
+  bpm = 0;
   beatBuffer: DataPoint[] = [];
 
   @HostListener('window:keydown', ['$event'])

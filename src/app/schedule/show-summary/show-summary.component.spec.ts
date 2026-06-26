@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ShowSummaryComponent } from './show-summary.component';
 import { DayService } from '../services/day.service';
@@ -20,7 +20,7 @@ describe('ShowSummaryComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ShowSummaryComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
         {

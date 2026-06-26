@@ -7,11 +7,11 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     const locationInitialized = injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
     locationInitialized.then(() => {
       const langToSet = 'en';
-      translate.setDefaultLang(langToSet);
+      translate.setFallbackLang(langToSet);
       translate.use(langToSet)
         .subscribe(
-          () => {},
-          () => {},
+          () => { return; },
+          () => { return; },
           () => {
             resolve();
           });

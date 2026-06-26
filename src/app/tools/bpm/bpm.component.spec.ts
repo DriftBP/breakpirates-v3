@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
 
 import BpmComponent from './bpm.component';
@@ -23,7 +23,7 @@ describe('BpmComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           BpmComponent,
-          TranslateModule.forRoot()
+          TranslatePipe
         ]
     });
     fixture = TestBed.createComponent(BpmComponent);

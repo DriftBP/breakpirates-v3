@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ToolsComponent } from './tools.component';
 
@@ -12,7 +12,7 @@ describe('ToolsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ToolsComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ],
       providers: [
         {

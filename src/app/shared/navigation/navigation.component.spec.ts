@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { NavigationComponent } from './navigation.component';
 import { MockRouterService } from '../../../test/services/mock.router.service';
@@ -13,7 +13,7 @@ describe('NavigationComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NavigationComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
         {

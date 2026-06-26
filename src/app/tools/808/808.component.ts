@@ -65,14 +65,14 @@ export default class Drum808Component implements OnInit {
   currentStep = 0;
   isPlaying = false;
   tempo = 120;
-  sharedBeat: string = '';
-  private _tempo: number = 120;
+  sharedBeat = '';
+  private _tempo = 120;
 
   private audioContext: AudioContext | null = null;
-  private audioBuffers: { [key: string]: AudioBuffer | null } = {};
+  private audioBuffers: Record<string, AudioBuffer | null> = {};
   private loadingBuffers: Promise<void>[] = [];
   private schedulerId: number | null = null;
-  private audioNextStepTime: number = 0; // in seconds
+  private audioNextStepTime = 0; // in seconds
 
   cdr = inject(ChangeDetectorRef);
 
@@ -243,7 +243,7 @@ export default class Drum808Component implements OnInit {
           this.sequence[d][s] = bin[idx++] === '1';
         }
       }
-    } catch (e) {
+    } catch {
       alert('Invalid beat code');
     }
   }

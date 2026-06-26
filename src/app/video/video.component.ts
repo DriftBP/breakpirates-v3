@@ -1,5 +1,5 @@
 import { Component, OnInit, input, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Video } from './models/video';
 import { BreadcrumbConfigItem } from '../shared/breadcrumb/breadcrumb-config-item';
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
     templateUrl: './video.component.html',
     imports: [
         RouterLink,
-        TranslateModule
+        TranslatePipe
     ]
 })
 export class VideoComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { DonateComponent } from './donate.component';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -16,7 +16,7 @@ describe('DonateComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           DonateComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
           {

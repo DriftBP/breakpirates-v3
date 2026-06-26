@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import GenreComponent from './genre.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -14,7 +14,7 @@ describe('GenreComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           GenreComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
           {

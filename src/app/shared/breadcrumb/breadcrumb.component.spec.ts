@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
 import { mockHomeConfig, mockScheduleConfig } from '../../../test/services/mock.breadcrumb.service';
@@ -12,7 +12,7 @@ describe('BreadcrumbComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ]
     });
     fixture = TestBed.createComponent(BreadcrumbComponent);

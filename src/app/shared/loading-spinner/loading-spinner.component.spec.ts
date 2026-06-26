@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
@@ -11,7 +11,7 @@ describe('LoadingSpinnerComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         LoadingSpinnerComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ]
     });
     fixture = TestBed.createComponent(LoadingSpinnerComponent);

@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { DataCacheService } from './data-cache.service';
 
-type TestType = {
+interface TestType {
   testString: string;
   testBoolean: boolean;
   testArray: unknown[];
-};
+}
 
 describe('DataCacheService', () => {
   let service: DataCacheService<TestType>;

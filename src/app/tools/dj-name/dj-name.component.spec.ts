@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import DjNameComponent from './dj-name.component';
 
@@ -11,7 +11,7 @@ describe('DjNameComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DjNameComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ]
     });
     fixture = TestBed.createComponent(DjNameComponent);

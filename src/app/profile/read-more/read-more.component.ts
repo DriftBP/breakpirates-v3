@@ -4,7 +4,7 @@ import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementR
 import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'bp-read-more',
@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
     styleUrls: ['./read-more.component.scss'],
     imports: [
       CommonModule,
-      TranslateModule,
+      TranslatePipe,
       FontAwesomeModule
     ]
 })

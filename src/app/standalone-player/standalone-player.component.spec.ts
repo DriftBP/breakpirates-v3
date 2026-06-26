@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { StandalonePlayerComponent } from './standalone-player.component';
 
@@ -11,7 +11,7 @@ describe('StandalonePlayerComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           StandalonePlayerComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ]
     });
     fixture = TestBed.createComponent(StandalonePlayerComponent);

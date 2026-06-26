@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { FooterBarComponent } from './footer-bar.component';
 import { SocialService } from '../../social/services/social.service';
@@ -13,7 +13,7 @@ describe('FooterBarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FooterBarComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ],
       providers: [
         {

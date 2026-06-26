@@ -5,7 +5,7 @@ import { SampleConfig } from './sample-config';
 
 @Injectable()
 export class SoundboardService {
-  private sounds: { [id: number]: HTMLAudioElement } = {};
+  private sounds: Record<number, HTMLAudioElement> = {};
 
   private _isLoaded = signal<boolean>(false);
   public readonly isLoaded = this._isLoaded.asReadonly();

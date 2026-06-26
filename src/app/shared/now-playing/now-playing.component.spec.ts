@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -17,14 +17,14 @@ describe('NowPlayingComponent', () => {
 
   // Mock MediaElementPlayer for tests
   beforeAll(() => {
-    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
+    global.MediaElementPlayer = global.MediaElementPlayer || function() { return; };
   });
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         NowPlayingComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ],
       providers: [
         {

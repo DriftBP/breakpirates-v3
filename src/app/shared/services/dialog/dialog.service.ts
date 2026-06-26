@@ -11,8 +11,6 @@ export class DialogService {
   private _show = signal<IDialogConfig | null>(null);
   public readonly show = this._show.asReadonly();
 
-  constructor() { }
-
   isDialogSupported(): boolean {
     return typeof HTMLDialogElement === 'function';
   }
