@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApplicationConfig, Injector, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, Injector, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,6 +18,7 @@ export const appProviders = [
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     appProviders,
     provideZonelessChangeDetection(),
     provideRouter(

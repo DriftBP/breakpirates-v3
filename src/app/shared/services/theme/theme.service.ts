@@ -11,7 +11,8 @@ export class ThemeService {
   private defaultThemeSetting = ThemeSetting.Auto;
   private localStorageKey = 'bp_theme_setting';
 
-  public readonly currentTheme = signal<Theme>(this.defaultTheme);
+  private _currentTheme = signal<Theme>(this.defaultTheme);
+  public readonly currentTheme = this._currentTheme.asReadonly();
 
   constructor() {
     const themeSettingName = localStorage.getItem(this.localStorageKey);
@@ -22,7 +23,7 @@ export class ThemeService {
       const key = this.getEnumKeyByEnumValue(Theme, themeSettingName);
 
       if (key) {
-        const savedThemeSetting = (ThemeSetting as any)[key];
+        const savedThemeSetting = (ThemeSetting as Record<string, ThemeSetting>)[key];
 
         if (savedThemeSetting) {
           themeSetting = savedThemeSetting;
@@ -36,7 +37,7 @@ export class ThemeService {
     localStorage.removeItem('theme');
   }
 
-  private getEnumKeyByEnumValue(myEnum: any, enumValue: any) {
+  private getEnumKeyByEnumValue(myEnum: Record<string, unknown>, enumValue: unknown) {
     const keys = Object.keys(myEnum).filter(x => myEnum[x] === enumValue);
     return keys.length > 0 ? keys[0] : null;
   }
@@ -46,7 +47,7 @@ export class ThemeService {
   }
 
   private setTheme(theme: Theme): void {
-    this.currentTheme.set(theme);
+    this._currentTheme.set(theme);
   }
 
   private getThemeForSetting(themeSetting: ThemeSetting): Theme {

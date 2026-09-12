@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 import { DateTime } from 'luxon';
 
 import BpmComponent from './bpm.component';
@@ -23,7 +24,13 @@ describe('BpmComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           BpmComponent,
-          TranslateModule.forRoot()
+          TranslatePipe
+        ],
+        providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          }
         ]
     });
     fixture = TestBed.createComponent(BpmComponent);

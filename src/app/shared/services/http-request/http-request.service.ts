@@ -14,7 +14,7 @@ const defaultConfig: HttpRequestConfig = {
 })
 export class HttpRequestService {
   private readonly http = inject(HttpClient);
-  private readonly cache = inject<DataCacheService<any>>(DataCacheService);
+  private readonly cache = inject<DataCacheService<unknown>>(DataCacheService);
 
 
   get<T>(url: string, config: HttpRequestConfig = defaultConfig) {
@@ -22,7 +22,7 @@ export class HttpRequestService {
       const cachedResponse = this.cache.get(url);
 
       if (cachedResponse) {
-        return of(cachedResponse);
+        return of(cachedResponse as T);
       }
     }
 

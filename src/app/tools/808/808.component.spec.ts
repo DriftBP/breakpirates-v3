@@ -2,20 +2,26 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import Drum808Component from './808.component';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 describe('Drum808Component', () => {
   let component: Drum808Component;
   let fixture: ComponentFixture<Drum808Component>;
 
   beforeAll(() => {
-    globalThis.fetch = jest.fn(() => Promise.resolve({
+    globalThis.fetch = vi.fn(() => Promise.resolve({
       arrayBuffer: () => Promise.resolve(new ArrayBuffer(8))
     })) as any;
 
     class MockAudioBuffer {}
     class MockAudioBufferSourceNode {
-      buffer: any;
-      connect() {}
-      start() {}
+      buffer: unknown;
+      connect() {
+        return;
+      }
+      start() {
+        return;
+      }
     }
     class MockAudioContext {
       public currentTime = 0;
@@ -25,6 +31,7 @@ describe('Drum808Component', () => {
       resume() { return Promise.resolve(); }
       get destination() { return {}; }
     }
+
     (globalThis as any).AudioContext = MockAudioContext;
     (globalThis as any).webkitAudioContext = MockAudioContext;
   });

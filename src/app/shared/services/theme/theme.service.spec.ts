@@ -21,7 +21,7 @@ describe('ThemeService', () => {
   });
 
   it('should provide light theme as default theme', () => {
-    let theme: Theme = service.currentTheme();
+    const theme: Theme = service.currentTheme();
 
     expect(theme).toBe(Theme.Light);
   });
@@ -35,7 +35,7 @@ describe('ThemeService', () => {
   });
 
   it('should emit theme after theme is set', () => {
-    let theme = computed(() => {
+    const theme = computed(() => {
       return service.currentTheme();
     });
 

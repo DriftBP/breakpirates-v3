@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -10,7 +10,7 @@ import { RosterListComponent } from "./roster-list.component";
   selector: 'bp-roster',
   templateUrl: './roster.component.html',
   imports: [
-    TranslateModule,
+    TranslatePipe,
     RosterListComponent
   ]
 })

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import HostDetailsComponent from './host-details.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -28,12 +29,16 @@ describe('HostDetailsComponent', () => {
   let fixture: ComponentFixture<HostDetailsComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         HostDetailsComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ActivatedRoute,
           useValue: {}
@@ -59,7 +64,8 @@ describe('HostDetailsComponent', () => {
           useClass: MockScheduleService
         }
       ]
-    });
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HostDetailsComponent);
     component = fixture.componentInstance;
   });

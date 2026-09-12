@@ -2,21 +2,20 @@ import { Injectable, signal } from '@angular/core';
 
 import { IDialogConfig } from './dialog-config';
 
-declare var HTMLDialogElement: any;
+declare const HTMLDialogElement: unknown;
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
-  public readonly show = signal<IDialogConfig | null>(null);
-
-  constructor() { }
+  private _show = signal<IDialogConfig | null>(null);
+  public readonly show = this._show.asReadonly();
 
   isDialogSupported(): boolean {
     return typeof HTMLDialogElement === 'function';
   }
 
   showDialog(config: IDialogConfig): void {
-    this.show.set(config);
+    this._show.set(config);
   }
 }

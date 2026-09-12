@@ -65,14 +65,14 @@ export default class Drum808Component implements OnInit {
   currentStep = 0;
   isPlaying = false;
   tempo = 120;
-  sharedBeat: string = '';
-  private _tempo: number = 120;
+  sharedBeat = '';
+  private _tempo = 120;
 
   private audioContext: AudioContext | null = null;
-  private audioBuffers: { [key: string]: AudioBuffer | null } = {};
+  private audioBuffers: Record<string, AudioBuffer | null> = {};
   private loadingBuffers: Promise<void>[] = [];
-  private schedulerId: any = null;
-  private audioNextStepTime: number = 0; // in seconds
+  private schedulerId: number | null = null;
+  private audioNextStepTime = 0; // in seconds
 
   cdr = inject(ChangeDetectorRef);
 
@@ -85,8 +85,8 @@ export default class Drum808Component implements OnInit {
       const response = await fetch(`/assets/808/${drum.sound}.wav`);
       const arrayBuffer = await response.arrayBuffer();
       // AudioContext may not be available yet, so decode later
-      this.audioBuffers[drum.sound] = await (window.AudioContext || (window as any).webkitAudioContext).prototype.decodeAudioData.call(
-        (this.audioContext || new (window.AudioContext || (window as any).webkitAudioContext)()),
+      this.audioBuffers[drum.sound] = await (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext).prototype.decodeAudioData.call(
+        (this.audioContext || new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)()),
         arrayBuffer.slice(0)
       );
     });
@@ -110,7 +110,7 @@ export default class Drum808Component implements OnInit {
 
   async ensureAudioContext() {
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.audioContext = new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
       // Resume context if needed
       if (this.audioContext.state === 'suspended') {
         await this.audioContext.resume();
@@ -148,7 +148,7 @@ export default class Drum808Component implements OnInit {
     this.stopSequencer();
     this.currentStep = 0;
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.audioContext = new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
     }
     this.audioNextStepTime = this.audioContext.currentTime + 0.05;
     this.scheduleSteps(0); // pass starting step
@@ -226,7 +226,7 @@ export default class Drum808Component implements OnInit {
     const bin = flat.join('');
     // Pad to nearest 8 bits
     const pad = bin + '0'.repeat((8 - (bin.length % 8)) % 8);
-    let bytes = [];
+    const bytes = [];
     for (let i = 0; i < pad.length; i += 8) {
       bytes.push(parseInt(pad.slice(i, i + 8), 2));
     }
@@ -243,7 +243,7 @@ export default class Drum808Component implements OnInit {
           this.sequence[d][s] = bin[idx++] === '1';
         }
       }
-    } catch (e) {
+    } catch {
       alert('Invalid beat code');
     }
   }

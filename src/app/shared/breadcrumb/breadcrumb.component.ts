@@ -35,7 +35,7 @@ export class BreadcrumbComponent {
 
   constructor() {
     this.configItems = computed(() => {
-      var config = this.breadcrumbService.breadcrumb();
+      let config = this.breadcrumbService.breadcrumb();
 
       if (!config) {
         config = [];

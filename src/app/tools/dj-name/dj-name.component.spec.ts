@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import DjNameComponent from './dj-name.component';
 
@@ -11,7 +12,13 @@ describe('DjNameComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DjNameComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
+      ],
+      providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        }
       ]
     });
     fixture = TestBed.createComponent(DjNameComponent);

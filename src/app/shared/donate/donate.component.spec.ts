@@ -1,23 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { DonateComponent } from './donate.component';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
-import { MockGoogleAnalyticsService } from '../../../test/services/mock.google-analytics.service';
+import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '../../../test/services/mock.google-analytics.service';
 
-const mockGoogleAnalyticsService = MockGoogleAnalyticsService;
+let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
 
 describe('DonateComponent', () => {
   let component: DonateComponent;
   let fixture: ComponentFixture<DonateComponent>;
 
   beforeEach(async () => {
+    mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
         imports: [
           DonateComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
           {
             provide: GoogleAnalyticsService,
             useValue: mockGoogleAnalyticsService
