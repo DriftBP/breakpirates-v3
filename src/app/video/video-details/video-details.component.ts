@@ -1,5 +1,5 @@
 import { Component, input, effect, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Video } from '../models/video';
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -11,7 +11,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
     selector: 'bp-video-details',
     templateUrl: './video-details.component.html',
     imports: [
-        TranslateModule,
+        TranslatePipe,
         SafePipe
     ]
 })

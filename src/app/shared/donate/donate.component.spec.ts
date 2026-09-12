@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { DonateComponent } from './donate.component';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -16,9 +17,13 @@ describe('DonateComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           DonateComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
           {
             provide: GoogleAnalyticsService,
             useValue: mockGoogleAnalyticsService

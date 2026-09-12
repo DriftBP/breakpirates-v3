@@ -3,9 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -27,18 +25,6 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/.htaccess",
-              "src/ads.txt",
-              "src/api",
-              "src/favicon.ico",
-              "src/manifest.json",
-              "src/assets",
-              "src/google9626a1e073cd04b6.html",
-              "src/robots.txt",
-              "src/stream.asx",
-              "src/stream.m3u",
-              "src/stream.pls",
-              "src/stream.ram",
               {
                 "glob": "mejs-controls.svg",
                 "input": "./node_modules/mediaelement/build/",
@@ -96,10 +82,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

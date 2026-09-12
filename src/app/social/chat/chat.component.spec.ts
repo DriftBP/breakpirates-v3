@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import ChatComponent from './chat.component';
 import { MockFullscreenService } from '../../../test/services/mock.fullscreen.service';
@@ -16,7 +16,7 @@ describe('ChatComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           ChatComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
           {
