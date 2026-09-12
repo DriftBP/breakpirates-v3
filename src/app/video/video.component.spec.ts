@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../test/services/mock.translate.service';
 
 import { VideoComponent } from './video.component';
 
@@ -12,6 +13,12 @@ describe('VideoComponent', () => {
       imports: [
         VideoComponent,
         TranslatePipe
+      ],
+      providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        }
       ]
     });
     fixture = TestBed.createComponent(VideoComponent);

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { FooterBarComponent } from './footer-bar.component';
 import { SocialService } from '../../social/services/social.service';
@@ -16,6 +17,10 @@ describe('FooterBarComponent', () => {
         TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: SocialService,
           useClass: MockSocialService

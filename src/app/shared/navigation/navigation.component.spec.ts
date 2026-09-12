@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { NavigationComponent } from './navigation.component';
 import { MockRouterService } from '../../../test/services/mock.router.service';
@@ -16,6 +17,10 @@ describe('NavigationComponent', () => {
         TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: Router,
           useClass: MockRouterService

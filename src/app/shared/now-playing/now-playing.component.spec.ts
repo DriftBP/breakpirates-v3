@@ -2,7 +2,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { NowPlayingComponent } from './now-playing.component';
 import { ScheduleService } from '../../schedule/services/schedule.service';
@@ -27,6 +28,10 @@ describe('NowPlayingComponent', () => {
         TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ScheduleService,
           useClass: MockScheduleService

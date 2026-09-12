@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import NewsArticleComponent from './news-article.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -19,6 +20,10 @@ describe('NewsArticleComponent', () => {
         TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ActivatedRoute,
           useValue: {}

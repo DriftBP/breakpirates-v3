@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { DownloadAppComponent } from './download-app.component';
 import { GoogleAnalyticsService } from '../services/google-analytics/google-analytics.service';
@@ -19,6 +20,10 @@ describe('DownloadAppComponent', () => {
           TranslatePipe
         ],
         providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
           {
             provide: GoogleAnalyticsService,
             useValue: mockGoogleAnalyticsService

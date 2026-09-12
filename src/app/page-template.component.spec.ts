@@ -2,11 +2,12 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { PageTemplateComponent } from './page-template.component';
 import { ScheduleService } from './schedule/services/schedule.service';
 import { MockScheduleService } from '../test/services/mock.schedule.service';
+import { MockTranslateService } from '../test/services/mock.translate.service';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const global: any;
@@ -26,6 +27,10 @@ describe('PageTemplateComponent', () => {
         TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ScheduleService,
           useClass: MockScheduleService

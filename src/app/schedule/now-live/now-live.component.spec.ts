@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { NowLiveComponent } from './now-live.component';
 import { Show } from '../models/show';
@@ -21,6 +22,10 @@ describe('NowLiveComponent', () => {
           TranslatePipe
         ],
         providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
           {
             provide: ScheduleService,
             useClass: MockScheduleService

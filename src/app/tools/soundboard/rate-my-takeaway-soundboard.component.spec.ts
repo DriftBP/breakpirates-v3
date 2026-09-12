@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { RateMyTakeawaySoundboardComponent } from './rate-my-takeaway-soundboard.component';
 import { SoundboardService } from './soundboard.service';
@@ -16,6 +17,10 @@ describe('RateMyTakeawaySoundboardComponent', () => {
         TranslatePipe
       ],
       providers: [
+                {
+                  provide: TranslateService,
+                  useClass: MockTranslateService
+                },
         {
           provide: SoundboardService,
           useValue: MockSoundboardService

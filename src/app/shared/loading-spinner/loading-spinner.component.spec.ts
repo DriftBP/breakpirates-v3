@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
@@ -12,6 +13,12 @@ describe('LoadingSpinnerComponent', () => {
       imports: [
         LoadingSpinnerComponent,
         TranslatePipe
+      ],
+      providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        }
       ]
     });
     fixture = TestBed.createComponent(LoadingSpinnerComponent);

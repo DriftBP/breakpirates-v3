@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../test/services/mock.translate.service';
 
 import ProfilesComponent from './profiles.component';
 import { SortOrder } from '../shared/pipes/sort-order';
@@ -18,6 +19,10 @@ describe('ProfilesComponent', () => {
         TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ActivatedRoute,
           useValue: {}
