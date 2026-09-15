@@ -38,7 +38,7 @@ jobs:
     steps:
       - install_dependencies
       - run:
-          name: Testing via Jest
+          name: Testing via Vitest
           command: npm run test
 
   lint:
