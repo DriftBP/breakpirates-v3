@@ -12,7 +12,7 @@ describe('DownloadAppComponent', () => {
   let component: DownloadAppComponent;
   let fixture: ComponentFixture<DownloadAppComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
         imports: [
@@ -34,17 +34,13 @@ describe('DownloadAppComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should track download link clicks', async () => {
+  it('should track download link clicks', () => {
     fixture.detectChanges();
 
-    expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(0);
+    expect(mockGoogleAnalyticsService.trackEvent).not.toHaveBeenCalled();
 
     component.donateFormElement().nativeElement.dispatchEvent(new Event('click'));
 
-    expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(1);
+    expect(mockGoogleAnalyticsService.trackEvent).toHaveBeenCalledOnce();
   });
 });

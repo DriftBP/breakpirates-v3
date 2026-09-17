@@ -63,10 +63,6 @@ describe('ShowComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
   describe('Show images', () => {
     it('should not display an image if the show doesn`t have one defined', async () => {
       fixture.componentRef.setInput('show', mockShow);

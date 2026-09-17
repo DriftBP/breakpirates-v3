@@ -15,7 +15,7 @@ describe('NowLiveComponent', () => {
   let component: NowLiveComponent;
   let fixture: ComponentFixture<NowLiveComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
         imports: [
           NowLiveComponent,
@@ -36,11 +36,7 @@ describe('NowLiveComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should not indicate show is now playing', async () => {
+  it('should not indicate show is now playing', () => {
     fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
@@ -50,7 +46,7 @@ describe('NowLiveComponent', () => {
     expect(nowPlaying).toBeNull();
   });
 
-  it('should indicate show is now playing', async () => {
+  it('should indicate show is now playing', () => {
     fixture.componentRef.setInput('show', mockShow2);
 
     fixture.detectChanges();

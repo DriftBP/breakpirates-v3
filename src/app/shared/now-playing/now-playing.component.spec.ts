@@ -21,7 +21,7 @@ describe('NowPlayingComponent', () => {
     global.MediaElementPlayer = global.MediaElementPlayer || function() { return; };
   });
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NowPlayingComponent,
@@ -48,17 +48,13 @@ describe('NowPlayingComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should always have an image filename', async () => {
+  it('should always have an image filename', () => {
     fixture.detectChanges();
 
     expect(component.nowPlayingImage).toBeTruthy();
   });
 
-  it('should diplay embedded player when not on https', async () => {
+  it('should diplay embedded player when not on https', () => {
     fixture.detectChanges();
 
     const compiled: HTMLElement = fixture.debugElement.nativeElement;
