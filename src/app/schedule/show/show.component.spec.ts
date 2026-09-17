@@ -23,7 +23,6 @@ const mockShowWithDescriptionAndImage: Show = {
 };
 
 describe('ShowComponent', () => {
-  let component: ShowComponent;
   let fixture: ComponentFixture<ShowComponent>;
 
   beforeEach(async () => {
@@ -60,7 +59,6 @@ describe('ShowComponent', () => {
       ]
     });
     fixture = TestBed.createComponent(ShowComponent);
-    component = fixture.componentInstance;
   });
 
   describe('Show images', () => {

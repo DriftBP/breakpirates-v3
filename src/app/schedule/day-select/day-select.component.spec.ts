@@ -11,10 +11,9 @@ const mockDay: Day = {
 };
 
 describe('DaySelectComponent', () => {
-  let component: DaySelectComponent;
   let fixture: ComponentFixture<DaySelectComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DaySelectComponent
@@ -27,14 +26,9 @@ describe('DaySelectComponent', () => {
       ]
     });
     fixture = TestBed.createComponent(DaySelectComponent);
-    component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should list days of the week', async () => {
+  it('should list days of the week', () => {
     fixture.componentRef.setInput('days', [ mockDay ]);
     fixture.componentRef.setInput('activeDayId', 1);
 

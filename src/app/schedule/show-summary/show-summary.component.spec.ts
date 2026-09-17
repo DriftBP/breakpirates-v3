@@ -14,7 +14,6 @@ import { MockScheduleService } from '../../../test/services/mock.schedule.servic
 import { ScheduleService } from '../services/schedule.service';
 
 describe('ShowSummaryComponent', () => {
-  let component: ShowSummaryComponent;
   let fixture: ComponentFixture<ShowSummaryComponent>;
 
   beforeEach(() => {
@@ -47,7 +46,6 @@ describe('ShowSummaryComponent', () => {
       ]
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
-    component = fixture.componentInstance;
   });
 
   it('should not display day of week by default', () => {

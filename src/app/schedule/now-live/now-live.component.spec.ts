@@ -12,7 +12,6 @@ import { MockScheduleService } from '../../../test/services/mock.schedule.servic
 const mockShow2: Show = { ...mockShow, id: 2 };
 
 describe('NowLiveComponent', () => {
-  let component: NowLiveComponent;
   let fixture: ComponentFixture<NowLiveComponent>;
 
   beforeEach(() => {
@@ -33,7 +32,6 @@ describe('NowLiveComponent', () => {
         ]
     });
     fixture = TestBed.createComponent(NowLiveComponent);
-    component = fixture.componentInstance;
   });
 
   it('should not indicate show is now playing', () => {

@@ -10,7 +10,6 @@ import { MockBreadcrumbService } from '../../../test/services/mock.breadcrumb.se
 import { mockArticleWithImage, mockArticleWithoutImage } from '../../../test/data/mock.articles';
 
 describe('NewsArticleComponent', () => {
-  let component: NewsArticleComponent;
   let fixture: ComponentFixture<NewsArticleComponent>;
 
   beforeEach(() => {
@@ -35,11 +34,10 @@ describe('NewsArticleComponent', () => {
       ]
     });
     fixture = TestBed.createComponent(NewsArticleComponent);
-    component = fixture.componentInstance;
   });
 
   describe('News article images', () => {
-    it('should not display an image if the article doesn\`t have one defined', () => {
+    it('should not display an image if the article does not have one defined', () => {
       fixture.componentRef.setInput('article', mockArticleWithoutImage);
 
       fixture.detectChanges();
