@@ -7,6 +7,7 @@ import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '..
 import { MockRouterService } from '../test/services/mock.router.service';
 
 let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
+let mockRouterService: MockRouterService;
 
 describe('App', () => {
   let component: App;
@@ -31,22 +32,23 @@ describe('App', () => {
     });
     fixture = TestBed.createComponent(App);
     component = fixture.componentInstance;
+    mockRouterService = TestBed.inject(Router) as unknown as MockRouterService;
   });
 
   it('should indicate loading on NavigationStart', () => {
-    component['processEvent'](new NavigationStart(1, ''));
+    mockRouterService.emit(new NavigationStart(1, ''));
 
     expect(component.loading).toBeTruthy();
   });
 
   it('should not indicate loading on NavigationEnd', () => {
-    component['processEvent'](new NavigationEnd(1, '', ''));
+    mockRouterService.emit(new NavigationEnd(1, '', ''));
 
     expect(component.loading).toBeFalsy();
   });
 
   it('should track page hit on NavigationEnd', () => {
-    component['processEvent'](new NavigationEnd(1, '', ''));
+    mockRouterService.emit(new NavigationEnd(1, '', ''));
 
     expect(mockGoogleAnalyticsService.trackPageHit).toHaveBeenCalledOnce();
   });

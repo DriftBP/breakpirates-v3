@@ -1,9 +1,20 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Event } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class MockRouterService {
-  get events() {
-    return of();
+  private readonly eventsSubject = new Subject<Event>();
+
+  get events(): Observable<Event> {
+    return this.eventsSubject.asObservable();
+  }
+
+  emit(event: Event): void {
+    this.eventsSubject.next(event);
+  }
+
+  complete(): void {
+    this.eventsSubject.complete();
   }
 }
