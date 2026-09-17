@@ -7,12 +7,13 @@ import { createMockGoogleAnalyticsService, MockGoogleAnalyticsService } from '..
 import { MockRouterService } from '../test/services/mock.router.service';
 
 let mockGoogleAnalyticsService: MockGoogleAnalyticsService;
+let mockRouterService: MockRouterService;
 
 describe('App', () => {
   let component: App;
   let fixture: ComponentFixture<App>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
       imports: [
@@ -31,35 +32,28 @@ describe('App', () => {
     });
     fixture = TestBed.createComponent(App);
     component = fixture.componentInstance;
+    mockRouterService = TestBed.inject(Router) as unknown as MockRouterService;
   });
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should indicate loading on NavigationStart', async () => {
-    component['processEvent'](new NavigationStart(1, ''));
+  it('should indicate loading on NavigationStart', () => {
+    mockRouterService.emit(new NavigationStart(1, ''));
 
     expect(component.loading).toBeTruthy();
   });
 
-  it('should not indicate loading on NavigationEnd', async () => {
-    component['processEvent'](new NavigationEnd(1, '', ''));
+  it('should not indicate loading on NavigationEnd', () => {
+    mockRouterService.emit(new NavigationEnd(1, '', ''));
 
     expect(component.loading).toBeFalsy();
   });
 
-  it('should track page hit on NavigationEnd', async () => {
-    component['processEvent'](new NavigationEnd(1, '', ''));
+  it('should track page hit on NavigationEnd', () => {
+    mockRouterService.emit(new NavigationEnd(1, '', ''));
 
-    expect(mockGoogleAnalyticsService.trackPageHit.mock.calls.length).toEqual(1);
+    expect(mockGoogleAnalyticsService.trackPageHit).toHaveBeenCalledOnce();
   });
 
-  it('should clean up subscriptions onDestroy', async () => {
+  it('should clean up subscriptions onDestroy', () => {
     component.ngOnDestroy();
 
     expect(component['eventsSubscription'].closed).toEqual(true);
