@@ -12,7 +12,7 @@ describe('App', () => {
   let component: App;
   let fixture: ComponentFixture<App>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
       imports: [
@@ -33,33 +33,25 @@ describe('App', () => {
     component = fixture.componentInstance;
   });
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should indicate loading on NavigationStart', async () => {
+  it('should indicate loading on NavigationStart', () => {
     component['processEvent'](new NavigationStart(1, ''));
 
     expect(component.loading).toBeTruthy();
   });
 
-  it('should not indicate loading on NavigationEnd', async () => {
+  it('should not indicate loading on NavigationEnd', () => {
     component['processEvent'](new NavigationEnd(1, '', ''));
 
     expect(component.loading).toBeFalsy();
   });
 
-  it('should track page hit on NavigationEnd', async () => {
+  it('should track page hit on NavigationEnd', () => {
     component['processEvent'](new NavigationEnd(1, '', ''));
 
-    expect(mockGoogleAnalyticsService.trackPageHit.mock.calls.length).toEqual(1);
+    expect(mockGoogleAnalyticsService.trackPageHit).toHaveBeenCalledOnce();
   });
 
-  it('should clean up subscriptions onDestroy', async () => {
+  it('should clean up subscriptions onDestroy', () => {
     component.ngOnDestroy();
 
     expect(component['eventsSubscription'].closed).toEqual(true);

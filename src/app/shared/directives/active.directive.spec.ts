@@ -32,11 +32,6 @@ describe('ActiveDirective', () => {
     }).compileComponents();
   });
 
-  it('should create an instance', () => {
-    const directive = new ActiveDirective();
-    expect(directive).toBeTruthy();
-  });
-
   it('should have active class if true', () => {
     fixture = TestBed.createComponent(TrueComponent);
 

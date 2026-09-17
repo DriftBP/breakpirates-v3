@@ -70,10 +70,6 @@ describe('HostDetailsComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
   describe('Host images', () => {
     it('should not display an image if the host doesn`t have one defined', async () => {
       fixture.componentRef.setInput('profile', mockHost);

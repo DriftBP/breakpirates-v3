@@ -17,7 +17,7 @@ describe('LatestNewsComponent', () => {
   let component: LatestNewsComponent;
   let fixture: ComponentFixture<LatestNewsComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         LatestNewsComponent
@@ -27,11 +27,7 @@ describe('LatestNewsComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should have at least one article', async () => {
+  it('should have at least one article', () => {
     fixture.componentRef.setInput('news', [mockNews]);
 
     expect(component.news().length).toBeGreaterThan(0);

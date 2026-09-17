@@ -14,10 +14,9 @@ import { MockScheduleService } from '../../../test/services/mock.schedule.servic
 import { ScheduleService } from '../services/schedule.service';
 
 describe('ShowSummaryComponent', () => {
-  let component: ShowSummaryComponent;
   let fixture: ComponentFixture<ShowSummaryComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ShowSummaryComponent,
@@ -47,14 +46,9 @@ describe('ShowSummaryComponent', () => {
       ]
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
-    component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should not display day of week by default', async () => {
+  it('should not display day of week by default', () => {
     fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
@@ -64,7 +58,7 @@ describe('ShowSummaryComponent', () => {
     expect(day).toBeNull();
   });
 
-  it('should display day of week', async () => {
+  it('should display day of week', () => {
     fixture.componentRef.setInput('show', mockShow);
     fixture.componentRef.setInput('displayDay', true);
 
