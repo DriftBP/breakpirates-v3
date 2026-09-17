@@ -12,7 +12,7 @@ describe('ProfilesComponent', () => {
   let component: ProfilesComponent;
   let fixture: ComponentFixture<ProfilesComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ProfilesComponent,
@@ -37,15 +37,11 @@ describe('ProfilesComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should default to ascending order', async () => {
+  it('should default to ascending order', () => {
     expect(component.order).toEqual(SortOrder.Ascending);
   });
 
-  it('should toggle ordering', async () => {
+  it('should toggle ordering', () => {
     expect(component.order).toEqual(SortOrder.Ascending);
     component.toggleOrderBy();
     expect(component.order).toEqual(SortOrder.Descending);

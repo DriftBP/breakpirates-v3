@@ -13,7 +13,7 @@ describe('NewsArticleComponent', () => {
   let component: NewsArticleComponent;
   let fixture: ComponentFixture<NewsArticleComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NewsArticleComponent,
@@ -38,12 +38,8 @@ describe('NewsArticleComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
   describe('News article images', () => {
-    it('should not display an image if the article doesn`t have one defined', async () => {
+    it('should not display an image if the article doesn\`t have one defined', () => {
       fixture.componentRef.setInput('article', mockArticleWithoutImage);
 
       fixture.detectChanges();
@@ -53,15 +49,14 @@ describe('NewsArticleComponent', () => {
       expect(image).toBeNull();
     });
 
-    it('should display an image if the article has one defined', async () => {
+    it('should display an image if the article has one defined', () => {
       fixture.componentRef.setInput('article', mockArticleWithImage);
 
       fixture.detectChanges();
 
       const image: HTMLImageElement = fixture.debugElement.query(By.css('.news-article__image')).nativeElement;
 
-      expect(image).toBeDefined();
-      expect(image.src).toBeDefined();
+      expect(image.src).toContain(mockArticleWithImage.image);
     });
   });
 });
