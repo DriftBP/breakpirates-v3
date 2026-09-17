@@ -7,7 +7,7 @@ describe('DialogComponent', () => {
   let component: DialogComponent;
   let fixture: ComponentFixture<DialogComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         DialogComponent
@@ -17,17 +17,13 @@ describe('DialogComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should be closed by default', async () => {
+  it('should be closed by default', () => {
     const dialog = fixture.debugElement.nativeElement.querySelector('dialog');
 
     expect(dialog.attributes['open']).toBeFalsy();
   });
 
-  it('should set the dialog content', async () => {
+  it('should set the dialog content', () => {
     const content = 'My content';
 
     fixture.detectChanges();
@@ -39,7 +35,7 @@ describe('DialogComponent', () => {
     expect(contentElement.nativeElement.innerHTML).toEqual(content);
   });
 
-  it('should set the dialog title', async () => {
+  it('should set the dialog title', () => {
     const title = 'My title';
 
     fixture.detectChanges();

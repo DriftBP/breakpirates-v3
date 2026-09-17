@@ -12,7 +12,7 @@ describe('DonateComponent', () => {
   let component: DonateComponent;
   let fixture: ComponentFixture<DonateComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     mockGoogleAnalyticsService = createMockGoogleAnalyticsService();
     TestBed.configureTestingModule({
         imports: [
@@ -34,17 +34,13 @@ describe('DonateComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should track form submission', async () => {
+  it('should track form submission', () => {
     fixture.detectChanges();
 
-    expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(0);
+    expect(mockGoogleAnalyticsService.trackEvent).not.toHaveBeenCalled();
 
     component.donateFormElement().nativeElement.dispatchEvent(new Event('submit'));
 
-    expect(mockGoogleAnalyticsService.trackEvent.mock.calls.length).toEqual(1);
+    expect(mockGoogleAnalyticsService.trackEvent).toHaveBeenCalledOnce();
   });
 });

@@ -12,10 +12,9 @@ import { MockScheduleService } from '../../../test/services/mock.schedule.servic
 const mockShow2: Show = { ...mockShow, id: 2 };
 
 describe('NowLiveComponent', () => {
-  let component: NowLiveComponent;
   let fixture: ComponentFixture<NowLiveComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
         imports: [
           NowLiveComponent,
@@ -33,14 +32,9 @@ describe('NowLiveComponent', () => {
         ]
     });
     fixture = TestBed.createComponent(NowLiveComponent);
-    component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should not indicate show is now playing', async () => {
+  it('should not indicate show is now playing', () => {
     fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
@@ -50,7 +44,7 @@ describe('NowLiveComponent', () => {
     expect(nowPlaying).toBeNull();
   });
 
-  it('should indicate show is now playing', async () => {
+  it('should indicate show is now playing', () => {
     fixture.componentRef.setInput('show', mockShow2);
 
     fixture.detectChanges();
