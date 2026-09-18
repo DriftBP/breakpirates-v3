@@ -17,6 +17,8 @@
       }
 
       <bp-now-live [show]="show"></bp-now-live>
+
+      <bp-add-to-calendar [show]="show"></bp-add-to-calendar>
     </div>
     <div>
       <h3 class="show-summary__title" itemprop="name">
@@ -34,6 +36,7 @@
       </div>
 
       <bp-genre-list [genres]="show.genres"></bp-genre-list>
+
       @if (show.hosts.length > 0) {
         {{'SHOW_SUMMARY.HOSTED_BY' | translate}}:
         <bp-host-list [hosts]="show.hosts"></bp-host-list>

@@ -12,6 +12,7 @@ import { HostListComponent } from '../host-list/host-list.component';
 import { GenreListComponent } from '../genre-list/genre-list.component';
 import { NowLiveComponent } from '../now-live/now-live.component';
 import { TimePipe } from '../../shared/pipes/time.pipe';
+import { AddToCalendarComponent } from '../../shared/add-to-calendar/add-to-calendar.component';
 
 @Component({
     selector: 'bp-show-summary',
@@ -25,7 +26,8 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
       GenreListComponent,
       SafePipe,
       TimePipe,
-      TranslatePipe
+      TranslatePipe,
+      AddToCalendarComponent
     ]
 })
 export class ShowSummaryComponent {
