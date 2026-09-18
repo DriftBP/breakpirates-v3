@@ -10,18 +10,6 @@
     "lint": "ng lint",
     "update": "ng update @angular/core@22 @angular/cli@22 @angular/cdk@22"
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
   "private": true,
   "packageManager": "npm@11.5.2",
   "dependencies": {
