@@ -13,6 +13,7 @@ import { GenreListComponent } from '../genre-list/genre-list.component';
 import { NowLiveComponent } from '../now-live/now-live.component';
 import { TimePipe } from '../../shared/pipes/time.pipe';
 import { AddToCalendarComponent } from '../../shared/add-to-calendar/add-to-calendar.component';
+import { ShareShowComponent } from '../../shared/share-show/share-show.component';
 
 @Component({
     selector: 'bp-show-summary',
@@ -27,7 +28,8 @@ import { AddToCalendarComponent } from '../../shared/add-to-calendar/add-to-cale
       SafePipe,
       TimePipe,
       TranslatePipe,
-      AddToCalendarComponent
+      AddToCalendarComponent,
+      ShareShowComponent
     ]
 })
 export class ShowSummaryComponent {

@@ -1,0 +1,7 @@
+@use '../../../sass/variables' as variables;
+
+.share-show {
+  font-size: 1rem;
+  padding: 0.1rem;
+  background-color: variables.$color-brand-primary;
+}
