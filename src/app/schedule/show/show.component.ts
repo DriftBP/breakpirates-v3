@@ -15,6 +15,7 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
 import { GenreListComponent } from '../genre-list/genre-list.component';
 import { HostListComponent } from '../host-list/host-list.component';
 import { ImageClickDirective } from '../../shared/directives/image-click.directive';
+import { AddToCalendarComponent } from '../../shared/add-to-calendar/add-to-calendar.component';
 
 @Component({
     selector: 'bp-show',
@@ -27,7 +28,8 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       HostListComponent,
       TimePipe,
       TranslatePipe,
-      ImageClickDirective
+      ImageClickDirective,
+      AddToCalendarComponent
     ]
 })
 export class ShowComponent {

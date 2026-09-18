@@ -17,6 +17,9 @@
         <time [attr.datetime]="show.start_time | time">{{ show.start_time | time }}</time> -
         <time [attr.datetime]="show.end_time | time">{{ show.end_time | time }}</time>
         {{'SCHEDULE.ON' | translate}} <a [routerLink]="['/schedule',show.day_id]">{{ dayName() }}</a>
+
+        &nbsp;<bp-add-to-calendar [show]="show"></bp-add-to-calendar>
+
         <bp-now-live [show]="show"></bp-now-live>
       </p>
 

@@ -83,7 +83,8 @@
     "ON": "on",
     "NOT_FOUND": "Not found",
     "COULD_NOT_FIND": "We couldn't find the show you were looking for.",
-    "NO_LIVE_SHOWS": "No live shows scheduled"
+    "NO_LIVE_SHOWS": "No live shows scheduled",
+    "ADD_TO_CALENDAR": "Add to calendar"
   },
   "MUSIC": {
     "TITLE": "Music",
