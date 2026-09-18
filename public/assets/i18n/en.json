@@ -84,7 +84,10 @@
     "NOT_FOUND": "Not found",
     "COULD_NOT_FIND": "We couldn't find the show you were looking for.",
     "NO_LIVE_SHOWS": "No live shows scheduled",
-    "ADD_TO_CALENDAR": "Add to calendar"
+    "ADD_TO_CALENDAR": "Add to calendar",
+    "SHARE_SHOW": "Share show",
+    "SHARE_TEXT": "Listen to {{ title }} on Break Pirates",
+    "LINK_COPIED": "Link copied"
   },
   "MUSIC": {
     "TITLE": "Music",

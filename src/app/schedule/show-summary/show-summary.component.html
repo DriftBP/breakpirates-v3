@@ -18,7 +18,11 @@
 
       <bp-now-live [show]="show"></bp-now-live>
 
-      <bp-add-to-calendar [show]="show"></bp-add-to-calendar>
+      <div class="show-summary__actions">
+        <bp-add-to-calendar [show]="show"></bp-add-to-calendar>
+
+        &nbsp;<bp-share-show [show]="show"></bp-share-show>
+      </div>
     </div>
     <div>
       <h3 class="show-summary__title" itemprop="name">
