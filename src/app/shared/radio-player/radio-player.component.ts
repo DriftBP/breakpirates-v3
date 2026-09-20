@@ -15,11 +15,13 @@ export class RadioPlayerComponent implements AfterViewInit {
   tuneInUrl = `${AppSettings.STREAM_URL_PRIMARY};`;
   public mediaPlayer: unknown;
 
-  ngAfterViewInit() {
-    this.loadMediaPlayer();
+  ngAfterViewInit(): void {
+    void this.loadMediaPlayer();
   }
 
-  loadMediaPlayer() {
+  async loadMediaPlayer(): Promise<void> {
+    await import('mediaelement');
+
     this.mediaPlayer = new (MediaElementPlayer as new (element: HTMLElement, options: unknown) => unknown)(this.mediaPlayerElement().nativeElement, {
       iconSprite: 'assets/mejs-controls.svg',
       alwaysShowControls: true,
