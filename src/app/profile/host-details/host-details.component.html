@@ -1,6 +1,8 @@
 @if (profile(); as profile) {
-  <div itemscope itemtype="https://schema.org/ProfilePage">
+  <div itemscope itemtype="https://schema.org/ProfilePage" [attr.itemid]="siteUrl + '/profiles/' + profile.id">
+    <meta itemprop="url" [content]="siteUrl + '/profiles/' + profile.id">
     <article itemprop="mainEntity" itemscope itemtype="https://schema.org/Person">
+      <meta itemprop="url" [content]="siteUrl + '/profiles/' + profile.id">
       <h1 itemprop="name">{{profile.name}}</h1>
 
       @if (profile.location) {
@@ -22,6 +24,13 @@
             <div [innerHTML]="profile.biog | safe: 'html'" itemprop="description"></div>
           </bp-read-more>
         </div>
+
+        @if (profile.twitter) {
+          <meta itemprop="sameAs" [content]="profile.twitter">
+        }
+        @if (profile.mixcloud) {
+          <meta itemprop="sameAs" [content]="'https://www.mixcloud.com/' + profile.mixcloud">
+        }
 
         <div class="host-details__clear"></div>
       }

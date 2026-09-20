@@ -1,12 +1,20 @@
 @if (show(); as show) {
-  <div itemscope itemtype="https://schema.org/MusicEvent">
+  <div itemscope itemtype="https://schema.org/BroadcastEvent">
+    <meta itemprop="url" [content]="siteUrl + '/schedule/shows/' + show.id">
     <meta itemprop="startDate" content="{{dates().startDate.toUTC().toISO()}}">
     <meta itemprop="endDate" content="{{dates().endDate.toUTC().toISO()}}">
     <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
+    <meta itemprop="eventAttendanceMode" content="https://schema.org/OnlineEventAttendanceMode">
+    <meta itemprop="isAccessibleForFree" content="true">
+
+    <div itemprop="organizer" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Break Pirates">
+      <meta itemprop="url" [content]="siteUrl">
+    </div>
 
     <div itemprop="location" itemscope itemtype="https://schema.org/MusicVenue">
       <meta itemprop="name" content="Break Pirates">
-      <link itemprop="sameAs" href="https://www.breakpirates.com">
+      <meta itemprop="sameAs" [content]="siteUrl">
       <meta itemprop="address" content="UK">
     </div>
 

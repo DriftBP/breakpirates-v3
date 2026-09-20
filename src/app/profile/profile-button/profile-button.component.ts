@@ -21,10 +21,15 @@ export class ProfileButtonComponent {
   host = input.required<Host>();
 
   imagePath: Signal<string | undefined>;
+  imageUrl: Signal<string | undefined>;
 
   constructor() {
+    this.imageUrl = computed(() => {
+      return this.host()?.image ? `${AppSettings.ASSET_PROFILE_IMAGE}${this.host().image}` : undefined;
+    });
+
     this.imagePath = computed(() => {
-      return this.host()?.image ? `url(${AppSettings.ASSET_PROFILE_IMAGE}${this.host().image})` : undefined;
+      return this.imageUrl() ? `url(${this.imageUrl()})` : undefined;
     });
   }
 }

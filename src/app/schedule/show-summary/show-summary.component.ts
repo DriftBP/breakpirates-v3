@@ -46,6 +46,7 @@ export class ShowSummaryComponent {
   }>;
   showImage: Signal<string | undefined>;
   showImageCssValue: Signal<string | undefined>;
+  siteUrl = AppSettings.SITE_URL;
 
   constructor() {
     this.dates = computed(() => {

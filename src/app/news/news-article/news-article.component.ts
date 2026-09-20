@@ -34,6 +34,7 @@ export default class NewsArticleComponent {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   imagePath = AppSettings.ASSET_NEWS_IMAGE;
+  siteUrl = AppSettings.SITE_URL;
 
   constructor() {
     effect(() => {

@@ -1,5 +1,9 @@
 @if (article(); as article) {
-  <article class="news-article" itemscope itemtype="https://schema.org/NewsArticle">
+  <article class="news-article"
+      itemscope
+      itemtype="https://schema.org/NewsArticle"
+      [attr.itemid]="siteUrl + '/news/' + article.id">
+    <meta itemprop="mainEntityOfPage" [content]="siteUrl + '/news/' + article.id">
     <h1 itemprop="headline">{{article.title}}</h1>
 
     <p>
@@ -14,6 +18,13 @@
 
     <meta itemprop="dateCreated" content="{{ article.date | isoDate }}">
     <meta itemprop="datePublished" content="{{ article.date | isoDate }}">
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Break Pirates">
+      <meta itemprop="url" [content]="siteUrl">
+      <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <meta itemprop="url" [content]="siteUrl + '/assets/bp480x480.jpg'">
+      </div>
+    </div>
 
     @if (article.image) {
       <a [href]="imagePath + article.image">

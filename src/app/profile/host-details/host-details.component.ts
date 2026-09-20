@@ -44,6 +44,7 @@ export default class HostDetailsComponent {
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   imagePath = AppSettings.ASSET_PROFILE_IMAGE;
+  siteUrl = AppSettings.SITE_URL;
 
   constructor() {
     effect(() => {
