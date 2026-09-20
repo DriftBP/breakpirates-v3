@@ -27,7 +27,7 @@ export class StandalonePlayerComponent implements OnDestroy {
   constructor() {
     document.body.className = 'bp-popup';
 
-    this.siteUrl = 'https://www.breakpirates.com';
+    this.siteUrl = AppSettings.SITE_URL;
   }
 
   ngOnDestroy(): void {

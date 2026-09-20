@@ -48,6 +48,7 @@ export class ShowComponent {
 
   dayName: Signal<string | undefined>;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
+  siteUrl = AppSettings.SITE_URL;
   dates: Signal<{
     startDate: DateTime;
     endDate: DateTime;

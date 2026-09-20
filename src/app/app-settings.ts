@@ -1,5 +1,6 @@
 export class AppSettings {
-    public static API_BASE = 'https://www.breakpirates.com/api/';
+    public static SITE_URL = 'https://www.breakpirates.com';
+    public static API_BASE = `${AppSettings.SITE_URL}/api/`;
 
     // Stream server
     public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/';

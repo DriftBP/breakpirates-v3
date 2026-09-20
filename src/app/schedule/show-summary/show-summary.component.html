@@ -1,5 +1,6 @@
 @if (show(); as show) {
-  <div class="show-summary" itemscope itemtype="https://schema.org/MusicEvent">
+  <div class="show-summary" itemscope itemtype="https://schema.org/BroadcastEvent">
+    <meta itemprop="url" [content]="siteUrl + '/schedule/shows/' + show.id">
     <div class="show-summary__when">
       @if (displayDay()) {
         <div>
@@ -11,6 +12,8 @@
       <meta itemprop="startDate" content="{{dates().startDate.toUTC().toISO()}}">
       <meta itemprop="endDate" content="{{dates().endDate.toUTC().toISO()}}">
       <meta itemprop="eventStatus" content="https://schema.org/EventScheduled">
+      <meta itemprop="eventAttendanceMode" content="https://schema.org/OnlineEventAttendanceMode">
+      <meta itemprop="isAccessibleForFree" content="true">
 
       @if (showImage(); as showImage) {
         <meta itemprop="image" content="{{showImage}}">
@@ -35,8 +38,13 @@
 
       <div itemprop="location" itemscope itemtype="https://schema.org/MusicVenue">
         <meta itemprop="name" content="Break Pirates">
-        <link itemprop="sameAs" href="https://www.breakpirates.com">
+        <meta itemprop="sameAs" [content]="siteUrl">
         <meta itemprop="address" content="UK">
+      </div>
+
+      <div itemprop="organizer" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="Break Pirates">
+        <meta itemprop="url" [content]="siteUrl">
       </div>
 
       <bp-genre-list [genres]="show.genres"></bp-genre-list>
