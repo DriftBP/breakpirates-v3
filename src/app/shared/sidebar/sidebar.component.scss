@@ -12,5 +12,9 @@
     &mixcloud-promo {
       @include mixins.box-border;
     }
+
+    &mixcloud-placeholder {
+      height: 250px;
+    }
   }
 }

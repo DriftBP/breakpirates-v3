@@ -1,4 +1,4 @@
-import { Component, Renderer2, OnDestroy, HostBinding, OnInit, computed, Signal, DOCUMENT, inject } from '@angular/core';
+import { Component, OnDestroy, HostBinding, computed, Signal, inject } from '@angular/core';
 import {
   Event,
   Router,
@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
 import { Theme } from './shared/services/theme/theme';
-import { AppSettings } from './app-settings';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @Component({
@@ -25,10 +24,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     LoadingSpinnerComponent
   ]
 })
-export class App implements OnInit, OnDestroy {
+export class App implements OnDestroy {
   private router = inject(Router);
-  private renderer2 = inject(Renderer2);
-  private _document = inject<Document>(DOCUMENT);
   private googleAnalyticsService = inject(GoogleAnalyticsService);
   private themeService = inject(ThemeService);
 
@@ -70,20 +67,6 @@ export class App implements OnInit, OnDestroy {
         break;
       }
     }
-  }
-
-  ngOnInit(): void {
-    // Google Adsense script
-    const adwordsScript = this.renderer2.createElement('script');
-    adwordsScript.async = 'async';
-    adwordsScript.crossorigin = 'anonymous';
-    adwordsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AppSettings.ADSENSE_CLIENT;
-
-    const adsByGoogleScript = this.renderer2.createElement('script');
-    adsByGoogleScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
-
-    this.renderer2.appendChild(this._document.body, adwordsScript);
-    this.renderer2.appendChild(this._document.body, adsByGoogleScript);
   }
 
   ngOnDestroy() {
