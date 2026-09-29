@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { Host } from '../host';
 import { AppSettings } from '../../app-settings';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { FollowProfileButtonComponent } from '../follow-profile-button/follow-profile-button.component';
 
 @Component({
     selector: 'bp-profile-button',
@@ -14,7 +15,8 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
     imports: [
       CommonModule,
       RouterLink,
-      SafePipe
+      SafePipe,
+      FollowProfileButtonComponent
     ]
 })
 export class ProfileButtonComponent {

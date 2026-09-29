@@ -13,13 +13,22 @@ $profile-image-width: 20%;
       }
     }
 
-    &link {
-      display: block;
-    }
-
     &name {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
       font-size: 1.2em;
       font-weight: variables.$font-weight-bold;
+    }
+
+    &link {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    &name bp-follow-profile-button {
+      flex: 0 0 auto;
+      margin-left: auto;
     }
 
     &name,

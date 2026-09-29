@@ -2,6 +2,8 @@
 
 <p>{{'PROFILES.INTRO' | translate}}</p>
 
+<a class="btn btn-primary" routerLink="/profiles/following">{{'PROFILES.FOLLOWING_TITLE' | translate}}</a>
+&nbsp;
 <button class="btn btn-primary" (click)="toggleOrderBy()">
   {{'PROFILES.ORDERING' | translate}}
   @switch (order) {

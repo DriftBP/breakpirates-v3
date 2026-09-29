@@ -4,6 +4,7 @@
       <a class="profile-button__link" [routerLink]="['/profiles',host().id]"  itemprop="url">
         <span itemprop="name">{{host().name}}</span>
       </a>
+      <bp-follow-profile-button [profile]="host()"></bp-follow-profile-button>
     </h3>
     <p class="profile-button__location">{{host().location}}</p>
   </div>
