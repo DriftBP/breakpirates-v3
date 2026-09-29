@@ -3,8 +3,10 @@
     <meta itemprop="url" [content]="siteUrl + '/profiles/' + profile.id">
     <article itemprop="mainEntity" itemscope itemtype="https://schema.org/Person">
       <meta itemprop="url" [content]="siteUrl + '/profiles/' + profile.id">
-      <h1 itemprop="name">{{profile.name}}</h1>
-      <bp-follow-profile-button [profile]="profile"></bp-follow-profile-button>
+      <div class="host-details__title-row">
+        <h1 itemprop="name">{{profile.name}}</h1>
+        <bp-follow-profile-button [profile]="profile"></bp-follow-profile-button>
+      </div>
 
       @if (profile.location) {
         <p>{{ profile.location }}</p>
