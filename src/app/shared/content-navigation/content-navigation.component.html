@@ -1,22 +1,24 @@
 @if (navigation(); as links) {
-  <ul class="content-navigation">
-    <li class="content-navigation__item content-navigation__item-previous">
-      <span class="content-navigation__direction">
-        <fa-icon [icon]="faChevronLeft"></fa-icon>
-        {{'NAVIGATION.PREVIOUS' | translate}}
-      </span>
-      <a class="content-navigation__link" [routerLink]="[routeBase(), links.previous.id]">
-        {{links.previous.label}}
-      </a>
-    </li>
-    <li class="content-navigation__item content-navigation__item-next">
-      <span class="content-navigation__direction">
-        {{'NAVIGATION.NEXT' | translate}}
-        <fa-icon [icon]="faChevronRight"></fa-icon>
-      </span>
-      <a class="content-navigation__link" [routerLink]="[routeBase(), links.next.id]">
-        {{links.next.label}}
-      </a>
-    </li>
-  </ul>
+  <nav aria-label="Previous and next">
+    <ul class="content-navigation">
+      <li class="content-navigation__item content-navigation__item-previous">
+        <span class="content-navigation__direction">
+          <fa-icon [icon]="faChevronLeft"></fa-icon>
+          {{'NAVIGATION.PREVIOUS' | translate}}
+        </span>
+        <a class="content-navigation__link" [routerLink]="[routeBase(), links.previous.id]">
+          {{links.previous.label}}
+        </a>
+      </li>
+      <li class="content-navigation__item content-navigation__item-next">
+        <span class="content-navigation__direction">
+          {{'NAVIGATION.NEXT' | translate}}
+          <fa-icon [icon]="faChevronRight"></fa-icon>
+        </span>
+        <a class="content-navigation__link" [routerLink]="[routeBase(), links.next.id]">
+          {{links.next.label}}
+        </a>
+      </li>
+    </ul>
+  </nav>
 }
