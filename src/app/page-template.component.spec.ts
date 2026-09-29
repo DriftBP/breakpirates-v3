@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { PageTemplateComponent } from './page-template.component';
-import { ScheduleService } from './schedule/services/schedule.service';
-import { MockScheduleService } from '../test/services/mock.schedule.service';
+import { NowPlayingService } from './shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../test/services/mock.now-playing.service';
 import { MockTranslateService } from '../test/services/mock.translate.service';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,8 +32,8 @@ describe('PageTemplateComponent', () => {
           useClass: MockTranslateService
         },
         {
-          provide: ScheduleService,
-          useClass: MockScheduleService
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
         },
         {
           provide: ActivatedRoute,

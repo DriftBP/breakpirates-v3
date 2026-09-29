@@ -17,6 +17,8 @@ import { ShowService } from '../../schedule/services/show.service';
 import { MockShowService } from '../../../test/services/mock.show.service';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 const mockHostWithBiogAndImage: Host = {
   ...mockHost,
@@ -62,6 +64,10 @@ describe('HostDetailsComponent', () => {
         {
           provide: ScheduleService,
           useClass: MockScheduleService
+        },
+        {
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
         }
       ]
     }).compileComponents();
