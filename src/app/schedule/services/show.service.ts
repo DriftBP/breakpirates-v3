@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DateTime, Interval, WeekdayNumbers } from 'luxon';
+import { DateTime, WeekdayNumbers } from 'luxon';
 
 import { Show } from '../models/show';
 import { AppSettings } from '../../app-settings';
@@ -31,25 +31,6 @@ export class ShowService {
     } else {
       return startDate.set({hour: endTime.hour, minute: endTime.minute});
     }
-  }
-
-  getShowProgress(show: Show): number {
-    let progress = 0;
-
-    if (show) {
-      // Parse show times using source timezone
-      const startTime = DateTime.fromFormat(show.start_time, this.timeFormat, { zone: this.showTimezone });
-      const endTime = DateTime.fromFormat(show.end_time, this.timeFormat, { zone: this.showTimezone });
-      const now = DateTime.now().setZone(this.showTimezone);
-      const showLengthMinutes = Interval.fromDateTimes(startTime, endTime).toDuration('minutes').minutes;
-      const minutesCompleted = Interval.fromDateTimes(startTime, now).toDuration('minutes').minutes;
-
-      progress = (100 / showLengthMinutes) * minutesCompleted;
-      // Clamp between 0 and 100
-      progress = Math.max(0, Math.min(100, progress));
-    }
-
-    return progress;
   }
 
   getDates(show: Show): { startDate: DateTime, endDate: DateTime } {

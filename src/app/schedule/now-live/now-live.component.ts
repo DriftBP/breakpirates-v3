@@ -3,8 +3,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { ScheduleService } from '../services/schedule.service';
 import { ScrollService } from '../../shared/services/scroll/scroll.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
 import { Show } from '../models/show';
 
 @Component({
@@ -21,7 +21,7 @@ import { Show } from '../models/show';
     ]
 })
 export class NowLiveComponent {
-  private readonly scheduleService = inject(ScheduleService);
+  private readonly nowPlayingService = inject(NowPlayingService);
   private readonly scrollService = inject(ScrollService);
 
   show = input.required<Show>();
@@ -32,7 +32,7 @@ export class NowLiveComponent {
 
   constructor() {
     this.isOnAir = computed(() => {
-      return this.scheduleService.nowPlaying()?.id === this.show().id;
+      return this.nowPlayingService.nowPlaying()?.id === this.show().id;
     });
   }
 

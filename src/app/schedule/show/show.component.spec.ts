@@ -15,6 +15,8 @@ import { mockShow } from '../../../test/data/mock.shows';
 import { Show } from '../models/show';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 import { ScheduleService } from '../services/schedule.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 const mockShowWithDescriptionAndImage: Show = {
   ...mockShow,
@@ -51,6 +53,10 @@ describe('ShowComponent', () => {
         {
           provide: ScheduleService,
           useClass: MockScheduleService
+        },
+        {
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
         },
         {
           provide: BreadcrumbService,

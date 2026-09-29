@@ -6,8 +6,8 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { NowPlayingComponent } from './now-playing.component';
-import { ScheduleService } from '../../schedule/services/schedule.service';
-import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { NowPlayingService } from '../services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const global: any;
@@ -33,8 +33,8 @@ describe('NowPlayingComponent', () => {
           useClass: MockTranslateService
         },
         {
-          provide: ScheduleService,
-          useClass: MockScheduleService
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
         },
         {
           provide: ActivatedRoute,

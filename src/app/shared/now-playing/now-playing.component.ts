@@ -7,7 +7,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription, filter, fromEvent, merge, of, switchMap, take, timer } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
-import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { SortOrder } from '../pipes/sort-order';
 import { ProgressIndicatorComponent } from '../progress-indicator/progress-indicator.component';
@@ -15,6 +14,7 @@ import { RadioPlayerComponent } from '../radio-player/radio-player.component';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TimePipe } from '../pipes/time.pipe';
 import { SafePipe } from '../pipes/safe.pipe';
+import { NowPlayingService } from '../services/now-playing/now-playing.service';
 import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 
 @Component({
@@ -33,7 +33,7 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
     ]
 })
 export class NowPlayingComponent implements OnDestroy {
-  readonly scheduleService = inject(ScheduleService);
+  readonly nowPlayingService = inject(NowPlayingService);
   private readonly shoutcastService = inject(ShoutcastService);
   private readonly document = inject<Document>(DOCUMENT);
 
@@ -68,7 +68,7 @@ export class NowPlayingComponent implements OnDestroy {
     });
 
     this.nowPlaying = computed(() => {
-      return this.scheduleService.nowPlaying();
+      return this.nowPlayingService.nowPlaying();
     });
 
     this.isLiveShow = computed(() => {

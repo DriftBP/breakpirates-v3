@@ -6,8 +6,8 @@ import { MockTranslateService } from '../../../test/services/mock.translate.serv
 import { NowLiveComponent } from './now-live.component';
 import { Show } from '../models/show';
 import { mockShow } from '../../../test/data/mock.shows';
-import { ScheduleService } from '../services/schedule.service';
-import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 const mockShow2: Show = { ...mockShow, id: 2 };
 
@@ -26,8 +26,8 @@ describe('NowLiveComponent', () => {
             useClass: MockTranslateService
           },
           {
-            provide: ScheduleService,
-            useClass: MockScheduleService
+            provide: NowPlayingService,
+            useClass: MockNowPlayingService
           }
         ]
     });
