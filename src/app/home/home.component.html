@@ -16,15 +16,7 @@
 }
 
 @defer (on viewport) {
-  @if (scheduleService.shows(activeDayId) | async; as todaysSchedule) {
-    <h2>{{'HOME.TODAYS_SCHEDULE' | translate}}</h2>
-
-    @for (show of todaysSchedule; track show.id) {
-      <bp-show-summary [show]="show"></bp-show-summary>
-    } @empty {
-      <p>{{'SCHEDULE.NO_LIVE_SHOWS' | translate}}</p>
-    }
-  }
+  <bp-todays-schedule></bp-todays-schedule>
 } @placeholder {
   <div></div>
 }
