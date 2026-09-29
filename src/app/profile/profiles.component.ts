@@ -10,6 +10,7 @@ import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.serv
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SortByPipe } from '../shared/pipes/sort-by.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'bp-profile',
@@ -19,7 +20,8 @@ import { SortByPipe } from '../shared/pipes/sort-by.pipe';
         FontAwesomeModule,
         TranslatePipe,
         ProfileButtonComponent,
-        SortByPipe
+        SortByPipe,
+        RouterLink
     ]
 })
 export default class ProfilesComponent implements OnInit {

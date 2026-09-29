@@ -6,6 +6,7 @@
       </a>
     </h3>
     <p class="profile-button__location">{{host().location}}</p>
+    <bp-follow-profile-button [profile]="host()"></bp-follow-profile-button>
   </div>
   @if (imagePath(); as imagePath) {
     <div class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'"></div>
