@@ -3,6 +3,7 @@
   type="button"
   [attr.aria-pressed]="isFollowing()"
   [attr.aria-label]="(isFollowing() ? 'PROFILES.UNFOLLOW' : 'PROFILES.FOLLOW_PROFILE') | translate: {name: profile().name}"
+  [attr.title]="(isFollowing() ? 'PROFILES.UNFOLLOW' : 'PROFILES.FOLLOW_PROFILE') | translate: {name: profile().name}"
   (click)="toggleFollow()">
-  {{(isFollowing() ? 'PROFILES.FOLLOWING' : 'PROFILES.FOLLOW') | translate}}
+  <fa-icon [icon]="heartIcon()"></fa-icon>
 </button>
