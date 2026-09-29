@@ -9,10 +9,8 @@
     {{'NEWS.SHOW_MORE' | translate}}
   </button>
 } @else {
-  <h2 class="news__other-news-header">{{'NEWS.OTHER_NEWS' | translate}}</h2>
-
   @for (yearGroup of otherNewsByYear(); track yearGroup.year) {
-    <h3>{{yearGroup.year}}</h3>
+    <h2>{{yearGroup.year}}</h2>
     <ul class="list-unstyled">
       @for (article of yearGroup.articles; track article.id) {
         <li>
