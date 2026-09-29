@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
@@ -24,13 +24,10 @@ describe('NewsArticleComponent', () => {
           useClass: MockTranslateService
         },
         {
-          provide: ActivatedRoute,
-          useValue: {}
-        },
-        {
           provide: BreadcrumbService,
           useClass: MockBreadcrumbService
-        }
+        },
+        provideRouter([])
       ]
     });
     fixture = TestBed.createComponent(NewsArticleComponent);
@@ -56,5 +53,24 @@ describe('NewsArticleComponent', () => {
 
       expect(image.src).toContain(mockArticleWithImage.image);
     });
+  });
+
+  it('shows previous and next articles with wraparound links', () => {
+    const articles = [
+      { ...mockArticleWithoutImage, id: 1, title: 'First article' },
+      { ...mockArticleWithoutImage, id: 2, title: 'Current article' },
+      { ...mockArticleWithoutImage, id: 3, title: 'Last article' }
+    ];
+
+    fixture.componentRef.setInput('article', articles[0]);
+    fixture.componentRef.setInput('news', articles);
+    fixture.detectChanges();
+
+    const links: HTMLAnchorElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.content-navigation__link')
+    );
+
+    expect(links.map(link => link.textContent?.trim())).toEqual(['Last article', 'Current article']);
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/news/3', '/news/2']);
   });
 });

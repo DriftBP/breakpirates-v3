@@ -9,7 +9,9 @@
     "PROFILES": "Profiles",
     "VIDEO": "Video",
     "SOCIAL": "Social",
-    "CHAT_ROOM": "Chat"
+    "CHAT_ROOM": "Chat",
+    "PREVIOUS": "Previous",
+    "NEXT": "Next"
   },
   "FOOTER": {
     "TAGLINE": "© Break Pirates {{ year }} - Bringing you quality underground music since 2001",
