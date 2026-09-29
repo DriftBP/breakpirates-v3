@@ -1,4 +1,4 @@
-import { Component, input, effect, inject } from '@angular/core';
+import { Component, computed, input, effect, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { Video } from '../models/video';
@@ -6,19 +6,29 @@ import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-
 import { videoConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { ContentNavigationComponent } from '../../shared/content-navigation/content-navigation.component';
+import { ContentNavigation, createContentNavigation } from '../../shared/content-navigation/content-navigation';
 
 @Component({
     selector: 'bp-video-details',
     templateUrl: './video-details.component.html',
     imports: [
         TranslatePipe,
-        SafePipe
+        SafePipe,
+        ContentNavigationComponent
     ]
 })
 export class VideoDetailsComponent {
   private readonly breadcrumbService = inject(BreadcrumbService);
 
   video = input<Video>();
+  videos = input<Video[]>();
+  navigation = computed<ContentNavigation | null>(() => {
+    const video = this.video();
+    return video
+      ? createContentNavigation(this.videos() ?? [], video.id, item => item.name)
+      : null;
+  });
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     videoConfigInactive
