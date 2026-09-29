@@ -41,6 +41,14 @@
 
     <div class="news-article__clear"></div>
   </article>
+
+  @if (navigation(); as links) {
+    <hr class="news-article__divider">
+    <bp-content-navigation
+      [navigation]="links"
+      routeBase="/news">
+    </bp-content-navigation>
+  }
 } @else {
   <h1>{{'NEWS.NOT_FOUND' | translate}}</h1>
   <p>{{'NEWS.COULD_NOT_FIND' | translate}}</p>

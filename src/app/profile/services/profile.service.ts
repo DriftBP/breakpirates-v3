@@ -1,10 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AppSettings } from '../../app-settings';
 import { Host } from '../host';
 import { Show } from '../../schedule/models/show';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
+import { ContentNavigation, createContentNavigation } from '../../shared/content-navigation/content-navigation';
 
 @Injectable()
 export class ProfileService {
@@ -23,38 +25,14 @@ export class ProfileService {
     return this.httpRequestService.get<Show[]>(AppSettings.API_BASE + `hosts/${id}/shows`);
   }
 
-  getProfileLinks(id: number): Observable<{ previous: Host, next: Host }> {
-    const observable = new Observable<{ previous: Host, next: Host }>((observer) => {
-      this.profiles().subscribe(profiles => {
-        const pos = this.getProfilePosition(profiles, id);
-
-        if (pos != -1) {
-          const previousPos = this.previousProfileIndex(pos, profiles.length);
-          const nextPos = this.nextProfileIndex(pos, profiles.length);
-
-          const previousProfile = profiles[previousPos];
-          const nextProfile = profiles[nextPos];
-
-          observer.next({ previous: previousProfile, next: nextProfile });
-        }
-
-        observer.complete()
-      });
-    });
-
-    return observable;
-  }
-
-  private getProfilePosition(profiles: Host[], id: number): number {
-    return profiles.sort(this.profileCompareFn).findIndex(profile => profile.id === id);
-  }
-
-  private previousProfileIndex(pos: number, totalItems: number): number {
-    return pos > 0 ? pos - 1 : totalItems - 1;
-  }
-
-  private nextProfileIndex(pos: number, totalItems: number): number {
-    return pos < totalItems - 1 ? pos + 1 : 0;
+  getProfileLinks(id: number): Observable<ContentNavigation | null> {
+    return this.profiles().pipe(
+      map(profiles => createContentNavigation(
+        profiles.sort(this.profileCompareFn),
+        id,
+        profile => profile.name
+      ))
+    );
   }
 
   private profileCompareFn(a: Host, b: Host): number {
