@@ -103,13 +103,3 @@ a {
   }
 }
 
-/* Mediaelement overrides */
-
-.mejs__container {
-  width: auto !important;
-}
-
-/* Fixed player height in some browsers */
-.mejs__inner {
-  height: 40px;
-}
