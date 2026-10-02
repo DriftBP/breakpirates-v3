@@ -11,7 +11,7 @@ import { MixcloudWidgetComponent } from '../mixcloud-widget/mixcloud-widget.comp
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { AsyncPipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { HostNavigationComponent } from '../host-navigation/host-navigation.component';
+import { ContentNavigationComponent } from '../../shared/content-navigation/content-navigation.component';
 import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
 import { ReadMoreComponent } from '../read-more/read-more.component';
 import { ImageClickDirective } from '../../shared/directives/image-click.directive';
@@ -28,7 +28,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       ShowSummaryComponent,
       MixcloudWidgetComponent,
       TwitterWidgetComponent,
-      HostNavigationComponent,
+      ContentNavigationComponent,
       ImageClickDirective
     ]
 })

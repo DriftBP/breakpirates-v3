@@ -1,4 +1,4 @@
-import { Component, effect, input, inject } from '@angular/core';
+import { Component, computed, effect, input, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { News } from '../models/news';
@@ -10,6 +10,8 @@ import { IsoDatePipe } from '../pipes/iso-date.pipe';
 import { FormattedDatePipe } from '../pipes/formatted-date.pipe';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { ImageClickDirective } from '../../shared/directives/image-click.directive';
+import { ContentNavigationComponent } from '../../shared/content-navigation/content-navigation.component';
+import { ContentNavigation, createContentNavigation } from '../../shared/content-navigation/content-navigation';
 
 @Component({
     selector: 'bp-news-article',
@@ -20,13 +22,21 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       IsoDatePipe,
       FormattedDatePipe,
       SafePipe,
-      ImageClickDirective
+      ImageClickDirective,
+      ContentNavigationComponent
     ]
 })
 export default class NewsArticleComponent {
   private readonly breadcrumbService = inject(BreadcrumbService);
 
   article = input<News>();
+  news = input<News[]>();
+  navigation = computed<ContentNavigation | null>(() => {
+    const article = this.article();
+    return article
+      ? createContentNavigation(this.news() ?? [], article.id, item => item.title)
+      : null;
+  });
 
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [
     newsConfigInactive

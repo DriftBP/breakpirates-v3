@@ -1,9 +1,12 @@
 <h1>{{'VIDEO.TITLE' | translate}}</h1>
 
-<ul class="list-unstyled">
-  @for (video of videos(); track video.id) {
-    <li>
-      <a [routerLink]="['/video',video.id]">{{video.name}}</a>
-    </li>
-  }
-</ul>
+@for (yearGroup of videosByYear(); track yearGroup.year) {
+  <h2>{{yearGroup.year}}</h2>
+  <ul class="list-unstyled">
+    @for (video of yearGroup.videos; track video.id) {
+      <li>
+        <a [routerLink]="['/video',video.id]">{{video.name}}</a>
+      </li>
+    }
+  </ul>
+}

@@ -68,7 +68,10 @@
       @if (profileService.getProfileLinks(profile.id) | async; as links) {
         <hr class="host-details__divider">
 
-        <bp-host-navigation [hostLinks]="links"></bp-host-navigation>
+        <bp-content-navigation
+          [navigation]="links"
+          routeBase="/profiles">
+        </bp-content-navigation>
       }
     } @placeholder {
       <div></div>
