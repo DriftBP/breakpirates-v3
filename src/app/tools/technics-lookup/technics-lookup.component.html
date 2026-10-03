@@ -1,21 +1,22 @@
 <main class="technics-lookup">
-  <header class="technics-lookup__header">
-    <p class="technics-lookup__eyebrow">TURNTABLE IDENTIFIER</p>
+  <header class="mb-4 pb-3 border-bottom">
+    <p class="technics-lookup__eyebrow small fw-bold text-uppercase">Turntable identifier</p>
     <h1>Technics SL-1200 / SL-1210</h1>
     <p class="technics-lookup__intro">Enter the model shown on the deck and its serial number for a quick guide to the classic direct-drive series.</p>
   </header>
 
-  <form class="technics-lookup__form" (ngSubmit)="lookup()" #lookupForm="ngForm">
-    <div class="technics-lookup__field">
-      <label for="technics-model">Model on the nameplate</label>
-      <select id="technics-model" name="model" [(ngModel)]="model">
+  <form class="row g-3 align-items-end pb-4 mb-4 border-bottom" (ngSubmit)="lookup()" #lookupForm="ngForm">
+    <div class="col-12 col-md-6">
+      <label class="form-label" for="technics-model">Model on the nameplate</label>
+      <select class="form-select" id="technics-model" name="model" [(ngModel)]="model">
         <option value="SL-1200">SL-1200</option>
         <option value="SL-1210">SL-1210</option>
       </select>
     </div>
-    <div class="technics-lookup__field">
-      <label for="technics-variant">MK revision, if known</label>
+    <div class="col-12 col-md-6">
+      <label class="form-label" for="technics-variant">MK revision, if known</label>
       <select
+        class="form-select"
         id="technics-variant"
         name="modelVariant"
         [ngModel]="modelVariant"
@@ -25,9 +26,10 @@
         }
       </select>
     </div>
-    <div class="technics-lookup__field">
-      <label for="technics-serial">Serial number</label>
+    <div class="col-12 col-md-8">
+      <label class="form-label" for="technics-serial">Serial number</label>
       <input
+        class="form-control"
         id="technics-serial"
         name="serialNumber"
         type="text"
@@ -39,33 +41,35 @@
         pattern="[A-Za-z0-9]{10,11}"
         placeholder="e.g. MJ2KC01234"
         required />
-      <small class="technics-lookup__hint">Usually 10 or 11 letters and numbers. Check carefully: S and 5 can look alike.</small>
+      <div class="form-text technics-lookup__hint">Usually 10 or 11 letters and numbers. Check carefully: S and 5 can look alike.</div>
     </div>
-    <button class="technics-lookup__submit" type="submit" [disabled]="lookupForm.invalid">Look up serial</button>
+    <div class="col-12 col-md-4">
+      <button class="btn btn-primary w-100" type="submit" [disabled]="lookupForm.invalid">Look up serial</button>
+    </div>
   </form>
 
   @if (hasSearched) {
-    <section class="technics-lookup__result" aria-live="polite" aria-labelledby="lookup-result-title">
-      <div class="technics-lookup__result-heading">
+    <section class="technics-lookup__result mt-4 pt-3 border-top" aria-live="polite" aria-labelledby="lookup-result-title">
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-end gap-2 pb-3 border-bottom">
         <div>
-          <p class="technics-lookup__eyebrow">LOOKUP RESULT</p>
+          <p class="technics-lookup__eyebrow small fw-bold text-uppercase">Lookup result</p>
           <h2 id="lookup-result-title">{{ model }}{{ modelVariant === 'unknown' ? '' : ' ' + modelVariant }}</h2>
         </div>
-        <span class="technics-lookup__serial">{{ searchedSerial }}</span>
+        <span class="technics-lookup__serial font-monospace">{{ searchedSerial }}</span>
       </div>
-      <dl class="technics-lookup__facts">
-        <div>
-          <dt>Turntable type</dt>
-          <dd>Quartz-locked, direct-drive DJ turntable</dd>
+      <dl class="row gy-3 mt-1">
+        <div class="col-12 col-md-6">
+          <dt class="small fw-bold">Turntable type</dt>
+          <dd class="mb-0">Quartz-locked, direct-drive DJ turntable</dd>
         </div>
-        <div>
-          <dt>Common finish</dt>
-          <dd>{{ model === 'SL-1200' ? 'Silver' : 'Black' }}; finishes and specifications vary by generation and market.</dd>
+        <div class="col-12 col-md-6">
+          <dt class="small fw-bold">Common finish</dt>
+          <dd class="mb-0">{{ model === 'SL-1200' ? 'Silver' : 'Black' }}; finishes and specifications vary by generation and market.</dd>
         </div>
-        <div>
-          <dt>Serial date code</dt>
+        <div class="col-12 col-md-6">
+          <dt class="small fw-bold">Serial date code</dt>
           @if (manufactureMonth && yearSuffix) {
-            <dd>
+            <dd class="mb-0">
               {{ manufactureMonth }}@if (manufactureDay) { {{ manufactureDay }} },
               @if (possibleYears.length === 1) {
                 likely {{ possibleYears[0] }}.
@@ -76,23 +80,23 @@
               }
             </dd>
           } @else {
-            <dd>This serial does not match the date-coded format recognized here. Other serial formats may need model-specific reference information.</dd>
+            <dd class="mb-0">This serial does not match the date-coded format recognized here. Other serial formats may need model-specific reference information.</dd>
           }
         </div>
-        <div>
-          <dt>Series milestones</dt>
-          <dd>The SL-1200 debuted in 1972. The MK2 arrived in 1979, and the SL-1200MK7 followed in 2019.</dd>
+        <div class="col-12 col-md-6">
+          <dt class="small fw-bold">Series milestones</dt>
+          <dd class="mb-0">The SL-1200 debuted in 1972. The MK2 arrived in 1979, and the SL-1200MK7 followed in 2019.</dd>
         </div>
         @if (revisionDetails) {
-          <div>
-            <dt>Revision notes</dt>
-            <dd>{{ revisionDetails }}</dd>
+          <div class="col-12 col-md-6">
+            <dt class="small fw-bold">Revision notes</dt>
+            <dd class="mb-0">{{ revisionDetails }}</dd>
           </div>
         }
       </dl>
-      <p class="technics-lookup__caveat"><strong>Check the deck too:</strong> the external decoder notes that units from 2008 onward have a full date stamped on the tonearm base cover. That stamp is more precise than a serial estimate.</p>
-      <p class="technics-lookup__caveat"><strong>About this decoder:</strong> it recognizes letter-month and numeric month/day patterns reported by Technics owners; other formats may differ. Revision-era year ranges are approximate, and the serial year digit repeats by decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a>, <a href="https://www.technics.com/global/sl1200/heritage/" target="_blank" rel="noopener noreferrer">Technics model history</a>, and <a href="https://serial-number-decoder.co.uk/technics/technics-sl1200.htm" target="_blank" rel="noopener noreferrer">another serial estimate</a>. For an exact date, contact Panasonic with the complete model and serial.</p>
-      <button class="technics-lookup__reset" type="button" (click)="reset()">Check another turntable</button>
+      <p class="small technics-lookup__caveat mt-3"><strong>Check the deck too:</strong> the external decoder notes that units from 2008 onward have a full date stamped on the tonearm base cover. That stamp is more precise than a serial estimate.</p>
+      <p class="small technics-lookup__caveat"><strong>About this decoder:</strong> it recognizes letter-month and numeric month/day patterns reported by Technics owners; other formats may differ. Revision-era year ranges are approximate, and the serial year digit repeats by decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a>, <a href="https://www.technics.com/global/sl1200/heritage/" target="_blank" rel="noopener noreferrer">Technics model history</a>, and <a href="https://serial-number-decoder.co.uk/technics/technics-sl1200.htm" target="_blank" rel="noopener noreferrer">another serial estimate</a>. For an exact date, contact Panasonic with the complete model and serial.</p>
+      <button class="btn btn-outline-secondary" type="button" (click)="reset()">Check another turntable</button>
     </section>
   }
 </main>
