@@ -22,6 +22,26 @@ describe('TechnicsLookupComponent', () => {
     expect(component.hasSearched).toBe(true);
   });
 
+  it('decodes the month and year suffix from a date-coded serial', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.serialNumber = 'MJ2KC01234';
+
+    component.lookup();
+
+    expect(component.manufactureMonth).toBe('November');
+    expect(component.yearSuffix).toBe('2');
+  });
+
+  it('leaves the date unknown when the serial does not match the recognized format', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.serialNumber = 'NHOJF20765';
+
+    component.lookup();
+
+    expect(component.manufactureMonth).toBeNull();
+    expect(component.yearSuffix).toBeNull();
+  });
+
   it('does not show a result for a blank serial number', () => {
     const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
 
@@ -39,6 +59,8 @@ describe('TechnicsLookupComponent', () => {
 
     expect(component.serialNumber).toBe('');
     expect(component.searchedSerial).toBe('');
+    expect(component.manufactureMonth).toBeNull();
+    expect(component.yearSuffix).toBeNull();
     expect(component.hasSearched).toBe(false);
   });
 });

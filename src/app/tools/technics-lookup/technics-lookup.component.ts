@@ -24,6 +24,8 @@ export default class TechnicsLookupComponent implements OnInit {
   model: TechnicsModel = 'SL-1200';
   serialNumber = '';
   searchedSerial = '';
+  manufactureMonth: string | null = null;
+  yearSuffix: string | null = null;
   hasSearched = false;
 
   ngOnInit(): void {
@@ -37,12 +39,26 @@ export default class TechnicsLookupComponent implements OnInit {
     }
 
     this.searchedSerial = serial;
+    const dateCode = /^[A-Z]{2}(\d)([A-L])/.exec(serial);
+    if (dateCode) {
+      const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+      this.yearSuffix = dateCode[1];
+      this.manufactureMonth = months[dateCode[2].charCodeAt(0) - 'A'.charCodeAt(0)];
+    } else {
+      this.yearSuffix = null;
+      this.manufactureMonth = null;
+    }
     this.hasSearched = true;
   }
 
   reset(): void {
     this.serialNumber = '';
     this.searchedSerial = '';
+    this.manufactureMonth = null;
+    this.yearSuffix = null;
     this.hasSearched = false;
   }
 }

@@ -50,11 +50,19 @@
           <dd>{{ model === 'SL-1200' ? 'Silver' : 'Black' }}; finishes and specifications vary by generation and market.</dd>
         </div>
         <div>
+          <dt>Serial date code</dt>
+          @if (manufactureMonth && yearSuffix) {
+            <dd>{{ manufactureMonth }}, year ending in {{ yearSuffix }}. The serial format does not identify the decade, so it cannot confirm 1992 by itself.</dd>
+          } @else {
+            <dd>This serial does not match the date-coded format recognized here. Other serial formats may need model-specific reference information.</dd>
+          }
+        </div>
+        <div>
           <dt>Series milestones</dt>
           <dd>The SL-1200 debuted in 1972. The MK2 arrived in 1979, and the SL-1200MK7 followed in 2019.</dd>
         </div>
       </dl>
-      <p class="technics-lookup__caveat"><strong>About the date:</strong> serial ranges are not published consistently enough to confirm a specific build year or MK version from this number alone. Check the complete model code on the nameplate or ask Panasonic to verify the serial.</p>
+      <p class="technics-lookup__caveat"><strong>About this decoder:</strong> serial formats vary across production eras, and this community-documented pattern is not an official Panasonic lookup. Check the complete model code on the nameplate to narrow down the decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a>.</p>
       <button class="technics-lookup__reset" type="button" (click)="reset()">Check another turntable</button>
     </section>
   }
