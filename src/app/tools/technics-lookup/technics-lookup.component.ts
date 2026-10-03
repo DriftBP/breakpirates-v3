@@ -20,6 +20,16 @@ const variantProductionYears: Record<Exclude<ModelVariant, 'unknown'>, [number, 
 
 const seriesProductionYears: [number, number][] = [[1972, 2010], [2016, 2026]];
 
+const variantDetails: Partial<Record<Exclude<ModelVariant, 'unknown'>, string>> = {
+  MK2: 'Introduced in 1979 with quartz lock, a pitch fader, and a vibration-damping cabinet.',
+  MK3: 'Introduced in 1989 with a T.N.R.C. cabinet and a slipmat included.',
+  MK4: 'Introduced in 1997 with 78 rpm playback and detachable RCA cables.',
+  MK5: 'Introduced in 2000 with adjustable brake speed and a long-life white stylus LED.',
+  MK5G: 'Introduced in 2002 with a wider pitch range and tonearm horizontal-load adjustment.',
+  MK6: 'Released in 2007-08 with tonearm-mounting and vibration-damping improvements.',
+  MK7: 'Introduced in 2019 with a coreless direct-drive motor, digital pitch control, and reverse play.'
+};
+
 @Component({
   selector: 'bp-technics-lookup',
   templateUrl: './technics-lookup.component.html',
@@ -55,6 +65,10 @@ export default class TechnicsLookupComponent implements OnInit {
     { value: 'MK7', label: 'MK7' }
   ];
 
+  get revisionDetails(): string | null {
+    return this.modelVariant === 'unknown' ? null : variantDetails[this.modelVariant] ?? null;
+  }
+
   ngOnInit(): void {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
@@ -68,6 +82,13 @@ export default class TechnicsLookupComponent implements OnInit {
     this.searchedSerial = serial;
     this.decodeDateCode(serial);
     this.hasSearched = true;
+  }
+
+  onModelVariantChange(variant: ModelVariant): void {
+    this.modelVariant = variant;
+    if (this.hasSearched) {
+      this.lookup();
+    }
   }
 
   private decodeDateCode(serial: string): void {

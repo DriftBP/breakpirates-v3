@@ -62,6 +62,17 @@ describe('TechnicsLookupComponent', () => {
     expect(component.possibleYears).toEqual([1992]);
   });
 
+  it('refreshes the year and revision details when the revision changes after lookup', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.serialNumber = 'MJ2KC01234';
+    component.lookup();
+
+    component.onModelVariantChange('MK3');
+
+    expect(component.possibleYears).toEqual([1992]);
+    expect(component.revisionDetails).toContain('slipmat');
+  });
+
   it('leaves the date unknown when the serial does not match the recognized format', () => {
     const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
     component.serialNumber = 'NHOJF20765';
