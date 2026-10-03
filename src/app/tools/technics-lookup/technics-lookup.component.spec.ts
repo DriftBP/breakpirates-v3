@@ -14,12 +14,21 @@ describe('TechnicsLookupComponent', () => {
 
   it('normalizes the serial number for the lookup result', () => {
     const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
-    component.serialNumber = '  ge7 12345  ';
+    component.serialNumber = '  mj2kc01234  ';
 
     component.lookup();
 
-    expect(component.searchedSerial).toBe('GE7 12345');
+    expect(component.searchedSerial).toBe('MJ2KC01234');
     expect(component.hasSearched).toBe(true);
+  });
+
+  it('rejects serials outside the usual 10-11 character format', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.serialNumber = 'GE712345';
+
+    component.lookup();
+
+    expect(component.hasSearched).toBe(false);
   });
 
   it('decodes the month and year suffix from a date-coded serial', () => {
@@ -75,7 +84,7 @@ describe('TechnicsLookupComponent', () => {
 
   it('clears the current lookup', () => {
     const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
-    component.serialNumber = 'GE712345';
+    component.serialNumber = 'GE4FB001154';
     component.lookup();
 
     component.reset();

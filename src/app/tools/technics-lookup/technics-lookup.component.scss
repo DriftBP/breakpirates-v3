@@ -53,6 +53,11 @@
   font-weight: 700;
 }
 
+.technics-lookup__hint {
+  color: var(--lookup-muted);
+  font-size: 0.8rem;
+}
+
 .technics-lookup__field input,
 .technics-lookup__field select {
   min-width: 0;

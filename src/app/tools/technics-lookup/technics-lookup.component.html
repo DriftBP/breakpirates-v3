@@ -30,11 +30,12 @@
         [(ngModel)]="serialNumber"
         autocomplete="off"
         autocapitalize="characters"
-        minlength="3"
-        maxlength="20"
-        pattern="[A-Za-z0-9][A-Za-z0-9 -]*[A-Za-z0-9]"
-        placeholder="e.g. GE7xxxxx"
+        minlength="10"
+        maxlength="11"
+        pattern="[A-Za-z0-9]{10,11}"
+        placeholder="e.g. MJ2KC01234"
         required />
+      <small class="technics-lookup__hint">Usually 10 or 11 letters and numbers. Check carefully: S and 5 can look alike.</small>
     </div>
     <button class="technics-lookup__submit" type="submit" [disabled]="lookupForm.invalid">Look up serial</button>
   </form>
@@ -79,7 +80,8 @@
           <dd>The SL-1200 debuted in 1972. The MK2 arrived in 1979, and the SL-1200MK7 followed in 2019.</dd>
         </div>
       </dl>
-      <p class="technics-lookup__caveat"><strong>About this decoder:</strong> it recognizes letter-month and numeric month/day patterns reported by Technics owners; other formats may differ. Revision-era year ranges are approximate, and the serial year digit repeats by decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a> and <a href="https://www.technics.com/global/sl1200/heritage/" target="_blank" rel="noopener noreferrer">Technics model history</a>. For an exact date, contact Panasonic with the complete model and serial.</p>
+      <p class="technics-lookup__caveat"><strong>Check the deck too:</strong> the external decoder notes that units from 2008 onward have a full date stamped on the tonearm base cover. That stamp is more precise than a serial estimate.</p>
+      <p class="technics-lookup__caveat"><strong>About this decoder:</strong> it recognizes letter-month and numeric month/day patterns reported by Technics owners; other formats may differ. Revision-era year ranges are approximate, and the serial year digit repeats by decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a>, <a href="https://www.technics.com/global/sl1200/heritage/" target="_blank" rel="noopener noreferrer">Technics model history</a>, and <a href="https://serial-number-decoder.co.uk/technics/technics-sl1200.htm" target="_blank" rel="noopener noreferrer">another serial estimate</a>. For an exact date, contact Panasonic with the complete model and serial.</p>
       <button class="technics-lookup__reset" type="button" (click)="reset()">Check another turntable</button>
     </section>
   }

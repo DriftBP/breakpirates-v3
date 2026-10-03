@@ -61,7 +61,7 @@ export default class TechnicsLookupComponent implements OnInit {
 
   lookup(): void {
     const serial = this.serialNumber.trim().replace(/\s+/g, ' ').toUpperCase();
-    if (!serial) {
+    if (!/^[A-Z0-9]{10,11}$/.test(serial)) {
       return;
     }
 
