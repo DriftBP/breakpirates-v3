@@ -1,0 +1,61 @@
+<main class="technics-lookup">
+  <header class="technics-lookup__header">
+    <p class="technics-lookup__eyebrow">TURNTABLE IDENTIFIER</p>
+    <h1>Technics SL-1200 / SL-1210</h1>
+    <p class="technics-lookup__intro">Enter the model shown on the deck and its serial number for a quick guide to the classic direct-drive series.</p>
+  </header>
+
+  <form class="technics-lookup__form" (ngSubmit)="lookup()" #lookupForm="ngForm">
+    <div class="technics-lookup__field">
+      <label for="technics-model">Model on the nameplate</label>
+      <select id="technics-model" name="model" [(ngModel)]="model">
+        <option value="SL-1200">SL-1200</option>
+        <option value="SL-1210">SL-1210</option>
+      </select>
+    </div>
+    <div class="technics-lookup__field">
+      <label for="technics-serial">Serial number</label>
+      <input
+        id="technics-serial"
+        name="serialNumber"
+        type="text"
+        [(ngModel)]="serialNumber"
+        autocomplete="off"
+        autocapitalize="characters"
+        minlength="3"
+        maxlength="20"
+        pattern="[A-Za-z0-9][A-Za-z0-9 -]*[A-Za-z0-9]"
+        placeholder="e.g. GE7xxxxx"
+        required />
+    </div>
+    <button class="technics-lookup__submit" type="submit" [disabled]="lookupForm.invalid">Look up serial</button>
+  </form>
+
+  @if (hasSearched) {
+    <section class="technics-lookup__result" aria-live="polite" aria-labelledby="lookup-result-title">
+      <div class="technics-lookup__result-heading">
+        <div>
+          <p class="technics-lookup__eyebrow">LOOKUP RESULT</p>
+          <h2 id="lookup-result-title">{{ model }}</h2>
+        </div>
+        <span class="technics-lookup__serial">{{ searchedSerial }}</span>
+      </div>
+      <dl class="technics-lookup__facts">
+        <div>
+          <dt>Turntable type</dt>
+          <dd>Quartz-locked, direct-drive DJ turntable</dd>
+        </div>
+        <div>
+          <dt>Common finish</dt>
+          <dd>{{ model === 'SL-1200' ? 'Silver' : 'Black' }}; finishes and specifications vary by generation and market.</dd>
+        </div>
+        <div>
+          <dt>Series milestones</dt>
+          <dd>The SL-1200 debuted in 1972. The MK2 arrived in 1979, and the SL-1200MK7 followed in 2019.</dd>
+        </div>
+      </dl>
+      <p class="technics-lookup__caveat"><strong>About the date:</strong> serial ranges are not published consistently enough to confirm a specific build year or MK version from this number alone. Check the complete model code on the nameplate or ask Panasonic to verify the serial.</p>
+      <button class="technics-lookup__reset" type="button" (click)="reset()">Check another turntable</button>
+    </section>
+  }
+</main>
