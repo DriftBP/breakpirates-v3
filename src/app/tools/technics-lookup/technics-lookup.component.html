@@ -14,6 +14,14 @@
       </select>
     </div>
     <div class="technics-lookup__field">
+      <label for="technics-variant">MK revision, if known</label>
+      <select id="technics-variant" name="modelVariant" [(ngModel)]="modelVariant">
+        @for (variant of modelVariants; track variant.value) {
+          <option [value]="variant.value">{{ variant.label }}</option>
+        }
+      </select>
+    </div>
+    <div class="technics-lookup__field">
       <label for="technics-serial">Serial number</label>
       <input
         id="technics-serial"
@@ -36,7 +44,7 @@
       <div class="technics-lookup__result-heading">
         <div>
           <p class="technics-lookup__eyebrow">LOOKUP RESULT</p>
-          <h2 id="lookup-result-title">{{ model }}</h2>
+          <h2 id="lookup-result-title">{{ model }}{{ modelVariant === 'unknown' ? '' : ' ' + modelVariant }}</h2>
         </div>
         <span class="technics-lookup__serial">{{ searchedSerial }}</span>
       </div>
@@ -52,7 +60,16 @@
         <div>
           <dt>Serial date code</dt>
           @if (manufactureMonth && yearSuffix) {
-            <dd>{{ manufactureMonth }}, year ending in {{ yearSuffix }}. The serial format does not identify the decade, so it cannot confirm 1992 by itself.</dd>
+            <dd>
+              {{ manufactureMonth }}@if (manufactureDay) { {{ manufactureDay }} },
+              @if (possibleYears.length === 1) {
+                likely {{ possibleYears[0] }}.
+              } @else if (possibleYears.length > 1) {
+                year ending in {{ yearSuffix }}; possible years for this selection: {{ possibleYears.join(', ') }}.
+              } @else {
+                year ending in {{ yearSuffix }}, but no matching year falls within the selected revision's known era.
+              }
+            </dd>
           } @else {
             <dd>This serial does not match the date-coded format recognized here. Other serial formats may need model-specific reference information.</dd>
           }
@@ -62,7 +79,7 @@
           <dd>The SL-1200 debuted in 1972. The MK2 arrived in 1979, and the SL-1200MK7 followed in 2019.</dd>
         </div>
       </dl>
-      <p class="technics-lookup__caveat"><strong>About this decoder:</strong> serial formats vary across production eras, and this community-documented pattern is not an official Panasonic lookup. Check the complete model code on the nameplate to narrow down the decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a>.</p>
+      <p class="technics-lookup__caveat"><strong>About this decoder:</strong> it recognizes letter-month and numeric month/day patterns reported by Technics owners; other formats may differ. Revision-era year ranges are approximate, and the serial year digit repeats by decade. <a href="https://audiokarma.org/forums/threads/technics-sl-1200-serial-date.457680/" target="_blank" rel="noopener noreferrer">Serial format discussion</a> and <a href="https://www.technics.com/global/sl1200/heritage/" target="_blank" rel="noopener noreferrer">Technics model history</a>. For an exact date, contact Panasonic with the complete model and serial.</p>
       <button class="technics-lookup__reset" type="button" (click)="reset()">Check another turntable</button>
     </section>
   }

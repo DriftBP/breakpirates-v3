@@ -32,6 +32,27 @@ describe('TechnicsLookupComponent', () => {
     expect(component.yearSuffix).toBe('2');
   });
 
+  it('decodes numeric month and day codes', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.serialNumber = 'MJ3912D108';
+
+    component.lookup();
+
+    expect(component.manufactureMonth).toBe('September');
+    expect(component.manufactureDay).toBe(12);
+    expect(component.yearSuffix).toBe('3');
+  });
+
+  it('uses the selected revision era to narrow possible years', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.modelVariant = 'MK3';
+    component.serialNumber = 'MJ2KC01234';
+
+    component.lookup();
+
+    expect(component.possibleYears).toEqual([1992]);
+  });
+
   it('leaves the date unknown when the serial does not match the recognized format', () => {
     const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
     component.serialNumber = 'NHOJF20765';
@@ -39,7 +60,9 @@ describe('TechnicsLookupComponent', () => {
     component.lookup();
 
     expect(component.manufactureMonth).toBeNull();
+    expect(component.manufactureDay).toBeNull();
     expect(component.yearSuffix).toBeNull();
+    expect(component.possibleYears).toEqual([]);
   });
 
   it('does not show a result for a blank serial number', () => {
@@ -60,7 +83,9 @@ describe('TechnicsLookupComponent', () => {
     expect(component.serialNumber).toBe('');
     expect(component.searchedSerial).toBe('');
     expect(component.manufactureMonth).toBeNull();
+    expect(component.manufactureDay).toBeNull();
     expect(component.yearSuffix).toBeNull();
+    expect(component.possibleYears).toEqual([]);
     expect(component.hasSearched).toBe(false);
   });
 });
