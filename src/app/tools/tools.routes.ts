@@ -6,6 +6,7 @@ export const routes: Routes = [
   { path: '', component: ToolsComponent, pathMatch: 'full' },
   { path: 'bpm', loadComponent: () => import('./bpm/bpm.component') },
   { path: 'dj-name', loadComponent: () => import('./dj-name/dj-name.component') },
+  { path: 'technics-1200-lookup', loadComponent: () => import('./technics-lookup/technics-lookup.component') },
   { path: 'roster', loadComponent: () => import('./roster/roster.component') },
   { path: 'soundboard', loadChildren: () => import('./soundboard/soundboard.routes').then(m => m.routes) },
   { path: '808', loadComponent: () => import('./808/808.component') },
