@@ -52,6 +52,18 @@ describe('TechnicsLookupComponent', () => {
     expect(component.yearSuffix).toBe('3');
   });
 
+  it('adds model history and scene context for common DJ-era revisions', () => {
+    const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
+    component.modelVariant = 'MK2';
+    component.serialNumber = 'MJ2KC01234';
+
+    component.lookup();
+
+    expect(component.modelHistorySummary).toContain('1979');
+    expect(component.modelSceneSummary).toContain('hardcore');
+    expect(component.sceneAssociations).toEqual([]);
+  });
+
   it('uses the selected revision era to narrow possible years', () => {
     const component = TestBed.runInInjectionContext(() => new TechnicsLookupComponent());
     component.modelVariant = 'MK3';
