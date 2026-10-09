@@ -3,6 +3,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
+import { AppSettings } from '../../app-settings';
 import { Show } from '../../schedule/models/show';
 
 @Component({
@@ -23,7 +24,7 @@ export class ShareShowComponent {
 
   async shareShow(): Promise<void> {
     const show = this.show();
-    const url = window.location.href;
+    const url = `${AppSettings.SITE_URL}/schedule/shows/${show.id}`;
     const shareData = {
       title: show.title,
       text: this.translateService.instant('SCHEDULE.SHARE_TEXT', { title: show.title }),
