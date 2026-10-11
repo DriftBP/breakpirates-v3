@@ -6,17 +6,18 @@
     </div>
   </div>
   <div class="tr808__sequencer">
-    <div class="tr808__steps">
+    <div class="tr808__steps" #stepsGrid>
+      <div class="tr808__playhead" #playhead aria-hidden="true"></div>
       <div class="tr808__step-row">
         <span class="tr808__step-label"></span>
-        @for (step of steps; track step; let stepIdx = $index) {
+        @for (step of steps; track stepIdx; let stepIdx = $index) {
           <span class="tr808__step-number">{{ stepIdx + 1 }}</span>
         }
       </div>
       @for (drum of drums; track drum.label; let drumIdx = $index) {
         <div class="tr808__step-row">
           <span class="tr808__step-label">{{ drum.label }}</span>
-          @for (step of steps; track step; let stepIdx = $index) {
+          @for (step of steps; track stepIdx; let stepIdx = $index) {
             <button
               (click)="toggleStep(drumIdx, stepIdx)"
               [class.tr808__step--active]="sequence[drumIdx][stepIdx]"
