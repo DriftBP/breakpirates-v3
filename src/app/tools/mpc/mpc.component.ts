@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -8,7 +9,6 @@ import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.s
 
 interface MpcPad {
   key: string;
-  name: string;
   sampleName: string | null;
   buffer: AudioBuffer | null;
   mode: 'oneshot' | 'loop';
@@ -34,13 +34,12 @@ interface SavedMpcSample {
   selector: 'bp-mpc',
   templateUrl: './mpc.component.html',
   styleUrl: './mpc.component.scss',
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, TranslatePipe]
 })
 export default class MpcComponent implements OnDestroy {
   readonly pads: MpcPad[] = ['1', '2', '3', '4', 'q', 'w', 'e', 'r', 'a', 's', 'd', 'f', 'z', 'x', 'c', 'v']
-    .map((key, index) => ({
+    .map(key => ({
       key,
-      name: `Pad ${String(index + 1).padStart(2, '0')}`,
       sampleName: null,
       buffer: null,
       mode: 'oneshot' as const,
@@ -57,7 +56,11 @@ export default class MpcComponent implements OnDestroy {
 
   private readonly breadcrumbService = inject(BreadcrumbService);
   private readonly changeDetector = inject(ChangeDetectorRef);
-  private readonly breadcrumbConfig: BreadcrumbConfigItem[] = [toolsConfigInactive];
+  private readonly translate = inject(TranslateService);
+  private readonly breadcrumbConfig: BreadcrumbConfigItem[] = [
+    toolsConfigInactive,
+    { name: 'MPC.TITLE', isActive: true }
+  ];
   private readonly storageKey = 'breakpirates-mpc-state';
   private readonly restorePromise: Promise<void>;
   private audioContext: AudioContext | null = null;
@@ -73,6 +76,22 @@ export default class MpcComponent implements OnDestroy {
 
   get selectedPad(): MpcPad {
     return this.pads[this.selectedPadIndex];
+  }
+
+  padName(index: number): string {
+    return this.translate.instant('MPC.PAD_NUMBER', { number: String(index + 1).padStart(2, '0') });
+  }
+
+  padAriaLabel(index: number): string {
+    const pad = this.pads[index];
+    const sampleName = this.sixteenLevels ? this.levelSourcePad?.sampleName : pad.sampleName;
+    const key = this.sixteenLevels ? 'MPC.PAD_ARIA_LEVEL' : 'MPC.PAD_ARIA';
+    return this.translate.instant(key, {
+      pad: this.padName(index),
+      key: pad.key,
+      sample: sampleName ?? this.translate.instant('MPC.EMPTY'),
+      pitch: index - (this.levelSourcePadIndex ?? 0)
+    });
   }
 
   get levelSourcePad(): MpcPad | null {
@@ -105,13 +124,13 @@ export default class MpcComponent implements OnDestroy {
         await this.assignSample(padIndex, file);
         loaded++;
       } catch {
-        this.loadMessage = `Could not load ${file.name}. Try a supported audio file.`;
+        this.loadMessage = this.translate.instant('MPC.COULD_NOT_LOAD', { name: file.name });
       }
     }
 
-    if (loaded > 0) this.loadMessage = `${loaded} sample${loaded === 1 ? '' : 's'} loaded.`;
+    if (loaded > 0) this.loadMessage = this.translate.instant(loaded === 1 ? 'MPC.ONE_SAMPLE_LOADED' : 'MPC.MULTIPLE_SAMPLES_LOADED', { count: loaded });
     if (loaded < files.length && this.pads.every(pad => pad.sampleName)) {
-      this.loadMessage = `${loaded} sample${loaded === 1 ? '' : 's'} loaded. All 16 pads are full.`;
+      this.loadMessage = this.translate.instant(loaded === 1 ? 'MPC.ALL_PADS_FULL_ONE' : 'MPC.ALL_PADS_FULL_MULTIPLE', { count: loaded });
     }
     this.changeDetector.markForCheck();
   }
@@ -125,9 +144,9 @@ export default class MpcComponent implements OnDestroy {
 
     try {
       await this.assignSample(this.selectedPadIndex, file);
-      this.loadMessage = `${this.selectedPad.name} loaded.`;
+      this.loadMessage = this.translate.instant('MPC.PAD_SAMPLE_LOADED', { pad: this.padName(this.selectedPadIndex) });
     } catch {
-      this.loadMessage = `Could not load ${file.name}. Try a supported audio file.`;
+      this.loadMessage = this.translate.instant('MPC.COULD_NOT_LOAD', { name: file.name });
     }
     this.changeDetector.markForCheck();
   }
@@ -145,11 +164,11 @@ export default class MpcComponent implements OnDestroy {
         await this.assignSample(padIndex, file);
         loaded++;
       } catch {
-        this.loadMessage = `Could not load ${file.name}. Try a supported audio file.`;
+        this.loadMessage = this.translate.instant('MPC.COULD_NOT_LOAD', { name: file.name });
       }
     }
 
-    if (loaded > 0) this.loadMessage = `${loaded} sample${loaded === 1 ? '' : 's'} loaded.`;
+    if (loaded > 0) this.loadMessage = this.translate.instant(loaded === 1 ? 'MPC.ONE_SAMPLE_LOADED' : 'MPC.MULTIPLE_SAMPLES_LOADED', { count: loaded });
     this.changeDetector.markForCheck();
   }
 
@@ -235,14 +254,14 @@ export default class MpcComponent implements OnDestroy {
   }
 
   async resetSampler(): Promise<void> {
-    if (!window.confirm('Reset the MPC? This will clear all pads and saved samples from this browser.')) return;
+    if (!window.confirm(this.translate.instant('MPC.CONFIRM_RESET'))) return;
     await this.restorePromise;
 
     try {
       await this.clearSavedSamples();
       localStorage.removeItem(this.storageKey);
     } catch {
-      this.loadMessage = 'Could not clear the saved sampler state.';
+      this.loadMessage = this.translate.instant('MPC.COULD_NOT_CLEAR_STATE');
       this.changeDetector.markForCheck();
       return;
     }
@@ -259,7 +278,7 @@ export default class MpcComponent implements OnDestroy {
     this.sixteenLevels = false;
     this.levelSourcePadIndex = null;
     this.selectedPadIndex = 0;
-    this.loadMessage = 'Sampler reset.';
+    this.loadMessage = this.translate.instant('MPC.SAMPLER_RESET');
     this.changeDetector.markForCheck();
   }
 
@@ -280,7 +299,7 @@ export default class MpcComponent implements OnDestroy {
     try {
       await this.writeSample(this.selectedPadIndex, undefined);
     } catch {
-      this.loadMessage = 'Could not remove the saved sample from this browser.';
+      this.loadMessage = this.translate.instant('MPC.COULD_NOT_REMOVE_SAMPLE');
     }
     this.selectedPad.buffer = null;
     this.selectedPad.sampleName = null;
@@ -288,7 +307,7 @@ export default class MpcComponent implements OnDestroy {
       this.sixteenLevels = false;
       this.levelSourcePadIndex = null;
     }
-    this.loadMessage = `${this.selectedPad.name} cleared.`;
+    this.loadMessage = this.translate.instant('MPC.PAD_CLEARED', { pad: this.padName(this.selectedPadIndex) });
     this.saveState();
   }
 
@@ -320,9 +339,9 @@ export default class MpcComponent implements OnDestroy {
     pad.sampleName = file.name.replace(/\.[^.]+$/, '');
     try {
       await this.writeSample(index, { index, name: file.name, data: savedData });
-      this.loadMessage = 'Sample saved in this browser.';
+      this.loadMessage = this.translate.instant('MPC.SAMPLE_SAVED');
     } catch {
-      this.loadMessage = 'Sample loaded, but could not be saved in this browser.';
+      this.loadMessage = this.translate.instant('MPC.SAMPLE_NOT_SAVED');
     }
     this.saveState();
     this.changeDetector.markForCheck();
@@ -334,7 +353,7 @@ export default class MpcComponent implements OnDestroy {
       const serializedState = localStorage.getItem(this.storageKey);
       if (serializedState) savedState = JSON.parse(serializedState) as SavedMpcState;
     } catch {
-      this.loadMessage = 'Saved sampler settings could not be read.';
+      this.loadMessage = this.translate.instant('MPC.SETTINGS_COULD_NOT_READ');
     }
 
     if (savedState) {
@@ -369,9 +388,9 @@ export default class MpcComponent implements OnDestroy {
         ? rootIndex
         : null;
       this.sixteenLevels = this.levelSourcePadIndex !== null;
-      if (samples.length) this.loadMessage = 'Saved sampler state restored.';
+      if (samples.length) this.loadMessage = this.translate.instant('MPC.STATE_RESTORED');
     } catch {
-      this.loadMessage = 'Saved samples could not be restored from this browser.';
+      this.loadMessage = this.translate.instant('MPC.SAMPLES_COULD_NOT_RESTORE');
     }
 
     this.changeDetector.markForCheck();
@@ -390,12 +409,12 @@ export default class MpcComponent implements OnDestroy {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(state));
     } catch {
-      this.loadMessage = 'Sampler settings could not be saved in this browser.';
+      this.loadMessage = this.translate.instant('MPC.SETTINGS_COULD_NOT_SAVE');
     }
   }
 
   private async openSampleDatabase(): Promise<IDBDatabase> {
-    if (typeof indexedDB === 'undefined') throw new Error('IndexedDB is unavailable.');
+    if (typeof indexedDB === 'undefined') throw new Error(this.translate.instant('MPC.INDEXED_DB_UNAVAILABLE'));
     return new Promise((resolve, reject) => {
       const request = indexedDB.open('breakpirates-mpc-samples', 1);
       request.onupgradeneeded = () => {
@@ -441,7 +460,7 @@ export default class MpcComponent implements OnDestroy {
   private getAudioContext(): AudioContext {
     if (!this.audioContext) {
       const AudioContextConstructor = window.AudioContext ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (!AudioContextConstructor) throw new Error('Web Audio is not supported in this browser.');
+      if (!AudioContextConstructor) throw new Error(this.translate.instant('MPC.WEB_AUDIO_UNAVAILABLE'));
       this.audioContext = new AudioContextConstructor();
     }
     return this.audioContext;

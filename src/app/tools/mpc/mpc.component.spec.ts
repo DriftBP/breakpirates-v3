@@ -3,20 +3,29 @@ import { ChangeDetectorRef } from '@angular/core';
 
 import MpcComponent from './mpc.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('MpcComponent', () => {
   let component: MpcComponent;
+  let setBreadcrumb: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {
     localStorage.removeItem('breakpirates-mpc-state');
+    setBreadcrumb = vi.fn();
     await TestBed.configureTestingModule({
       providers: [
-        { provide: BreadcrumbService, useValue: { setBreadcrumb: vi.fn() } },
+        { provide: BreadcrumbService, useValue: { setBreadcrumb } },
+        { provide: TranslateService, useValue: { instant: (key: string) => key } },
         { provide: ChangeDetectorRef, useValue: { markForCheck: vi.fn() } }
       ]
     }).compileComponents();
 
     component = TestBed.runInInjectionContext(() => new MpcComponent());
+  });
+
+  it('sets the active MPC breadcrumb after Tools', () => {
+    expect(setBreadcrumb).toHaveBeenCalledOnce();
+    expect(setBreadcrumb.mock.calls[0][0]).toContainEqual({ name: 'MPC.TITLE', isActive: true });
   });
 
   it('creates 16 pads with the requested keyboard layout', () => {
