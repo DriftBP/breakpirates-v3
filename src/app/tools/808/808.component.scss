@@ -44,12 +44,27 @@
 }
 
 .tr808__steps {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
+}
+
+.tr808__playhead {
+  position: absolute;
+  z-index: 1;
+  top: 18px;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: #ff3c00;
+  box-shadow: 0 0 7px #ff3c00;
+  opacity: 0.75;
+  pointer-events: none;
+  will-change: transform;
 }
 
 .tr808__step-row {
@@ -126,7 +141,7 @@
   margin-top: 2px;
   display: inline-block;
   vertical-align: middle;
-  transition: background 0.15s, border 0.15s, box-shadow 0.15s;
+  transition: background 0.15s, border-color 0.03s, box-shadow 0.03s;
   box-shadow: 0 1px 4px #0007;
   cursor: pointer;
   outline: none;
