@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
@@ -39,6 +39,7 @@ export default class MpcComponent implements OnDestroy {
   loadMessage = '';
 
   private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly changeDetector = inject(ChangeDetectorRef);
   private readonly breadcrumbConfig: BreadcrumbConfigItem[] = [toolsConfigInactive];
   private audioContext: AudioContext | null = null;
   private readonly voices: (AudioBufferSourceNode | null)[] = Array(16).fill(null);
@@ -86,6 +87,7 @@ export default class MpcComponent implements OnDestroy {
     if (loaded < files.length && this.pads.every(pad => pad.sampleName)) {
       this.loadMessage = `${loaded} sample${loaded === 1 ? '' : 's'} loaded. All 16 pads are full.`;
     }
+    this.changeDetector.markForCheck();
   }
 
   async replaceSelectedSample(event: Event): Promise<void> {
@@ -100,6 +102,7 @@ export default class MpcComponent implements OnDestroy {
     } catch {
       this.loadMessage = `Could not load ${file.name}. Try a supported audio file.`;
     }
+    this.changeDetector.markForCheck();
   }
 
   async dropSamples(event: DragEvent): Promise<void> {
@@ -119,6 +122,7 @@ export default class MpcComponent implements OnDestroy {
     }
 
     if (loaded > 0) this.loadMessage = `${loaded} sample${loaded === 1 ? '' : 's'} loaded.`;
+    this.changeDetector.markForCheck();
   }
 
   async triggerPad(index: number): Promise<void> {
@@ -216,6 +220,7 @@ export default class MpcComponent implements OnDestroy {
     this.stopVoice(index);
     pad.buffer = buffer;
     pad.sampleName = file.name.replace(/\.[^.]+$/, '');
+    this.changeDetector.markForCheck();
   }
 
   private getAudioContext(): AudioContext {

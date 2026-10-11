@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { ChangeDetectorRef } from '@angular/core';
 
 import MpcComponent from './mpc.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -8,7 +9,10 @@ describe('MpcComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [{ provide: BreadcrumbService, useValue: { setBreadcrumb: vi.fn() } }]
+      providers: [
+        { provide: BreadcrumbService, useValue: { setBreadcrumb: vi.fn() } },
+        { provide: ChangeDetectorRef, useValue: { markForCheck: vi.fn() } }
+      ]
     }).compileComponents();
 
     component = TestBed.runInInjectionContext(() => new MpcComponent());
