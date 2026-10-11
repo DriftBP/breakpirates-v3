@@ -30,6 +30,7 @@ describe('Drum808Component', () => {
       createBufferSource() { return new MockAudioBufferSourceNode(); }
       decodeAudioData() { return Promise.resolve(new MockAudioBuffer()); }
       resume() { return Promise.resolve(); }
+      close() { return Promise.resolve(); }
       get destination() { return {}; }
     }
 
@@ -99,6 +100,27 @@ describe('Drum808Component', () => {
     component.stopSequencer();
     expect(animation.cancel).toHaveBeenCalled();
     expect(playhead.style.visibility).toBe('hidden');
+    requestFrameSpy.mockRestore();
+    cancelFrameSpy.mockRestore();
+  });
+
+  it('cleans up playback resources when destroyed', async () => {
+    const requestFrameSpy = vi.spyOn(globalThis, 'requestAnimationFrame').mockReturnValue(1);
+    const cancelFrameSpy = vi.spyOn(globalThis, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    vi.spyOn(component, 'scheduleSteps').mockImplementation(() => undefined);
+    component.isPlaying = true;
+
+    await component.startSequencer();
+    const audioContext = (component as any).audioContext as { close: () => Promise<void> };
+    const closeSpy = vi.spyOn(audioContext, 'close');
+    const animation = (component as any).playheadAnimation as Animation;
+
+    component.ngOnDestroy();
+
+    expect(component.isPlaying).toBe(false);
+    expect(cancelFrameSpy).toHaveBeenCalledWith(1);
+    expect(animation.cancel).toHaveBeenCalled();
+    expect(closeSpy).toHaveBeenCalled();
     requestFrameSpy.mockRestore();
     cancelFrameSpy.mockRestore();
   });

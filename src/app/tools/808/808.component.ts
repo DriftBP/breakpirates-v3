@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, inject, NgZone, OnInit, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, NgZone, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./808.component.scss'],
   imports: [CommonModule, FormsModule]
 })
-export default class Drum808Component implements OnInit {
+export default class Drum808Component implements OnInit, OnDestroy {
   private readonly stepsGrid = viewChild.required<ElementRef<HTMLElement>>('stepsGrid');
   private readonly playhead = viewChild.required<ElementRef<HTMLElement>>('playhead');
   private readonly ngZone = inject(NgZone);
@@ -279,6 +279,22 @@ export default class Drum808Component implements OnInit {
     this.currentStep = 0;
 
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.isPlaying = false;
+    this.schedulerGeneration++;
+    if (this.schedulerId !== null) {
+      clearTimeout(this.schedulerId);
+      this.schedulerId = null;
+    }
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+    this.playheadAnimation?.cancel();
+    this.playheadAnimation = null;
+    void this.audioContext?.close();
   }
 
   playCurrentStep() {
