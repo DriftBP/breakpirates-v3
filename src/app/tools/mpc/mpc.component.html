@@ -38,6 +38,7 @@
     <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo - 1)" aria-label="Decrease tempo">−</button>
     <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo + 1)" aria-label="Increase tempo">＋</button>
     <button type="button" class="mpc__stop-button" (click)="stopAll()" aria-label="Stop all samples" title="Stop all samples">STOP</button>
+    <button type="button" class="mpc__reset-button" (click)="resetSampler()" aria-label="Reset sampler" title="Reset sampler">RESET</button>
   </section>
 
   <section class="mpc__workspace" aria-label="Sample pads" (dragover)="onDragOver($event)" (drop)="dropSamples($event)">

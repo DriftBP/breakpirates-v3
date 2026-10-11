@@ -101,6 +101,19 @@
   cursor: pointer;
 }
 .mpc__stop-button:active { color: #171a17; background: var(--coral); }
+.mpc__reset-button {
+  min-width: 68px;
+  height: 40px;
+  padding: 0 0.8rem;
+  color: #e9e6dc;
+  background: #34302d;
+  border: 1px solid #75645d;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mpc__reset-button:active { color: #171a17; background: #c8b8ac; }
 .mpc__tempo-readout { min-width: 95px; }
 .mpc__tempo-readout label,
 .mpc__field label,
@@ -270,6 +283,7 @@
   .mpc__tempo-readout { min-width: 78px; }
   .mpc__transport-button { width: 36px; height: 36px; flex-basis: 36px; }
   .mpc__stop-button { height: 36px; }
+  .mpc__reset-button { height: 36px; }
 }
 
 @media (max-width: 440px) {

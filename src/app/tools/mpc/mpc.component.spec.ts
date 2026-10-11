@@ -48,6 +48,40 @@ describe('MpcComponent', () => {
     expect(savedState.quantizeDivisions).toBe(8);
   });
 
+  it('resets pads and saved settings after confirmation', async () => {
+    const clearSavedSamples = vi.spyOn(component as unknown as { clearSavedSamples: () => Promise<void> }, 'clearSavedSamples').mockResolvedValue();
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    component.pads[0].sampleName = 'Loop';
+    component.pads[0].buffer = { duration: 2 } as AudioBuffer;
+    component.pads[0].mode = 'loop';
+    component.pads[0].bars = 4;
+    component.updateTempo(140);
+    component.updateQuantizeGrid(8);
+    component.sixteenLevels = true;
+    component.levelSourcePadIndex = 1;
+
+    await component.resetSampler();
+
+    expect(clearSavedSamples).toHaveBeenCalledOnce();
+    expect(component.pads[0]).toMatchObject({ sampleName: null, buffer: null, mode: 'oneshot', bars: 1 });
+    expect(component.tempo).toBe(120);
+    expect(component.quantizeDivisions).toBe(4);
+    expect(component.sixteenLevels).toBe(false);
+    expect(component.levelSourcePadIndex).toBeNull();
+    expect(localStorage.getItem('breakpirates-mpc-state')).toBeNull();
+  });
+
+  it('leaves the sampler unchanged when reset is cancelled', async () => {
+    const clearSavedSamples = vi.spyOn(component as unknown as { clearSavedSamples: () => Promise<void> }, 'clearSavedSamples').mockResolvedValue();
+    vi.spyOn(window, 'confirm').mockReturnValue(false);
+    component.pads[0].sampleName = 'Keep me';
+
+    await component.resetSampler();
+
+    expect(clearSavedSamples).not.toHaveBeenCalled();
+    expect(component.pads[0].sampleName).toBe('Keep me');
+  });
+
   it('schedules pad hits on the selected tempo grid', () => {
     const quantizedStartTime = (component as unknown as { quantizedStartTime(currentTime: number): number }).quantizedStartTime.bind(component);
 

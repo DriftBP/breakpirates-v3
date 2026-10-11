@@ -234,6 +234,35 @@ export default class MpcComponent implements OnDestroy {
     this.activePadIndex = null;
   }
 
+  async resetSampler(): Promise<void> {
+    if (!window.confirm('Reset the MPC? This will clear all pads and saved samples from this browser.')) return;
+    await this.restorePromise;
+
+    try {
+      await this.clearSavedSamples();
+      localStorage.removeItem(this.storageKey);
+    } catch {
+      this.loadMessage = 'Could not clear the saved sampler state.';
+      this.changeDetector.markForCheck();
+      return;
+    }
+
+    this.stopAll();
+    this.pads.forEach(pad => {
+      pad.sampleName = null;
+      pad.buffer = null;
+      pad.mode = 'oneshot';
+      pad.bars = 1;
+    });
+    this.tempo = 120;
+    this.quantizeDivisions = 4;
+    this.sixteenLevels = false;
+    this.levelSourcePadIndex = null;
+    this.selectedPadIndex = 0;
+    this.loadMessage = 'Sampler reset.';
+    this.changeDetector.markForCheck();
+  }
+
   setPadMode(mode: 'oneshot' | 'loop'): void {
     this.selectedPad.mode = mode;
     this.stopVoice(this.selectedPadIndex);
@@ -379,6 +408,10 @@ export default class MpcComponent implements OnDestroy {
 
   private async readSamples(): Promise<SavedMpcSample[]> {
     return this.withSampleStore('readonly', store => store.getAll() as IDBRequest<SavedMpcSample[]>);
+  }
+
+  private async clearSavedSamples(): Promise<void> {
+    await this.withSampleStore<undefined>('readwrite', store => store.clear());
   }
 
   private async writeSample(index: number, sample: SavedMpcSample | undefined): Promise<void> {
