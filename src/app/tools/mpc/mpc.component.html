@@ -1,0 +1,120 @@
+<main class="mpc" (dragover)="onDragOver($event)" (drop)="dropSamples($event)">
+  <header class="mpc__header">
+    <div>
+      <h1>Sample station</h1>
+    </div>
+    <label class="mpc__load-button">
+      <span aria-hidden="true">＋</span>
+      Load samples
+      <input type="file" accept="audio/*" multiple (change)="loadFiles($event)">
+    </label>
+  </header>
+
+  <section class="mpc__transport" aria-label="Tempo controls">
+    <button type="button" class="mpc__transport-button" aria-label="Tap tempo" title="Tap tempo" (click)="tapTempo()">TAP</button>
+    <div class="mpc__tempo-readout">
+      <label for="mpc-tempo">TEMPO</label>
+      <div class="mpc__tempo-value"><input id="mpc-tempo" type="number" min="40" max="200" [ngModel]="tempo" (ngModelChange)="updateTempo($event)"><span>BPM</span></div>
+    </div>
+    <div class="mpc__quantize-control">
+      <label for="mpc-quantize">QUANTIZE</label>
+      <select id="mpc-quantize" [ngModel]="quantizeDivisions" (ngModelChange)="updateQuantizeGrid($event)">
+        <option [ngValue]="1">1/4</option>
+        <option [ngValue]="2">1/8</option>
+        <option [ngValue]="4">1/16</option>
+        <option [ngValue]="8">1/32</option>
+      </select>
+    </div>
+    <button
+      type="button"
+      class="mpc__levels-button"
+      [class.mpc__levels-button--active]="sixteenLevels"
+      [attr.aria-pressed]="sixteenLevels"
+      [disabled]="!sixteenLevels && (!selectedPad.buffer || selectedPad.mode === 'loop')"
+      (click)="toggleSixteenLevels()">
+      {{ sixteenLevels ? '16 LEVELS ON' : '16 LEVELS' }}
+    </button>
+    <input class="mpc__tempo-slider" aria-label="Tempo" type="range" min="40" max="200" [ngModel]="tempo" (ngModelChange)="updateTempo($event)">
+    <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo - 1)" aria-label="Decrease tempo">−</button>
+    <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo + 1)" aria-label="Increase tempo">＋</button>
+    <button type="button" class="mpc__stop-button" (click)="stopAll()" aria-label="Stop all samples" title="Stop all samples">STOP</button>
+    <button type="button" class="mpc__reset-button" (click)="resetSampler()" aria-label="Reset sampler" title="Reset sampler">RESET</button>
+  </section>
+
+  <section class="mpc__workspace" aria-label="Sample pads" (dragover)="onDragOver($event)" (drop)="dropSamples($event)">
+    <div class="mpc__pad-grid">
+      @for (pad of pads; track pad.key; let i = $index) {
+        <button
+          type="button"
+          class="mpc__pad"
+          [class.mpc__pad--selected]="selectedPadIndex === i"
+          [class.mpc__pad--active]="activePadIndex === i"
+          [class.mpc__pad--loaded]="sixteenLevels ? !!levelSourcePad?.sampleName : !!pad.sampleName"
+          [class.mpc__pad--leveled]="sixteenLevels"
+          [attr.aria-label]="pad.name + ', key ' + pad.key + (sixteenLevels ? ', ' + levelSourcePad?.sampleName + ', ' + (i - (levelSourcePadIndex ?? 0)) + ' semitones' : (pad.sampleName ? ', ' + pad.sampleName : ', empty'))"
+          (click)="triggerPad(i)">
+          <span class="mpc__pad-number">{{ pad.name }}</span>
+          <span class="mpc__pad-sample">{{ sixteenLevels ? levelSourcePad?.sampleName : (pad.sampleName || 'EMPTY') }}</span>
+          @if (sixteenLevels) {
+            <span class="mpc__pad-pitch">{{ i - (levelSourcePadIndex ?? 0) > 0 ? '+' : '' }}{{ i - (levelSourcePadIndex ?? 0) }} ST</span>
+          }
+          <kbd>{{ pad.key }}</kbd>
+          @if (!sixteenLevels && pad.mode === 'loop' && pad.sampleName) {
+            <span class="mpc__loop-mark" aria-label="Loop">↻</span>
+          }
+        </button>
+      }
+    </div>
+
+    <aside class="mpc__inspector" aria-label="Selected pad settings">
+      @if (sixteenLevels) {
+        <div class="mpc__inspector-heading">
+          <span class="mpc__eyebrow">16 LEVELS</span>
+          <span class="mpc__sample-status mpc__sample-status--loaded">CHROMATIC</span>
+        </div>
+        <h2>{{ levelSourcePad?.sampleName }}</h2>
+        <p class="mpc__timing">Each pad raises the sample by one semitone from the root pad.</p>
+        <button type="button" class="mpc__exit-levels" (click)="toggleSixteenLevels()">Exit 16 Levels</button>
+      } @else {
+      <div class="mpc__inspector-heading">
+        <span class="mpc__eyebrow">PAD {{ (selectedPadIndex + 1).toString().padStart(2, '0') }}</span>
+        <span class="mpc__sample-status" [class.mpc__sample-status--loaded]="selectedPad.sampleName">{{ selectedPad.sampleName ? 'SAMPLE READY' : 'NO SAMPLE' }}</span>
+      </div>
+      <h2>{{ selectedPad.sampleName || 'Select a pad' }}</h2>
+      <div class="mpc__field">
+        <label for="mpc-mode">PLAY MODE</label>
+        <select id="mpc-mode" [ngModel]="selectedPad.mode" (ngModelChange)="setPadMode($event)">
+          <option value="oneshot">One-shot</option>
+          <option value="loop">Loop</option>
+        </select>
+      </div>
+      @if (selectedPad.mode === 'loop') {
+        <div class="mpc__field">
+          <label for="mpc-bars">LOOP LENGTH</label>
+          <select id="mpc-bars" [ngModel]="selectedPad.bars" (ngModelChange)="updateBars($event)">
+            <option [ngValue]="1">1 bar</option>
+            <option [ngValue]="2">2 bars</option>
+            <option [ngValue]="4">4 bars</option>
+            <option [ngValue]="8">8 bars</option>
+          </select>
+        </div>
+        <p class="mpc__timing">{{ selectedPad.bars * 4 * 60 / tempo | number:'1.1-1' }} sec at {{ tempo }} BPM</p>
+      }
+      <div class="mpc__inspector-actions">
+        <label class="mpc__replace-button">
+          {{ selectedPad.sampleName ? 'Replace sample' : 'Load to pad' }}
+          <input type="file" accept="audio/*" (change)="replaceSelectedSample($event)">
+        </label>
+        @if (selectedPad.sampleName) {
+          <button type="button" class="mpc__clear-button" (click)="clearSelectedPad()" aria-label="Clear selected pad" title="Clear pad">×</button>
+        }
+      </div>
+      @if (loadMessage) {
+        <p class="mpc__message" role="status">{{ loadMessage }}</p>
+      }
+      }
+    </aside>
+  </section>
+
+  <footer class="mpc__footer"><span>16-VOICE SAMPLE DECK</span><span>KEYS 1–4 · Q–R · A–F · Z–V</span></footer>
+</main>
