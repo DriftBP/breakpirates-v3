@@ -41,7 +41,7 @@ export default class MpcComponent implements OnDestroy {
   private readonly breadcrumbService = inject(BreadcrumbService);
   private readonly breadcrumbConfig: BreadcrumbConfigItem[] = [toolsConfigInactive];
   private audioContext: AudioContext | null = null;
-  private readonly voices: Array<AudioBufferSourceNode | null> = Array(16).fill(null);
+  private readonly voices: (AudioBufferSourceNode | null)[] = Array(16).fill(null);
   private readonly activeTimers = new Map<number, number>();
   private lastTapAt = 0;
 

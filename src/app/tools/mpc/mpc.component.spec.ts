@@ -49,7 +49,7 @@ describe('MpcComponent', () => {
 
   it('stops all active voices without clearing the pads', () => {
     const stop = vi.fn();
-    const voices = (component as unknown as { voices: Array<AudioBufferSourceNode | null> }).voices;
+    const voices = (component as unknown as { voices: (AudioBufferSourceNode | null)[] }).voices;
     voices[2] = { stop, onended: null } as unknown as AudioBufferSourceNode;
     voices[9] = { stop, onended: null } as unknown as AudioBufferSourceNode;
     component.activePadIndex = 9;
