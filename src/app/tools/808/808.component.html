@@ -6,33 +6,34 @@
     </div>
   </div>
   <div class="tr808__sequencer">
-    <div class="tr808__steps" #stepsGrid>
-      <div class="tr808__playhead" #playhead aria-hidden="true"></div>
-      <div class="tr808__step-row">
-        <span class="tr808__step-label"></span>
-        @for (step of steps; track stepIdx; let stepIdx = $index) {
-          <span class="tr808__step-number">{{ stepIdx + 1 }}</span>
-        }
-      </div>
-      @for (drum of drums; track drum.label; let drumIdx = $index) {
+    <div class="tr808__steps-viewport">
+      <div class="tr808__steps" #stepsGrid>
+        <div class="tr808__playhead" #playhead aria-hidden="true"></div>
         <div class="tr808__step-row">
-          <span class="tr808__step-label">{{ drum.label }}</span>
+          <span class="tr808__step-label"></span>
           @for (step of steps; track stepIdx; let stepIdx = $index) {
-            <button
-              (click)="toggleStep(drumIdx, stepIdx)"
-              [class.tr808__step--active]="sequence[drumIdx][stepIdx]"
-              [class.tr808__step--current]="stepIdx === currentStep"
-              class="tr808__step">
-            </button>
+            <span class="tr808__step-number">{{ stepIdx + 1 }}</span>
           }
         </div>
-      }
+        @for (drum of drums; track drum.label; let drumIdx = $index) {
+          <div class="tr808__step-row">
+            <span class="tr808__step-label">{{ drum.label }}</span>
+            @for (step of steps; track stepIdx; let stepIdx = $index) {
+              <button
+                (click)="toggleStep(drumIdx, stepIdx)"
+                [class.tr808__step--active]="sequence[drumIdx][stepIdx]"
+                [class.tr808__step--current]="stepIdx === currentStep"
+                class="tr808__step">
+              </button>
+            }
+          </div>
+        }
     </div>
     <div class="tr808__sequencer-controls">
       <button (click)="togglePlay()">{{ isPlaying ? 'Stop' : 'Play' }}</button>
       <label>Tempo: <input type="number" [(ngModel)]="tempo" min="40" max="300" /></label>
       <button (click)="shareBeat()">Share Beat</button>
-      <input type="text" [(ngModel)]="sharedBeat" placeholder="Paste beat code here" style="width: 220px; margin-left: 1rem;" />
+      <input class="tr808__beat-input" type="text" [(ngModel)]="sharedBeat" placeholder="Paste beat code here" />
       <button (click)="loadBeat()">Load</button>
       <button (click)="clearBeat()">Clear</button>
     </div>

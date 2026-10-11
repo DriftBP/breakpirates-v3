@@ -50,7 +50,14 @@
   gap: 0;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
+  width: max-content;
+}
+
+.tr808__steps-viewport {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tr808__playhead {
@@ -73,7 +80,7 @@
   align-items: center;
   margin: 0;
   min-height: 18px;
-  width: 100%;
+  width: max-content;
 }
 
 .tr808__step-row:first-child {
@@ -98,6 +105,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #181818;
 }
 
 .tr808__step-row:first-child .tr808__step-label {
@@ -161,6 +172,7 @@
 
 .tr808__sequencer-controls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   margin-top: 1.5rem;
@@ -176,7 +188,6 @@
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  margin-right: 1rem;
   box-shadow: 0 2px 8px #0007;
   transition: background 0.2s, color 0.2s;
 }
@@ -186,6 +197,8 @@
 }
 
 .tr808__sequencer-controls label {
+  display: inline-flex;
+  align-items: center;
   color: #f5a623;
   font-size: 1rem;
   font-family: 'Roboto Mono', 'Courier New', monospace;
@@ -202,10 +215,54 @@
   font-size: 1rem;
 }
 
+.tr808__beat-input {
+  flex: 1 1 180px;
+  min-width: 0;
+  max-width: 100%;
+}
+
 .tr808__footer {
   margin-top: 2rem;
   text-align: center;
   font-size: 0.95rem;
   color: #888;
   letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+  .tr808 {
+    width: calc(100% - 1rem);
+    margin: 0.75rem auto;
+    padding: 1rem 0.75rem;
+    border-width: 2px;
+    border-radius: 12px;
+  }
+
+  .tr808__title {
+    font-size: 1.35rem;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .tr808__sequencer {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .tr808__sequencer-controls {
+    justify-content: flex-start;
+  }
+
+  .tr808__sequencer-controls button {
+    padding: 0.5rem 0.75rem;
+    margin: 0;
+  }
+
+  .tr808__step,
+  .tr808__step-number {
+    width: 24px;
+  }
+
+  .tr808__step {
+    height: 24px;
+  }
 }
