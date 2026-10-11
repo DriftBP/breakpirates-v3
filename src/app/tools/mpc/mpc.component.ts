@@ -33,6 +33,7 @@ export default class MpcComponent implements OnDestroy {
     }));
 
   tempo = 120;
+  quantizeDivisions = 4;
   selectedPadIndex = 0;
   activePadIndex: number | null = null;
   loadMessage = '';
@@ -138,7 +139,8 @@ export default class MpcComponent implements OnDestroy {
     source.onended = () => {
       if (this.voices[index] === source) this.voices[index] = null;
     };
-    source.start();
+    const startTime = this.quantizedStartTime(context.currentTime);
+    source.start(startTime);
 
     this.activePadIndex = index;
     const oldTimer = this.activeTimers.get(index);
@@ -146,7 +148,7 @@ export default class MpcComponent implements OnDestroy {
     this.activeTimers.set(index, window.setTimeout(() => {
       if (this.activePadIndex === index) this.activePadIndex = null;
       this.activeTimers.delete(index);
-    }, 140));
+    }, Math.max(140, (startTime - context.currentTime) * 1000 + 140)));
   }
 
   updateTempo(value: number | string): void {
@@ -158,6 +160,11 @@ export default class MpcComponent implements OnDestroy {
       const voice = this.voices[index];
       if (voice && pad.mode === 'loop') voice.playbackRate.setTargetAtTime(this.playbackRateFor(pad), this.audioContext!.currentTime, 0.03);
     });
+  }
+
+  updateQuantizeGrid(value: number | string): void {
+    const divisions = Number(value);
+    if ([1, 2, 4, 8].includes(divisions)) this.quantizeDivisions = divisions;
   }
 
   stopAll(): void {
@@ -223,6 +230,11 @@ export default class MpcComponent implements OnDestroy {
   private playbackRateFor(pad: MpcPad): number {
     if (pad.mode !== 'loop' || !pad.buffer) return 1;
     return pad.buffer.duration / (pad.bars * 4 * 60 / this.tempo);
+  }
+
+  private quantizedStartTime(currentTime: number): number {
+    const gridSeconds = 60 / this.tempo / this.quantizeDivisions;
+    return Math.ceil(currentTime / gridSeconds - 1e-7) * gridSeconds;
   }
 
   private stopVoice(index: number): void {

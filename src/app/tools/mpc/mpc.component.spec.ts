@@ -34,6 +34,19 @@ describe('MpcComponent', () => {
     expect(component.tempo).toBe(200);
   });
 
+  it('schedules pad hits on the selected tempo grid', () => {
+    const quantizedStartTime = (component as unknown as { quantizedStartTime(currentTime: number): number }).quantizedStartTime.bind(component);
+
+    expect(quantizedStartTime(0.13)).toBeCloseTo(0.25);
+    expect(quantizedStartTime(0.25)).toBeCloseTo(0.25);
+
+    component.updateQuantizeGrid(2);
+    expect(quantizedStartTime(0.13)).toBeCloseTo(0.25);
+
+    component.updateTempo(60);
+    expect(quantizedStartTime(0.13)).toBeCloseTo(0.5);
+  });
+
   it('stops all active voices without clearing the pads', () => {
     const stop = vi.fn();
     const voices = (component as unknown as { voices: Array<AudioBufferSourceNode | null> }).voices;

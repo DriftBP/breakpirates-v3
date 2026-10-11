@@ -17,6 +17,15 @@
       <label for="mpc-tempo">TEMPO</label>
       <div class="mpc__tempo-value"><input id="mpc-tempo" type="number" min="40" max="200" [ngModel]="tempo" (ngModelChange)="updateTempo($event)"><span>BPM</span></div>
     </div>
+    <div class="mpc__quantize-control">
+      <label for="mpc-quantize">QUANTIZE</label>
+      <select id="mpc-quantize" [ngModel]="quantizeDivisions" (ngModelChange)="updateQuantizeGrid($event)">
+        <option [ngValue]="1">1/4</option>
+        <option [ngValue]="2">1/8</option>
+        <option [ngValue]="4">1/16</option>
+        <option [ngValue]="8">1/32</option>
+      </select>
+    </div>
     <input class="mpc__tempo-slider" aria-label="Tempo" type="range" min="40" max="200" [ngModel]="tempo" (ngModelChange)="updateTempo($event)">
     <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo - 1)" aria-label="Decrease tempo">−</button>
     <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo + 1)" aria-label="Increase tempo">＋</button>

@@ -114,7 +114,21 @@
 .mpc__stop-button:active { color: #171a17; background: var(--coral); }
 .mpc__tempo-readout { min-width: 95px; }
 .mpc__tempo-readout label,
-.mpc__field label { display: block; margin-bottom: 0.35rem; }
+.mpc__field label,
+.mpc__quantize-control label { display: block; margin-bottom: 0.35rem; }
+.mpc__quantize-control { min-width: 76px; }
+.mpc__quantize-control label { color: var(--muted); font-size: 0.68rem; letter-spacing: 0.08em; }
+.mpc__quantize-control select {
+  width: 100%;
+  height: 30px;
+  padding: 0.25rem 0.4rem;
+  color: #f3f0e7;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  font: inherit;
+  font-size: 0.75rem;
+}
 .mpc__tempo-value { display: flex; align-items: baseline; gap: 0.4rem; }
 .mpc__tempo-value input {
   width: 4.2rem;
