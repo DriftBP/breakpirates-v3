@@ -15,6 +15,21 @@ interface MpcPad {
   bars: number;
 }
 
+interface SavedMpcState {
+  tempo: number;
+  quantizeDivisions: number;
+  sixteenLevels: boolean;
+  levelSourcePadIndex: number | null;
+  selectedPadIndex: number;
+  pads: { mode: MpcPad['mode']; bars: number }[];
+}
+
+interface SavedMpcSample {
+  index: number;
+  name: string;
+  data: ArrayBuffer;
+}
+
 @Component({
   selector: 'bp-mpc',
   templateUrl: './mpc.component.html',
@@ -43,6 +58,8 @@ export default class MpcComponent implements OnDestroy {
   private readonly breadcrumbService = inject(BreadcrumbService);
   private readonly changeDetector = inject(ChangeDetectorRef);
   private readonly breadcrumbConfig: BreadcrumbConfigItem[] = [toolsConfigInactive];
+  private readonly storageKey = 'breakpirates-mpc-state';
+  private readonly restorePromise: Promise<void>;
   private audioContext: AudioContext | null = null;
   private readonly voices: (AudioBufferSourceNode | null)[] = Array(16).fill(null);
   private readonly activeTimers = new Map<number, number>();
@@ -50,6 +67,7 @@ export default class MpcComponent implements OnDestroy {
 
   constructor() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
+    this.restorePromise = this.restoreState();
   }
 
   get selectedPad(): MpcPad {
@@ -73,6 +91,7 @@ export default class MpcComponent implements OnDestroy {
   }
 
   async loadFiles(event: Event): Promise<void> {
+    await this.restorePromise;
     const input = event.target as HTMLInputElement;
     const files = Array.from(input.files ?? []);
     input.value = '';
@@ -97,6 +116,7 @@ export default class MpcComponent implements OnDestroy {
   }
 
   async replaceSelectedSample(event: Event): Promise<void> {
+    await this.restorePromise;
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     input.value = '';
@@ -112,6 +132,7 @@ export default class MpcComponent implements OnDestroy {
   }
 
   async dropSamples(event: DragEvent): Promise<void> {
+    await this.restorePromise;
     event.preventDefault();
     const files = Array.from(event.dataTransfer?.files ?? []);
     let loaded = 0;
@@ -132,8 +153,10 @@ export default class MpcComponent implements OnDestroy {
   }
 
   async triggerPad(index: number): Promise<void> {
+    await this.restorePromise;
     const pad = this.pads[index];
     this.selectedPadIndex = index;
+    this.saveState();
     const sample = this.sixteenLevels ? this.levelSourcePad : pad;
     if (!sample?.buffer) return;
 
@@ -166,6 +189,7 @@ export default class MpcComponent implements OnDestroy {
     const nextTempo = Number(value);
     if (!Number.isFinite(nextTempo)) return;
     this.tempo = Math.min(200, Math.max(40, Math.round(nextTempo)));
+    this.saveState();
 
     this.pads.forEach((pad, index) => {
       const voice = this.voices[index];
@@ -175,19 +199,24 @@ export default class MpcComponent implements OnDestroy {
 
   updateQuantizeGrid(value: number | string): void {
     const divisions = Number(value);
-    if ([1, 2, 4, 8].includes(divisions)) this.quantizeDivisions = divisions;
+    if ([1, 2, 4, 8].includes(divisions)) {
+      this.quantizeDivisions = divisions;
+      this.saveState();
+    }
   }
 
   toggleSixteenLevels(): void {
     if (this.sixteenLevels) {
       this.sixteenLevels = false;
       this.levelSourcePadIndex = null;
+      this.saveState();
       return;
     }
 
     if (!this.selectedPad.buffer || this.selectedPad.mode === 'loop') return;
     this.levelSourcePadIndex = this.selectedPadIndex;
     this.sixteenLevels = true;
+    this.saveState();
   }
 
   pitchRateForPad(index: number): number {
@@ -205,15 +234,22 @@ export default class MpcComponent implements OnDestroy {
   setPadMode(mode: 'oneshot' | 'loop'): void {
     this.selectedPad.mode = mode;
     this.stopVoice(this.selectedPadIndex);
+    this.saveState();
   }
 
   updateBars(value: number | string): void {
     this.selectedPad.bars = Number(value);
     this.stopVoice(this.selectedPadIndex);
+    this.saveState();
   }
 
-  clearSelectedPad(): void {
+  async clearSelectedPad(): Promise<void> {
     this.stopVoice(this.selectedPadIndex);
+    try {
+      await this.writeSample(this.selectedPadIndex, undefined);
+    } catch {
+      this.loadMessage = 'Could not remove the saved sample from this browser.';
+    }
     this.selectedPad.buffer = null;
     this.selectedPad.sampleName = null;
     if (this.sixteenLevels && this.levelSourcePadIndex === this.selectedPadIndex) {
@@ -221,6 +257,7 @@ export default class MpcComponent implements OnDestroy {
       this.levelSourcePadIndex = null;
     }
     this.loadMessage = `${this.selectedPad.name} cleared.`;
+    this.saveState();
   }
 
   tapTempo(): void {
@@ -243,12 +280,126 @@ export default class MpcComponent implements OnDestroy {
   private async assignSample(index: number, file: File): Promise<void> {
     const context = this.getAudioContext();
     const data = await file.arrayBuffer();
+    const savedData = data.slice(0);
     const buffer = await context.decodeAudioData(data);
     const pad = this.pads[index];
     this.stopVoice(index);
     pad.buffer = buffer;
     pad.sampleName = file.name.replace(/\.[^.]+$/, '');
+    try {
+      await this.writeSample(index, { index, name: file.name, data: savedData });
+      this.loadMessage = 'Sample saved in this browser.';
+    } catch {
+      this.loadMessage = 'Sample loaded, but could not be saved in this browser.';
+    }
+    this.saveState();
     this.changeDetector.markForCheck();
+  }
+
+  private async restoreState(): Promise<void> {
+    let savedState: SavedMpcState | null = null;
+    try {
+      const serializedState = localStorage.getItem(this.storageKey);
+      if (serializedState) savedState = JSON.parse(serializedState) as SavedMpcState;
+    } catch {
+      this.loadMessage = 'Saved sampler settings could not be read.';
+    }
+
+    if (savedState) {
+      if (Number.isFinite(savedState.tempo)) this.tempo = Math.min(200, Math.max(40, Math.round(savedState.tempo)));
+      if ([1, 2, 4, 8].includes(savedState.quantizeDivisions)) this.quantizeDivisions = savedState.quantizeDivisions;
+      this.selectedPadIndex = this.validPadIndex(savedState.selectedPadIndex) ? savedState.selectedPadIndex : 0;
+      if (Array.isArray(savedState.pads)) {
+        savedState.pads.forEach((savedPad, index) => {
+          if (!this.pads[index]) return;
+          if (savedPad.mode === 'oneshot' || savedPad.mode === 'loop') this.pads[index].mode = savedPad.mode;
+          if ([1, 2, 4, 8].includes(savedPad.bars)) this.pads[index].bars = savedPad.bars;
+        });
+      }
+    }
+
+    try {
+      const samples = await this.readSamples();
+      if (samples.length) {
+        const context = this.getAudioContext();
+        await Promise.all(samples.map(async sample => {
+          if (!this.validPadIndex(sample.index)) return;
+          try {
+            this.pads[sample.index].buffer = await context.decodeAudioData(sample.data.slice(0));
+            this.pads[sample.index].sampleName = sample.name.replace(/\.[^.]+$/, '');
+          } catch {
+            await this.writeSample(sample.index, undefined);
+          }
+        }));
+      }
+      const rootIndex = savedState?.levelSourcePadIndex;
+      this.levelSourcePadIndex = savedState?.sixteenLevels && this.validPadIndex(rootIndex) && this.pads[rootIndex].buffer && this.pads[rootIndex].mode === 'oneshot'
+        ? rootIndex
+        : null;
+      this.sixteenLevels = this.levelSourcePadIndex !== null;
+      if (samples.length) this.loadMessage = 'Saved sampler state restored.';
+    } catch {
+      this.loadMessage = 'Saved samples could not be restored from this browser.';
+    }
+
+    this.changeDetector.markForCheck();
+  }
+
+  private saveState(): void {
+    const state: SavedMpcState = {
+      tempo: this.tempo,
+      quantizeDivisions: this.quantizeDivisions,
+      sixteenLevels: this.sixteenLevels,
+      levelSourcePadIndex: this.levelSourcePadIndex,
+      selectedPadIndex: this.selectedPadIndex,
+      pads: this.pads.map(pad => ({ mode: pad.mode, bars: pad.bars }))
+    };
+
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(state));
+    } catch {
+      this.loadMessage = 'Sampler settings could not be saved in this browser.';
+    }
+  }
+
+  private async openSampleDatabase(): Promise<IDBDatabase> {
+    if (typeof indexedDB === 'undefined') throw new Error('IndexedDB is unavailable.');
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open('breakpirates-mpc-samples', 1);
+      request.onupgradeneeded = () => {
+        if (!request.result.objectStoreNames.contains('samples')) request.result.createObjectStore('samples', { keyPath: 'index' });
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  }
+
+  private async readSamples(): Promise<SavedMpcSample[]> {
+    return this.withSampleStore('readonly', store => store.getAll() as IDBRequest<SavedMpcSample[]>);
+  }
+
+  private async writeSample(index: number, sample: SavedMpcSample | undefined): Promise<void> {
+    if (sample) {
+      await this.withSampleStore('readwrite', store => store.put(sample));
+    } else {
+      await this.withSampleStore<undefined>('readwrite', store => store.delete(index));
+    }
+  }
+
+  private async withSampleStore<T>(mode: IDBTransactionMode, requestFor: (store: IDBObjectStore) => IDBRequest<T>): Promise<T> {
+    const database = await this.openSampleDatabase();
+    return new Promise((resolve, reject) => {
+      const transaction = database.transaction('samples', mode);
+      const request = requestFor(transaction.objectStore('samples'));
+      transaction.oncomplete = () => resolve(request.result);
+      transaction.onerror = () => reject(transaction.error);
+      transaction.onabort = () => reject(transaction.error);
+      request.onerror = () => reject(request.error);
+    });
+  }
+
+  private validPadIndex(index: unknown): index is number {
+    return typeof index === 'number' && Number.isInteger(index) && index >= 0 && index < this.pads.length;
   }
 
   private getAudioContext(): AudioContext {

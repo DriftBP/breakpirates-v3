@@ -8,6 +8,7 @@ describe('MpcComponent', () => {
   let component: MpcComponent;
 
   beforeEach(async () => {
+    localStorage.removeItem('breakpirates-mpc-state');
     await TestBed.configureTestingModule({
       providers: [
         { provide: BreadcrumbService, useValue: { setBreadcrumb: vi.fn() } },
@@ -36,6 +37,15 @@ describe('MpcComponent', () => {
 
     component.updateTempo(500);
     expect(component.tempo).toBe(200);
+  });
+
+  it('persists tempo and quantize settings in local storage', () => {
+    component.updateTempo(132);
+    component.updateQuantizeGrid(8);
+
+    const savedState = JSON.parse(localStorage.getItem('breakpirates-mpc-state') ?? '{}');
+    expect(savedState.tempo).toBe(132);
+    expect(savedState.quantizeDivisions).toBe(8);
   });
 
   it('schedules pad hits on the selected tempo grid', () => {
