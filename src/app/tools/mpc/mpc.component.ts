@@ -61,7 +61,8 @@ export default class MpcComponent implements OnDestroy {
   private readonly storageKey = 'breakpirates-mpc-state';
   private readonly restorePromise: Promise<void>;
   private audioContext: AudioContext | null = null;
-  private readonly voices: (AudioBufferSourceNode | null)[] = Array(16).fill(null);
+  private readonly loopVoices: (AudioBufferSourceNode | null)[] = Array(16).fill(null);
+  private readonly oneShotVoices: (AudioBufferSourceNode | null)[] = Array(16).fill(null);
   private readonly activeTimers = new Map<number, number>();
   private lastTapAt = 0;
 
@@ -162,16 +163,18 @@ export default class MpcComponent implements OnDestroy {
 
     const context = this.getAudioContext();
     if (context.state === 'suspended') await context.resume();
-    this.stopVoice(index);
+    const isLoop = !this.sixteenLevels && pad.mode === 'loop';
+    const voiceGroup = isLoop ? this.loopVoices : this.oneShotVoices;
+    this.stopTrackedVoice(voiceGroup, index);
 
     const source = context.createBufferSource();
     source.buffer = sample.buffer;
-    source.loop = !this.sixteenLevels && pad.mode === 'loop';
+    source.loop = isLoop;
     source.playbackRate.value = this.sixteenLevels ? this.pitchRateForPad(index) : this.playbackRateFor(pad);
     source.connect(context.destination);
-    this.voices[index] = source;
+    voiceGroup[index] = source;
     source.onended = () => {
-      if (this.voices[index] === source) this.voices[index] = null;
+      if (voiceGroup[index] === source) voiceGroup[index] = null;
     };
     const startTime = this.quantizedStartTime(context.currentTime);
     source.start(startTime);
@@ -192,7 +195,7 @@ export default class MpcComponent implements OnDestroy {
     this.saveState();
 
     this.pads.forEach((pad, index) => {
-      const voice = this.voices[index];
+      const voice = this.loopVoices[index];
       if (voice && pad.mode === 'loop' && !this.sixteenLevels) voice.playbackRate.setTargetAtTime(this.playbackRateFor(pad), this.audioContext!.currentTime, 0.03);
     });
   }
@@ -225,7 +228,7 @@ export default class MpcComponent implements OnDestroy {
   }
 
   stopAll(): void {
-    this.voices.forEach((_, index) => this.stopVoice(index));
+    this.pads.forEach((_, index) => this.stopVoice(index));
     this.activeTimers.forEach(timer => window.clearTimeout(timer));
     this.activeTimers.clear();
     this.activePadIndex = null;
@@ -422,10 +425,15 @@ export default class MpcComponent implements OnDestroy {
   }
 
   private stopVoice(index: number): void {
-    const voice = this.voices[index];
+    this.stopTrackedVoice(this.loopVoices, index);
+    this.stopTrackedVoice(this.oneShotVoices, index);
+  }
+
+  private stopTrackedVoice(voices: (AudioBufferSourceNode | null)[], index: number): void {
+    const voice = voices[index];
     if (!voice) return;
     voice.onended = null;
     voice.stop();
-    this.voices[index] = null;
+    voices[index] = null;
   }
 }

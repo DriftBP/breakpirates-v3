@@ -77,18 +77,58 @@ describe('MpcComponent', () => {
     expect(component.pads[5].sampleName).toBe('Bass hit');
   });
 
+  it('keeps loop voices independent from one-shot playback on the same pad', async () => {
+    const existingLoop = { stop: vi.fn(), onended: null } as unknown as AudioBufferSourceNode;
+    const newOneShot = {
+      buffer: null,
+      loop: false,
+      playbackRate: { value: 1 },
+      connect: vi.fn(),
+      start: vi.fn(),
+      stop: vi.fn(),
+      onended: null as (() => void) | null
+    } as unknown as AudioBufferSourceNode;
+    const context = {
+      state: 'running',
+      currentTime: 0,
+      destination: {},
+      createBufferSource: vi.fn(() => newOneShot),
+      resume: vi.fn()
+    } as unknown as AudioContext;
+    const componentInternals = component as unknown as {
+      audioContext: AudioContext;
+      loopVoices: (AudioBufferSourceNode | null)[];
+      oneShotVoices: (AudioBufferSourceNode | null)[];
+      restorePromise: Promise<void>;
+    };
+    componentInternals.audioContext = context;
+    componentInternals.loopVoices[0] = existingLoop;
+    component.pads[0].buffer = { duration: 1 } as AudioBuffer;
+    component.sixteenLevels = true;
+    component.levelSourcePadIndex = 0;
+
+    await component.triggerPad(0);
+
+    expect(existingLoop.stop).not.toHaveBeenCalled();
+    expect(componentInternals.loopVoices[0]).toBe(existingLoop);
+    expect(componentInternals.oneShotVoices[0]).toBe(newOneShot);
+  });
+
   it('stops all active voices without clearing the pads', () => {
     const stop = vi.fn();
-    const voices = (component as unknown as { voices: (AudioBufferSourceNode | null)[] }).voices;
-    voices[2] = { stop, onended: null } as unknown as AudioBufferSourceNode;
-    voices[9] = { stop, onended: null } as unknown as AudioBufferSourceNode;
+    const componentInternals = component as unknown as {
+      loopVoices: (AudioBufferSourceNode | null)[];
+      oneShotVoices: (AudioBufferSourceNode | null)[];
+    };
+    componentInternals.loopVoices[2] = { stop, onended: null } as unknown as AudioBufferSourceNode;
+    componentInternals.oneShotVoices[9] = { stop, onended: null } as unknown as AudioBufferSourceNode;
     component.activePadIndex = 9;
 
     component.stopAll();
 
     expect(stop).toHaveBeenCalledTimes(2);
-    expect(voices[2]).toBeNull();
-    expect(voices[9]).toBeNull();
+    expect(componentInternals.loopVoices[2]).toBeNull();
+    expect(componentInternals.oneShotVoices[9]).toBeNull();
     expect(component.activePadIndex).toBeNull();
   });
 });
