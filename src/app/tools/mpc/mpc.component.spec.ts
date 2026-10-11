@@ -51,6 +51,22 @@ describe('MpcComponent', () => {
     expect(quantizedStartTime(0.13)).toBeCloseTo(0.5);
   });
 
+  it('maps 16 Levels pads to ascending semitone pitches around the root pad', () => {
+    component.pads[5].buffer = { duration: 1 } as AudioBuffer;
+    component.pads[5].sampleName = 'Bass hit';
+    component.selectedPadIndex = 5;
+    component.toggleSixteenLevels();
+
+    expect(component.sixteenLevels).toBe(true);
+    expect(component.pitchRateForPad(5)).toBe(1);
+    expect(component.pitchRateForPad(6)).toBeCloseTo(Math.pow(2, 1 / 12));
+    expect(component.pitchRateForPad(4)).toBeCloseTo(Math.pow(2, -1 / 12));
+
+    component.toggleSixteenLevels();
+    expect(component.sixteenLevels).toBe(false);
+    expect(component.pads[5].sampleName).toBe('Bass hit');
+  });
+
   it('stops all active voices without clearing the pads', () => {
     const stop = vi.fn();
     const voices = (component as unknown as { voices: (AudioBufferSourceNode | null)[] }).voices;

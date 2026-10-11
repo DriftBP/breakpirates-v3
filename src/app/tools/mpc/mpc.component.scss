@@ -118,6 +118,22 @@
   font: inherit;
   font-size: 0.75rem;
 }
+.mpc__levels-button,
+.mpc__exit-levels {
+  min-height: 40px;
+  padding: 0 0.75rem;
+  color: #e9e6dc;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.mpc__levels-button:disabled { opacity: 0.45; cursor: not-allowed; }
+.mpc__levels-button--active { color: #171a17; background: var(--acid); border-color: var(--acid); }
+.mpc__exit-levels { margin-top: auto; color: var(--acid); }
 .mpc__tempo-value { display: flex; align-items: baseline; gap: 0.4rem; }
 .mpc__tempo-value input {
   width: 4.2rem;
@@ -174,6 +190,7 @@
 .mpc__pad--selected { outline: 1px solid var(--acid); outline-offset: -4px; }
 .mpc__pad--active { transform: translateY(2px); background: var(--acid) !important; color: #181b17; border-bottom-width: 2px; }
 .mpc__pad--loaded .mpc__pad-number { color: var(--acid); }
+.mpc__pad--leveled { border-top: 2px solid var(--coral); }
 .mpc__pad--active .mpc__pad-number,
 .mpc__pad--active kbd { color: #181b17; }
 .mpc__pad-number { font-size: 0.68rem; color: var(--muted); }
@@ -191,6 +208,7 @@
   text-transform: uppercase;
 }
 .mpc__pad kbd { color: #b9c0b6; font: inherit; font-size: 0.75rem; }
+.mpc__pad-pitch { color: var(--coral); font-size: 0.64rem; font-weight: 700; }
 .mpc__loop-mark { position: absolute; top: 0.5rem; right: 0.65rem; color: var(--coral); font-size: 1.1rem; }
 
 .mpc__inspector {

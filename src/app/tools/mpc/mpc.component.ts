@@ -34,6 +34,8 @@ export default class MpcComponent implements OnDestroy {
 
   tempo = 120;
   quantizeDivisions = 4;
+  sixteenLevels = false;
+  levelSourcePadIndex: number | null = null;
   selectedPadIndex = 0;
   activePadIndex: number | null = null;
   loadMessage = '';
@@ -52,6 +54,10 @@ export default class MpcComponent implements OnDestroy {
 
   get selectedPad(): MpcPad {
     return this.pads[this.selectedPadIndex];
+  }
+
+  get levelSourcePad(): MpcPad | null {
+    return this.levelSourcePadIndex === null ? null : this.pads[this.levelSourcePadIndex];
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -128,16 +134,17 @@ export default class MpcComponent implements OnDestroy {
   async triggerPad(index: number): Promise<void> {
     const pad = this.pads[index];
     this.selectedPadIndex = index;
-    if (!pad.buffer) return;
+    const sample = this.sixteenLevels ? this.levelSourcePad : pad;
+    if (!sample?.buffer) return;
 
     const context = this.getAudioContext();
     if (context.state === 'suspended') await context.resume();
     this.stopVoice(index);
 
     const source = context.createBufferSource();
-    source.buffer = pad.buffer;
-    source.loop = pad.mode === 'loop';
-    source.playbackRate.value = this.playbackRateFor(pad);
+    source.buffer = sample.buffer;
+    source.loop = !this.sixteenLevels && pad.mode === 'loop';
+    source.playbackRate.value = this.sixteenLevels ? this.pitchRateForPad(index) : this.playbackRateFor(pad);
     source.connect(context.destination);
     this.voices[index] = source;
     source.onended = () => {
@@ -162,13 +169,30 @@ export default class MpcComponent implements OnDestroy {
 
     this.pads.forEach((pad, index) => {
       const voice = this.voices[index];
-      if (voice && pad.mode === 'loop') voice.playbackRate.setTargetAtTime(this.playbackRateFor(pad), this.audioContext!.currentTime, 0.03);
+      if (voice && pad.mode === 'loop' && !this.sixteenLevels) voice.playbackRate.setTargetAtTime(this.playbackRateFor(pad), this.audioContext!.currentTime, 0.03);
     });
   }
 
   updateQuantizeGrid(value: number | string): void {
     const divisions = Number(value);
     if ([1, 2, 4, 8].includes(divisions)) this.quantizeDivisions = divisions;
+  }
+
+  toggleSixteenLevels(): void {
+    if (this.sixteenLevels) {
+      this.sixteenLevels = false;
+      this.levelSourcePadIndex = null;
+      return;
+    }
+
+    if (!this.selectedPad.buffer || this.selectedPad.mode === 'loop') return;
+    this.levelSourcePadIndex = this.selectedPadIndex;
+    this.sixteenLevels = true;
+  }
+
+  pitchRateForPad(index: number): number {
+    if (this.levelSourcePadIndex === null) return 1;
+    return Math.pow(2, (index - this.levelSourcePadIndex) / 12);
   }
 
   stopAll(): void {
@@ -192,6 +216,10 @@ export default class MpcComponent implements OnDestroy {
     this.stopVoice(this.selectedPadIndex);
     this.selectedPad.buffer = null;
     this.selectedPad.sampleName = null;
+    if (this.sixteenLevels && this.levelSourcePadIndex === this.selectedPadIndex) {
+      this.sixteenLevels = false;
+      this.levelSourcePadIndex = null;
+    }
     this.loadMessage = `${this.selectedPad.name} cleared.`;
   }
 

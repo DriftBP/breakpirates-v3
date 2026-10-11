@@ -25,6 +25,15 @@
         <option [ngValue]="8">1/32</option>
       </select>
     </div>
+    <button
+      type="button"
+      class="mpc__levels-button"
+      [class.mpc__levels-button--active]="sixteenLevels"
+      [attr.aria-pressed]="sixteenLevels"
+      [disabled]="!sixteenLevels && (!selectedPad.buffer || selectedPad.mode === 'loop')"
+      (click)="toggleSixteenLevels()">
+      {{ sixteenLevels ? '16 LEVELS ON' : '16 LEVELS' }}
+    </button>
     <input class="mpc__tempo-slider" aria-label="Tempo" type="range" min="40" max="200" [ngModel]="tempo" (ngModelChange)="updateTempo($event)">
     <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo - 1)" aria-label="Decrease tempo">−</button>
     <button type="button" class="mpc__transport-button" (click)="updateTempo(tempo + 1)" aria-label="Increase tempo">＋</button>
@@ -39,13 +48,17 @@
           class="mpc__pad"
           [class.mpc__pad--selected]="selectedPadIndex === i"
           [class.mpc__pad--active]="activePadIndex === i"
-          [class.mpc__pad--loaded]="pad.sampleName"
-          [attr.aria-label]="pad.name + ', key ' + pad.key + (pad.sampleName ? ', ' + pad.sampleName : ', empty')"
+          [class.mpc__pad--loaded]="sixteenLevels ? !!levelSourcePad?.sampleName : !!pad.sampleName"
+          [class.mpc__pad--leveled]="sixteenLevels"
+          [attr.aria-label]="pad.name + ', key ' + pad.key + (sixteenLevels ? ', ' + levelSourcePad?.sampleName + ', ' + (i - (levelSourcePadIndex ?? 0)) + ' semitones' : (pad.sampleName ? ', ' + pad.sampleName : ', empty'))"
           (click)="triggerPad(i)">
           <span class="mpc__pad-number">{{ pad.name }}</span>
-          <span class="mpc__pad-sample">{{ pad.sampleName || 'EMPTY' }}</span>
+          <span class="mpc__pad-sample">{{ sixteenLevels ? levelSourcePad?.sampleName : (pad.sampleName || 'EMPTY') }}</span>
+          @if (sixteenLevels) {
+            <span class="mpc__pad-pitch">{{ i - (levelSourcePadIndex ?? 0) > 0 ? '+' : '' }}{{ i - (levelSourcePadIndex ?? 0) }} ST</span>
+          }
           <kbd>{{ pad.key }}</kbd>
-          @if (pad.mode === 'loop' && pad.sampleName) {
+          @if (!sixteenLevels && pad.mode === 'loop' && pad.sampleName) {
             <span class="mpc__loop-mark" aria-label="Loop">↻</span>
           }
         </button>
@@ -53,6 +66,15 @@
     </div>
 
     <aside class="mpc__inspector" aria-label="Selected pad settings">
+      @if (sixteenLevels) {
+        <div class="mpc__inspector-heading">
+          <span class="mpc__eyebrow">16 LEVELS</span>
+          <span class="mpc__sample-status mpc__sample-status--loaded">CHROMATIC</span>
+        </div>
+        <h2>{{ levelSourcePad?.sampleName }}</h2>
+        <p class="mpc__timing">Each pad raises the sample by one semitone from the root pad.</p>
+        <button type="button" class="mpc__exit-levels" (click)="toggleSixteenLevels()">Exit 16 Levels</button>
+      } @else {
       <div class="mpc__inspector-heading">
         <span class="mpc__eyebrow">PAD {{ (selectedPadIndex + 1).toString().padStart(2, '0') }}</span>
         <span class="mpc__sample-status" [class.mpc__sample-status--loaded]="selectedPad.sampleName">{{ selectedPad.sampleName ? 'SAMPLE READY' : 'NO SAMPLE' }}</span>
@@ -88,6 +110,7 @@
       </div>
       @if (loadMessage) {
         <p class="mpc__message" role="status">{{ loadMessage }}</p>
+      }
       }
     </aside>
   </section>
