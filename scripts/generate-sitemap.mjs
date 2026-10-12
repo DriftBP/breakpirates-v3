@@ -33,7 +33,13 @@ const urls = new Set([
   `${siteUrl}/schedule`,
   `${siteUrl}/profiles`,
   `${siteUrl}/video`,
+  `${siteUrl}/social`,
   `${siteUrl}/tools`,
+  `${siteUrl}/tools/bpm`,
+  `${siteUrl}/tools/dj-name`,
+  `${siteUrl}/tools/mpc`,
+  `${siteUrl}/tools/roster`,
+  `${siteUrl}/tools/soundboard`,
   `${siteUrl}/tools/technics-1200-lookup`,
   `${siteUrl}/tools/808`
 ]);

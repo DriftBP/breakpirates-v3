@@ -38,4 +38,14 @@ describe('NavigationComponent', () => {
   it('should create', async () => {
     expect(component).toBeDefined();
   });
+
+  it('groups music, video, and tools under More', () => {
+    fixture.detectChanges();
+
+    const moreMenu = fixture.nativeElement.querySelector('#nav-more').parentElement;
+
+    expect(moreMenu.querySelector('a[routerLink="/music"]')).toBeTruthy();
+    expect(moreMenu.querySelector('a[routerLink="/video"]')).toBeTruthy();
+    expect(moreMenu.querySelector('a[routerLink="/tools"]')).toBeTruthy();
+  });
 });
