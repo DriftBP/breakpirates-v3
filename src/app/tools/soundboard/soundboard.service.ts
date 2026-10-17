@@ -5,7 +5,7 @@ import { SampleConfig } from './sample-config';
 
 @Injectable()
 export class SoundboardService {
-  private sounds: { [id: number]: HTMLAudioElement } = {};
+  private sounds: Record<number, HTMLAudioElement> = {};
 
   private _isLoaded = signal<boolean>(false);
   public readonly isLoaded = this._isLoaded.asReadonly();
@@ -15,7 +15,7 @@ export class SoundboardService {
     this._isLoaded.set(false);
 
     configs.forEach(c => {
-      let audio = new Audio(`${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${c.file}`);
+      const audio = new Audio(`${AppSettings.ASSET_SHOW_SOUND}${baseDir}/${c.file}`);
       audio.loop = c.loop;
       audio.title = c.name;
       audio.preload = 'auto';

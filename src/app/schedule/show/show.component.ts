@@ -15,6 +15,8 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
 import { GenreListComponent } from '../genre-list/genre-list.component';
 import { HostListComponent } from '../host-list/host-list.component';
 import { ImageClickDirective } from '../../shared/directives/image-click.directive';
+import { AddToCalendarComponent } from '../../shared/add-to-calendar/add-to-calendar.component';
+import { ShareShowComponent } from '../../shared/share-show/share-show.component';
 
 @Component({
     selector: 'bp-show',
@@ -27,7 +29,9 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       HostListComponent,
       TimePipe,
       TranslatePipe,
-      ImageClickDirective
+      ImageClickDirective,
+      AddToCalendarComponent,
+      ShareShowComponent
     ]
 })
 export class ShowComponent {
@@ -44,6 +48,7 @@ export class ShowComponent {
 
   dayName: Signal<string | undefined>;
   imagePath = AppSettings.ASSET_SHOW_IMAGE;
+  siteUrl = AppSettings.SITE_URL;
   dates: Signal<{
     startDate: DateTime;
     endDate: DateTime;

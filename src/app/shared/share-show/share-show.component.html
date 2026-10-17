@@ -1,0 +1,10 @@
+<button
+  class="btn btn-secondary share-show"
+  type="button"
+  (click)="shareShow()"
+  [attr.aria-label]="(linkCopied() ? 'SCHEDULE.LINK_COPIED' : 'SCHEDULE.SHARE_SHOW') | translate"
+  [title]="(linkCopied() ? 'SCHEDULE.LINK_COPIED' : 'SCHEDULE.SHARE_SHOW') | translate">
+  <fa-icon
+    [icon]="faShareNodes"
+    aria-hidden="true"></fa-icon>
+</button>

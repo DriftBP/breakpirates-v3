@@ -33,6 +33,7 @@ export default class NewsComponent implements OnInit {
 
   latestNews: Signal<News[]>;
   otherNews: Signal<News[]>;
+  otherNewsByYear: Signal<{ year: number; articles: News[] }[]>;
   showMore = false;
 
   constructor() {
@@ -46,6 +47,19 @@ export default class NewsComponent implements OnInit {
       const news = this.news();
 
       return Array.isArray(news) ? news.slice(this.latestNewsItems) : [];
+    });
+
+    this.otherNewsByYear = computed(() => {
+      const articlesByYear = new Map<number, News[]>();
+
+      for (const article of this.otherNews()) {
+        const year = DateTime.fromSeconds(parseInt(article.date)).year;
+        const articles = articlesByYear.get(year) ?? [];
+        articles.push(article);
+        articlesByYear.set(year, articles);
+      }
+
+      return Array.from(articlesByYear, ([year, articles]) => ({ year, articles }));
     });
   }
 

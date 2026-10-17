@@ -23,7 +23,8 @@ export const routes: Routes = [
         path: ':id',
         loadComponent: () => import('./news-article/news-article.component'),
         resolve: {
-          article: newsArticleResolver
+          article: newsArticleResolver,
+          news: newsResolver
         }
       }
     ]

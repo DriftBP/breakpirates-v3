@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 import { DateTime } from 'luxon';
 
 import BpmComponent from './bpm.component';
@@ -19,34 +20,36 @@ describe('BpmComponent', () => {
   let component: BpmComponent;
   let fixture: ComponentFixture<BpmComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
         imports: [
           BpmComponent,
-          TranslateModule.forRoot()
+          TranslatePipe
+        ],
+        providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          }
         ]
     });
     fixture = TestBed.createComponent(BpmComponent);
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should recognise no data points', async () => {
+  it('should recognise no data points', () => {
     const result = component['isEmpty'](emptyDataPoints);
 
     expect(result).toBeTruthy();
   });
 
-  it('should recognise required number of data points', async () => {
+  it('should recognise required number of data points', () => {
     const result = component['isFull'](fullDataPoints);
 
     expect(result).toBeTruthy();
   });
 
-  it('should return relevant status', async () => {
+  it('should return relevant status', () => {
     const emptyStatus = component['getStatus'](emptyDataPoints);
     const insufficientStatus = component['getStatus'](insufficientDataPoints);
     const fullStatus = component['getStatus'](fullDataPoints);

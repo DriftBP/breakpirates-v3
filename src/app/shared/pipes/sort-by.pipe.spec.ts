@@ -39,6 +39,7 @@ describe('SortByPipe', () => {
   it('should sort alphabetically by id ascending', () => {
     const transformedProfiles = pipe.transform(hosts, SortOrder.Ascending, 'id');
     expect(transformedProfiles).toEqual([host2, host5, host3, host1, host4]);
+    expect(hosts).toEqual([host1, host2, host3, host4, host5]);
   });
 
   it('should sort alphabetically by name ascending', () => {

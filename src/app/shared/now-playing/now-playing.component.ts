@@ -1,12 +1,13 @@
-import { Component, computed, Signal, effect, signal, inject, OnDestroy } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, computed, Signal, signal, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { filter, fromEvent, merge, of, switchMap, take, timer } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
-import { ScheduleService } from '../../schedule/services/schedule.service';
 import { AppSettings } from '../../app-settings';
 import { SortOrder } from '../pipes/sort-order';
 import { ProgressIndicatorComponent } from '../progress-indicator/progress-indicator.component';
@@ -14,6 +15,7 @@ import { RadioPlayerComponent } from '../radio-player/radio-player.component';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TimePipe } from '../pipes/time.pipe';
 import { SafePipe } from '../pipes/safe.pipe';
+import { NowPlayingService } from '../services/now-playing/now-playing.service';
 import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
 
 @Component({
@@ -31,11 +33,10 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       SafePipe
     ]
 })
-export class NowPlayingComponent implements OnDestroy {
-  readonly scheduleService = inject(ScheduleService);
+export class NowPlayingComponent {
+  readonly nowPlayingService = inject(NowPlayingService);
   private readonly shoutcastService = inject(ShoutcastService);
-
-  private currentTrackSubscription?: Subscription;
+  private readonly document = inject<Document>(DOCUMENT);
 
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
@@ -50,15 +51,24 @@ export class NowPlayingComponent implements OnDestroy {
   constructor() {
     // HTML5 audio player will only work over HTTP
     this.showRadioPlayer = location.protocol.toLowerCase() === 'http:';
-    // Fetch current track in injection context
-    effect(() => {
-      this.currentTrackSubscription = this.shoutcastService.getCurrentTrack().subscribe(track => {
-        this.currentTrack.set(track);
-      });
+    const visible$ = merge(
+      of(null),
+      fromEvent(this.document, 'visibilitychange')
+    ).pipe(
+      filter(() => this.document.visibilityState === 'visible'),
+      take(1)
+    );
+
+    visible$.pipe(
+      switchMap(() => timer(1000)),
+      switchMap(() => this.shoutcastService.getCurrentTrack()),
+      takeUntilDestroyed()
+    ).subscribe(track => {
+      this.currentTrack.set(track);
     });
 
     this.nowPlaying = computed(() => {
-      return this.scheduleService.nowPlaying();
+      return this.nowPlayingService.nowPlaying();
     });
 
     this.isLiveShow = computed(() => {
@@ -77,12 +87,6 @@ export class NowPlayingComponent implements OnDestroy {
 
       return `url(${AppSettings.ASSET_SHOW_IMAGE}${imageFilename})`;
     });
-  }
-
-  ngOnDestroy(): void {
-    if (this.currentTrackSubscription) {
-      this.currentTrackSubscription.unsubscribe();
-    }
   }
 
   openPopupPlayer() {

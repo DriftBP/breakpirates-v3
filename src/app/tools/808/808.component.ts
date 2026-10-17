@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, NgZone, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,11 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./808.component.scss'],
   imports: [CommonModule, FormsModule]
 })
-export default class Drum808Component implements OnInit {
+export default class Drum808Component implements OnInit, OnDestroy {
+  private readonly stepsGrid = viewChild.required<ElementRef<HTMLElement>>('stepsGrid');
+  private readonly playhead = viewChild.required<ElementRef<HTMLElement>>('playhead');
+  private readonly ngZone = inject(NgZone);
+
   drums = [
     { label: 'Kick', sound: 'kick' },
     { label: 'Snare', sound: 'snare' },
@@ -65,32 +69,24 @@ export default class Drum808Component implements OnInit {
   currentStep = 0;
   isPlaying = false;
   tempo = 120;
-  sharedBeat: string = '';
-  private _tempo: number = 120;
+  sharedBeat = '';
+  private _tempo = 120;
 
   private audioContext: AudioContext | null = null;
-  private audioBuffers: { [key: string]: AudioBuffer | null } = {};
-  private loadingBuffers: Promise<void>[] = [];
-  private schedulerId: any = null;
-  private audioNextStepTime: number = 0; // in seconds
+  private audioBuffers: Record<string, AudioBuffer | null> = {};
+  private loadingBuffers: Promise<void> | null = null;
+  private schedulerId: number | null = null;
+  private audioNextStepTime = 0; // in seconds
+  private schedulerGeneration = 0;
+  private playheadStartTime = 0;
+  private playheadStartX = 0;
+  private playheadStepWidth = 0;
+  private playheadAnimation: Animation | null = null;
+  private animationFrameId: number | null = null;
 
   cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
-    // Create AudioContext on user gesture (defer until play)
-    // Preload all drum samples as AudioBuffers
-    this.audioContext = null;
-    this.audioBuffers = {};
-    this.loadingBuffers = this.drums.map(async drum => {
-      const response = await fetch(`/assets/808/${drum.sound}.wav`);
-      const arrayBuffer = await response.arrayBuffer();
-      // AudioContext may not be available yet, so decode later
-      this.audioBuffers[drum.sound] = await (window.AudioContext || (window as any).webkitAudioContext).prototype.decodeAudioData.call(
-        (this.audioContext || new (window.AudioContext || (window as any).webkitAudioContext)()),
-        arrayBuffer.slice(0)
-      );
-    });
-
     // Ensure tempo is initialized to 120
     this.tempo = 120;
 
@@ -110,14 +106,30 @@ export default class Drum808Component implements OnInit {
 
   async ensureAudioContext() {
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      // Resume context if needed
-      if (this.audioContext.state === 'suspended') {
-        await this.audioContext.resume();
-      }
+      this.audioContext = new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
     }
-    // Wait for all buffers to load
-    await Promise.all(this.loadingBuffers);
+    if (this.audioContext.state === 'suspended') {
+      await this.audioContext.resume();
+    }
+    if (!this.loadingBuffers) {
+      this.loadingBuffers = this.loadAudioBuffers().catch(error => {
+        this.loadingBuffers = null;
+        throw error;
+      });
+    }
+    await this.loadingBuffers;
+  }
+
+  private async loadAudioBuffers() {
+    const context = this.audioContext!;
+    await Promise.all(this.drums.map(async drum => {
+      const response = await fetch(`/assets/808/${drum.sound}.wav`);
+      if (!response.ok) {
+        throw new Error(`Failed to load drum sample: ${drum.sound}`);
+      }
+      const arrayBuffer = await response.arrayBuffer();
+      this.audioBuffers[drum.sound] = await context.decodeAudioData(arrayBuffer);
+    }));
   }
 
   async playSound(drum: { sound: string }) {
@@ -136,28 +148,44 @@ export default class Drum808Component implements OnInit {
   }
 
   togglePlay() {
-    this.isPlaying = !this.isPlaying;
     if (this.isPlaying) {
-      this.startSequencer();
-    } else {
+      this.isPlaying = false;
       this.stopSequencer();
+      return;
     }
+    this.isPlaying = true;
+    void this.startSequencer();
   }
 
-  startSequencer() {
+  async startSequencer() {
     this.stopSequencer();
     this.currentStep = 0;
-    if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const generation = this.schedulerGeneration;
+    try {
+      await this.ensureAudioContext();
+    } catch (error) {
+      console.error('Unable to prepare drum samples', error);
+      if (generation === this.schedulerGeneration) {
+        this.isPlaying = false;
+        this.stopSequencer();
+      }
+      return;
     }
-    this.audioNextStepTime = this.audioContext.currentTime + 0.05;
-    this.scheduleSteps(0); // pass starting step
+    if (!this.isPlaying || generation !== this.schedulerGeneration) return;
+    this.audioNextStepTime = this.audioContext!.currentTime + 0.05;
+    this.playheadStartTime = this.audioNextStepTime;
+    this.measurePlayhead();
+    this.ngZone.runOutsideAngular(() => {
+      this.scheduleSteps(0); // pass starting step
+      this.startPlayheadAnimation();
+      this.updatePlayhead();
+    });
   }
 
   scheduleSteps(schedulerStep: number) {
     const lookahead = 25; // ms
     const stepInterval = (60 / this.tempo) / 4; // seconds per step
-    const scheduleAheadTime = 0.1; // seconds
+    const scheduleAheadTime = 0.2; // seconds
     if (!this.audioContext) return;
     const now = this.audioContext.currentTime;
     let step = schedulerStep;
@@ -177,15 +205,55 @@ export default class Drum808Component implements OnInit {
         this.playSoundAtTime(drum, time);
       }
     });
-    setTimeout(() => {
-      this.currentStep = stepIdx;
-
-      this.cdr.detectChanges();
-    }, (time - this.audioContext!.currentTime) * 1000);
   }
 
-  async playSoundAtTime(drum: { sound: string }, time: number) {
-    await this.ensureAudioContext();
+  private updatePlayhead() {
+    if (!this.isPlaying || !this.audioContext) return;
+
+    const stepInterval = (60 / this.tempo) / 4;
+    const elapsed = Math.max(0, this.audioContext.currentTime - this.playheadStartTime);
+    const position = elapsed / stepInterval;
+    const step = Math.floor(position) % this.steps.length;
+    if (step !== this.currentStep) {
+      this.currentStep = step;
+      this.cdr.detectChanges();
+    }
+
+    this.animationFrameId = requestAnimationFrame(() => this.updatePlayhead());
+  }
+
+  private startPlayheadAnimation() {
+    const delay = Math.max(0, this.playheadStartTime - this.audioContext!.currentTime) * 1000;
+    const animation = this.playhead().nativeElement.animate([
+      { transform: `translateX(${this.playheadStartX}px)` },
+      { transform: `translateX(${this.playheadStartX + this.playheadStepWidth * this.steps.length}px)` }
+    ], {
+      duration: (60 / this.tempo / 4) * this.steps.length * 1000,
+      iterations: Infinity,
+      easing: 'linear',
+      fill: 'both'
+    });
+    const timelineTime = document.timeline?.currentTime;
+    if (typeof timelineTime === 'number') {
+      animation.startTime = timelineTime + delay;
+    }
+    this.playhead().nativeElement.style.visibility = 'visible';
+    this.playheadAnimation = animation;
+  }
+
+  private measurePlayhead() {
+    const grid = this.stepsGrid().nativeElement;
+    const stepCells = grid.querySelectorAll<HTMLElement>('.tr808__step');
+    if (stepCells.length < 2) return;
+
+    const gridLeft = grid.getBoundingClientRect().left;
+    const firstStep = stepCells[0].getBoundingClientRect();
+    const secondStep = stepCells[1].getBoundingClientRect();
+    this.playheadStartX = firstStep.left - gridLeft + firstStep.width / 2;
+    this.playheadStepWidth = secondStep.left - firstStep.left;
+  }
+
+  playSoundAtTime(drum: { sound: string }, time: number) {
     const ctx = this.audioContext!;
     const buffer = this.audioBuffers[drum.sound];
     if (!buffer) return;
@@ -196,13 +264,37 @@ export default class Drum808Component implements OnInit {
   }
 
   stopSequencer() {
-    if (this.schedulerId) {
+    this.schedulerGeneration++;
+    if (this.schedulerId !== null) {
       clearTimeout(this.schedulerId);
       this.schedulerId = null;
     }
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+    this.playheadAnimation?.cancel();
+    this.playheadAnimation = null;
+    this.playhead().nativeElement.style.visibility = 'hidden';
     this.currentStep = 0;
 
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.isPlaying = false;
+    this.schedulerGeneration++;
+    if (this.schedulerId !== null) {
+      clearTimeout(this.schedulerId);
+      this.schedulerId = null;
+    }
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+    this.playheadAnimation?.cancel();
+    this.playheadAnimation = null;
+    void this.audioContext?.close();
   }
 
   playCurrentStep() {
@@ -226,7 +318,7 @@ export default class Drum808Component implements OnInit {
     const bin = flat.join('');
     // Pad to nearest 8 bits
     const pad = bin + '0'.repeat((8 - (bin.length % 8)) % 8);
-    let bytes = [];
+    const bytes = [];
     for (let i = 0; i < pad.length; i += 8) {
       bytes.push(parseInt(pad.slice(i, i + 8), 2));
     }
@@ -243,7 +335,7 @@ export default class Drum808Component implements OnInit {
           this.sequence[d][s] = bin[idx++] === '1';
         }
       }
-    } catch (e) {
+    } catch {
       alert('Invalid beat code');
     }
   }

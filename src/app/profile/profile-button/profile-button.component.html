@@ -8,6 +8,7 @@
     <p class="profile-button__location">{{host().location}}</p>
   </div>
   @if (imagePath(); as imagePath) {
-    <div class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'" itemprop="image"></div>
+    <div class="profile-button__image" [style]="'background-image:' + imagePath | safe:'style'"></div>
+    <meta itemprop="image" [content]="imageUrl()">
   }
 </div>

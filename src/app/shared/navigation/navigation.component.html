@@ -102,8 +102,27 @@
         <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/news">{{'NAVIGATION.NEWS' | translate}}</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']">
-          <a class="nav-link" routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
+        <li class="nav-item dropdown" ngbDropdown [routerLinkActive]="['active']">
+          <button
+            id="nav-more"
+            class="nav-link dropdown-toggle"
+            ngbDropdownToggle
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+              {{'NAVIGATION.MORE' | translate}} <span class="caret"></span>
+          </button>
+          <ul ngbDropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-more">
+            <li role="menuitem">
+              <a class="dropdown-item" ngbDropdownItem routerLink="/music">{{'MUSIC.TITLE' | translate}}</a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" ngbDropdownItem routerLink="/video">{{'NAVIGATION.VIDEO' | translate}}</a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" ngbDropdownItem routerLink="/tools">{{'TOOLS.TITLE' | translate}}</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

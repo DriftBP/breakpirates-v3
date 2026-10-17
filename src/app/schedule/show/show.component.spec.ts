@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { ShowComponent } from './show.component';
 import { ShowService } from '../services/show.service';
@@ -14,6 +15,8 @@ import { mockShow } from '../../../test/data/mock.shows';
 import { Show } from '../models/show';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 import { ScheduleService } from '../services/schedule.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 const mockShowWithDescriptionAndImage: Show = {
   ...mockShow,
@@ -22,16 +25,19 @@ const mockShowWithDescriptionAndImage: Show = {
 };
 
 describe('ShowComponent', () => {
-  let component: ShowComponent;
   let fixture: ComponentFixture<ShowComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         ShowComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ActivatedRoute,
           useValue: {}
@@ -49,17 +55,16 @@ describe('ShowComponent', () => {
           useClass: MockScheduleService
         },
         {
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
+        },
+        {
           provide: BreadcrumbService,
           useClass: MockBreadcrumbService
         }
       ]
     });
     fixture = TestBed.createComponent(ShowComponent);
-    component = fixture.componentInstance;
-  });
-
-  it('should create', async () => {
-    expect(component).toBeDefined();
   });
 
   describe('Show images', () => {

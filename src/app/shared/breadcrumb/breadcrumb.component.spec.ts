@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
 import { mockHomeConfig, mockScheduleConfig } from '../../../test/services/mock.breadcrumb.service';
@@ -8,34 +9,36 @@ describe('BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
   let fixture: ComponentFixture<BreadcrumbComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
+      ],
+      providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        }
       ]
     });
     fixture = TestBed.createComponent(BreadcrumbComponent);
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should detect home', async () => {
+  it('should detect home', () => {
     const isHome = component['isHome'](mockHomeConfig);
 
     expect(isHome).toBeTruthy();
   });
 
-  it('should detect not home', async () => {
+  it('should detect not home', () => {
     const isHome = component['isHome'](mockScheduleConfig);
 
     expect(isHome).toBeFalsy();
   });
 
-  it('should find the active breadcrumb item', async () => {
+  it('should find the active breadcrumb item', () => {
     const activeItem = component['getActiveItem'](mockScheduleConfig);
 
     expect(activeItem?.isActive).toBeTruthy();

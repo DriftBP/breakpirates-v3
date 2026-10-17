@@ -1,0 +1,33 @@
+.technics-lookup {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.technics-lookup__eyebrow {
+  color: var(--color-link);
+  letter-spacing: 0.08em;
+}
+
+.technics-lookup__intro {
+  max-width: 58ch;
+}
+
+.technics-lookup__hint {
+  color: var(--color-link);
+}
+
+.technics-lookup .form-control,
+.technics-lookup .form-select {
+  color: var(--color);
+  background-color: var(--panel-bg);
+  border-color: var(--border);
+}
+
+.technics-lookup .border-top,
+.technics-lookup .border-bottom {
+  border-color: var(--border) !important;
+}
+
+.technics-lookup__serial {
+  overflow-wrap: anywhere;
+}

@@ -12,6 +12,8 @@ import { HostListComponent } from '../host-list/host-list.component';
 import { GenreListComponent } from '../genre-list/genre-list.component';
 import { NowLiveComponent } from '../now-live/now-live.component';
 import { TimePipe } from '../../shared/pipes/time.pipe';
+import { AddToCalendarComponent } from '../../shared/add-to-calendar/add-to-calendar.component';
+import { ShareShowComponent } from '../../shared/share-show/share-show.component';
 
 @Component({
     selector: 'bp-show-summary',
@@ -25,7 +27,9 @@ import { TimePipe } from '../../shared/pipes/time.pipe';
       GenreListComponent,
       SafePipe,
       TimePipe,
-      TranslatePipe
+      TranslatePipe,
+      AddToCalendarComponent,
+      ShareShowComponent
     ]
 })
 export class ShowSummaryComponent {
@@ -42,6 +46,7 @@ export class ShowSummaryComponent {
   }>;
   showImage: Signal<string | undefined>;
   showImageCssValue: Signal<string | undefined>;
+  siteUrl = AppSettings.SITE_URL;
 
   constructor() {
     this.dates = computed(() => {

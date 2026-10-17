@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import HostDetailsComponent from './host-details.component';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
@@ -16,6 +17,8 @@ import { ShowService } from '../../schedule/services/show.service';
 import { MockShowService } from '../../../test/services/mock.show.service';
 import { ScheduleService } from '../../schedule/services/schedule.service';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 const mockHostWithBiogAndImage: Host = {
   ...mockHost,
@@ -28,12 +31,16 @@ describe('HostDetailsComponent', () => {
   let fixture: ComponentFixture<HostDetailsComponent>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         HostDetailsComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ActivatedRoute,
           useValue: {}
@@ -57,15 +64,16 @@ describe('HostDetailsComponent', () => {
         {
           provide: ScheduleService,
           useClass: MockScheduleService
+        },
+        {
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
         }
       ]
-    });
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HostDetailsComponent);
     component = fixture.componentInstance;
-  });
-
-  it('should create', async () => {
-    expect(component).toBeDefined();
   });
 
   describe('Host images', () => {

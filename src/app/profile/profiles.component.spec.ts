@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../test/services/mock.translate.service';
 
 import ProfilesComponent from './profiles.component';
 import { SortOrder } from '../shared/pipes/sort-order';
@@ -11,13 +12,17 @@ describe('ProfilesComponent', () => {
   let component: ProfilesComponent;
   let fixture: ComponentFixture<ProfilesComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ProfilesComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: ActivatedRoute,
           useValue: {}
@@ -32,15 +37,11 @@ describe('ProfilesComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should default to ascending order', async () => {
+  it('should default to ascending order', () => {
     expect(component.order).toEqual(SortOrder.Ascending);
   });
 
-  it('should toggle ordering', async () => {
+  it('should toggle ordering', () => {
     expect(component.order).toEqual(SortOrder.Ascending);
     component.toggleOrderBy();
     expect(component.order).toEqual(SortOrder.Descending);

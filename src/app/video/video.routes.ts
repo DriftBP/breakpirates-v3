@@ -25,7 +25,8 @@ export const routes: Routes = [
         path: ':id',
         component: VideoDetailsComponent,
         resolve: {
-          video: videoDetailResolver
+          video: videoDetailResolver,
+          videos: videoResolver
         }
       }
     ]

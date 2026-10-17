@@ -19,7 +19,11 @@
       </div>
     </div>
 
-    <bp-ad-unit [adSlot]="4643712095"></bp-ad-unit>
+    @defer (on viewport) {
+      <bp-ad-unit [adSlot]="4643712095"></bp-ad-unit>
+    } @placeholder {
+      <div class="ad-unit-placeholder" aria-hidden="true"></div>
+    }
 
     <bp-footer></bp-footer>
 

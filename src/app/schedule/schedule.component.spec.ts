@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../test/services/mock.translate.service';
 
 import { ScheduleComponent } from './schedule.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { BreadcrumbService } from '../shared/services/breadcrumb/breadcrumb.service';
 import { MockRouterService } from '../../test/services/mock.router.service';
 import { MockBreadcrumbService } from '../../test/services/mock.breadcrumb.service';
@@ -17,9 +18,13 @@ describe('ScheduleComponent', () => {
     TestBed.configureTestingModule({
         imports: [
           ScheduleComponent,
-          TranslateModule.forRoot(),
+          TranslatePipe
         ],
         providers: [
+          {
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
           {
             provide: ActivatedRoute,
             useValue: {}

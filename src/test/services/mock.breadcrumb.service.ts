@@ -16,5 +16,7 @@ export class MockBreadcrumbService {
     return signal([mockScheduleConfig]);
   }
 
-  setBreadcrumb(): void {}
+  setBreadcrumb(): void {
+    return;
+  }
 }

@@ -1,5 +1,6 @@
 export class AppSettings {
-    public static API_BASE = 'https://www.breakpirates.com/api/';
+    public static SITE_URL = 'https://www.breakpirates.com';
+    public static API_BASE = `${AppSettings.SITE_URL}/api/`;
 
     // Stream server
     public static STREAM_URL_PRIMARY = 'http://bpstream.hostco.de:3000/';
@@ -14,6 +15,9 @@ export class AppSettings {
     public static IRC_SERVER = 'irc.hostco.de';
     public static IRC_PORT = 6667;
     public static IRC_CHANNEL = 'breakpirates';
+
+    // App
+    public static APP_DOWNLOAD_URL = 'https://dlb-projects.com/breakpirates-app.html';
 
     // Asset locations
     public static ASSET_ROOT = 'assets/';

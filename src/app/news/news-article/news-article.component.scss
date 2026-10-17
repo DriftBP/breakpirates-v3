@@ -29,5 +29,9 @@
     &clear {
       clear: both;
     }
+
+    &divider {
+      border-top-color: var(--color);
+    }
   }
 }

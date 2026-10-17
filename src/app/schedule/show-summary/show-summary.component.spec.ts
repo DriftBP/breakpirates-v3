@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { ShowSummaryComponent } from './show-summary.component';
 import { DayService } from '../services/day.service';
@@ -11,18 +12,23 @@ import { ShowService } from '../services/show.service';
 import { mockShow } from '../../../test/data/mock.shows';
 import { MockScheduleService } from '../../../test/services/mock.schedule.service';
 import { ScheduleService } from '../services/schedule.service';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 describe('ShowSummaryComponent', () => {
-  let component: ShowSummaryComponent;
   let fixture: ComponentFixture<ShowSummaryComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ShowSummaryComponent,
-        TranslateModule.forRoot()
+        TranslatePipe
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
         {
           provide: DayService,
           useClass: MockDayService
@@ -36,20 +42,19 @@ describe('ShowSummaryComponent', () => {
           useClass: MockScheduleService
         },
         {
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
+        },
+        {
           provide: ActivatedRoute,
           useValue: {}
         }
       ]
     });
     fixture = TestBed.createComponent(ShowSummaryComponent);
-    component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should not display day of week by default', async () => {
+  it('should not display day of week by default', () => {
     fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
@@ -59,7 +64,7 @@ describe('ShowSummaryComponent', () => {
     expect(day).toBeNull();
   });
 
-  it('should display day of week', async () => {
+  it('should display day of week', () => {
     fixture.componentRef.setInput('show', mockShow);
     fixture.componentRef.setInput('displayDay', true);
 

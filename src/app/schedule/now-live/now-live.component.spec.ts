@@ -1,41 +1,40 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { NowLiveComponent } from './now-live.component';
 import { Show } from '../models/show';
 import { mockShow } from '../../../test/data/mock.shows';
-import { ScheduleService } from '../services/schedule.service';
-import { MockScheduleService } from '../../../test/services/mock.schedule.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { NowPlayingService } from '../../shared/services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
 const mockShow2: Show = { ...mockShow, id: 2 };
 
 describe('NowLiveComponent', () => {
-  let component: NowLiveComponent;
   let fixture: ComponentFixture<NowLiveComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
         imports: [
           NowLiveComponent,
-          TranslateModule.forRoot()
+          TranslatePipe
         ],
         providers: [
           {
-            provide: ScheduleService,
-            useClass: MockScheduleService
+            provide: TranslateService,
+            useClass: MockTranslateService
+          },
+          {
+            provide: NowPlayingService,
+            useClass: MockNowPlayingService
           }
         ]
     });
     fixture = TestBed.createComponent(NowLiveComponent);
-    component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should not indicate show is now playing', async () => {
+  it('should not indicate show is now playing', () => {
     fixture.componentRef.setInput('show', mockShow);
 
     fixture.detectChanges();
@@ -45,7 +44,7 @@ describe('NowLiveComponent', () => {
     expect(nowPlaying).toBeNull();
   });
 
-  it('should indicate show is now playing', async () => {
+  it('should indicate show is now playing', () => {
     fixture.componentRef.setInput('show', mockShow2);
 
     fixture.detectChanges();

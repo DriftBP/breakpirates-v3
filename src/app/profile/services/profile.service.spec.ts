@@ -4,6 +4,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ProfileService } from './profile.service';
 import { Host } from '../host';
+import { createContentNavigation } from '../../shared/content-navigation/content-navigation';
 
 const mockHost = {
   id: 0,
@@ -35,41 +36,14 @@ describe('ProfileService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should get previous position', inject([ProfileService], (service: ProfileService) => {
-    const numItems = 5;
+  it('creates adjacent navigation links and wraps at the collection ends', () => {
+    const hosts: Host[] = [host2, host5, host3, host1, host4];
 
-    expect(service['previousProfileIndex'](0, numItems)).toEqual(4);
-    expect(service['previousProfileIndex'](1, numItems)).toEqual(0);
-    expect(service['previousProfileIndex'](2, numItems)).toEqual(1);
-    expect(service['previousProfileIndex'](3, numItems)).toEqual(2);
-    expect(service['previousProfileIndex'](4, numItems)).toEqual(3);
-  }));
-
-  it('should get next position', inject([ProfileService], (service: ProfileService) => {
-    const numItems = 5;
-
-    expect(service['nextProfileIndex'](0, numItems)).toEqual(1);
-    expect(service['nextProfileIndex'](1, numItems)).toEqual(2);
-    expect(service['nextProfileIndex'](2, numItems)).toEqual(3);
-    expect(service['nextProfileIndex'](3, numItems)).toEqual(4);
-    expect(service['nextProfileIndex'](4, numItems)).toEqual(0);
-  }));
-
-  it('should get correct position from items sorted by ID', inject([ProfileService], (service: ProfileService) => {
-    const hosts: Host[] = [
-      host1,
-      host2,
-      host3,
-      host4,
-      host5
-    ];
-
-    expect(service['getProfilePosition'](hosts, 1)).toEqual(0);
-    expect(service['getProfilePosition'](hosts, 2)).toEqual(1);
-    expect(service['getProfilePosition'](hosts, 3)).toEqual(2);
-    expect(service['getProfilePosition'](hosts, 4)).toEqual(3);
-    expect(service['getProfilePosition'](hosts, 5)).toEqual(4);
-  }));
+    expect(createContentNavigation(hosts, 1, host => host.name)).toEqual({
+      previous: { id: 5, label: 'Jon' },
+      next: { id: 2, label: 'Dan' }
+    });
+  });
 
   it('should return -1 if id of a is less than b, otherwise 1', inject([ProfileService], (service: ProfileService) => {
     expect(service['profileCompareFn'](host1, host2)).toEqual(1);

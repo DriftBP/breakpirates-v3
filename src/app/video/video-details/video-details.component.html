@@ -2,6 +2,14 @@
   <h1>{{video.name}}</h1>
 
   <div [innerHTML]="video.code | safe: 'html'"></div>
+
+  @if (navigation(); as links) {
+    <hr>
+    <bp-content-navigation
+      [navigation]="links"
+      routeBase="/video">
+    </bp-content-navigation>
+  }
 } @else {
   <h1>{{'VIDEO.NOT_FOUND' | translate}}</h1>
   <p>{{'VIDEO.COULD_NOT_FIND' | translate}}</p>

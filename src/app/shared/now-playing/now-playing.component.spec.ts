@@ -1,13 +1,16 @@
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { NowPlayingComponent } from './now-playing.component';
-import { ScheduleService } from '../../schedule/services/schedule.service';
-import { MockScheduleService } from '../../../test/services/mock.schedule.service';
+import { NowPlayingService } from '../services/now-playing/now-playing.service';
+import { MockNowPlayingService } from '../../../test/services/mock.now-playing.service';
 
-declare var global: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const global: any;
 
 describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
@@ -15,19 +18,23 @@ describe('NowPlayingComponent', () => {
 
   // Mock MediaElementPlayer for tests
   beforeAll(() => {
-    global.MediaElementPlayer = global.MediaElementPlayer || function() {};
+    global.MediaElementPlayer = global.MediaElementPlayer || function() { return; };
   });
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NowPlayingComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
       ],
       providers: [
         {
-          provide: ScheduleService,
-          useClass: MockScheduleService
+          provide: TranslateService,
+          useClass: MockTranslateService
+        },
+        {
+          provide: NowPlayingService,
+          useClass: MockNowPlayingService
         },
         {
           provide: ActivatedRoute,
@@ -41,17 +48,13 @@ describe('NowPlayingComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', async () => {
-    expect(component).toBeDefined();
-  });
-
-  it('should always have an image filename', async () => {
+  it('should always have an image filename', () => {
     fixture.detectChanges();
 
     expect(component.nowPlayingImage).toBeTruthy();
   });
 
-  it('should diplay embedded player when not on https', async () => {
+  it('should diplay embedded player when not on https', () => {
     fixture.detectChanges();
 
     const compiled: HTMLElement = fixture.debugElement.nativeElement;

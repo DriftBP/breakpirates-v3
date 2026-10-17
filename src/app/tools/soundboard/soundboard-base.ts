@@ -9,7 +9,7 @@ import { AppSettings } from '../../../app/app-settings';
 export abstract class SoundboardBase {
   abstract breadcrumbConfig: BreadcrumbConfigItem[];
 
-  imagePath: string = '';
+  imagePath = '';
   configs: SampleConfig[] = [];
   loaded: Signal<boolean>;
 

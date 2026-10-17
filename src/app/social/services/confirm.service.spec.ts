@@ -7,7 +7,7 @@ import { MockTranslateService } from '../../../test/services/mock.translate.serv
 
 describe('ConfirmService', () => {
   let service: ConfirmService;
-  let confirmSpy: jest.SpyInstance;
+  let confirmSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('ConfirmService', () => {
 
     service = TestBed.inject(ConfirmService);
 
-    confirmSpy = jest.spyOn(window, 'confirm');
+    confirmSpy = vi.spyOn(window, 'confirm');
   });
 
   afterAll(() => confirmSpy.mockRestore());
@@ -32,18 +32,18 @@ describe('ConfirmService', () => {
   });
 
   it('should emit false when cancelled', async () => {
-    confirmSpy.mockImplementation(jest.fn(() => false));
+    confirmSpy.mockImplementation(vi.fn(() => false));
 
-    let result = await lastValueFrom(service.confirm(''));
+    const result = await lastValueFrom(service.confirm(''));
 
     expect(confirmSpy).toHaveBeenCalled();
     expect(result).toBeFalsy();
   });
 
   it('should emit true when confirmed', async () => {
-    confirmSpy.mockImplementation(jest.fn(() => true));
+    confirmSpy.mockImplementation(vi.fn(() => true));
 
-    let result = await lastValueFrom(service.confirm(''));
+    const result = await lastValueFrom(service.confirm(''));
 
     expect(confirmSpy).toHaveBeenCalled();
     expect(result).toBeTruthy();

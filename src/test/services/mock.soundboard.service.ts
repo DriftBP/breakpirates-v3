@@ -1,6 +1,8 @@
 import { signal } from "@angular/core";
 
+import { vi } from "vitest";
+
 export const MockSoundboardService = {
-  initialise: jest.fn(),
+  initialise: vi.fn(),
   isLoaded: signal(false),
 };

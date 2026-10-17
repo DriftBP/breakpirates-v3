@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -13,7 +13,7 @@ import { AppSettings } from '../../app-settings';
     templateUrl: './dj-name.component.html',
     styleUrls: ['./dj-name.scss'],
     imports: [
-        TranslateModule,
+        TranslatePipe,
         NgOptimizedImage
     ],
     providers: [
@@ -33,10 +33,10 @@ export default class DjNameComponent implements OnInit {
   ];
 
   imagePath = AppSettings.ASSET_TOOLS;
-  generated: boolean = false;
-  animal: string = '';
-  number: number = 0;
-  shape: string = '';
+  generated = false;
+  animal = '';
+  number = 0;
+  shape = '';
 
   ngOnInit() {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);

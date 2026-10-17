@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import { ThemeSelectComponent } from './theme-select.component';
 
@@ -11,7 +12,13 @@ describe('ThemeSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ThemeSelectComponent,
-        TranslateModule.forRoot(),
+        TranslatePipe
+      ],
+      providers: [
+        {
+          provide: TranslateService,
+          useClass: MockTranslateService
+        }
       ]
     });
     fixture = TestBed.createComponent(ThemeSelectComponent);

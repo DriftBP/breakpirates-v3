@@ -1,51 +1,17 @@
-import { Injectable, OnDestroy, signal, inject } from '@angular/core';
-import { Subscription, Observable, timer } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { AppSettings } from '../../app-settings';
 import { Show } from '../models/show';
 import { Host } from '../../profile/host';
 import { Genre } from '../../music/models/genre';
 import { HttpRequestService } from '../../shared/services/http-request/http-request.service';
-import { ShowService } from './show.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScheduleService implements OnDestroy {
+export class ScheduleService {
   private httpRequestService = inject(HttpRequestService);
-  private showService = inject(ShowService);
-
-  private _nowPlaying = signal<Show | null>(null);
-  public readonly nowPlaying = this._nowPlaying.asReadonly();
-
-  private _showProgress = signal<number>(0)
-  public readonly showProgress = this._showProgress.asReadonly();
-
-  private nowPlayingTimerSubscription: Subscription;
-  private nowPlayingSubscription?: Subscription;
-
-  constructor() {
-    this.nowPlayingTimerSubscription = timer(0, AppSettings.NOW_PLAYING_INTERVAL).subscribe(() => {
-      this.nowPlayingSubscription = this.getNowPlaying().subscribe(nowPlaying => {
-        this._nowPlaying.set(nowPlaying);
-        this._showProgress.set(this.showService.getShowProgress(nowPlaying));
-      });
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.nowPlayingTimerSubscription) {
-      this.nowPlayingTimerSubscription.unsubscribe();
-    }
-
-    if (this.nowPlayingSubscription) {
-      this.nowPlayingSubscription.unsubscribe();
-    }
-  }
-
-  private getNowPlaying(): Observable<Show> {
-    return this.httpRequestService.get<Show>(AppSettings.API_BASE + 'schedule/now-playing', { useCache: false });
-  }
 
   showHosts(showId: number): Observable<Host[]> {
     return this.httpRequestService.get<Host[]>(AppSettings.API_BASE + `shows/${showId}/hosts`);
