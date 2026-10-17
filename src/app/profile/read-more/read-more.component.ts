@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ContentObserver } from '@angular/cdk/observers';
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild, inject, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,7 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       FontAwesomeModule
     ]
 })
-export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+export class ReadMoreComponent implements AfterViewInit, OnDestroy {
   private changeDetector = inject(ChangeDetectorRef);
   private contentObserver = inject(ContentObserver);
 
@@ -24,8 +24,8 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
 
   contentObserverSubscription?: Subscription
 
-  enableShowMore = false;
-  showMore = false;
+  enableShowMore = signal(false);
+  showMore = signal(false);
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
@@ -38,10 +38,6 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
     });
   }
 
-  ngAfterViewChecked(): void {
-    this.changeDetector.detectChanges();
-  }
-
   ngOnDestroy(): void {
     if (this.contentObserverSubscription) {
       this.contentObserverSubscription.unsubscribe();
@@ -49,19 +45,18 @@ export class ReadMoreComponent implements AfterViewInit, AfterViewChecked, OnDes
   }
 
   toggleShowMore(): void {
-    this.showMore = !this.showMore;
+    this.showMore.update(showMore => !showMore);
   }
 
   private initialise(): void {
-    this.enableShowMore = true;
-    this.showMore = false;
-    this.enableShowMore = this.isTextOverflow(this.contentContainerElement());
+    this.enableShowMore.set(true);
+    this.showMore.set(false);
+    this.changeDetector.detectChanges();
+    this.enableShowMore.set(this.isTextOverflow(this.contentContainerElement()));
   }
 
   private isTextOverflow(element: ElementRef): boolean {
     const elem = element.nativeElement;
-
-    this.changeDetector.detectChanges();
 
     return elem.offsetHeight < elem.scrollHeight;
   }
