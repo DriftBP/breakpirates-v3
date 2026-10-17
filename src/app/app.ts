@@ -1,4 +1,4 @@
-import { Component, HostBinding, computed, Signal, inject } from '@angular/core';
+import { Component, HostBinding, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   Event,
@@ -12,7 +12,6 @@ import {
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
-import { Theme } from './shared/services/theme/theme';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @Component({
@@ -28,9 +27,7 @@ export class App {
   private googleAnalyticsService = inject(GoogleAnalyticsService);
   private themeService = inject(ThemeService);
 
-  @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }
-
-  private currentTheme: Signal<Theme>;
+  @HostBinding('attr.data-theme') get theme() { return this.themeService.currentTheme(); }
 
   loading = false;
 
@@ -38,9 +35,6 @@ export class App {
     this.router.events.pipe(
       takeUntilDestroyed()
     ).subscribe(event => this.processEvent(event));
-    this.currentTheme = computed(() => {
-      return this.themeService.currentTheme();
-    });
   }
 
   private processEvent(event: Event) {
