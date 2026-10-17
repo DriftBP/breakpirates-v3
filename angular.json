@@ -26,6 +26,11 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
+                "glob": "mediaelementplayer.min.css",
+                "input": "./node_modules/mediaelement/build/",
+                "output": "./assets/"
+              },
+              {
                 "glob": "mejs-controls.svg",
                 "input": "./node_modules/mediaelement/build/",
                 "output": "./assets/"
@@ -36,7 +41,6 @@
               }
             ],
             "styles": [
-              "node_modules/mediaelement/build/mediaelementplayer.min.css",
               "src/styles.scss"
             ]
           },
