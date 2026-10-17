@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, Signal, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
@@ -34,7 +34,7 @@ export class NavigationComponent {
   private readonly googleAnalyticsService = inject(GoogleAnalyticsService);
 
   archiveUrl: string;
-  isCollapsed: Signal<boolean>;
+  readonly isCollapsed = this.navigationService.isCollapsed;
   assetRoot = AppSettings.ASSET_ROOT;
   externalLinks: ExternalLink[] = [
     {
@@ -71,7 +71,6 @@ export class NavigationComponent {
 
   constructor() {
     this.archiveUrl = AppSettings.MIXCLOUD_URL;
-    this.isCollapsed = computed(() => this.navigationService.isCollapsed());
   }
 
   toggleIsCollapsed() {

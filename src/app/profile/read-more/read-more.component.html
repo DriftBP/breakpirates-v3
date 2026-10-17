@@ -1,10 +1,10 @@
-<div #contentContainer [ngClass]="{'read-more__content-wrapper--clamped': enableShowMore, 'read-more__content-wrapper--more': showMore}">
+<div #contentContainer [ngClass]="{'read-more__content-wrapper--clamped': enableShowMore(), 'read-more__content-wrapper--more': showMore()}">
   <ng-content></ng-content>
 </div>
 
-@if (enableShowMore) {
+@if (enableShowMore()) {
   <button class="read-more__toggle btn btn-primary" (click)="toggleShowMore()">
-    @if (!showMore) {
+    @if (!showMore()) {
       {{'PROFILES.MORE' | translate}} <fa-icon [icon]="faChevronDown"></fa-icon>
     } @else {
       {{'PROFILES.LESS' | translate}} <fa-icon [icon]="faChevronUp"></fa-icon>

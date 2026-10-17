@@ -53,9 +53,10 @@ describe('App', () => {
     expect(mockGoogleAnalyticsService.trackPageHit).toHaveBeenCalledOnce();
   });
 
-  it('should clean up subscriptions onDestroy', () => {
-    component.ngOnDestroy();
+  it('should stop handling router events after destruction', () => {
+    fixture.destroy();
+    mockRouterService.emit(new NavigationStart(1, ''));
 
-    expect(component['eventsSubscription'].closed).toEqual(true);
+    expect(component.loading).toBeFalsy();
   });
 });
