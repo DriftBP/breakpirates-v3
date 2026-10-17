@@ -16,11 +16,6 @@ describe('NowPlayingComponent', () => {
   let component: NowPlayingComponent;
   let fixture: ComponentFixture<NowPlayingComponent>;
 
-  // Mock MediaElementPlayer for tests
-  beforeAll(() => {
-    global.MediaElementPlayer = global.MediaElementPlayer || function() { return; };
-  });
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
