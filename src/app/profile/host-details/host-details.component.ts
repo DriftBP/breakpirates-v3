@@ -15,6 +15,7 @@ import { ContentNavigationComponent } from '../../shared/content-navigation/cont
 import { ShowSummaryComponent } from '../../schedule/show-summary/show-summary.component';
 import { ReadMoreComponent } from '../read-more/read-more.component';
 import { ImageClickDirective } from '../../shared/directives/image-click.directive';
+import { FollowProfileButtonComponent } from '../follow-profile-button/follow-profile-button.component';
 
 @Component({
     selector: 'bp-host-details',
@@ -29,6 +30,7 @@ import { ImageClickDirective } from '../../shared/directives/image-click.directi
       MixcloudWidgetComponent,
       TwitterWidgetComponent,
       ContentNavigationComponent,
+      FollowProfileButtonComponent,
       ImageClickDirective
     ]
 })
