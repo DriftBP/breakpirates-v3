@@ -26,11 +26,6 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                "glob": "mejs-controls.svg",
-                "input": "./node_modules/mediaelement/build/",
-                "output": "./assets/"
-              },
-              {
                 "glob": "**/*",
                 "input": "public"
               }
