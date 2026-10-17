@@ -1,10 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, computed, Signal, signal, inject, OnDestroy } from '@angular/core';
+import { Component, computed, Signal, signal, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Subscription, filter, fromEvent, merge, of, switchMap, take, timer } from 'rxjs';
+import { filter, fromEvent, merge, of, switchMap, take, timer } from 'rxjs';
 
 import { Show } from '../../schedule/models/show';
 import { AppSettings } from '../../app-settings';
@@ -32,12 +33,10 @@ import { ShoutcastService } from '../services/shoutcast/shoutcast.service';
       SafePipe
     ]
 })
-export class NowPlayingComponent implements OnDestroy {
+export class NowPlayingComponent {
   readonly nowPlayingService = inject(NowPlayingService);
   private readonly shoutcastService = inject(ShoutcastService);
   private readonly document = inject<Document>(DOCUMENT);
-
-  private currentTrackSubscription?: Subscription;
 
   nowPlaying: Signal<Show | null>;
   nowPlayingImage: Signal<string>;
@@ -60,9 +59,10 @@ export class NowPlayingComponent implements OnDestroy {
       take(1)
     );
 
-    this.currentTrackSubscription = visible$.pipe(
+    visible$.pipe(
       switchMap(() => timer(1000)),
-      switchMap(() => this.shoutcastService.getCurrentTrack())
+      switchMap(() => this.shoutcastService.getCurrentTrack()),
+      takeUntilDestroyed()
     ).subscribe(track => {
       this.currentTrack.set(track);
     });
@@ -87,12 +87,6 @@ export class NowPlayingComponent implements OnDestroy {
 
       return `url(${AppSettings.ASSET_SHOW_IMAGE}${imageFilename})`;
     });
-  }
-
-  ngOnDestroy(): void {
-    if (this.currentTrackSubscription) {
-      this.currentTrackSubscription.unsubscribe();
-    }
   }
 
   openPopupPlayer() {

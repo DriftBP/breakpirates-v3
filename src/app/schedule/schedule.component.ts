@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, input, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, input, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router, RouterOutlet } from '@angular/router';
 import { DateTime, WeekdayNumbers } from 'luxon';
-import { of, Subscription } from 'rxjs';
+import { of } from 'rxjs';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -21,25 +22,26 @@ import { DaySelectComponent } from './day-select/day-select.component';
       TranslatePipe
     ]
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
+export class ScheduleComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly breadcrumbService = inject(BreadcrumbService);
   private readonly dayService = inject(DayService);
 
   days = input.required<Day[]>();
 
-  private childParamsSubscription?: Subscription;
   private readonly baseBreadcrumbConfig: BreadcrumbConfigItem[] = [];
   private breadcrumbConfig: BreadcrumbConfigItem[] = [];
 
   activeDayId = DateTime.local().weekday;
 
   ngOnInit() {
-    this.childParamsSubscription = this.router.events.pipe(
+    this.router.events.pipe(
       filter(e => e instanceof NavigationEnd),
       startWith(undefined),
-      switchMap(() => this.activatedRoute.firstChild?.paramMap ?? of(null))
+      switchMap(() => this.activatedRoute.firstChild?.paramMap ?? of(null)),
+      takeUntilDestroyed(this.destroyRef)
     ).subscribe(params => {
       if (params) {
         this.onParamChange(params);
@@ -76,9 +78,4 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
 
-  ngOnDestroy() {
-    if (this.childParamsSubscription) {
-      this.childParamsSubscription.unsubscribe();
-    }
-  }
 }

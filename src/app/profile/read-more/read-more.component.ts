@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ContentObserver } from '@angular/cdk/observers';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild, inject, signal } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { AfterViewInit, ChangeDetectorRef, Component, DestroyRef, ElementRef, viewChild, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -16,13 +16,12 @@ import { TranslatePipe } from '@ngx-translate/core';
       FontAwesomeModule
     ]
 })
-export class ReadMoreComponent implements AfterViewInit, OnDestroy {
+export class ReadMoreComponent implements AfterViewInit {
   private changeDetector = inject(ChangeDetectorRef);
+  private destroyRef = inject(DestroyRef);
   private contentObserver = inject(ContentObserver);
 
   contentContainerElement = viewChild.required<ElementRef>('contentContainer');
-
-  contentObserverSubscription?: Subscription
 
   enableShowMore = signal(false);
   showMore = signal(false);
@@ -33,15 +32,9 @@ export class ReadMoreComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.initialise();
 
-    this.contentObserverSubscription = this.contentObserver.observe(this.contentContainerElement().nativeElement).subscribe(() => {
-      this.initialise();
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.contentObserverSubscription) {
-      this.contentObserverSubscription.unsubscribe();
-    }
+    this.contentObserver.observe(this.contentContainerElement().nativeElement).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(() => this.initialise());
   }
 
   toggleShowMore(): void {
