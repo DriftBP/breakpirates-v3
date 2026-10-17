@@ -1,7 +1,8 @@
 import { DOCUMENT } from '@angular/common';
-import { Injectable, OnDestroy, inject, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DateTime, Interval } from 'luxon';
-import { Subscription, filter, fromEvent, merge, of, switchMap, takeUntil, timer } from 'rxjs';
+import { filter, fromEvent, merge, of, switchMap, takeUntil, timer } from 'rxjs';
 
 import { AppSettings } from '../../../app-settings';
 import { Show } from '../../../schedule/models/show';
@@ -10,7 +11,7 @@ import { HttpRequestService } from '../http-request/http-request.service';
 @Injectable({
   providedIn: 'root'
 })
-export class NowPlayingService implements OnDestroy {
+export class NowPlayingService {
   private httpRequestService = inject(HttpRequestService);
   private document = inject<Document>(DOCUMENT);
   private readonly timeFormat = 'HH:mm:ss';
@@ -22,8 +23,6 @@ export class NowPlayingService implements OnDestroy {
   private _showProgress = signal<number>(0);
   public readonly showProgress = this._showProgress.asReadonly();
 
-  private nowPlayingTimerSubscription: Subscription;
-
   constructor() {
     const visible$ = merge(
       of(null),
@@ -33,17 +32,14 @@ export class NowPlayingService implements OnDestroy {
       filter(() => this.document.visibilityState === 'hidden')
     );
 
-    this.nowPlayingTimerSubscription = visible$.pipe(
+    visible$.pipe(
       switchMap(() => timer(1000, AppSettings.NOW_PLAYING_INTERVAL).pipe(takeUntil(hidden$))),
-      switchMap(() => this.getNowPlaying())
+      switchMap(() => this.getNowPlaying()),
+      takeUntilDestroyed()
     ).subscribe(nowPlaying => {
       this._nowPlaying.set(nowPlaying);
       this._showProgress.set(this.getShowProgress(nowPlaying));
     });
-  }
-
-  ngOnDestroy(): void {
-    this.nowPlayingTimerSubscription.unsubscribe();
   }
 
   private getNowPlaying() {
