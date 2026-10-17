@@ -1,4 +1,5 @@
-import { Component, OnDestroy, HostBinding, computed, Signal, inject } from '@angular/core';
+import { Component, HostBinding, computed, Signal, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   Event,
   Router,
@@ -8,8 +9,6 @@ import {
   NavigationError,
   RouterOutlet
 } from '@angular/router';
-
-import { Subscription } from 'rxjs';
 
 import { GoogleAnalyticsService } from './shared/services/google-analytics/google-analytics.service';
 import { ThemeService } from './shared/services/theme/theme.service';
@@ -24,20 +23,21 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     LoadingSpinnerComponent
   ]
 })
-export class App implements OnDestroy {
+export class App {
   private router = inject(Router);
   private googleAnalyticsService = inject(GoogleAnalyticsService);
   private themeService = inject(ThemeService);
 
   @HostBinding('attr.data-theme') get theme() { return this.currentTheme(); }
 
-  private eventsSubscription: Subscription;
   private currentTheme: Signal<Theme>;
 
   loading = false;
 
   constructor () {
-    this.eventsSubscription = this.router.events.subscribe(event => this.processEvent(event));
+    this.router.events.pipe(
+      takeUntilDestroyed()
+    ).subscribe(event => this.processEvent(event));
     this.currentTheme = computed(() => {
       return this.themeService.currentTheme();
     });
@@ -69,9 +69,4 @@ export class App implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    if (this.eventsSubscription) {
-      this.eventsSubscription.unsubscribe();
-    }
-  }
 }
