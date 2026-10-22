@@ -4,6 +4,7 @@ $dbuser="root";
 $dbpass="root";
 $dbname="breakpirates";
 
+mysqli_report(MYSQLI_REPORT_OFF);
 $db=mysqli_connect($dbaddr,$dbuser,$dbpass,$dbname);
 if(!$db) {
 	echo "Can't connect to DB";

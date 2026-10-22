@@ -28,14 +28,14 @@ class EpiApi
     if($visibility === self::external)
       getRoute()->post($route, $callback, true);
   }
-  
+
   public function put($route, $callback, $visibility = self::internal)
   {
     $this->addRoute($route, $callback, EpiRoute::httpPut);
     if($visibility === self::external)
       getRoute()->put($route, $callback, true);
   }
-  
+
   public function delete($route, $callback, $visibility = self::internal)
   {
     $this->addRoute($route, $callback, EpiRoute::httpDelete);
@@ -59,13 +59,13 @@ class EpiApi
 
     // restore sanity
     foreach($tmps as $type => $value)
-      $GLOBALS[$type] = $value; 
+      $GLOBALS[$type] = $value;
 
     return $retval;
   }
 
   /**
-   * EpiApi::getRoute($route); 
+   * EpiApi::getRoute($route);
    * @name  getRoute
    * @author  Jaisen Mathai <jaisen@jmathai.com>
    * @param string $route
@@ -87,20 +87,20 @@ class EpiApi
         else if(is_array($def['callback']) && method_exists($def['callback'][0], $def['callback'][1]))
         {
           if(Epi::getSetting('debug'))
-            getDebug()->addMessage(__CLASS__, sprintf('Matched %s : %s : %s : %s', $httpMethod, $this->route, json_encode($def['callback']), json_encode($arguments)));
+            getDebug()->addMessage(__CLASS__, sprintf('Matched %s : %s : %s : %s', $httpMethod, $route, json_encode($def['callback']), json_encode($arguments)));
           return array('callback' => $def['callback'], 'args' => $arguments, 'postprocess' => true);
         }
         else if(function_exists($def['callback']))
         {
           if(Epi::getSetting('debug'))
-            getDebug()->addMessage(__CLASS__, sprintf('Matched %s : %s : %s : %s', $httpMethod, $this->route, json_encode($def['callback']), json_encode($arguments)));
+            getDebug()->addMessage(__CLASS__, sprintf('Matched %s : %s : %s : %s', $httpMethod, $route, json_encode($def['callback']), json_encode($arguments)));
           return array('callback' => $def['callback'], 'args' => $arguments, 'postprocess' => true);
         }
 
         EpiException::raise(new EpiException('Could not call ' . json_encode($def) . " for route {$regex}"));
       }
     }
-    EpiException::raise(new EpiException("Could not find route {$this->route} from {$_SERVER['REQUEST_URI']}"));
+    EpiException::raise(new EpiException("Could not find route {$route} from {$_SERVER['REQUEST_URI']}"));
   }
 
   /**

@@ -159,7 +159,6 @@ function getNews($news_id) {
 function getAllNews($only_approved = false, $number = 0) {
   global $db;
 	$number = intval($number);
-	$offset = intval($offset);
 
 	$news_articles = array();
 
