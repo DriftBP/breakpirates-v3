@@ -47,8 +47,16 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_ed25519
+          printf 'SSH_AUTH_SOCK=%s\n' "$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
 
-      - name: Deploy over SSH
+      - name: Install SFTP client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp
+
+      - name: Deploy over SFTP
         env:
           DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
           DEPLOY_PORT: ${{ vars.DEPLOY_PORT || '22' }}
@@ -58,6 +66,12 @@ jobs:
           : "${DEPLOY_HOST:?Set the DEPLOY_HOST repository variable}"
           : "${DEPLOY_USER:?Set the DEPLOY_USER repository variable}"
           : "${DEPLOY_PATH:?Set the DEPLOY_PATH repository variable}"
-          rsync -az -e "ssh -p ${DEPLOY_PORT}" \
-            dist/breakpirates-v3/browser/ \
-            "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH%/}/"
+          if [[ ! "$DEPLOY_PATH" =~ ^[a-zA-Z0-9._/-]+$ ]]; then
+            echo "DEPLOY_PATH must contain only letters, numbers, dots, underscores, slashes, and hyphens"
+            exit 1
+          fi
+          lftp -u "${DEPLOY_USER}," "sftp://${DEPLOY_HOST}:${DEPLOY_PORT}" <<EOF
+          set cmd:fail-exit yes
+          mirror --reverse --verbose "dist/breakpirates-v3/browser/" "${DEPLOY_PATH%/}"
+          bye
+          EOF
