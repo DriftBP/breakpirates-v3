@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { profilesResolver } from './resolvers/profiles.resolver';
 import { hostDetailsResolver } from './resolvers/host-details.resolver';
+import { followingShowsResolver } from './resolvers/following-shows.resolver';
 import { ProfileService } from './services/profile.service';
 
 export const routes: Routes = [
@@ -18,6 +19,14 @@ export const routes: Routes = [
           profiles: profilesResolver
         },
         pathMatch: 'full'
+      },
+      {
+        path: 'following',
+        loadComponent: () => import('./following/following.component'),
+        resolve: {
+          profiles: profilesResolver,
+          shows: followingShowsResolver
+        }
       },
       {
         path: ':id',

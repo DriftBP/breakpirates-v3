@@ -1,0 +1,23 @@
+<h1>{{'PROFILES.FOLLOWING_TITLE' | translate}}</h1>
+
+@if (followedProfiles().length > 0) {
+  <p>{{'PROFILES.FOLLOWING_INTRO' | translate}}</p>
+
+  <ul class="profile-list">
+    @for (profile of followedProfiles(); track profile.id) {
+      <li class="profile-list__list-item">
+        <bp-profile-button [host]="profile"></bp-profile-button>
+      </li>
+    }
+  </ul>
+
+  <h2>{{'PROFILES.FOLLOWING_SHOWS' | translate}}</h2>
+  @for (show of followedShows(); track show.id) {
+    <bp-show-summary [show]="show" [displayDay]="true"></bp-show-summary>
+  } @empty {
+    <p>{{'PROFILES.NO_FOLLOWING_SHOWS' | translate}}</p>
+  }
+} @else {
+  <p>{{'PROFILES.NO_FOLLOWED_PROFILES' | translate}}</p>
+  <a class="btn btn-outline-primary" routerLink="/profiles">{{'PROFILES.BROWSE' | translate}}</a>
+}
