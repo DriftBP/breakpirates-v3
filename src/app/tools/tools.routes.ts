@@ -11,4 +11,5 @@ export const routes: Routes = [
   { path: 'soundboard', loadChildren: () => import('./soundboard/soundboard.routes').then(m => m.routes) },
   { path: '808', loadComponent: () => import('./808/808.component') },
   { path: 'mpc', loadComponent: () => import('./mpc/mpc.component') },
+  { path: 'synth', loadComponent: () => import('./synth/synth.component') },
 ];
