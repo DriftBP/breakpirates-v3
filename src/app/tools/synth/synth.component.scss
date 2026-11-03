@@ -61,7 +61,7 @@
 .synth__transport button:disabled { border-color: #53605b; color: #77827d; cursor: not-allowed; }
 .synth__play span { margin-right: 0.45rem; }
 .synth__error { margin: 0; color: #ff9a7a; font-size: 0.85rem; }
-.synth__beat-control { display: grid; grid-template-columns: auto minmax(8rem, 1fr) auto; align-items: center; gap: 0.5rem; margin-left: auto; }
+.synth__beat-control { display: grid; grid-template-columns: auto minmax(8rem, 1fr) auto; align-items: center; gap: 0.5rem; row-gap: 0.7rem; margin-left: auto; padding: 0.65rem 0.75rem; }
 .synth__beat-control label { color: var(--synth-mint); font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.68rem; }
 .synth__beat-control select { min-height: 2.6rem; padding: 0.4rem 0.55rem; border: 1px solid var(--synth-line); border-radius: 0; background: var(--synth-panel); color: var(--synth-text); font: inherit; }
 .synth__transport .synth__beat-button { border-color: var(--synth-mint); color: var(--synth-mint); white-space: nowrap; }
