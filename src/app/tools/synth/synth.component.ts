@@ -7,14 +7,14 @@ import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
 import { BreadcrumbService } from '../../shared/services/breadcrumb/breadcrumb.service';
 
 type WaveShape = OscillatorType;
-type DrumBeat = {
+interface DrumBeat {
   label: string;
   kick: number[];
   snare: number[];
   closedHat: number[];
   openHat: number[];
-};
-type BassPreset = {
+}
+interface BassPreset {
   name: string;
   waveA: WaveShape;
   waveB: WaveShape;
@@ -28,7 +28,7 @@ type BassPreset = {
   wobbleRate: number;
   wobbleDepth: number;
   distortion: number;
-};
+}
 
 @Component({
   selector: 'bp-synth',
@@ -170,8 +170,8 @@ export default class SynthComponent implements OnInit, OnDestroy {
       this.appliedDistortion = this.distortion;
     }
     this.highPassFilter?.frequency.setTargetAtTime(this.highPass, now, 0.02);
-    this.lowPassFilter && (this.lowPassFilter.Q.value = this.resonance);
-    this.highPassFilter && (this.highPassFilter.Q.value = this.resonance * 0.35);
+    if (this.lowPassFilter) this.lowPassFilter.Q.value = this.resonance;
+    if (this.highPassFilter) this.highPassFilter.Q.value = this.resonance * 0.35;
   }
 
   applyBassPreset(index: number): void {
