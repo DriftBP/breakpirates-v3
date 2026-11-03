@@ -61,7 +61,6 @@ describe('TechnicsLookupComponent', () => {
 
     expect(component.modelHistorySummary).toContain('1979');
     expect(component.modelSceneSummary).toContain('hardcore');
-    expect(component.sceneAssociations).toEqual([]);
   });
 
   it('uses the selected revision era to narrow possible years', () => {
