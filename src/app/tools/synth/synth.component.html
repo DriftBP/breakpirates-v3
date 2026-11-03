@@ -3,7 +3,7 @@
     <div>
       <p class="synth__eyebrow">BREAKPIRATES / SOUND LAB</p>
       <h1>Dual oscillator synth</h1>
-      <p class="synth__intro">Driven mid-bass over a clean sub, with a rolling filter.</p>
+      <p class="synth__intro">Wide detuned saws, a clean sub, and a gritty rolling filter.</p>
     </div>
     <div class="synth__status" [class.synth__status--live]="isPlaying">
       <span class="synth__status-dot"></span>{{ isPlaying ? 'SIGNAL LIVE' : 'STANDBY' }}
@@ -41,6 +41,14 @@
 
   <section class="synth__controls" aria-label="Synth controls">
     <div class="synth__section-heading"><span>01</span><h2>Oscillators</h2></div>
+    <div class="synth__preset-control">
+      <label for="bass-preset">BASS PRESET</label>
+      <select id="bass-preset" [ngModel]="selectedPreset" (ngModelChange)="applyBassPreset($event)">
+        @for (preset of bassPresets; track preset.name; let index = $index) {
+          <option [ngValue]="index">{{ index + 1 }} / {{ preset.name }}</option>
+        }
+      </select>
+    </div>
     <div class="synth__oscillators">
       <div class="synth__oscillator">
         <label class="synth__field-label" for="wave-a">Wave A <span>01</span></label>
@@ -61,6 +69,8 @@
     </div>
     <label class="synth__slider-label" for="blend"><span>Wave blend</span><output>{{ blend }}% B</output></label>
     <input id="blend" class="synth__slider" type="range" min="0" max="100" step="1" [(ngModel)]="blend" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="detune"><span>Oscillator spread</span><output>{{ detune }} cents</output></label>
+    <input id="detune" class="synth__slider" type="range" min="0" max="40" step="1" [(ngModel)]="detune" (ngModelChange)="updateSound()">
     <label class="synth__slider-label" for="frequency"><span>Pitch</span><output>{{ frequency }} Hz</output></label>
     <input id="frequency" class="synth__slider" type="range" min="40" max="880" step="1" [(ngModel)]="frequency" (ngModelChange)="updateSound()">
   </section>

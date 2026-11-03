@@ -74,6 +74,9 @@
 .synth__section-heading { justify-content: flex-start; gap: 0.8rem; margin-bottom: 1.15rem; }
 .synth__section-heading h2 { margin: 0; font-size: 1.05rem; font-weight: 600; }
 .synth__section-heading > span { color: var(--synth-amber); }
+.synth__preset-control { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0.75rem; margin-bottom: 1.1rem; }
+.synth__preset-control label { color: var(--synth-mint); font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.68rem; }
+.synth__preset-control select { min-height: 2.7rem; padding: 0.5rem 0.7rem; border: 1px solid var(--synth-line); border-radius: 0; background: var(--synth-panel); color: var(--synth-text); font: inherit; }
 .synth__subsection-heading { display: flex; align-items: baseline; justify-content: space-between; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--synth-line); }
 .synth__subsection-heading h3 { margin: 0; color: var(--synth-mint); font-size: 0.85rem; font-weight: 600; }
 .synth__subsection-heading span { color: var(--synth-muted); font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.65rem; }

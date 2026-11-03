@@ -18,9 +18,11 @@ describe('SynthComponent', () => {
     const waveSelectors = element.querySelectorAll<HTMLSelectElement>('.synth__oscillator select');
 
     expect(element.querySelector('h1')?.textContent).toContain('Dual oscillator synth');
+    expect(element.querySelectorAll('#bass-preset option')).toHaveLength(10);
     expect(waveSelectors).toHaveLength(2);
     expect(waveSelectors[0].value).toBe('sawtooth');
-    expect(waveSelectors[1].value).toBe('square');
+    expect(waveSelectors[1].value).toBe('sawtooth');
+    expect(element.querySelector('#detune')).toBeTruthy();
     expect(element.querySelector('#low-pass')).toBeTruthy();
     expect(element.querySelector('#high-pass')).toBeTruthy();
     expect(element.querySelector('#resonance')).toBeTruthy();
@@ -33,9 +35,10 @@ describe('SynthComponent', () => {
     expect(element.querySelector('#beat-level')).toBeTruthy();
     expect(element.querySelector('canvas')).toBeTruthy();
     expect(fixture.componentInstance.frequency).toBe(55);
-    expect(fixture.componentInstance.lowPass).toBe(1800);
-    expect(fixture.componentInstance.wobbleDepth).toBe(82);
-    expect(fixture.componentInstance.distortion).toBe(65);
+    expect(fixture.componentInstance.lowPass).toBe(1550);
+    expect(fixture.componentInstance.wobbleDepth).toBe(72);
+    expect(fixture.componentInstance.distortion).toBe(74);
+    expect(fixture.componentInstance.detune).toBe(18);
   });
 
   it('provides ten distinct drum patterns', () => {
@@ -43,6 +46,27 @@ describe('SynthComponent', () => {
 
     expect(fixture.componentInstance.beatOptions).toHaveLength(10);
     expect(new Set(signatures).size).toBe(10);
+  });
+
+  it('keeps the current bass as preset one and restores the previous sound as preset two', () => {
+    const component = fixture.componentInstance;
+    expect(component.selectedPreset).toBe(0);
+    expect(component.waveA).toBe('sawtooth');
+    expect(component.waveB).toBe('sawtooth');
+    expect(component.detune).toBe(18);
+
+    component.applyBassPreset(1);
+
+    expect(component.selectedPreset).toBe(1);
+    expect(component.waveA).toBe('sawtooth');
+    expect(component.waveB).toBe('square');
+    expect(component.blend).toBe(30);
+    expect(component.detune).toBe(0);
+    expect(component.lowPass).toBe(1800);
+    expect(component.resonance).toBe(5.5);
+    expect(component.wobbleRate).toBe(4.5);
+    expect(component.wobbleDepth).toBe(82);
+    expect(component.distortion).toBe(65);
   });
 
   it('updates the shared beat level gain in real time', () => {
@@ -71,6 +95,33 @@ describe('SynthComponent', () => {
     const expectedLevel = 0.22 * (1 + (fixture.componentInstance.accent / 100) * 1.4);
     expect(gainA.gain.setTargetAtTime).toHaveBeenCalledWith(expectedLevel * (1 - fixture.componentInstance.blend / 100), 1, 0.015);
     expect(gainB.gain.setTargetAtTime).toHaveBeenCalledWith(expectedLevel * (fixture.componentInstance.blend / 100), 1, 0.015);
+  });
+
+  it('spreads the default saw oscillators around the bass pitch', () => {
+    const oscillatorA = {
+      frequency: { setTargetAtTime: vi.fn() },
+      detune: { setTargetAtTime: vi.fn() },
+      type: 'sine',
+      stop: vi.fn(),
+      disconnect: vi.fn()
+    };
+    const oscillatorB = {
+      frequency: { setTargetAtTime: vi.fn() },
+      detune: { setTargetAtTime: vi.fn() },
+      type: 'sine',
+      stop: vi.fn(),
+      disconnect: vi.fn()
+    };
+    Object.assign(fixture.componentInstance, {
+      audioContext: { currentTime: 1, close: vi.fn().mockResolvedValue(undefined) },
+      oscillatorA,
+      oscillatorB
+    });
+
+    fixture.componentInstance.updateSound();
+
+    expect(oscillatorA.detune.setTargetAtTime).toHaveBeenCalledWith(-9, 1, 0.015);
+    expect(oscillatorB.detune.setTargetAtTime).toHaveBeenCalledWith(9, 1, 0.015);
   });
 
   it('sends wobble rate and depth to the low-pass modulation nodes', () => {

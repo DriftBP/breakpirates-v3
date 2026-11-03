@@ -13,6 +13,21 @@ type DrumBeat = {
   closedHat: number[];
   openHat: number[];
 };
+type BassPreset = {
+  name: string;
+  waveA: WaveShape;
+  waveB: WaveShape;
+  frequency: number;
+  blend: number;
+  detune: number;
+  lowPass: number;
+  highPass: number;
+  resonance: number;
+  accent: number;
+  wobbleRate: number;
+  wobbleDepth: number;
+  distortion: number;
+};
 
 @Component({
   selector: 'bp-synth',
@@ -31,6 +46,18 @@ export default class SynthComponent implements OnInit, OnDestroy {
     { value: 'triangle', label: 'Triangle' },
     { value: 'sine', label: 'Sine' }
   ];
+  readonly bassPresets: BassPreset[] = [
+    { name: 'Wide Reese', waveA: 'sawtooth', waveB: 'sawtooth', frequency: 55, blend: 48, detune: 18, lowPass: 1550, highPass: 25, resonance: 4.2, accent: 72, wobbleRate: 3.8, wobbleDepth: 72, distortion: 74 },
+    { name: 'Saw / Square', waveA: 'sawtooth', waveB: 'square', frequency: 55, blend: 30, detune: 0, lowPass: 1800, highPass: 25, resonance: 5.5, accent: 72, wobbleRate: 4.5, wobbleDepth: 82, distortion: 65 },
+    { name: 'Fog Horn', waveA: 'square', waveB: 'sawtooth', frequency: 45, blend: 65, detune: 4, lowPass: 620, highPass: 25, resonance: 10, accent: 84, wobbleRate: 2.3, wobbleDepth: 90, distortion: 86 },
+    { name: 'Rubber Mid', waveA: 'triangle', waveB: 'square', frequency: 65, blend: 35, detune: 24, lowPass: 1900, highPass: 35, resonance: 5, accent: 68, wobbleRate: 5.5, wobbleDepth: 68, distortion: 58 },
+    { name: 'Talkback Pulse', waveA: 'square', waveB: 'sawtooth', frequency: 70, blend: 55, detune: 8, lowPass: 900, highPass: 30, resonance: 8, accent: 80, wobbleRate: 3, wobbleDepth: 60, distortion: 92 },
+    { name: 'Hoover Roll', waveA: 'sawtooth', waveB: 'triangle', frequency: 73, blend: 42, detune: 32, lowPass: 2400, highPass: 30, resonance: 3.4, accent: 70, wobbleRate: 1.8, wobbleDepth: 48, distortion: 66 },
+    { name: 'Dark Reese', waveA: 'sawtooth', waveB: 'sawtooth', frequency: 49, blend: 55, detune: 26, lowPass: 1080, highPass: 25, resonance: 6.8, accent: 78, wobbleRate: 4.2, wobbleDepth: 85, distortion: 82 },
+    { name: 'Stomp Stab', waveA: 'square', waveB: 'sawtooth', frequency: 55, blend: 72, detune: 0, lowPass: 1300, highPass: 40, resonance: 7.5, accent: 92, wobbleRate: 6.8, wobbleDepth: 100, distortion: 92 },
+    { name: 'Sub Growl', waveA: 'triangle', waveB: 'sawtooth', frequency: 43, blend: 38, detune: 12, lowPass: 750, highPass: 20, resonance: 5, accent: 88, wobbleRate: 2.7, wobbleDepth: 55, distortion: 76 },
+    { name: 'Mid Rattle', waveA: 'sawtooth', waveB: 'square', frequency: 87, blend: 60, detune: 30, lowPass: 3200, highPass: 50, resonance: 2.8, accent: 74, wobbleRate: 7.2, wobbleDepth: 66, distortion: 88 }
+  ];
   readonly beatOptions: DrumBeat[] = [
     { label: 'Pressure', kick: [0, 3, 8, 11], snare: [4, 12, 15], closedHat: [0, 2, 3, 4, 6, 8, 10, 11, 12, 14], openHat: [7, 15] },
     { label: 'Skipper', kick: [0, 6, 10, 14], snare: [4, 11, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
@@ -44,17 +71,19 @@ export default class SynthComponent implements OnInit, OnDestroy {
     { label: 'Shuffle', kick: [0, 5, 8, 10, 13], snare: [4, 11, 12], closedHat: [0, 3, 4, 7, 8, 11, 12, 15], openHat: [6, 14] }
   ];
 
-  waveA: WaveShape = 'sawtooth';
-  waveB: WaveShape = 'square';
-  frequency = 55;
-  blend = 30;
-  lowPass = 1800;
-  highPass = 25;
-  resonance = 5.5;
-  accent = 72;
-  wobbleRate = 4.5;
-  wobbleDepth = 82;
-  distortion = 65;
+  selectedPreset = 0;
+  waveA: WaveShape = this.bassPresets[0].waveA;
+  waveB: WaveShape = this.bassPresets[0].waveB;
+  frequency = this.bassPresets[0].frequency;
+  blend = this.bassPresets[0].blend;
+  detune = this.bassPresets[0].detune;
+  lowPass = this.bassPresets[0].lowPass;
+  highPass = this.bassPresets[0].highPass;
+  resonance = this.bassPresets[0].resonance;
+  accent = this.bassPresets[0].accent;
+  wobbleRate = this.bassPresets[0].wobbleRate;
+  wobbleDepth = this.bassPresets[0].wobbleDepth;
+  distortion = this.bassPresets[0].distortion;
   selectedBeat = 0;
   beatLevel = 180;
   isBeatPlaying = false;
@@ -120,10 +149,12 @@ export default class SynthComponent implements OnInit, OnDestroy {
     if (this.oscillatorA) {
       this.oscillatorA.type = this.waveA;
       this.oscillatorA.frequency.setTargetAtTime(this.frequency, now, 0.015);
+      this.oscillatorA.detune.setTargetAtTime(-this.detune / 2, now, 0.015);
     }
     if (this.oscillatorB) {
       this.oscillatorB.type = this.waveB;
       this.oscillatorB.frequency.setTargetAtTime(this.frequency, now, 0.015);
+      this.oscillatorB.detune.setTargetAtTime(this.detune / 2, now, 0.015);
     }
     this.subOscillator?.frequency.setTargetAtTime(this.frequency, now, 0.015);
     const accentGain = 0.22 * (1 + (this.accent / 100) * 1.4);
@@ -140,6 +171,25 @@ export default class SynthComponent implements OnInit, OnDestroy {
     this.highPassFilter?.frequency.setTargetAtTime(this.highPass, now, 0.02);
     this.lowPassFilter && (this.lowPassFilter.Q.value = this.resonance);
     this.highPassFilter && (this.highPassFilter.Q.value = this.resonance * 0.35);
+  }
+
+  applyBassPreset(index: number): void {
+    const preset = this.bassPresets[index];
+    if (!preset) return;
+    this.selectedPreset = index;
+    this.waveA = preset.waveA;
+    this.waveB = preset.waveB;
+    this.frequency = preset.frequency;
+    this.blend = preset.blend;
+    this.detune = preset.detune;
+    this.lowPass = preset.lowPass;
+    this.highPass = preset.highPass;
+    this.resonance = preset.resonance;
+    this.accent = preset.accent;
+    this.wobbleRate = preset.wobbleRate;
+    this.wobbleDepth = preset.wobbleDepth;
+    this.distortion = preset.distortion;
+    this.updateSound();
   }
 
   triggerAccent(): void {
