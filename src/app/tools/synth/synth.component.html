@@ -1,0 +1,96 @@
+<main class="synth">
+  <header class="synth__header">
+    <div>
+      <p class="synth__eyebrow">{{ 'SYNTH.BRAND' | translate }}</p>
+      <h1>{{ 'SYNTH.TITLE' | translate }}</h1>
+      <p class="synth__intro">{{ 'SYNTH.INTRO' | translate }}</p>
+    </div>
+    <div class="synth__status" [class.synth__status--live]="isPlaying">
+      <span class="synth__status-dot"></span>{{ (isPlaying ? 'SYNTH.STATUS_LIVE' : 'SYNTH.STATUS_STANDBY') | translate }}
+    </div>
+  </header>
+
+  <section class="synth__scope" [attr.aria-label]="'SYNTH.WAVEFORM_SECTION' | translate">
+    <div class="synth__scope-top"><span>{{ 'SYNTH.OUTPUT_TIME_DOMAIN' | translate }}</span><span>{{ frequency }} {{ 'SYNTH.UNITS.HZ' | translate }}</span></div>
+    <canvas #waveformCanvas class="synth__canvas" role="img" [attr.aria-label]="'SYNTH.WAVEFORM_ARIA' | translate"></canvas>
+    <div class="synth__scope-bottom"><span>-1</span><span>0</span><span>+1</span></div>
+  </section>
+
+  <div class="synth__transport">
+    <button class="synth__play" type="button" (click)="togglePlayback()">
+      {{ (isPlaying ? 'SYNTH.STOP_TONE' : 'SYNTH.START_TONE') | translate }}
+    </button>
+    <button class="synth__accent-button" type="button" [disabled]="!isPlaying" (click)="triggerAccent()">
+      {{ 'SYNTH.ACCENT' | translate }}
+    </button>
+    <div class="synth__beat-control">
+      <label for="beat-pattern">{{ 'SYNTH.DRUM_LOOP' | translate }}</label>
+      <select id="beat-pattern" [(ngModel)]="selectedBeat">
+        @for (beat of beatOptions; track beat.label; let index = $index) {
+          <option [ngValue]="index">{{ index + 1 }} / {{ beat.label | translate }}</option>
+        }
+      </select>
+      <button class="synth__beat-button" type="button" [attr.aria-pressed]="isBeatPlaying" (click)="toggleBeat()">
+        {{ (isBeatPlaying ? 'SYNTH.STOP_BEAT' : 'SYNTH.START_BEAT') | translate }}
+      </button>
+      <label class="synth__beat-level-label" for="beat-level">{{ 'SYNTH.BEAT_LEVEL' | translate }} <output>{{ beatLevel }}%</output></label>
+      <input id="beat-level" class="synth__beat-level" type="range" min="50" max="220" step="1" [(ngModel)]="beatLevel" (ngModelChange)="updateBeatLevel()">
+    </div>
+    <p class="synth__error" role="alert">{{ audioError }}</p>
+  </div>
+
+  <section class="synth__controls" [attr.aria-label]="'SYNTH.CONTROLS_ARIA' | translate">
+    <div class="synth__section-heading"><span>01</span><h2>{{ 'SYNTH.OSCILLATORS' | translate }}</h2></div>
+    <div class="synth__preset-control">
+      <label for="bass-preset">{{ 'SYNTH.BASS_PRESET' | translate }}</label>
+      <select id="bass-preset" [ngModel]="selectedPreset" (ngModelChange)="applyBassPreset($event)">
+        @for (preset of bassPresets; track preset.name; let index = $index) {
+          <option [ngValue]="index">{{ index + 1 }} / {{ preset.name | translate }}</option>
+        }
+      </select>
+    </div>
+    <div class="synth__oscillators">
+      <div class="synth__oscillator">
+        <label class="synth__field-label" for="wave-a">{{ 'SYNTH.WAVE_A' | translate }} <span>01</span></label>
+        <select id="wave-a" [(ngModel)]="waveA" (ngModelChange)="updateSound()">
+          @for (wave of waveOptions; track wave.value) {
+            <option [value]="wave.value">{{ wave.label | translate }}</option>
+          }
+        </select>
+      </div>
+      <div class="synth__oscillator">
+        <label class="synth__field-label" for="wave-b">{{ 'SYNTH.WAVE_B' | translate }} <span>02</span></label>
+        <select id="wave-b" [(ngModel)]="waveB" (ngModelChange)="updateSound()">
+          @for (wave of waveOptions; track wave.value) {
+            <option [value]="wave.value">{{ wave.label | translate }}</option>
+          }
+        </select>
+      </div>
+    </div>
+    <label class="synth__slider-label" for="blend"><span>{{ 'SYNTH.WAVE_BLEND' | translate }}</span><output>{{ blend }}% B</output></label>
+    <input id="blend" class="synth__slider" type="range" min="0" max="100" step="1" [(ngModel)]="blend" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="detune"><span>{{ 'SYNTH.OSCILLATOR_SPREAD' | translate }}</span><output>{{ detune }} {{ 'SYNTH.UNITS.CENTS' | translate }}</output></label>
+    <input id="detune" class="synth__slider" type="range" min="0" max="40" step="1" [(ngModel)]="detune" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="frequency"><span>{{ 'SYNTH.PITCH' | translate }}</span><output>{{ frequency }} {{ 'SYNTH.UNITS.HZ' | translate }}</output></label>
+    <input id="frequency" class="synth__slider" type="range" min="40" max="880" step="1" [(ngModel)]="frequency" (ngModelChange)="updateSound()">
+  </section>
+
+  <section class="synth__controls synth__controls--filters" [attr.aria-label]="'SYNTH.FILTER_ACCENT_ARIA' | translate">
+    <div class="synth__section-heading"><span>02</span><h2>{{ 'SYNTH.FILTER_ACCENT' | translate }}</h2></div>
+    <label class="synth__slider-label" for="low-pass"><span>{{ 'SYNTH.LOW_PASS_CUTOFF' | translate }}</span><output>{{ lowPass }} {{ 'SYNTH.UNITS.HZ' | translate }}</output></label>
+    <input id="low-pass" class="synth__slider" type="range" min="200" max="16000" step="10" [(ngModel)]="lowPass" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="high-pass"><span>{{ 'SYNTH.HIGH_PASS_CUTOFF' | translate }}</span><output>{{ highPass }} {{ 'SYNTH.UNITS.HZ' | translate }}</output></label>
+    <input id="high-pass" class="synth__slider" type="range" min="20" max="4000" step="10" [(ngModel)]="highPass" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="resonance"><span>{{ 'SYNTH.RESONANCE' | translate }}</span><output>{{ resonance.toFixed(1) }} {{ 'SYNTH.UNITS.Q' | translate }}</output></label>
+    <input id="resonance" class="synth__slider" type="range" min="0.1" max="18" step="0.1" [(ngModel)]="resonance" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="distortion"><span>{{ 'SYNTH.DISTORTION_DRIVE' | translate }}</span><output>{{ distortion }}%</output></label>
+    <input id="distortion" class="synth__slider" type="range" min="0" max="100" step="1" [(ngModel)]="distortion" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="accent"><span>{{ 'SYNTH.ACCENT_AMOUNT' | translate }}</span><output>{{ accent }}%</output></label>
+    <input id="accent" class="synth__slider" type="range" min="0" max="100" step="1" [(ngModel)]="accent" (ngModelChange)="updateSound()">
+    <div class="synth__subsection-heading"><h3>{{ 'SYNTH.WOBBLE_LFO' | translate }}</h3><span>{{ 'SYNTH.FILTER_MODULATION' | translate }}</span></div>
+    <label class="synth__slider-label" for="wobble-rate"><span>{{ 'SYNTH.WOBBLE_RATE' | translate }}</span><output>{{ wobbleRate.toFixed(1) }} {{ 'SYNTH.UNITS.HZ' | translate }}</output></label>
+    <input id="wobble-rate" class="synth__slider" type="range" min="0.5" max="12" step="0.1" [(ngModel)]="wobbleRate" (ngModelChange)="updateSound()">
+    <label class="synth__slider-label" for="wobble-depth"><span>{{ 'SYNTH.WOBBLE_DEPTH' | translate }}</span><output>{{ wobbleDepth }}%</output></label>
+    <input id="wobble-depth" class="synth__slider" type="range" min="0" max="100" step="1" [(ngModel)]="wobbleDepth" (ngModelChange)="updateSound()">
+  </section>
+</main>
