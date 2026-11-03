@@ -123,10 +123,6 @@ export default class TechnicsLookupComponent implements OnInit {
     return modelHistory[this.modelVariant]?.scene ?? null;
   }
 
-  get sceneAssociations(): string[] {
-    return [];
-  }
-
   ngOnInit(): void {
     this.breadcrumbService.setBreadcrumb(this.breadcrumbConfig);
   }
