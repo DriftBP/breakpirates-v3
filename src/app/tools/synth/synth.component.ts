@@ -1,5 +1,6 @@
 import { Component, ElementRef, NgZone, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { BreadcrumbConfigItem } from '../../shared/breadcrumb/breadcrumb-config-item';
 import { toolsConfigInactive } from '../../shared/breadcrumb/breadcrumb-config';
@@ -33,7 +34,7 @@ type BassPreset = {
   selector: 'bp-synth',
   templateUrl: './synth.component.html',
   styleUrls: ['./synth.component.scss'],
-  imports: [FormsModule]
+  imports: [FormsModule, TranslatePipe]
 })
 export default class SynthComponent implements OnInit, OnDestroy {
   private readonly breadcrumbService = inject(BreadcrumbService);
@@ -41,34 +42,34 @@ export default class SynthComponent implements OnInit, OnDestroy {
   private readonly waveformCanvas = viewChild.required<ElementRef<HTMLCanvasElement>>('waveformCanvas');
 
   readonly waveOptions: { value: WaveShape; label: string }[] = [
-    { value: 'sawtooth', label: 'Saw' },
-    { value: 'square', label: 'Square' },
-    { value: 'triangle', label: 'Triangle' },
-    { value: 'sine', label: 'Sine' }
+    { value: 'sawtooth', label: 'SYNTH.WAVES.SAW' },
+    { value: 'square', label: 'SYNTH.WAVES.SQUARE' },
+    { value: 'triangle', label: 'SYNTH.WAVES.TRIANGLE' },
+    { value: 'sine', label: 'SYNTH.WAVES.SINE' }
   ];
   readonly bassPresets: BassPreset[] = [
-    { name: 'Wide Reese', waveA: 'sawtooth', waveB: 'sawtooth', frequency: 55, blend: 48, detune: 18, lowPass: 1550, highPass: 25, resonance: 4.2, accent: 72, wobbleRate: 3.8, wobbleDepth: 72, distortion: 74 },
-    { name: 'Saw / Square', waveA: 'sawtooth', waveB: 'square', frequency: 55, blend: 30, detune: 0, lowPass: 1800, highPass: 25, resonance: 5.5, accent: 72, wobbleRate: 4.5, wobbleDepth: 82, distortion: 65 },
-    { name: 'Fog Horn', waveA: 'square', waveB: 'sawtooth', frequency: 45, blend: 65, detune: 4, lowPass: 620, highPass: 25, resonance: 10, accent: 84, wobbleRate: 2.3, wobbleDepth: 90, distortion: 86 },
-    { name: 'Rubber Mid', waveA: 'triangle', waveB: 'square', frequency: 65, blend: 35, detune: 24, lowPass: 1900, highPass: 35, resonance: 5, accent: 68, wobbleRate: 5.5, wobbleDepth: 68, distortion: 58 },
-    { name: 'Talkback Pulse', waveA: 'square', waveB: 'sawtooth', frequency: 70, blend: 55, detune: 8, lowPass: 900, highPass: 30, resonance: 8, accent: 80, wobbleRate: 3, wobbleDepth: 60, distortion: 92 },
-    { name: 'Hoover Roll', waveA: 'sawtooth', waveB: 'triangle', frequency: 73, blend: 42, detune: 32, lowPass: 2400, highPass: 30, resonance: 3.4, accent: 70, wobbleRate: 1.8, wobbleDepth: 48, distortion: 66 },
-    { name: 'Dark Reese', waveA: 'sawtooth', waveB: 'sawtooth', frequency: 49, blend: 55, detune: 26, lowPass: 1080, highPass: 25, resonance: 6.8, accent: 78, wobbleRate: 4.2, wobbleDepth: 85, distortion: 82 },
-    { name: 'Stomp Stab', waveA: 'square', waveB: 'sawtooth', frequency: 55, blend: 72, detune: 0, lowPass: 1300, highPass: 40, resonance: 7.5, accent: 92, wobbleRate: 6.8, wobbleDepth: 100, distortion: 92 },
-    { name: 'Sub Growl', waveA: 'triangle', waveB: 'sawtooth', frequency: 43, blend: 38, detune: 12, lowPass: 750, highPass: 20, resonance: 5, accent: 88, wobbleRate: 2.7, wobbleDepth: 55, distortion: 76 },
-    { name: 'Mid Rattle', waveA: 'sawtooth', waveB: 'square', frequency: 87, blend: 60, detune: 30, lowPass: 3200, highPass: 50, resonance: 2.8, accent: 74, wobbleRate: 7.2, wobbleDepth: 66, distortion: 88 }
+    { name: 'SYNTH.PRESETS.WIDE_REESE', waveA: 'sawtooth', waveB: 'sawtooth', frequency: 55, blend: 48, detune: 18, lowPass: 1550, highPass: 25, resonance: 4.2, accent: 72, wobbleRate: 3.8, wobbleDepth: 72, distortion: 74 },
+    { name: 'SYNTH.PRESETS.SAW_SQUARE', waveA: 'sawtooth', waveB: 'square', frequency: 55, blend: 30, detune: 0, lowPass: 1800, highPass: 25, resonance: 5.5, accent: 72, wobbleRate: 4.5, wobbleDepth: 82, distortion: 65 },
+    { name: 'SYNTH.PRESETS.FOG_HORN', waveA: 'square', waveB: 'sawtooth', frequency: 45, blend: 65, detune: 4, lowPass: 620, highPass: 25, resonance: 10, accent: 84, wobbleRate: 2.3, wobbleDepth: 90, distortion: 86 },
+    { name: 'SYNTH.PRESETS.RUBBER_MID', waveA: 'triangle', waveB: 'square', frequency: 65, blend: 35, detune: 24, lowPass: 1900, highPass: 35, resonance: 5, accent: 68, wobbleRate: 5.5, wobbleDepth: 68, distortion: 58 },
+    { name: 'SYNTH.PRESETS.TALKBACK_PULSE', waveA: 'square', waveB: 'sawtooth', frequency: 70, blend: 55, detune: 8, lowPass: 900, highPass: 30, resonance: 8, accent: 80, wobbleRate: 3, wobbleDepth: 60, distortion: 92 },
+    { name: 'SYNTH.PRESETS.HOOVER_ROLL', waveA: 'sawtooth', waveB: 'triangle', frequency: 73, blend: 42, detune: 32, lowPass: 2400, highPass: 30, resonance: 3.4, accent: 70, wobbleRate: 1.8, wobbleDepth: 48, distortion: 66 },
+    { name: 'SYNTH.PRESETS.DARK_REESE', waveA: 'sawtooth', waveB: 'sawtooth', frequency: 49, blend: 55, detune: 26, lowPass: 1080, highPass: 25, resonance: 6.8, accent: 78, wobbleRate: 4.2, wobbleDepth: 85, distortion: 82 },
+    { name: 'SYNTH.PRESETS.STOMP_STAB', waveA: 'square', waveB: 'sawtooth', frequency: 55, blend: 72, detune: 0, lowPass: 1300, highPass: 40, resonance: 7.5, accent: 92, wobbleRate: 6.8, wobbleDepth: 100, distortion: 92 },
+    { name: 'SYNTH.PRESETS.SUB_GROWL', waveA: 'triangle', waveB: 'sawtooth', frequency: 43, blend: 38, detune: 12, lowPass: 750, highPass: 20, resonance: 5, accent: 88, wobbleRate: 2.7, wobbleDepth: 55, distortion: 76 },
+    { name: 'SYNTH.PRESETS.MID_RATTLE', waveA: 'sawtooth', waveB: 'square', frequency: 87, blend: 60, detune: 30, lowPass: 3200, highPass: 50, resonance: 2.8, accent: 74, wobbleRate: 7.2, wobbleDepth: 66, distortion: 88 }
   ];
   readonly beatOptions: DrumBeat[] = [
-    { label: 'Pressure', kick: [0, 3, 8, 11], snare: [4, 12, 15], closedHat: [0, 2, 3, 4, 6, 8, 10, 11, 12, 14], openHat: [7, 15] },
-    { label: 'Skipper', kick: [0, 6, 10, 14], snare: [4, 11, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
-    { label: 'Roll-back', kick: [0, 3, 8, 11, 14], snare: [4, 12, 15], closedHat: [1, 3, 5, 7, 9, 11, 13, 15], openHat: [7, 15] },
-    { label: 'Swing', kick: [0, 6, 8, 11, 14], snare: [4, 10, 12, 15], closedHat: [0, 3, 4, 7, 8, 11, 12, 15], openHat: [7, 15] },
-    { label: 'Stepper', kick: [0, 5, 8, 10, 14], snare: [4, 11, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
-    { label: 'Offbeat', kick: [0, 3, 6, 8, 11, 14], snare: [4, 10, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
-    { label: 'Half-time', kick: [0, 7, 10], snare: [8, 14], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
-    { label: 'Chop', kick: [0, 3, 7, 8, 11, 14], snare: [4, 9, 12, 14], closedHat: [1, 3, 5, 7, 9, 11, 13, 15], openHat: [7, 15] },
-    { label: 'Rusher', kick: [0, 3, 6, 8, 11, 14], snare: [4, 7, 12, 15], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [3, 11, 15] },
-    { label: 'Shuffle', kick: [0, 5, 8, 10, 13], snare: [4, 11, 12], closedHat: [0, 3, 4, 7, 8, 11, 12, 15], openHat: [6, 14] }
+    { label: 'SYNTH.BEATS.PRESSURE', kick: [0, 3, 8, 11], snare: [4, 12, 15], closedHat: [0, 2, 3, 4, 6, 8, 10, 11, 12, 14], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.SKIPPER', kick: [0, 6, 10, 14], snare: [4, 11, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.ROLL_BACK', kick: [0, 3, 8, 11, 14], snare: [4, 12, 15], closedHat: [1, 3, 5, 7, 9, 11, 13, 15], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.SWING', kick: [0, 6, 8, 11, 14], snare: [4, 10, 12, 15], closedHat: [0, 3, 4, 7, 8, 11, 12, 15], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.STEPPER', kick: [0, 5, 8, 10, 14], snare: [4, 11, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.OFFBEAT', kick: [0, 3, 6, 8, 11, 14], snare: [4, 10, 12], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.HALF_TIME', kick: [0, 7, 10], snare: [8, 14], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.CHOP', kick: [0, 3, 7, 8, 11, 14], snare: [4, 9, 12, 14], closedHat: [1, 3, 5, 7, 9, 11, 13, 15], openHat: [7, 15] },
+    { label: 'SYNTH.BEATS.RUSHER', kick: [0, 3, 6, 8, 11, 14], snare: [4, 7, 12, 15], closedHat: [0, 2, 4, 6, 8, 10, 12, 14], openHat: [3, 11, 15] },
+    { label: 'SYNTH.BEATS.SHUFFLE', kick: [0, 5, 8, 10, 13], snare: [4, 11, 12], closedHat: [0, 3, 4, 7, 8, 11, 12, 15], openHat: [6, 14] }
   ];
 
   selectedPreset = 0;
@@ -117,7 +118,7 @@ export default class SynthComponent implements OnInit, OnDestroy {
 
   private readonly breadcrumbConfig: BreadcrumbConfigItem[] = [
     toolsConfigInactive,
-    { name: 'Dual oscillator synth', isActive: true }
+    { name: 'SYNTH.TITLE', isActive: true }
   ];
 
   ngOnInit(): void {
@@ -138,7 +139,7 @@ export default class SynthComponent implements OnInit, OnDestroy {
       this.audioError = '';
       this.ngZone.runOutsideAngular(() => this.drawWaveform());
     } catch {
-      this.audioError = 'Audio could not start. Check your browser audio settings and try again.';
+      this.audioError = 'SYNTH.ERRORS.AUDIO_START_FAILED';
       this.stopPlayback();
     }
   }
@@ -227,7 +228,7 @@ export default class SynthComponent implements OnInit, OnDestroy {
       this.nextBeatTime = context.currentTime + 0.05;
       this.scheduleBeatSteps();
     } catch {
-      this.audioError = 'The beat could not start. Check your browser audio settings and try again.';
+      this.audioError = 'SYNTH.ERRORS.BEAT_START_FAILED';
       this.isBeatPlaying = false;
     }
   }

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
+import { MockTranslateService } from '../../../test/services/mock.translate.service';
 
 import SynthComponent from './synth.component';
 
@@ -7,7 +9,8 @@ describe('SynthComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SynthComponent]
+      imports: [SynthComponent],
+      providers: [{ provide: TranslateService, useClass: MockTranslateService }]
     }).compileComponents();
     fixture = TestBed.createComponent(SynthComponent);
     fixture.detectChanges();
@@ -17,7 +20,7 @@ describe('SynthComponent', () => {
     const element = fixture.nativeElement as HTMLElement;
     const waveSelectors = element.querySelectorAll<HTMLSelectElement>('.synth__oscillator select');
 
-    expect(element.querySelector('h1')?.textContent).toContain('Dual oscillator synth');
+    expect(element.querySelector('h1')?.textContent).toContain('SYNTH.TITLE');
     expect(element.querySelectorAll('#bass-preset option')).toHaveLength(10);
     expect(waveSelectors).toHaveLength(2);
     expect(waveSelectors[0].value).toBe('sawtooth');
