@@ -1,0 +1,75 @@
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --watch=false
+
+      - name: Build production site
+        run: npm run build
+
+      - name: Configure SSH host verification
+        env:
+          SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          : "${SSH_KNOWN_HOSTS:?Set the DEPLOY_KNOWN_HOSTS environment secret}"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Install SFTP tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp sshpass
+
+      - name: Deploy over SFTP
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ vars.DEPLOY_PORT || '22' }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          : "${DEPLOY_HOST:?Set the DEPLOY_HOST repository variable}"
+          : "${DEPLOY_USER:?Set the DEPLOY_USER repository variable}"
+          : "${DEPLOY_PATH:?Set the DEPLOY_PATH repository variable}"
+          : "${DEPLOY_PASSWORD:?Set the DEPLOY_PASSWORD environment secret}"
+          if [[ ! "$DEPLOY_PATH" =~ ^[a-zA-Z0-9._/-]+$ ]]; then
+            echo "DEPLOY_PATH must contain only letters, numbers, dots, underscores, slashes, and hyphens"
+            exit 1
+          fi
+          export SSHPASS="$DEPLOY_PASSWORD"
+          lftp <<EOF
+          set cmd:fail-exit yes
+          set sftp:connect-program "sshpass -e ssh -a -x"
+          open -u "${DEPLOY_USER}" "sftp://${DEPLOY_HOST}:${DEPLOY_PORT}"
+          mirror --reverse --verbose "dist/breakpirates-v3/browser/" "${DEPLOY_PATH%/}"
+          bye
+          EOF
