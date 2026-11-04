@@ -222,5 +222,80 @@
     "SETTINGS_COULD_NOT_SAVE": "Sampler settings could not be saved in this browser.",
     "INDEXED_DB_UNAVAILABLE": "IndexedDB is unavailable.",
     "WEB_AUDIO_UNAVAILABLE": "Web Audio is not supported in this browser."
+  },
+  "SYNTH": {
+    "BRAND": "BREAKPIRATES / SOUND LAB",
+    "TITLE": "Dual oscillator synth",
+    "INTRO": "Wide detuned saws, a clean sub, and a gritty rolling filter.",
+    "STATUS_LIVE": "SIGNAL LIVE",
+    "STATUS_STANDBY": "STANDBY",
+    "WAVEFORM_SECTION": "Live waveform display",
+    "OUTPUT_TIME_DOMAIN": "OUTPUT / TIME DOMAIN",
+    "WAVEFORM_ARIA": "Live audio waveform",
+    "START_TONE": "Start tone",
+    "STOP_TONE": "Stop tone",
+    "ACCENT": "Accent",
+    "DRUM_LOOP": "DRUM LOOP",
+    "START_BEAT": "Start beat",
+    "STOP_BEAT": "Stop beat",
+    "BEAT_LEVEL": "BEAT LEVEL",
+    "CONTROLS_ARIA": "Synth controls",
+    "OSCILLATORS": "Oscillators",
+    "BASS_PRESET": "BASS PRESET",
+    "WAVE_A": "Wave A",
+    "WAVE_B": "Wave B",
+    "WAVE_BLEND": "Wave blend",
+    "PITCH": "Pitch",
+    "OSCILLATOR_SPREAD": "Oscillator spread",
+    "FILTER_ACCENT_ARIA": "Filter and accent controls",
+    "FILTER_ACCENT": "Filter & accent",
+    "LOW_PASS_CUTOFF": "Low-pass cutoff",
+    "HIGH_PASS_CUTOFF": "High-pass cutoff",
+    "RESONANCE": "Resonance",
+    "DISTORTION_DRIVE": "Distortion drive",
+    "ACCENT_AMOUNT": "Accent amount",
+    "WOBBLE_LFO": "Wobble LFO",
+    "WOBBLE_RATE": "Wobble rate",
+    "WOBBLE_DEPTH": "Wobble depth",
+    "FILTER_MODULATION": "FILTER MODULATION",
+    "UNITS": {
+      "HZ": "Hz",
+      "CENTS": "cents",
+      "Q": "Q"
+    },
+    "WAVES": {
+      "SAW": "Saw",
+      "SQUARE": "Square",
+      "TRIANGLE": "Triangle",
+      "SINE": "Sine"
+    },
+    "BEATS": {
+      "PRESSURE": "Pressure",
+      "SKIPPER": "Skipper",
+      "ROLL_BACK": "Roll-back",
+      "SWING": "Swing",
+      "STEPPER": "Stepper",
+      "OFFBEAT": "Offbeat",
+      "HALF_TIME": "Half-time",
+      "CHOP": "Chop",
+      "RUSHER": "Rusher",
+      "SHUFFLE": "Shuffle"
+    },
+    "PRESETS": {
+      "WIDE_REESE": "Wide Reese",
+      "SAW_SQUARE": "Saw / Square",
+      "FOG_HORN": "Fog Horn",
+      "RUBBER_MID": "Rubber Mid",
+      "TALKBACK_PULSE": "Talkback Pulse",
+      "HOOVER_ROLL": "Hoover Roll",
+      "DARK_REESE": "Dark Reese",
+      "STOMP_STAB": "Stomp Stab",
+      "SUB_GROWL": "Sub Growl",
+      "MID_RATTLE": "Mid Rattle"
+    },
+    "ERRORS": {
+      "AUDIO_START_FAILED": "Audio could not start. Check your browser audio settings and try again.",
+      "BEAT_START_FAILED": "The beat could not start. Check your browser audio settings and try again."
+    }
   }
 }
