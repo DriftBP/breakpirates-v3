@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" version="1">
+  <title>Break Pirates - Live Pirate Style Radio</title>
+  <trackList>
+    <track>
+      <title>Break Pirates - Live Pirate Style Radio</title>
+      <location>http://bpstream.hostco.de:3000/</location>
+    </track>
+  </trackList>
+</playlist>
