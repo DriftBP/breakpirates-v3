@@ -7,3 +7,11 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . index.html [L]
 </IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/pls .pls
+  AddType audio/x-mpegurl .m3u
+  AddType video/x-ms-asf .asx
+  AddType audio/x-pn-realaudio .ram
+  AddCharset UTF-8 .pls .m3u .asx .ram
+</IfModule>
