@@ -13,5 +13,7 @@
   AddType audio/x-mpegurl .m3u
   AddType video/x-ms-asf .asx
   AddType audio/x-pn-realaudio .ram
-  AddCharset UTF-8 .pls .m3u .asx .ram
+  AddType application/xspf+xml .xspf
+  AddType application/vnd.ms-wpl .wpl
+  AddCharset UTF-8 .pls .m3u .asx .ram .xspf .wpl
 </IfModule>

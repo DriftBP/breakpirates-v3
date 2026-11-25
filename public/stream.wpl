@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil>
+  <head>
+    <title>Break Pirates - Live Pirate Style Radio</title>
+  </head>
+  <body>
+    <seq>
+      <media src="http://bpstream.hostco.de:3000/" />
+    </seq>
+  </body>
+</smil>
