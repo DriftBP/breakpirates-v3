@@ -42,28 +42,42 @@
                 ngbDropdownItem
                 (click)="onTuneInClick('Default')"
                 href="/stream.pls"
-              >{{'NAVIGATION.DEFAULT_PLAYER' | translate}}</a>
+              >{{'NAVIGATION.DEFAULT_PLAYER' | translate}} (PLS)</a>
             </li>
             <li role="menuitem">
               <a
                 class="dropdown-item"
                 (click)="onTuneInClick('Apple Music')"
                 href="/stream.m3u"
-              >iTunes / Apple Music</a>
+              >Apple Music (M3U)</a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('XSPF Player')"
+                href="/stream.xspf"
+              >XSPF / VLC</a>
+            </li>
+            <li role="menuitem">
+              <a
+                class="dropdown-item"
+                (click)="onTuneInClick('Windows Playlist')"
+                href="/stream.wpl"
+              >Windows Playlist</a>
             </li>
             <li role="menuitem">
               <a
                 class="dropdown-item"
                 (click)="onTuneInClick('Windows Media Player')"
                 href="/stream.asx"
-              >Windows Media Player</a>
+              >Windows Media Player (ASX)</a>
             </li>
             <li role="menuitem">
               <a
                 class="dropdown-item"
                 (click)="onTuneInClick('RealPlayer')"
                 href="/stream.ram"
-              >RealPlayer</a>
+              >RealPlayer (RAM)</a>
             </li>
             <li class="dropdown-divider"></li>
             @for (link of externalLinks; track link.Text) {
