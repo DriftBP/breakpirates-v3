@@ -34,6 +34,7 @@ const urls = new Set([
   `${siteUrl}/profiles`,
   `${siteUrl}/video`,
   `${siteUrl}/social`,
+  `${siteUrl}/social/chat`,
   `${siteUrl}/tools`,
   `${siteUrl}/tools/bpm`,
   `${siteUrl}/tools/dj-name`,
@@ -41,7 +42,8 @@ const urls = new Set([
   `${siteUrl}/tools/roster`,
   `${siteUrl}/tools/soundboard`,
   `${siteUrl}/tools/technics-1200-lookup`,
-  `${siteUrl}/tools/808`
+  `${siteUrl}/tools/808`,
+  `${siteUrl}/tools/synth`
 ]);
 
 const [articles, hosts, genres, videos, days] = await Promise.all([
